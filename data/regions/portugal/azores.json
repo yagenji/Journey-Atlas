@@ -59,7 +59,8 @@
     },
     {
       "label": "通貨",
-      "value": "ユーロ（EUR）"
+      "value": "ユーロ（EUR）",
+      "sourceKey": "autonomy"
     }
   ],
   "map": {
@@ -70,7 +71,31 @@
       "west": -31.5,
       "east": -24.4
     },
-    "source": "Natural Earth 1:10m Admin-0 Portugal geometry (public domain), via approved Portugal map-atlas-v2.svg, PRT.geojson Git blob ce02dabb0ea17eba11923f78ed1525d8989c9b58; original nine real island coastlines preserved under exact local-equirectangular-fit projection; WGS84; checked 2026-11-08."
+    "source": "Natural Earth 1:10m Admin-0 Portugal geometry (public domain), via approved Portugal map-atlas-v2.svg, PRT.geojson Git blob ce02dabb0ea17eba11923f78ed1525d8989c9b58; original nine real island coastlines preserved under exact local-equirectangular-fit projection; WGS84; checked 2026-11-08. São Miguel inset: the same geometry reused at a uniform 4x zoom; no new vertices. 2026-11-09.",
+    "regions": [
+      {
+        "id": "sao-miguel",
+        "label": "サン・ミゲル島",
+        "svgId": "az-sao-miguel-detail",
+        "rect": {
+          "x": 40,
+          "y": 470,
+          "width": 560,
+          "height": 256
+        },
+        "sourceRect": {
+          "x": 945,
+          "y": 462,
+          "width": 140,
+          "height": 64
+        },
+        "sceneIds": [
+          "lagoa-do-fogo",
+          "furnas-geothermal"
+        ]
+      }
+    ],
+    "insetNote": "※ 左下はサン・ミゲル島を、同じ地図データで拡大した別枠表示です。"
   },
   "scenes": [
     {
@@ -262,50 +287,50 @@
       "exceptionalScale": true
     },
     {
-      "topicKey": "unesco-two",
-      "label": "世界遺産の文化景観",
-      "value": "2件",
-      "note": "アングラ・ド・エロイズモの歴史地区（1983年登録）とピコ島の葡萄畑文化景観（2004年登録）。",
-      "icon": "culture",
-      "sourceKey": "picoHeritage",
-      "interestReason": "自然の島という印象の奥に、航海と農業の長い歴史がある。"
+      "topicKey": "monogenetic-volcanoes",
+      "label": "島々に散らばる小さな火山",
+      "value": "1,750以上",
+      "icon": "landscape",
+      "sourceKey": "geopark",
+      "note": "9島には27の主要な火山系に加え、一度の噴火でできた単成火山が1,750以上ある。北米・ユーラシア・ヌビア（アフリカ）の3つのプレートが出会う場所に島々が並ぶ。",
+      "interestReason": "湖や温泉、黒い溶岩の畑が、どれも火山の連続した営みから生まれていることを数で伝える。"
     }
   ],
   "encounters": [
     {
-      "title": "火口湖の上を流れる雲",
+      "title": "火口湖の縁を流れる雲",
       "icon": "landscape",
       "category": "LANDSCAPE"
     },
     {
-      "title": "地面から立ち上がる温泉の蒸気",
-      "icon": "sun",
-      "category": "LANDSCAPE"
+      "title": "地面から噴き出す硫黄の蒸気",
+      "icon": "landscape",
+      "category": "NATURE"
     },
     {
-      "title": "玄武岩の葡萄畑を歩く道",
+      "title": "地熱の穴から掘り出す煮込み鍋",
+      "icon": "food",
+      "category": "FOOD"
+    },
+    {
+      "title": "崖の上からクジラを探す見張り小屋",
+      "icon": "wildlife",
+      "category": "WILDLIFE"
+    },
+    {
+      "title": "聖霊祭の冠と分け合うスープ",
       "icon": "culture",
-      "category": "CULTURE"
+      "category": "FAITH"
     },
     {
-      "title": "港に並ぶヨットと漁船",
+      "title": "海を見下ろす茶畑の畝",
+      "icon": "leaf",
+      "category": "WORK"
+    },
+    {
+      "title": "オルタの岸壁に描かれた船乗りの絵",
       "icon": "sea",
-      "category": "MOVEMENT"
-    },
-    {
-      "title": "聖霊祭で分かち合う食卓",
-      "icon": "culture",
       "category": "CULTURE"
-    },
-    {
-      "title": "波に洗われる溶岩の岩場",
-      "icon": "sea",
-      "category": "LANDSCAPE"
-    },
-    {
-      "title": "雨上がりの細い滝",
-      "icon": "waterfall",
-      "category": "LANDSCAPE"
     },
     {
       "title": "島から島へ渡る小さな飛行機",
@@ -315,30 +340,30 @@
   ],
   "culture": [
     {
-      "topicKey": "angra-ocean-crossroads",
-      "themeEn": "HISTORY",
-      "themeJa": "航海の歴史",
-      "icon": "sea",
-      "title": "船が往来する大西洋の中継港",
-      "text": "アングラ・ド・エロイズモは、15世紀以降の大西洋航路で重要な寄港地になった。城塞と港、教会が同じ街に残るのは、航海と防衛と信仰が結びついたためだ。",
+      "topicKey": "gorreana-tea",
+      "themeEn": "LIFE",
+      "themeJa": "島の茶畑",
+      "icon": "leaf",
+      "title": "ヨーロッパ最古の茶園が、火山島にある",
+      "text": "サン・ミゲル島北岸のゴレアナ茶園は1883年から茶をつくり続け、観光局は「ヨーロッパ最古の茶園」と紹介する。海を見下ろす斜面に茶の畝が並び、工場の見学と約3.3kmの周回トレイルを組み合わせられる。",
       "points": [
-        "旧市街と港の配置は世界遺産として保護される",
-        "1980年の地震後にも歴史的な街路を受け継いだ"
+        "緑茶と紅茶を同じ茶園でつくる",
+        "霧の多い北岸の湿り気が茶畑に向く"
       ],
-      "sourceKey": "angraHeritage"
+      "sourceKey": "gorreana"
     },
     {
-      "topicKey": "pico-lava-vineyards",
-      "themeEn": "WORK",
-      "themeJa": "土地を耕す",
+      "topicKey": "romeiros",
+      "themeEn": "FAITH",
+      "themeJa": "祈りの巡礼",
       "icon": "culture",
-      "title": "溶岩を葡萄畑に変えた石垣",
-      "text": "ピコ島では黒い玄武岩を積んだ石垣で小区画をつくり、潮風から葡萄を守ってきた。石垣の網目は海沿いに広がる、人が築いた風景でもある。",
+      "title": "四旬節、男たちが歩いて島を一周する",
+      "text": "サン・ミゲル島では四旬節の時期、男性たちの巡礼団「ロメイロス」が島を歩いて巡り、途中の教会や礼拝堂で祈る。16世紀の地震や噴火にさかのぼると語り継がれ、かつては島を裸足で一周する苦行でもあった。",
       "points": [
-        "石垣の小区画はクライス（currais）と呼ばれる",
-        "15世紀以来の栽培法が文化景観に刻まれている"
+        "道沿いで祈りの声とともに列が通り過ぎる",
+        "火山と地震の島ならではの信仰の記憶"
       ],
-      "sourceKey": "picoHeritage"
+      "sourceKey": "romeiros"
     },
     {
       "topicKey": "holy-spirit-festivals",
@@ -354,17 +379,17 @@
       "sourceKey": "holySpirit"
     },
     {
-      "topicKey": "whaling-memory",
+      "topicKey": "whale-lookouts",
       "themeEn": "LIFE",
       "themeJa": "海と生きる",
       "icon": "sea",
-      "title": "捕鯨船の小屋が博物館になった",
-      "text": "ピコ島では19世紀から1980年代まで続いた捕鯨の歴史を、かつての船小屋を使った博物館が伝えている。現在の海の見方を考える上で、過去の産業を知る場所となっている。",
+      "title": "崖の上の白い小屋が、クジラを探した",
+      "text": "海岸の崖に立つ白い円形の見張り小屋「ヴィジア」では、見張り番が双眼鏡で海を見渡し、クジラの位置を捕鯨船に知らせた。最後の見張り小屋は1980年代まで使われ、ピコ島では船小屋を使った捕鯨博物館がその時代を伝える。",
       "points": [
-        "捕鯨船の道具や技術の記録が残る",
-        "今日の海洋観光と過去の産業を比べて考えられる"
+        "低く横長の窓は、海面を見渡すためのかたち",
+        "修復された小屋へは遊歩道で歩いて行ける"
       ],
-      "sourceKey": "whaling"
+      "sourceKey": "vigia"
     },
     {
       "topicKey": "sao-jorge-cheese",
@@ -380,55 +405,55 @@
       "sourceKey": "cheese"
     },
     {
-      "topicKey": "furnas-earth-oven",
-      "themeEn": "FOOD",
-      "themeJa": "地熱の食卓",
-      "icon": "geothermal",
-      "title": "地中の蒸気が、鍋の火になる",
-      "text": "フルナスでは鍋を地熱のある場所に埋め、複数の肉と野菜を長時間蒸し煮にする。火山は眺めるだけの自然ではなく、台所の熱源でもある。",
+      "topicKey": "horta-murals",
+      "themeEn": "CULTURE",
+      "themeJa": "船乗りの港",
+      "icon": "sea",
+      "title": "大西洋を渡るヨットが、港の壁に絵を残す",
+      "text": "ファイアル島のオルタは、カリブ海から地中海へ向かうヨットが寄る大西洋の中継港。航海の無事を願い、船乗りたちが岸壁や防波堤に船名や絵を描く習わしがあり、港全体が屋外のギャラリーになっている。",
       "points": [
-        "鍋は約6時間かけてゆっくり加熱する",
-        "食材から出る水分を生かした蒸し煮"
+        "新しい絵の横に何年も前の航海の記録が残る",
+        "岸壁を歩くだけで世界中の船の名前に出会う"
       ],
-      "sourceKey": "cozido"
+      "sourceKey": "hortaMarina"
     }
   ],
   "travelTrivia": [
     {
-      "topicKey": "fogo-protection",
+      "topicKey": "geopark-sites",
       "categoryEn": "NATURE",
-      "categoryJa": "自然保護",
-      "title": "ラゴア・ド・フォゴは1974年から自然保護区",
-      "text": "火口湖の周囲は1974年に自然保護区となり、観光時には季節によってシャトルの利用が案内される。",
+      "categoryJa": "大地の見どころ",
       "icon": "landscape",
-      "sourceKey": "fogoLake"
+      "title": "島と海の121か所が、ジオパークの見どころ",
+      "text": "9島と周囲の海はひとつのユネスコ世界ジオパークとして扱われ、火口や湖、海岸の地形から周囲の海域まで121か所のジオサイトが選ばれている。島めぐりは火山めぐりでもある。",
+      "sourceKey": "geopark"
     },
     {
-      "topicKey": "capelinhos-new-land",
-      "categoryEn": "VOLCANO",
-      "categoryJa": "火山",
-      "title": "火山灰で灯台の役目が終わった",
-      "text": "1957年に始まったカペリニョスの噴火で灯台は使われなくなった。現在は火山の歴史を学ぶ見学の入口になっている。",
-      "icon": "landscape",
-      "sourceKey": "capelinhosLight"
-    },
-    {
-      "topicKey": "faja-saltwater",
-      "categoryEn": "GEOGRAPHY",
-      "categoryJa": "海岸地形",
-      "title": "海とつながる潟湖は、サン・ジョルジェの特別な場所",
-      "text": "サント・クリストの潟湖は砂礫州の内側にでき、人が海との水路を開いた状態に保ってきた。",
+      "topicKey": "peter-cafe",
+      "categoryEn": "LIFE",
+      "categoryJa": "港のバー",
       "icon": "sea",
-      "sourceKey": "saoJorgeFaja"
+      "title": "船乗りのバーが、郵便局も兼ねてきた",
+      "text": "オルタの「ピーター・カフェ・スポルト」は、大西洋を渡る船乗りたちの郵便の受け取りや両替を引き受けてきた店。2階には鯨の歯に彫刻をほどこしたスクリムショーの博物館がある。",
+      "sourceKey": "hortaMarina"
     },
     {
-      "topicKey": "tea-sao-miguel",
-      "categoryEn": "AGRICULTURE",
-      "categoryJa": "農業",
-      "title": "サン・ミゲル島には茶畑がある",
-      "text": "19世紀に持ち込まれた茶の栽培が続き、島の工場では緑茶・紅茶をつくっている。",
-      "icon": "culture",
-      "sourceKey": "localFood"
+      "topicKey": "azores-time",
+      "categoryEn": "LIFE",
+      "categoryJa": "時差",
+      "icon": "map",
+      "title": "リスボンから飛ぶと、時計を1時間戻す",
+      "text": "アゾレス諸島の時刻は、ポルトガル本土より1時間遅い。夏時間への切り替えも本土と同じ日に行われ、時差は年間を通じて1時間のまま。",
+      "sourceKey": "timeZone"
+    },
+    {
+      "topicKey": "fogo-name",
+      "categoryEn": "NATURE",
+      "categoryJa": "地名",
+      "icon": "landscape",
+      "title": "「火の湖」は、水をたたえて静か",
+      "text": "ラゴア・ド・フォゴは「火の湖」という意味。火口にできた湖で、周囲は1974年から自然保護区となり、夏は湖へ向かう道路でシャトルの利用が案内されることがある。",
+      "sourceKey": "fogoLake"
     },
     {
       "topicKey": "corvo-migratory",
@@ -479,20 +504,20 @@
       {
         "duration": "4〜5日",
         "title": "サン・ミゲル島の火山湖と地熱",
-        "text": "ポンタ・デルガダを拠点にセッテ・シダーデス、ラゴア・ド・フォゴ、フルナスを日程と天気に合わせて巡る。",
-        "icon": "landscape"
+        "icon": "city",
+        "text": "ポンタ・デルガダを拠点に、火口湖と地熱の谷を天気に合わせて巡る。例：ポンタ・デルガダ → セッテ・シダーデス → ラゴア・ド・フォゴ → フルナス → ポンタ・デルガダ。"
       },
       {
-        "duration": "8〜11日",
-        "title": "中央島群の3島とサン・ミゲル島",
-        "text": "サン・ミゲル島にピコ・ファイアル・サン・ジョルジェを加える。島間の船と飛行機を確認して移動日を確保する。",
-        "icon": "map"
+        "duration": "6〜11日",
+        "title": "中央の3島を加える",
+        "icon": "map",
+        "text": "サン・ミゲル島から中央島群へ飛び、島間フェリーでピコとサン・ジョルジェへ渡る。例：ポンタ・デルガダ → オルタ（ファイアル）→ マダレナ（ピコ）→ ヴェラス（サン・ジョルジェ）→ ポンタ・デルガダ。"
       },
       {
-        "duration": "12〜16日",
+        "duration": "12日以上",
         "title": "西部のフローレスとコルヴォへ",
-        "text": "サン・ミゲル島・中央島群の旅に西部の滝とカルデラを追加。欠航や強風に備えて少なくとも数日の調整余地を残す。",
-        "icon": "compass"
+        "icon": "compass",
+        "text": "滝の島フローレスと、カルデラの島コルヴォまで足をのばす。欠航に備えて数日の余裕を残す。例：ポンタ・デルガダ → サンタ・クルス・ダス・フローレス → コルヴォ → サンタ・クルス・ダス・フローレス → ポンタ・デルガダ。"
       }
     ]
   },
@@ -504,7 +529,11 @@
       },
       {
         "label": "4〜5月・10月",
-        "months": [4, 5, 10],
+        "months": [
+          4,
+          5,
+          10
+        ],
         "reason": "観光の混雑を避けやすい時期。ただし雲・雨・風の変化に備えて日程の融通を持たせる。"
       }
     ]
@@ -514,24 +543,24 @@
       "months": "3〜5月",
       "icon": "leaf",
       "color": "#73966f",
-      "text": "新緑と花が増え、山の斜面も鮮やかになる。春先は風と雨への備えが必要。"
+      "text": "新緑と花が増える季節。サン・ミゲル島では四旬節に巡礼団ロメイロスが島を歩き、春先は雨と風への備えが要る。"
     },
     {
       "months": "6〜8月",
       "icon": "sun",
-      "color": "#d4b56c",
-      "text": "日が長く、景色と海を組み合わせやすい季節。夏でも高所や海辺は雲と風が変わる。"
+      "color": "#92a253",
+      "text": "聖霊祭の季節で、各島の小さな礼拝堂「インペリオ」でスープやパンが振る舞われる。日が長く、高地の散策や島間移動を組み合わせやすい。"
     },
     {
       "months": "9〜11月",
       "icon": "sea",
-      "color": "#9ca0aa",
+      "color": "#b77a49",
       "text": "秋は海が荒れる日もある。コルヴォでは渡り鳥の季節が重なる。"
     },
     {
       "months": "12〜2月",
       "icon": "weather",
-      "color": "#91a8b8",
+      "color": "#6b90a5",
       "text": "温暖だが雨風で移動に影響が出やすい。訪問する島を絞り、日程に余裕を持ちたい。"
     }
   ],
@@ -545,14 +574,6 @@
     ]
   },
   "relatedCountries": [
-    {
-      "nameJa": "スペイン",
-      "nameEn": "SPAIN",
-      "href": "countries/spain/",
-      "flag": "🇪🇸",
-      "reason": "カナリア諸島を含む別の大西洋の火山の島と見比べる。",
-      "affinityType": "LANDSCAPE"
-    },
     {
       "nameJa": "アイスランド",
       "nameEn": "ICELAND",
@@ -568,10 +589,18 @@
       "flag": "🇨🇻",
       "reason": "大西洋の火山島を南へ。緑豊かな島と乾いた火山地形の違いを楽しむ。",
       "affinityType": "LANDSCAPE"
+    },
+    {
+      "nameJa": "ニュージーランド",
+      "nameEn": "NEW ZEALAND",
+      "href": "countries/newzealand/",
+      "flag": "🇳🇿",
+      "reason": "ロトルアの地熱地帯へ。湯気の立つ大地で料理をつくる暮らしと、牧草地の緑を地球の反対側で見比べる。",
+      "affinityType": "NATURE"
     }
   ],
   "nextRoutes": [],
-  "sourcesVerifiedAt": "2026-11-08",
+  "sourcesVerifiedAt": "2026-11-09",
   "sources": {
     "autonomy": "https://portal.azores.gov.pt/documents/36626/9672879/02%2BEstatuto%2Bda%2BRegi%C3%A3o%2C%2BLei%2B39_80%2B-%2Bvers%C3%A3o%2Bconsolidada%2Bem%2B2023.03.pdf/a14485dd-92af-07c7-06a9-0ddf785434bf?t=1679582993919",
     "autonomyHistory": "https://ccarquivos.azores.gov.pt/index.php/presid-ncia-do-governo-regional-dos-ores-2%3Bisad?sf_culture=pt",
@@ -596,7 +625,13 @@
     "whaling": "https://www.visitazores.com/en/explore/museu-dos-baleeiros",
     "air": "https://www.azoresairlines.pt/en/sata-summer-operation-2026?language=en",
     "sea": "https://www.atlanticoline.pt/en/timetable/",
-    "azoresVisit": "https://www.visitazores.com/en/"
+    "azoresVisit": "https://www.visitazores.com/en/",
+    "geopark": "https://dev.azoresgeopark.com/en/?p=8751",
+    "gorreana": "https://trails.visitazores.com/en/node/72",
+    "romeiros": "https://www.acorianooriental.pt/noticia/from-mixed-and-all-year-round-pilgrimages-to-lenten-pilgrimages-344131",
+    "vigia": "https://www.visitazores.com/en/explore/vigia-da-baleia",
+    "hortaMarina": "https://marines.visitazores.com/marinas/horta/?lang=en",
+    "timeZone": "https://www.ipma.pt/pt/educativa/hora/index.html"
   },
   "sourceDates": {
     "population": "2025-12-31（2026-06-22発表）",
@@ -626,7 +661,14 @@
     "whaling": "2026-11-08（公式資料確認）",
     "air": "2026-11-08（公式資料確認）",
     "sea": "2026-11-08（公式資料確認）",
-    "azoresVisit": "2026-11-08（公式資料確認）"
+    "azoresVisit": "2026-11-08（公式資料確認）",
+    "history": "Autonomy from 1976 constitution; Angra port history; checked 2026-11-09",
+    "geopark": "Azores UNESCO Global Geopark: triple junction, 27 main volcanic systems, more than 1,750 monogenetic volcanoes, 121 geosites; checked 2026-11-09",
+    "gorreana": "Visit Azores trails PRC28 SMI: working since 1883, oldest tea plantation in Europe",
+    "romeiros": "Açoriano Oriental, checked 2026-11-09",
+    "vigia": "Visit Azores; last operational vigia used until 1980s, restored 2014-2015",
+    "hortaMarina": "Visit Azores marinas, checked 2026-11-09",
+    "timeZone": "IPMA legal time: Azores one hour behind mainland Portugal"
   },
   "travelThemes": [
     "地球の風景",
