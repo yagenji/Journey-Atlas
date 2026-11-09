@@ -358,6 +358,38 @@ def region_display_marker_position(item: dict, marker_type: str, svg: str,
     return x, y
 
 
+def mobile_region_detail(data: dict, svg: str, map_version: str) -> str:
+    """Readable fixed inset on narrow screens; reuses the original verified SVG."""
+    details = data.get('map', {}).get('regions') or []
+    if not details:
+        return ''
+    detail = details[0]
+    rect = detail['rect']
+    scene_ids = set(detail['sceneIds'])
+    pieces = [
+        f'<div class="region-map-detail-mobile" role="group" style="aspect-ratio:{rect["width"]}/{rect["height"]}" '
+        f'aria-label="{esc(detail.get("label", "北岸"))}の別枠拡大図：景色の地点番号">',
+        f'<img class="region-map-detail-base" src="{esc(data["map"]["svg"])}?v={map_version}" '
+        f'style="width:{120000 / rect["width"]:.8f}%;transform:translate(-{rect["x"] / 12:.8f}%,-{rect["y"] / 7.6:.8f}%)" '
+        'alt="" aria-hidden="true" loading="eager" decoding="async">'
+    ]
+    for index, scene in enumerate(data['scenes'], 1):
+        if scene['id'] not in scene_ids:
+            continue
+        x, y = region_scene_map_position(scene, index, svg, data['map'])
+        left = 100 * (12 * x - rect['x']) / rect['width']
+        top = 100 * (7.6 * y - rect['y']) / rect['height']
+        pieces.append(
+            '<button type="button" class="region-map-hit map-marker" '
+            f'data-scene="{esc(scene["id"])}" '
+            f'style="left:{left:.5f}%;top:{top:.5f}%" '
+            f'aria-label="{index} {esc(scene["name"])}を選択" aria-pressed="false">'
+            f'<b aria-hidden="true">{index}</b></button>'
+        )
+    pieces.append('</div>')
+    return ''.join(pieces)
+
+
 def render_region_detail_gallery(data: dict, version: str) -> str:
     """Show one Region map at a time: geographic overview or a selected island group."""
     details = (data.get('map') or {}).get('detailMaps') or []
@@ -506,7 +538,8 @@ def render_region(data: dict, *, site_url: str, version: str) -> tuple[str, str,
         '<span class="section-kicker-en">TRAVEL MAP</span>'
         '<h2 class="panel-title">旅の地図</h2></div></div>'
         + render_region_detail_gallery(data, map_version)
-        + '<div class="map-frame"><div class="map-art has-map" id="country-map-art" '
+        + ('<div class="map-frame" data-single-map-mobile="true">' if data['map'].get('singleMapMobile') else '<div class="map-frame">')
+        + '<div class="map-art has-map" id="country-map-art" '
         f'role="group" aria-label="{esc(data["nameJa"])}の景色の地図">'
         f'<img class="map-base" src="{esc(data["map"]["svg"])}?v={map_version}" '
         f'alt="{esc(data["nameJa"])}の実海岸線と島々を描いた地図" '
@@ -535,7 +568,9 @@ def render_region(data: dict, *, site_url: str, version: str) -> tuple[str, str,
            f'<span{region_capital_label_style(data["capital"])}>{esc(data["capital"]["nameJa"])}</span></div>'
            if data.get('capital') else '')
         + (region_osm_credit() if 'osm' in region_map_credits(data) else '')
-        + '</div></div>'
+        + '</div>'
+        + ('' if data['map'].get('singleMapMobile') else mobile_region_detail(data, map_svg_text, map_version))
+        + '</div>'
         + '<div class="map-legend map-legend--below" aria-label="地図記号の説明">'
         '<span><i class="map-legend__scene" aria-hidden="true">1</i>景色の番号</span>'
         '<span><i class="map-legend__hero" aria-hidden="true"></i>上部の代表画像（Hero）の場所</span>'
