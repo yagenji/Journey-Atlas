@@ -63,26 +63,12 @@
 /* Qatar-style fixed geographic detail map; no scroll or zoom controls. */
 .region-country-page .map-inset-note{margin:8px 0 0;font:400 11px/1.6 var(--body);color:var(--muted)}
 
-/* Keep the verified inset inside the SAME map frame on narrow screens.
-   The overview remains above, while the enlarged inset stays readable below. */
-.region-map-detail-mobile{display:none}
+/* A geographic inset is part of the single verified SVG map, not a second
+   mobile map panel. Compact all eight map numbers only where an inset exists. */
 @media(max-width:760px){
-  .region-country-page .map-frame:has(.region-map-detail-mobile){
-    overflow:hidden;border:1px solid #e2dccc;background:#eaf2f4;
+  .region-country-page .map-art:has(.region-map-hit[data-map-inset="true"]) .region-map-hit b{
+    width:20px;height:20px;border-width:1.5px;font:600 10px/1 var(--meta)
   }
-  .region-country-page .map-frame:has(.region-map-detail-mobile) .map-art{border:0}
-  .region-country-page .region-map-detail-mobile{
-    display:block;position:relative;overflow:hidden;isolation:isolate;
-    width:100%;aspect-ratio:350/256;border:0;border-top:1px dashed #879b9b;background:#eaf2f4;
-    margin:0
-  }
-  .region-country-page .region-map-detail-base{
-    position:absolute;left:0;top:0;display:block;
-    width:342.85714286%;height:auto;max-width:none;
-    transform:translate(-1.66666667%,-2.63157895%);pointer-events:none
-  }
-  .region-country-page .region-map-detail-mobile .region-map-hit{z-index:8}
-  .region-country-page #region-map-hits .region-map-hit[data-map-inset="true"]{display:none}
 }
 
 /* Capital swatch/marker: match the Country map legend's visual vocabulary. */
