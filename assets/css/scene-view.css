@@ -1,0 +1,43 @@
+/* 景色を流す — full-screen slideshow. Dark surround so the painting reads as the only thing on screen. */
+.gallery-view:disabled{opacity:.45;cursor:default}
+.gallery-view span{font-size:9px}
+html.sv-open{overflow:hidden}
+.sv{position:fixed;inset:0;z-index:2000;background:#0f1215;color:#f4f1ea;--sv-fade:1200ms}
+.sv[hidden]{display:none}
+.sv-stage{position:absolute;inset:0}
+.sv-img{position:absolute;inset:0;width:100%;height:100%;object-fit:contain;opacity:0;transition:opacity var(--sv-fade) ease}
+.sv-img.is-on{opacity:1}
+/* A soft shade under the caption and controls; it goes with them when they hide. */
+.sv-stage::after{content:"";position:absolute;left:0;right:0;bottom:0;height:min(240px,42%);pointer-events:none;
+  background:linear-gradient(to top,rgba(10,12,14,.78),rgba(10,12,14,.35) 55%,rgba(10,12,14,0));transition:opacity .4s ease}
+.sv.is-idle .sv-stage::after{opacity:0}
+.sv-cap{position:absolute;left:max(24px,env(safe-area-inset-left));bottom:calc(var(--sv-bar,64px) + 10px);transition:opacity .4s ease;max-width:min(560px,calc(100% - 48px));pointer-events:none;text-shadow:0 1px 8px rgba(0,0,0,.55)}
+.sv-place{margin:0;font:600 clamp(16px,2vw,22px)/1.45 "Shippori Mincho","Yu Mincho",serif;overflow-wrap:anywhere}
+.sv-country{display:flex;align-items:center;gap:6px;margin:4px 0 0;font:500 12px/1.5 "Zen Kaku Gothic New",sans-serif;letter-spacing:.06em;opacity:.88}
+.sv-flag{width:16px;height:16px;object-fit:contain}
+.sv-ui{position:absolute;left:0;right:0;bottom:0;display:flex;flex-wrap:wrap;align-items:center;gap:6px 8px;
+  padding:14px max(20px,env(safe-area-inset-right)) calc(14px + env(safe-area-inset-bottom)) max(20px,env(safe-area-inset-left));
+  transition:opacity .4s ease}
+.sv.is-idle .sv-ui,.sv.is-idle .sv-top,.sv.is-idle .sv-cap{opacity:0}
+.sv.is-idle{cursor:none}
+.sv-btn,.sv-speed__opt{min-width:36px;height:36px;padding:0 10px;border:1px solid rgba(244,241,234,.28);border-radius:999px;background:rgba(15,18,21,.35);
+  color:#f4f1ea;font:500 13px/1 "Zen Kaku Gothic New",sans-serif;cursor:pointer}
+.sv-btn:hover,.sv-speed__opt:hover{background:rgba(244,241,234,.14)}
+.sv-play{min-width:44px}
+.sv-speed{display:flex;gap:4px}
+.sv-speed__opt{min-width:0;height:30px;padding:0 9px;font-size:11.5px;border-color:transparent;background:transparent;opacity:.75}
+.sv-speed__opt[aria-pressed="true"]{border-color:rgba(244,241,234,.5);opacity:1}
+.sv-sep{width:1px;height:18px;background:rgba(244,241,234,.25)}
+.sv-link{margin-left:auto;color:#f4f1ea;font:600 12.5px/1.4 "Zen Kaku Gothic New",sans-serif;text-decoration:none;border-bottom:1px solid rgba(244,241,234,.45)}
+.sv-link:hover{border-bottom-color:#f4f1ea}
+.sv-note{font-size:10.5px;letter-spacing:.06em;opacity:.6}
+.sv-btn[hidden]{display:none}
+.sv-top{position:absolute;top:calc(14px + env(safe-area-inset-top));right:max(16px,env(safe-area-inset-right));display:flex;gap:8px;transition:opacity .4s ease}
+.sv :focus-visible{outline:2px solid #f4f1ea;outline-offset:2px}
+.sv-live{position:absolute;width:1px;height:1px;overflow:hidden;clip:rect(0,0,0,0);white-space:nowrap}
+@media(max-width:760px){
+  .sv-sep{display:none}
+  .sv-speed{order:5;width:100%;justify-content:center}
+  .sv-link{margin-left:auto}
+}
+@media(prefers-reduced-motion:reduce){.sv-ui,.sv-cap,.sv-top,.sv-stage::after{transition:none}}

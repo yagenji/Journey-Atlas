@@ -3,7 +3,7 @@
    scene index, so any newly typed Scene joins the pool without per-page setup. */
 (() => {
   'use strict';
-  const INDEX = 'data/top-scene-index.json?v=20261108-scene-types-1';
+  const INDEX = 'data/top-scene-index.json?v=20261109-scene-view-1';
   const PICKS = 6;
   // Detail areas count as part of their parent for "another country".
   const FAMILY = {'hong-kong': 'china', macau: 'china'};
