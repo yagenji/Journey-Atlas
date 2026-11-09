@@ -567,8 +567,9 @@ def render_region(data: dict, *, site_url: str, version: str) -> tuple[str, str,
            f'<span{region_capital_label_style(data["capital"])}>{esc(data["capital"]["nameJa"])}</span></div>'
            if data.get('capital') else '')
         + (region_osm_credit() if 'osm' in region_map_credits(data) else '')
-        + '</div></div>'
+        + '</div>'
         + mobile_region_detail(data, map_svg_text, map_version)
+        + '</div>'
         + '<div class="map-legend map-legend--below" aria-label="地図記号の説明">'
         '<span><i class="map-legend__scene" aria-hidden="true">1</i>景色の番号</span>'
         '<span><i class="map-legend__hero" aria-hidden="true"></i>上部の代表画像（Hero）の場所</span>'
