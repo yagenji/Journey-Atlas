@@ -202,25 +202,50 @@ def package_runtime_data(slugs: list[str]) -> set[str]:
     registry = json.loads((ROOT / "data" / "atlas-destinations.json").read_text(encoding="utf-8"))
     published = {item["slug"] for item in registry["destinations"]
                  if item.get("atlasPublished") and item.get("href")}
-    target_types: set[str] = set()
+    # Cover each target Country/Region separately. A union-only first-match
+    # shortlist can fill a Country page while starving its sibling Regions.
+    page_type_sets: list[set[str]] = []
     for slug in slugs:
-        country = json.loads((COUNTRY_DIR / f"{slug}.json").read_text(encoding="utf-8"))
-        for scene in [country.get("hero", {}), *country.get("scenes", [])]:
-            target_types.update(scene.get("sceneTypes", []))
-        for region_file in sorted((ROOT / "data" / "regions" / slug).glob("*.json")):
-            region = json.loads(region_file.read_text(encoding="utf-8"))
-            for scene in [region.get("hero", {}), *region.get("scenes", [])]:
-                target_types.update(scene.get("sceneTypes", []))
+        pages = [json.loads((COUNTRY_DIR / f"{slug}.json").read_text(encoding="utf-8"))]
+        pages.extend(
+            json.loads(region_file.read_text(encoding="utf-8"))
+            for region_file in sorted((ROOT / "data" / "regions" / slug).glob("*.json"))
+        )
+        for page in pages:
+            types = {
+                scene_type
+                for scene in [page.get("hero", {}), *(page.get("scenes") or [])]
+                for scene_type in scene.get("sceneTypes", [])
+            }
+            if types:
+                page_type_sets.append(types)
+
+    candidate_rows = {
+        slug: [row for row in rows if len(row) > 2 and row[2]]
+        for slug, rows in scene_index.get("countries", {}).items()
+        if slug not in slugs and slug in published
+    }
     support: dict[str, list] = {}
-    for slug, rows in scene_index.get("countries", {}).items():
-        if slug in slugs or slug not in published:
-            continue
-        match = next((row for row in rows
-                      if len(row) > 2 and target_types.intersection(row[2])), None)
-        if match:
-            support[slug] = [match]
-            if len(support) >= 12:
-                break
+    remaining = [6] * len(page_type_sets)
+    while candidate_rows and any(remaining):
+        best_slug = None
+        best_row = None
+        best_score = 0
+        for slug, rows in candidate_rows.items():
+            for row in rows:
+                score = sum(
+                    count > 0 and bool(types.intersection(row[2]))
+                    for count, types in zip(remaining, page_type_sets)
+                )
+                if score > best_score:
+                    best_slug, best_row, best_score = slug, row, score
+        if best_slug is None or best_row is None:
+            break
+        support[best_slug] = [best_row]
+        for i, types in enumerate(page_type_sets):
+            if remaining[i] > 0 and types.intersection(best_row[2]):
+                remaining[i] -= 1
+        del candidate_rows[best_slug]
     scene_index["countries"] = {
         **{slug: rows for slug, rows in scene_index.get("countries", {}).items() if slug in slugs},
         **support,
