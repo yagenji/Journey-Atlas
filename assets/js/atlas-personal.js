@@ -55,7 +55,6 @@
         && item.href === regionCountryHref(item.parentSlug, item.slug) ? item : null;
     } catch { return null; }
   }).filter(Boolean);
-  const sceneHref = (slug, id) => countryHref(slug) + (id === 'hero' ? '#hero-caption' : '#'+encodeURIComponent(id));
   const fetchJSON = url => fetch(url).then(response => {
     if (!response.ok) throw Error('HTTP ' + response.status);
     return response.json();
@@ -187,12 +186,11 @@
   let registry = [];
   const summary = make('div', 'ja-mine-summary');
   const groups = make('div', 'ja-mine-groups');
-  const savedScenes = make('div', 'ja-favorite-scenes');
   const tools = make('div', 'ja-backup-tools');
   let regionNames = [];
   const feedback = make('p', 'ja-subtitle');
   feedback.setAttribute('role', 'status');
-  mine.append(summary, groups, savedScenes, tools, feedback);
+  mine.append(summary, groups, tools, feedback);
   // Flags for UK Regions follow each Region page; Northern Ireland has no official
   // regional flag, so the United Kingdom flag is used (see its sourceNotes.flag).
   const REGION_FLAGS = {
@@ -256,8 +254,6 @@
     const seen = parents.filter(visited), want = parents.filter(wished);
     const detailSeen = all.filter(c => detailSlugs.has(c.slug) && visited(c));
     const detailWant = all.filter(c => detailSlugs.has(c.slug) && wished(c));
-    const favorites = getFavorites().filter(f => all.some(c => c.slug === f.slug) ||
-      (isRegionFavorite(f) && all.some(c => c.slug === f.parentSlug)));
     const regionWishes = getRegionWishes().filter(w => all.some(c => c.slug === w.parentSlug));
     const regionVisits = getRegionVisits().filter(w => all.some(c => c.slug === w.parentSlug));
     // Parent Countries define the 200 denominator. Detail regions keep
@@ -265,9 +261,9 @@
     const detailWishCount = detailWant.length + regionWishes.length;
     const detailVisitCount = detailSeen.length + regionVisits.length;
     summary.replaceChildren();
-    [['VISITED', seen.length, '行った国・地域'], ['WISHLIST', want.length, '行きたい国・地域'], ['SCENERY', favorites.length, '保存した景色']].forEach(([tag, count, name]) => {
+    [['VISITED', seen.length, '行った国・地域'], ['WISHLIST', want.length, '行きたい国・地域']].forEach(([tag, count, name]) => {
       const item = make('div', 'ja-summary-item');
-      item.append(make('span', '', tag), make('strong', '', count + (tag === 'SCENERY' ? ' 景色' : ' / ' + parents.length)), make('small', '', name));
+      item.append(make('span', '', tag), make('strong', '', count + ' / ' + parents.length), make('small', '', name));
       summary.append(item);
     });
     let detailSummary = mine.querySelector('.ja-detail-summary');
@@ -287,64 +283,7 @@
       sectionFor('行きたい詳細地域', [...detailWant,...regionWishes.map(w => ({...w,...regionFlag(w)}))], '')
     );
     groups.replaceChildren(seenColumn, wantColumn);
-    savedScenes.replaceChildren(make('h3', '', 'お気に入りの景色'));
-    const bySlug = new Map(all.map(country => [country.slug, country]));
-    const regionForFavorite = favorite => {
-      const country = bySlug.get(favorite.parentSlug || favorite.slug) || bySlug.get(favorite.slug);
-      return regionNames.find(region => country?.iso2 && region.iso2.includes(country.iso2));
-    };
-    const appendFavoriteCards = (gallery, entries) => {
-      entries.forEach(favorite => {
-        const item = make('div', 'ja-favorite-card');
-        const link = linkTo(isRegionFavorite(favorite) ? favorite.href : sceneHref(favorite.slug, favorite.id), '', 'ja-favorite-link');
-        const img = make('img');
-        if (typeof favorite.image === 'string' && /^assets\/images\/[a-z0-9/-]+\.(webp|jpg|png)(\?v=[a-zA-Z0-9._-]+)?$/.test(favorite.image)) {
-          img.loading = 'lazy';
-          img.decoding = 'async';
-          img.src = favorite.image;
-          img.alt = '';
-          link.append(img);
-        }
-        const names = make('span');
-        names.append(make('strong', '', favorite.name), make('small', '', favorite.countryName));
-        link.append(names);
-        const remove = make('button', 'ja-remove', '保存を解除');
-        remove.type = 'button';
-        remove.setAttribute('aria-label', favorite.name + 'の保存を解除');
-        remove.addEventListener('click', () => { removeStored(sceneKey(favorite.slug, favorite.id)); renderMine(); });
-        item.append(link, remove);
-        gallery.append(item);
-      });
-    };
-    if (!favorites.length) {
-      savedScenes.append(make('p', 'ja-empty', '国ページの景色のハートを押すと、ここに並びます。'));
-    } else if (regionNames.length) {
-      const assigned = new Set();
-      regionNames.forEach(region => {
-        const matches = favorites.filter(favorite => regionForFavorite(favorite)?.id === region.id);
-        if (!matches.length) return;
-        matches.forEach(favorite => assigned.add(favorite));
-        const block = make('section', 'ja-favorite-region');
-        block.append(make('h4', 'ja-mine-region-title', region.label + ' ' + matches.length + ' 景色'));
-        const gallery = make('div', 'ja-scene-gallery');
-        appendFavoriteCards(gallery, matches);
-        block.append(gallery);
-        savedScenes.append(block);
-      });
-      const unmatched = favorites.filter(favorite => !assigned.has(favorite));
-      if (unmatched.length) {
-        const block = make('section', 'ja-favorite-region');
-        block.append(make('h4', 'ja-mine-region-title', 'その他 ' + unmatched.length + ' 景色'));
-        const gallery = make('div', 'ja-scene-gallery');
-        appendFavoriteCards(gallery, unmatched);
-        block.append(gallery);
-        savedScenes.append(block);
-      }
-    } else {
-      const gallery = make('div', 'ja-scene-gallery');
-      appendFavoriteCards(gallery, favorites);
-      savedScenes.append(gallery);
-    }
+
   }
   const exportButton = make('button', 'ja-tool-button', '保存データを書き出す');
   exportButton.type = 'button';
