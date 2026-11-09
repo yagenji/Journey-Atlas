@@ -30,8 +30,9 @@
   },
   "profile": [
     {
-      "label": "中心都市",
-      "value": "マリエハムン（Mariehamn）"
+      "label": "首都",
+      "value": "マリエハムン（Mariehamn）",
+      "sourceKey": "government"
     },
     {
       "label": "人口",
@@ -55,7 +56,8 @@
     },
     {
       "label": "通貨",
-      "value": "ユーロ（EUR）"
+      "value": "ユーロ（EUR）",
+      "sourceKey": "areaNordic"
     }
   ],
   "historyContext": {
@@ -256,197 +258,198 @@
       "topicKey": "islands",
       "label": "島と岩礁",
       "value": "6,757島",
-      "note": "面積0.25ヘクタール以上の島だけで6,757。さらに約2万の小島と岩礁が点在し、島ごとに暮らしがある。",
+      "note": "0.25ヘクタールを超える島だけで6,757。人が暮らすのはそのうち約60島で、さらに約2万の小島と岩礁が点在する。",
       "icon": "sea",
       "sourceKey": "islands",
-      "interestReason": "点在する島々の規模が、島内移動と海上交通の輪郭を伝える。"
+      "interestReason": "点在する島々の規模が、島内移動と海上交通の輪郭を伝える。",
+      "exceptionalScale": true
     },
     {
       "topicKey": "shipping",
       "label": "経済を支える海運",
-      "value": "GDPの18%",
-      "note": "2023年に海運が地域GDPに占めた割合。海は景色だけでなく、現在も暮らしと経済の基盤だ。",
+      "value": "GDPの18.2%",
+      "note": "2023年に海運が地域のGDPに占めた割合（基本価格）。帆船の時代から続く海の仕事が、いまも島の経済の柱だ。",
       "icon": "sea",
       "sourceKey": "shipping",
       "interestReason": "船の歴史が現代の産業に続くことを示す。"
     },
     {
-      "topicKey": "apples",
-      "label": "フィンランドのリンゴ産地",
-      "value": "70%超",
-      "note": "北欧の産業紹介記事によれば、フィンランド国内のリンゴ生産の7割超を島内農家が担う。海運に加え、農業も地域を支える。",
-      "icon": "leaf",
-      "sourceKey": "apple",
-      "interestReason": "海と島のイメージに農業の一面を加える。"
+      "topicKey": "wind-power",
+      "label": "島の風車がまかなう電力",
+      "value": "約58%",
+      "icon": "weather",
+      "note": "2025年、島内の電力供給351GWhのうち202GWhを島内の風力発電が生んだ。2020年の約19%から5年で3倍になった。",
+      "sourceKey": "asubFigures2026",
+      "interestReason": "海風の強い岩の島が、帆船に続いて風を経済の力に変えていることを示す。"
     }
   ],
   "encounters": [
     {
-      "title": "入り江を見下ろす中世の石の城",
-      "icon": "landmark",
-      "category": "CULTURE"
-    },
-    {
-      "title": "木造船をつくる工房の手仕事",
-      "icon": "sea",
-      "category": "CULTURE"
-    },
-    {
-      "title": "四本マストに張られた帆索",
-      "icon": "sea",
-      "category": "CULTURE"
-    },
-    {
-      "title": "赤い花崗岩と海からの風",
-      "icon": "landscape",
-      "category": "NATURE"
-    },
-    {
-      "title": "黄色い郵便税関舎の長い窓列",
-      "icon": "landmark",
-      "category": "CULTURE"
-    },
-    {
-      "title": "教会の赤い鐘楼と静かな墓地",
+      "title": "夏至祭の柱を立てる村人たち",
       "icon": "culture",
+      "category": "SEASON"
+    },
+    {
+      "title": "スウェーデン語だけの道路標識",
+      "icon": "language",
+      "category": "LANGUAGE"
+    },
+    {
+      "title": "秋の農道に並ぶリンゴの直売",
+      "icon": "food",
+      "category": "FOOD"
+    },
+    {
+      "title": "車ごと乗り込む島間フェリー",
+      "icon": "map",
+      "category": "MOVEMENT"
+    },
+    {
+      "title": "赤い花崗岩の岩場に吹く海風",
+      "icon": "landscape",
+      "category": "LANDSCAPE"
+    },
+    {
+      "title": "西港に係留された四本マストの帆船",
+      "icon": "sea",
       "category": "CULTURE"
     },
     {
-      "title": "フェリーで渡る木造家屋の村",
-      "icon": "home",
-      "category": "DAILY_LIFE"
+      "title": "夜更けまで沈みきらない夏の夕日",
+      "icon": "sun",
+      "category": "SEASON"
     },
     {
-      "title": "低い岩礁に立つ赤白の灯台",
-      "icon": "sea",
-      "category": "LANDSCAPE"
+      "title": "入り江の赤い船小屋で働く船大工",
+      "icon": "home",
+      "category": "WORK"
     }
   ],
   "culture": [
     {
-      "topicKey": "shipbuilding",
-      "themeEn": "LIFE",
-      "themeJa": "海の手仕事",
+      "topicKey": "last-sailing-fleet",
+      "themeEn": "HISTORY",
+      "themeJa": "帆船の時代",
       "icon": "sea",
-      "title": "船をつくり、直し、次の海へ送り出す",
-      "text": "海事地区には船大工の工房があり、木造船の製作と修繕が現在も続く。博物館の展示とは別に、使われ続ける技術が港の風景をつくっている。",
+      "title": "世界最後の商業帆船団の母港だった",
+      "text": "1920年代以降、マリエハムンの船主グスタフ・エリクソンの船団は「世界最後の商業帆船団」と呼ばれた。オーストラリアから英国へ小麦を運ぶ非公式の帆走競争「グレイン・レース」に加わり、ポンメルン号は1923年にその一隻となった。",
       "points": [
-        "赤い船小屋の中で伝統的な造船技術が受け継がれる",
-        "港が展示だけでなく働く場所でもある"
+        "西港の帆船は、汽船の時代に帆で稼いだ最後の船団の生き証人",
+        "海事博物館には1913〜1949年の船団の記録が残る"
       ],
-      "sourceKey": "maritimeQuarter"
+      "sourceKey": "erikson"
     },
     {
-      "topicKey": "granite",
-      "themeEn": "NATURE",
-      "themeJa": "岩を知る",
-      "icon": "landscape",
-      "title": "赤みを帯びた岩盤が島々の輪郭をつくる",
-      "text": "岩盤は氷河によって削られ、海辺にはなめらかな花崗岩の露頭が広がる。森が薄くなる場所では、岩と海の近さを感じられる。",
+      "topicKey": "domicile-right",
+      "themeEn": "LIFE",
+      "themeJa": "島の約束",
+      "icon": "home",
+      "title": "島の土地を買える人は限られている",
+      "text": "オーランドでは「住所権（ホームバイグズレット）」を持つ人だけが、議会選挙への投票、土地の所有、事業の営みを無条件にできる。取得にはフィンランド国籍、島での5年以上の居住、十分なスウェーデン語力が求められる。",
       "points": [
-        "風や波にさらされた平たい岩盤",
-        "同じ海でも森と岩の比率で景色が変わる"
+        "住所権がない人の土地取得には自治政府の許可が要る",
+        "赤い木造家屋の集落が保たれる背景の一つ"
       ],
-      "sourceKey": "geta"
+      "sourceKey": "domicile"
     },
     {
-      "topicKey": "mail",
+      "topicKey": "apple-harvest",
+      "themeEn": "LIFE",
+      "themeJa": "島の実り",
+      "icon": "leaf",
+      "title": "リンゴが島でいちばん稼ぐ農産物",
+      "text": "2025年の島のリンゴ収穫は5,530トン、生産額は約867万ユーロで、統計に載る農産物の中で最も高い。北緯60度の島で、海に温められた秋がリンゴを育てる。",
+      "points": [
+        "農家は319戸（2025年）と小さな規模で営まれる",
+        "秋の農道にはリンゴの直売所が現れる"
+      ],
+      "sourceKey": "asubFigures2026"
+    },
+    {
+      "topicKey": "mail-rowing",
       "themeEn": "HISTORY",
       "themeJa": "郵便の道",
-      "icon": "landmark",
-      "title": "小舟で郵便を運んだ海の道",
-      "text": "西のエッケローは、スウェーデンとロシア帝国をつないだ旧郵便路の要所。海が荒れる時代にも、島民の労働によって手紙が渡されていた。",
-      "points": [
-        "建物は交易と国家境界の記憶を刻む",
-        "かつては郵便の運搬自体が危険を伴った"
-      ],
-      "sourceKey": "eckero"
-    },
-    {
-      "topicKey": "faith",
-      "themeEn": "CULTURE",
-      "themeJa": "島の信仰",
-      "icon": "culture",
-      "title": "海の暮らしの傍らに小さな教会が残る",
-      "text": "コーカルの聖アンナ教会など、島の石造教会は長く地域の祈りの場所であり続けた。華美な装飾よりも、海辺の簡素な建築と共同体の営みに目を向けたい。",
-      "points": [
-        "赤い屋根と白い壁の実直な建築",
-        "教会と墓地が島の世代を結ぶ"
-      ],
-      "sourceKey": "kokar"
-    },
-    {
-      "topicKey": "villages",
-      "themeEn": "LIFE",
-      "themeJa": "島で暮らす",
-      "icon": "home",
-      "title": "海路が村と村をつなぐ日常",
-      "text": "離島の集落ではフェリーが買い物・通学・医療などのアクセスを支える。旅で渡る船は、住民にとっては日常の交通でもある。",
-      "points": [
-        "定期船の運航に合わせる暮らし",
-        "小さな港と赤い家がつくる村の輪郭"
-      ],
-      "sourceKey": "ferries"
-    },
-    {
-      "topicKey": "maritimeMemory",
-      "themeEn": "CULTURE",
-      "themeJa": "航海の記憶",
       "icon": "sea",
-      "title": "遠い海へ向かった船が港に帰る",
-      "text": "船が担った交易は島の経済と人の移動を支えた。今もマリエハムンのポンメルンから、外洋航海の過酷さと船乗りの生活を実感できる。",
+      "title": "400年続いた郵便の義務を、今も漕いで渡る",
+      "text": "エッケローとスウェーデン側ヴェッドーの農民は、ほぼ400年にわたりオーランド海を越えて郵便と旅人を運ぶ義務を負った。1974年からは毎年夏、グリッスレハムンからエッケローまで44kmを帆と櫂で渡る「ポストロッデン」が行われ、各艇が郵便袋を運ぶ。",
       "points": [
-        "四本マストの大型帆船が港に係留される",
-        "海事博物館が航海の技術を伝える"
+        "冬は氷上を小舟を押して渡った危険な道だった",
+        "ゴール地点はエッケローの郵便税関舎がある村"
       ],
-      "sourceKey": "pommern"
+      "sourceKey": "postrodden"
+    },
+    {
+      "topicKey": "tax-special-status",
+      "themeEn": "LIFE",
+      "themeJa": "島の約束",
+      "icon": "sea",
+      "title": "EUの中で、税の特例を持つ島",
+      "text": "オーランドはEU加盟国フィンランドの一部だが、付加価値税や物品税ではEUの税域の外として扱われる特例を持つ。フィンランドとスウェーデンを結ぶ大型フェリーがマリエハムンなどに寄港し、船内で免税販売を続けられるのもこの特例による。",
+      "points": [
+        "EU加盟の際に取り決められた特例",
+        "本土へ持ち帰る買い物には免税範囲がある"
+      ],
+      "sourceKey": "taxStatus"
+    },
+    {
+      "topicKey": "midsummer-pole",
+      "themeEn": "FESTIVAL",
+      "themeJa": "夏至祭",
+      "icon": "culture",
+      "title": "夏至の柱を村人の手で立てる",
+      "text": "島の夏至祭では、葉や花で飾った高い柱を村の共同作業で立てる。柱には海運を象徴する小さな船を吊るす村もあり、立て終えると島の歌「Ålänningens sång」を歌う。",
+      "points": [
+        "柱は翌年まで立てたままにする村が多い",
+        "本島と離島で飾りの形が少しずつ違う"
+      ],
+      "sourceKey": "midsummer"
     }
   ],
   "travelTrivia": [
     {
-      "topicKey": "maypole-boats",
+      "topicKey": "pirate-flag",
+      "categoryEn": "HISTORY",
+      "categoryJa": "海の遺物",
+      "icon": "history",
+      "title": "海事博物館には、本物の海賊旗",
+      "text": "マリエハムンの海事博物館には、世界でも珍しい実物の海賊旗の一つが所蔵されている。物語ではなく海の歴史の遺物だ。",
+      "sourceKey": "museum"
+    },
+    {
+      "topicKey": "autonomy-day",
       "categoryEn": "FESTIVAL",
-      "categoryJa": "祭り",
+      "categoryJa": "記念日",
       "icon": "culture",
-      "title": "夏至祭の柱に、小さな船が浮かぶ",
-      "text": "島の夏至祭で立てる飾り柱には、海運を象徴する小舟の飾りを付ける村もある。風を受けて小さな船が回る。",
-      "sourceKey": "midsummer"
+      "title": "6月9日は「自治の日」",
+      "text": "1922年に自治議会が初めて開かれた日にちなみ、毎年6月9日は自治の日として祝われる。2022年には自治100周年を迎えた。",
+      "sourceKey": "autonomyDay"
+    },
+    {
+      "topicKey": "ax-domain",
+      "categoryEn": "LIFE",
+      "categoryJa": "島のしるし",
+      "icon": "language",
+      "title": "ウェブアドレスも「.ax」",
+      "text": "オーランドには独自の国別トップレベルドメイン「.ax」があり、2006年に運用が始まった。島の役所や観光局のサイトもこの末尾を使う。",
+      "sourceKey": "axDomain"
     },
     {
       "topicKey": "postal-stamps",
-      "categoryEn": "POST",
-      "categoryJa": "切手",
+      "categoryEn": "LIFE",
+      "categoryJa": "郵便",
       "icon": "culture",
       "title": "郵便に使う切手も独自",
       "text": "オーランドから出す郵便には、オーランド発行の切手が使われる。小さな島々に独自の郵便文化がある。",
       "sourceKey": "postalStamps"
     },
     {
-      "topicKey": "pirate-flag",
-      "categoryEn": "MUSEUM",
-      "categoryJa": "博物館",
-      "icon": "landmark",
-      "title": "海事博物館には、本物の海賊旗",
-      "text": "マリエハムンの海事博物館には、世界でも珍しい実物の海賊旗の一つが所蔵されている。物語ではなく海の歴史の遺物だ。",
-      "sourceKey": "museum"
-    },
-    {
-      "topicKey": "signilskar",
-      "categoryEn": "HISTORY",
-      "categoryJa": "航路",
+      "topicKey": "merchant-fleet",
+      "categoryEn": "LIFE",
+      "categoryJa": "海の仕事",
       "icon": "sea",
-      "title": "かつて海を渡る郵便船が休んだ島",
-      "text": "西端のシグニルスシェール島は、中世から船乗りの中継地。郵便を漕いで運ぶ農民も、海況が落ち着くのをここで待った。",
-      "sourceKey": "postRoute"
-    },
-    {
-      "topicKey": "midsummer-song",
-      "categoryEn": "FESTIVAL",
-      "categoryJa": "暮らし",
-      "icon": "culture",
-      "title": "柱が立つと、島の歌を歌う",
-      "text": "村の夏至祭では、飾り柱を手作業で立てた後に「Ålänningens sång」を歌う習慣がある。共同作業が祭りの中心だ。",
-      "sourceKey": "midsummer"
+      "title": "人口3万人の島に、総トン数約100万の商船隊",
+      "text": "2025年、オーランドの船会社が運航する商船は38隻、総トン数は約99.9万トンに上る。人口約3万人の島としては、けた外れの海の仕事を抱えている。",
+      "sourceKey": "asubFigures2026"
     }
   ],
   "forWhom": [
@@ -465,9 +468,9 @@
   ],
   "notes": [
     {
-      "title": "離島の船は事前に時刻・予約を確認",
-      "text": "FöglöやKökarへ渡る地域フェリーは路線と時刻が異なる。車の持込み条件を含め、運航会社の最新案内で確認する。",
-      "sourceKey": "ferries"
+      "title": "島間フェリーは車両予約と時刻を先に",
+      "text": "Föglö行き以外の島間フェリーは、車で乗る場合に事前予約が必要。KökarやVårdöなど航路ごとに時刻も違うため、運航会社の最新の時刻表で乗継ぎを確かめる。",
+      "sourceKey": "ferryBooking"
     },
     {
       "title": "メルケット灯台への上陸は天候次第",
@@ -475,9 +478,9 @@
       "sourceKey": "marketAccess"
     },
     {
-      "title": "文化施設の公開は季節で変わる",
-      "text": "小さな博物館や見学施設には夏期中心の場所がある。ポンメルンや郵便税関舎などは訪問日の公式営業案内を確認する。",
-      "sourceKey": "eckero"
+      "title": "本土からの船は到着港と時刻を確認",
+      "text": "スウェーデン・フィンランド本土からの大型フェリーは、マリエハムン港のほか本島東部のロングネス港に着く便があり、深夜や早朝着もある。宿への移動手段まで予約時に確かめる。",
+      "sourceKey": "ferries"
     }
   ],
   "travelScale": {
@@ -512,7 +515,10 @@
         "reason": "海と島の景観が明るく、季節営業の施設や島間の体験が比較的利用しやすい。夏至の行事も楽しめる。"
       },
       {
-        "months": [5, 9],
+        "months": [
+          5,
+          9
+        ],
         "label": "5月・9月",
         "reason": "真夏の混雑を避けて本島を巡りやすい。離島フェリーや施設の営業は日ごとに確認する。"
       }
@@ -529,13 +535,13 @@
       "months": "6〜8月",
       "icon": "sun",
       "color": "#92a253",
-      "text": "白夜に近い長い日照と海の旅の季節。夏至祭の飾り柱と島の行事が特色。"
+      "text": "白夜に近い長い日照の季節。6月下旬の夏至祭で村ごとに飾り柱が立ち、夏には郵便路をたどるボートレース「ポストロッデン」も開かれる。"
     },
     {
       "months": "9〜11月",
       "icon": "leaf",
       "color": "#b77a49",
-      "text": "初秋の島は静かになり、森と岩盤の色が落ち着く。船の運航と日照時間に注意。"
+      "text": "リンゴの収穫期で、農道に直売所が出る。夏季運航の船や施設が減り始めるため、離島へは時刻表を確かめてから。"
     },
     {
       "months": "12〜2月",
@@ -565,33 +571,39 @@
       "nameEn": "ESTONIA",
       "href": "countries/estonia/",
       "flag": "🇪🇪",
-      "reason": "バルト海の島々と港町をめぐり、海に根ざす暮らしを見比べる。",
-      "affinityType": "GEOGRAPHY"
+      "reason": "サーレマー島など、バルト海の島々に残る石垣と風車の村を見比べる。",
+      "affinityType": "ISLAND"
     },
     {
-      "nameJa": "ラトビア",
-      "nameEn": "LATVIA",
-      "href": "countries/latvia/",
-      "flag": "🇱🇻",
-      "reason": "リガの港町とバルト海沿岸で、北欧とは異なる海の文化に触れる。",
-      "affinityType": "CULTURE"
+      "nameJa": "オーストラリア",
+      "nameEn": "AUSTRALIA",
+      "href": "countries/australia/",
+      "flag": "🇦🇺",
+      "reason": "オーランドの帆船が小麦を積み込んだ南オーストラリアの港へ。グレイン・レースの航路を地球の反対側からたどる。",
+      "affinityType": "HISTORY"
     }
   ],
   "capital": {
     "nameJa": "マリエハムン",
-    "labelJa": "中心都市",
+    "labelJa": "首都",
     "coordinates": {
       "latitude": 60.0972,
       "longitude": 19.9348
     },
     "sourceKey": "government",
-    "labelPosition": "top"
+    "labelPosition": "right",
+    "labelOffset": {
+      "x": 0,
+      "y": 8
+    }
   },
   "travelThemes": [
+    "海の世界へ",
+    "時をたどる",
     "地球の風景"
   ],
   "contentQaVersion": 6,
-  "sourcesVerifiedAt": "2026-11-08",
+  "sourcesVerifiedAt": "2026-11-09",
   "sources": {
     "government": "https://um.fi/the-special-status-of-the-aland-islands",
     "autonomy": "https://valtioneuvosto.fi/en/-/10184/centenary-celebrations-of-the-autonomy-of-the-aland-islands-set-to-begin",
@@ -619,21 +631,38 @@
     "museum": "https://visitaland.com/en/experience/sights-excursions/10-must-see-places/",
     "postRoute": "https://visitaland.com/en/experience/sights-excursions/excursion-islands/",
     "religion": "https://data.un.org/Data.aspx?d=POP&f=tableCode%3A28",
-    "apple": "https://www.arbeidslivinorden.org/lilla-aland-forser-finland-med-applen/",
     "japanArea": "https://www.gsi.go.jp/KOKUJYOHO/MENCHO-title.htm",
     "geodata": "https://www.soest.hawaii.edu/wessel/gshhg/",
     "areaNordic": "https://www.norden.org/en/information/about-aland",
     "shipping": "https://www.asub.ax/en/facts-about-aland",
-    "landAreaNotes": "https://www.asub.ax/sv/statistik/invanarantalet-31122025"
+    "landAreaNotes": "https://www.asub.ax/sv/statistik/invanarantalet-31122025",
+    "asubFigures2026": "https://www.asub.ax/sites/default/files/media/document/ALSIFF26%20ENG.pdf",
+    "erikson": "https://sjofartsmuseum.ax/en/gustaf-erikson/",
+    "domicile": "https://www.norden.org/en/info-norden/aland-right-domicile",
+    "postrodden": "https://alandstamps.com/en/blogs/nyheter-och-artiklar/postrodden-fyller-50-ar",
+    "axDomain": "https://www.icann.org/en/announcements/details/ax-country-code-top-level-domain-becomes-operational-23-8-2006-en",
+    "ferryBooking": "https://www.aland.com/en/artikel/travelling-around-aland",
+    "autonomyDay": "https://finland.fi/?p=81439",
+    "taxStatus": "https://finland.fi/?p=81439"
   },
   "sourceDates": {
     "population": "2025-12-31 confirmed; published 2026-04-01",
     "landArea": "2025-01-01; ÅSUB Statistical Yearbook 2025, land 1,555.6 km² (excluding inland water)",
     "japanAreaComparison": "2025-01-01 Åland official land area 1555.6 km² / Japan GSI approx. 377,974 km² = 0.4116%, displayed 0.41%",
-    "islands": "6,757 islands >=0.25 ha, ÅSUB checked 2026-11-08",
-    "shipping": "2023 gross domestic product share 18%, ÅSUB",
-    "apple": "2025 Nordic labour feature: over 70% of Finnish domestic apple production; source not an annually updated official series",
+    "islands": "ÅSUB Åland in Figures 2026: 6,757 islands >0.25 ha, about 60 inhabited",
+    "shipping": "ÅSUB Åland in Figures 2026: shipping 18.2% of GDP at basic price (2023)",
     "history": "1809, 1856, 1920, 1921, 1922, 1993; Ministry for Foreign Affairs",
-    "ferry": "Ferry network route PDF 2024; seasonal 2026 timetable requires confirmation"
+    "ferry": "Ferry network route PDF 2024; seasonal 2026 timetable requires confirmation",
+    "government": "Ministry for Foreign Affairs of Finland, checked 2026-11-09",
+    "autonomy": "Autonomy centenary 1922-2022; Autonomy Day 9 June",
+    "demilitarization": "Parliament of Åland, checked 2026-11-09",
+    "asubFigures2026": "Åland in Figures 2026: electricity supply 351 GWh, own wind 202 GWh (2025) = 57.5%; apples 5,530 t, 8,670 kEUR (2025)",
+    "erikson": "Åland Maritime Museum, checked 2026-11-09",
+    "domicile": "Info Norden, checked 2026-11-09",
+    "postrodden": "Åland Post Stamps: annual race since 1974, Grisslehamn–Storby 44 km, almost 400 years of mail duty",
+    "axDomain": "ICANN announcement 2006-08-23; Board approval 2006-06-09",
+    "ferryBooking": "Visit Åland travel article, checked 2026-11-09",
+    "autonomyDay": "finland.fi centenary article: 9 June marks first meeting of the autonomous assembly in 1922",
+    "taxStatus": "finland.fi centenary article: tax-free exemption status within the EU"
   }
 }

@@ -29,13 +29,13 @@
       "cliff"
     ],
     "mapOffset": {
-      "x": -4.5,
-      "y": 3
+      "x": -2.5,
+      "y": 0
     }
   },
   "profile": [
     {
-      "label": "首府",
+      "label": "首都",
       "value": "サンフアン（San Juan）",
       "sourceKey": "constitutionText"
     },
@@ -101,8 +101,8 @@
         "square"
       ],
       "mapOffset": {
-        "x": -0.5,
-        "y": 7
+        "x": 0,
+        "y": -7
       }
     },
     {
@@ -262,19 +262,19 @@
       "topicKey": "bioluminescent-bays",
       "label": "生物発光する湾",
       "value": "3か所",
-      "note": "ビエケス島のモスキート湾、ファハルドのラグナ・グランデ、ラ・パルゲラ。微生物が水の動きに反応して光る海が、ひとつの地域に三つある。",
+      "note": "ビエケス島のモスキート湾、ファハルドのラグナ・グランデ、ラ・パルゲラ。微生物が水の動きに反応して光る海が、ひとつの地域に三つある。モスキート湾とラグナ・グランデは遊泳禁止で、カヤックなどで観察する。",
       "icon": "sea",
       "sourceKey": "bays",
       "interestReason": "夜の海そのものが光る、稀な自然環境が三地点に集まっている。"
     },
     {
-      "topicKey": "tropical-national-forest",
-      "label": "米国国有林の熱帯林",
-      "value": "唯一",
-      "note": "エル・ユンケは米国のNational Forest Systemで唯一の熱帯雨林の国有林。湿った山地に固有の植物群落が重なる。",
-      "icon": "leaf",
-      "sourceKey": "yunque",
-      "interestReason": "米国の森林保護体系の中でも異例の熱帯林であることを示す。"
+      "topicKey": "yunque-rainfall",
+      "label": "エル・ユンケの年間雨量",
+      "value": "最大約6,100mm",
+      "icon": "weather",
+      "sourceKey": "yunqueRain",
+      "note": "米国の国有林で唯一の熱帯雨林では、年に平均約3,000mm、多い場所で約6,100mm（240インチ）の雨が降る。ここから流れ出る水が島の飲み水の約20%をまかなう。",
+      "interestReason": "東京の年間雨量の約4倍にあたる雨が、山の森と島の暮らしを支えていることを示す。"
     },
     {
       "topicKey": "el-morro-levels",
@@ -295,7 +295,7 @@
     {
       "title": "生物発光湾の夜間カヤック",
       "icon": "sea",
-      "category": "SEA"
+      "category": "NATURE"
     },
     {
       "title": "ボンバの太鼓と踊り",
@@ -313,9 +313,9 @@
       "category": "NATURE"
     },
     {
-      "title": "離島へ向かうフェリー",
-      "icon": "map",
-      "category": "MOVEMENT"
+      "title": "祭りの仮面ベヒガンテの工房",
+      "icon": "culture",
+      "category": "CULTURE"
     },
     {
       "title": "山地のコーヒー農園",
@@ -382,30 +382,30 @@
       "sourceKey": "caguana"
     },
     {
-      "topicKey": "bio-bay-ecosystem",
-      "themeEn": "ECOLOGY",
-      "themeJa": "海を守る",
-      "icon": "sea",
-      "title": "光る海を支える、静かな水と微生物",
-      "text": "生物発光は、水の中の微生物が刺激に反応して光を放つ現象。マングローブ、湾の地形、夜の暗さが観察体験の質に関わるため、光や水への負荷を抑えることが大切になる。",
+      "topicKey": "vejigante-masks",
+      "themeEn": "FESTIVAL",
+      "themeJa": "祭りの仮面",
+      "icon": "culture",
+      "title": "角の生えた仮面が、二つの町で違う顔を持つ",
+      "text": "祭りに現れる仮面の道化「ベヒガンテ」は、ロイサではココナッツの殻、ポンセでは張り子で仮面をつくる。ロイサでは7月のサンティアゴ・アポストル祭、ポンセでは灰の水曜日前のカーニバルに街を練り歩く。",
       "points": [
-        "モスキート湾とラグナ・グランデでは遊泳禁止",
-        "光の見え方は月齢や天候で変わる"
+        "名前は「膀胱（vejiga）」と「巨人（gigante）」を合わせた言葉",
+        "工房では祭りの外でも仮面づくりを見られる"
       ],
-      "sourceKey": "baysProtect"
+      "sourceKey": "vejigante"
     },
     {
-      "topicKey": "island-routes",
-      "themeEn": "ISLAND",
-      "themeJa": "島へ渡る",
-      "icon": "map",
-      "title": "本島の沖に、別の暮らしの時間がある",
-      "text": "本島東部のセイバから、ビエケス島とクレブラ島への船が出る。短い海峡でも便や天候に合わせて旅を組み立てる必要があり、離島は日帰り以上の余白が似合う。",
+      "topicKey": "vieques-refuge",
+      "themeEn": "HISTORY",
+      "themeJa": "島の転換",
+      "icon": "leaf",
+      "title": "爆撃演習場が、カリブ最大の野生生物保護区に",
+      "text": "ビエケス島東部は長く米海軍の演習場だった。2003年5月に約15,500エーカーが保護区へ移され、ビエケス国立野生生物保護区は約18,000エーカーとカリブ海で最大になった。黒砂の浜や静かな湾が、その転換の先にある。",
       "points": [
-        "セイバからビエケス島へは運航目安約1時間",
-        "クレブラ島へは運航目安約1時間30分"
+        "保護区内には今も立入りが制限される区域がある",
+        "島の歴史を知ると、手つかずに見える海岸の意味が変わる"
       ],
-      "sourceKey": "ferryCulebra"
+      "sourceKey": "viequesRefuge"
     }
   ],
   "travelTrivia": [
@@ -433,7 +433,7 @@
       "categoryJa": "年中行事",
       "icon": "culture",
       "title": "三賢王には、靴箱の草を用意する",
-      "text": "1月6日の三賢王の日の前夜、子どもたちが靴箱に草を入れて置く家庭がある。島の伝統では三賢王の馬の餌とされ、朝には贈り物が届く。",
+      "text": "1月6日の三賢王の日の前夜、子どもたちが靴箱に草を入れて置く家庭がある。三賢王の馬の餌とされ、朝には贈り物が届く。祝いはその後8日間の「オクタビータス」まで続く。",
       "sourceKey": "threeKings"
     },
     {
@@ -446,13 +446,13 @@
       "sourceKey": "taino"
     },
     {
-      "topicKey": "octavitas",
-      "categoryEn": "CUSTOM",
-      "categoryJa": "祝祭",
-      "icon": "spark",
-      "title": "1月6日を過ぎても、まだ祝祭が続く",
-      "text": "三賢王の日が終わってからの8日間は「オクタビータス」と呼ばれ、島の長い年末年始の祝いが続いていく。",
-      "sourceKey": "holiday"
+      "topicKey": "pina-colada",
+      "categoryEn": "FOOD",
+      "categoryJa": "島の一杯",
+      "icon": "food",
+      "title": "ピニャ・コラーダは「国民的な飲み物」",
+      "text": "ラムとココナッツ、パイナップルのカクテルは1978年にプエルトリコの国民的な飲み物とされた。発祥はサンフアンのホテル（1954年）とも旧市街のレストラン（1963年）とも言われ、今も二つの店が元祖を名乗る。",
+      "sourceKey": "pinaColada"
     }
   ],
   "forWhom": [
@@ -504,7 +504,7 @@
         "icon": "map"
       },
       {
-        "duration": "8〜10日以上",
+        "duration": "8日以上",
         "title": "ビエケスとクレブラを加える",
         "text": "島ごとの滞在時間を確保して海を渡る。例：サンフアン → セイバ → ビエケス → セイバ → クレブラ → セイバ → サンフアン。",
         "icon": "compass"
@@ -575,26 +575,26 @@
       "affinityType": "CULTURE"
     },
     {
-      "nameJa": "ハイチ",
-      "nameEn": "HAITI",
-      "href": "countries/haiti/",
-      "flag": "🇭🇹",
-      "reason": "イスパニョーラ島西部の山と歴史を通じて、カリブ海の別の一面に触れる。",
-      "affinityType": "GEOGRAPHY"
+      "nameJa": "フィリピン",
+      "nameEn": "PHILIPPINES",
+      "href": "countries/philippines/",
+      "flag": "🇵🇭",
+      "reason": "1898年、プエルトリコとともにスペインから米国へ移った島々。スペイン時代の石の要塞と教会を、太平洋の側で見比べる。",
+      "affinityType": "HISTORY"
     }
   ],
   "capital": {
     "nameJa": "サンフアン",
-    "labelJa": "首府",
+    "labelJa": "首都",
     "coordinates": {
       "latitude": 18.4655,
       "longitude": -66.1057
     },
-    "labelPosition": "above",
+    "labelPosition": "right",
     "sourceKey": "constitutionText",
-    "mapOffset": {
-      "x": 4,
-      "y": 4
+    "labelOffset": {
+      "x": 0,
+      "y": 0
     }
   },
   "travelThemes": [
@@ -602,14 +602,21 @@
     "地球の風景",
     "街を歩く"
   ],
-  "sourcesVerifiedAt": "2026-11-08",
+  "sourcesVerifiedAt": "2026-11-09",
   "sourceDates": {
     "population": "2025-07-01 (U.S. Census Vintage 2025)",
     "area": "2020 Census: land 3,424.32 square miles; converted to km² using 2.589988110336",
     "government": "2026-11-08",
     "ferry": "2026-11-08; published schedules may change",
     "seasons": "2026-11-08 general climatology; not a forecast",
-    "religion": "2014 Pew Research survey: broad denominations only; current share unknown"
+    "religion": "2014 Pew Research survey: broad denominations only; current share unknown",
+    "territory": "U.S. Department of the Interior, checked 2026-11-09",
+    "constitution": "1952 constitution",
+    "constitutionText": "1952 constitution text",
+    "yunqueRain": "Discover Puerto Rico: average 120 up to 240 inches a year; 20% of drinking water",
+    "vejigante": "Discover Puerto Rico, checked 2026-11-09",
+    "viequesRefuge": "USFWS 2003-04: about 15,500 acres added on 2003-05-01, refuge just over 18,000 acres",
+    "pinaColada": "Discover Puerto Rico: national drink 1978; competing 1954 / 1963 origin claims"
   },
   "sources": {
     "territory": "https://www.statedepartment.pr.gov/information-foreigners",
@@ -644,7 +651,11 @@
     "threeKings": "https://www.discoverpuertorico.com/article/timeless-puerto-rican-tradition-three-kings-day",
     "flamencoTank": "https://www.discoverpuertorico.com/article/virtual-tour-through-puerto-ricos-off-beaten-path",
     "holiday": "https://www.discoverpuertorico.com/holidays",
-    "caguana": "https://www.discoverpuertorico.com/profile/centro-ceremonial-indigena-de-caguana/7962"
+    "caguana": "https://www.discoverpuertorico.com/profile/centro-ceremonial-indigena-de-caguana/7962",
+    "yunqueRain": "https://www.discoverpuertorico.com/article/how-much-does-it-rain-el-yunque",
+    "vejigante": "https://www.discoverpuertorico.com/article/vejigante-mask-symbol-puerto-rican-heritage",
+    "viequesRefuge": "https://www.fws.gov/story/2003-04/vieques-national-wildlife-refuge-become-largest-national-wildlife-refuge-caribbean",
+    "pinaColada": "https://www.discoverpuertorico.com/en/experiences/gastronomy/the-national-drink"
   },
   "sourceNotes": {
     "mapGeometry": "Puerto Rico municipality polygons dissolved; includes all detached polygons in the UScounties PR dataset. No fabricated islands/coastlines. NOAA dataset resolution is not survey-grade. Cayo Caracoles is geolocated as a real point; its sub-kilometer island outline is unresolved in the NOAA-derived county coastline at this scale and is deliberately not fabricated.",
