@@ -31,7 +31,7 @@
   },
   "profile": [
     {
-      "label": "中心都市",
+      "label": "首都",
       "value": "カイエンヌ（Cayenne）",
       "sourceKey": "government"
     },
@@ -52,7 +52,7 @@
     },
     {
       "label": "主な宗教",
-      "value": "キリスト教など（宗教構成比は未掲載）",
+      "value": "キリスト教（カトリックなど）",
       "sourceKey": "religion"
     },
     {
@@ -62,7 +62,7 @@
     }
   ],
   "historyContext": {
-    "text": "フランス領ギアナは南米大陸北東部にあり、スリナムとブラジルに接するフランス共和国の海外地域。かつての植民地・流刑地を経て1946年に海外県となり、2015年からは県と地域圏の権限を併せ持つ単一地方公共団体となった。独立国ではなく、200のCountry Pageとは別のRegionとして紹介する。",
+    "text": "フランス領ギアナは南米大陸北東部にあり、スリナムとブラジルに接するフランス共和国の海外地域。植民地と流刑地の時代を経て1946年に海外県となり、2015年からは県と地域圏の権限を併せ持つ単一地方公共団体となった。",
     "sourceKeys": [
       "government"
     ]
@@ -88,11 +88,15 @@
         "longitude": -52.33383
       },
       "image": "assets/images/france/french-guiana/approved/scene-01-place-des-palmistes.webp",
-      "sourceKey": "cayenne",
+      "sourceKey": "palmistesMH",
       "sceneTypes": [
         "square",
         "monument"
-      ]
+      ],
+      "mapOffset": {
+        "x": 0,
+        "y": -6
+      }
     },
     {
       "id": "kourou-ela4",
@@ -134,7 +138,7 @@
         "longitude": -52.10808
       },
       "image": "assets/images/france/french-guiana/approved/scene-04-marais-de-kaw.webp",
-      "sourceKey": "kaw",
+      "sourceKey": "ramsarKaw",
       "sceneTypes": [
         "wetland",
         "birds"
@@ -181,7 +185,7 @@
         "longitude": -53.94572
       },
       "image": "assets/images/france/french-guiana/approved/scene-07-plage-des-hattes.webp",
-      "sourceKey": "turtles",
+      "sourceKey": "turtleWatch",
       "sceneTypes": [
         "beach",
         "marine"
@@ -244,101 +248,116 @@
   },
   "signatureFacts": [
     {
-      "topicKey": "equatorial-spaceport",
-      "label": "欧州宇宙港の緯度",
-      "value": "北緯約5°",
-      "note": "赤道から約500km北に位置し、地球の自転を利用した東向きの打上げに適した立地。",
+      "topicKey": "rotation-boost",
+      "label": "地球の自転がロケットに加える速度",
+      "value": "秒速460m",
       "icon": "spark",
-      "sourceKey": "esa",
-      "interestReason": "熱帯林とロケットが共存する理由を示す。"
+      "sourceKey": "esaSpaceport",
+      "note": "クールーは北緯5°3′、赤道の北500kmあまり。東向きに打ち上げると、地球の自転による「はずみ」で機体の速度が秒速460m増す。",
+      "interestReason": "熱帯の海岸に欧州の宇宙港が置かれた理由を、ひとつの数字で示す。"
     },
     {
-      "topicKey": "kaw-wetlands",
-      "label": "カウ湿原の広がり",
-      "value": "約137,000ha",
-      "note": "カウ湿地全域の面積。草本湿原、マングローブ、浸水林が連続する。保護区の面積とは区別する。",
-      "icon": "sea",
-      "sourceKey": "kaw",
-      "interestReason": "熱帯雨林に限らない自然のスケールを示す。"
-    },
-    {
-      "topicKey": "rainforest-coverage",
-      "label": "熱帯林の覆う割合",
-      "value": "約90%",
-      "note": "ESAが示す熱帯林の広がりの目安。沿岸の都市から南に向かうと、広い森林景観が続く。",
+      "topicKey": "amazon-park",
+      "label": "フランス最大の国立公園",
+      "value": "約339万ha",
       "icon": "leaf",
-      "sourceKey": "esa",
-      "interestReason": "沿岸の都市と内陸の森林の対照を数字で捉える。"
+      "sourceKey": "parkArea",
+      "exceptionalScale": true,
+      "note": "2007年に創設されたアマゾニア国立公園は、ベルギーよりわずかに広い。フランスの国立公園の中で群を抜いて大きく、緩衝地帯には5つの町村がある。",
+      "interestReason": "ヨーロッパの国の中に、アマゾンの森がまるごと守られていることを示す。"
+    },
+    {
+      "topicKey": "equatorial-forest",
+      "label": "赤道林に覆われた土地",
+      "value": "約90%",
+      "icon": "leaf",
+      "sourceKey": "esaSpaceport",
+      "exceptionalShare": true,
+      "note": "地域の約9割を赤道直下の森が覆う。沿岸の細い帯に町と道路が集まり、その南には森と川の世界が続く。",
+      "interestReason": "沿岸の都市と内陸の森の対照を、数で捉える。"
     }
   ],
   "encounters": [
     {
-      "title": "マロニ川のピローグ",
+      "title": "カーニバルの夜に踊るトゥルールー",
+      "icon": "culture",
+      "category": "CULTURE"
+    },
+    {
+      "title": "ピローグで渡る朝の大河",
       "icon": "sea",
       "category": "MOVEMENT"
     },
     {
-      "title": "日曜のカカオ市場",
+      "title": "ライムの香る魚のブラフ",
       "icon": "food",
       "category": "FOOD"
     },
     {
-      "title": "カイエンヌの朝の広場",
-      "icon": "landmark",
+      "title": "赤い光で見守るウミガメの上陸",
+      "icon": "wildlife",
+      "category": "WILDLIFE"
+    },
+    {
+      "title": "打上げを見上げる海辺の町",
+      "icon": "spark",
       "category": "DAILY_LIFE"
     },
     {
-      "title": "ロワイヤル島の旧港",
-      "icon": "sea",
-      "category": "CULTURE"
-    },
-    {
-      "title": "湿地に立つサギ",
+      "title": "森の夜明けに響くホエザルの声",
       "icon": "wildlife",
-      "category": "WILDLIFE"
-    },
-    {
-      "title": "内陸の雨林を歩く",
-      "icon": "leaf",
       "category": "NATURE"
     },
     {
-      "title": "海岸の産卵跡",
-      "icon": "wildlife",
-      "category": "WILDLIFE"
+      "title": "フランス語とクレオール語が交わる市場",
+      "icon": "language",
+      "category": "LANGUAGE"
     },
     {
-      "title": "宇宙港の遠景",
-      "icon": "spark",
-      "category": "LANDSCAPE"
+      "title": "雨季の空に立ち上がる大きな雲",
+      "icon": "weather",
+      "category": "SEASON"
     }
   ],
   "culture": [
     {
-      "topicKey": "spaceport-near-equator",
+      "topicKey": "salut-cnes",
       "themeEn": "SPACE",
-      "themeJa": "宇宙を知る",
+      "themeJa": "島と宇宙",
       "icon": "spark",
-      "title": "森の中にあるヨーロッパの宇宙港",
-      "text": "クールーの発射基地は1960年代に整備され、アリアン6などのロケットがここから打ち上がる。赤道に近いため、東向きの打上げでは地球の自転による速度を利用できる。",
+      "title": "流刑の島は、いま宇宙機関の持ち物",
+      "text": "クールーの沖約20kmに浮かぶサリュ諸島は、1971年から国立宇宙研究センター（CNES）が所有している。東向きの打上げ経路の下にあたるため、赤道軌道へ衛星を送る打上げのたびに、島から人が退避する。",
       "points": [
-        "見学の可否は現地運営機関の案内を確認する",
-        "打上げ時には周辺の立入規制がある"
+        "打上げ日はロワイヤル島への船が運休することがある",
+        "流刑の遺構と宇宙港が同じ海を共有する"
       ],
-      "sourceKey": "esa"
+      "sourceKey": "cnesSalut"
     },
     {
-      "topicKey": "maroni-river-travel",
-      "themeEn": "RIVER",
-      "themeJa": "川の暮らし",
-      "icon": "sea",
-      "title": "国境であり、生活の道でもあるマロニ川",
-      "text": "スリナムとフランス領ギアナの間を流れるマロニ川では、細長いピローグが人や物を運ぶ。陸路が通じない地域ほど、水路は暮らしの中心になる。",
+      "topicKey": "penal-memory",
+      "themeEn": "HISTORY",
+      "themeJa": "流刑地の記憶",
+      "icon": "history",
+      "title": "流刑者たちが最初に足を踏み入れた町",
+      "text": "サン＝ローラン＝デュ＝マロニの「流刑者収容所」は、フランス本国から送られた流刑者たちを受け入れた施設。流刑地の監獄は戦前に廃止が決まり、1947年に最終的に閉鎖された。建物は歴史的建造物として保護されている。",
       "points": [
-        "乗船時は救命具や運航条件を確認したい",
-        "国境の通過には正式な出入境手続が必要"
+        "沖のサリュ諸島の遺構とあわせると、流刑の全体像が見えてくる",
+        "中庭を囲む長い回廊が、収容の時代の規模を伝える"
       ],
-      "sourceKey": "surinameBorder"
+      "sourceKey": "penal"
+    },
+    {
+      "topicKey": "touloulou",
+      "themeEn": "FESTIVAL",
+      "themeJa": "カーニバル",
+      "icon": "culture",
+      "title": "仮面の女性が男性をダンスに誘う夜",
+      "text": "カイエンヌのカーニバルは、公現祭のあとの最初の日曜日から灰の水曜日まで続く。週末の仮装舞踏会では、手袋と頭巾、仮面で全身を隠した女性「トゥルールー」が男性を誘って踊りを導き、誘われた男性は断らないのが決まりとされる。",
+      "points": [
+        "声色まで変えて正体を隠すのがトゥルールーの流儀",
+        "国の無形文化遺産目録にも記載されている"
+      ],
+      "sourceKey": "touloulou"
     },
     {
       "topicKey": "cacao-hmong",
@@ -346,98 +365,85 @@
       "themeJa": "暮らしに触れる",
       "icon": "culture",
       "title": "ラオスから来たモン族の農村",
-      "text": "1970年代にラオスから移り住んだモン族の人々が、内陸のカカオで農業を営むようになった。日曜市に並ぶ野菜や料理は、南米と東南アジアの交差点を感じさせる。",
+      "text": "1970年代にラオスから移り住んだモン族の人々が、内陸のカカオで森を拓き農業を営むようになった。日曜市に並ぶ野菜や料理は、南米と東南アジアの交差点を感じさせる。",
       "points": [
-        "農産物や食材から村の暮らしを知る",
+        "日曜の午前中に訪れると市場がにぎわう",
         "人を撮影するときは許可を得る"
       ],
       "sourceKey": "cacao"
     },
     {
-      "topicKey": "coastal-turtles",
-      "themeEn": "NATURE",
-      "themeJa": "海辺の生態系",
-      "icon": "wildlife",
-      "title": "暗い砂浜に上陸するウミガメ",
-      "text": "アワラ＝ヤリマポの海岸には、オサガメなどが産卵のために上陸する。観察できる季節や保護ルールを事前に確認し、光や接近で妨げないことが大切。",
-      "points": [
-        "夜間の強いライトを避ける",
-        "自然保護団体や現地案内に従う"
-      ],
-      "sourceKey": "turtles"
-    },
-    {
-      "topicKey": "kaw-marsh-water",
+      "topicKey": "kaw-ramsar",
       "themeEn": "NATURE",
       "themeJa": "湿地を知る",
       "icon": "leaf",
-      "title": "ジャングルの先に広がる草本湿原",
-      "text": "カウの湿地では、草本群落、マングローブ、浸水林が連続している。川と海の水が行き来する土地は、内陸の密林とは違う風景を生む。",
+      "title": "13万7,000haの湿原は、国際的に守られた水辺",
+      "text": "カウ湿原は1993年にラムサール条約の登録湿地となった。広大な草原状の湿地にマングローブの干潟、潮の満ち引きする小川が刻む浸水林と池が連なり、多くの水鳥が採餌・繁殖・越冬する。",
       "points": [
-        "鳥と水面を遠くから眺める",
+        "道路の終点からは船で湿原の中へ入る",
         "水位や雨量で通行条件が変わる"
       ],
-      "sourceKey": "kaw"
+      "sourceKey": "ramsarKaw"
     },
     {
-      "topicKey": "cayenne-streets",
-      "themeEn": "CITY",
-      "themeJa": "街を歩く",
-      "icon": "landmark",
-      "title": "ヤシ並木の向こうにある多言語の街",
-      "text": "カイエンヌでは、共和国の制度や建築に熱帯の植生が重なる。フランス語に加え、クレオール語など多様な言葉が聞こえる街の日常を、広場や市場から感じ取れる。",
+      "topicKey": "turtle-coast",
+      "themeEn": "NATURE",
+      "themeJa": "海辺の生態系",
+      "icon": "wildlife",
+      "title": "3種のウミガメが上陸する海岸",
+      "text": "オサガメ、ヒメウミガメ、アオウミガメの3種が産卵のために上陸する。アワラ＝ヤリマポはカイエンヌ近郊と並ぶ二大観察地で、卵は60〜70日でふ化し、子ガメは10月半ばまで見られることがある。",
       "points": [
-        "歴史的建築は敷地の公開状況を確認する",
-        "街の暮らしを妨げない距離で歩く"
+        "アワラ＝ヤリマポはカイエンヌから車で約3時間",
+        "近年はカイエンヌ周辺の浜にもオサガメが上陸する"
       ],
-      "sourceKey": "government"
+      "sourceKey": "turtleWatch"
     }
   ],
   "travelTrivia": [
     {
-      "topicKey": "euro-south-america",
-      "categoryEn": "CURRENCY",
-      "categoryJa": "通貨",
-      "icon": "landmark",
-      "title": "南米大陸でも、支払いはユーロ",
-      "text": "フランスの海外地域であるため、通貨はユーロ。近隣のスリナムやブラジルとは制度も通貨も異なる。",
-      "sourceKey": "government"
+      "topicKey": "brazil-border",
+      "categoryEn": "GEOGRAPHY",
+      "categoryJa": "国境",
+      "icon": "map",
+      "title": "フランスで最も長い陸の国境は、ブラジルとの国境",
+      "text": "フランスとブラジルの国境は730km以上あり、フランスの陸の国境の中で最も長い。スペインやドイツとの国境より長い国境が、南米の森の中を走っている。",
+      "sourceKey": "senatBorder"
     },
     {
-      "topicKey": "equator-launch",
+      "topicKey": "oyapock-bridge",
+      "categoryEn": "HISTORY",
+      "categoryJa": "国境の橋",
+      "icon": "map",
+      "title": "完成から開通まで6年かかった国境橋",
+      "text": "ブラジルとの国境を流れるオヤポック川の橋は2011年に完成したが、実際に開通したのは2017年だった。",
+      "sourceKey": "senatBorder"
+    },
+    {
+      "topicKey": "marianne-or-corday",
+      "categoryEn": "CITY",
+      "categoryJa": "街の話",
+      "icon": "landmark",
+      "title": "ヤシの広場の胸像は、別人かもしれない",
+      "text": "パルミスト広場の中央に立つ「共和国の柱」は、フランス革命100周年の1890年に建てられた。柱頭の胸像はマリアンヌとされるが、調達の事情から実はシャルロット・コルデーの像だという説がある。",
+      "sourceKey": "palmistesColumn"
+    },
+    {
+      "topicKey": "devils-island",
+      "categoryEn": "HISTORY",
+      "categoryJa": "島",
+      "icon": "sea",
+      "title": "「悪魔の島」を有名にしたのは、ドレフュス",
+      "text": "サリュ諸島は、ロワイヤル島、サン＝ジョゼフ島、ディアブル（悪魔の）島の3島。北のディアブル島は、冤罪で流刑となったドレフュス大尉によって、望まずして名を知られることになった。",
+      "sourceKey": "cnesSalut"
+    },
+    {
+      "topicKey": "launch-day-closure",
       "categoryEn": "SPACE",
       "categoryJa": "宇宙",
       "icon": "spark",
-      "title": "宇宙基地の立地には緯度が効く",
-      "text": "クールーは赤道の北約500km。東向きに打ち上げる機体は地球の自転速度を利用できる。",
-      "sourceKey": "esa"
-    },
-    {
-      "topicKey": "huge-kaw",
-      "categoryEn": "WETLAND",
-      "categoryJa": "湿地",
-      "icon": "leaf",
-      "title": "フランス最大級の湿地は南米にある",
-      "text": "カウ湿地は広大な草本湿原とマングローブを含み、フランス国内でも特に大きな湿地帯に数えられる。",
-      "sourceKey": "kaw"
-    },
-    {
-      "topicKey": "saul-no-road",
-      "categoryEn": "FOREST",
-      "categoryJa": "森",
-      "icon": "leaf",
-      "title": "森の奥のサウルへは空から",
-      "text": "内陸のサウルは道路で沿岸部と直結しておらず、小型航空機などが主要なアクセス手段になる。",
-      "sourceKey": "parks"
-    },
-    {
-      "topicKey": "three-islands",
-      "categoryEn": "ISLAND",
-      "categoryJa": "島",
-      "icon": "sea",
-      "title": "サリュ諸島は3つの島からなる",
-      "text": "ロワイヤル島、サン＝ジョゼフ島、ディアブル島は、フランスの流刑史を伝える小さな島々として知られる。",
-      "sourceKey": "government"
+      "title": "打上げの日、海と空が閉ざされる",
+      "text": "打上げ当日は、船と監視用の航空機が宇宙港周辺の海と空への立ち入りを止める。ロケットの見物は、決められた場所から行う。",
+      "sourceKey": "launchDay"
     }
   ],
   "forWhom": [
@@ -456,19 +462,19 @@
   ],
   "notes": [
     {
+      "title": "入域には黄熱ワクチンの証明書が要る",
+      "text": "1歳以上の旅行者は、出発地にかかわらず黄熱予防接種の国際証明書の提示を求められる。接種は出発の10日前までに済ませ、証明書を持参する。",
+      "sourceKey": "yellowFever"
+    },
+    {
       "title": "内陸のサウルは飛行機を先に確保",
       "text": "サウルへは道路で直行できず、航空便が主要なアクセスとなる。便数や荷物条件、天候の影響を事前に確認したい。",
       "sourceKey": "parks"
     },
     {
-      "title": "宇宙センター見学は事前情報を確認",
-      "text": "施設の見学や発射時の規制は時期と安全運用で変わる。現地の公式案内を見て予定を組む。",
-      "sourceKey": "esa"
-    },
-    {
-      "title": "海岸のウミガメを妨げない",
-      "text": "産卵やふ化の季節には照明、距離、立入条件に配慮し、保護団体の指示に従いたい。",
-      "sourceKey": "turtles"
+      "title": "ウミガメ観察は赤い光で、背後から",
+      "text": "夜の浜歩きは2〜8月で、6〜7月がピーク。白い懐中電灯は使わず赤い光にし、産卵中のカメには後ろから近づく。保護団体Kwataのライト用シールも使える。",
+      "sourceKey": "turtleWatch"
     }
   ],
   "travelScale": {
@@ -479,20 +485,20 @@
       {
         "duration": "4〜5日",
         "title": "カイエンヌとクールー",
-        "text": "カイエンヌ → カカオ → クールー → サリュ諸島（運航時） → カイエンヌ。",
-        "icon": "city"
+        "icon": "city",
+        "text": "カイエンヌを拠点に、クールーの宇宙センターとサリュ諸島を組み合わせる。例：カイエンヌ → カカオ（日曜市）→ クールー → サリュ諸島 → カイエンヌ。"
       },
       {
         "duration": "6〜9日",
-        "title": "湿原と歴史の港を加える",
-        "text": "カイエンヌ → カウ湿原 → クールー → サリュ諸島 → サン＝ローラン＝デュ＝マロニ → カイエンヌ。",
-        "icon": "map"
+        "title": "湿原と西の流刑地を加える",
+        "icon": "map",
+        "text": "東のカウ湿原と、西のサン＝ローランやウミガメの海岸まで沿岸を横断する。例：カイエンヌ → カウ湿原 → クールー → サリュ諸島 → サン＝ローラン＝デュ＝マロニ → アワラ＝ヤリマポ → カイエンヌ。"
       },
       {
         "duration": "10日以上",
         "title": "内陸の森と川まで",
-        "text": "沿岸の旅にサウルの森林滞在、またはアパトゥのマロニ川を加える。航空便や船の運航日に合わせて余白を残す。",
-        "icon": "compass"
+        "icon": "compass",
+        "text": "航空便で森の村サウルへ、川舟でマロニ川沿いの村へ足をのばす。運航日に合わせて余白を残す。例：カイエンヌ → サウル → カイエンヌ → サン＝ローラン＝デュ＝マロニ → アパトゥ → カイエンヌ。"
       }
     ]
   },
@@ -506,7 +512,7 @@
           10,
           11
         ],
-        "reason": "概ね雨の少ない季節で、沿岸と内陸を組み合わせる計画を立てやすい。"
+        "reason": "乾季にあたり、9〜10月が最も晴れやすい。沿岸と内陸を組み合わせる計画を立てやすい。"
       }
     ]
   },
@@ -514,26 +520,26 @@
     {
       "months": "12〜2月",
       "icon": "weather",
-      "color": "#8a9ba5",
-      "text": "雨が増える季節。道路や川、湿地の状態が変わり、予定の調整が必要になることがある。"
+      "color": "#73966f",
+      "text": "1〜2月は晴れ間とにわか雨が交互に来る短い雨季。1月からはカーニバルの季節で、週末の夜は仮装舞踏会が開かれる。"
     },
     {
       "months": "3〜5月",
       "icon": "leaf",
-      "color": "#93a88c",
-      "text": "湿潤な季節が続く。海岸の生態系や湿地に出会える一方、移動時は雨量を考慮したい。"
+      "color": "#92a253",
+      "text": "3月には「3月の小さな夏」と呼ばれる短い晴れ間がある。5月からは雨の強い本格的な雨季に入り、道路や川の状態が変わりやすい。"
     },
     {
       "months": "6〜8月",
       "icon": "sun",
-      "color": "#caa77b",
-      "text": "乾季への移行期。沿岸から内陸へ動く旅が組みやすくなるが、降雨日は残る。"
+      "color": "#b77a49",
+      "text": "6月は雨季の終わり、7月から乾季へ。ウミガメの上陸は6〜7月がピークで、夜の海岸観察に向く。"
     },
     {
       "months": "9〜11月",
       "icon": "sun",
-      "color": "#7a9c9e",
-      "text": "比較的乾いた季節。カイエンヌ、クールー、マロニ川などの広域移動に向く。"
+      "color": "#6b90a5",
+      "text": "乾季の中心で、9〜10月が最も晴れやすい。内陸への航空便や川の移動を含む広域の旅を組みやすい。"
     }
   ],
   "transport": {
@@ -548,45 +554,52 @@
       "countryJa": "スリナム",
       "flag": "🇸🇷",
       "path": "Saint-Laurent-du-Maroni → Albina",
-      "description": "マロニ川を渡り、スリナム東岸へ。国境の正式な船着場と出入境条件を事前に確認する。"
+      "description": "マロニ川を渡し船で越え、スリナム東岸のアルビナへ。国境の正式な船着場で出入境手続を行う。",
+      "travelerRoute": true,
+      "status": "OPEN",
+      "href": "countries/suriname/"
     },
     {
       "countryEn": "BRAZIL",
       "countryJa": "ブラジル",
       "flag": "🇧🇷",
       "path": "Saint-Georges-de-l’Oyapock → Oiapoque",
-      "description": "東のオヤポック川を越えてブラジル側へ。国際橋を含む交通と手続の条件を確認したい。"
+      "description": "2017年に開通したオヤポック川の国境橋を渡り、ブラジル北部のオイアポッキへ。",
+      "travelerRoute": true,
+      "status": "OPEN",
+      "href": "countries/brazil/",
+      "sourceKey": "senatBorder"
     }
   ],
   "relatedCountries": [
-    {
-      "nameJa": "スリナム",
-      "nameEn": "SURINAME",
-      "href": "countries/suriname/",
-      "flag": "🇸🇷",
-      "reason": "マロニ川の向こう側へ。異なる歴史を持つ隣国の都市と河川文化を訪ねる。",
-      "affinityType": "CULTURE"
-    },
-    {
-      "nameJa": "ブラジル",
-      "nameEn": "BRAZIL",
-      "href": "countries/brazil/",
-      "flag": "🇧🇷",
-      "reason": "南と東に広がる大国へ。アマゾン流域の森と川のスケールをさらに知る。",
-      "affinityType": "NATURE"
-    },
     {
       "nameJa": "ガイアナ",
       "nameEn": "GUYANA",
       "href": "countries/guyana/",
       "flag": "🇬🇾",
-      "reason": "ギアナ地方の別の国へ。熱帯林と河川、植民地時代から続く文化の違いを比べる。",
+      "reason": "ギアナ地方の英語圏の国へ。同じ熱帯林と大河の風景が、英国の植民地史とどう重なったかを比べる。",
+      "affinityType": "HISTORY"
+    },
+    {
+      "nameJa": "ラオス",
+      "nameEn": "LAOS",
+      "href": "countries/laos/",
+      "flag": "🇱🇦",
+      "reason": "カカオの村に暮らすモン族の故郷へ。メコン流域の山村の市場で、日曜市に並ぶ野菜や料理の原点を訪ねる。",
       "affinityType": "CULTURE"
+    },
+    {
+      "nameJa": "オーストラリア",
+      "nameEn": "AUSTRALIA",
+      "href": "countries/australia/",
+      "flag": "🇦🇺",
+      "reason": "もう一つの流刑植民地の記憶へ。英国の囚人たちが築いた監獄や町を、サン＝ローランやサリュ諸島と見比べる。",
+      "affinityType": "HISTORY"
     }
   ],
   "capital": {
     "nameJa": "カイエンヌ",
-    "labelJa": "中心都市",
+    "labelJa": "首都",
     "coordinates": {
       "latitude": 4.9224,
       "longitude": -52.3135
@@ -594,25 +607,38 @@
     "labelPosition": "right",
     "labelOffset": {
       "x": 0,
-      "y": 16
+      "y": 0
     },
     "sourceKey": "government"
   },
   "travelThemes": [
     "地球の風景",
-    "歴史をたどる",
+    "時をたどる",
     "暮らしに出会う"
   ],
   "sourcesVerifiedAt": "2026-11-09",
   "sourceDates": {
     "population": "INSEE provisional estimate as of 2026-01-01, published 2026-01-14",
     "area": "INSEE table, inspected 2026-11-09",
-    "government": "official territory overview, 2022 + source review 2026-11-09",
+    "government": "Ministère des Outre-mer territory overview, checked 2026-11-09",
     "spaceport": "ESA 2026 current",
     "wetland": "Marais de Kaw regional environmental overview, source reviewed 2026-11-09",
     "cacao": "source reviewed 2026-11-09",
     "climate": "source reviewed 2026-11-09",
-    "food": "France.fr public tourism culinary guide, verified 2026-11-09"
+    "food": "France.fr public tourism culinary guide, verified 2026-11-09",
+    "esaSpaceport": "ESA: Kourou 5°3′N, just over 500 km north of the equator; +460 m/s; 90% equatorial forest",
+    "parkArea": "Banque des Territoires: decree 2007-266 of 2007-02-27; 3.39 million ha; by far the largest French national park",
+    "parkOfficial": "Parc amazonien de Guyane: 3.4 million ha, created 2007, five municipalities",
+    "cnesSalut": "CNES: owned by CNES since 1971; evacuated for equatorial launches; ~20 km off Kourou; prisons definitively closed 1947",
+    "yellowFever": "Institut Pasteur country sheet: yellow fever certificate required on entry from age 1",
+    "turtleWatch": "France.fr: nesting walks February to end of August, peak June-July; hatching after 60-70 days; red light",
+    "touloulou": "French Ministry of Culture intangible heritage inventory sheet",
+    "ramsarKaw": "Ramsar Site 644 Marais de Kaw: 137,000 ha, designated 1993-12-08",
+    "senatBorder": "French Senate report 2023: border over 730 km, longest French land border; Oyapock bridge completed 2011, opened 2017",
+    "palmistesColumn": "Routard: Colonne de la République erected 1890; bust said to be Charlotte Corday",
+    "palmistesMH": "Mérimée PA00135680 Place de l’Esplanade, dite place des Palmistes",
+    "launchDay": "CNES Guiana Space Centre visitor site: sea and air access closed on launch day",
+    "climateGuyane": "Guyane Amazonie tourism: Jan-Feb short rains, petit été de mars, May-June long rains, dry season Jul-Nov"
   },
   "sources": {
     "government": "https://www.outre-mer.gouv.fr/territoires/guyane",
@@ -620,12 +646,9 @@
     "area": "https://www.insee.fr/fr/statistiques/1292080",
     "esa": "https://www.esa.int/establishment/about-us/directorates/space-transportation/europe-s-spaceport/europe-s-spaceport",
     "kaw": "https://www.pole-tropical.org/zones-humides-doutre-mer/atlas-regional/guyane/marais-de-kaw/",
-    "kawCoord": "https://mapcarta.com/fr/W70234279",
     "saul": "https://mapcarta.com/N1089227537",
-    "cayenne": "https://fr.wikipedia.org/wiki/Place_des_Palmistes",
     "penal": "https://pop.culture.gouv.fr/notice/merimee/PA00105911",
     "maroni": "https://www.guyane-amazonie.fr/",
-    "turtles": "https://www.wwf.fr/champs-daction/ocean/especes-marines/tortue-luth",
     "cacao": "https://www.france.fr/fr/destination/guyane-amazonie/",
     "food": "https://www.france.fr/fr/article/la-gastronomie-en-guyane/",
     "climate": "https://meteofrance.gf/fr/climat",
@@ -633,7 +656,20 @@
     "geo10m": "https://www.ngdc.noaa.gov/mgg/shorelines/",
     "border": "https://www.legifrance.gouv.fr/loda/id/JORFTEXT000044930813/",
     "surinameBorder": "https://www.guyane.gouv.fr/Actualites/Postes-frontiere-en-Guyane/Frontiere-avec-le-Suriname",
-    "religion": "https://documentation.outre-mer.gouv.fr/Record.htm?idlist=1&record=19136370124919545529"
+    "religion": "https://documentation.outre-mer.gouv.fr/Record.htm?idlist=1&record=19136370124919545529",
+    "esaSpaceport": "https://www.esa.int/Enabling_Support/Space_Transportation/Europe_s_Spaceport/Europe_s_Spaceport2",
+    "parkArea": "https://www.banquedesterritoires.fr/creation-du-plus-grand-parc-national-francais-en-guyane",
+    "parkOfficial": "https://parc-amazonien-guyane.fr/en/node/2441",
+    "cnesSalut": "https://cnes.fr/geoimage/les-iles-du-salut",
+    "yellowFever": "https://www.pasteur.fr/en/node/1639",
+    "turtleWatch": "https://www.france.fr/fr/article/observer-les-tortues-en-guyane-les-conseils-d'une-naturaliste/",
+    "touloulou": "https://www.culture.gouv.fr/Media/Thematiques/Patrimoine-culturel-immateriel/Files/Fiches-inventaire-du-PCI/Le-carnaval-de-Cayenne-avec-le-touloulou-du-bal-pare-masque",
+    "ramsarKaw": "https://rsis.ramsar.org/ris/644",
+    "senatBorder": "https://www.senat.fr/rap/r22-846/r22-84621.html",
+    "palmistesColumn": "https://www.routard.com/fr/guide/ameriques/guyane/cayenne/place-des-palmistes",
+    "palmistesMH": "https://pop.culture.gouv.fr/notice/merimee/PA00135680",
+    "launchDay": "https://visite.centrespatialguyanais.cnes.fr/en/lors-dun-lancement",
+    "climateGuyane": "https://guyane-amazonie.fr/le-climat-en-guyane"
   },
   "sourceNotes": {
     "mapGeneralization": "Georeferenced location of Île Royale shown as a point; the island coastline is not fabricated. All land outlines originate in the named geographic database.",
