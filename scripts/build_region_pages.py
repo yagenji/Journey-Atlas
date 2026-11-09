@@ -237,7 +237,8 @@ def region_scene_map_position(scene: dict, index: int, svg: str, map_data: dict)
         if not (rect['x'] <= x <= rect['x'] + rect['width']
                 and rect['y'] <= y <= rect['y'] + rect['height']):
             raise ValueError(f"Scene {index} is outside inset {detail['id']}")
-        return 100 * x / 1200, 100 * y / 760
+        pos = (100 * x / 1200, 100 * y / 760)
+        break
     offset = scene.get('mapOffset')
     if offset is None:
         return pos
@@ -591,6 +592,7 @@ def render_region(data: dict, *, site_url: str, version: str) -> tuple[str, str,
     for i, scene in enumerate(data['scenes'], 1):
         number = str(i)
         result.append(f'<article class="scene-card region-scene" data-scene="{esc(scene["id"])}" '
+            f'data-scene-types="{esc(",".join(scene.get("sceneTypes", [])))}" '
             f'id="scene-{esc(scene["id"])}" role="button" tabindex="0" aria-pressed="false" '
             f'aria-label="{number} {esc(scene["name"])}を選択">'
             '<div class="scene-image media-slot" role="img" '

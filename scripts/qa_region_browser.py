@@ -83,6 +83,7 @@ def main() -> int:
                             tastes: document.querySelectorAll('.region-taste').length,
                             imageCount: main ? [...main.querySelectorAll('img')].filter(im => !im.closest('.similar-scenes')).length : 0,
                             similarImages: main ? main.querySelectorAll('.similar-scenes img').length : 0,
+                            similarCards: main ? main.querySelectorAll('.similar-scenes .similar-scene').length : 0,
                             broken: main ? [...main.querySelectorAll('img')]
                                 .filter(im => !im.complete || im.naturalWidth < 1 || !im.hasAttribute('alt'))
                                 .map(im => im.currentSrc || im.src) : [],
@@ -457,6 +458,8 @@ def main() -> int:
                                        + svg_flag_count)
                     if audit["imageCount"] != expected_images or audit["broken"]:
                         problems.append(f"broken/missing images: {audit['broken']} ({audit['imageCount']}/{expected_images})")
+                    if all(scene.get("sceneTypes") for scene in region["scenes"]) and audit["similarCards"] != 6:
+                        problems.append(f"similar-scenes recommendations missing: {audit['similarCards']}/6")
                     if audit["overflow"] > 2: problems.append(f"horizontal overflow: {audit['overflow']}px")
                     if audit["robots"] != expected_robots: problems.append("robots mismatch")
                     if audit["canonical"] != canonical: problems.append("canonical mismatch")
