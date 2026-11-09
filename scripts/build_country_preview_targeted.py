@@ -202,26 +202,7 @@ def package_runtime_data(slugs: list[str]) -> set[str]:
     registry = json.loads((ROOT / "data" / "atlas-destinations.json").read_text(encoding="utf-8"))
     published = {item["slug"] for item in registry["destinations"]
                  if item.get("atlasPublished") and item.get("href")}
-    target_types: set[str] = set()
-    for slug in slugs:
-        country = json.loads((COUNTRY_DIR / f"{slug}.json").read_text(encoding="utf-8"))
-        for scene in [country.get("hero", {}), *country.get("scenes", [])]:
-            target_types.update(scene.get("sceneTypes", []))
-        for region_file in sorted((ROOT / "data" / "regions" / slug).glob("*.json")):
-            region = json.loads(region_file.read_text(encoding="utf-8"))
-            for scene in [region.get("hero", {}), *region.get("scenes", [])]:
-                target_types.update(scene.get("sceneTypes", []))
-    support: dict[str, list] = {}
-    for slug, rows in scene_index.get("countries", {}).items():
-        if slug in slugs or slug not in published:
-            continue
-        match = next((row for row in rows
-                      if len(row) > 2 and target_types.intersection(row[2])), None)
-        if match:
-            support[slug] = [match]
-            if len(support) >= 12:
-                break
-    scene_index["countries"] = {
+    # The live similar-scenes UI needs up to six *distinct* other Country families\n    # per page. A fixed first-N subset can leave Regions with only 3-4 cards even\n    # though the full scene index has ample matching Scenes. Build a minimal\n    # image-complete support pool for every target Country and its Regions.\n    page_type_sets: list[set[str]] = []\n    for slug in slugs:\n        country = json.loads((COUNTRY_DIR / f"{slug}.json").read_text(encoding="utf-8"))\n        family_pages = [country] + [\n            json.loads(path.read_text(encoding="utf-8"))\n            for path in sorted((ROOT / "data" / "regions" / slug).glob("*.json"))\n        ]\n        for page in family_pages:\n            page_types = {\n                type_id\n                for entry in [page.get("hero", {}), *page.get("scenes", [])]\n                for type_id in entry.get("sceneTypes", [])\n            }\n            if page_types:\n                page_type_sets.append(page_types)\n\n    support: dict[str, list] = {}\n    for page_types in page_type_sets:\n        matched_families = 0\n        for slug, rows in scene_index.get("countries", {}).items():\n            if slug in slugs or slug not in published:\n                continue\n            match = next((row for row in rows\n                          if len(row) > 2 and page_types.intersection(row[2])), None)\n            if match is None:\n                continue\n            selected = support.setdefault(slug, [])\n            if not any(page_types.intersection(row[2]) for row in selected):\n                selected.append(match)\n            matched_families += 1\n            if matched_families >= 6:\n                break\n    scene_index["countries"] = {
         **{slug: rows for slug, rows in scene_index.get("countries", {}).items() if slug in slugs},
         **support,
     }
