@@ -379,41 +379,74 @@ def main() -> int:
                                 gapSvgPx:minGap/scale,
                                 mapImageLoaded:img?.naturalWidth > 0};
                         """, detail)
-                        # The mobile layout must use exactly the same SVG/inset:
-                        # no second enlarged map panel (inside or outside the frame).
-                        single_map = driver.execute_script("""
-                            const mapRoot=document.querySelector('#region-map-hits');
-                            const main=document.querySelector('#country-map-art');
-                            if (!mapRoot || !main) return {found:false};
-                            const all=[...mapRoot.querySelectorAll('.region-map-hit')];
-                            const inset=[...mapRoot.querySelectorAll('[data-map-inset="true"]')];
-                            const pts=inset.map(h=>{
-                                const r=h.getBoundingClientRect();
-                                return {x:r.x+r.width/2,y:r.y+r.height/2,width:r.width};
-                            });
-                            let gap=Infinity;
-                            for(let i=0;i<pts.length;i++) for(let j=i+1;j<pts.length;j++)
-                                gap=Math.min(gap,Math.hypot(pts[i].x-pts[j].x,pts[i].y-pts[j].y));
-                            return {found:true,frameCount:document.querySelectorAll('.map-column .map-frame').length,
-                                extraMaps:document.querySelectorAll('.region-map-detail-mobile').length,
-                                mapImages:document.querySelectorAll('.map-column .map-base').length,
-                                allCount:all.length,insetCount:inset.length,
-                                insetIds:inset.map(h=>h.dataset.scene),
-                                visible:inset.every(h=>getComputedStyle(h).display!=='none'),
-                                minGap:gap,
-                                maxMarkerWidth:pts.length?Math.max(...pts.map(p=>p.width)):0};
-                        """)
-                        if not (single_map.get("found")
-                                and single_map.get("frameCount") == 1
-                                and single_map.get("extraMaps") == 0
-                                and single_map.get("mapImages") == 1
-                                and single_map.get("allCount") == 8
-                                and single_map.get("insetCount") == len(detail[0]["sceneIds"])
-                                and set(single_map.get("insetIds", [])) == set(detail[0]["sceneIds"])
-                                and single_map.get("visible")
-                                and (label != "mobile"
-                                     or single_map.get("minGap", 0) >= single_map.get("maxMarkerWidth", 0) - 1)):
-                            problems.append(f"Region single-map inset QA failed: {single_map}")
+                        if (region.get("map") or {}).get("singleMapMobile"):
+                            # The mobile layout must use exactly the same SVG/inset:
+                            # no second enlarged map panel (inside or outside the frame).
+                            single_map = driver.execute_script("""
+                                const mapRoot=document.querySelector('#region-map-hits');
+                                const main=document.querySelector('#country-map-art');
+                                if (!mapRoot || !main) return {found:false};
+                                const all=[...mapRoot.querySelectorAll('.region-map-hit')];
+                                const inset=[...mapRoot.querySelectorAll('[data-map-inset="true"]')];
+                                const pts=inset.map(h=>{
+                                    const r=h.getBoundingClientRect();
+                                    return {x:r.x+r.width/2,y:r.y+r.height/2,width:r.width};
+                                });
+                                let gap=Infinity;
+                                for(let i=0;i<pts.length;i++) for(let j=i+1;j<pts.length;j++)
+                                    gap=Math.min(gap,Math.hypot(pts[i].x-pts[j].x,pts[i].y-pts[j].y));
+                                return {found:true,frameCount:document.querySelectorAll('.map-column .map-frame').length,
+                                    extraMaps:document.querySelectorAll('.region-map-detail-mobile').length,
+                                    mapImages:document.querySelectorAll('.map-column .map-base').length,
+                                    allCount:all.length,insetCount:inset.length,
+                                    insetIds:inset.map(h=>h.dataset.scene),
+                                    visible:inset.every(h=>getComputedStyle(h).display!=='none'),
+                                    minGap:gap,
+                                    maxMarkerWidth:pts.length?Math.max(...pts.map(p=>p.width)):0};
+                            """)
+                            if not (single_map.get("found")
+                                    and single_map.get("frameCount") == 1
+                                    and single_map.get("extraMaps") == 0
+                                    and single_map.get("mapImages") == 1
+                                    and single_map.get("allCount") == 8
+                                    and single_map.get("insetCount") == len(detail[0]["sceneIds"])
+                                    and set(single_map.get("insetIds", [])) == set(detail[0]["sceneIds"])
+                                    and single_map.get("visible")
+                                    and (label != "mobile"
+                                         or single_map.get("minGap", 0) >= single_map.get("maxMarkerWidth", 0) - 1)):
+                                problems.append(f"Region single-map inset QA failed: {single_map}")
+                        else:
+                            mobile_inset = driver.execute_script("""
+                                const root=document.querySelector('.region-map-detail-mobile');
+                                const img=root?.querySelector('img');
+                                const mapRoot=document.querySelector('#region-map-hits');
+                                if(!root || !mapRoot) return {found:false};
+                                const visible=getComputedStyle(root).display!=='none';
+                                const buttons=[...root.querySelectorAll('.region-map-hit')];
+                                const mainInset=[...mapRoot.querySelectorAll('[data-map-inset="true"]')];
+                                const pts=buttons.map(h=>{
+                                    const r=h.getBoundingClientRect();
+                                    return {x:r.x+r.width/2,y:r.y+r.height/2};
+                                });
+                                let minGap=Infinity;
+                                for(let i=0;i<pts.length;i++) for(let j=i+1;j<pts.length;j++)
+                                    minGap=Math.min(minGap,Math.hypot(pts[i].x-pts[j].x,pts[i].y-pts[j].y));
+                                const widths=root.getBoundingClientRect();
+                                return {found:true,visible,count:buttons.length,
+                                    ids:buttons.map(b=>b.dataset.scene),
+                                    hiddenMain:mainInset.every(b=>getComputedStyle(b).display==='none'),
+                                    loaded:!!img && img.naturalWidth>0,
+                                    gap:minGap, width:widths.width};
+                            """)
+                            small = label == "mobile"
+                            if not (mobile_inset.get("found") and mobile_inset.get("count") == len(detail[0]["sceneIds"])
+                                    and set(mobile_inset.get("ids", [])) == set(detail[0]["sceneIds"])
+                                    and mobile_inset.get("visible") == small
+                                    and (not small or (mobile_inset.get("hiddenMain")
+                                        and mobile_inset.get("gap", 0) >= 27
+                                        and mobile_inset.get("width", 0) >= 250))
+                                    and mobile_inset.get("loaded")):
+                                problems.append(f"Region mobile detail failed: {mobile_inset}")
                         if not (len(detail) == 1
                                 and 0 <= detail[0]["rect"]["x"] <= 1200 - detail[0]["rect"]["width"]
                                 and 0 <= detail[0]["rect"]["y"] <= 760 - detail[0]["rect"]["height"]
@@ -458,7 +491,8 @@ def main() -> int:
                         str(route.get("countryEn", "")).upper() in route_flags
                         for route in region.get("nextRoutes", [])
                     )
-                    expected_images = (14 + bool((region.get("map") or {}).get("regions"))
+                    expected_images = (14 + int(bool((region.get("map") or {}).get("regions"))
+                                       and not (region.get("map") or {}).get("singleMapMobile"))
                                        + svg_flag_count)
                     if audit["imageCount"] != expected_images or audit["broken"]:
                         problems.append(f"broken/missing images: {audit['broken']} ({audit['imageCount']}/{expected_images})")
