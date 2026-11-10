@@ -76,6 +76,28 @@ def check(driver, viewport):
         driver.execute_script("window.scrollTo(0, 0)")
         screenshot_width = driver.execute_script("return window.innerWidth")
         driver.save_screenshot(str(OUT / f"discover-{screenshot_width}.png"))
+
+        # Review-only visual comparison: also capture the current, *unchanged*
+        # production front page at the same viewport. Never assert on a public
+        # site's network availability, and return to the local QA origin.
+        try:
+            driver.get("https://atlas.yagenji.com/")
+            WebDriverWait(driver, 20).until(lambda d: d.execute_script("""
+              const hero=document.querySelector('.hero-collage__image');
+              return hero && hero.complete && hero.naturalWidth > 0;
+            """))
+            driver.execute_script("window.scrollTo(0, 0)")
+            driver.save_screenshot(str(OUT / f"current-{screenshot_width}.png"))
+        except Exception as exc:
+            print(f"CURRENT_TOP_CAPTURE_UNAVAILABLE {screenshot_width}: {exc}")
+        finally:
+            driver.get(BASE + "/?qa=top-200")
+            wait.until(lambda d: len(d.find_elements(
+                By.CSS_SELECTOR, "#country-rail .country-card")) == 200)
+            wait.until(lambda d: d.execute_script("""
+              const img=document.querySelector('#ja-discover-image');
+              return img && img.complete && img.naturalWidth > 0;
+            """))
         snapshot = driver.execute_script("""
           const ids = ['ja-discover','scenery','map','lens-world',
                        'ja-find','countries','themes','seasons','my-atlas'];
