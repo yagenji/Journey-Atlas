@@ -554,15 +554,20 @@ def build_top_season_index() -> None:
             label = str(window.get("label", "")).strip()
             months = window.get("months")
             if not months:
-                period = re.fullmatch(r"(\d{1,2})[〜～~–-](\d{1,2})月", label)
-                if not period:
-                    raise ValueError(f"Unparseable published Region bestSeason: {region['slug']} {label}")
-                start, end = (int(v) for v in period.groups())
-                if not 1 <= start <= 12 or not 1 <= end <= 12:
-                    raise ValueError(f"Invalid published Region season months: {region['slug']}")
-                months = list(range(start, end + 1)) if start <= end else (
-                    list(range(start, 13)) + list(range(1, end + 1))
-                )
+                # Region editorial labels may contain several season windows,
+                # e.g. "3〜5月・10〜11月". Preserve the authored label as-is.
+                expanded = []
+                for segment in re.split(r"[・、,／/]", label):
+                    period = re.fullmatch(r"(\d{1,2})[〜～~–-](\d{1,2})月", segment.strip())
+                    if not period:
+                        raise ValueError(f"Unparseable published Region bestSeason: {region['slug']} {label}")
+                    start, end = (int(v) for v in period.groups())
+                    if not 1 <= start <= 12 or not 1 <= end <= 12:
+                        raise ValueError(f"Invalid published Region season months: {region['slug']}")
+                    expanded.extend(list(range(start, end + 1)) if start <= end else (
+                        list(range(start, 13)) + list(range(1, end + 1))
+                    ))
+                months = list(dict.fromkeys(expanded))
             if any(not isinstance(m, int) or not 1 <= m <= 12 for m in months):
                 raise ValueError(f"Invalid Region bestSeason: {region['slug']}")
             rows.append([list(months), label, str(window.get("reason", "")).strip()])
