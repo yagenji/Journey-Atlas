@@ -329,12 +329,17 @@ def check(driver, viewport):
         errors.append("Season Wish filter did not intersect the selected month: " + repr(filtered))
     if "swish=1" not in driver.current_url:
         errors.append("Season Wish selection not persisted in URL")
-    other_season_region = next((el for el in driver.find_elements(
-        By.CSS_SELECTOR, "#season-region-tabs [data-season-region]"
-    ) if el.get_attribute("data-season-region") != "all" and
-        el.find_element(By.TAG_NAME, "span").text == "0"), None)
-    if other_season_region is not None:
-        driver.execute_script("arguments[0].click()", other_season_region)
+    # Click by a fresh DOM query: selecting a Wish filter can rebuild the
+    # region-tab row while Selenium is iterating over old WebElements.
+    clicked_other_season_region = driver.execute_script("""
+      const target = [...document.querySelectorAll(
+        '#season-region-tabs [data-season-region]'
+      )].find(el => el.dataset.seasonRegion !== 'all' &&
+        el.querySelector('span')?.textContent.trim() === '0');
+      if (target) target.click();
+      return Boolean(target);
+    """)
+    if clicked_other_season_region:
         if driver.find_elements(By.CSS_SELECTOR, "#season-results-grid .country-card"):
             errors.append("Season region and Wish filters were not intersected")
         driver.execute_script("arguments[0].click()", driver.find_element(
