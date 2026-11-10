@@ -21,16 +21,20 @@ class WalesRegion(unittest.TestCase):
         cls.svg = (ROOT / cls.data['map']['svg']).read_text()
 
     def test_complete_approved_image_set(self):
-        items = [self.data['hero'], *self.data['scenes'], *self.data['taste']['items']]
-        self.assertEqual(len(items), 13)
+        # Hero and scenes keep the approved 1536x1024 masters; Taste images are
+        # normalized to the site-wide 1200x800 delivery size (#2300).
+        visual = [self.data['hero'], *self.data['scenes']]
+        taste = list(self.data['taste']['items'])
+        self.assertEqual(len(visual) + len(taste), 13)
         hashes = set()
-        for item in items:
-            path = ROOT / item['image']
-            hashes.add(hashlib.sha256(path.read_bytes()).hexdigest())
-            with Image.open(path) as image:
-                image.load()
-                self.assertEqual(image.size, (1536, 1024))
-                self.assertEqual(image.format, 'WEBP')
+        for items, size in ((visual, (1536, 1024)), (taste, (1200, 800))):
+            for item in items:
+                path = ROOT / item['image']
+                hashes.add(hashlib.sha256(path.read_bytes()).hexdigest())
+                with Image.open(path) as image:
+                    image.load()
+                    self.assertEqual(image.size, size, item['image'])
+                    self.assertEqual(image.format, 'WEBP')
         self.assertEqual(len(hashes), 13)
 
     def test_published_shared_page(self):
