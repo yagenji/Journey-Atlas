@@ -77,3 +77,7 @@
 .ja-discover-review #map .detail-heading h2{font-family:var(--jp,'Shippori Mincho',serif)!important;font-size:clamp(24px,2.1vw,31px)!important;font-weight:500!important;line-height:1.4!important}
 @media(max-width:500px){.ja-discover-review .top-header .ja-search-shortcut{display:none}}
 @media(max-width:760px){.ja-discover-review #scenery .detail-heading h2{font-size:25px!important}}
+
+/* Explicitly override shared detail-panel backgrounds for the two relocated features. */
+.ja-discover-review #scenery.ja-discover-gallery{background:transparent!important}
+.ja-discover-review #map.ja-discover-map{background:#f7faf8!important}
