@@ -10,6 +10,7 @@ from pathlib import Path
 from selenium.webdriver.common.by import By
 from selenium.webdriver.support.ui import WebDriverWait
 from selenium.webdriver.common.keys import Keys
+from selenium.common.exceptions import StaleElementReferenceException
 
 from qa_published_browser import VIEWPORTS, make_driver, set_viewport
 
@@ -59,7 +60,9 @@ def check(driver, viewport):
     errors = []
     set_viewport(driver, viewport)
     driver.get(BASE + "/?qa=top-200")
-    wait = WebDriverWait(driver, 40)
+    # Result grids rerender while indexes and images settle; retry instead of
+    # failing when an element read inside a wait condition goes stale.
+    wait = WebDriverWait(driver, 40, ignored_exceptions=[StaleElementReferenceException])
     wait.until(lambda d: len(d.find_elements(By.CSS_SELECTOR, "#country-rail .country-card")) == 200)
 
     cards = driver.find_elements(By.CSS_SELECTOR, "#country-rail .country-card")
@@ -110,16 +113,30 @@ def check(driver, viewport):
             for el in d.find_elements(By.CSS_SELECTOR, "#country-grid .country-card")
         ))
         if slug in REGION_FLAGS or slug in UK_REGION_FLAG_ASSETS:
-            card = driver.find_element(By.CSS_SELECTOR, f'#country-grid .country-card[data-slug="{slug}"]')
+            # Read the card in one DOM snapshot: the search grid rerenders while
+            # its index and images settle, invalidating retained elements.
+            def card_snapshot(d, slug=slug):
+                return d.execute_script("""
+                  const c = document.querySelector('#country-grid .country-card[data-slug="' + arguments[0] + '"]');
+                  if (!c) return null;
+                  const f = c.querySelector('.country-card__flag');
+                  const i = c.querySelector('.country-card__flag-image');
+                  return {flag: f ? f.textContent : null,
+                          src: i ? i.getAttribute('src') : null,
+                          loaded: i ? (i.complete && i.naturalWidth > 0) : null};
+                """, slug)
             if slug in REGION_FLAGS:
-                flag_text = card.find_element(By.CSS_SELECTOR, ".country-card__flag").get_attribute("textContent")
-                if flag_text != REGION_FLAGS[slug]:
-                    errors.append("Region card missing territory flag: " + slug + " " + repr(flag_text))
+                snap = wait.until(lambda d: card_snapshot(d))
+                if snap["flag"] != REGION_FLAGS[slug]:
+                    errors.append("Region card missing territory flag: " + slug + " " + repr(snap["flag"]))
             else:
-                image = card.find_element(By.CSS_SELECTOR, ".country-card__flag-image")
-                if not image.get_attribute("src").endswith("/" + UK_REGION_FLAG_ASSETS[slug]):
+                try:
+                    snap = wait.until(lambda d: (lambda s: s if s and s["loaded"] else None)(card_snapshot(d)))
+                except Exception:
+                    snap = card_snapshot(driver) or {}
+                if not (snap.get("src") or "").endswith("/" + UK_REGION_FLAG_ASSETS[slug]):
                     errors.append("Region card wrong flag artwork: " + slug)
-                if not driver.execute_script("return arguments[0].complete && arguments[0].naturalWidth > 0", image):
+                if not snap.get("loaded"):
                     errors.append("Region card flag SVG failed loading: " + slug)
     query.clear()
     query.send_keys(Keys.ESCAPE)
