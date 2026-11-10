@@ -319,6 +319,23 @@
 .gallery-panel .theme-region-tabs{margin:20px 0 14px}
 .gallery-grid{display:grid;grid-template-columns:repeat(4,minmax(0,1fr));gap:12px;margin-top:20px}
 .gallery-panel .theme-region-tabs+.gallery-grid{margin-top:0}
+/* Saved scenery: total and per-region counts remain visible when more cards are
+   paginated; sections use the same card design and responsive grid. */
+.gallery-saved-counts{display:flex;align-items:center;flex-wrap:wrap;gap:7px 10px;margin:18px 0 0;font-size:12px;line-height:1.6;color:#365366}
+.gallery-saved-counts[hidden]{display:none}
+.gallery-saved-counts strong{font-weight:600;margin-right:6px}
+.gallery-saved-counts span{padding:4px 10px;border:1px solid #d8e2df;border-radius:99px;background:#f4f7f5}
+.gallery-region{grid-column:1/-1;min-width:0}
+.gallery-region__heading{display:flex;align-items:baseline;flex-wrap:wrap;gap:9px;margin:0 0 12px;font:600 17px/1.5 var(--jp,sans-serif);color:#173b5d}
+.gallery-region__count{font:500 12px/1.5 var(--jp,sans-serif);color:#657472}
+.gallery-region__grid{display:grid;grid-template-columns:repeat(4,minmax(0,1fr));gap:12px}
+@media(max-width:1050px){.gallery-region__grid{grid-template-columns:repeat(3,minmax(0,1fr))}}
+@media(max-width:760px){
+  .gallery-region__grid{grid-template-columns:repeat(2,minmax(0,1fr));gap:8px}
+  .gallery-region__heading{font-size:15px;margin-bottom:10px}
+  .gallery-saved-counts{gap:6px;margin-top:14px}
+}
+
 .gallery-tile{
   position:relative;display:block;overflow:hidden;border-radius:12px;background:#e8ece9;
   aspect-ratio:3/2;color:#fff;text-decoration:none;box-shadow:0 1px 4px rgba(28,58,74,.06);

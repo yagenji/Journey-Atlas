@@ -32,10 +32,10 @@
   <link rel="stylesheet" href="assets/css/top-scope.css?v=20261106-my-atlas-regions-3">
   <link rel="stylesheet" href="assets/css/site-unify.css?v=20260826-2241">
   <link rel="stylesheet" href="assets/css/site-footer.css?v=20260824-1328">
-  <link rel="stylesheet" href="assets/css/top-ux.css?v=20261108-gallery-quiet-1">
+  <link rel="stylesheet" href="assets/css/top-ux.css?v=20261110-saved-regions-1">
   <link rel="stylesheet" href="assets/css/top-region-hero.css?v=20261101-montages-1">
   <link rel="stylesheet" href="assets/css/scene-view.css?v=20261109-1">
-  <link rel="stylesheet" href="assets/css/atlas-personal.css?v=20261107-region-flags-2">
+  <link rel="stylesheet" href="assets/css/atlas-personal.css?v=20261110-scenery-simplify-1">
   <style>
     /* JOURNEY ATLAS – editorial images matched to the eight official travel themes.
      * Existing Country-approved imagery only; override the obsolete 8-in-1 sprite
@@ -82,11 +82,11 @@
     .ja-detail-summary{margin:8px 0 18px;font-size:12px;letter-spacing:.02em;color:#68747d}
   </style>
   <script src="assets/js/atlas-order.js?v=20261029-1" defer></script>
-  <script src="assets/js/top.js?v=20261109-scene-view-1" defer></script>
+  <script src="assets/js/top.js?v=20261110-saved-regions-1" defer></script>
   <script src="assets/js/scene-view.js?v=20261109-1" defer></script>
   <script src="assets/js/map-regions.js?v=20261107-all-regions-1" defer></script>
   <script src="assets/js/header-scroll.js?v=20260826-2241" defer></script>
-  <script src="assets/js/atlas-personal.js?v=20261107-region-flags-1" defer></script>
+  <script src="assets/js/atlas-personal.js?v=20261110-scenery-simplify-1" defer></script>
   <script src="assets/js/atlas-map-share.js?v=20261107-map-modes-1" defer></script>
   <script src="assets/js/atlas-my-map.js?v=20261107-map-counts-2" defer></script>
 </head>
@@ -292,6 +292,7 @@
             <div class="theme-region-tabs gallery-types__subtypes" id="gallery-type-subtypes" role="group" hidden></div>
           </div>
         </div>
+        <div class="gallery-saved-counts" id="gallery-saved-counts" aria-live="polite" hidden></div>
         <div class="gallery-grid" id="gallery-grid" role="list"></div>
         <button type="button" class="theme-results__more" id="gallery-more" hidden></button>
         <button type="button" class="results-close" id="gallery-close" hidden>一覧を閉じる</button>
@@ -303,7 +304,7 @@
       <summary class="ja-atlas-toggle">
         <span class="section-kicker">MY ATLAS</span>
         <span class="ja-atlas-title">マイアトラス</span>
-        <span class="ja-atlas-intro">世界地図を塗って、行った国・行きたい国・お気に入りの景色を振り返る</span>
+        <span class="ja-atlas-intro">世界地図を塗って、行った国・地域と行きたい国・地域を振り返る</span>
       </summary>
       <div id="atlas-personal-home"></div>
     </details>
