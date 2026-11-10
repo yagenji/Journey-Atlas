@@ -75,7 +75,7 @@
       "west": 55.17,
       "east": 55.89
     },
-    "source": "Natural Earth 3.1 Admin-0 France multi-polygon (Réunion island; public domain), eFrane/admin0/europe/france.geojson, https://github.com/eFrane/admin0/blob/master/europe/france.geojson ; source README https://github.com/eFrane/admin0/blob/master/readme.md ; actual coastline points in WGS84, local equirectangular-fit-v1 projection; checked 2026-11-10. Scene and Hero anchor coordinates are recorded in SVG metadata, with label-only offsets (no geographic anchor movement)."
+    "source": "Target land: GSHHG/GSHHS full-resolution shoreline via Basemap 2.0.0 (Paul Wessel and Walter H. F. Smith; https://www.soest.hawaii.edu/wessel/gshhg/), assigned with Natural Earth 1:10m Admin-0 map subunits ca96624a56bd078437bca8184e78163e5039ad19 (public domain) unit REU (Réunion); internal land boundaries follow Natural Earth. Surrounding land: the same GSHHG shoreline, drawn to the canvas edge. WGS84; local-equirectangular-fit-v1, 1200x760."
   },
   "scenes": [
     {
@@ -487,8 +487,8 @@
       "sourceKey": "tourismTravel"
     },
     {
-      "title": "クジラやイルカには15m以内に近づかない",
-      "text": "島の周辺では多くの鯨類が見られるが、15m以内に近づくことは禁止されている。ホエールウォッチングは規則を守る事業者を選び、海で出会っても距離を保つ。",
+      "title": "クジラやイルカには近づきすぎない",
+      "text": "島の周辺では多くの鯨類が見られ、船での接近や海に入っての観察には県の規則で距離・隻数・時間帯の決まりがある。ホエールウォッチングは規則を守る事業者を選び、海で出会っても距離を保つ。",
       "sourceKey": "franceFr"
     }
   ],
@@ -636,7 +636,7 @@
     "maloya": "UNESCO ICH Maloya, inscribed 2009: https://ich.unesco.org/en/RL/maloya-00249",
     "broderie": "Île de la Réunion Tourisme, Maison de la Broderie, Cilaos: https://www.reunion.fr/offres/maison-de-la-broderie-cilaos-fr-559379/",
     "cilaosWater": "Île de la Réunion Tourisme, Eau de Cilaos bottled from Source Véronique: https://www.reunion.fr/decouvrez/gastronomie/les-boissons/les-principales-boissons-locales/",
-    "mapGeometry": "Natural Earth 3.1 Admin-0 France/Reunion (public domain), eFrane/admin0: https://github.com/eFrane/admin0/blob/master/europe/france.geojson ; provenance https://github.com/eFrane/admin0/blob/master/readme.md",
+    "mapGeometry": "Natural Earth 1:10m map subunits (public domain): https://github.com/nvkelso/natural-earth-vector ; GSHHG shoreline: https://www.soest.hawaii.edu/wessel/gshhg/",
     "climate": "Île de la Réunion Tourisme, climate and wet November-April/drier May-October season: https://www.reunion.fr/organisez/informations-utiles-avant-de-voyager/climat/",
     "unM49": "United Nations Statistics Division, M49 geographic regions: Réunion (638) is in Eastern Africa (014). https://unstats.un.org/unsd/methodology/m49/",
     "vanillaAlbius": "Île de La Réunion Tourisme, Balade en famille dans une plantation de vanille: Edmond Albius, aged 12, discovered the hand-pollination method in 1841. https://www.reunion.fr/decouvrez/la-reunion-une-ile-sept-ambiances/la-cote-est-ambiance-de-territoire/balade-en-famille-dans-une-plantation-de-vanille/",
@@ -652,12 +652,13 @@
     "unescoMaloya": "2009 UNESCO ICH registration",
     "tourismSafety": "2026-11-10; operations and closures change daily",
     "climate": "long-run seasonal pattern checked 2026-11-10",
-    "mapGeometry": "Natural Earth 3.1 source checked 2026-11-10; WGS84 official place anchors checked 2026-11-10",
+    "mapGeometry": "Natural Earth 1:10m map subunits (ca96624) + GSHHG full-resolution shoreline, checked 2026-11-11",
     "unM49": "UNSD M49 checked 2026-11-10",
     "vanillaAlbius": "1841年の出来事。レユニオン観光局の説明を2026-11-10確認。",
     "wmoRainfallRecord": "1966-01-07〜08の24時間記録。WMO・Météo-France資料を2026-11-10確認。",
     "status": "INSEE definition of DROM, checked 2026-11-10",
     "departmentalization": "Loi du 19 mars 1946; Vie publique chronology checked 2026-11-10",
-    "franceFr": "France.fr: Piton des Neiges 3,071 m, highest summit in the Indian Ocean; whales and dolphins: no approach within 15 m"
+    "franceFr": "France.fr: Piton des Neiges 3,071 m, highest summit in the Indian Ocean",
+    "cetaceanRules": "Préfecture de La Réunion arrêté on cetacean approach (300 m perimeter, vessel limits, hours), checked 2026-11-11"
   }
 }
