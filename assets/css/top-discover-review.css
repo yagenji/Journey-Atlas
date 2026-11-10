@@ -1,0 +1,73 @@
+/* JOURNEY ATLAS — discover-first review, scoped to the candidate top page */
+:root{--ja-discover-ink:#173b5d;--ja-discover-line:rgba(27,60,81,.14)}
+.ja-discover-review .top-header{grid-template-columns:auto minmax(0,1fr) auto;gap:16px}
+.ja-discover-review .top-header .ja-search-shortcut{display:inline-flex;align-items:center;justify-content:center;width:42px;height:42px;border:1px solid var(--ja-discover-line);border-radius:50%;color:var(--ja-discover-ink);text-decoration:none;margin-left:auto}
+.ja-discover-review .ja-search-shortcut svg{width:19px;height:19px;fill:none;stroke:currentColor;stroke-width:1.7}
+.ja-discover-review .ja-search-shortcut:focus-visible,.ja-discover-review .ja-discover-button:focus-visible,.ja-discover-review .ja-discover-link:focus-visible{outline:2px solid var(--ja-discover-ink);outline-offset:4px}
+.ja-discover-review .top-header #top-nav{margin-left:0}
+.ja-discover-review .ja-discover{padding-top:32px;padding-bottom:28px}
+.ja-discover-review .ja-discover-intro{max-width:790px;margin:0 0 26px}
+.ja-discover-review .ja-discover-kicker,.ja-discover-review .ja-find-kicker{display:block;font:600 11px/1.5 var(--ja-ui,'Hanken Grotesk',sans-serif);letter-spacing:.17em;color:#7e837e}
+.ja-discover-review .ja-discover-intro h1{font:500 clamp(30px,3.25vw,49px)/1.3 var(--jp,'Shippori Mincho',serif);letter-spacing:.025em;color:var(--ja-discover-ink);margin:9px 0 13px}
+.ja-discover-review .ja-discover-intro p{font-size:15px;line-height:1.85;color:#506578;margin:0}
+.ja-discover-review .ja-discover-image-wrap{position:relative;background:radial-gradient(ellipse at 48% 55%,#e5eee9 0%,#a8bfc0 52%,#5b8289 100%);aspect-ratio:16/8.2;overflow:hidden;border-radius:12px}
+.ja-discover-review .ja-discover-image-wrap:after{content:'';position:absolute;inset:0;pointer-events:none;border:1px solid rgba(33,66,80,.10);border-radius:inherit}
+.ja-discover-review .ja-discover-image{display:block;width:100%;height:100%;object-fit:cover;opacity:0;transition:opacity .35s ease}
+.ja-discover-review .ja-discover.is-ready .ja-discover-image{opacity:1}
+.ja-discover-review .ja-discover-placeholder{position:absolute;inset:0;display:grid;place-items:center;color:#f6f8f6;font:500 clamp(13px,1.7vw,19px)/1.4 var(--jp,serif);letter-spacing:.12em}
+.ja-discover-review .ja-discover.is-ready .ja-discover-placeholder{display:none}
+.ja-discover-review .ja-discover-meta{display:flex;align-items:center;justify-content:space-between;gap:24px;padding:20px 4px 2px}
+.ja-discover-review .ja-discover-copy{min-width:0;flex:1 1 auto}
+.ja-discover-review .ja-discover-country{font:600 11px/1.5 var(--ja-ui,sans-serif);color:#86877e;letter-spacing:.14em}
+.ja-discover-review .ja-discover-scene{margin:7px 0 0;font:500 clamp(21px,2vw,29px)/1.4 var(--jp,serif);color:var(--ja-discover-ink)}
+.ja-discover-review .ja-discover-controls{display:flex;align-items:center;flex:0 0 auto;gap:14px}
+.ja-discover-review .ja-discover-link,.ja-discover-review .ja-discover-button{display:inline-flex;align-items:center;justify-content:center;gap:10px;border-radius:4px;min-height:47px;padding:11px 18px;font:600 13px/1.3 var(--jp,sans-serif);letter-spacing:.02em;text-decoration:none;cursor:pointer}
+.ja-discover-review .ja-discover-link{border:1px solid #b9cbd1;color:var(--ja-discover-ink);background:transparent}
+.ja-discover-review .ja-discover-button{border:1px solid var(--ja-discover-ink);background:var(--ja-discover-ink);color:#fff}
+.ja-discover-review .ja-discover-button:disabled{opacity:.55;cursor:wait}
+.ja-discover-review .ja-discover-caption{display:flex;justify-content:space-between;align-items:center;margin:12px 4px 0;color:#8b9394;font:500 11px/1.6 var(--ja-ui,sans-serif);letter-spacing:.07em}
+.ja-discover-review .ja-discover-note{font-size:11.5px;line-height:1.5;color:#78848c;letter-spacing:0}
+.ja-discover-review .ja-discover.has-error .ja-discover-placeholder{font-size:14px}
+.ja-discover-review .explore-detail #scenery{visibility:hidden}
+.ja-discover-review #scenery.ja-discover-gallery{display:block;visibility:visible;min-width:0;min-height:0;padding:34px 24px;margin-top:0;border:0;border-top:1px solid var(--ja-discover-line);border-radius:0;background:transparent}
+.ja-discover-review #scenery .detail-heading{display:block;margin-bottom:22px}
+.ja-discover-review #scenery .detail-heading h2{max-width:17em;font:500 clamp(25px,2.7vw,37px)/1.4 var(--jp,serif);color:var(--ja-discover-ink);letter-spacing:.025em}
+.ja-discover-review #scenery .detail-heading p{font-size:14px;line-height:1.7}
+.ja-discover-review #scenery .gallery-grid{grid-template-columns:repeat(4,minmax(0,1fr));gap:14px}
+.ja-discover-review #scenery .gallery-tile{border-radius:8px}
+.ja-discover-review #map.ja-discover-map{display:block;min-width:0;min-height:0;padding:30px 24px;margin-top:22px;border:1px solid var(--ja-discover-line);border-radius:10px;background:#f7faf8}
+.ja-discover-review #map .detail-heading{display:block;margin-bottom:18px}
+.ja-discover-review #map .detail-heading h2{font:500 clamp(24px,2.1vw,31px)/1.4 var(--jp,serif)}
+.ja-discover-review .ja-find{padding:54px 14px 6px;margin-top:12px;border-top:1px solid var(--ja-discover-line)}
+.ja-discover-review .ja-find h2{margin:8px 0 9px;font:500 clamp(25px,2.7vw,35px)/1.4 var(--jp,serif);color:var(--ja-discover-ink)}
+.ja-discover-review .ja-find p{font-size:14px;color:#627380;line-height:1.7;margin:0}
+.ja-discover-review #countries{margin-top:4px}
+.ja-discover-review #lens-world{margin-top:40px}
+.ja-discover-review #my-atlas{margin-top:60px}
+@media(max-width:1050px){
+ .ja-discover-review #scenery .gallery-grid{grid-template-columns:repeat(3,minmax(0,1fr))}
+ .ja-discover-review .ja-discover-meta{align-items:flex-start}
+ .ja-discover-review .ja-discover-controls{gap:8px}
+}
+@media(max-width:760px){
+ .ja-discover-review .top-header{grid-template-columns:minmax(0,1fr) auto auto;gap:8px}
+ .ja-discover-review .ja-discover{padding-top:89px;padding-bottom:28px}
+ .ja-discover-review .ja-discover-intro{margin-bottom:17px}
+ .ja-discover-review .ja-discover-intro h1{font-size:clamp(28px,7.8vw,37px);margin-top:6px}
+ .ja-discover-review .ja-discover-intro p{font-size:13px;line-height:1.8}
+ .ja-discover-review .ja-discover-image-wrap{margin:0 -14px;border-radius:0;aspect-ratio:4/4.3}
+ .ja-discover-review .ja-discover-meta{display:block;padding:17px 0 0}
+ .ja-discover-review .ja-discover-scene{font-size:23px;margin:5px 0 13px}
+ .ja-discover-review .ja-discover-controls{display:grid;grid-template-columns:1fr 1fr;gap:10px}
+ .ja-discover-review .ja-discover-link,.ja-discover-review .ja-discover-button{min-width:0;min-height:46px;padding:10px 8px;font-size:12.5px}
+ .ja-discover-review .ja-discover-caption{margin-top:10px}
+ .ja-discover-review #scenery.ja-discover-gallery{padding:28px 0}
+ .ja-discover-review #scenery .detail-heading h2{font-size:25px}
+ .ja-discover-review #scenery .gallery-grid{grid-template-columns:repeat(2,minmax(0,1fr));gap:9px}
+ .ja-discover-review #map.ja-discover-map{padding:20px 12px;margin-top:16px}
+ .ja-discover-review .ja-find{padding:36px 0 6px}
+ .ja-discover-review .ja-find h2{font-size:26px}
+ .ja-discover-review #lens-world{margin-top:18px}
+ .ja-discover-review #my-atlas{margin-top:38px}
+}
+@media(prefers-reduced-motion:reduce){.ja-discover-review .ja-discover-image{transition:none}}
