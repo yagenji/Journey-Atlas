@@ -75,12 +75,12 @@
   "map": {
     "svg": "assets/images/france/mayotte/map-mayotte.svg",
     "bounds": {
-      "west": 44.92,
-      "east": 45.37,
+      "west": 44.8,
+      "east": 45.5,
       "south": -13.04,
       "north": -12.61
     },
-    "source": "NOAA GSHHS/GSHHG intermediate-resolution verified coastline distributed with Basemap (WGS84; https://www.ngdc.noaa.gov/mgg/shorelines/ ; Basemap coastline database resolution i, area_thresh=0). Local equirectangular projection of bounds west44.92 east45.37 south-13.04 north-12.61 into 1200x760 SVG. Small islets below dataset resolution omitted rather than invented. Geo coordinates from georeferenced site records; not for navigation."
+    "source": "OpenStreetMap contributors © OSM (ODbL) https://www.openstreetmap.org/copyright ; Mayotte administrative region coastline relation 1259885 via hyperknot/country-levels-export GeoJSON https://github.com/hyperknot/country-levels-export/blob/master/geojson/medium/iso1/YT.geojson . WGS84 local-equirectangular geographic projection into 1200x760 SVG matching map.bounds; actual island polygons, no fabricated islands or shorelines. Checked 2026-11-10; not for navigation."
   },
   "scenes": [
     {
@@ -252,30 +252,32 @@
   "signatureFacts": [
     {
       "topicKey": "lagoon-area",
-      "label": "島を包むラグーンの面積",
-      "value": "1,500km²超",
-      "note": "陸地の数倍に及ぶラグーンがサンゴ礁に守られ、浅瀬と外洋で海の色が変わる。",
+      "label": "島を包むサンゴ礁のラグーン",
+      "value": "約1,500km²",
+      "note": "島の陸地より広い浅い海が、二重のバリアリーフに抱かれて広がる。小島と海草藻場、サンゴ礁が連続する風景。",
       "icon": "sea",
-      "sourceKey": "lagoon",
-      "interestReason": "陸地の数倍に及ぶラグーンがサンゴ礁に守られ、浅瀬と外洋で海の色が変わる。"
+      "sourceKey": "ofb",
+      "interestReason": "陸の小ささと海の広大さの対比を伝える。",
+      "exceptionalScale": true
     },
     {
-      "topicKey": "small-archipelago",
-      "label": "二つの主島と小島",
-      "value": "2つの主島",
-      "note": "グランド・テールとプティット・テールを中心に、多くの小島が海に浮かぶ。",
-      "icon": "map",
-      "sourceKey": "geography",
-      "interestReason": "グランド・テールとプティット・テールを中心に、多くの小島が海に浮かぶ。"
+      "topicKey": "marine-park",
+      "label": "フランス最大の海洋自然公園",
+      "value": "68,381km²",
+      "note": "2010年創設のマヨット海洋自然公園は、島のラグーンだけでなく、周囲の排他的経済水域まで含む。",
+      "icon": "leaf",
+      "sourceKey": "marinePark",
+      "interestReason": "小さな島が守る海域の意外な広さを示す。",
+      "exceptionalScale": true
     },
     {
-      "topicKey": "people-2026",
-      "label": "新しい国勢調査が示す人口",
-      "value": "323,153人",
-      "note": "2025年末から2026年初頭の国勢調査で確認された住民数。2017年比で約26%増えた。",
-      "icon": "city",
+      "topicKey": "population-growth",
+      "label": "2017年から2026年の人口増加",
+      "value": "＋26%",
+      "note": "2026年1月の国勢調査では323,153人。2017年9月比で約26％増え、フランスの県の中でも特に急速な増加が続いている。",
+      "icon": "users",
       "sourceKey": "population",
-      "interestReason": "2025年末から2026年初頭の国勢調査で確認された住民数。2017年比で約26%増えた。"
+      "interestReason": "静かな島の景色と、変化の速い社会の両面を示す。"
     }
   ],
   "encounters": [
@@ -402,49 +404,49 @@
   ],
   "travelTrivia": [
     {
-      "topicKey": "green-lake",
-      "categoryEn": "NATURE",
-      "categoryJa": "緑の火口湖",
-      "icon": "landscape",
-      "title": "海の隣で、水だけが緑に見える",
-      "text": "ジアニ・ジャハはプティット・テールの海岸からわずか約100mにある火口湖。海の青と湖の緑が、短い距離に並ぶ。",
-      "sourceKey": "dziani"
-    },
-    {
-      "topicKey": "region-2026",
-      "categoryEn": "HISTORY",
-      "categoryJa": "地域の制度",
-      "icon": "history",
-      "title": "2026年に「県・地域圏」の名前になった",
-      "text": "2011年に101番目の県となったマヨットは、2026年1月からDépartement-Région de Mayotteという名称を採用した。",
-      "sourceKey": "status"
-    },
-    {
-      "topicKey": "sugar-1856",
-      "categoryEn": "HISTORY",
-      "categoryJa": "古い工場",
-      "icon": "history",
-      "title": "森の中の工場は、1856年に始まった",
-      "text": "スルーの製糖農園は1856年に設けられた。工場の遺構には、19世紀に島の経済を支えた砂糖生産の痕跡が残る。",
-      "sourceKey": "soulou"
-    },
-    {
-      "topicKey": "reef-shape",
-      "categoryEn": "NATURE",
-      "categoryJa": "S字の水路",
+      "topicKey": "djarifa-fishing",
+      "categoryEn": "LIFE",
+      "categoryJa": "海の暮らし",
       "icon": "sea",
-      "title": "サンゴ礁にS字形の青い道がある",
-      "text": "ラグーン東側の「Passe en S」は、曲がった水路の形から名付けられた海の地形。",
-      "sourceKey": "passeS"
+      "title": "女性たちは、網を手にラグーンを歩いて漁をする",
+      "text": "浅いラグーンでは、女性たちが「ジャリファ」という網を用いて徒歩で漁を行う伝統がある。干潮の海が暮らしの仕事場にもなる。",
+      "sourceKey": "marinePark"
     },
     {
-      "topicKey": "island-heritage",
+      "topicKey": "manzaraka",
       "categoryEn": "CULTURE",
-      "categoryJa": "島の言葉",
+      "categoryJa": "婚礼",
       "icon": "culture",
-      "title": "湖の名前には、湖と火山が重なっている",
-      "text": "地名「Dziani Dzaha」は、シマオレ語の湖と火山に由来すると説明される。",
-      "sourceKey": "dziani"
+      "title": "結婚式の締めくくりは、花嫁のお披露目",
+      "text": "伝統的な婚礼の祝いは複数の儀礼を重ね、公開の祝宴「マンザラカ」で花嫁が姿を現す。音楽と踊りが長い祝いの最後を彩る。",
+      "sourceKey": "marriage"
+    },
+    {
+      "topicKey": "tsingoni-mosque",
+      "categoryEn": "HISTORY",
+      "categoryJa": "祈りの歴史",
+      "icon": "history",
+      "title": "フランス最古のモスクが、インド洋の島にある",
+      "text": "ツィンゴニのモスクは16世紀にさかのぼる祈りの場。フランスの国立考古学研究機関Inrapが、その古い建築と歴史を調査している。",
+      "sourceKey": "tsingoni"
+    },
+    {
+      "topicKey": "dugong",
+      "categoryEn": "NATURE",
+      "categoryJa": "海の生きもの",
+      "icon": "wildlife",
+      "title": "サンゴ礁の島にはジュゴンも暮らす",
+      "text": "マヨットの藻場にはジュゴンが生息し、海草を食べる。サンゴ礁だけでなく海草の保全も大切になる理由だ。",
+      "sourceKey": "ofb"
+    },
+    {
+      "topicKey": "turtle-nesting",
+      "categoryEn": "NATURE",
+      "categoryJa": "ウミガメ",
+      "icon": "wildlife",
+      "title": "ウミガメの産卵は、暗闇と満潮の時間に",
+      "text": "マヨットのウミガメは、主に暗い時間帯に産卵する。モヤ海岸では保護団体が潮の満ち引きに合わせた観察を行う。",
+      "sourceKey": "turtle"
     }
   ],
   "forWhom": [
@@ -620,7 +622,12 @@
     "cultureTourism": "https://www.france.fr/fr/destination/mayotte/",
     "seasons": "https://www.france.fr/fr/destination/mayotte/",
     "transport": "https://www.mayotte-tourisme.com/sejourner/toutes-les-infos-pratiques/avant-de-partir-a-mayotte/",
-    "travelSafety": "https://www.gov.uk/foreign-travel-advice/mayotte/safety-and-security"
+    "travelSafety": "https://www.gov.uk/foreign-travel-advice/mayotte/safety-and-security",
+    "ofb": "https://ofb.gouv.fr/ocean-indien",
+    "marinePark": "https://ofb.gouv.fr/les-parcs-naturels-marins",
+    "marriage": "https://www.mayotte-tourisme.com/explorez/terre-de-traditions/les-traditions-locales/le-manzaraka-coeur-du-mariage-traditionnel/",
+    "tsingoni": "https://www.inrap.fr/archeologie-de-la-plus-ancienne-mosquee-de-france-tsingoni-mayotte-17433",
+    "turtle": "https://oulangananyamba.com/observer-une-ponte-2/"
   },
   "sourceDates": {
     "population": "2026-01-01（INSEE 2026-07-07発表）",
@@ -639,6 +646,12 @@
     "food": "観光資料（2026-11-10確認）",
     "seasons": "観光資料（2026-11-10確認）",
     "transport": "観光局資料（2026-11-10確認）",
-    "travelSafety": "英国外務省最新旅行情報（2026-11-10確認）"
+    "travelSafety": "英国外務省最新旅行情報（2026-11-10確認）",
+    "ofb": "2026-11-10確認",
+    "marinePark": "2010年創設・2026-11-10確認",
+    "marriage": "2026-11-10確認",
+    "tsingoni": "2026-11-10確認",
+    "turtle": "2026-11-10確認",
+    "map": "2026-11-10検証"
   }
 }
