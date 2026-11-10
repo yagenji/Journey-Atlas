@@ -51,7 +51,7 @@
 }
 @media(max-width:760px){
  .ja-discover-review .top-header{grid-template-columns:minmax(0,1fr) auto auto;gap:8px}
- .ja-discover-review .ja-discover{padding-top:89px;padding-bottom:28px}
+ .ja-discover-review .ja-discover{padding-top:14px;padding-bottom:28px}
  .ja-discover-review .ja-discover-intro{margin-bottom:17px}
  .ja-discover-review .ja-discover-intro h1{font-size:clamp(28px,7.8vw,37px);margin-top:6px}
  .ja-discover-review .ja-discover-intro p{font-size:13px;line-height:1.8}
@@ -71,3 +71,9 @@
  .ja-discover-review #my-atlas{margin-top:38px}
 }
 @media(prefers-reduced-motion:reduce){.ja-discover-review .ja-discover-image{transition:none}}
+
+/* Site-wide heading rules use !important; the trial's editorial titles are intentional overrides. */
+.ja-discover-review #scenery .detail-heading h2{font-family:var(--jp,'Shippori Mincho',serif)!important;font-size:clamp(25px,2.7vw,37px)!important;font-weight:500!important;line-height:1.4!important;letter-spacing:.025em!important}
+.ja-discover-review #map .detail-heading h2{font-family:var(--jp,'Shippori Mincho',serif)!important;font-size:clamp(24px,2.1vw,31px)!important;font-weight:500!important;line-height:1.4!important}
+@media(max-width:500px){.ja-discover-review .top-header .ja-search-shortcut{display:none}}
+@media(max-width:760px){.ja-discover-review #scenery .detail-heading h2{font-size:25px!important}}
