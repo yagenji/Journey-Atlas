@@ -144,38 +144,35 @@
       </div>
     </section>
 
-    <section class="ja-find shell" id="ja-find" aria-labelledby="ja-find-title">
-      <span class="ja-find-kicker">FIND YOUR NEXT JOURNEY</span>
-      <h2 id="ja-find-title">行き先が決まっているなら。</h2>
-      <p>国・地図・テーマ・季節。目的に合わせて世界を探せます。</p>
-    </section>
-
-    <section class="countries shell" id="countries">
-      <div class="section-head">
-        <div><span class="section-kicker">EXPLORE BY COUNTRY</span><h2>国から探す</h2><p>世界200の旅先を、イラストで紹介しています。</p></div>
-        <div class="country-head-actions">
-          <label class="country-search country-search--head"><span aria-hidden="true">⌕</span><input id="country-search" type="search" placeholder="国名や景色で検索（例：フィヨルド）" autocomplete="off" aria-label="国名や景色の名前で検索" enterkeyhint="search"></label>
-          <button class="all-countries-toggle random-country-toggle" id="random-country" type="button">ランダムに旅先を選ぶ <span>›</span></button>
-          <button class="all-countries-toggle wish-list-toggle" id="wish-link" type="button">♡ 行ってみたい国 <span>›</span></button>
-          <button class="all-countries-toggle" id="all-countries-toggle" type="button" aria-expanded="false" aria-controls="all-countries-panel">索引（A–Z）を見る <span>›</span></button>
+      <article class="detail-panel season-panel gallery-panel shell ja-discover-gallery" id="scenery">
+        <div class="detail-heading season-heading gallery-heading">
+          <div><span class="section-kicker">KEEP DISCOVERING</span><h2>世界には、まだこんな景色がある。</h2><p id="gallery-lead">気になる景色から、旅先を見つける。</p></div>
+          <div class="gallery-actions">
+            <button type="button" class="gallery-filter-toggle" id="gallery-filter-toggle" aria-expanded="false" aria-controls="gallery-filters">絞り込む</button>
+            <button type="button" class="results-close-head" id="gallery-clear" aria-label="絞り込みを解除" hidden>選択を解除 ×</button>
+            <button type="button" class="gallery-saved-toggle" id="gallery-saved-toggle" aria-pressed="false">♡ 保存した景色</button>
+            <button type="button" class="gallery-shuffle" id="gallery-shuffle">ほかの景色を見る <span aria-hidden="true">↻</span></button>
+            <button type="button" class="gallery-shuffle gallery-view" id="gallery-view" aria-haspopup="dialog">景色を流す <span aria-hidden="true">▶</span></button>
+          </div>
         </div>
-      </div>
-      <div class="rail-wrap">
-        <button class="rail-arrow rail-arrow--prev" type="button" data-country-scroll="prev" aria-label="前の国を見る">‹</button>
-        <div class="country-rail" id="country-rail" aria-label="200の旅先"></div>
-        <button class="rail-arrow rail-arrow--next" type="button" data-country-scroll="next" aria-label="次の国を見る">›</button>
-      </div>
-      <div class="rail-meta"><div class="rail-dots" aria-hidden="true"><i class="is-active"></i><i></i><i></i><i></i><i></i><i></i><i></i></div><span id="country-count">200 DESTINATIONS</span></div>
-      <div class="all-countries-panel" id="all-countries-panel" hidden>
-        <div class="all-countries-panel__head"><div><strong id="all-countries-title">索引　すべての国・地域（A–Z）</strong></div><button type="button" class="results-close-head" id="all-countries-close">一覧を閉じる ×</button></div>
-        <div class="alphabet" aria-label="英語名の頭文字で絞り込む"><button type="button" data-letter="all" class="is-active">すべて</button><span></span><div id="alphabet-buttons"></div><button type="button" data-letter="#">その他</button></div>
-        <div class="country-grid" id="country-grid"></div><p class="country-empty" id="country-empty" hidden>該当する国・地域がありません。</p>
-        <button type="button" class="results-close" data-results-close="countries">一覧を閉じる</button>
-      </div>
-    </section>
-
-    <section class="explore-detail shell" aria-label="地図とテーマから世界を探す">
-      <article class="detail-panel map-panel map-explorer" id="map">
+        <div class="gallery-filters" id="gallery-filters" hidden>
+          <div class="gallery-filters__row">
+            <p class="gallery-types__label" id="gallery-regions-label">地域</p>
+            <div class="theme-region-tabs" id="gallery-region-tabs" role="group" aria-labelledby="gallery-regions-label"></div>
+          </div>
+          <div class="gallery-types gallery-filters__row" id="gallery-types" hidden>
+            <p class="gallery-types__label" id="gallery-types-label">景色の種類</p>
+            <div class="theme-region-tabs gallery-types__groups" id="gallery-type-groups" role="group" aria-labelledby="gallery-types-label"></div>
+            <div class="theme-region-tabs gallery-types__subtypes" id="gallery-type-subtypes" role="group" hidden></div>
+          </div>
+        </div>
+        <div class="gallery-saved-counts" id="gallery-saved-counts" aria-live="polite" hidden></div>
+        <div class="gallery-grid" id="gallery-grid" role="list"></div>
+        <button type="button" class="theme-results__more" id="gallery-more" hidden></button>
+        <button type="button" class="results-close" id="gallery-close" hidden>一覧を閉じる</button>
+        <p class="gallery-note">画像は現地撮影の写真ではなく、景観イメージです。</p>
+      </article>
+      <article class="detail-panel map-panel map-explorer shell ja-discover-map" id="map">
         <div class="detail-heading map-heading"><div><h2>地図から世界を広げる</h2><p>世界から地域へ寄りながら、地図を自由に拡大・移動して次の旅先を見つけよう。</p></div></div>
 
         <div class="map-region-tabs" aria-label="地域から探す">
@@ -215,6 +212,50 @@
         </div>
       </article>
 
+    <section class="lens-world shell" id="lens-world" aria-label="JOURNEY LENSで見る世界">
+      <div class="section-head lens-head">
+        <div><span class="section-kicker lens-kicker">EXPLORE BY PHOTO</span><h2>写真と物語で、旅の続きを。</h2><p>実際に訪れた場所は、JOURNEY LENSで写真と物語とともに。</p><small class="lens-count" data-lens-count aria-live="polite"></small></div>
+        <a class="section-link" href="https://journey.yagenji.com/" target="_blank" rel="noopener noreferrer">JOURNEY LENSを見る <span>›</span></a>
+      </div>
+      <div class="lens-rail-tools" aria-label="JOURNEY LENSの記事を横に移動">
+        <button type="button" data-lens-prev aria-label="前の記事を見る" disabled>‹</button>
+        <button type="button" data-lens-next aria-label="次の記事を見る">›</button>
+      </div>
+      <div class="lens-rail" aria-label="JOURNEY LENSの記事" tabindex="0">
+        <div class="lens-rail__track"></div>
+      </div>
+    </section>
+    <section class="ja-find shell" id="ja-find" aria-labelledby="ja-find-title">
+      <span class="ja-find-kicker">FIND YOUR NEXT JOURNEY</span>
+      <h2 id="ja-find-title">行き先が決まっているなら。</h2>
+      <p>国・地図・テーマ・季節。目的に合わせて世界を探せます。</p>
+    </section>
+
+    <section class="countries shell" id="countries">
+      <div class="section-head">
+        <div><span class="section-kicker">EXPLORE BY COUNTRY</span><h2>国から探す</h2><p>世界200の旅先を、イラストで紹介しています。</p></div>
+        <div class="country-head-actions">
+          <label class="country-search country-search--head"><span aria-hidden="true">⌕</span><input id="country-search" type="search" placeholder="国名や景色で検索（例：フィヨルド）" autocomplete="off" aria-label="国名や景色の名前で検索" enterkeyhint="search"></label>
+          <button class="all-countries-toggle random-country-toggle" id="random-country" type="button">ランダムに旅先を選ぶ <span>›</span></button>
+          <button class="all-countries-toggle wish-list-toggle" id="wish-link" type="button">♡ 行ってみたい国 <span>›</span></button>
+          <button class="all-countries-toggle" id="all-countries-toggle" type="button" aria-expanded="false" aria-controls="all-countries-panel">索引（A–Z）を見る <span>›</span></button>
+        </div>
+      </div>
+      <div class="rail-wrap">
+        <button class="rail-arrow rail-arrow--prev" type="button" data-country-scroll="prev" aria-label="前の国を見る">‹</button>
+        <div class="country-rail" id="country-rail" aria-label="200の旅先"></div>
+        <button class="rail-arrow rail-arrow--next" type="button" data-country-scroll="next" aria-label="次の国を見る">›</button>
+      </div>
+      <div class="rail-meta"><div class="rail-dots" aria-hidden="true"><i class="is-active"></i><i></i><i></i><i></i><i></i><i></i><i></i></div><span id="country-count">200 DESTINATIONS</span></div>
+      <div class="all-countries-panel" id="all-countries-panel" hidden>
+        <div class="all-countries-panel__head"><div><strong id="all-countries-title">索引　すべての国・地域（A–Z）</strong></div><button type="button" class="results-close-head" id="all-countries-close">一覧を閉じる ×</button></div>
+        <div class="alphabet" aria-label="英語名の頭文字で絞り込む"><button type="button" data-letter="all" class="is-active">すべて</button><span></span><div id="alphabet-buttons"></div><button type="button" data-letter="#">その他</button></div>
+        <div class="country-grid" id="country-grid"></div><p class="country-empty" id="country-empty" hidden>該当する国・地域がありません。</p>
+        <button type="button" class="results-close" data-results-close="countries">一覧を閉じる</button>
+      </div>
+    </section>
+
+    <section class="explore-detail shell" aria-label="テーマと季節から世界を探す">
       <article class="detail-panel theme-panel" id="themes">
         <div class="detail-heading theme-heading">
           <div><span class="section-kicker">EXPLORE BY THEME</span><h2>旅のテーマから探す</h2><p>あなたが惹かれるのは、どんな旅？ 8つのテーマから、国とさらに詳しい地域を探してみよう。</p></div>
@@ -271,34 +312,6 @@
           <button type="button" class="results-close" data-results-close="seasons">一覧を閉じる</button>
         </div>
       </article>
-      <article class="detail-panel season-panel gallery-panel" id="scenery">
-        <div class="detail-heading season-heading gallery-heading">
-          <div><span class="section-kicker">KEEP DISCOVERING</span><h2>世界には、まだこんな景色がある。</h2><p id="gallery-lead">気になる景色から、旅先を見つける。</p></div>
-          <div class="gallery-actions">
-            <button type="button" class="gallery-filter-toggle" id="gallery-filter-toggle" aria-expanded="false" aria-controls="gallery-filters">絞り込む</button>
-            <button type="button" class="results-close-head" id="gallery-clear" aria-label="絞り込みを解除" hidden>選択を解除 ×</button>
-            <button type="button" class="gallery-saved-toggle" id="gallery-saved-toggle" aria-pressed="false">♡ 保存した景色</button>
-            <button type="button" class="gallery-shuffle" id="gallery-shuffle">ほかの景色を見る <span aria-hidden="true">↻</span></button>
-            <button type="button" class="gallery-shuffle gallery-view" id="gallery-view" aria-haspopup="dialog">景色を流す <span aria-hidden="true">▶</span></button>
-          </div>
-        </div>
-        <div class="gallery-filters" id="gallery-filters" hidden>
-          <div class="gallery-filters__row">
-            <p class="gallery-types__label" id="gallery-regions-label">地域</p>
-            <div class="theme-region-tabs" id="gallery-region-tabs" role="group" aria-labelledby="gallery-regions-label"></div>
-          </div>
-          <div class="gallery-types gallery-filters__row" id="gallery-types" hidden>
-            <p class="gallery-types__label" id="gallery-types-label">景色の種類</p>
-            <div class="theme-region-tabs gallery-types__groups" id="gallery-type-groups" role="group" aria-labelledby="gallery-types-label"></div>
-            <div class="theme-region-tabs gallery-types__subtypes" id="gallery-type-subtypes" role="group" hidden></div>
-          </div>
-        </div>
-        <div class="gallery-saved-counts" id="gallery-saved-counts" aria-live="polite" hidden></div>
-        <div class="gallery-grid" id="gallery-grid" role="list"></div>
-        <button type="button" class="theme-results__more" id="gallery-more" hidden></button>
-        <button type="button" class="results-close" id="gallery-close" hidden>一覧を閉じる</button>
-        <p class="gallery-note">画像は現地撮影の写真ではなく、景観イメージです。</p>
-      </article>
     </section>
 
     <details id="my-atlas" class="ja-atlas-disclosure shell">
@@ -322,19 +335,6 @@
       </div>
     </section>
 
-    <section class="lens-world shell" id="lens-world" aria-label="JOURNEY LENSで見る世界">
-      <div class="section-head lens-head">
-        <div><span class="section-kicker lens-kicker">EXPLORE BY PHOTO</span><h2>写真と物語で、旅の続きを。</h2><p>実際に訪れた場所は、JOURNEY LENSで写真と物語とともに。</p><small class="lens-count" data-lens-count aria-live="polite"></small></div>
-        <a class="section-link" href="https://journey.yagenji.com/" target="_blank" rel="noopener noreferrer">JOURNEY LENSを見る <span>›</span></a>
-      </div>
-      <div class="lens-rail-tools" aria-label="JOURNEY LENSの記事を横に移動">
-        <button type="button" data-lens-prev aria-label="前の記事を見る" disabled>‹</button>
-        <button type="button" data-lens-next aria-label="次の記事を見る">›</button>
-      </div>
-      <div class="lens-rail" aria-label="JOURNEY LENSの記事" tabindex="0">
-        <div class="lens-rail__track"></div>
-      </div>
-    </section>
   </main>
 
   <div class="top-toast" id="top-toast" role="status" aria-live="polite" hidden></div>
