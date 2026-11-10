@@ -640,6 +640,7 @@ def build_top_scene_index() -> None:
         "azores": ("🇵🇹", None),  # No Unicode subdivision flag; Portuguese autonomous region.
         "canary-islands": ("🇮🇨", None),  # Canary Islands regional flag, not the parent Spain flag.
         "martinique": ("🇲🇶", None),  # Published French Caribbean Region.
+        "reunion": ("🇷🇪", None),  # French overseas department in the Indian Ocean.
         "new-caledonia": ("🇳🇨", None),
         "french-polynesia": ("🇵🇫", None),
         "french-guiana": ("🇬🇫", None),
