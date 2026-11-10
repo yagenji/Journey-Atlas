@@ -638,6 +638,7 @@ def build_top_scene_index() -> None:
         "puerto-rico": ("🇵🇷", None),
         "zanzibar": ("🇹🇿", None),  # No Zanzibar subdivision emoji; use the parent Tanzania flag.
         "azores": ("🇵🇹", None),  # No Unicode subdivision flag; Portuguese autonomous region.
+        "canary-islands": ("🇮🇨", None),  # Canary Islands regional flag, not the parent Spain flag.
         "martinique": ("🇲🇶", None),  # Published French Caribbean Region.
         "new-caledonia": ("🇳🇨", None),
         "french-polynesia": ("🇵🇫", None),
