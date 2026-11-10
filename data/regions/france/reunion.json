@@ -1,0 +1,645 @@
+{
+  "schemaVersion": 1,
+  "parentSlug": "france",
+  "slug": "reunion",
+  "regionPublished": false,
+  "nameEn": "RÉUNION",
+  "nameJa": "レユニオン",
+  "region": "EAST AFRICA / 21°S",
+  "parentNameJa": "フランス",
+  "parentNameEn": "FRANCE",
+  "parentReturnDescription": "フランスの8つの景色を見る",
+  "seo": {
+    "description": "火山ピトン・ド・ラ・フルネーズ、マファト・サラジー・シラオスの3圏谷、クレオールの村、玄武岩海岸と郷土料理。レユニオンの8つの景色をめぐる。"
+  },
+  "hero": {
+    "name": "ピトン・ド・ラ・フルネーズの火山地形",
+    "location": "Piton de la Fournaise / Pas de Bellecombe-Jacob, Réunion",
+    "image": "assets/images/france/reunion/approved/hero-piton-de-la-fournaise.webp",
+    "coordinates": {
+      "latitude": -21.22228,
+      "longitude": 55.68919
+    },
+    "lead": "黒い溶岩の大地と、雲が育てる緑の圏谷。崖の下にはクレオールの村があり、海辺には黒い岩と明るい砂が並ぶ。レユニオンは、ひとつの島で地形と暮らしの表情が変わり続ける場所。",
+    "description": "パ・ド・ベルコンブ＝ジャコブ展望地から、アンクロ・フーケの溶岩原とピトン・ド・ラ・フルネーズの幅広い山体を望む。",
+    "sourceKey": "heroFournaise",
+    "sceneTypes": [
+      "volcano",
+      "highland"
+    ]
+  },
+  "profile": [
+    {
+      "label": "中心都市",
+      "value": "サン＝ドニ（Saint-Denis）",
+      "sourceKey": "status"
+    },
+    {
+      "label": "人口",
+      "value": "889,679人（2023年国勢調査）",
+      "sourceKey": "insee2023"
+    },
+    {
+      "label": "面積",
+      "value": "約2,512km²（日本の約0.66%）",
+      "sourceKey": "inseeArea"
+    },
+    {
+      "label": "言語",
+      "value": "フランス語（公用語）、レユニオン・クレオール語",
+      "sourceKey": "language"
+    },
+    {
+      "label": "主な宗教",
+      "value": "キリスト教（カトリックなど）、ヒンドゥー教、イスラム教など",
+      "sourceKey": "religions"
+    },
+    {
+      "label": "通貨",
+      "value": "ユーロ（EUR）",
+      "sourceKey": "status"
+    }
+  ],
+  "historyContext": {
+    "text": "レユニオンはインド洋南西部にあるフランスの海外県・海外地域圏。独立国家ではなくフランス共和国の一部であり、1946年の法律で海外県となった。マダガスカルの東、モーリシャスの南西に位置し、欧州本土とは異なる地理・暮らしの条件を持つ。",
+    "sourceKeys": [
+      "status",
+      "departmentalization"
+    ]
+  },
+  "map": {
+    "svg": "assets/images/france/reunion/map-reunion.svg",
+    "bounds": {
+      "north": -20.83,
+      "south": -21.44,
+      "west": 55.17,
+      "east": 55.89
+    },
+    "source": "Natural Earth 3.1 Admin-0 France multi-polygon (Réunion island; public domain), eFrane/admin0/europe/france.geojson, https://github.com/eFrane/admin0/blob/master/europe/france.geojson ; source README https://github.com/eFrane/admin0/blob/master/readme.md ; actual coastline points in WGS84, local equirectangular-fit-v1 projection; checked 2026-11-10. Scene and Hero anchor coordinates are recorded in SVG metadata, with label-only offsets (no geographic anchor movement)."
+  },
+  "scenes": [
+    {
+      "id": "le-maido",
+      "name": "ル・マイドから望むマファト圏谷",
+      "nameLocal": "Le Maïdo / Cirque de Mafate",
+      "description": "西側のマイド展望地から、深い谷と尾根が幾重にも折り重なるマファト圏谷を見下ろす。点在する小集落は徒歩の道で結ばれている。",
+      "coordinates": {
+        "latitude": -21.06884,
+        "longitude": 55.38755
+      },
+      "image": "assets/images/france/reunion/approved/scene-01-le-maido.webp",
+      "sourceKey": "sceneMaido",
+      "sceneTypes": [
+        "peak",
+        "canyon"
+      ]
+    },
+    {
+      "id": "hell-bourg",
+      "name": "ヘル＝ブールのクレオールの家々",
+      "nameLocal": "Hell-Bourg / Salazie",
+      "description": "サラジー圏谷の山村に、装飾のある軒、色付きの雨戸、庭を持つ伝統的な家々が残る。湿潤な山並みを背景に、人の暮らしが見えてくる。",
+      "coordinates": {
+        "latitude": -21.0642,
+        "longitude": 55.52226
+      },
+      "image": "assets/images/france/reunion/approved/scene-02-hell-bourg.webp",
+      "sourceKey": "sceneHellBourg",
+      "sceneTypes": [
+        "village",
+        "oldtown"
+      ],
+      "mapOffset": {
+        "x": -2.5,
+        "y": -1
+      }
+    },
+    {
+      "id": "cilaos",
+      "name": "シラオスの山岳集落",
+      "nameLocal": "Cilaos / La Roche Merveilleuse",
+      "description": "ラ・ロシュ・メルヴェイユーズの眺望点から、緑の盆地に広がる町、マール・ア・ジョンクの池、囲む圏谷壁を見渡す。",
+      "coordinates": {
+        "latitude": -21.1257,
+        "longitude": 55.4793
+      },
+      "image": "assets/images/france/reunion/approved/scene-03-cilaos.webp",
+      "sourceKey": "sceneCilaos",
+      "sceneTypes": [
+        "village",
+        "peak"
+      ]
+    },
+    {
+      "id": "voile-de-la-mariee",
+      "name": "花嫁のベールの滝",
+      "nameLocal": "Cascade du Voile de la Mariée / Salazie",
+      "description": "サラジーの湿潤な岩壁を、何筋もの細い白い流れが滑り落ちる。滝の名前は、斜面に広がる水の姿から付いた。",
+      "coordinates": {
+        "latitude": -21.039284,
+        "longitude": 55.537028
+      },
+      "image": "assets/images/france/reunion/approved/scene-04-voile-de-la-mariee.webp",
+      "sourceKey": "sceneVoile",
+      "sceneTypes": [
+        "waterfall",
+        "cliff"
+      ]
+    },
+    {
+      "id": "cap-mechant",
+      "name": "カップ・メシャンの溶岩海岸",
+      "nameLocal": "Cap Méchant / Saint-Philippe",
+      "description": "南東岸には黒い玄武岩の断崖が続き、外洋の白波が砕ける。地表の溶岩と海の力が接する、島の荒々しい海岸。",
+      "coordinates": {
+        "latitude": -21.3749,
+        "longitude": 55.71166
+      },
+      "image": "assets/images/france/reunion/approved/scene-05-cap-mechant.webp",
+      "sourceKey": "sceneCapMechant",
+      "sceneTypes": [
+        "cliff"
+      ]
+    },
+    {
+      "id": "grande-anse",
+      "name": "グランド・アンスの砂浜",
+      "nameLocal": "Grande Anse / Petite-Île",
+      "description": "ヤシの木陰から淡い砂浜を眺めると、緑の岬に囲まれた入江へ波が寄せる。黒い溶岩海岸とは別の島の色がある。",
+      "coordinates": {
+        "latitude": -21.37031,
+        "longitude": 55.54869
+      },
+      "image": "assets/images/france/reunion/approved/scene-06-grande-anse.webp",
+      "sourceKey": "sceneGrandeAnse",
+      "sceneTypes": [
+        "beach",
+        "bay"
+      ]
+    },
+    {
+      "id": "le-barachois",
+      "name": "バラショワの海辺",
+      "nameLocal": "Le Barachois / Saint-Denis",
+      "description": "サン＝ドニの海沿いに大砲が並び、木陰の散歩道の向こうにインド洋が広がる。海に面した県都の歴史が感じられる場所。",
+      "coordinates": {
+        "latitude": -20.8731,
+        "longitude": 55.4469
+      },
+      "image": "assets/images/france/reunion/approved/scene-07-le-barachois.webp",
+      "sourceKey": "sceneBarachois",
+      "sceneTypes": [
+        "square",
+        "oldtown"
+      ],
+      "mapOffset": {
+        "x": 3,
+        "y": 2
+      }
+    },
+    {
+      "id": "foret-belouve",
+      "name": "ベルーヴの湿潤な森",
+      "nameLocal": "Forêt de Bélouve",
+      "description": "霧を含む高地の森では、苔をまとった木々と木生シダが小径を包む。滝や山の展望ではなく、森林の奥行きそのものを歩く景色。",
+      "coordinates": {
+        "latitude": -21.06167,
+        "longitude": 55.53644
+      },
+      "image": "assets/images/france/reunion/approved/scene-08-foret-de-belouve.webp",
+      "sourceKey": "sceneBelouve",
+      "sceneTypes": [
+        "forest",
+        "rainforest"
+      ],
+      "mapOffset": {
+        "x": 2.5,
+        "y": 2
+      }
+    }
+  ],
+  "taste": {
+    "title": "レユニオンで食べたいもの",
+    "kicker": "TASTE OF RÉUNION",
+    "intro": "島の食卓には、トマトと香味野菜で煮た料理、インド洋から広がった揚げ軽食、ヤシの新芽、サツマイモの焼き菓子が並ぶ。",
+    "items": [
+      {
+        "id": "rougail-saucisses",
+        "name": "ルガイ・ソシス",
+        "nameLocal": "Rougail saucisses",
+        "text": "輪切りにしたソーセージをトマト、玉ねぎ、生姜などで煮込む。白米や豆類と組み合わせる、島の定番の食卓。",
+        "image": "assets/images/france/reunion/approved/food-01-rougail-saucisses.webp",
+        "sourceKey": "foodRougail"
+      },
+      {
+        "id": "samoussas",
+        "name": "レユニオン風サムサ",
+        "nameLocal": "Samoussas réunionnais",
+        "text": "薄い生地でじゃがいもやチーズなどの具を三角形に包み、香ばしく揚げた小さな軽食。具材は店や家庭によって異なる。",
+        "image": "assets/images/france/reunion/approved/food-02-samoussas-reunionnais.webp",
+        "sourceKey": "foodSamoussas"
+      },
+      {
+        "id": "salade-de-palmistes",
+        "name": "パルミストのサラダ",
+        "nameLocal": "Salade de palmistes",
+        "text": "食用のヤシの若い芯を細く削り、レモンなどでさっぱりと味付けする。柔らかな白い心材が主役。",
+        "image": "assets/images/france/reunion/approved/food-03-salade-de-palmistes.webp",
+        "sourceKey": "foodPalmiste"
+      },
+      {
+        "id": "gateau-patate",
+        "name": "ガトー・パタット",
+        "nameLocal": "Gâteau patate",
+        "text": "サツマイモを使う密度の高い焼き菓子。表面をフォークで格子状に模様付けして焼く仕上げが親しまれている。",
+        "image": "assets/images/france/reunion/approved/food-04-gateau-patate.webp",
+        "sourceKey": "foodGateau"
+      }
+    ]
+  },
+  "signatureFacts": [
+    {
+      "topicKey": "unesco-island-share",
+      "label": "島の約40%が世界自然遺産",
+      "value": "約40%",
+      "note": "2010年に登録された「レユニオン島の火山峰、圏谷と岩壁群」は約105,838ha。国立公園核心部と重なり、島の火山地形と多様な森林を守っている。",
+      "icon": "leaf",
+      "sourceKey": "unesco",
+      "interestReason": "小さな島の大部分が、火山・森林・固有種のまとまった保護地域であるとわかる。"
+    },
+    {
+      "topicKey": "three-cirques",
+      "label": "巨大な圏谷",
+      "value": "3つ",
+      "note": "マファト、サラジー、シラオス。いずれもピトン・デ・ネージュ山塊に刻まれた地形だが、集落への道や暮らしの姿は異なる。",
+      "icon": "landscape",
+      "sourceKey": "cirques",
+      "interestReason": "島の山地を一枚の景色ではなく、異なる三つの地形と生活圏として理解できる。"
+    },
+    {
+      "topicKey": "mafate-no-road",
+      "label": "マファトへの車道",
+      "value": "0本",
+      "note": "マファト圏谷内には自動車で直接入る道がなく、外からは徒歩かヘリコプターでアクセスする。山の地形が日常の移動方法を変えている。",
+      "icon": "road",
+      "sourceKey": "mafate",
+      "interestReason": "景観の険しさが観光だけでなく暮らしの制約にも直結している。"
+    }
+  ],
+  "encounters": [
+    {
+      "title": "火山の溶岩原に長く伸びる朝の影",
+      "icon": "landscape",
+      "category": "LANDSCAPE"
+    },
+    {
+      "title": "圏谷の谷底からゆっくり上がる雲",
+      "icon": "landscape",
+      "category": "NATURE"
+    },
+    {
+      "title": "家並みの雨戸と木彫りの縁飾り",
+      "icon": "culture",
+      "category": "ARCHITECTURE"
+    },
+    {
+      "title": "急斜面を流れ落ちる細い滝の水音",
+      "icon": "waterfall",
+      "category": "NATURE"
+    },
+    {
+      "title": "シラオスへ曲がりながら続く山道",
+      "icon": "road",
+      "category": "MOVEMENT"
+    },
+    {
+      "title": "黒い玄武岩に砕ける外洋の波",
+      "icon": "sea",
+      "category": "LANDSCAPE"
+    },
+    {
+      "title": "苔の匂いと木生シダの葉影",
+      "icon": "leaf",
+      "category": "NATURE"
+    },
+    {
+      "title": "屋台で揚げるサムサの香り",
+      "icon": "food",
+      "category": "FOOD"
+    }
+  ],
+  "culture": [
+    {
+      "topicKey": "maloya",
+      "themeEn": "MUSIC",
+      "themeJa": "音楽",
+      "icon": "culture",
+      "title": "太鼓と声が、島の記憶を運ぶ",
+      "text": "レユニオンに根付いたマロヤは、かつて砂糖農園で暮らした人々の歌や踊りから発展し、現在は島の文化的な象徴。2009年にユネスコ無形文化遺産に登録された。",
+      "points": [
+        "独唱と合唱の掛け合いに打楽器のリズムが重なる",
+        "舞台だけでなく、地域の集まりや祝祭で受け継がれている"
+      ],
+      "sourceKey": "maloya"
+    },
+    {
+      "topicKey": "cilaos-embroidery",
+      "themeEn": "CRAFT",
+      "themeJa": "手仕事",
+      "icon": "culture",
+      "title": "シラオスの糸がつくる透かし模様",
+      "text": "シラオスでは「ジュール・ド・シラオス」と呼ばれる刺繍の手仕事が知られる。幾何学的に糸を抜き、細かな透かし模様をつくる技法を地域の工房が受け継ぐ。",
+      "points": [
+        "針と糸だけで布の中に細かな空間をつくる",
+        "町の刺繍館で現物や制作工程に触れられる"
+      ],
+      "sourceKey": "broderie"
+    },
+    {
+      "topicKey": "religious-mosaic",
+      "themeEn": "CULTURE",
+      "themeJa": "祈り",
+      "icon": "culture",
+      "title": "教会とヒンドゥー寺院、モスクが共にある",
+      "text": "レユニオンにはカトリック教会、ヒンドゥー寺院、モスク、中国系の廟などがあり、島に渡った多様な人々の歴史が街の祈りの場に表れる。",
+      "points": [
+        "宗教施設は日常の礼拝の場でもある",
+        "祭礼と見学では服装・撮影許可を尊重する"
+      ],
+      "sourceKey": "religions"
+    },
+    {
+      "topicKey": "creole-language",
+      "themeEn": "LANGUAGE",
+      "themeJa": "言葉",
+      "icon": "culture",
+      "title": "フランス語の隣に生きるクレオール語",
+      "text": "公的に用いるフランス語のほか、暮らしの会話にはレユニオン・クレオール語が息づく。複数の地域から来た人々の言葉が混じり合い、島独自の語り方が形成された。",
+      "points": [
+        "日常のあいさつに「Koman i lé ?」が聞こえる",
+        "言葉の混ざり方に島の交流史が表れる"
+      ],
+      "sourceKey": "language"
+    },
+    {
+      "topicKey": "volcano-monitoring",
+      "themeEn": "SCIENCE",
+      "themeJa": "火山と向き合う",
+      "icon": "landscape",
+      "title": "活火山を見守ることも島の日常",
+      "text": "ピトン・ド・ラ・フルネーズでは火山活動と安全規制が旅の可否を左右する。遠くから眺める地形は、観測と管理が続く生きた火山でもある。",
+      "points": [
+        "展望・登山道の状況は活動に応じて変化する",
+        "噴火の接近を旅の目的にせず規制を優先する"
+      ],
+      "sourceKey": "volcanoSafety"
+    },
+    {
+      "topicKey": "highland-ecosystems",
+      "themeEn": "NATURE",
+      "themeJa": "森を知る",
+      "icon": "leaf",
+      "title": "島の高地で植物の姿が変わる",
+      "text": "海岸の熱帯的な植生から山地の雲霧林へ。国立公園の高標高域にはタマラン・デ・オーや木生シダなどが見られ、島の高度差は生態系の差として表れる。",
+      "points": [
+        "湿った幹には苔や着生植物が重なる",
+        "外来種への対応と保全が続いている"
+      ],
+      "sourceKey": "unesco"
+    }
+  ],
+  "travelTrivia": [
+    {
+      "topicKey": "cilaos-spring",
+      "categoryEn": "NATURE",
+      "categoryJa": "水",
+      "title": "シラオスの炭酸水は、山の湧き水から",
+      "text": "シラオスの天然炭酸水は、町の近くの源泉から採られる。険しい山岳の町には、飲み水や湯治に結びつく水の文化もある。",
+      "icon": "waterfall",
+      "sourceKey": "cilaosWater"
+    },
+    {
+      "topicKey": "mosque-1905",
+      "categoryEn": "ARCHITECTURE",
+      "categoryJa": "建築",
+      "title": "サン＝ドニに1905年のモスクが残る",
+      "text": "ヌール・エ・イスラーム・モスクは20世紀初めに建てられ、インド洋の交易と移住で広がった宗教文化を今に伝える。",
+      "icon": "landmark",
+      "sourceKey": "religions"
+    },
+    {
+      "topicKey": "mafate-maroon",
+      "categoryEn": "HISTORY",
+      "categoryJa": "歴史",
+      "title": "険しい圏谷は、逃亡した奴隷たちの隠れ場所にもなった",
+      "text": "植民地時代、マファトの隔絶した地形は束縛から逃れた人々が身を隠す場所でもあった。美しい山だけでなく、島の歴史を考える手がかりになる。",
+      "icon": "history",
+      "sourceKey": "mafate"
+    },
+    {
+      "topicKey": "formica-leo",
+      "categoryEn": "GEOGRAPHY",
+      "categoryJa": "火山",
+      "title": "大きな火山の手前に、もう一つ小さな火山丘",
+      "text": "パ・ド・ベルコンブ＝ジャコブから見える赤褐色のフォルミカ・レオは、主峰とは別の小さな火山丘。展望地からの距離感を知る目印になる。",
+      "icon": "landscape",
+      "sourceKey": "heroFournaise"
+    }
+  ],
+  "forWhom": [
+    {
+      "title": "火山と圏谷の地形を歩きたい人",
+      "text": "広い溶岩原、三つの圏谷、雲の森をそれぞれ違う景色として訪ねたい人。"
+    },
+    {
+      "title": "自然とクレオール文化を一緒に知りたい人",
+      "text": "木造の家並み、マロヤ、刺繍や食卓まで、島の暮らしを風景の背景として味わいたい人。"
+    },
+    {
+      "title": "同じ島で海岸の表情を比べたい人",
+      "text": "黒い玄武岩の断崖と、ヤシに縁取られた明るい砂浜の対比を楽しみたい人。"
+    }
+  ],
+  "notes": [
+    {
+      "title": "火山と登山道は、出発当日の規制を優先",
+      "text": "火山活動や雨・崩落で道路・歩道が閉鎖されることがある。火山域は県当局の規制、山道はONF等の公式通行情報を確認し、立入禁止区間に入らない。",
+      "sourceKey": "volcanoSafety"
+    },
+    {
+      "title": "圏谷の歩行は余裕を持って",
+      "text": "マファトには車道がなく、高低差の大きい道や長い階段がある。歩行時間と天候予備日を確保し、無理のない装備・行程で訪ねる。",
+      "sourceKey": "hikingSafety"
+    },
+    {
+      "title": "海で泳ぐ場所は現地の規制を確認",
+      "text": "グランド・アンスの砂浜では自治体の規制により遊泳が禁止されている。海を眺める場所と泳ぐ場所を混同せず、現地の規制表示と高波情報を守る。",
+      "sourceKey": "tourismTravel"
+    },
+    {
+      "title": "サイクロンと入域条件を確認",
+      "text": "11〜4月はサイクロン期に重なり、航空便や山道に影響が出る。国籍によってフランス本土と異なる入域・査証条件があるため、公的案内を事前に確認する。",
+      "sourceKey": "tourismTravel"
+    }
+  ],
+  "travelScale": {
+    "title": "旅の目安日程",
+    "kicker": "DURATION",
+    "intro": "島内の移動は海岸線の距離だけでは測れない。圏谷の山道と天候を考え、山と海の日程を分けると旅に余裕が生まれる。",
+    "items": [
+      {
+        "duration": "3〜4日",
+        "title": "北部の街と火山・圏谷を知る",
+        "text": "サン＝ドニを起点にサラジー、火山展望台を巡る。例：サン＝ドニ → ヘル＝ブール → パ・ド・ベルコンブ＝ジャコブ → サン＝ドニ。",
+        "icon": "landscape"
+      },
+      {
+        "duration": "5〜8日",
+        "title": "火山・3圏谷と海岸を組み合わせる",
+        "text": "火山台地とサラジーに加え、シラオスの町、マイドの眺望、南岸へ。例：サン＝ドニ → サラジー → 火山 → サン＝ピエール → シラオス → マイド → サン＝ドニ。",
+        "icon": "road"
+      },
+      {
+        "duration": "9日以上",
+        "title": "マファトの徒歩旅まで深める",
+        "text": "ベルーヴの森や南部海岸を訪ね、マファトで歩く日を独立して取る。例：サン＝ドニ → マイド → マファト徒歩行程 → シラオス → 南部火山域 → サラジー → サン＝ドニ。",
+        "icon": "compass"
+      }
+    ]
+  },
+  "bestSeason": {
+    "windows": [
+      {
+        "label": "5〜10月",
+        "reason": "比較的乾いて涼しい南半球の冬。山や火山の展望を計画しやすいが、東側や高地では雨・雲が残る。"
+      }
+    ]
+  },
+  "seasons": [
+    {
+      "months": "11〜1月",
+      "icon": "weather",
+      "color": "#7d93a4",
+      "text": "暑さと湿気が増す夏。サイクロン期に重なるため、山道・航空便の最新情報を確認する。"
+    },
+    {
+      "months": "2〜4月",
+      "icon": "weather",
+      "color": "#6b90a5",
+      "text": "雨量が多くなる時期。滝や森が潤う一方、土砂災害・増水・登山道閉鎖への注意が必要。"
+    },
+    {
+      "months": "5〜7月",
+      "icon": "leaf",
+      "color": "#73966f",
+      "text": "乾季へ向かう時期。沿岸と高地では気温差が大きく、朝の火山展望には防寒具も役立つ。"
+    },
+    {
+      "months": "8〜10月",
+      "icon": "sun",
+      "color": "#b7a060",
+      "text": "比較的涼しく乾いた季節。圏谷や森歩きにも向くが、雲が出る前の早い時間を生かしたい。"
+    }
+  ],
+  "transport": {
+    "icon": "road",
+    "title": "飛行機・車・バス・徒歩",
+    "text": "島へは空路で入り、島内の町は道路と路線バスで結ばれる。複数の山岳展望地を組み合わせるなら車や現地ツアーが便利。マファト内部は徒歩が基本で、道路で直接到達できない。",
+    "sourceKeys": [
+      "tourismTravel",
+      "mafate"
+    ]
+  },
+  "nextRoutes": [],
+  "relatedCountries": [
+    {
+      "nameJa": "モーリシャス",
+      "nameEn": "MAURITIUS",
+      "href": "countries/mauritius/",
+      "flag": "🇲🇺",
+      "reason": "近隣のマスカリン諸島で、火山性の高地と島の海岸文化を見比べる。",
+      "affinityType": "LANDSCAPE"
+    },
+    {
+      "nameJa": "マダガスカル",
+      "nameEn": "MADAGASCAR",
+      "href": "countries/madagascar/",
+      "flag": "🇲🇬",
+      "reason": "海を隔てた大きな島へ。高い固有種率を持つ自然と、森林保全の課題を別の尺度で知る。",
+      "affinityType": "NATURE"
+    },
+    {
+      "nameJa": "タンザニア",
+      "nameEn": "TANZANIA",
+      "href": "countries/tanzania/",
+      "flag": "🇹🇿",
+      "reason": "インド洋の海路と人の移動に目を向け、ザンジバルのスワヒリ文化と島の多様性をつなぐ。",
+      "affinityType": "CULTURE"
+    }
+  ],
+  "capital": {
+    "nameJa": "サン＝ドニ",
+    "labelJa": "中心都市",
+    "coordinates": {
+      "latitude": -20.879,
+      "longitude": 55.45
+    },
+    "labelPosition": "left",
+    "labelOffset": {
+      "x": 0,
+      "y": -4
+    }
+  },
+  "travelThemes": [
+    "地球の風景",
+    "道の先へ",
+    "暮らしに出会う"
+  ],
+  "contentQaVersion": 6,
+  "sourcesVerifiedAt": "2026-11-10",
+  "sources": {
+    "status": "INSEE, definition of French overseas departments; La Réunion DROM, French Republic. https://www.insee.fr/fr/metadonnees/definition/c2031",
+    "insee2023": "INSEE, L’essentiel sur La Réunion, 2026-10-20, population 889,679 on 2023-01-01: https://www.insee.fr/fr/statistiques/4482473",
+    "inseeArea": "INSEE island overview (251,200 ha = 2,512 km²), BNSP La Réunion June 2023: https://www.bnsp.insee.fr/ark:/12148/bc6p08kx2k5.pdf",
+    "departmentalization": "Vie publique, 19 March 1946 departmentalization law for La Réunion: https://www.vie-publique.fr/eclairage/126857-construction-de-lorganisation-territoriale-de-la-france-chronologie",
+    "language": "Île de la Réunion Tourisme, Useful information, Reunion Creole and French: https://www.reunion.fr/organisez/informations-utiles-avant-de-voyager/",
+    "religions": "Île de la Réunion Tourisme, Places of worship: Catholic, Hindu, Muslim, Chinese religious communities: https://www.reunion.fr/decouvrez/les-religions/les-lieux-de-cultes/",
+    "unesco": "UNESCO WHC 1317, Pitons, cirques and remparts (2010), 105,838 ha / 40%: https://whc.unesco.org/en/list/1317",
+    "cirques": "Île de la Réunion Tourisme, Three cirques Mafate, Salazie and Cilaos: https://www.reunion.fr/decouvrez/les-cirques/",
+    "mafate": "Île de la Réunion Tourisme, Cirque de Mafate; access only on foot or helicopter, no roads: https://en.reunion.fr/discover/cirques/cirque-of-mafate/",
+    "heroFournaise": "Île de la Réunion Tourisme, Pas de Bellecombe-Jacob lookout: https://www.reunion.fr/offres/pas-de-bellecombe-jacob-sainte-rose-fr-6056750/",
+    "volcanoSafety": "Île de la Réunion Tourisme, Piton de la Fournaise and Prefecture regulations: https://www.reunion.fr/decouvrez/piton-de-la-fournaise-le-feu-sacre/",
+    "hikingSafety": "Île de la Réunion Tourisme, practical hiking safety and ONF closures: https://www.reunion.fr/organisez/conseils-de-voyage/conseils-pour-vos-vacances/conseils-pratiques-pour-la-randonnee/",
+    "tourismTravel": "Île de la Réunion Tourisme, travel Q&A: seasons, entry requirements, weather alerts: https://www.reunion.fr/organisez/conseils-de-voyage/questions-reponses/",
+    "sceneMaido": "Île de la Réunion Tourisme, Cirque de Mafate from Maïdo overlook: https://www.reunion.fr/decouvrez/les-cirques/cirque-de-mafate/",
+    "sceneHellBourg": "Île de la Réunion Tourisme, Circuit des Cases Créoles, Hell-Bourg: https://www.reunion.fr/offres/circuit-des-cases-creoles-le-salazie-fr-559946/",
+    "sceneCilaos": "Île de la Réunion Tourisme, Cilaos and Roche Merveilleuse loop: https://www.reunion.fr/organisez/vos-activites/les-circuits-de-randonnee/",
+    "sceneVoile": "Île de la Réunion Tourisme, cirque de Salazie and cascade du Voile de la Mariée: https://www.reunion.fr/decouvrez/les-cirques/",
+    "sceneCapMechant": "Île de la Réunion Tourisme, Cap Méchant black lava coastal cliffs: https://www.reunion.fr/offres/cap-mechant-saint-philippe-fr-6056726/",
+    "sceneGrandeAnse": "Île de la Réunion Tourisme, Plage de Grande Anse (swimming prohibited under municipal decree): https://www.reunion.fr/offres/plage-de-grande-anse-petite-ile-petite-ile-fr-6056754/",
+    "sceneBarachois": "Île de la Réunion Tourisme, Saint-Denis and Le Barachois historic waterfront: https://www.reunion.fr/decouvrez/",
+    "sceneBelouve": "Île de la Réunion Tourisme, Bélouve la forêt primaire, humid highland forest: https://www.reunion.fr/organisez/nos-experiences/belouve-la-foret-primaire/",
+    "foodRougail": "Île de la Réunion Tourisme, Rougail saucisses recipe: https://www.reunion.fr/decouvrez/gastronomie/recettes-creoles-reunionnaises/le-rougail-saucisses-de-la-reunion-un-classique-qui-a-tout-bon/",
+    "foodSamoussas": "Île de la Réunion Tourisme, samoussas potato and cheese recipe: https://www.reunion.fr/decouvrez/gastronomie/recettes-creoles-reunionnaises/recette-samoussas-pommes-de-terre-fromage/",
+    "foodPalmiste": "Île de la Réunion Tourisme, palmiste bon blanc/rouge: https://www.reunion.fr/decouvrez/gastronomie/recettes-creoles-reunionnaises/le-palmiste-bon-blanc-rouge/",
+    "foodGateau": "Île de la Réunion Tourisme, gâteau patate douce à la vanille: https://www.reunion.fr/decouvrez/gastronomie/recettes-creoles-reunionnaises/le-gateau-patate-douce-a-la-vanille-le-gout-de-la-reunion/",
+    "maloya": "UNESCO ICH Maloya, inscribed 2009: https://ich.unesco.org/en/RL/maloya-00249",
+    "broderie": "Île de la Réunion Tourisme, Maison de la Broderie, Cilaos: https://www.reunion.fr/offres/maison-de-la-broderie-cilaos-fr-559379/",
+    "cilaosWater": "Île de la Réunion Tourisme, Eau de Cilaos bottled from Source Véronique: https://www.reunion.fr/decouvrez/gastronomie/les-boissons/les-principales-boissons-locales/",
+    "mapGeometry": "Natural Earth 3.1 Admin-0 France/Reunion (public domain), eFrane/admin0: https://github.com/eFrane/admin0/blob/master/europe/france.geojson ; provenance https://github.com/eFrane/admin0/blob/master/readme.md",
+    "climate": "Île de la Réunion Tourisme, climate and wet November-April/drier May-October season: https://www.reunion.fr/organisez/informations-utiles-avant-de-voyager/climat/",
+    "unM49": "United Nations Statistics Division, M49 geographic regions: Réunion (638) is in Eastern Africa (014). https://unstats.un.org/unsd/methodology/m49/"
+  },
+  "sourceDates": {
+    "population": "2023-01-01 (INSEE, released 2026-10-20)",
+    "landArea": "251,200 ha from INSEE 2023 publication",
+    "religion": "Community presence from Reunion Tourism, checked 2026-11-10; no religious census percentages displayed",
+    "history": "1946-03-19 departmentalization law; status verified 2026-11-10",
+    "worldHeritage": "2010 UNESCO WHC inscription, area 105,838ha, 40% of island",
+    "unescoMaloya": "2009 UNESCO ICH registration",
+    "tourismSafety": "2026-11-10; operations and closures change daily",
+    "climate": "long-run seasonal pattern checked 2026-11-10",
+    "mapGeometry": "Natural Earth 3.1 source checked 2026-11-10; WGS84 official place anchors checked 2026-11-10",
+    "unM49": "UNSD M49 checked 2026-11-10"
+  }
+}
