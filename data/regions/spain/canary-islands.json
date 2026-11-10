@@ -32,8 +32,8 @@
   },
   "profile": [
     {
-      "label": "自治州都",
-      "value": "ラス・パルマス・デ・グラン・カナリア／サンタ・クルス・デ・テネリフェ（共同州都）",
+      "label": "首府",
+      "value": "ラス・パルマス・デ・グラン・カナリア、サンタ・クルス・デ・テネリフェ（共同首府）",
       "sourceKey": "autonomy"
     },
     {
@@ -198,7 +198,11 @@
       "sceneTypes": [
         "square",
         "church"
-      ]
+      ],
+      "mapOffset": {
+        "x": -2.5,
+        "y": -4
+      }
     }
   ],
   "taste": {
@@ -272,44 +276,44 @@
   ],
   "encounters": [
     {
-      "title": "奇岩とテイデ山が重なる高原",
-      "icon": "landscape",
-      "category": "LANDSCAPE"
+      "title": "ロープウェイで雲の上へ上がる朝",
+      "icon": "map",
+      "category": "MOVEMENT"
     },
     {
-      "title": "黒い溶岩原の赤い火山丘",
-      "icon": "landscape",
-      "category": "LANDSCAPE"
+      "title": "谷を越えて呼び交わす口笛の言葉",
+      "icon": "language",
+      "category": "LANGUAGE"
     },
     {
-      "title": "海へゆっくり続く砂丘の曲線",
-      "icon": "sea",
-      "category": "LANDSCAPE"
+      "title": "火山の熱で焼くティマンファヤのグリル",
+      "icon": "food",
+      "category": "FOOD"
     },
     {
-      "title": "苔むす木々のあいだの薄い霧",
+      "title": "火山礫の窪みに植えた葡萄の株",
       "icon": "leaf",
-      "category": "LANDSCAPE"
+      "category": "WORK"
     },
     {
-      "title": "深い谷を包むカナリア松の斜面",
+      "title": "天文台の山に広がる満天の星",
+      "icon": "spark",
+      "category": "NATURE"
+    },
+    {
+      "title": "黒い溶岩原と赤い火山丘",
       "icon": "landscape",
       "category": "LANDSCAPE"
     },
     {
-      "title": "断崖の下に広がる海岸の農地",
-      "icon": "sea",
-      "category": "LANDSCAPE"
+      "title": "ベゲタの木のバルコニーと石畳",
+      "icon": "city",
+      "category": "ARCHITECTURE"
     },
     {
-      "title": "足もとが砂のままの集落",
+      "title": "冬の街を埋めるカーニバルの仮装",
       "icon": "culture",
-      "category": "LIFE"
-    },
-    {
-      "title": "旧市街の広場に落ちる塔の影",
-      "icon": "culture",
-      "category": "CULTURE"
+      "category": "SEASON"
     }
   ],
   "culture": [
@@ -353,17 +357,17 @@
       "sourceKey": "manrique"
     },
     {
-      "topicKey": "island-culture-food",
-      "themeEn": "LIFE",
-      "themeJa": "穀物の記憶",
-      "icon": "culture",
-      "title": "炒った穀物が日々の食を支えてきた",
-      "text": "「ゴフィオ」はトウモロコシや小麦などの穀物を炒って挽いた粉。だしに練るほか、甘味やパンなどにも使われ、先住民の時代から続く食文化を伝える。",
+      "topicKey": "sky-law",
+      "themeEn": "SCIENCE",
+      "themeJa": "星空を守る",
+      "icon": "spark",
+      "title": "法律で守られた、世界有数の星空",
+      "text": "1988年、スペインはカナリア天体物理研究所の天文台を守るため、空の「天文学的な質」を保護する法律を定めた。ラ・パルマ島とテネリフェ島の山上には各国の望遠鏡が集まり、街の照明にも配慮が求められている。",
       "points": [
-        "穀物の香ばしさが料理の味を決める",
-        "肉や魚のだしと合わせる家庭料理もある"
+        "ラ・パルマ島は世界でも屈指の観測条件をもつ",
+        "夜の展望地では、街明かりの少ない空が広がる"
       ],
-      "sourceKey": "gofio"
+      "sourceKey": "skyLaw"
     },
     {
       "topicKey": "shepherd-leap",
@@ -379,17 +383,17 @@
       "sourceKey": "shepherd"
     },
     {
-      "topicKey": "climate-contrast",
-      "themeEn": "NATURE",
-      "themeJa": "風が育てる森",
-      "icon": "leaf",
-      "title": "同じ緯度に乾いた大地と湿った森",
-      "text": "海から吹く湿った風は高い山にぶつかって雲をつくる。風上の山地には月桂樹林が残り、雨の少ない海岸には砂丘や乾燥植生が広がる。小さな島の標高差が、全く異なる自然を生む。",
+      "topicKey": "montevideo-founders",
+      "themeEn": "HISTORY",
+      "themeJa": "海を渡った人々",
+      "icon": "sea",
+      "title": "南米の首都を築いたのは、島の家族だった",
+      "text": "1726年、カナリア諸島から渡った家族が、のちのウルグアイの首都モンテビデオの最初の住民となった。2026年は建設300年にあたり、島々ではウルグアイとのつながりを記念する行事が続いている。",
       "points": [
-        "湿潤なラ・ゴメラの照葉樹林",
-        "乾燥した島では砂と溶岩の地表が広がる"
+        "大西洋の島々は、新大陸への移民の出発点でもあった",
+        "島の言葉や食文化の痕跡が南米にも残る"
       ],
-      "sourceKey": "garajonay"
+      "sourceKey": "montevideo"
     }
   ],
   "travelTrivia": [
@@ -455,19 +459,14 @@
   ],
   "notes": [
     {
+      "title": "テイデ山頂への道は許可制",
+      "text": "ロープウェイ上駅から山頂へ続くテレスフォロ・ブラボ道（PNT 10）は、国立公園の許可がないと歩けない。予約は毎週月曜7時（カナリア時間）に56日先まで開放され、当日は許可証と旅券を携帯する。",
+      "sourceKey": "teidePermit"
+    },
+    {
       "title": "国立公園では指定されたルートを守る",
       "text": "ティマンファヤは自由歩行できる場所が限られる。公式見学バスや予約制の歩行ルートなど、現行の利用規則を確認する。",
       "sourceKey": "timanfaya"
-    },
-    {
-      "title": "テイデ山の高所では気温・高度差に備える",
-      "text": "島の海辺と標高2000m級の高地は気象条件が異なる。山頂付近への立ち入りやケーブルカーは公式情報を確認する。",
-      "sourceKey": "teide"
-    },
-    {
-      "title": "島間移動には予備時間を置く",
-      "text": "飛行機とフェリーは島や曜日で便数が異なる。複数島を組み合わせるときは運航状況と風・波の影響を確認する。",
-      "sourceKey": "air"
     },
     {
       "title": "砂丘と自然保護区の指定動線を守る",
@@ -483,17 +482,17 @@
       {
         "duration": "4〜5日",
         "title": "テネリフェの高地と海辺",
-        "icon": "landscape",
+        "icon": "city",
         "text": "サンタ・クルスを拠点に、テイデ国立公園と歴史都市ラ・ラグーナを巡る。例：サンタ・クルス → ラ・ラグーナ → テイデ → ガラチコ → サンタ・クルス。"
       },
       {
-        "duration": "8〜10日",
+        "duration": "6〜10日",
         "title": "火山・小島・乾燥海岸の3島",
         "icon": "map",
         "text": "ランサローテからラ・グラシオサを往復し、フェリーでフエルテベントゥラを加える。例：アレシフェ → ティマンファヤ → オルソラ → カレタ・デ・セボ → オルソラ → コラレホ → コフェテ → コラレホ → アレシフェ。"
       },
       {
-        "duration": "14〜18日",
+        "duration": "11日以上",
         "title": "西の緑と東の乾燥地をつなぐ",
         "icon": "compass",
         "text": "テネリフェを起点にラ・ゴメラ、ラ・パルマ、グラン・カナリアへ。例：テネリフェ → ラ・ゴメラ → テネリフェ → ラ・パルマ → グラン・カナリア（空港から帰路）。"
@@ -512,24 +511,6 @@
           10,
           11
         ]
-      },
-      {
-        "label": "通年",
-        "reason": "海辺は比較的温暖だが、山の高所・北向き斜面・風の強い海岸では別の装備と判断が必要。",
-        "months": [
-          1,
-          2,
-          3,
-          4,
-          5,
-          6,
-          7,
-          8,
-          9,
-          10,
-          11,
-          12
-        ]
       }
     ]
   },
@@ -543,20 +524,20 @@
     {
       "months": "6〜8月",
       "icon": "sun",
-      "color": "#c7aa6a",
+      "color": "#92a253",
       "text": "日が長く海辺の旅に向く。乾燥地では強い日射に注意し、高所の気温差にも備える。"
     },
     {
       "months": "9〜11月",
       "icon": "sea",
-      "color": "#b78b60",
+      "color": "#b77a49",
       "text": "夏の混雑が落ち着く時期。島間の船は風や海況による変化を確認する。"
     },
     {
       "months": "12〜2月",
       "icon": "weather",
-      "color": "#7d9fae",
-      "text": "海辺は温暖でも高い山では寒く、テイデ山周辺で雪が見られることもある。"
+      "color": "#6b90a5",
+      "text": "海辺は温暖で、2月前後には各地でカーニバルが開かれる。高い山では寒く、テイデ山周辺で雪が見られることもある。"
     }
   ],
   "transport": {
@@ -569,14 +550,6 @@
     ]
   },
   "relatedCountries": [
-    {
-      "nameJa": "スペイン",
-      "nameEn": "SPAIN",
-      "href": "countries/spain/",
-      "flag": "🇪🇸",
-      "reason": "カナリア諸島を含む親国の建築・歴史・風景を本土でも辿る。",
-      "affinityType": "CULTURE"
-    },
     {
       "nameJa": "ポルトガル",
       "nameEn": "PORTUGAL",
@@ -592,6 +565,14 @@
       "flag": "🇨🇻",
       "reason": "大西洋の火山島をさらに南へ。乾いた山と海辺の暮らしを見比べる。",
       "affinityType": "LANDSCAPE"
+    },
+    {
+      "nameJa": "チリ",
+      "nameEn": "CHILE",
+      "href": "countries/chile/",
+      "flag": "🇨🇱",
+      "reason": "天文台の山が並ぶアタカマへ。世界の望遠鏡が集まるもう一つの星空の地で、乾いた高地の夜空を見比べる。",
+      "affinityType": "NATURE"
     }
   ],
   "nextRoutes": [],
@@ -622,7 +603,11 @@
     "air": "https://www.bintercanarias.com/",
     "sea": "https://www.fredolsen.es/",
     "visit": "https://www.hellocanaryislands.com/",
-    "wrestling": "https://www.gobiernodecanarias.org/deportes/materias/programas-proyectos/juegos-deportes-tradicionales/deportes-tradicionales/"
+    "wrestling": "https://www.gobiernodecanarias.org/deportes/materias/programas-proyectos/juegos-deportes-tradicionales/deportes-tradicionales/",
+    "skyLaw": "https://www.boe.es/boe/dias/1988/11/03/pdfs/A31451-31455.pdf",
+    "skyLawIac": "https://iac.es/en/outreach/iac-publishing/law-protects-sky-canary-islands-celebrates-its-twenty-fifth-anniversary",
+    "montevideo": "https://www3.gobiernodecanarias.org/noticias/canarias-se-vuelca-con-la-celebracion-del-tricentenario-de-la-fundacion-de-montevideo-por-migrantes-islenos/",
+    "teidePermit": "https://www.gobiernodecanarias.org/parquesnacionales/teide/tramites/reservas/"
   },
   "sourceDates": {
     "population": "2025-01-01（ISTAC 2025-12-16公表）",
@@ -632,7 +617,11 @@
     "teide": "カナリア公式観光資料の3,715m表記（2026-11-10確認）",
     "timanfaya": "1730〜1736年（公式観光資料、2026-11-10確認）",
     "travel": "2026-11-10公式情報。路線・規則は利用時に再確認",
-    "mapGeometry": "Natural Earth 1:10m主要8島輪郭／GSHHG中間解像度によるアレグランサ島・ロボス島（2026-11-10確認）"
+    "mapGeometry": "Natural Earth 1:10m主要8島輪郭／GSHHG中間解像度によるアレグランサ島・ロボス島（2026-11-10確認）",
+    "cabildos": "Ley 2026 de cabildos insulares (BOE-A-2026-17189), checked 2026-11-10",
+    "skyLaw": "Ley 31/1988, de 31 de octubre, sobre protección de la calidad astronómica de los observatorios del IAC",
+    "montevideo": "Gobierno de Canarias: Montevideo founded 1726 by Canarian families; tricentenary 2026",
+    "teidePermit": "Parque Nacional del Teide: PNT 10 Telesforo Bravo permit via Tenerife ON, bookable up to 56 days ahead"
   },
   "travelThemes": [
     "地球の風景",
@@ -651,33 +640,33 @@
     {
       "nameJa": "ラス・パルマス",
       "nameEn": "Las Palmas de Gran Canaria",
-      "roleJa": "共同州都",
+      "roleJa": "共同首府",
       "coordinates": {
-        "latitude": 28.12355,
-        "longitude": -15.43626
+        "latitude": 28.1235,
+        "longitude": -15.4363
       },
-      "labelPosition": "above",
+      "labelPosition": "right",
       "labelOffset": {
         "x": 0,
-        "y": -24
+        "y": 0
       },
       "sourceKey": "autonomy"
     },
     {
-      "nameJa": "サンタ・クルス",
+      "nameJa": "サンタ・クルス・デ・テネリフェ",
       "nameEn": "Santa Cruz de Tenerife",
-      "roleJa": "共同州都",
+      "roleJa": "共同首府",
       "coordinates": {
-        "latitude": 28.46363,
-        "longitude": -16.25185
+        "latitude": 28.4636,
+        "longitude": -16.2518
       },
       "labelPosition": "above",
       "labelOffset": {
         "x": 0,
-        "y": -24
+        "y": 0
       },
       "sourceKey": "autonomy"
     }
   ],
-  "officialSeatsLegendJa": "共同州都（正式名称はProfile参照）"
+  "officialSeatsLegendJa": "首府（2都市が共同で担う）"
 }

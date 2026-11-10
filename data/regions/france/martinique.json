@@ -33,7 +33,7 @@
   },
   "profile": [
     {
-      "label": "中心都市",
+      "label": "首府",
       "value": "フォール＝ド＝フランス（Fort-de-France）",
       "sourceKey": "insee"
     },
@@ -59,11 +59,12 @@
     },
     {
       "label": "通貨",
-      "value": "ユーロ（EUR）"
+      "value": "ユーロ（EUR）",
+      "sourceKey": "status"
     }
   ],
   "historyContext": {
-    "text": "マルティニークはフランス共和国の海外地域で、県と地域圏の権限を担う単一地方公共団体。サトウキビ農園と奴隷制の歴史を経て、1848年に奴隷制が廃止された。1946年にフランスの海外県となり、2016年に現在の単一地方公共団体へ移行した。独立国ではない。",
+    "text": "マルティニークはフランス共和国の海外地域で、県と地域圏の権限を担う単一地方公共団体。サトウキビ農園と奴隷制の歴史を経て、1848年に奴隷制が廃止された。1946年にフランスの海外県となり、2016年に現在の単一地方公共団体へ移行した。",
     "sourceKeys": [
       "status",
       "history"
@@ -189,7 +190,11 @@
       "sceneTypes": [
         "monument",
         "square"
-      ]
+      ],
+      "mapOffset": {
+        "x": 3,
+        "y": 0
+      }
     },
     {
       "id": "savane-des-esclaves",
@@ -267,55 +272,55 @@
       "interestReason": "農業と食文化が法的な原産地表示に結びついた島の特色。"
     },
     {
-      "topicKey": "protected-forest",
-      "label": "プレー火山と北部森林の世界遺産",
-      "value": "13,980ha",
-      "note": "2023年登録の世界自然遺産は、北部の二つの山地を含む。海岸の低地林から火山の高地まで、異なる森が連続する。",
-      "icon": "leaf",
-      "sourceKey": "unesco",
-      "interestReason": "火山を単独の山としてではなく、森林の連続体として見る。"
+      "topicKey": "abolition-may22",
+      "label": "島が自ら奴隷制廃止を勝ち取った日",
+      "value": "5月22日",
+      "icon": "history",
+      "sourceKey": "abolition22May",
+      "note": "1848年5月22日、サン＝ピエールで太鼓奏者の逮捕をきっかけに人々が蜂起した。翌23日、総督は本国の廃止令の到着を待たずに奴隷制の廃止を宣言した。",
+      "interestReason": "島の解放が、本国の決定を待つのではなく人々の行動によって早まったことを伝える。"
     }
   ],
   "encounters": [
     {
-      "title": "沖に離れて立つディアマン岩を浜から眺める",
+      "title": "丸い帆のヨールが競う海",
       "icon": "sea",
-      "category": "LANDSCAPE"
+      "category": "MOVEMENT"
     },
     {
-      "title": "プレー火山の稜線を流れる雲を見上げる",
+      "title": "ベレの太鼓に応える踊りの輪",
+      "icon": "culture",
+      "category": "CULTURE"
+    },
+    {
+      "title": "サトウキビ畑の先の蒸留所",
+      "icon": "leaf",
+      "category": "WORK"
+    },
+    {
+      "title": "クレオール語が飛び交う市場",
+      "icon": "language",
+      "category": "LANGUAGE"
+    },
+    {
+      "title": "タコの煮込みとアボカドのフェロース",
+      "icon": "food",
+      "category": "FOOD"
+    },
+    {
+      "title": "雲をまとうプレー火山の稜線",
       "icon": "landscape",
       "category": "LANDSCAPE"
     },
     {
-      "title": "サン＝ピエールの噴火遺構を歩く",
+      "title": "噴火の跡が残るサン＝ピエールの石壁",
       "icon": "culture",
-      "category": "CULTURE"
+      "category": "ARCHITECTURE"
     },
     {
-      "title": "桟橋の先に教会が重なる朝の入り江",
+      "title": "乾季カレームの澄んだ海",
       "icon": "sea",
-      "category": "LANDSCAPE"
-    },
-    {
-      "title": "熱帯庭園の葉と花の陰を歩く",
-      "icon": "leaf",
-      "category": "LANDSCAPE"
-    },
-    {
-      "title": "カラヴェルの旧農園遺構で海を見る",
-      "icon": "culture",
-      "category": "CULTURE"
-    },
-    {
-      "title": "湿った森の細い滝へ歩いて近づく",
-      "icon": "waterfall",
-      "category": "LANDSCAPE"
-    },
-    {
-      "title": "クレオール家屋と菜園で暮らしの知恵に触れる",
-      "icon": "culture",
-      "category": "CULTURE"
+      "category": "SEASON"
     }
   ],
   "culture": [
@@ -466,9 +471,9 @@
       "sourceKey": "weather"
     },
     {
-      "title": "ディアマン海岸は波と流れに注意",
-      "text": "海岸は日によって波や離岸流が強くなる。眺める時間と遊泳の可否を分け、現地の安全情報に従う。",
-      "sourceKey": "tourism"
+      "title": "大西洋岸はサルガッサムの漂着を確認",
+      "text": "大量の海藻サルガッサムが浜に打ち上がると、腐敗で硫化水素が発生することがある。東岸や南の海岸を訪ねる前に保健当局の情報を確かめ、漂着の多い浜では長く留まらない。",
+      "sourceKey": "sargassum"
     },
     {
       "title": "北部と半島へは移動の余白を",
@@ -484,20 +489,20 @@
       {
         "duration": "4〜5日",
         "title": "南西部の海と歴史",
-        "text": "フォール＝ド＝フランス → ディアマン海岸 → アンス＝ダルレ → レ・トロワ＝ジレ → フォール＝ド＝フランス。",
-        "icon": "sea"
+        "icon": "city",
+        "text": "フォール＝ド＝フランスを拠点に、南西の入り江と旧農園を巡る。例：フォール＝ド＝フランス → ディアマン海岸 → アンス＝ダルレ → レ・トロワ＝ジレ → フォール＝ド＝フランス。"
       },
       {
-        "duration": "7〜9日",
+        "duration": "6〜9日",
         "title": "プレー火山と旧都へ",
-        "text": "南西部に加え、サン＝ピエールとプレー火山、北部の森、バラタ庭園を巡る。雨の日は街の見学へ切り替える。",
-        "icon": "landscape"
+        "icon": "map",
+        "text": "南西部に加え、北のサン＝ピエールとプレー火山、森の滝を巡る。山は天候次第なので予備日を残す。例：フォール＝ド＝フランス → バラタ庭園 → サン＝ピエール → プレー火山 → ル・プレシュール → フォール＝ド＝フランス。"
       },
       {
-        "duration": "10〜12日",
+        "duration": "10日以上",
         "title": "島の東西の違いまで",
-        "text": "北部・南西部の旅にカラヴェル半島と東岸の集落を加える。自然と歴史を一つずつ深く知る旅。",
-        "icon": "compass"
+        "icon": "compass",
+        "text": "北部・南西部の旅にカラヴェル半島と東岸を加え、船で隣の島へ渡る日も組める。例：フォール＝ド＝フランス → カラヴェル半島 → サン＝ピエール → アンス＝ダルレ → フォール＝ド＝フランス → カストリーズ（セントルシア）。"
       }
     ]
   },
@@ -526,19 +531,19 @@
     {
       "months": "2〜4月",
       "icon": "sun",
-      "color": "#d3b472",
+      "color": "#73966f",
       "text": "乾季（カレーム）。比較的雨が少なく、海岸と登山を組み合わせやすい。"
     },
     {
       "months": "5〜6月",
       "icon": "leaf",
-      "color": "#73966f",
+      "color": "#92a253",
       "text": "雨季への移行期。晴れ間とにわか雨が入り混じり、森が濃くなる。"
     },
     {
       "months": "7〜10月",
       "icon": "weather",
-      "color": "#92a2b0",
+      "color": "#b77a49",
       "text": "雨季（イヴェルナージュ）。強い雨と熱帯低気圧・サイクロンの情報を確認する。"
     },
     {
@@ -556,57 +561,63 @@
   },
   "relatedCountries": [
     {
-      "nameJa": "セントルシア",
-      "nameEn": "SAINT LUCIA",
-      "href": "countries/stlucia/",
-      "flag": "🇱🇨",
-      "reason": "南の海を渡り、ピトン山群と火山の島を見比べる。",
-      "affinityType": "LANDSCAPE"
-    },
-    {
-      "nameJa": "ドミニカ国",
-      "nameEn": "DOMINICA",
-      "href": "countries/dominica/",
-      "flag": "🇩🇲",
-      "reason": "北の火山島へ。滝と熱帯林、山の多い小アンティル諸島をつなぐ。",
-      "affinityType": "NATURE"
-    },
-    {
       "nameJa": "グレナダ",
       "nameEn": "GRENADA",
       "href": "countries/grenada/",
       "flag": "🇬🇩",
       "reason": "さらに南へ。港町と香辛料の島をめぐり、海の文化の違いを味わう。",
       "affinityType": "CULTURE"
+    },
+    {
+      "nameJa": "セネガル",
+      "nameEn": "SENEGAL",
+      "href": "countries/senegal/",
+      "flag": "🇸🇳",
+      "reason": "エメ・セゼールとともにネグリチュードを唱えたサンゴールの国へ。言葉で植民地主義に向き合った思想を、大西洋の対岸からたどる。",
+      "affinityType": "CULTURE"
+    },
+    {
+      "nameJa": "イタリア",
+      "nameEn": "ITALY",
+      "href": "countries/italy/",
+      "flag": "🇮🇹",
+      "reason": "火山に一瞬で埋もれた古代都市ポンペイへ。サン＝ピエールの廃墟と、噴火が止めた街の時間を見比べる。",
+      "affinityType": "HISTORY"
     }
   ],
   "nextRoutes": [
     {
       "countryEn": "SAINT LUCIA",
       "countryJa": "セントルシア",
-      "path": "MARTINIQUE → SAINT LUCIA",
-      "description": "南隣の火山島。海から立つピトン山群とクレオール文化を見比べる。",
-      "flag": "🇱🇨"
+      "path": "FORT-DE-FRANCE → CASTRIES",
+      "description": "南隣の火山島へ高速船で約1時間30分。週5便ほどの定期航路で、ピトン山群の島へ旅をつなぐ。",
+      "flag": "🇱🇨",
+      "travelerRoute": true,
+      "status": "OPEN",
+      "sourceKey": "ferryStLucia"
     },
     {
       "countryEn": "DOMINICA",
       "countryJa": "ドミニカ国",
-      "path": "MARTINIQUE → DOMINICA",
-      "description": "北隣の火山島。雨林、滝、温泉地形のある山の島へ旅をつなぐ。",
-      "flag": "🇩🇲"
+      "path": "FORT-DE-FRANCE → ROSEAU",
+      "description": "北隣の火山島へ定期の高速船で。雨林と滝、温泉地形のある山の島へ渡る。",
+      "flag": "🇩🇲",
+      "travelerRoute": true,
+      "status": "OPEN",
+      "sourceKey": "ferryGuadeloupe"
     }
   ],
   "capital": {
     "nameJa": "フォール＝ド＝フランス",
-    "labelJa": "中心都市",
+    "labelJa": "首府",
     "coordinates": {
       "latitude": 14.606,
       "longitude": -61.0686
     },
-    "labelPosition": "right",
+    "labelPosition": "left",
     "labelOffset": {
-      "x": 0,
-      "y": 10
+      "x": -12,
+      "y": 0
     },
     "sourceKey": "insee"
   },
@@ -625,7 +636,13 @@
     "rumAOC": "1996 recognition",
     "climate": "Météo-France climatological normals checked 2026-11-10",
     "regionalStatus": "2016 territorial entity, verified 2026-11-10",
-    "sourceAccess": "2026-11-10"
+    "sourceAccess": "2026-11-10",
+    "status": "Ministère des Outre-mer territory page, checked 2026-11-10",
+    "history": "Ministère des Outre-mer territory page, checked 2026-11-10",
+    "abolition22May": "Parc naturel régional de la Martinique: uprising in Saint-Pierre 22 May 1848; governor Rostolan decree 23 May",
+    "ferryStLucia": "FRS Express des Îles timetable: Fort-de-France–Castries 5 departures a week, 1h30 non-stop",
+    "ferryGuadeloupe": "FRS Express des Îles timetable: Martinique–Dominica–Guadeloupe line",
+    "sargassum": "ARS Martinique health guidance on sargassum strandings"
   },
   "sources": {
     "insee": "https://www.insee.fr/fr/statistiques/1405599?geo=DEP-972",
@@ -645,7 +662,11 @@
     "culture": "https://www.martinique.org/fr",
     "transport": "https://tourismmartinique.com/getting-around-martinique",
     "geometry": "https://github.com/gregoiredavid/france-geojson/blob/master/regions/martinique/region-martinique.geojson",
-    "foodDetails": "https://www.martinique.org/fr/blog/gastronomie/specialites-culinaires-martiniquaises"
+    "foodDetails": "https://www.martinique.org/fr/blog/gastronomie/specialites-culinaires-martiniquaises",
+    "abolition22May": "https://pnr-martinique.com/actualites/22-mai-1848-quand-les-esclaves-arrachent-leur-liberte-eux-memes",
+    "ferryStLucia": "https://www.frs-express.com/en/timetable-rates/saint-lucia-timetables-fares",
+    "ferryGuadeloupe": "https://www.frs-express.com/en/timetable-rates/guadeloupe-timetables-fares",
+    "sargassum": "https://www.martinique.ars.sante.fr/media/60224/download"
   },
   "nextRoutesIntro": "マルティニークの南北に連なる小アンティル諸島へ。航空便・船便や出入境条件は、渡航前に最新情報を確認したい。"
 }
