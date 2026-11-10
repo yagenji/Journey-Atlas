@@ -203,6 +203,7 @@ function setHero(index,animate=true){
 }
 function startHeroRotation(){
   window.clearInterval(heroTimer);
+  if(!heroCollage)return; // Discover-first layout has no regional carousel.
   if(window.matchMedia('(prefers-reduced-motion: reduce)').matches) return;
   heroTimer=window.setInterval(()=>setHero(heroIndex+1),9000);
 }
