@@ -8,22 +8,27 @@
   "nameJa": "スコットランド",
   "parentNameJa": "イギリス",
   "seo": {
-    "description": "エディンバラの城からハイランドの谷、ヘブリディーズの白砂、オークニーの先史遺跡へ。スコットランドの8景と地図から旅の輪郭をたどる。"
+    "description": "カールトン・ヒルからのエディンバラ、ハイランドの谷、ヘブリディーズの白砂、オークニーの先史遺跡へ。スコットランドの8景と地図から旅の輪郭をたどる。"
   },
   "hero": {
-    "name": "エディンバラ城",
-    "location": "Edinburgh Castle / Princes Street Gardens, Edinburgh",
-    "image": "assets/images/united-kingdom/scotland/approved/hero-edinburgh-castle.webp",
+    "name": "カールトン・ヒルからのエディンバラ",
+    "location": "Calton Hill / Edinburgh",
+    "image": "assets/images/united-kingdom/approved/edinburgh-calton-hill.webp",
     "coordinates": {
-      "latitude": 55.9486,
-      "longitude": -3.2008
+      "latitude": 55.955,
+      "longitude": -3.1827
     },
-    "lead": "火山岩の上にそびえるエディンバラ城を見上げる。石の街を出ると、氷河の谷、島の岩峰、北海の断崖、白砂の海岸が続く。スコットランドは、都市と大地の距離が近い場所だ。",
-    "description": "エディンバラの旧市街を見下ろす火山岩の高台に建つ城。プリンセス・ストリート・ガーデンズ側から、その姿を望む。",
-    "sourceKey": "edinburghCastle",
+    "lead": "カールトン・ヒルから、記念碑の向こうにエディンバラの街並みを見渡す。石の街を出ると、氷河の谷、島の岩峰、北海の断崖、白砂の海岸が続く。スコットランドは、都市と大地の距離が近い場所だ。",
+    "description": "ダガルド・スチュワート記念碑の向こうに、旧市街の塔と丘上のエディンバラ城が重なる。街の高低差を一望できる丘の景色。",
+    "sourceKey": "caltonHill",
     "sceneTypes": [
-      "castle"
-    ]
+      "oldtown",
+      "monument"
+    ],
+    "mapOffset": {
+      "x": 2.6,
+      "y": -2.8
+    }
   },
   "profile": [
     {
@@ -386,7 +391,7 @@
       "icon": "snow"
     }
   ],
-  "sourcesVerifiedAt": "2026-11-06",
+  "sourcesVerifiedAt": "2026-11-10",
   "sources": {
     "edinburghCastle": "https://www.historicenvironment.scot/visit/all/edinburgh-castle/history-and-stories/",
     "quiraingCoordinates": "https://www.mindat.org/loc-2960.html",
@@ -438,7 +443,8 @@
     "swaFacts": "https://scotch-whisky.org.uk/insights/facts-figures",
     "historyUnion": "https://www.parliament.scot/about/history-of-the-scottish-parliament",
     "gaelicCensus": "https://www.scotlandscensus.gov.uk/news-and-events/scotland-s-census-religion-ethnic-group-language-and-national-identity-results",
-    "winterEvents": "https://www.visitscotland.com/things-to-do/events/winter-events"
+    "winterEvents": "https://www.visitscotland.com/things-to-do/events/winter-events",
+    "caltonHill": "City of Edinburgh Council, Calton Hill management plan and central key views: Dugald Stewart Monument and city views. https://www.edinburgh.gov.uk/downloads/file/22637/calton-hill-management-plan ; https://www.edinburgh.gov.uk/downloads/download/13259/key-views-centre ; retained Calton Hill point from the existing UK Scene (55.955, -3.1827)."
   },
   "signatureFacts": [
     {
@@ -682,7 +688,8 @@
     "travelSeason": "季節の推奨は2026-11-06確認。象徴的な景色の見頃を基準に、具体的な営業・運行は各公式サイトで再確認。",
     "notes": "知っておきたいことの運用情報は2026-11-06確認。",
     "scotchExports": "2023年（蒸留所数は2024年5月時点）",
-    "historyUnion": "2026-11-06"
+    "historyUnion": "2026-11-06",
+    "caltonHill": "2026-11-10"
   },
   "capital": {
     "nameJa": "エディンバラ",
@@ -706,5 +713,6 @@
     "sourceKeys": [
       "historyUnion"
     ]
-  }
+  },
+  "updatedAt": "2026-11-10"
 }
