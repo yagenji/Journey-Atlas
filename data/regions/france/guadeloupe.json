@@ -1,0 +1,650 @@
+{
+  "schemaVersion": 1,
+  "contentQaVersion": 6,
+  "parentSlug": "france",
+  "slug": "guadeloupe",
+  "regionPublished": false,
+  "nameEn": "GUADELOUPE",
+  "nameJa": "グアドループ",
+  "region": "CARIBBEAN / 16°N",
+  "parentNameJa": "フランス",
+  "parentNameEn": "FRANCE",
+  "parentReturnDescription": "フランスの8つの景色を見る",
+  "seo": {
+    "description": "火山の峰、森の滝、レ・サントの湾、珊瑚礁とマングローブ、黒白の墓地、港町の市場。グアドループを8つの実景と4つの味からたどる。"
+  },
+  "hero": {
+    "name": "ラ・スフリエール火山",
+    "location": "La Soufrière / Basse-Terre, Guadeloupe",
+    "image": "assets/images/france/guadeloupe/approved/hero-la-soufriere.webp",
+    "coordinates": {
+      "latitude": 16.0432,
+      "longitude": -61.6643
+    },
+    "lead": "大西洋とカリブ海の間で、火山を覆う森と珊瑚礁に守られた浅い海が隣り合う。湾の向こうに小さな島々が浮かび、サトウキビ畑と市場には人の暮らしが続く。グアドループは、海から山まで景色の表情が変わる群島。",
+    "description": "バス＝テール島南部にそびえる活火山。雨を集める緑の山体と、雲をまとった稜線を望む。",
+    "sourceKeys": [
+      "soufriere",
+      "parks"
+    ],
+    "sceneTypes": [
+      "volcano",
+      "peak"
+    ]
+  },
+  "profile": [
+    {
+      "label": "中心都市",
+      "value": "バス＝テール（県庁所在地）、ポワンタピートル（主要商業都市）",
+      "sourceKey": "status"
+    },
+    {
+      "label": "人口",
+      "value": "384,160人（2023年国勢調査）",
+      "sourceKey": "insee"
+    },
+    {
+      "label": "面積",
+      "value": "約1,628km²（日本の約0.43％）",
+      "sourceKey": "area"
+    },
+    {
+      "label": "言語",
+      "value": "フランス語（公用語）、グアドループ・クレオール語",
+      "sourceKey": "culture"
+    },
+    {
+      "label": "主な宗教",
+      "value": "キリスト教（カトリックの伝統）",
+      "sourceKey": "culture"
+    },
+    {
+      "label": "通貨",
+      "value": "ユーロ（EUR）"
+    }
+  ],
+  "historyContext": {
+    "text": "グアドループはカリブ海にあるフランス共和国の海外県・海外地域圏で、独立国ではない。17世紀以降、農園経済と奴隷制の歴史を経て、1848年にフランス領で奴隷制が廃止された。1946年にフランスの海外県となり、現在もフランスの法制度の下にある。",
+    "sourceKeys": [
+      "status",
+      "history"
+    ]
+  },
+  "map": {
+    "svg": "assets/images/france/guadeloupe/map-guadeloupe.svg",
+    "bounds": {
+      "north": 16.58,
+      "south": 15.77,
+      "west": -61.94,
+      "east": -60.93
+    },
+    "source": "OpenStreetMap contributors © OSM (ODbL 1.0), actual 14 Guadeloupe island polygons via hyperknot/country-levels-export geojson/high/iso1/GP.geojson, https://github.com/hyperknot/country-levels-export/blob/master/geojson/high/iso1/GP.geojson ; WGS84 local-equirectangular-fit-v1 projection matching bounds; no invented coastline; checked 2026-11-10."
+  },
+  "scenes": [
+    {
+      "id": "deuxieme-chute-du-carbet",
+      "name": "カーベ第2滝",
+      "nameLocal": "Deuxième Chute du Carbet",
+      "mapLabel": "Deuxième Chute du Carbet",
+      "description": "火山の東斜面に広がる熱帯林の奥で、岩壁から白い水流が落ちる。雨の多い森の地形を歩いて感じる場所。",
+      "coordinates": {
+        "latitude": 16.04423,
+        "longitude": -61.6456
+      },
+      "image": "assets/images/france/guadeloupe/approved/scene-01-deuxieme-chute-du-carbet.webp",
+      "sceneTypes": [
+        "waterfall",
+        "rainforest"
+      ],
+      "sourceKey": "carbet"
+    },
+    {
+      "id": "baie-des-saintes",
+      "name": "レ・サント湾",
+      "nameLocal": "Baie des Saintes / Fort Napoléon",
+      "mapLabel": "Baie des Saintes",
+      "description": "テール＝ド＝オー島の要塞から港を見下ろす。複雑な湾の形と赤い屋根の家々、島影が海の上に重なる。",
+      "coordinates": {
+        "latitude": 15.87531,
+        "longitude": -61.58229
+      },
+      "image": "assets/images/france/guadeloupe/approved/scene-02-baie-des-saintes.webp",
+      "sceneTypes": [
+        "bay",
+        "harbor"
+      ],
+      "sourceKey": "saintes"
+    },
+    {
+      "id": "pointe-des-chateaux",
+      "name": "ポワント・デ・シャトー",
+      "nameLocal": "Pointe des Châteaux / Grande-Terre",
+      "mapLabel": "Pointe des Châteaux",
+      "description": "グランド＝テール東端の石灰岩の岬。白い十字架の立つ高台から荒い大西洋と岩礁を見渡す。",
+      "coordinates": {
+        "latitude": 16.24485,
+        "longitude": -61.17372
+      },
+      "image": "assets/images/france/guadeloupe/approved/scene-03-pointe-des-chateaux.webp",
+      "sceneTypes": [
+        "cliff",
+        "rock"
+      ],
+      "sourceKey": "pointe"
+    },
+    {
+      "id": "habitation-murat",
+      "name": "アビタシオン・ミュラ",
+      "nameLocal": "Habitation Murat / Marie-Galante",
+      "mapLabel": "Habitation Murat",
+      "description": "マリー＝ガラントに残る旧サトウキビ農園の主屋。淡い石壁と三連アーチが、島の農園の歴史を伝える。",
+      "coordinates": {
+        "latitude": 15.88022,
+        "longitude": -61.3022
+      },
+      "image": "assets/images/france/guadeloupe/approved/scene-04-habitation-murat.webp",
+      "sceneTypes": [
+        "palace",
+        "monument"
+      ],
+      "sourceKey": "murat"
+    },
+    {
+      "id": "grand-cul-de-sac-marin",
+      "name": "グラン・キュル＝ド＝サック・マラン",
+      "nameLocal": "Grand Cul-de-Sac Marin",
+      "mapLabel": "Grand Cul-de-Sac Marin",
+      "description": "二つの主島の北に広がる浅い内海。マングローブの根、海草藻場、礁に守られた水面の色が続く。",
+      "coordinates": {
+        "latitude": 16.2859,
+        "longitude": -61.58995
+      },
+      "image": "assets/images/france/guadeloupe/approved/scene-05-grand-cul-de-sac-marin.webp",
+      "sceneTypes": [
+        "wetland",
+        "lagoon"
+      ],
+      "sourceKey": "lagoon",
+      "mapSurface": "water"
+    },
+    {
+      "id": "morne-a-leau-cemetery",
+      "name": "モルヌ＝ア＝ロー墓地",
+      "nameLocal": "Cimetière de Morne-à-l'Eau",
+      "mapLabel": "Cimetière de Morne-à-l'Eau",
+      "description": "斜面を登る階段と段々に並ぶ墓廟。黒白の市松模様が石造の建物の間に繰り返される。",
+      "coordinates": {
+        "latitude": 16.32866,
+        "longitude": -61.46023
+      },
+      "image": "assets/images/france/guadeloupe/approved/scene-06-morne-a-leau-cemetery.webp",
+      "sceneTypes": [
+        "tomb",
+        "monument"
+      ],
+      "sourceKey": "cemetery"
+    },
+    {
+      "id": "la-desirade-souffleur",
+      "name": "ラ・デジラードのスフルール海岸",
+      "nameLocal": "Plage du Souffleur / La Désirade",
+      "mapLabel": "Plage du Souffleur",
+      "description": "ヤシの葉陰が淡い砂浜に伸びる。浅いターコイズ色の海と沖に続く低い礁線を眺める海岸。",
+      "coordinates": {
+        "latitude": 16.31034,
+        "longitude": -61.04501
+      },
+      "image": "assets/images/france/guadeloupe/approved/scene-07-la-desirade-plage-du-souffleur.webp",
+      "sceneTypes": [
+        "beach",
+        "island"
+      ],
+      "sourceKey": "desirade"
+    },
+    {
+      "id": "marche-saint-antoine",
+      "name": "サン＝タントワーヌ市場",
+      "nameLocal": "Marché Saint-Antoine / Pointe-à-Pitre",
+      "mapLabel": "Marché Saint-Antoine",
+      "description": "ポワンタピートルの中心で、歴史ある金属の市場ホールに香辛料や果物の露店が並ぶ。",
+      "coordinates": {
+        "latitude": 16.23805,
+        "longitude": -61.53599
+      },
+      "image": "assets/images/france/guadeloupe/approved/scene-08-marche-saint-antoine.webp",
+      "sceneTypes": [
+        "market",
+        "oldtown"
+      ],
+      "sourceKey": "market"
+    }
+  ],
+  "taste": {
+    "title": "グアドループで食べたいもの",
+    "kicker": "TASTE OF GUADELOUPE",
+    "intro": "揚げパンの軽食、マリー＝ガラントの煮込み、香辛料の肉料理、レ・サントのタルト。船で島を渡ると食卓にも土地の違いが見える。",
+    "items": [
+      {
+        "id": "bokit",
+        "name": "ボキット",
+        "nameLocal": "Bokit",
+        "text": "揚げパンを横に開き、味つけした肉と野菜を挟む島の軽食。",
+        "image": "assets/images/france/guadeloupe/approved/food-01-bokit.webp",
+        "sourceKey": "food"
+      },
+      {
+        "id": "bebele",
+        "name": "ベベレ",
+        "nameLocal": "Bébélé",
+        "text": "マリー＝ガラントの郷土料理。牛のトリップ、青バナナ、パンノキ、根菜をじっくり煮る。",
+        "image": "assets/images/france/guadeloupe/approved/food-02-bebele.webp",
+        "sourceKey": "bebele"
+      },
+      {
+        "id": "colombo-de-cabri",
+        "name": "コロンボ・ド・カブリ",
+        "nameLocal": "Colombo de cabri",
+        "text": "ヤギ肉と野菜を、香辛料を混ぜ合わせたコロンボで煮るクレオール料理。",
+        "image": "assets/images/france/guadeloupe/approved/food-03-colombo-de-cabri.webp",
+        "sourceKey": "food"
+      },
+      {
+        "id": "tourment-damour",
+        "name": "トゥルモン・ダムール",
+        "nameLocal": "Tourment d’amour",
+        "text": "レ・サントの伝統菓子。タルト台にジャムとスポンジ生地を重ねる。",
+        "image": "assets/images/france/guadeloupe/approved/food-04-tourment-damour.webp",
+        "sourceKey": "tourment"
+      }
+    ]
+  },
+  "signatureFacts": [
+    {
+      "topicKey": "soufriere-altitude",
+      "label": "火山の最高峰",
+      "value": "1,467m",
+      "note": "ラ・スフリエールはグアドループで最も高い山。海の近くから火山の山頂まで地形が急に立ち上がる。",
+      "interestReason": "海辺のリゾートという印象だけでは見えない、高低差の大きな島の姿を知ることができる。",
+      "sourceKey": "soufriere",
+      "icon": "landscape"
+    },
+    {
+      "topicKey": "inhabited-island-number",
+      "label": "主な有人島",
+      "value": "6島",
+      "note": "二つの主島に加え、マリー＝ガラント、テール＝ド＝オー、テール＝ド＝バ、ラ・デジラードにも人が暮らす。",
+      "interestReason": "ひとつの島として思い浮かべがちな旅先が、独自の暮らしを持つ六つの島から成ると分かる。",
+      "sourceKey": "islands",
+      "icon": "sea"
+    },
+    {
+      "topicKey": "coral-barrier-length",
+      "label": "北の内海を守る礁",
+      "value": "約25km",
+      "note": "グラン・キュル＝ド＝サック・マランの沖側には長いサンゴ礁が続き、その内側に浅い海草藻場とマングローブが広がる。",
+      "interestReason": "内海の穏やかな水面が、長い礁によって守られている地形だと具体的に理解できる。",
+      "sourceKey": "parks",
+      "icon": "sea"
+    }
+  ],
+  "encounters": [
+    {
+      "title": "火山の斜面を流れる雲",
+      "icon": "landscape",
+      "category": "LANDSCAPE"
+    },
+    {
+      "title": "森の奥で落ちる滝の水しぶき",
+      "icon": "waterfall",
+      "category": "NATURE"
+    },
+    {
+      "title": "島の港を行き来する連絡船",
+      "icon": "sea",
+      "category": "MOVEMENT"
+    },
+    {
+      "title": "入り江を囲む赤い屋根",
+      "icon": "city",
+      "category": "DAILY_LIFE"
+    },
+    {
+      "title": "市松模様の墓廟と階段",
+      "icon": "culture",
+      "category": "CULTURE"
+    },
+    {
+      "title": "浅い海に張るマングローブの根",
+      "icon": "leaf",
+      "category": "NATURE"
+    },
+    {
+      "title": "市場に積まれる香辛料の籠",
+      "icon": "food",
+      "category": "WORK"
+    },
+    {
+      "title": "焼き菓子が並ぶ島の店先",
+      "icon": "food",
+      "category": "FOOD"
+    }
+  ],
+  "culture": [
+    {
+      "topicKey": "gwoka-musical-practice",
+      "themeEn": "MUSIC",
+      "themeJa": "音楽",
+      "icon": "culture",
+      "title": "太鼓と声が島の記憶をつなぐ",
+      "text": "グウォカは太鼓、歌、踊りを組み合わせる文化実践。地域の集まりの中で受け継がれ、2014年にユネスコ無形文化遺産に登録された。",
+      "points": [
+        "歌と応答、太鼓のリズムが重なる",
+        "地域の人々が今も伝える文化"
+      ],
+      "sourceKey": "gwoka"
+    },
+    {
+      "topicKey": "sugar-estate-labor-memory",
+      "themeEn": "HISTORY",
+      "themeJa": "歴史を知る",
+      "icon": "culture",
+      "title": "旧農園の建物に残る歴史",
+      "text": "マリー＝ガラントのアビタシオン・ミュラはかつての砂糖農園の歴史を伝える施設。建物の造形だけでなく、奴隷労働に支えられた生産の歴史も知る場所。",
+      "points": [
+        "農園の主屋が当時の景観を残す",
+        "砂糖生産とそこで働いた人の歴史を考える"
+      ],
+      "sourceKey": "murat"
+    },
+    {
+      "topicKey": "local-creole-language",
+      "themeEn": "LANGUAGE",
+      "themeJa": "言葉にふれる",
+      "icon": "culture",
+      "title": "二つの言葉がある日常",
+      "text": "フランス語に加え、グアドループ・クレオール語も日常会話や歌の中にある。アフリカやヨーロッパの人々が出会った島の歴史とつながる。",
+      "points": [
+        "フランス語とクレオール語が生活に並ぶ",
+        "歌や呼びかけの中にも独自の響きがある"
+      ],
+      "sourceKey": "culture"
+    },
+    {
+      "topicKey": "pointe-a-pitre-urban-facades",
+      "themeEn": "CITY",
+      "themeJa": "街を歩く",
+      "icon": "city",
+      "title": "港町に残る雨戸と鉄の装飾",
+      "text": "ポワンタピートルの中心では、木の雨戸、鉄製バルコニー、色を重ねた古い建物が細い街路に続く。港町の商業と暮らしの積み重なりが見える。",
+      "points": [
+        "小さな街路にも歴史的な外観が残る",
+        "港の商業と住宅が同じ街に重なる"
+      ],
+      "sourceKey": "city"
+    },
+    {
+      "topicKey": "petite-terre-iguana-habitat",
+      "themeEn": "NATURE",
+      "themeJa": "自然を知る",
+      "icon": "leaf",
+      "title": "小島が守る固有の爬虫類",
+      "text": "プティット＝テールなどの保護区域には小アンティル諸島に固有のイグアナが生息する。観察には自然保護のルールが欠かせない。",
+      "points": [
+        "小さな島が野生動物の生息地となる",
+        "生息地への立入・観察方法に配慮する"
+      ],
+      "sourceKey": "iguana"
+    },
+    {
+      "topicKey": "coastal-fishing-work",
+      "themeEn": "LIFE",
+      "themeJa": "暮らしに出会う",
+      "icon": "sea",
+      "title": "漁港の朝から始まる一日",
+      "text": "海辺の小さな集落では、漁船の水揚げと魚の取引が暮らしに結びつく。旅人は波景色だけでなく働く海の姿にも出会える。",
+      "points": [
+        "港の船や魚を扱う人の姿が見える",
+        "海と島を結ぶ生活のリズムがある"
+      ],
+      "sourceKey": "tourism"
+    }
+  ],
+  "travelTrivia": [
+    {
+      "topicKey": "pointe-cross-monument",
+      "categoryEn": "LANDMARK",
+      "categoryJa": "記念碑",
+      "title": "岬の白い十字架は2002年に新しくなった",
+      "text": "ポワント・デ・シャトーの高台にある白い十字架は建て替えを経て現在の姿となった。風の強い岩の上に立つ。",
+      "sourceKey": "pointe",
+      "icon": "culture"
+    },
+    {
+      "topicKey": "toussaint-cemetery-lights",
+      "categoryEn": "CUSTOM",
+      "categoryJa": "年中行事",
+      "title": "11月の墓地は灯りに包まれる",
+      "text": "諸聖人の日の前後には墓参りをして花やろうそくを供える習慣があり、市松模様の墓廟に小さな光が集まる。",
+      "sourceKey": "cemetery",
+      "icon": "culture"
+    },
+    {
+      "topicKey": "market-hall-construction",
+      "categoryEn": "ARCHITECTURE",
+      "categoryJa": "建築",
+      "title": "市場の鉄骨は1874年から",
+      "text": "サン＝タントワーヌ市場の金属ホールは1874年に開設。パリの中央市場が注目された時代の鉄骨建築が今も商いを支える。",
+      "sourceKey": "market",
+      "icon": "city"
+    },
+    {
+      "topicKey": "desirade-name-meaning",
+      "categoryEn": "LANGUAGE",
+      "categoryJa": "地名",
+      "title": "ラ・デジラードは「望まれた島」",
+      "text": "La Désiradeという島名には「待ち望まれたもの」の意味がある。海から島を望んだ航海者にまつわる伝承も残る。",
+      "sourceKey": "desirade",
+      "icon": "sea"
+    },
+    {
+      "topicKey": "saintes-tart-legend",
+      "categoryEn": "FOOD",
+      "categoryJa": "菓子",
+      "title": "船乗りを待つ思いが菓子の名前に",
+      "text": "トゥルモン・ダムールには、海に出た人を待つ思いから名が生まれたという伝承がある。確定した史実ではない。",
+      "sourceKey": "tourment",
+      "icon": "food"
+    }
+  ],
+  "forWhom": [
+    {
+      "title": "火山と熱帯林を歩きたい人",
+      "text": "山頂を覆う雲、雨林の滝、海に迫る斜面まで、火山の島の多様な地形を訪ねたい人。"
+    },
+    {
+      "title": "船で異なる島々を巡りたい人",
+      "text": "レ・サントの湾、マリー＝ガラントの歴史、ラ・デジラードの浜を旅の中に組み込みたい人。"
+    },
+    {
+      "title": "クレオールの暮らしを知りたい人",
+      "text": "市場、墓地、音楽、海辺の食卓から、景色の奥にある日常と歴史に触れたい人。"
+    }
+  ],
+  "notes": [
+    {
+      "title": "火山・滝の通行情報を当日確認",
+      "text": "ラ・スフリエールと森の登山道は火山活動・大雨・強風で規制されることがある。県と国立公園の最新情報を優先する。",
+      "sourceKey": "parks"
+    },
+    {
+      "title": "外洋と内海で海況が異なる",
+      "text": "礁の内側でも潮汐や風の影響を受ける。遊泳や船の利用は現地事業者の安全判断に従う。",
+      "sourceKey": "parks"
+    },
+    {
+      "title": "離島は帰りの船も含めて計画",
+      "text": "レ・サント、マリー＝ガラント、ラ・デジラードの船は天候や運航日に左右される。往復便を確かめて行程を組む。",
+      "sourceKey": "ferry"
+    }
+  ],
+  "travelScale": {
+    "kicker": "DURATION",
+    "title": "旅の目安日程",
+    "intro": "主島を回る旅か、船で複数の離島を巡る旅かで時間の使い方が大きく変わる。",
+    "items": [
+      {
+        "duration": "3〜4日",
+        "title": "主島の火山と海辺",
+        "text": "ポワンタピートルから東岸の岬と森の滝を訪ねる。例：ポワンタピートル → ポワント・デ・シャトー → カーベの滝 → ポワンタピートル。",
+        "icon": "city"
+      },
+      {
+        "duration": "5〜7日",
+        "title": "レ・サントとマリー＝ガラント",
+        "text": "主島に加え、船で港町と農園の島へ渡る。例：ポワンタピートル → トロワ＝リヴィエール → テール＝ド＝オー → グラン＝ブール → ポワンタピートル。",
+        "icon": "map"
+      },
+      {
+        "duration": "8日以上",
+        "title": "群島の海と暮らしを深く巡る",
+        "text": "ラ・デジラードと北側のラグーンを加え、船の欠航にも備える。例：ポワンタピートル → サン＝フランソワ → ラ・デジラード → サント＝ローズ → ポワンタピートル。",
+        "icon": "compass"
+      }
+    ]
+  },
+  "bestSeason": {
+    "windows": [
+      {
+        "label": "1〜4月",
+        "months": [
+          1,
+          2,
+          3,
+          4
+        ],
+        "reason": "比較的雨の少ない時期。島間の船と山の展望を組み合わせやすいが、高地は雨雲が変わりやすい。"
+      }
+    ]
+  },
+  "seasons": [
+    {
+      "months": "1〜4月",
+      "icon": "sun",
+      "color": "#d0b475",
+      "text": "乾季。比較的雨が少なく、海岸散策や島巡りの予定を立てやすい。"
+    },
+    {
+      "months": "5〜6月",
+      "icon": "leaf",
+      "color": "#89a085",
+      "text": "雨季への移行期。晴れ間と強いにわか雨が入れ替わる。"
+    },
+    {
+      "months": "7〜10月",
+      "icon": "weather",
+      "color": "#829eae",
+      "text": "雨季。熱帯低気圧とサイクロン情報を確認し、移動に余裕を持つ。"
+    },
+    {
+      "months": "11〜12月",
+      "icon": "sea",
+      "color": "#a6b5af",
+      "text": "乾季に近づく季節。降雨と海況は日ごと・場所ごとに異なる。"
+    }
+  ],
+  "transport": {
+    "icon": "sea",
+    "title": "主島は道路、離島は船でつなぐ",
+    "text": "バス＝テールとグランド＝テールは道路でつながる。主島内は車やバス、レ・サント、マリー＝ガラント、ラ・デジラードへは港から船で向かう。運航日や天気を確認したい。",
+    "sourceKeys": [
+      "tourism",
+      "ferry"
+    ]
+  },
+  "relatedCountries": [
+    {
+      "slug": "dominica",
+      "nameJa": "ドミニカ国",
+      "nameEn": "DOMINICA",
+      "href": "countries/dominica/",
+      "flag": "🇩🇲",
+      "reason": "火山の斜面と森の滝が好きなら、近隣の熱帯林と火山の地形を別の島でも歩いてみたい人へ。",
+      "affinityType": "NATURE"
+    },
+    {
+      "slug": "mauritius",
+      "nameJa": "モーリシャス",
+      "nameEn": "MAURITIUS",
+      "href": "countries/mauritius/",
+      "flag": "🇲🇺",
+      "reason": "火山性の緑の山と珊瑚礁の海、多文化の食卓をインド洋の島でも見比べてみたい人へ。",
+      "affinityType": "LANDSCAPE"
+    },
+    {
+      "slug": "stlucia",
+      "nameJa": "セントルシア",
+      "nameEn": "SAINT LUCIA",
+      "href": "countries/stlucia/",
+      "flag": "🇱🇨",
+      "reason": "海から立ち上がる火山の峰と港町を、カリブ海の別の島の風景として見比べたい人へ。",
+      "affinityType": "LANDSCAPE"
+    }
+  ],
+  "nextRoutes": [],
+  "capital": {
+    "nameJa": "バス＝テール",
+    "labelJa": "県庁所在地",
+    "coordinates": {
+      "latitude": 16.00008,
+      "longitude": -61.73334
+    },
+    "labelPosition": "left",
+    "labelOffset": {
+      "x": 0,
+      "y": 0
+    },
+    "sourceKey": "status"
+  },
+  "travelThemes": [
+    "地球の風景",
+    "海の世界へ",
+    "暮らしに出会う"
+  ],
+  "sourcesVerifiedAt": "2026-11-10",
+  "sourceDates": {
+    "population": "INSEE 2023 census, published 2025-12",
+    "area": "INSEE 1628 km2",
+    "japanArea": "Japan 2026-04-01",
+    "climate": "2026-11-10",
+    "geography": "2026-11-10",
+    "coordinates": "2026-11-10",
+    "food": "2026-11-10"
+  },
+  "sources": {
+    "insee": "INSEE 2023 reference population 384160: https://www.insee.fr/fr/statistiques/8643952?geo=REG-01",
+    "area": "INSEE Guadeloupe area 1628 km2: https://www.insee.fr/fr/statistiques/1293784 ; Japan GSI land area 377974.87 km2: https://www.gsi.go.jp/KOKUJYOHO/MENCHO-title.htm",
+    "status": "INSEE French overseas departments and regions: https://www.insee.fr/fr/metadonnees/definition/c2316 ; prefecture https://www.guadeloupe.gouv.fr/",
+    "history": "Guadeloupe Tourism heritage and overseas departmentalization: https://www.lesilesdeguadeloupe.com/en/explore/culture-and-heritage/guadeloupe-history/",
+    "culture": "Guadeloupe Tourism Creole culture: https://www.lesilesdeguadeloupe.com/en/explore/culture-and-heritage/",
+    "islands": "Guadeloupe official tourism six inhabited islands: https://www.lesilesdeguadeloupe.com/en/discover-the-guadeloupe-islands/",
+    "soufriere": "Guadeloupe National Park La Soufrière 1467m: https://guadeloupe-parcnational.fr/fr/node/2298/printable/print",
+    "parks": "Guadeloupe National Park Grand Cul-de-sac Marin reef and protected lagoon: https://www.guadeloupe-parcnational.fr/ ; national park 2025 Grand Cul-de-Sac Marin communication: https://www.guadeloupe-parcnational.fr/sites/guadeloupe-parcnational.fr/files/2025-11/Communiqu%C3%A9%20de%20presse%20-%20C%C3%A9r%C3%A9monie%20PM%2030.10.pdf",
+    "carbet": "Guadeloupe hiking service Deuxième Chute du Carbet: https://www.randoguadeloupe.gp/en/trek/1208-Second-Chute-du-Carbet-waterfall",
+    "saintes": "Guadeloupe tourism Les Saintes scenic bay and Fort Napoléon: https://www.lesilesdeguadeloupe.com/en/discover-the-guadeloupe-islands/",
+    "pointe": "Guadeloupe official tourism Pointe des Châteaux cross: https://www.lesilesdeguadeloupe.com/en/explore/natural-wonders/pointe-des-chateaux/",
+    "murat": "Guadeloupe tourism Écomusée de Marie-Galante / Habitation Murat: https://www.lesilesdeguadeloupe.com/",
+    "lagoon": "Guadeloupe National Park Grand Cul-de-sac Marin: https://www.guadeloupe-parcnational.fr/",
+    "cemetery": "Guadeloupe tourism Morne-à-l’Eau cemetery: https://www.lesilesdeguadeloupe.com/iles/grande-terre/morne-a-leau/cimetiere-de-morne-a-leau/",
+    "desirade": "Guadeloupe tourism Plage du Souffleur: https://www.lesilesdeguadeloupe.com/equipement/la-plage-de-souffleur/",
+    "market": "Ministry of Culture historic market built 1874: https://pop.culture.gouv.fr/notice/merimee/IA97100207",
+    "food": "France.fr Guadeloupe gastronomy: https://www.france.fr/fr/article/gastronomie-guadeloupe/",
+    "bebele": "Guadeloupe tourism Bébélé: https://www.lesilesdeguadeloupe.com/decouvrir/gastronomie-et-spiritueux/specialites-locales/le-bebele/",
+    "tourment": "Guadeloupe tourism Tourment d'amour: https://www.lesilesdeguadeloupe.com/decouvrir/gastronomie-et-spiritueux/specialites-locales/le-tourment-damour/",
+    "gwoka": "UNESCO Gwoka (2014): https://ich.unesco.org/en/RL/gwoka-music-song-dance-and-cultural-practice-representative-of-guadeloupean-identity-00991",
+    "city": "Guadeloupe tourism Pointe-à-Pitre city: https://www.lesilesdeguadeloupe.com/iles/grande-terre/pointe-a-pitre/",
+    "iguana": "Guadeloupe National Park endemic reptiles: https://guadeloupe-parcnational.fr/fr/des-connaissances/patrimoines-naturels/la-faune/reptiles",
+    "tourism": "Guadeloupe official tourism destination guide: https://www.lesilesdeguadeloupe.com/en/discover-the-guadeloupe-islands/",
+    "ferry": "Guadeloupe official tourism ferry to La Désirade: https://www.lesilesdeguadeloupe.com/iles/la-desirade/navette-la-desirade/",
+    "geometry": "© OpenStreetMap contributors ODbL GP administrative polygons: https://github.com/hyperknot/country-levels-export/blob/master/geojson/high/iso1/GP.geojson"
+  }
+}
