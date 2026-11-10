@@ -244,49 +244,52 @@
       ]
     },
     {
-      "id": "madeira-pico-do-areeiro",
-      "name": "マデイラ / ピコ・ド・アリエイロ",
-      "nameLocal": "Madeira / Pico do Areeiro",
-      "mapLabel": "Pico do Areeiro",
-      "description": "鋭い火山性の稜線が何重にも重なり、その間を雲が流れる。リゾート島というイメージだけでは見えない、マデイラの急峻な山岳地形を示す一景。",
+      "id": "batalha-monastery",
+      "name": "バターリャ修道院",
+      "nameLocal": "Mosteiro da Batalha",
+      "mapLabel": "Batalha",
+      "description": "尖塔と繊細な石の装飾を備えたゴシック様式の修道院。正面の大窓と入口を見上げると、王朝の記憶を刻む石造建築の厚みが伝わる。",
       "coordinates": {
-        "latitude": 32.73584,
-        "longitude": -16.92767
+        "latitude": 39.65778,
+        "longitude": -8.827
       },
-      "image": "assets/images/portugal/approved/madeira-pico-do-areeiro.webp",
+      "image": "assets/images/portugal/approved/batalha-monastery.webp",
       "labelPosition": "right",
       "mapOffset": {
         "x": 0,
         "y": 0
       },
-      "mapRegion": "madeira",
+      "mapRegion": "mainland",
       "role": "DISCOVERY + ATLAS VIEW",
       "sceneTypes": [
-        "peak"
-      ]
+        "monastery",
+        "church"
+      ],
+      "sourceKey": "batalha"
     },
     {
-      "id": "azores-sete-cidades",
-      "name": "アゾレス / セテ・シダーデス",
-      "nameLocal": "Açores / Sete Cidades / Miradouro da Vista do Rei",
-      "mapLabel": "Sete Cidades",
-      "description": "大きなカルデラの内側に湖と集落、牧草地が収まり、その外側には大西洋が続く。本土から遠く離れたアゾレスが、火山地形の上に暮らしを築いてきた島々だと分かる。",
+      "id": "coimbra-university",
+      "name": "コインブラ大学 / パソ・ダス・エスコラス",
+      "nameLocal": "Universidade de Coimbra / Paço das Escolas",
+      "mapLabel": "Coimbra",
+      "description": "かつての王宮を受け継いだ大学の中庭。時計塔、礼拝堂、回廊のある建築が広場を囲み、学びの場と王権の歴史が同じ空間に重なる。",
       "coordinates": {
-        "latitude": 37.83924,
-        "longitude": -25.79483
+        "latitude": 40.2074,
+        "longitude": -8.4265
       },
-      "image": "assets/images/portugal/approved/azores-sete-cidades.webp",
+      "image": "assets/images/portugal/approved/coimbra-university.webp",
       "labelPosition": "left",
       "mapOffset": {
         "x": 0,
         "y": 0
       },
-      "mapRegion": "azores",
+      "mapRegion": "mainland",
       "role": "DISCOVERY + ATLAS VIEW",
       "sceneTypes": [
-        "lake",
-        "volcano"
-      ]
+        "square",
+        "palace"
+      ],
+      "sourceKey": "coimbra"
     }
   ],
   "encounters": [
@@ -598,13 +601,15 @@
       "reason": "ワイン産地、海岸、歴史都市を別の文化圏で楽しみたいなら。"
     }
   ],
-  "updatedAt": "2026-10-23",
-  "sourcesVerifiedAt": "2026-09-07",
+  "updatedAt": "2026-11-10",
+  "sourcesVerifiedAt": "2026-11-10",
   "sourceDates": {
     "population": "2025-12-31",
     "religion": "2021",
     "nextRoutes": "2026-09-07",
-    "bestSeason": "2026-10-26"
+    "bestSeason": "2026-10-26",
+    "batalha": "2026-11-10",
+    "coimbra": "2026-11-10"
   },
   "sources": {
     "map": "Natural Earth 1:10m Admin 0 boundary via LonnyGomes/CountryGeoJSONCollection PRT.geojson sha ce02dabb0ea17eba11923f78ed1525d8989c9b58; WGS84",
@@ -645,7 +650,9 @@
     "pombalineLisbon": "Portugal Directorate-General for Cultural Heritage (Património Cultural), Lisboa Pombalina, listed heritage record: earthquake of 1755 led to Marques of Pombal’s recovery plan; Baixa’s orthogonal blocks extend between Praça do Comércio and Praça do Rossio. https://imovel2.patrimoniocultural.gov.pt/detalhes.php?code=10011325 ; Museu de Lisboa, Collections: reconstruction drawings documenting changes after 1755 earthquake. https://museudelisboa.pt/en/collection/",
     "coaValleyArtConservation": "UNESCO World Heritage Centre, Prehistoric Rock Art Sites in the Côa Valley and Siega Verde (1998; extension 2010): open-air rock engravings along the Côa and Águeda rivers, thousands of animal images dating to the Upper Palaeolithic. https://whc.unesco.org/en/list/866/ ; Côa Parque (official archaeological park), History: first engraving reported in 1991, planned dam threatened to submerge art, government cancelled dam in 1996 and created Côa Valley Archaeological Park, UNESCO inscription on 2 December 1998. https://arte-coa.pt/en/history/",
     "gaiaCellars": "Visit Porto, Porto Card / Wines and Cellars: multiple Port Wine Cellars are located in Vila Nova de Gaia",
-    "bestSeason": "Lonely Planet, \"Best time to travel to Portugal\": April wildflowers in the south, May for long-distance trails; September–October Douro Valley grape harvest, October good for swimming; winter sunny Algarve cliff walks. https://www.lonelyplanet.com/articles/best-time-to-travel-to-portugal"
+    "bestSeason": "Lonely Planet, \"Best time to travel to Portugal\": April wildflowers in the south, May for long-distance trails; September–October Douro Valley grape harvest, October good for swimming; winter sunny Algarve cliff walks. https://www.lonelyplanet.com/articles/best-time-to-travel-to-portugal",
+    "batalha": "UNESCO World Heritage Centre, Monastery of Batalha: Gothic monastery; coordinates N39 39 28.008 W8 49 36.984. https://whc.unesco.org/en/list/264/ ; https://whc.unesco.org/en/list/264/maps/",
+    "coimbra": "University of Coimbra, Paço das Escolas: former Royal Palace, courtyard, tower and chapel; university chapel coordinates 40.2074, -8.4265. https://alta-sofia.dei.uc.pt/ ; https://www.uc.pt/ntuc/capelania/"
   },
   "taste": {
     "kicker": "TASTE OF PORTUGAL",
