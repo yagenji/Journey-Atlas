@@ -1202,6 +1202,10 @@ function isSavedScenery(row){
   try{return localStorage.getItem('journey-atlas:scene:'+row.slug+':'+row.id)!==null;}
   catch{return false;}
 }
+function savedSceneRegionId(row){
+  const id=discoveryRegionId(row.country);
+  return themeRegions.some((region)=>region.id===id)?id:'other';
+}
 function shuffled(items){
   const list=[...items];
   for(let i=list.length-1;i>0;i--){const j=Math.floor(Math.random()*(i+1));[list[i],list[j]]=[list[j],list[i]];}
@@ -1264,7 +1268,7 @@ function shuffleScenes(){
   // existing varied (shuffled and country-interleaved) gallery order.
   if(sceneFavoritesOnly){
     const ranks=new Map(themeRegions.map((region,index)=>[region.id,index]));
-    const rank=(row)=>ranks.get(discoveryRegionId(row.country))??themeRegions.length;
+    const rank=(row)=>ranks.get(savedSceneRegionId(row))??themeRegions.length;
     sceneOrder.sort((a,b)=>rank(a)-rank(b));
   }
   sceneLimit=SCENE_PAGE;
@@ -1328,7 +1332,7 @@ function renderScenes(){
     // first twelve visible cards. Use the canonical seven-region taxonomy.
     const counts=new Map();
     sceneOrder.forEach((row)=>{
-      const id=discoveryRegionId(row.country)||'other';
+      const id=savedSceneRegionId(row);
       counts.set(id,(counts.get(id)||0)+1);
     });
     const regions=themeRegions.filter((region)=>counts.has(region.id));
@@ -1347,7 +1351,7 @@ function renderScenes(){
     sceneGrid.setAttribute('role','group');
     const visible=new Map();
     sceneOrder.slice(0,sceneLimit).forEach((row)=>{
-      const id=discoveryRegionId(row.country)||'other';
+      const id=savedSceneRegionId(row);
       if(!visible.has(id))visible.set(id,[]);
       visible.get(id).push(row);
     });
