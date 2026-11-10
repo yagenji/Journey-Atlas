@@ -639,6 +639,7 @@ def build_top_scene_index() -> None:
         "zanzibar": ("🇹🇿", None),  # No Zanzibar subdivision emoji; use the parent Tanzania flag.
         "azores": ("🇵🇹", None),  # No Unicode subdivision flag; Portuguese autonomous region.
         "martinique": ("🇲🇶", None),  # Published French Caribbean Region.
+        "reunion": ("🇷🇪", None),  # French overseas department in the Indian Ocean.
         "new-caledonia": ("🇳🇨", None),
         "french-polynesia": ("🇵🇫", None),
         "french-guiana": ("🇬🇫", None),
