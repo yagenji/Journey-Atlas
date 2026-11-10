@@ -30,7 +30,7 @@
   },
   "profile": [
     {
-      "label": "中心都市",
+      "label": "首府",
       "value": "サン＝ドニ（Saint-Denis）",
       "sourceKey": "status"
     },
@@ -61,7 +61,7 @@
     }
   ],
   "historyContext": {
-    "text": "レユニオンはインド洋南西部にあるフランスの海外県・海外地域圏。独立国家ではなくフランス共和国の一部であり、1946年の法律で海外県となった。マダガスカルの東、モーリシャスの南西に位置し、欧州本土とは異なる地理・暮らしの条件を持つ。",
+    "text": "レユニオンはインド洋南西部、マダガスカルの東、モーリシャスの南西に位置するフランスの海外県・海外地域圏。1946年3月19日の法律で海外県となった。",
     "sourceKeys": [
       "status",
       "departmentalization"
@@ -259,13 +259,14 @@
   },
   "signatureFacts": [
     {
-      "topicKey": "unesco-island-share",
-      "label": "島の約40%が世界自然遺産",
-      "value": "約40%",
-      "note": "2010年に登録された「レユニオン島の火山峰、圏谷と岩壁群」は約105,838ha。国立公園核心部と重なり、島の火山地形と多様な森林を守っている。",
-      "icon": "leaf",
-      "sourceKey": "unesco",
-      "interestReason": "小さな島の大部分が、火山・森林・固有種のまとまった保護地域であるとわかる。"
+      "topicKey": "roof-of-indian-ocean",
+      "label": "インド洋の最高峰",
+      "value": "3,071m",
+      "icon": "landscape",
+      "sourceKey": "franceFr",
+      "exceptionalScale": true,
+      "note": "眠る火山ピトン・デ・ネージュは「インド洋の屋根」と呼ばれる。三つの圏谷はこの山塊を削ってできた。",
+      "interestReason": "面積約2,500km²の島に、インド洋で最も高い頂がそびえることを示す。"
     },
     {
       "topicKey": "three-cirques",
@@ -486,9 +487,9 @@
       "sourceKey": "tourismTravel"
     },
     {
-      "title": "サイクロンと入域条件を確認",
-      "text": "11〜4月はサイクロン期に重なり、航空便や山道に影響が出る。国籍によってフランス本土と異なる入域・査証条件があるため、公的案内を事前に確認する。",
-      "sourceKey": "tourismTravel"
+      "title": "クジラやイルカには15m以内に近づかない",
+      "text": "島の周辺では多くの鯨類が見られるが、15m以内に近づくことは禁止されている。ホエールウォッチングは規則を守る事業者を選び、海で出会っても距離を保つ。",
+      "sourceKey": "franceFr"
     }
   ],
   "travelScale": {
@@ -500,13 +501,13 @@
         "duration": "3〜4日",
         "title": "北部の街と火山・圏谷を知る",
         "text": "サン＝ドニを起点にサラジー、火山展望台を巡る。例：サン＝ドニ → ヘル＝ブール → パ・ド・ベルコンブ＝ジャコブ → サン＝ドニ。",
-        "icon": "landscape"
+        "icon": "city"
       },
       {
         "duration": "5〜8日",
         "title": "火山・3圏谷と海岸を組み合わせる",
         "text": "火山台地とサラジーに加え、シラオスの町、マイドの眺望、南岸へ。例：サン＝ドニ → サラジー → 火山 → サン＝ピエール → シラオス → マイド → サン＝ドニ。",
-        "icon": "road"
+        "icon": "map"
       },
       {
         "duration": "9日以上",
@@ -528,25 +529,25 @@
     {
       "months": "11〜1月",
       "icon": "weather",
-      "color": "#7d93a4",
+      "color": "#73966f",
       "text": "暑さと湿気が増す夏。サイクロン期に重なるため、山道・航空便の最新情報を確認する。"
     },
     {
       "months": "2〜4月",
       "icon": "weather",
-      "color": "#6b90a5",
+      "color": "#92a253",
       "text": "雨量が多くなる時期。滝や森が潤う一方、土砂災害・増水・登山道閉鎖への注意が必要。"
     },
     {
       "months": "5〜7月",
       "icon": "leaf",
-      "color": "#73966f",
+      "color": "#b77a49",
       "text": "乾季へ向かう時期。沿岸と高地では気温差が大きく、朝の火山展望には防寒具も役立つ。"
     },
     {
       "months": "8〜10月",
       "icon": "sun",
-      "color": "#b7a060",
+      "color": "#6b90a5",
       "text": "比較的涼しく乾いた季節。圏谷や森歩きにも向くが、雲が出る前の早い時間を生かしたい。"
     }
   ],
@@ -588,7 +589,7 @@
   ],
   "capital": {
     "nameJa": "サン＝ドニ",
-    "labelJa": "中心都市",
+    "labelJa": "首府",
     "coordinates": {
       "latitude": -20.879,
       "longitude": 55.45
@@ -639,7 +640,8 @@
     "climate": "Île de la Réunion Tourisme, climate and wet November-April/drier May-October season: https://www.reunion.fr/organisez/informations-utiles-avant-de-voyager/climat/",
     "unM49": "United Nations Statistics Division, M49 geographic regions: Réunion (638) is in Eastern Africa (014). https://unstats.un.org/unsd/methodology/m49/",
     "vanillaAlbius": "Île de La Réunion Tourisme, Balade en famille dans une plantation de vanille: Edmond Albius, aged 12, discovered the hand-pollination method in 1841. https://www.reunion.fr/decouvrez/la-reunion-une-ile-sept-ambiances/la-cote-est-ambiance-de-territoire/balade-en-famille-dans-une-plantation-de-vanille/",
-    "wmoRainfallRecord": "World Meteorological Organization (WMO), World Weather and Climate Extremes Archive: greatest 24-hour rainfall 1,825 mm, Foc-Foc, Réunion, 7–8 January 1966, tropical cyclone Denise. https://wmo.int/ru/asu-map?book=21486&map=Rain_081&original_nid=21824 ; Météo-France, Qu’est-ce que la pluie?: https://education.meteofrance.fr/meteo-a-z/quest-ce-que-la-pluie"
+    "wmoRainfallRecord": "World Meteorological Organization (WMO), World Weather and Climate Extremes Archive: greatest 24-hour rainfall 1,825 mm, Foc-Foc, Réunion, 7–8 January 1966, tropical cyclone Denise. https://wmo.int/ru/asu-map?book=21486&map=Rain_081&original_nid=21824 ; Météo-France, Qu’est-ce que la pluie?: https://education.meteofrance.fr/meteo-a-z/quest-ce-que-la-pluie",
+    "franceFr": "https://www.france.fr/fr/ile-de-la-reunion"
   },
   "sourceDates": {
     "population": "2023-01-01 (INSEE, released 2026-10-20)",
@@ -653,6 +655,9 @@
     "mapGeometry": "Natural Earth 3.1 source checked 2026-11-10; WGS84 official place anchors checked 2026-11-10",
     "unM49": "UNSD M49 checked 2026-11-10",
     "vanillaAlbius": "1841年の出来事。レユニオン観光局の説明を2026-11-10確認。",
-    "wmoRainfallRecord": "1966-01-07〜08の24時間記録。WMO・Météo-France資料を2026-11-10確認。"
+    "wmoRainfallRecord": "1966-01-07〜08の24時間記録。WMO・Météo-France資料を2026-11-10確認。",
+    "status": "INSEE definition of DROM, checked 2026-11-10",
+    "departmentalization": "Loi du 19 mars 1946; Vie publique chronology checked 2026-11-10",
+    "franceFr": "France.fr: Piton des Neiges 3,071 m, highest summit in the Indian Ocean; whales and dolphins: no approach within 15 m"
   }
 }

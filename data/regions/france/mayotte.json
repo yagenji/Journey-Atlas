@@ -80,7 +80,7 @@
       "south": -13.04,
       "north": -12.61
     },
-    "source": "OpenStreetMap contributors © OSM (ODbL) https://www.openstreetmap.org/copyright ; Mayotte administrative region coastline relation 1259885 via hyperknot/country-levels-export GeoJSON https://github.com/hyperknot/country-levels-export/blob/master/geojson/medium/iso1/YT.geojson . WGS84 local-equirectangular geographic projection into 1200x760 SVG matching map.bounds; actual island polygons, no fabricated islands or shorelines. Checked 2026-11-10; not for navigation."
+    "source": "OpenStreetMap contributors © OSM (ODbL) https://www.openstreetmap.org/copyright ; Mayotte administrative region coastline relation 1259885 via hyperknot/country-levels-export GeoJSON https://github.com/hyperknot/country-levels-export/blob/master/geojson/high/iso1/YT.geojson . WGS84 local-equirectangular geographic projection into 1200x760 SVG matching map.bounds; actual island polygons, no fabricated islands or shorelines. Checked 2026-11-10; not for navigation."
   },
   "scenes": [
     {
@@ -189,7 +189,7 @@
         "longitude": 45.257728
       },
       "image": "assets/images/france/mayotte/approved/scene-port-dzaoudzi.webp",
-      "sourceKey": "ferry",
+      "sourceKey": "transport",
       "sceneTypes": [
         "harbor"
       ]
@@ -207,7 +207,11 @@
       "sourceKey": "market",
       "sceneTypes": [
         "market"
-      ]
+      ],
+      "mapOffset": {
+        "x": 0,
+        "y": -5
+      }
     }
   ],
   "taste": {
@@ -271,70 +275,70 @@
       "exceptionalScale": true
     },
     {
-      "topicKey": "population-growth",
-      "label": "2017年から2026年の人口増加",
-      "value": "＋26%",
-      "note": "2026年1月の国勢調査では323,153人。2017年9月比で約26％増え、フランスの県の中でも特に急速な増加が続いている。",
-      "icon": "users",
-      "sourceKey": "population",
-      "interestReason": "静かな島の景色と、変化の速い社会の両面を示す。"
+      "topicKey": "new-volcano",
+      "label": "海底に生まれた新しい火山",
+      "value": "約800m",
+      "icon": "landscape",
+      "sourceKey": "faniMaore",
+      "note": "2018年5月に始まった群発地震を追った調査で、島の東約50kmの海底に高さ800mあまりの新しい火山が見つかった。噴出した溶岩は6km³以上に及び、ファニ・マオレと名付けられた。",
+      "interestReason": "古い火山の島のすぐ沖で、いまも大地が形を変えていることを伝える。"
     }
   ],
   "encounters": [
     {
-      "title": "火口湖の縁から見る緑色の水面",
-      "icon": "landscape",
-      "category": "LANDSCAPE"
+      "title": "デバの歌に揺れる女性たち",
+      "icon": "culture",
+      "category": "FAITH"
     },
     {
-      "title": "シュンギ山の急な山影",
-      "icon": "landscape",
-      "category": "LANDSCAPE"
-    },
-    {
-      "title": "バオバブの影が落ちる砂浜",
-      "icon": "leaf",
-      "category": "NATURE"
-    },
-    {
-      "title": "浅瀬と深い水路で変わる青",
-      "icon": "sea",
-      "category": "NATURE"
-    },
-    {
-      "title": "引き潮に広がるマングローブの根",
-      "icon": "leaf",
-      "category": "NATURE"
-    },
-    {
-      "title": "石壁に残る砂糖産業の記憶",
-      "icon": "history",
-      "category": "HISTORY"
-    },
-    {
-      "title": "二つの島を渡す連絡船",
+      "title": "連絡船で渡る朝の海峡",
       "icon": "sea",
       "category": "MOVEMENT"
     },
     {
-      "title": "市場に並ぶ香辛料と布",
-      "icon": "culture",
-      "category": "LIFE"
+      "title": "網を引いてラグーンを歩く女性たち",
+      "icon": "sea",
+      "category": "WORK"
+    },
+    {
+      "title": "ココナッツで煮るキャッサバの葉",
+      "icon": "food",
+      "category": "FOOD"
+    },
+    {
+      "title": "シマオレ語とフランス語の会話",
+      "icon": "language",
+      "category": "LANGUAGE"
+    },
+    {
+      "title": "海草藻場に暮らすジュゴンの気配",
+      "icon": "wildlife",
+      "category": "WILDLIFE"
+    },
+    {
+      "title": "緑の火口湖とインド洋",
+      "icon": "landscape",
+      "category": "LANDSCAPE"
+    },
+    {
+      "title": "引き潮に現れるマングローブの根",
+      "icon": "leaf",
+      "category": "NATURE"
     }
   ],
   "culture": [
     {
-      "topicKey": "two-islands",
-      "themeEn": "GEOGRAPHY",
-      "themeJa": "二つの主島",
-      "icon": "map",
-      "title": "二つの主島を、毎日の船がつなぐ",
-      "text": "海峡を挟むグランド・テールとプティット・テール。空港があるプティット・テールと、行政・商業機能が集まるグランド・テールは連絡船で結ばれ、島の暮らしは海の往来と切り離せない。",
+      "topicKey": "debaa",
+      "themeEn": "FAITH",
+      "themeJa": "祈りの歌",
+      "icon": "culture",
+      "title": "女性たちが歌い、揺れるデバ",
+      "text": "デバは、女性たちの歌と打楽器、上半身の振りを組み合わせた信仰の芸能。預言者の生誕や愛、精神をうたうアラビア語の歌が中心で、結婚式や巡礼からの帰還などの祝いに、百人を超える女性がテントの下で歌うこともある。",
       "points": [
-        "短い航路でも生活の大切な交通手段",
-        "岸壁では人と車が同じ連絡船を待つ"
+        "島には300を超えるデバの会がある",
+        "2025年に国の無形文化遺産目録に記載された"
       ],
-      "sourceKey": "ferry"
+      "sourceKey": "debaa"
     },
     {
       "topicKey": "lagoon-reef",
@@ -376,17 +380,17 @@
       "sourceKey": "geography"
     },
     {
-      "topicKey": "market-life",
+      "topicKey": "msindzano",
       "themeEn": "LIFE",
-      "themeJa": "屋内市場",
-      "icon": "city",
-      "title": "市場で見える島の畑と食卓",
-      "text": "マムズの屋内市場には青バナナ、キャッサバ、香辛料などが並ぶ。果物や根菜だけでなく、衣服や布地にも目を向けると、島の食卓と生活の輪郭が見えてくる。",
+      "themeJa": "暮らしの装い",
+      "icon": "culture",
+      "title": "顔を白く彩る、島の美容の習慣",
+      "text": "マヨットの女性たちは、白檀などの木を珊瑚の石ですりおろしたペースト「ムシンザノ」を顔に塗る。日差しから肌を守る美容の習慣で、模様を描いて祝いの日の装いにもする。",
       "points": [
-        "昼の市場には家庭の食材が集まる",
-        "衣服と食材が同じ街の日常を形づくる"
+        "街や市場で、白い顔の女性に出会うことがある",
+        "写真を撮るときは必ず声をかけて許可を得る"
       ],
-      "sourceKey": "market"
+      "sourceKey": "msindzano"
     },
     {
       "topicKey": "volcanic-origin",
@@ -467,7 +471,7 @@
     {
       "title": "島の移動は連絡船と道路を組み合わせる",
       "text": "プティット・テールとグランド・テールの間は連絡船が基本。運航時刻を確認し、道路移動は車両手配を計画的に行う。",
-      "sourceKey": "ferry"
+      "sourceKey": "transport"
     },
     {
       "title": "水と電力などの復旧状況を確認",
@@ -488,17 +492,17 @@
       {
         "duration": "3〜4日",
         "title": "二つの主島を訪ねる",
-        "icon": "map",
+        "icon": "city",
         "text": "例：プティット・テール（ジアニ湖）→ 連絡船 → マムズ市場 → ザウジの港 → プティット・テール。"
       },
       {
         "duration": "5〜6日",
         "title": "南の海岸と山まで",
-        "icon": "landscape",
+        "icon": "map",
         "text": "例：マムズ → バンドレレのマングローブ → シュンギ山周辺 → ングジャ海岸 → マムズ。"
       },
       {
-        "duration": "7〜9日",
+        "duration": "7日以上",
         "title": "北西の小島と歴史を加える",
         "icon": "compass",
         "text": "例：マムズ → 北西岸のチョアジル諸島の眺め → スルーの工場跡 → 南部海岸 → マムズ → プティット・テール。"
@@ -537,25 +541,25 @@
     {
       "months": "12〜2月",
       "icon": "weather",
-      "color": "#7996a2",
+      "color": "#73966f",
       "text": "雨季の盛り。暖かく湿度が高く、スコールや熱帯低気圧の情報に注意。"
     },
     {
       "months": "3〜5月",
       "icon": "leaf",
-      "color": "#73966f",
+      "color": "#92a253",
       "text": "雨季から乾季への移り変わり。植物は濃い緑を保ち、海の予定は天候に応じて調整する。"
     },
     {
       "months": "6〜8月",
       "icon": "sun",
-      "color": "#92a253",
+      "color": "#b77a49",
       "text": "比較的乾いた季節。海岸を歩き、島内を巡る計画を組みやすい。"
     },
     {
       "months": "9〜11月",
       "icon": "sea",
-      "color": "#5c9da1",
+      "color": "#6b90a5",
       "text": "乾季から雨季へ。海の色は穏やかでも、後半は雨への備えが必要になる。"
     }
   ],
@@ -564,7 +568,6 @@
     "title": "島間は連絡船、島内は主に車",
     "text": "空港のあるプティット・テールとマムズ側は連絡船で結ばれる。島内の移動は車やタクシーが中心で、郊外は事前の移動手配が役に立つ。",
     "sourceKeys": [
-      "ferry",
       "transport"
     ]
   },
@@ -574,24 +577,24 @@
       "nameEn": "MOZAMBIQUE",
       "href": "countries/mozambique/",
       "flag": "🇲🇿",
-      "reason": "モザンビーク海峡を挟むアフリカ大陸の沿岸へ。インド洋で結ばれた地域の文化と景色をたどる。",
-      "affinityType": "GEOGRAPHY"
+      "reason": "モザンビーク海峡の対岸へ。インド洋交易で栄えたスワヒリ海岸の港町と島の文化を見比べる。",
+      "affinityType": "CULTURE"
     },
     {
       "nameJa": "コモロ",
       "nameEn": "COMOROS",
       "href": "countries/comoros/",
       "flag": "🇰🇲",
-      "reason": "同じ島弧に続く隣の島々へ。火山地形と文化の重なりを見比べる。",
-      "affinityType": "GEOGRAPHY"
+      "reason": "同じコモロ諸島の島々へ。言葉、モスク、祝いの歌など、マヨットと根を同じくする暮らしをたどる。",
+      "affinityType": "CULTURE"
     },
     {
       "nameJa": "マダガスカル",
       "nameEn": "MADAGASCAR",
       "href": "countries/madagascar/",
       "flag": "🇲🇬",
-      "reason": "インド洋を越え、異なる大きさの島と独自の自然へ旅をつなぐ。",
-      "affinityType": "NATURE"
+      "reason": "島で話されるキブシ語のふるさとへ。マダガスカル系の言葉が海を越えて残った背景を、本土の村や市場で感じる。",
+      "affinityType": "CULTURE"
     }
   ],
   "nextRoutes": [],
@@ -616,7 +619,6 @@
     "passeS": "https://www.researchgate.net/publication/358199802_Inventaire_faunistique_non_exhaustif_des_ecosystemes_coralliens_mesophotiques_a_Mayotte",
     "mangrove": "https://www.zones-humides.org/r%C3%A9gions-nouvelles/mayotte",
     "soulou": "https://www.culture.gouv.fr/regions/dac-mayotte/les-actualites/Site-de-l-ANCIENNE-USINE-SUCRIERE-DE-SOULOU-Numerisation-3D",
-    "ferry": "https://commons.wikimedia.org/wiki/File:La_barge_%C3%A0_Dzaoudzi_%28Mayotte%29_%2834019109614%29.jpg",
     "market": "https://mapcarta.com/N9857772835",
     "food": "https://www.france.fr/fr/destination/mayotte/",
     "cultureTourism": "https://www.france.fr/fr/destination/mayotte/",
@@ -627,7 +629,11 @@
     "marinePark": "https://ofb.gouv.fr/les-parcs-naturels-marins",
     "marriage": "https://www.mayotte-tourisme.com/explorez/terre-de-traditions/les-traditions-locales/le-manzaraka-coeur-du-mariage-traditionnel/",
     "tsingoni": "https://www.inrap.fr/archeologie-de-la-plus-ancienne-mosquee-de-france-tsingoni-mayotte-17433",
-    "turtle": "https://oulangananyamba.com/observer-une-ponte-2/"
+    "turtle": "https://oulangananyamba.com/observer-une-ponte-2/",
+    "faniMaore": "https://news.cnrs.fr/node/1948",
+    "debaa": "https://www.culture.gouv.fr/Media/Thematiques/Patrimoine-culturel-immateriel/Files/Fiches-inventaire-du-PCI/le-debaa-des-femmes-mayotte",
+    "msindzano": "https://en.wikipedia.org/wiki/Msindzano",
+    "tsingoniMH": "https://www.culture.gouv.fr/regions/dac-mayotte/Patrimoines-et-architecture-a-Mayotte/Les-monuments-historiques-de-Mayotte/les-chantiers-en-cours"
   },
   "sourceDates": {
     "population": "2026-01-01（INSEE 2026-07-07発表）",
@@ -641,7 +647,6 @@
     "passeS": "2019–2020年潜水調査（2026-11-10確認）",
     "mangrove": "2022年位置情報（2026-11-10確認）",
     "soulou": "2020年文化省資料",
-    "ferry": "2017年写真の測地座標",
     "market": "OpenStreetMap地点データ（2026-11-10確認）",
     "food": "観光資料（2026-11-10確認）",
     "seasons": "観光資料（2026-11-10確認）",
@@ -652,6 +657,25 @@
     "marriage": "2026-11-10確認",
     "tsingoni": "2026-11-10確認",
     "turtle": "2026-11-10確認",
-    "map": "2026-11-10検証"
+    "map": "2026-11-10検証",
+    "geography": "Préfecture de Mayotte, histoire et géographie, checked 2026-11-10",
+    "faniMaore": "CNRS News: submarine volcano ~50 km east, just over 800 m high, ≥6 km³ of lava; seismic crisis from 2018-05-10",
+    "debaa": "French Ministry of Culture ICH inventory (included 2025)",
+    "msindzano": "Wikipedia Msindzano, checked 2026-11-10",
+    "tsingoniMH": "DAC Mayotte: mihrab inscription 1538; classified Monument historique 2015-03-25"
+  },
+  "capital": {
+    "nameJa": "マムズ",
+    "labelJa": "首府",
+    "coordinates": {
+      "latitude": -12.7806,
+      "longitude": 45.2278
+    },
+    "labelPosition": "left",
+    "labelOffset": {
+      "x": -4,
+      "y": 0
+    },
+    "sourceKey": "capital"
   }
 }

@@ -34,8 +34,8 @@
   },
   "profile": [
     {
-      "label": "中心都市",
-      "value": "バス＝テール（県庁所在地）、ポワンタピートル（主要商業都市）",
+      "label": "首府",
+      "value": "バス＝テール（Basse-Terre）",
       "sourceKey": "status"
     },
     {
@@ -60,11 +60,12 @@
     },
     {
       "label": "通貨",
-      "value": "ユーロ（EUR）"
+      "value": "ユーロ（EUR）",
+      "sourceKey": "status"
     }
   ],
   "historyContext": {
-    "text": "グアドループはカリブ海にあるフランス共和国の海外県・海外地域圏で、独立国ではない。17世紀以降、農園経済と奴隷制の歴史を経て、1848年にフランス領で奴隷制が廃止された。1946年にフランスの海外県となり、現在もフランスの法制度の下にある。",
+    "text": "グアドループはカリブ海にあるフランス共和国の海外県・海外地域圏。17世紀以降、農園経済と奴隷制の歴史を経て、1848年にフランス領で奴隷制が廃止された。1946年にフランスの海外県となり、現在もフランスの法制度の下にある。",
     "sourceKeys": [
       "status",
       "history"
@@ -265,12 +266,13 @@
   "signatureFacts": [
     {
       "topicKey": "soufriere-altitude",
-      "label": "火山の最高峰",
+      "label": "小アンティル諸島の最高峰",
       "value": "1,467m",
-      "note": "ラ・スフリエールはグアドループで最も高い山。海の近くから火山の山頂まで地形が急に立ち上がる。",
+      "note": "ラ・スフリエールは、小アンティル諸島の島々で最も高い山。海の近くから火山の山頂まで地形が急に立ち上がる。",
       "interestReason": "海辺のリゾートという印象だけでは見えない、高低差の大きな島の姿を知ることができる。",
       "sourceKey": "soufriere",
-      "icon": "landscape"
+      "icon": "landscape",
+      "exceptionalScale": true
     },
     {
       "topicKey": "inhabited-island-number",
@@ -400,28 +402,28 @@
       "sourceKey": "iguana"
     },
     {
-      "topicKey": "coastal-fishing-work",
-      "themeEn": "LIFE",
-      "themeJa": "暮らしに出会う",
-      "icon": "sea",
-      "title": "漁港の朝から始まる一日",
-      "text": "海辺の小さな集落では、漁船の水揚げと魚の取引が暮らしに結びつく。旅人は波景色だけでなく働く海の姿にも出会える。",
+      "topicKey": "memorial-acte",
+      "themeEn": "HISTORY",
+      "themeJa": "記憶をつなぐ",
+      "icon": "history",
+      "title": "奴隷貿易の記憶を伝える、カリブ海の記念館",
+      "text": "2015年、ポワンタピートルの旧製糖工場の跡地に「メモリアル・アクト」が開館した。奴隷貿易と奴隷制の記憶を伝える、カリブ海で最初の大規模な施設で、海に面した黒い建物に銀の網目が重なる。",
       "points": [
-        "港の船や魚を扱う人の姿が見える",
-        "海と島を結ぶ生活のリズムがある"
+        "大統領が開館式典で演説した国家的な記念施設",
+        "展示は奴隷制の時代から現代までの島の歩みをたどる"
       ],
-      "sourceKey": "tourism"
+      "sourceKey": "memorialActe"
     }
   ],
   "travelTrivia": [
     {
-      "topicKey": "pointe-cross-monument",
-      "categoryEn": "LANDMARK",
-      "categoryJa": "記念碑",
-      "title": "岬の白い十字架は2002年に新しくなった",
-      "text": "ポワント・デ・シャトーの高台にある白い十字架は建て替えを経て現在の姿となった。風の強い岩の上に立つ。",
-      "sourceKey": "pointe",
-      "icon": "culture"
+      "topicKey": "soufriere-1976",
+      "categoryEn": "HISTORY",
+      "categoryJa": "火山",
+      "icon": "landscape",
+      "title": "1976年、火山の危機で数万人が避難した",
+      "text": "1976年7月8日のラ・スフリエールの噴火に始まる危機では、麓の数万人が避難した。科学者の判断が分かれたこの出来事は、いまも火山の危機管理を考える教訓として語られる。",
+      "sourceKey": "soufriere1976"
     },
     {
       "topicKey": "toussaint-cemetery-lights",
@@ -451,13 +453,13 @@
       "icon": "sea"
     },
     {
-      "topicKey": "saintes-tart-legend",
-      "categoryEn": "FOOD",
-      "categoryJa": "菓子",
-      "title": "船乗りを待つ思いが菓子の名前に",
-      "text": "トゥルモン・ダムールには、海に出た人を待つ思いから名が生まれたという伝承がある。確定した史実ではない。",
-      "sourceKey": "tourment",
-      "icon": "food"
+      "topicKey": "cul-de-sac-ramsar",
+      "categoryEn": "NATURE",
+      "categoryJa": "海辺の自然",
+      "icon": "leaf",
+      "title": "北の内海は、1993年からラムサール条約湿地",
+      "text": "グラン・キュル＝ド＝サック・マランは1993年にラムサール条約の登録湿地となった。島々の沿岸には6,000haを超えるマングローブが広がる。",
+      "sourceKey": "parks"
     }
   ],
   "forWhom": [
@@ -481,9 +483,9 @@
       "sourceKey": "parks"
     },
     {
-      "title": "外洋と内海で海況が異なる",
-      "text": "礁の内側でも潮汐や風の影響を受ける。遊泳や船の利用は現地事業者の安全判断に従う。",
-      "sourceKey": "parks"
+      "title": "海岸はサルガッサムの漂着を確認",
+      "text": "大量の海藻サルガッサムが浜に打ち上がると、腐敗で硫化水素が発生することがある。大西洋側の浜やレ・サント、ラ・デジラードへ向かう前に保健当局の情報を確かめ、漂着の多い浜では長く留まらない。",
+      "sourceKey": "sargassum"
     },
     {
       "title": "離島は帰りの船も含めて計画",
@@ -534,25 +536,25 @@
     {
       "months": "1〜4月",
       "icon": "sun",
-      "color": "#d0b475",
+      "color": "#73966f",
       "text": "乾季。比較的雨が少なく、海岸散策や島巡りの予定を立てやすい。"
     },
     {
       "months": "5〜6月",
       "icon": "leaf",
-      "color": "#89a085",
+      "color": "#92a253",
       "text": "雨季への移行期。晴れ間と強いにわか雨が入れ替わる。"
     },
     {
       "months": "7〜10月",
       "icon": "weather",
-      "color": "#829eae",
+      "color": "#b77a49",
       "text": "雨季。熱帯低気圧とサイクロン情報を確認し、移動に余裕を持つ。"
     },
     {
       "months": "11〜12月",
       "icon": "sea",
-      "color": "#a6b5af",
+      "color": "#6b90a5",
       "text": "乾季に近づく季節。降雨と海況は日ごと・場所ごとに異なる。"
     }
   ],
@@ -566,15 +568,6 @@
     ]
   },
   "relatedCountries": [
-    {
-      "slug": "dominica",
-      "nameJa": "ドミニカ国",
-      "nameEn": "DOMINICA",
-      "href": "countries/dominica/",
-      "flag": "🇩🇲",
-      "reason": "火山の斜面と森の滝が好きなら、近隣の熱帯林と火山の地形を別の島でも歩いてみたい人へ。",
-      "affinityType": "NATURE"
-    },
     {
       "slug": "mauritius",
       "nameJa": "モーリシャス",
@@ -592,12 +585,31 @@
       "flag": "🇱🇨",
       "reason": "海から立ち上がる火山の峰と港町を、カリブ海の別の島の風景として見比べたい人へ。",
       "affinityType": "LANDSCAPE"
+    },
+    {
+      "nameJa": "インド",
+      "nameEn": "INDIA",
+      "href": "countries/india/",
+      "flag": "🇮🇳",
+      "reason": "島のカレー「コロンボ」の源流へ。19世紀に海を渡ったインド系の人々が伝えた香辛料と祈りの文化をたどる。",
+      "affinityType": "CULTURE"
     }
   ],
-  "nextRoutes": [],
+  "nextRoutes": [
+    {
+      "countryEn": "DOMINICA",
+      "countryJa": "ドミニカ国",
+      "path": "POINTE-À-PITRE → ROSEAU",
+      "description": "南隣の火山島へ高速船で約2時間30分。週に数便の定期航路で、雨林と滝の島へ渡る。",
+      "flag": "🇩🇲",
+      "travelerRoute": true,
+      "status": "OPEN",
+      "sourceKey": "ferryDominica"
+    }
+  ],
   "capital": {
     "nameJa": "バス＝テール",
-    "labelJa": "県庁所在地",
+    "labelJa": "首府",
     "coordinates": {
       "latitude": 16.00008,
       "longitude": -61.73334
@@ -622,7 +634,13 @@
     "climate": "2026-11-10",
     "geography": "2026-11-10",
     "coordinates": "2026-11-10",
-    "food": "2026-11-10"
+    "food": "2026-11-10",
+    "status": "INSEE DROM definition and Préfecture de Guadeloupe, checked 2026-11-10",
+    "history": "Îles de Guadeloupe tourism history page, checked 2026-11-10",
+    "soufriere1976": "IPGP press release 2026-06: 50 years since the 8 July 1976 eruption; tens of thousands evacuated",
+    "memorialActe": "Élysée 2015-05-10: inauguration of Mémorial ACTe",
+    "ferryDominica": "FRS Express des Îles: Guadeloupe–Dominica 2h30, several departures a week",
+    "sargassum": "ARS Guadeloupe / DGS sargassum guidance"
   },
   "sources": {
     "insee": "INSEE 2023 reference population 384160: https://www.insee.fr/fr/statistiques/8643952?geo=REG-01",
@@ -650,6 +668,10 @@
     "tourism": "Guadeloupe official tourism destination guide: https://www.lesilesdeguadeloupe.com/en/discover-the-guadeloupe-islands/",
     "ferry": "Guadeloupe official tourism ferry to La Désirade: https://www.lesilesdeguadeloupe.com/iles/la-desirade/navette-la-desirade/",
     "geometry": "© OpenStreetMap contributors ODbL GP administrative polygons: https://github.com/hyperknot/country-levels-export/blob/master/geojson/high/iso1/GP.geojson",
-    "coordinates": "GeoNames Pointe des Châteaux (16.24529, -61.177192) landmark coordinate: https://www.geonames.org/search.html?country=GP&q=&startRow=1200 ; other scenes OSM/Mapcarta locators verified 2026-11-10"
+    "coordinates": "GeoNames Pointe des Châteaux (16.24529, -61.177192) landmark coordinate: https://www.geonames.org/search.html?country=GP&q=&startRow=1200 ; other scenes OSM/Mapcarta locators verified 2026-11-10",
+    "soufriere1976": "https://www.ipgp.fr/wp-content/uploads/2026/06/CP_SOUFRIERE50_IPGP_VF.pdf",
+    "memorialActe": "https://www.elysee.fr/francois-hollande/2015/05/10/declaration-de-m-francois-hollande-president-de-la-republique-sur-le-memorial-acte-le-premier-centre-caribeen-dexpression-et-de-memoire-de-la-traite-et-de-lesclavage-a-pointe-a-pitre-le-10-mai-2015",
+    "ferryDominica": "https://www.frs-express.com/en/timetable-rates/guadeloupe-timetables-fares",
+    "sargassum": "https://www.guadeloupe.ars.sante.fr/media/29254/download"
   }
 }
