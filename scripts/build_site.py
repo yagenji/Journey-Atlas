@@ -641,6 +641,7 @@ def build_top_scene_index() -> None:
         "canary-islands": ("🇮🇨", None),  # Canary Islands regional flag, not the parent Spain flag.
         "martinique": ("🇲🇶", None),  # Published French Caribbean Region.
         "reunion": ("🇷🇪", None),  # French overseas department in the Indian Ocean.
+        "mayotte": ("🇾🇹", None),  # French overseas department in the Mozambique Channel.
         "new-caledonia": ("🇳🇨", None),
         "french-polynesia": ("🇵🇫", None),
         "french-guiana": ("🇬🇫", None),
