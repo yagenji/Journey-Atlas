@@ -97,7 +97,9 @@
     }
   }
   next.addEventListener('click',advance);
-  advance();
+  // Prefer the complete published-scene catalog for the first impression.
+  // Keep approved fallback images ready if the index is slow or unavailable.
+  const fallbackTimer=window.setTimeout(()=>{if(!current)advance();},2200);
 
   // Only published destinations are included; use the canonical Scene index.
   Promise.all([
@@ -131,5 +133,15 @@
       collection=rows;
       queue=[];
     }
-  }).catch(error=>console.warn('[JOURNEY ATLAS] Discover index unavailable:',error));
+    if (!current) {
+      window.clearTimeout(fallbackTimer);
+      advance();
+    }
+  }).catch(error=>{
+    console.warn('[JOURNEY ATLAS] Discover index unavailable:',error);
+    if (!current) {
+      window.clearTimeout(fallbackTimer);
+      advance();
+    }
+  });
 })();
