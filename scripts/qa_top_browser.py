@@ -91,12 +91,19 @@ def check(driver, viewport):
             errors.append("Discover-first section order is incorrect")
         if not snapshot["scene"] or not snapshot["country"] or not snapshot["image"] or not snapshot["link"].startswith("countries/"):
             errors.append("Discover-first image/name/link is incomplete: " + repr(snapshot))
+        wait.until(lambda d: not d.find_element(By.ID, "ja-discover-next").get_property("disabled"))
         driver.execute_script("document.getElementById('ja-discover-next').click()")
         wait.until(lambda d: d.find_element(By.ID, "ja-discover-count").text.strip() != snapshot["count"])
-        next_country = driver.find_element(By.ID, "ja-discover-country").text.strip()
-        next_link = driver.find_element(By.ID, "ja-discover-link").get_attribute("href")
-        if next_country == snapshot["country"] or "/countries/" not in next_link:
-            errors.append("Discover-first next-scenery navigation is inconsistent")
+        next_row = driver.execute_script("""
+          const image = document.querySelector('#ja-discover-image');
+          return {country:document.querySelector('#ja-discover-country').textContent.trim(),
+            link:document.querySelector('#ja-discover-link').getAttribute('href'),
+            image:image.getAttribute('src'),loaded:image.complete && image.naturalWidth > 0};
+        """)
+        if (next_row["country"] == snapshot["country"] or
+                not next_row["link"].startswith("countries/") or
+                next_row["image"] == snapshot["image"] or not next_row["loaded"]):
+            errors.append("Discover-first next-scenery navigation is inconsistent: " + repr(next_row))
 
     cards = driver.find_elements(By.CSS_SELECTOR, "#country-rail .country-card")
     slugs = [card.get_attribute("data-slug") for card in cards]
