@@ -362,8 +362,8 @@ def check(driver, viewport):
         errors.append("Saved regional count overview incorrect: " + saved_count_text)
     driver.execute_script("arguments[0].click()", driver.find_element(
         By.ID, "gallery-saved-toggle"))
-    if driver.find_elements(By.CSS_SELECTOR, "#gallery-grid .gallery-region") or not driver.find_element(
-            By.ID, "gallery-saved-counts").get_attribute("hidden") is not None:
+    if driver.find_elements(By.CSS_SELECTOR, "#gallery-grid .gallery-region") or driver.find_element(
+            By.ID, "gallery-saved-counts").get_attribute("hidden") is None:
         errors.append("Normal scenery mode retained saved region grouping")
     driver.execute_script("arguments[0].click()", driver.find_element(
         By.ID, "gallery-close"))
