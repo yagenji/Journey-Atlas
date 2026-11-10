@@ -81,3 +81,17 @@
 /* Explicitly override shared detail-panel backgrounds for the two relocated features. */
 .ja-discover-review #scenery.ja-discover-gallery{background:transparent!important}
 .ja-discover-review #map.ja-discover-map{background:#f7faf8!important}
+
+/* Desktop first-screen composition: keep the scenery and Next action in view. */
+@media(min-width:1051px){
+  .ja-discover-review .ja-discover-intro{
+    display:grid;grid-template-columns:minmax(0,1fr) minmax(280px,370px);
+    align-items:end;column-gap:42px;max-width:none;
+  }
+  .ja-discover-review .ja-discover-intro .ja-discover-kicker{grid-column:1/-1}
+  .ja-discover-review .ja-discover-intro h1{grid-column:1;grid-row:2;margin-bottom:0}
+  .ja-discover-review .ja-discover-intro p{grid-column:2;grid-row:2;margin-bottom:5px}
+  .ja-discover-review .ja-discover-image-wrap,
+  .ja-discover-review .ja-discover-meta,
+  .ja-discover-review .ja-discover-caption{width:100%;max-width:1160px;margin-inline:auto}
+}
