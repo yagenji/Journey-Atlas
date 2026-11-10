@@ -10,22 +10,7 @@
   const next = document.querySelector('#ja-discover-next');
   if (!host || !image || !countryLabel || !sceneName || !sceneLink || !next) return;
 
-  // Keep the existing map, filters, scenery gallery and search handlers intact.
-  const main = host.closest('main');
-  const countries = document.querySelector('#countries');
-  if (main && countries) {
-    for (const [id, className] of [
-      ['scenery', 'ja-discover-gallery'],
-      ['map', 'ja-discover-map'],
-      ['lens-world', ''],
-      ['ja-find', '']
-    ]) {
-      const panel = document.getElementById(id);
-      if (!panel) continue;
-      if (className) panel.classList.add('shell', className);
-      main.insertBefore(panel, countries);
-    }
-  }
+  // The review template places all sections in reading order before scripts run.
   document.querySelector('#ja-discover-search')?.addEventListener('click', () => {
     window.setTimeout(() => document.querySelector('#country-search')?.focus({preventScroll: true}), 350);
   });
