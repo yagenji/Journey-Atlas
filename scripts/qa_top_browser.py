@@ -330,6 +330,41 @@ def check(driver, viewport):
     gallery_links = driver.execute_script("return [...document.querySelectorAll('#gallery-grid .gallery-tile')].map((tile) => tile.href)")
     if not gallery_links or any("/countries/japan/" not in href for href in gallery_links):
         errors.append("Saved scenery and Wish-list filters were not intersected")
+    selected_regions = driver.execute_script("""
+      return [...document.querySelectorAll('#gallery-grid .gallery-region')]
+        .map(el => ({id: el.dataset.galleryRegion,
+          count: el.querySelector('.gallery-region__count')?.textContent.trim()}));
+    """)
+    if selected_regions != [{"id": "asia", "count": "1 景色"}]:
+        errors.append("Saved scenery/Wish regional counts incorrect: " + repr(selected_regions))
+    # Clearing the Wish filter keeps saved-only mode, grouping Japan and France
+    # under their actual regions and counting both even if pagination is active.
+    driver.execute_script("arguments[0].click()", driver.find_element(
+        By.ID, "gallery-clear"))
+    wait.until(lambda d: len(d.find_elements(
+        By.CSS_SELECTOR, "#gallery-grid .gallery-region")) == 2)
+    saved_regions = driver.execute_script("""
+      return [...document.querySelectorAll('#gallery-grid .gallery-region')]
+        .map(el => ({id: el.dataset.galleryRegion,
+          count: el.querySelector('.gallery-region__count')?.textContent.trim(),
+          tiles: el.querySelectorAll('.gallery-tile').length}));
+    """)
+    expected_regions = [
+        {"id": "asia", "count": "1 景色", "tiles": 1},
+        {"id": "europe", "count": "1 景色", "tiles": 1}
+    ]
+    if saved_regions != expected_regions:
+        errors.append("Saved scenery not grouped/counted by region: " + repr(saved_regions))
+    saved_count_text = driver.find_element(
+        By.ID, "gallery-saved-counts").get_attribute("textContent")
+    if not all(label in saved_count_text for label in
+               ("保存した景色", "2 景色", "アジア", "ヨーロッパ")):
+        errors.append("Saved regional count overview incorrect: " + saved_count_text)
+    driver.execute_script("arguments[0].click()", driver.find_element(
+        By.ID, "gallery-saved-toggle"))
+    if driver.find_elements(By.CSS_SELECTOR, "#gallery-grid .gallery-region") or not driver.find_element(
+            By.ID, "gallery-saved-counts").get_attribute("hidden") is not None:
+        errors.append("Normal scenery mode retained saved region grouping")
     driver.execute_script("arguments[0].click()", driver.find_element(
         By.ID, "gallery-close"))
     if "gwish=1" in driver.current_url:
