@@ -1175,6 +1175,7 @@ const sceneMore=document.querySelector('#gallery-more');
 const sceneShuffle=document.querySelector('#gallery-shuffle');
 const sceneSavedToggle=document.querySelector('#gallery-saved-toggle');
 const sceneLead=document.querySelector('#gallery-lead');
+const sceneSavedCounts=document.querySelector('#gallery-saved-counts');
 const SCENE_PAGE=12;
 let sceneRows=null,scenePromise=null,sceneOrder=[],sceneRegion='all',sceneLimit=SCENE_PAGE,sceneFavoritesOnly=false;
 let sceneWishesOnly=new URLSearchParams(location.search).get('gwish')==='1';
@@ -1200,6 +1201,10 @@ function applySceneTypeParam(value){
 function isSavedScenery(row){
   try{return localStorage.getItem('journey-atlas:scene:'+row.slug+':'+row.id)!==null;}
   catch{return false;}
+}
+function savedSceneRegionId(row){
+  const id=discoveryRegionId(row.country);
+  return themeRegions.some((region)=>region.id===id)?id:'other';
 }
 function shuffled(items){
   const list=[...items];
@@ -1259,6 +1264,13 @@ function shuffleScenes(){
   while(sceneOrder.length<rows.length){
     slugs.forEach((slug)=>{const next=groups.get(slug).shift();if(next)sceneOrder.push(next);});
   }
+  // Saved scenery is collected geographically; within each region, keep the
+  // existing varied (shuffled and country-interleaved) gallery order.
+  if(sceneFavoritesOnly){
+    const ranks=new Map(themeRegions.map((region,index)=>[region.id,index]));
+    const rank=(row)=>ranks.get(savedSceneRegionId(row))??themeRegions.length;
+    sceneOrder.sort((a,b)=>rank(a)-rank(b));
+  }
   sceneLimit=SCENE_PAGE;
   renderScenes();
   saveTopState();
@@ -1285,40 +1297,98 @@ function renderScenes(){
   }
   renderSceneTypeTabs();
   const fragment=document.createDocumentFragment();
-  sceneOrder.slice(0,sceneLimit).forEach((row)=>{
-    const tile=document.createElement('a');
-    tile.className='gallery-tile';
-    tile.href=`${row.country.href}#${row.isHero?'hero-caption':encodeURIComponent(row.id)}`;
-    tile.classList.toggle('gallery-tile--hero',row.isHero);
-    tile.setAttribute('role','listitem');
-    tile.setAttribute('aria-label',`${row.name}（${row.country.nameJa}）のページを見る`);
-    const img=document.createElement('img');
-    img.src=row.isHero?row.image:`assets/images/top/scenes/${row.slug}/${row.id}.webp`;
-    img.alt='';
-    img.width=480;img.height=320;
-    img.loading='lazy';img.decoding='async';
-    const caption=document.createElement('span');
-    caption.className='gallery-tile__caption';
-    const name=document.createElement('b');
-    name.textContent=row.name;
-    const country=document.createElement('small');
-    if(row.country.flagAsset){
-      const image=document.createElement('img');
-      image.className='gallery-tile__flag';
-      image.src=row.country.flagAsset;image.alt='';
-      image.width=17;image.height=17;image.loading='lazy';
-      country.append(image,document.createTextNode(' '+row.country.nameJa));
-    }else{
-      country.textContent=`${row.country.flag||''} ${row.country.nameJa}`.trim();
+  const makeTile=(row)=>{
+        const tile=document.createElement('a');
+        tile.className='gallery-tile';
+        tile.href=`${row.country.href}#${row.isHero?'hero-caption':encodeURIComponent(row.id)}`;
+        tile.classList.toggle('gallery-tile--hero',row.isHero);
+        tile.setAttribute('role','listitem');
+        tile.setAttribute('aria-label',`${row.name}（${row.country.nameJa}）のページを見る`);
+        const img=document.createElement('img');
+        img.src=row.isHero?row.image:`assets/images/top/scenes/${row.slug}/${row.id}.webp`;
+        img.alt='';
+        img.width=480;img.height=320;
+        img.loading='lazy';img.decoding='async';
+        const caption=document.createElement('span');
+        caption.className='gallery-tile__caption';
+        const name=document.createElement('b');
+        name.textContent=row.name;
+        const country=document.createElement('small');
+        if(row.country.flagAsset){
+          const image=document.createElement('img');
+          image.className='gallery-tile__flag';
+          image.src=row.country.flagAsset;image.alt='';
+          image.width=17;image.height=17;image.loading='lazy';
+          country.append(image,document.createTextNode(' '+row.country.nameJa));
+        }else{
+          country.textContent=`${row.country.flag||''} ${row.country.nameJa}`.trim();
+        }
+        caption.append(name,country);
+        tile.append(img,caption);
+    return tile;
+  };
+  if(sceneFavoritesOnly){
+    // Counts represent the complete filtered saved collection, not only the
+    // first twelve visible cards. Use the canonical seven-region taxonomy.
+    const counts=new Map();
+    sceneOrder.forEach((row)=>{
+      const id=savedSceneRegionId(row);
+      counts.set(id,(counts.get(id)||0)+1);
+    });
+    const regions=themeRegions.filter((region)=>counts.has(region.id));
+    if(counts.has('other'))regions.push({id:'other',label:'その他'});
+    if(sceneSavedCounts){
+      const total=document.createElement('strong');
+      total.textContent=`保存した景色　${sceneOrder.length} 景色`;
+      sceneSavedCounts.replaceChildren(total,...regions.map((region)=>{
+        const chip=document.createElement('span');
+        chip.dataset.galleryRegion=region.id;
+        chip.textContent=`${region.label}　${counts.get(region.id)} 景色`;
+        return chip;
+      }));
+      sceneSavedCounts.hidden=false;
     }
-    caption.append(name,country);
-    tile.append(img,caption);
-    fragment.append(tile);
-  });
+    sceneGrid.setAttribute('role','group');
+    const visible=new Map();
+    sceneOrder.slice(0,sceneLimit).forEach((row)=>{
+      const id=savedSceneRegionId(row);
+      if(!visible.has(id))visible.set(id,[]);
+      visible.get(id).push(row);
+    });
+    regions.forEach((region)=>{
+      const entries=visible.get(region.id);
+      if(!entries?.length)return;
+      const section=document.createElement('section');
+      section.className='gallery-region';
+      section.dataset.galleryRegion=region.id;
+      const heading=document.createElement('h3');
+      heading.className='gallery-region__heading';
+      heading.id=`gallery-region-${region.id}`;
+      heading.append(document.createTextNode(region.label));
+      const count=document.createElement('span');
+      count.className='gallery-region__count';
+      count.textContent=`${counts.get(region.id)} 景色`;
+      heading.append(count);
+      const grid=document.createElement('div');
+      grid.className='gallery-region__grid';
+      grid.setAttribute('role','list');
+      grid.setAttribute('aria-labelledby',heading.id);
+      entries.forEach((row)=>grid.append(makeTile(row)));
+      section.append(heading,grid);
+      fragment.append(section);
+    });
+  }else{
+    sceneGrid.setAttribute('role','list');
+    if(sceneSavedCounts){
+      sceneSavedCounts.hidden=true;
+      sceneSavedCounts.replaceChildren();
+    }
+    sceneOrder.slice(0,sceneLimit).forEach((row)=>fragment.append(makeTile(row)));
+  }
   if(!sceneOrder.length){
     const empty=document.createElement('p');
     empty.className='gallery-empty';
-    empty.setAttribute('role','listitem');
+    if(!sceneFavoritesOnly)empty.setAttribute('role','listitem');
     empty.textContent=sceneWishesOnly
       ? 'この条件に合うWishリストの景色はありません。'
       : sceneFavoritesOnly
@@ -1458,10 +1528,10 @@ window.addEventListener('pageshow',(event)=>{
   if((sceneFavoritesOnly||sceneWishesOnly)&&sceneRows)shuffleScenes();
 });
 sceneMore?.addEventListener('click',()=>{
-  const before=sceneGrid?.children.length||0;
+  const before=sceneGrid?.querySelectorAll('.gallery-tile').length||0;
   sceneLimit+=SCENE_PAGE;
   renderScenes();
-  sceneGrid?.children[before]?.focus({preventScroll:true});
+  sceneGrid?.querySelectorAll('.gallery-tile')[before]?.focus({preventScroll:true});
 });
 {
   const panel=document.querySelector('#scenery');
