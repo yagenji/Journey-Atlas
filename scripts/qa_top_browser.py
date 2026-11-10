@@ -74,17 +74,14 @@ def check(driver, viewport):
         snapshot = driver.execute_script("""
           const ids = ['ja-discover','scenery','map','lens-world',
                        'ja-find','countries','themes','seasons','my-atlas'];
+          const dom = [...document.querySelectorAll('main *')];
           return {
-            order: ids.map(id => document.getElementById(id)?.compareDocumentPosition(
-                    document.getElementById('my-atlas'))),
-            names: ids,
             image: document.querySelector('#ja-discover-image').getAttribute('src'),
             country: document.querySelector('#ja-discover-country').textContent.trim(),
             scene: document.querySelector('#ja-discover-scene').textContent.trim(),
             link: document.querySelector('#ja-discover-link').getAttribute('href'),
             count: document.querySelector('#ja-discover-count').textContent.trim(),
-            sequence: ids.map(id => [...document.querySelectorAll('main *')].indexOf(
-              document.getElementById(id)))
+            sequence: ids.map(id => dom.indexOf(document.getElementById(id)))
           };
         """)
         if snapshot["sequence"] != sorted(snapshot["sequence"]):
