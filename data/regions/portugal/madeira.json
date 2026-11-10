@@ -78,7 +78,7 @@
       "west": -17.45,
       "east": -16.25
     },
-    "source": "Madeira, Porto Santo and Desertas real coastlines and surrounding islets: CAOP-derived MadeiraIlhas.geojson from nmota/caop_GeoJSON Git blob dee5716205349ac397ecebd0a7cf03446f559009, official DGT Portuguese administrative boundaries (CC BY 4.0; https://github.com/nmota/caop_GeoJSON/blob/master/geograficas/Madeira/MadeiraIlhas.geojson). WGS84 and Douglas–Peucker simplification: 0.001° for large Madeira island, 0.0005° for other named islands. Tiny non-readable islands omitted at atlas scale. Selvagens real coastlines use the same verified CAOP GeoJSON, projected without simplification into a separate local-equirectangular inset with WGS84 bounds west=-16.10, east=-15.80, south=30.00, north=30.19. Sub-pixel islets below 0.000001 square degree omitted; no reconstructed shorelines. Checked 2026-11-08. Simplified polygon corrected to a valid topology where a coincident segment arose from 0.001° Douglas–Peucker simplification; surface area unchanged.",
+    "source": "Target land: GSHHG/GSHHS full-resolution shoreline via Basemap 2.0.0 (Paul Wessel and Walter H. F. Smith; https://www.soest.hawaii.edu/wessel/gshhg/), assigned with Natural Earth 1:10m Admin-0 map subunits ca96624a56bd078437bca8184e78163e5039ad19 (public domain) unit PMD (Madeira); internal land boundaries follow Natural Earth. Surrounding land: the same GSHHG shoreline, drawn to the canvas edge. WGS84; local-equirectangular-fit-v1, 1200x760. Selvagens: same GSHHG shoreline in a separate frame (not to position or scale).",
     "insetNote": "※ セルヴァージェンシュ諸島は、実際の位置関係・縮尺と異なる別枠表示です。"
   },
   "scenes": [
@@ -631,7 +631,6 @@
     "ilhaChaoBugio": "GeoNames, island centers: Ilhéu Chão 32.58515/-16.54472 and Bugio 32.42489/-16.48438; cross-check IFCN Desertas island span. https://www.geonames.org/advanced-search.html?continentCode=&country=PT&featureClass=&q=island ; https://ifcn.madeira.gov.pt/en/areas-protegidas/ilhas-desertas/localizacao.html",
     "selvagensCoord": "Madeira IFCN location bounds and permit controls for Selvagens. https://ifcn.madeira.gov.pt/pt/areas-protegidas/ilhas-selvagens?format=html",
     "portoSantoBiosphere": "Madeira Tourism Board, protected areas: Porto Santo designated UNESCO Biosphere Reserve in 2020. https://visitmadeira.com/en/what-to-do/nature-seekers/protected-areas/",
-    "caopPortoSanto": "Direção-Geral do Território, CAOP administrative coastline (CC BY 4.0) as redistributed at https://github.com/nmota/caop_GeoJSON/blob/master/geograficas/Madeira/MadeiraIlhas.geojson . Source blob dee5716205349ac397ecebd0a7cf03446f559009, checked 2026-11-08.",
     "fennelName": "Madeira Tourism Board, Funchal: city name derives from wild fennel (Foeniculum vulgare), abundant when the settlement was created. Checked 2026-11-08. https://www.visitmadeira.com/en/where-to-go/madeira/south-coast/funchal/",
     "japanArea": "国土地理院「全国都道府県市区町村別面積調」2026年7月1日時点、全国377,973.68km²。2026年9月25日公表、2026年11月8日確認。 https://www.gsi.go.jp/KOKUJYOHO/MENCHO-title.htm",
     "monteSledges": "Madeira Tourism Board, Monte Sledges: handmade wicker/wood sledges; two carreiros in white clothing and straw hats use thick rubber-soled boots as brakes. Checked 2026-11-08. https://visitmadeira.com/en/what-to-do/experiencing-the-city-of-funchal/touring-the-city/monte-sledges/",

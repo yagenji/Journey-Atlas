@@ -86,51 +86,10 @@
       "url": "https://www.sla.gov.sg/",
       "detail": "シンガポールのセントーサ島・ジュロン島・ウビン島・テコン島の形（National Map Polygon, 2025年6月）。"
     },
-    "ons-ogl": {
-      "label": "Office for National Statistics / Ordnance Survey",
-      "license": "Open Government Licence v3.0",
-      "licenseUrl": "https://www.nationalarchives.gov.uk/doc/open-government-licence/version/3/",
-      "url": "https://geoportal.statistics.gov.uk/",
-      "detail": "スコットランド・ウェールズの領域（ONS Open Geography Portal の行政境界。Contains OS data © Crown copyright and database right）。"
-    },
-    "jhellingsdata": {
-      "label": "jhellingsdata/map-data",
-      "license": "MIT",
-      "licenseUrl": "https://github.com/jhellingsdata/map-data",
-      "url": "https://github.com/jhellingsdata/map-data",
-      "detail": "イングランドの領域（UK country subunit E92000001）。"
-    },
-    "geoboundaries-fro": {
-      "label": "geoBoundaries（Copernicus Sentinel-2 データを加工）",
-      "license": "CC BY 4.0",
-      "licenseUrl": "https://creativecommons.org/licenses/by/4.0/",
-      "url": "https://www.geoboundaries.org/",
-      "detail": "フェロー諸島の島の形（gbOpen FRO ADM0）。"
-    },
-    "geoboundaries-cuw": {
-      "label": "geoBoundaries",
-      "license": "CC BY 4.0",
-      "licenseUrl": "https://creativecommons.org/licenses/by/4.0/",
-      "url": "https://www.geoboundaries.org/",
-      "detail": "キュラソーの島の形（gbOpen CUW ADM0）。"
-    },
-    "geo-pf": {
-      "label": "Polynésie française, Direction des affaires foncières（GEO PF）",
-      "license": "CC BY",
-      "url": "https://www.data.gouv.fr/datasets/geographie-administrative-de-la-polynesie-francaise/",
-      "detail": "フランス領ポリネシアの島・環礁の形（2022年）。"
-    },
     "nl-treaty-2023": {
       "label": "Tractatenblad 2023, 66（オランダ・フランス国境条約 附属書A）",
       "url": "https://zoek.officielebekendmakingen.nl/trb-2023-66.html",
       "detail": "シント・マールテンとサン・マルタンの陸上境界。"
-    },
-    "dgt-caop": {
-      "label": "Direção-Geral do Território（CAOP）",
-      "license": "CC BY 4.0",
-      "licenseUrl": "https://creativecommons.org/licenses/by/4.0/",
-      "url": "https://www.dgterritorio.gov.pt/atividades/cartografia/cartografia-tematica/caop",
-      "detail": "マデイラ諸島の海岸線（CAOPのWFSデータをnmota/caop_GeoJSON経由で使用し、投影・単純化）。Informação geográfica cedida pela Direção-Geral do Território."
     }
   },
   "countries": {
@@ -944,7 +903,7 @@
   },
   "regions": {
     "unitedkingdom/england": [
-      "jhellingsdata",
+      "naturalearth",
       "gshhg"
     ],
     "unitedkingdom/northern-ireland": [
@@ -952,22 +911,24 @@
       "gshhg"
     ],
     "unitedkingdom/scotland": [
-      "ons-ogl",
-      "naturalearth"
+      "naturalearth",
+      "gshhg"
     ],
     "unitedkingdom/wales": [
-      "ons-ogl",
-      "naturalearth"
+      "naturalearth",
+      "gshhg"
     ],
     "denmark/faroe-islands": [
-      "geoboundaries-fro",
-      "osm"
+      "naturalearth",
+      "gshhg"
     ],
     "denmark/greenland": [
+      "naturalearth",
       "gshhg"
     ],
     "france/french-polynesia": [
-      "geo-pf"
+      "naturalearth",
+      "gshhg"
     ],
     "france/french-guiana": [
       "gshhg"
@@ -976,28 +937,35 @@
       "naturalearth"
     ],
     "netherlands/aruba": [
+      "naturalearth",
       "gshhg"
     ],
     "netherlands/curacao": [
-      "geoboundaries-cuw"
+      "naturalearth",
+      "gshhg"
     ],
     "netherlands/sint-maarten": [
       "osm",
       "nl-treaty-2023"
     ],
     "portugal/azores": [
-      "naturalearth"
+      "naturalearth",
+      "gshhg"
     ],
     "portugal/madeira": [
-      "dgt-caop"
+      "naturalearth",
+      "gshhg"
     ],
     "unitedstates/puerto-rico": [
-      "noaa"
+      "naturalearth",
+      "gshhg"
     ],
     "tanzania/zanzibar": [
+      "naturalearth",
       "gshhg"
     ],
     "finland/aland-islands": [
+      "naturalearth",
       "gshhg"
     ],
     "unitedkingdom/gibraltar": [

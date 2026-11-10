@@ -58,8 +58,8 @@ class WalesRegion(unittest.TestCase):
             if scene.get('mapOffset'):
                 self.assertNotEqual(actual, displayed)
                 node = root.find(f'.//*[@id="scene-marker-{i}"]')
-                self.assertIsNotNone(node.find('{http://www.w3.org/2000/svg}path'))
-                self.assertIsNotNone(node.find('{http://www.w3.org/2000/svg}circle'))
+                # Labels move by at most 60px; like Country maps, no leader lines are drawn.
+                self.assertEqual(list(node), [])
             else:
                 self.assertEqual(actual, displayed)
             projected.append(displayed)
