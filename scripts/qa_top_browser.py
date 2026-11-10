@@ -5,6 +5,7 @@ from __future__ import annotations
 import json
 import os
 import sys
+import traceback
 from pathlib import Path
 
 from selenium.webdriver.common.by import By
@@ -471,6 +472,7 @@ def main() -> int:
             try:
                 errors = check(driver, config)
             except Exception as exc:
+                print("TOP QA exception in " + label + ":\\n" + traceback.format_exc(), flush=True)
                 errors = [type(exc).__name__ + ": " + str(exc)[:350]]
             results[label] = {"pass": not errors, "errors": errors}
             driver.save_screenshot(str(OUT / (label + ".png")))
