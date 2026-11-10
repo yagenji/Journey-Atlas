@@ -95,3 +95,8 @@
   .ja-discover-review .ja-discover-meta,
   .ja-discover-review .ja-discover-caption{width:100%;max-width:1160px;margin-inline:auto}
 }
+
+/* Japanese copy uses the shared UI font rather than a Latin-only base fallback. */
+.ja-discover-review .ja-discover-intro p,
+.ja-discover-review .ja-find p,
+.ja-discover-review .ja-discover-note{font-family:var(--ja-ui,"Zen Kaku Gothic New",sans-serif)}
