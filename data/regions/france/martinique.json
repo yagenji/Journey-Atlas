@@ -1,0 +1,651 @@
+{
+  "schemaVersion": 1,
+  "parentSlug": "france",
+  "slug": "martinique",
+  "regionPublished": true,
+  "nameEn": "MARTINIQUE",
+  "nameJa": "マルティニーク",
+  "region": "CARIBBEAN / 14°N",
+  "parentNameJa": "フランス",
+  "parentNameEn": "FRANCE",
+  "parentReturnDescription": "フランスの8つの景色を見る",
+  "seo": {
+    "description": "海から立つディアマン岩、プレー火山、1902年の記憶、クレオールの集落と庭園。マルティニークを8つの景色と4つの味からたどる。"
+  },
+  "hero": {
+    "name": "ディアマン岩とディザック海岸",
+    "location": "Rocher du Diamant / Plage de Dizac, Le Diamant",
+    "image": "assets/images/france/martinique/approved/hero-rocher-du-diamant.webp",
+    "coordinates": {
+      "latitude": 14.47469,
+      "longitude": -61.03815
+    },
+    "lead": "浜から見えるのは、海の中に独り立つ不規則な岩の島。その北では火山と森が重なり、港町には噴火の記憶が残る。フランスとカリブ海の文化が出会う島を、海岸から山へ、そして人の暮らしへとたどる。",
+    "description": "マルティニーク南西部のディザック海岸から南へ。沖に独立して立つディアマン岩を望む。",
+    "sourceKeys": [
+      "diamondRock",
+      "tourism"
+    ],
+    "sceneTypes": [
+      "rock",
+      "island"
+    ]
+  },
+  "profile": [
+    {
+      "label": "中心都市",
+      "value": "フォール＝ド＝フランス（Fort-de-France）",
+      "sourceKey": "insee"
+    },
+    {
+      "label": "人口",
+      "value": "360,630人（2023年国勢調査）",
+      "sourceKey": "insee"
+    },
+    {
+      "label": "面積",
+      "value": "約1,128km²（日本の約0.30%）",
+      "sourceKey": "area"
+    },
+    {
+      "label": "言語",
+      "value": "フランス語、マルティニーク・クレオール語",
+      "sourceKey": "culture"
+    },
+    {
+      "label": "主な宗教",
+      "value": "キリスト教（カトリックの伝統）",
+      "sourceKey": "culture"
+    },
+    {
+      "label": "通貨",
+      "value": "ユーロ（EUR）"
+    }
+  ],
+  "historyContext": {
+    "text": "マルティニークはフランス共和国の海外地域で、県と地域圏の権限を担う単一地方公共団体。サトウキビ農園と奴隷制の歴史を経て、1848年に奴隷制が廃止された。1946年にフランスの海外県となり、2016年に現在の単一地方公共団体へ移行した。独立国ではない。",
+    "sourceKeys": [
+      "status",
+      "history"
+    ]
+  },
+  "map": {
+    "svg": "assets/images/france/martinique/map-martinique.svg",
+    "bounds": {
+      "north": 14.92,
+      "south": 14.34,
+      "west": -61.3,
+      "east": -60.73
+    },
+    "source": "Martinique coastlines and 27 geographic island polygons, including detached Rocher du Diamant: G. David France GeoJSON based on IGN Admin Express COG 2018, Licence Ouverte, https://github.com/gregoiredavid/france-geojson/blob/master/regions/martinique/region-martinique.geojson ; WGS84 local-equirectangular-fit-v1 projected to map.bounds; coastline simplified ≤0.65 screen pixels, scene anchors use unmodified verified geographic coordinates. Checked 2026-11-10."
+  },
+  "scenes": [
+    {
+      "id": "montagne-pelee",
+      "name": "プレー火山の稜線",
+      "nameLocal": "Montagne Pelée / Sentier de l’Aileron",
+      "description": "エルロン登山道の緑の急斜面と削られた谷、雲をまとった不規則な火山の稜線。20世紀初めの噴火の記憶を残す山を、歩く人の高さから眺める。",
+      "coordinates": {
+        "latitude": 14.80613,
+        "longitude": -61.15143
+      },
+      "image": "assets/images/france/martinique/approved/scene-01-montagne-pelee.webp",
+      "sourceKey": "unesco",
+      "sceneTypes": [
+        "volcano",
+        "peak"
+      ]
+    },
+    {
+      "id": "theatre-saint-pierre",
+      "name": "サン＝ピエール旧劇場跡",
+      "nameLocal": "Théâtre de Saint-Pierre / Saint-Pierre",
+      "description": "1902年の噴火で失われた港町の旧劇場。黄土色の古い壁、左右に上がる石段、中央の小さな噴水が、街のかつての文化生活を伝える。",
+      "coordinates": {
+        "latitude": 14.74694,
+        "longitude": -61.17611
+      },
+      "image": "assets/images/france/martinique/approved/scene-02-theatre-saint-pierre.webp",
+      "sourceKey": "heritage",
+      "sceneTypes": [
+        "monument",
+        "oldtown"
+      ]
+    },
+    {
+      "id": "anses-darlet",
+      "name": "アンス＝ダルレの桟橋と教会",
+      "nameLocal": "Église Saint-Henri / Les Anses-d’Arlet",
+      "description": "海へ伸びる木製桟橋の正面に、サン＝アンリ教会の鐘楼が立つ。家々が浜を囲み、緑の丘を背負う小さな海辺の集落。",
+      "coordinates": {
+        "latitude": 14.49086,
+        "longitude": -61.08017
+      },
+      "image": "assets/images/france/martinique/approved/scene-03-anses-darlet.webp",
+      "sourceKey": "tourism",
+      "sceneTypes": [
+        "church",
+        "harbor"
+      ]
+    },
+    {
+      "id": "jardin-balata",
+      "name": "バラタ庭園",
+      "nameLocal": "Jardin de Balata / Fort-de-France",
+      "description": "植え込まれたヤシ、ヘリコニア、ブロメリアの向こうにクレオール家屋がのぞく。熱帯の植物を人の手で組み合わせた庭園。",
+      "coordinates": {
+        "latitude": 14.67209,
+        "longitude": -61.09137
+      },
+      "image": "assets/images/france/martinique/approved/scene-04-jardin-de-balata.webp",
+      "sourceKey": "balata",
+      "sceneTypes": [
+        "garden"
+      ]
+    },
+    {
+      "id": "chateau-dubuc",
+      "name": "シャトー・デュビュックの遺構",
+      "nameLocal": "Château Dubuc / Presqu’île de la Caravelle",
+      "description": "カラヴェル半島に残るかつての農園施設の石造遺構。低い基礎と壁の向こうに入り江が見え、海岸の乾燥した植物が歴史の跡を囲む。",
+      "coordinates": {
+        "latitude": 14.76752,
+        "longitude": -60.88983
+      },
+      "image": "assets/images/france/martinique/approved/scene-05-chateau-dubuc.webp",
+      "sourceKey": "tourism",
+      "sceneTypes": [
+        "monument",
+        "bay"
+      ]
+    },
+    {
+      "id": "cascade-couleuvre",
+      "name": "クルーヴルの滝",
+      "nameLocal": "Cascade Couleuvre / Le Prêcheur",
+      "description": "深い森の暗い岩壁を、細い水流が長く落ちる。苔むした岩と湿ったシダの間を歩いて近づく、島の北端の滝。",
+      "coordinates": {
+        "latitude": 14.84155,
+        "longitude": -61.20438
+      },
+      "image": "assets/images/france/martinique/approved/scene-06-cascade-couleuvre.webp",
+      "sourceKey": "tourism",
+      "sceneTypes": [
+        "waterfall",
+        "rainforest"
+      ]
+    },
+    {
+      "id": "bibliotheque-schoelcher",
+      "name": "シェルシェール図書館",
+      "nameLocal": "Bibliothèque Schœlcher / Fort-de-France",
+      "description": "赤と黄土色の帯、装飾的なアーチ窓、屋根奥のドームが目を引く。1889年のパリ万博とつながる、港町の歴史建築。",
+      "coordinates": {
+        "latitude": 14.60485,
+        "longitude": -61.06805
+      },
+      "image": "assets/images/france/martinique/approved/scene-07-bibliotheque-schoelcher.webp",
+      "sourceKey": "library",
+      "sceneTypes": [
+        "monument",
+        "square"
+      ]
+    },
+    {
+      "id": "savane-des-esclaves",
+      "name": "ラ・サヴァン・デ・ゼスクラヴ",
+      "nameLocal": "La Savane des Esclaves / Les Trois-Îlets",
+      "description": "草葺き屋根と編み枝の壁を持つ再現家屋が、菜園と土の道に囲まれる。島の暮らしと奴隷制の歴史を学ぶ現在の野外博物館。",
+      "coordinates": {
+        "latitude": 14.53017,
+        "longitude": -61.03678
+      },
+      "image": "assets/images/france/martinique/approved/scene-08-savane-des-esclaves.webp",
+      "sourceKey": "savane",
+      "sceneTypes": [
+        "village",
+        "garden"
+      ]
+    }
+  ],
+  "taste": {
+    "title": "マルティニークで食べたいもの",
+    "kicker": "TASTE",
+    "intro": "アボカドとキャッサバ、香辛料を効かせたソーセージ、タコの煮込み、ココナッツの白い甘味。島の食卓には海と畑が一緒に並ぶ。",
+    "items": [
+      {
+        "id": "feroce-avocat",
+        "name": "フェロース・ダヴォカ",
+        "nameLocal": "Féroce d’avocat",
+        "text": "アボカド、ほぐした塩鱈、キャッサバ粉を混ぜ、唐辛子や香味野菜で味を整える。練り込んだ素朴な食感が特徴。",
+        "image": "assets/images/france/martinique/approved/food-01-feroce-avocat.webp",
+        "sourceKey": "food"
+      },
+      {
+        "id": "boudin-creole",
+        "name": "ブーダン・クレオール",
+        "nameLocal": "Boudin créole",
+        "text": "血と香味野菜、香辛料を使う、短く小ぶりな暗色のクレオール式ソーセージ。前菜や軽食として親しまれる。",
+        "image": "assets/images/france/martinique/approved/food-02-boudin-creole.webp",
+        "sourceKey": "food"
+      },
+      {
+        "id": "fricassee-chatrou",
+        "name": "フリカセ・ド・シャトル",
+        "nameLocal": "Fricassée de chatrou",
+        "text": "タコをタマネギ、トマト、香草などと煮込む。米や赤インゲン豆を添えることもある、島の海の料理。",
+        "image": "assets/images/france/martinique/approved/food-03-fricassee-chatrou.webp",
+        "sourceKey": "food"
+      },
+      {
+        "id": "blanc-manger-coco",
+        "name": "ブラン・マンジェ・ココ",
+        "nameLocal": "Blanc-manger coco",
+        "text": "ココナッツミルクを使い、白く固めて冷やすデザート。型から外すと、やわらかな曲線が皿に残る。",
+        "image": "assets/images/france/martinique/approved/food-04-blanc-manger-coco.webp",
+        "sourceKey": "food"
+      }
+    ]
+  },
+  "signatureFacts": [
+    {
+      "topicKey": "eruption1902",
+      "label": "20世紀の火山史に刻まれた噴火",
+      "value": "1902年",
+      "note": "プレー火山の噴火でサン＝ピエールが壊滅。高温の火山砕屑流は火山学の研究でも重要な事例となった。",
+      "icon": "landscape",
+      "sourceKey": "unesco",
+      "interestReason": "美しい火山だけでなく、街の歴史を一変させた大地の力を知る。"
+    },
+    {
+      "topicKey": "aoc-rhum",
+      "label": "海外地域初のAOCラム",
+      "value": "1996年",
+      "note": "マルティニークのアグリコール・ラムがフランスの原産地統制呼称（AOC）に認定された年。サトウキビの汁を使う製法が地域の風土と結びつく。",
+      "icon": "culture",
+      "sourceKey": "aoc",
+      "interestReason": "農業と食文化が法的な原産地表示に結びついた島の特色。"
+    },
+    {
+      "topicKey": "protected-forest",
+      "label": "プレー火山と北部森林の世界遺産",
+      "value": "13,980ha",
+      "note": "2023年登録の世界自然遺産は、北部の二つの山地を含む。海岸の低地林から火山の高地まで、異なる森が連続する。",
+      "icon": "leaf",
+      "sourceKey": "unesco",
+      "interestReason": "火山を単独の山としてではなく、森林の連続体として見る。"
+    }
+  ],
+  "encounters": [
+    {
+      "title": "沖に離れて立つディアマン岩を浜から眺める",
+      "icon": "sea",
+      "category": "LANDSCAPE"
+    },
+    {
+      "title": "プレー火山の稜線を流れる雲を見上げる",
+      "icon": "landscape",
+      "category": "LANDSCAPE"
+    },
+    {
+      "title": "サン＝ピエールの噴火遺構を歩く",
+      "icon": "culture",
+      "category": "CULTURE"
+    },
+    {
+      "title": "桟橋の先に教会が重なる朝の入り江",
+      "icon": "sea",
+      "category": "LANDSCAPE"
+    },
+    {
+      "title": "熱帯庭園の葉と花の陰を歩く",
+      "icon": "leaf",
+      "category": "LANDSCAPE"
+    },
+    {
+      "title": "カラヴェルの旧農園遺構で海を見る",
+      "icon": "culture",
+      "category": "CULTURE"
+    },
+    {
+      "title": "湿った森の細い滝へ歩いて近づく",
+      "icon": "waterfall",
+      "category": "LANDSCAPE"
+    },
+    {
+      "title": "クレオール家屋と菜園で暮らしの知恵に触れる",
+      "icon": "culture",
+      "category": "CULTURE"
+    }
+  ],
+  "culture": [
+    {
+      "topicKey": "slavery-heritage",
+      "themeEn": "HISTORY",
+      "themeJa": "農園の歴史",
+      "icon": "culture",
+      "title": "農園で生み出された富と、その代償",
+      "text": "砂糖生産を支えた農園制度の背後には、奴隷として連れてこられた人々の労働と生活があった。島の博物館と歴史遺構を訪ねると、土地の豊かさと暴力の歴史を切り離さずに見ることになる。",
+      "points": [
+        "1848年にフランス領で奴隷制が廃止された",
+        "現在の展示施設には再現建物もあり、現存遺構と区別して見学する"
+      ],
+      "sourceKey": "history"
+    },
+    {
+      "topicKey": "creole-language",
+      "themeEn": "LANGUAGE",
+      "themeJa": "言葉と暮らし",
+      "icon": "language",
+      "title": "フランス語とクレオール語が隣り合う",
+      "text": "公的な場で使われるフランス語のほか、マルティニーク・クレオール語が日常の会話や歌、物語に息づく。言葉の使い分けからも島の歴史が見えてくる。",
+      "points": [
+        "標識や公的情報にはフランス語が中心",
+        "地元の音楽や会話にクレオール語が聞こえる"
+      ],
+      "sourceKey": "culture"
+    },
+    {
+      "topicKey": "bele",
+      "themeEn": "MUSIC",
+      "themeJa": "踊りと音",
+      "icon": "culture",
+      "title": "ベレの太鼓が、踊りと語りをつなぐ",
+      "text": "ベレ（Bèlè）は歌と太鼓、踊りが重なる文化。個々の音ではなく、人が呼びかけ、応じる時間を通じて受け継がれる。",
+      "points": [
+        "歌声と太鼓に踊りが応答する",
+        "祭りや伝承活動を通して継承される"
+      ],
+      "sourceKey": "culture"
+    },
+    {
+      "topicKey": "cesaire",
+      "themeEn": "LITERATURE",
+      "themeJa": "詩と言葉",
+      "icon": "culture",
+      "title": "エメ・セゼールが島から発した言葉",
+      "text": "詩人・政治家エメ・セゼールは、植民地主義を問う思想とネグリチュード運動で知られる。フォール＝ド＝フランスの街とその言葉は今も結びついている。",
+      "points": [
+        "島の歴史を文学から考える入口になる",
+        "都市の公共文化施設にも名前が残る"
+      ],
+      "sourceKey": "culture"
+    },
+    {
+      "topicKey": "rhum",
+      "themeEn": "WORK",
+      "themeJa": "サトウキビの仕事",
+      "icon": "culture",
+      "title": "搾ったサトウキビの汁をラムへ",
+      "text": "島のラム・アグリコールはサトウキビの搾り汁を発酵・蒸留する。栽培、製法、地域の条件が1996年のAOC認定に結びついた。",
+      "points": [
+        "サトウキビ畑と蒸留の産業が景観をつくる",
+        "酒の見学・試飲には年齢制限や交通への配慮が必要"
+      ],
+      "sourceKey": "aoc"
+    },
+    {
+      "topicKey": "yole",
+      "themeEn": "MOVEMENT",
+      "themeJa": "海の技術",
+      "icon": "sea",
+      "title": "丸い帆の小舟を走らせるヨール",
+      "text": "伝統帆船ヨール・ロンドは、沿岸の風と海を読む技術から育った船。現在もレースや練習を通じて地域の誇りが受け継がれている。",
+      "points": [
+        "海を見ながら島の移動文化を考えられる",
+        "大会時期・見学方法は現地の案内を確認する"
+      ],
+      "sourceKey": "culture"
+    }
+  ],
+  "travelTrivia": [
+    {
+      "topicKey": "stone-ship",
+      "categoryEn": "NAVAL",
+      "categoryJa": "海軍史",
+      "icon": "sea",
+      "title": "岩が「軍艦」になった",
+      "text": "ナポレオン戦争期、英国海軍はディアマン岩を砲台として占拠し、HMS Diamond Rockという艦名まで与えた。",
+      "sourceKey": "diamondRock"
+    },
+    {
+      "topicKey": "library-expo",
+      "categoryEn": "ARCHITECTURE",
+      "categoryJa": "建築",
+      "icon": "culture",
+      "title": "パリ万博の建物が海を越えて来た",
+      "text": "シェルシェール図書館は1889年パリ万国博覧会の建築に由来し、のちにマルティニークで再構成された。",
+      "sourceKey": "library"
+    },
+    {
+      "topicKey": "garden-creator",
+      "categoryEn": "BOTANY",
+      "categoryJa": "植物",
+      "icon": "leaf",
+      "title": "熱帯庭園は、一人の園芸家の設計から",
+      "text": "バラタ庭園は園芸家ジャン＝フィリップ・トーズが1982年から手がけ、家族のクレオール家屋を庭園の中心に据えた。",
+      "sourceKey": "balata"
+    },
+    {
+      "topicKey": "volcano-forest",
+      "categoryEn": "NATURE",
+      "categoryJa": "固有種",
+      "icon": "wildlife",
+      "title": "火山の森には島固有の小鳥がいる",
+      "text": "世界自然遺産の北部森林には、マルティニーク島だけに生息するマルティニークムクドリモドキなどが暮らす。",
+      "sourceKey": "unesco"
+    },
+    {
+      "topicKey": "caravelle-ecosystem",
+      "categoryEn": "ECOLOGY",
+      "categoryJa": "海岸の自然",
+      "icon": "leaf",
+      "title": "同じ島で、海岸の乾いた森と北部の湿った森",
+      "text": "カラヴェル半島は沿岸の乾燥した植生が目立つ一方、北部の山地には湿度の高い森が残る。短い距離で植物景観が変わる。",
+      "sourceKey": "tourism"
+    }
+  ],
+  "forWhom": [
+    {
+      "title": "火山と熱帯林を歩いてみたい人",
+      "text": "プレー火山の斜面と北部の滝、カラヴェルの海岸植生など、島の地形の変化を歩いて確かめたい人。"
+    },
+    {
+      "title": "風景の背後にある歴史を知りたい人",
+      "text": "サン＝ピエールの噴火遺構や旧農園、奴隷制の展示、文化施設を訪ね、景観と歴史を一緒に読みたい人。"
+    },
+    {
+      "title": "海辺の集落とクレオール文化に触れたい人",
+      "text": "桟橋と教会のある漁村、地元の料理、庭園と伝統家屋をゆっくり巡りたい人。"
+    }
+  ],
+  "notes": [
+    {
+      "title": "火山登山は公式の開放情報と天候を確認",
+      "text": "プレー火山の高所は雲や風で視界が変わりやすい。登山道の規制・警報と当日の気象を確認する。",
+      "sourceKey": "weather"
+    },
+    {
+      "title": "ディアマン海岸は波と流れに注意",
+      "text": "海岸は日によって波や離岸流が強くなる。眺める時間と遊泳の可否を分け、現地の安全情報に従う。",
+      "sourceKey": "tourism"
+    },
+    {
+      "title": "北部と半島へは移動の余白を",
+      "text": "山道や半島の観光地点は時間がかかる。島内の車移動を中心に計画し、都市圏のバス・船は運航情報を確認する。",
+      "sourceKey": "transport"
+    }
+  ],
+  "travelScale": {
+    "kicker": "DURATION",
+    "title": "旅の目安日程",
+    "intro": "南西部の海岸、中央の街、北部の火山と歴史を無理なく分けて巡る。山の景色は天候次第なので予備を持つ。",
+    "items": [
+      {
+        "duration": "4〜5日",
+        "title": "南西部の海と歴史",
+        "text": "フォール＝ド＝フランス → ディアマン海岸 → アンス＝ダルレ → レ・トロワ＝ジレ → フォール＝ド＝フランス。",
+        "icon": "sea"
+      },
+      {
+        "duration": "7〜9日",
+        "title": "プレー火山と旧都へ",
+        "text": "南西部に加え、サン＝ピエールとプレー火山、北部の森、バラタ庭園を巡る。雨の日は街の見学へ切り替える。",
+        "icon": "landscape"
+      },
+      {
+        "duration": "10〜12日",
+        "title": "島の東西の違いまで",
+        "text": "北部・南西部の旅にカラヴェル半島と東岸の集落を加える。自然と歴史を一つずつ深く知る旅。",
+        "icon": "compass"
+      }
+    ]
+  },
+  "bestSeason": {
+    "windows": [
+      {
+        "label": "2〜4月",
+        "months": [
+          2,
+          3,
+          4
+        ],
+        "reason": "比較的雨が少なく、海岸散策と山の展望を組み合わせやすい。高所では雲や雨の備えは必要。"
+      },
+      {
+        "label": "12〜1月",
+        "months": [
+          12,
+          1
+        ],
+        "reason": "乾季へ向かう移行期。雨に備えつつ、混雑と天候を見て訪ねる場所を選ぶ。"
+      }
+    ]
+  },
+  "seasons": [
+    {
+      "months": "2〜4月",
+      "icon": "sun",
+      "color": "#d3b472",
+      "text": "乾季（カレーム）。比較的雨が少なく、海岸と登山を組み合わせやすい。"
+    },
+    {
+      "months": "5〜6月",
+      "icon": "leaf",
+      "color": "#73966f",
+      "text": "雨季への移行期。晴れ間とにわか雨が入り混じり、森が濃くなる。"
+    },
+    {
+      "months": "7〜10月",
+      "icon": "weather",
+      "color": "#92a2b0",
+      "text": "雨季（イヴェルナージュ）。強い雨と熱帯低気圧・サイクロンの情報を確認する。"
+    },
+    {
+      "months": "11〜1月",
+      "icon": "sea",
+      "color": "#6b90a5",
+      "text": "乾季への移行期。11月はまだ降水が多く、12月以降は次第に穏やかな日が増える。"
+    }
+  ],
+  "transport": {
+    "icon": "map",
+    "title": "島内を広く巡るなら車が便利",
+    "text": "フォール＝ド＝フランスを起点に、山地、南西の海岸、カラヴェル半島へは車が行程を組みやすい。都市圏の路線バスやトロワ＝ジレ方面の船もあるが、運行日・時刻は公式情報を確認する。",
+    "sourceKey": "transport"
+  },
+  "relatedCountries": [
+    {
+      "nameJa": "セントルシア",
+      "nameEn": "SAINT LUCIA",
+      "href": "countries/stlucia/",
+      "flag": "🇱🇨",
+      "reason": "南の海を渡り、ピトン山群と火山の島を見比べる。",
+      "affinityType": "LANDSCAPE"
+    },
+    {
+      "nameJa": "ドミニカ国",
+      "nameEn": "DOMINICA",
+      "href": "countries/dominica/",
+      "flag": "🇩🇲",
+      "reason": "北の火山島へ。滝と熱帯林、山の多い小アンティル諸島をつなぐ。",
+      "affinityType": "NATURE"
+    },
+    {
+      "nameJa": "グレナダ",
+      "nameEn": "GRENADA",
+      "href": "countries/grenada/",
+      "flag": "🇬🇩",
+      "reason": "さらに南へ。港町と香辛料の島をめぐり、海の文化の違いを味わう。",
+      "affinityType": "CULTURE"
+    }
+  ],
+  "nextRoutes": [
+    {
+      "countryEn": "SAINT LUCIA",
+      "countryJa": "セントルシア",
+      "path": "MARTINIQUE → SAINT LUCIA",
+      "description": "南隣の火山島。海から立つピトン山群とクレオール文化を見比べる。",
+      "flag": "🇱🇨"
+    },
+    {
+      "countryEn": "DOMINICA",
+      "countryJa": "ドミニカ国",
+      "path": "MARTINIQUE → DOMINICA",
+      "description": "北隣の火山島。雨林、滝、温泉地形のある山の島へ旅をつなぐ。",
+      "flag": "🇩🇲"
+    }
+  ],
+  "capital": {
+    "nameJa": "フォール＝ド＝フランス",
+    "labelJa": "中心都市",
+    "coordinates": {
+      "latitude": 14.606,
+      "longitude": -61.0686
+    },
+    "labelPosition": "right",
+    "labelOffset": {
+      "x": 0,
+      "y": 10
+    },
+    "sourceKey": "insee"
+  },
+  "travelThemes": [
+    "地球の風景",
+    "時をたどる",
+    "暮らしに出会う"
+  ],
+  "contentQaVersion": 6,
+  "sourcesVerifiedAt": "2026-11-10",
+  "sourceDates": {
+    "population": "2023 population census, INSEE published 2026-08-27",
+    "area": "~1128 km2, reference geometry and INSEE",
+    "japanAreaComparison": "1128 / 377973.68 x 100 = 0.2984%",
+    "worldHeritage": "2023 inscription 13980 ha",
+    "rumAOC": "1996 recognition",
+    "climate": "Météo-France climatological normals checked 2026-11-10",
+    "regionalStatus": "2016 territorial entity, verified 2026-11-10",
+    "sourceAccess": "2026-11-10"
+  },
+  "sources": {
+    "insee": "https://www.insee.fr/fr/statistiques/1405599?geo=DEP-972",
+    "area": "https://www.outre-mer.gouv.fr/territoires/martinique",
+    "unesco": "https://whc.unesco.org/en/list/1657/",
+    "aoc": "https://www.legifrance.gouv.fr/jorf/id/JORFTEXT000000196325",
+    "library": "https://pop.culture.gouv.fr/notice/merimee/PA00105941",
+    "diamondRock": "https://www.martinique.org/en/blog/highlights/diamond-rock",
+    "balata": "https://www.jardindebalata.fr/",
+    "savane": "https://www.lasavanedesesclaves.fr/",
+    "heritage": "https://pop.culture.gouv.fr/notice/merimee/PA00105981",
+    "tourism": "https://www.martinique.org/fr",
+    "weather": "https://meteofrance.mq/fr/climat",
+    "food": "https://www.martinique.org/fr/tout-savoir/culture/gastronomie",
+    "history": "https://www.outre-mer.gouv.fr/territoires/martinique",
+    "status": "https://www.outre-mer.gouv.fr/territoires/martinique",
+    "culture": "https://www.martinique.org/fr",
+    "transport": "https://tourismmartinique.com/getting-around-martinique",
+    "geometry": "https://github.com/gregoiredavid/france-geojson/blob/master/regions/martinique/region-martinique.geojson",
+    "foodDetails": "https://www.martinique.org/fr/blog/gastronomie/specialites-culinaires-martiniquaises"
+  },
+  "nextRoutesIntro": "マルティニークの南北に連なる小アンティル諸島へ。航空便・船便や出入境条件は、渡航前に最新情報を確認したい。"
+}

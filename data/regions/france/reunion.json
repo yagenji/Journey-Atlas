@@ -277,13 +277,13 @@
       "interestReason": "島の山地を一枚の景色ではなく、異なる三つの地形と生活圏として理解できる。"
     },
     {
-      "topicKey": "mafate-no-road",
-      "label": "マファトへの車道",
-      "value": "0本",
-      "note": "マファト圏谷内には自動車で直接入る道がなく、外からは徒歩かヘリコプターでアクセスする。山の地形が日常の移動方法を変えている。",
-      "icon": "road",
-      "sourceKey": "mafate",
-      "interestReason": "景観の険しさが観光だけでなく暮らしの制約にも直結している。"
+      "topicKey": "24h-rainfall-world-record",
+      "label": "24時間降水量の世界記録",
+      "value": "1,825mm",
+      "note": "1966年1月7〜8日、サイクロン「デニーズ」の通過時にフォック・フォックで記録された雨量。わずか1日で約1.8mに相当する雨が降った。",
+      "icon": "weather",
+      "sourceKey": "wmoRainfallRecord",
+      "interestReason": "火山の高い山地を持つ小さな島が、世界的な豪雨の記録を持つことを伝える。"
     }
   ],
   "encounters": [
@@ -444,6 +444,15 @@
       "text": "パ・ド・ベルコンブ＝ジャコブから見える赤褐色のフォルミカ・レオは、主峰とは別の小さな火山丘。展望地からの距離感を知る目印になる。",
       "icon": "landscape",
       "sourceKey": "heroFournaise"
+    },
+    {
+      "topicKey": "edmond-albius-vanilla",
+      "categoryEn": "HISTORY",
+      "categoryJa": "歴史",
+      "title": "バニラの受粉法を発見したのは、12歳の少年",
+      "text": "1841年、奴隷として暮らしていた12歳のエドモン・アルビウスが、バニラの花を手で受粉させる方法を発見した。今も島に受け継がれるバニラ栽培の技術だ。",
+      "icon": "history",
+      "sourceKey": "vanillaAlbius"
     }
   ],
   "forWhom": [
@@ -628,7 +637,9 @@
     "cilaosWater": "Île de la Réunion Tourisme, Eau de Cilaos bottled from Source Véronique: https://www.reunion.fr/decouvrez/gastronomie/les-boissons/les-principales-boissons-locales/",
     "mapGeometry": "Natural Earth 3.1 Admin-0 France/Reunion (public domain), eFrane/admin0: https://github.com/eFrane/admin0/blob/master/europe/france.geojson ; provenance https://github.com/eFrane/admin0/blob/master/readme.md",
     "climate": "Île de la Réunion Tourisme, climate and wet November-April/drier May-October season: https://www.reunion.fr/organisez/informations-utiles-avant-de-voyager/climat/",
-    "unM49": "United Nations Statistics Division, M49 geographic regions: Réunion (638) is in Eastern Africa (014). https://unstats.un.org/unsd/methodology/m49/"
+    "unM49": "United Nations Statistics Division, M49 geographic regions: Réunion (638) is in Eastern Africa (014). https://unstats.un.org/unsd/methodology/m49/",
+    "vanillaAlbius": "Île de La Réunion Tourisme, Balade en famille dans une plantation de vanille: Edmond Albius, aged 12, discovered the hand-pollination method in 1841. https://www.reunion.fr/decouvrez/la-reunion-une-ile-sept-ambiances/la-cote-est-ambiance-de-territoire/balade-en-famille-dans-une-plantation-de-vanille/",
+    "wmoRainfallRecord": "World Meteorological Organization (WMO), World Weather and Climate Extremes Archive: greatest 24-hour rainfall 1,825 mm, Foc-Foc, Réunion, 7–8 January 1966, tropical cyclone Denise. https://wmo.int/ru/asu-map?book=21486&map=Rain_081&original_nid=21824 ; Météo-France, Qu’est-ce que la pluie?: https://education.meteofrance.fr/meteo-a-z/quest-ce-que-la-pluie"
   },
   "sourceDates": {
     "population": "2023-01-01 (INSEE, released 2026-10-20)",
@@ -640,6 +651,8 @@
     "tourismSafety": "2026-11-10; operations and closures change daily",
     "climate": "long-run seasonal pattern checked 2026-11-10",
     "mapGeometry": "Natural Earth 3.1 source checked 2026-11-10; WGS84 official place anchors checked 2026-11-10",
-    "unM49": "UNSD M49 checked 2026-11-10"
+    "unM49": "UNSD M49 checked 2026-11-10",
+    "vanillaAlbius": "1841年の出来事。レユニオン観光局の説明を2026-11-10確認。",
+    "wmoRainfallRecord": "1966-01-07〜08の24時間記録。WMO・Météo-France資料を2026-11-10確認。"
   }
 }
