@@ -558,7 +558,18 @@ def build_top_season_index() -> None:
                 # e.g. "3〜5月・10〜11月". Preserve the authored label as-is.
                 expanded = []
                 for segment in re.split(r"[・、,／/]", label):
-                    period = re.fullmatch(r"(\d{1,2})[〜～~–-](\d{1,2})月", segment.strip())
+                    part = segment.strip()
+                    if part in {"通年", "一年中"}:
+                        expanded.extend(range(1, 13))
+                        continue
+                    single = re.fullmatch(r"(\d{1,2})月", part)
+                    if single:
+                        month = int(single.group(1))
+                        if not 1 <= month <= 12:
+                            raise ValueError(f"Invalid published Region season month: {region['slug']}")
+                        expanded.append(month)
+                        continue
+                    period = re.fullmatch(r"(\d{1,2})[〜～~–-](\d{1,2})月", part)
                     if not period:
                         raise ValueError(f"Unparseable published Region bestSeason: {region['slug']} {label}")
                     start, end = (int(v) for v in period.groups())
