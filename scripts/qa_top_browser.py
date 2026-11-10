@@ -71,6 +71,10 @@ def check(driver, viewport):
           return !!img && img.complete && img.naturalWidth > 0 &&
                  document.querySelector('#ja-discover').classList.contains('is-ready');
         """))
+        # Archive the real first viewport (approved image included) for design review.
+        driver.execute_script("window.scrollTo(0, 0)")
+        screenshot_width = driver.execute_script("return window.innerWidth")
+        driver.save_screenshot(str(OUT / f"discover-{screenshot_width}.png"))
         snapshot = driver.execute_script("""
           const ids = ['ja-discover','scenery','map','lens-world',
                        'ja-find','countries','themes','seasons','my-atlas'];
