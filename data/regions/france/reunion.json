@@ -70,12 +70,12 @@
   "map": {
     "svg": "assets/images/france/reunion/map-reunion.svg",
     "bounds": {
-      "north": -20.86,
-      "south": -21.41,
-      "west": 55.19,
-      "east": 55.87
+      "north": -20.83,
+      "south": -21.44,
+      "west": 55.17,
+      "east": 55.89
     },
-    "source": "Real coastline: IGN Admin Express COG (2018), Etalab Licence Ouverte, from gregoiredavid/france-geojson region-la-reunion.geojson (Visvalingam source simplification 25%); https://github.com/gregoiredavid/france-geojson/blob/master/regions/la-reunion/region-la-reunion.geojson ; 872 source coastline vertices simplified to 209 projected SVG vertices at 1.2px; verified 2026-11-10. WGS84 real Hero and 8 Scene coordinates, local equirectangular-fit SVG. No invented coastlines, terrain or roads. Labels offset without moving coordinates."
+    "source": "Natural Earth 3.1 Admin-0 France multi-polygon (Réunion island; public domain), eFrane/admin0/europe/france.geojson, https://github.com/eFrane/admin0/blob/master/europe/france.geojson ; source README https://github.com/eFrane/admin0/blob/master/readme.md ; actual coastline points in WGS84, local equirectangular-fit-v1 projection; checked 2026-11-10. Scene and Hero anchor coordinates are recorded in SVG metadata, with label-only offsets (no geographic anchor movement)."
   },
   "scenes": [
     {
@@ -108,7 +108,11 @@
       "sceneTypes": [
         "village",
         "oldtown"
-      ]
+      ],
+      "mapOffset": {
+        "x": -2.5,
+        "y": -1
+      }
     },
     {
       "id": "cilaos",
@@ -187,7 +191,11 @@
       "sceneTypes": [
         "square",
         "oldtown"
-      ]
+      ],
+      "mapOffset": {
+        "x": 3,
+        "y": 2
+      }
     },
     {
       "id": "foret-belouve",
@@ -203,7 +211,11 @@
       "sceneTypes": [
         "forest",
         "rainforest"
-      ]
+      ],
+      "mapOffset": {
+        "x": 2.5,
+        "y": 2
+      }
     }
   ],
   "taste": {
@@ -614,7 +626,7 @@
     "maloya": "UNESCO ICH Maloya, inscribed 2009: https://ich.unesco.org/en/RL/maloya-00249",
     "broderie": "Île de la Réunion Tourisme, Maison de la Broderie, Cilaos: https://www.reunion.fr/offres/maison-de-la-broderie-cilaos-fr-559379/",
     "cilaosWater": "Île de la Réunion Tourisme, Eau de Cilaos bottled from Source Véronique: https://www.reunion.fr/decouvrez/gastronomie/les-boissons/les-principales-boissons-locales/",
-    "mapGeometry": "IGN Admin Express COG 2018 via gregoiredavid/france-geojson; Etalab Open Licence: https://github.com/gregoiredavid/france-geojson/blob/master/regions/la-reunion/region-la-reunion.geojson",
+    "mapGeometry": "Natural Earth 3.1 Admin-0 France/Reunion (public domain), eFrane/admin0: https://github.com/eFrane/admin0/blob/master/europe/france.geojson ; provenance https://github.com/eFrane/admin0/blob/master/readme.md",
     "climate": "Île de la Réunion Tourisme, climate and wet November-April/drier May-October season: https://www.reunion.fr/organisez/informations-utiles-avant-de-voyager/climat/"
   },
   "sourceDates": {
@@ -626,6 +638,6 @@
     "unescoMaloya": "2009 UNESCO ICH registration",
     "tourismSafety": "2026-11-10; operations and closures change daily",
     "climate": "long-run seasonal pattern checked 2026-11-10",
-    "mapGeometry": "IGN Admin Express COG 2018; derived source accessed 2026-11-10"
+    "mapGeometry": "Natural Earth 3.1 source checked 2026-11-10; WGS84 official place anchors checked 2026-11-10"
   }
 }
