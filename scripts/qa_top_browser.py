@@ -62,6 +62,42 @@ def check(driver, viewport):
     wait = WebDriverWait(driver, 40)
     wait.until(lambda d: len(d.find_elements(By.CSS_SELECTOR, "#country-rail .country-card")) == 200)
 
+    # Discover-first review: verify the real published image and its link on
+    # every viewport. This guard is optional so the existing top remains valid
+    # if the review candidate is not adopted.
+    if driver.find_elements(By.ID, "ja-discover"):
+        wait.until(lambda d: d.execute_script("""
+          const img = document.querySelector('#ja-discover-image');
+          return !!img && img.complete && img.naturalWidth > 0 &&
+                 document.querySelector('#ja-discover').classList.contains('is-ready');
+        """))
+        snapshot = driver.execute_script("""
+          const ids = ['ja-discover','scenery','map','lens-world',
+                       'ja-find','countries','themes','seasons','my-atlas'];
+          return {
+            order: ids.map(id => document.getElementById(id)?.compareDocumentPosition(
+                    document.getElementById('my-atlas'))),
+            names: ids,
+            image: document.querySelector('#ja-discover-image').getAttribute('src'),
+            country: document.querySelector('#ja-discover-country').textContent.trim(),
+            scene: document.querySelector('#ja-discover-scene').textContent.trim(),
+            link: document.querySelector('#ja-discover-link').getAttribute('href'),
+            count: document.querySelector('#ja-discover-count').textContent.trim(),
+            sequence: ids.map(id => [...document.querySelectorAll('main *')].indexOf(
+              document.getElementById(id)))
+          };
+        """)
+        if snapshot["sequence"] != sorted(snapshot["sequence"]):
+            errors.append("Discover-first section order is incorrect")
+        if not snapshot["scene"] or not snapshot["country"] or not snapshot["image"] or not snapshot["link"].startswith("countries/"):
+            errors.append("Discover-first image/name/link is incomplete: " + repr(snapshot))
+        driver.execute_script("document.getElementById('ja-discover-next').click()")
+        wait.until(lambda d: d.find_element(By.ID, "ja-discover-count").text.strip() != snapshot["count"])
+        next_country = driver.find_element(By.ID, "ja-discover-country").text.strip()
+        next_link = driver.find_element(By.ID, "ja-discover-link").get_attribute("href")
+        if next_country == snapshot["country"] or "/countries/" not in next_link:
+            errors.append("Discover-first next-scenery navigation is inconsistent")
+
     cards = driver.find_elements(By.CSS_SELECTOR, "#country-rail .country-card")
     slugs = [card.get_attribute("data-slug") for card in cards]
     if any(slug in ("hong-kong", "macau") for slug in slugs):
