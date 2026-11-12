@@ -1,4 +1,4 @@
-<svg xmlns="http://www.w3.org/2000/svg" width="1200" height="760" viewBox="0 0 1200 760" role="img" aria-label="フォークランド諸島の東西の主島と周辺の島々、Hero・8景の実座標" data-map-projection="local-equirectangular-fit-v1" data-map-style="journey-atlas-map-v3-clean"><title>FALKLAND ISLANDS — Coastline and Scenes</title><desc>GSHHG v2.3.7: 56 separate coastline rings. True WGS84 point anchors, fitted local-equirectangular projection matching Region page overlay. Numbered callouts may be offset; no geographic coordinates are moved.</desc>
+<svg xmlns="http://www.w3.org/2000/svg" width="1200" height="760" viewBox="0 0 1200 760" role="img" aria-label="フォークランド諸島の東西の主島と周辺の島々、首府スタンリーとHero・8景の実座標" data-map-projection="local-equirectangular-fit-v1" data-map-style="journey-atlas-map-v3-clean"><title>FALKLAND ISLANDS — Coastline and Scenes</title><desc>GSHHG v2.3.7: 56 separate coastline rings. True WGS84 point anchors (including Stanley capital at 51.69382 S, 57.85701 W; GeoNames ID 3426691), fitted local-equirectangular projection matching Region page overlay. Numbered callouts may be offset; no geographic coordinates are moved.</desc>
 <metadata>{"source": "GSHHG intermediate-resolution shoreline packaged with Matplotlib Basemap; Wessel &amp; Smith, NOAA/University of Hawaii", "version": "GSHHG v2.3.7", "license": "GNU LGPL for GSHHG v2.3.7", "sourceURL": "https://www.ngdc.noaa.gov/mgg/shorelines/shorelines.html", "checked": "2026-11-12", "coastlinePolygons": 56, "coordinateReferenceSystem": "WGS84 / local-equirectangular-fit-v1", "projectedBounds": {"west": -61.8, "east": -57.2, "south": -53.08, "north": -50.77}}</metadata><defs><linearGradient id="sea" x1="0" y1="0" x2="0" y2="1"><stop offset="0" stop-color="#dce9eb"/><stop offset="1" stop-color="#edf1e9"/></linearGradient><linearGradient id="land" x1="0" y1="0" x2="0" y2="1"><stop stop-color="#e9dcae"/><stop offset="1" stop-color="#c8c894"/></linearGradient><filter id="shadow"><feDropShadow dx="0" dy="1" stdDeviation="2" flood-color="#6e8390" flood-opacity=".24"/></filter></defs>
 <rect width="1200" height="760" fill="url(#sea)"/>
 <g id="gshhg-land" fill="url(#land)" stroke="#31576a" stroke-width="1.55" stroke-linejoin="round" filter="url(#shadow)">
@@ -63,10 +63,6 @@
 <path d="M 465.304,366.132 L462.754,355.271 L472.208,365.919 L465.941,366.664 L465.304,366.132 Z"/>
 <path d="M 433.223,389.343 L429.611,379.441 L438.109,383.806 L433.860,389.556 L433.223,389.343 Z"/>
 </g>
-<g font-family="Arial, sans-serif" fill="#405a62" font-size="20" font-weight="700" letter-spacing="2.0">
-<text x="452.344" y="387.746" text-anchor="middle" fill="#48645e" font-size="17" letter-spacing="1">WEST FALKLAND</text>
-<text x="769.964" y="417.559" text-anchor="middle" fill="#48645e" font-size="17" letter-spacing="1">EAST FALKLAND</text>
-</g>
 <g id="hero-marker" data-latitude="-51.471100" data-longitude="-57.845000" data-x="935.79037" data-y="230.66494">
 <circle cx="935.79037" cy="230.66494" r="13.5" fill="#fff" opacity=".92"/><circle cx="935.79037" cy="230.66494" r="11.5" fill="#a66f45" stroke="#fff"/><text x="935.79037" y="234.86494" text-anchor="middle" fill="#fff" font-size="12" font-weight="bold" font-family="Arial,sans-serif">H</text></g>
 <g id="scene-marker-1" data-latitude="-51.692210" data-longitude="-57.858570" data-x="933.03710" data-y="303.41108" data-label-x="896.03710" data-label-y="341.41108"><circle cx="933.03710" cy="303.41108" r="4.2" fill="#275f70" stroke="#fff" stroke-width="1.5"/><path d="M933.03710,303.41108 L896.03710,341.41108" fill="none" stroke="#587782" stroke-width="1.2" stroke-dasharray="3 3"/><circle cx="896.03710" cy="341.41108" r="13.5" fill="#fff" opacity=".92"/><circle cx="896.03710" cy="341.41108" r="11.5" fill="#275f70" stroke="#fff" stroke-width="1.5"/><text x="896.03710" y="345.61108" text-anchor="middle" fill="#fff" font-size="12" font-weight="bold" font-family="Arial,sans-serif">01</text></g>
@@ -81,5 +77,11 @@
 <circle cx="595.74530" cy="276.69593" r="13.5" fill="#fff" opacity=".92"/><circle cx="595.74530" cy="276.69593" r="11.5" fill="#275f70" stroke="#fff" stroke-width="1.5"/><text x="595.74530" y="280.89593" text-anchor="middle" fill="#fff" font-size="12" font-weight="bold" font-family="Arial,sans-serif">07</text></g>
 <g id="scene-marker-8" data-latitude="-51.316670" data-longitude="-59.500000" data-x="600.00000" data-y="179.85680">
 <circle cx="600.00000" cy="179.85680" r="13.5" fill="#fff" opacity=".92"/><circle cx="600.00000" cy="179.85680" r="11.5" fill="#275f70" stroke="#fff" stroke-width="1.5"/><text x="600.00000" y="184.05680" text-anchor="middle" fill="#fff" font-size="12" font-weight="bold" font-family="Arial,sans-serif">08</text></g>
-
+<g id="capital-stanley" data-latitude="-51.69382" data-longitude="-57.85701" data-x="933.35362" data-y="303.94078" aria-label="首府スタンリー：南緯51.69382度、西経57.85701度">
+  <path d="M933.35362,303.94078 L908,289" fill="none" stroke="#785c48" stroke-width="1.2" stroke-linecap="round"/>
+  <circle cx="933.35362" cy="303.94078" r="5.8" fill="#fff" stroke="#785c48" stroke-width="1.2"/>
+  <circle cx="933.35362" cy="303.94078" r="2.8" fill="#9b604a"/>
+  <text x="903" y="278" text-anchor="end" font-family="Arial,sans-serif" font-size="14" font-weight="700" fill="#314d58" stroke="#edf1e9" stroke-width="3" paint-order="stroke">STANLEY</text>
+  <text x="903" y="292" text-anchor="end" font-family="Noto Sans CJK JP,Arial,sans-serif" font-size="11.5" fill="#48636b" stroke="#edf1e9" stroke-width="2" paint-order="stroke">首府</text>
+</g>
 </svg>
