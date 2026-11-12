@@ -332,6 +332,19 @@
         "海の魚と持ち込まれた香辛料が一つの食卓に並ぶ"
       ],
       "sourceKey": "food"
+    },
+    {
+      "topicKey": "flax-era",
+      "themeEn": "HISTORY",
+      "themeJa": "島の産業",
+      "icon": "history",
+      "title": "山の斜面に残る亜麻が、かつての産業を語る",
+      "text": "20世紀前半から1960年代にかけて、セントヘレナではニュージーランド原産の植物を使う繊維産業が島の経済を支えた。製糸場が閉じた後も斜面に亜麻が残り、いまは固有の森を回復するための管理対象にもなっている。",
+      "points": [
+        "1907年に政府の亜麻加工場が開かれ、繊維はロープなどに使われた",
+        "産業の終了後も残る植物は、固有種を取り戻す取り組みと関わる"
+      ],
+      "sourceKey": "flaxHistory"
     }
   ],
   "taste": {
@@ -409,6 +422,15 @@
       "title": "定期旅客便が始まったのは2017年",
       "text": "長く船での到着が基本だった島に、2017年から定期商業航空便が就航した。海だけに開かれていた島の旅が変わった。",
       "sourceKey": "travel"
+    },
+    {
+      "topicKey": "island-postage-stamps",
+      "categoryEn": "POSTAGE",
+      "categoryJa": "島の切手",
+      "icon": "culture",
+      "title": "島の固有種や歴史が、切手になる",
+      "text": "セントヘレナでは島独自の切手が発行されてきた。固有の動植物や歴史的な出来事を題材にした図柄は、遠い島の文化を世界へ伝える小さな窓でもある。",
+      "sourceKey": "stamps"
     }
   ],
   "forWhom": [
@@ -523,20 +545,8 @@
       "flights"
     ]
   },
-  "nextRoutesIntro": "空路で南アフリカへ戻り、大陸の風景へ旅をつなぐ。出発日・乗継・天候の余裕を持って計画する。",
-  "nextRoutes": [
-    {
-      "countryEn": "SOUTH AFRICA",
-      "countryJa": "南アフリカ",
-      "flag": "🇿🇦",
-      "path": "St Helena → Johannesburg / Cape Town (seasonal)",
-      "description": "ヨハネスブルグへの定期便が基本。ケープタウン便は公表された季節運航期間を確認する。",
-      "href": "countries/southafrica/",
-      "travelerRoute": true,
-      "status": "OPEN",
-      "sourceKey": "flights"
-    }
-  ],
+  "nextRoutesIntro": "",
+  "nextRoutes": [],
   "relatedCountries": [
     {
       "nameJa": "南アフリカ",
@@ -552,6 +562,14 @@
       "href": "countries/namibia/",
       "flag": "🇳🇦",
       "reason": "大西洋の乾いた海岸と岩の地形を別の大陸側から見比べる。",
+      "affinityType": "LANDSCAPE"
+    },
+    {
+      "nameJa": "ポルトガル",
+      "nameEn": "PORTUGAL",
+      "href": "countries/portugal/",
+      "flag": "🇵🇹",
+      "reason": "アゾレス諸島やマデイラ島と、大西洋に浮かぶ島の景観を見比べる。",
       "affinityType": "LANDSCAPE"
     }
   ],
@@ -601,6 +619,8 @@
     "mapCoast": "https://github.com/weni-ai/mapzen-extracts/blob/main/saint_helena%2C_ascension_and_tristan_da_cunha/admin_level_1.json",
     "mapLicense": "https://www.openstreetmap.org/copyright",
     "japanArea": "https://www.gsi.go.jp/KOKUJYOHO/MENCHO-title.htm",
-    "currency": "https://www.sainthelena.gov.sh/st-helena/visiting/"
+    "currency": "https://www.sainthelena.gov.sh/st-helena/visiting/",
+    "flaxHistory": "https://www.friendsofsthelena.com/upload/files/Colonial_Annual_Report_1929.pdf",
+    "stamps": "https://www.sainthelena.gov.sh/public-services/coins-and-stamps/"
   }
 }
