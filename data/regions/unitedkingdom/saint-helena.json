@@ -1,0 +1,606 @@
+{
+  "schemaVersion": 1,
+  "contentQaVersion": 6,
+  "parentSlug": "unitedkingdom",
+  "slug": "saint-helena",
+  "regionPublished": false,
+  "nameEn": "SAINT HELENA",
+  "nameJa": "セントヘレナ",
+  "region": "SOUTH ATLANTIC / 16°S",
+  "parentNameJa": "イギリス",
+  "parentNameEn": "UNITED KINGDOM",
+  "parentReturnDescription": "英国と海外領土・王室属領の島々から旅を広げる",
+  "travelThemes": [
+    "地球の風景",
+    "時をたどる",
+    "野生に会う"
+  ],
+  "seo": {
+    "description": "南大西洋のセントヘレナ島。ジェームズタウンの階段、ナポレオンの流刑地、火山性の海岸、固有の森と食文化を8景と地図で巡る。"
+  },
+  "hero": {
+    "name": "ジェームズタウンとジェイコブズ・ラダー",
+    "location": "Jacob’s Ladder / Jamestown",
+    "image": "assets/images/unitedkingdom/saint-helena/approved/hero-jamestown-jacobs-ladder.webp",
+    "coordinates": {
+      "latitude": -15.926374,
+      "longitude": -5.720189
+    },
+    "lead": "南大西洋に浮かぶセントヘレナ島。港町ジェームズタウンは険しい火山性の谷に細長く伸び、699段の階段が町と丘の上を結ぶ。海沿いの乾いた崖から、島の奥の湿った森へ。孤立した島の風景に、人々が築いてきた道と記憶が重なる。",
+    "description": "ラダー・ヒルの上端から、急階段が降りてゆく谷とジェームズタウン、ジェームズ湾を見下ろす。",
+    "sceneTypes": [
+      "harbor",
+      "canyon"
+    ],
+    "sourceKey": "jacobsLadder"
+  },
+  "profile": [
+    {
+      "label": "中心都市",
+      "value": "ジェームズタウン",
+      "sourceKey": "history"
+    },
+    {
+      "label": "人口",
+      "value": "3,980人（2025年6月末、島内居住者）",
+      "sourceKey": "population"
+    },
+    {
+      "label": "面積",
+      "value": "約122km²（日本の約0.032%）",
+      "sourceKeys": [
+        "area",
+        "japanArea"
+      ]
+    },
+    {
+      "label": "言語",
+      "value": "英語（公用語）。島独自の英語の話し方がある",
+      "sourceKey": "territoryStatus"
+    },
+    {
+      "label": "主な宗教",
+      "value": "キリスト教（聖公会など）",
+      "sourceKey": "territoryStatus"
+    },
+    {
+      "label": "通貨",
+      "value": "セントヘレナ・ポンド（英ポンドと等価）",
+      "sourceKey": "currency"
+    }
+  ],
+  "historyContext": {
+    "text": "セントヘレナ島は英国海外領土「セントヘレナ・アセンションおよびトリスタンダクーニャ」を構成する島の一つ。これらは同じ海外領土に属するが、地理的に離れた別々の島・島群である。セントヘレナ島には独自の統治制度があり、英国は防衛・外交などを担う。",
+    "sourceKeys": [
+      "territoryStatus",
+      "history"
+    ]
+  },
+  "map": {
+    "svg": "assets/images/unitedkingdom/saint-helena/map-saint-helena.svg",
+    "bounds": {
+      "west": -5.81,
+      "east": -5.62,
+      "south": -16.04,
+      "north": -15.89
+    },
+    "singleMapMobile": true,
+    "source": "High-detail Saint Helena island coastline obtained as the geometric union of 8 St Helena island district boundaries in amCharts 5 geodata saintHelenaHigh (excluding Ascension, Tristan da Cunha), geometrically simplified to 296 source-derived vertices at ~40m tolerance; 5 true source offshore islets retained. amCharts CC BY 4.0, https://amcharts.com/svg-maps/saint-helena/ ; source https://github.com/amcharts/amcharts5-dist/blob/main/geodata/saintHelenaHigh.js ; checked 2026-11-12. No fictional coastline. WGS84, local equirectangular projection."
+  },
+  "scenes": [
+    {
+      "id": "dianas-peak",
+      "name": "ダイアナズ・ピーク国立公園",
+      "nameLocal": "Diana’s Peak National Park",
+      "description": "島の最高峰へ続く細い尾根道。霧に包まれる固有植物の森から、乾いた海岸とは異なる高地の世界を眺める。",
+      "coordinates": {
+        "latitude": -15.972598,
+        "longitude": -5.700262
+      },
+      "image": "assets/images/unitedkingdom/saint-helena/approved/scene-01-dianas-peak.webp",
+      "sceneTypes": [
+        "peak",
+        "forest"
+      ],
+      "sourceKey": "conservation"
+    },
+    {
+      "id": "longwood-house",
+      "name": "ロングウッド・ハウス",
+      "nameLocal": "Longwood House",
+      "description": "ナポレオンが流刑期を過ごした住居。平屋を中心とする白い建物と緑のベランダ、その前に広がる庭に当時の記憶が残る。",
+      "coordinates": {
+        "latitude": -15.94996,
+        "longitude": -5.68304
+      },
+      "image": "assets/images/unitedkingdom/saint-helena/approved/scene-02-longwood-house.webp",
+      "sceneTypes": [
+        "palace",
+        "garden"
+      ],
+      "sourceKey": "napoleon"
+    },
+    {
+      "id": "high-knoll-fort",
+      "name": "ハイ・ノール要塞",
+      "nameLocal": "High Knoll Fort",
+      "description": "島の防衛を担った丘上の石造要塞。石積みの塔と長い防御壁の向こうに、乾いた谷と大西洋が広がる。",
+      "coordinates": {
+        "latitude": -15.94378,
+        "longitude": -5.71674
+      },
+      "image": "assets/images/unitedkingdom/saint-helena/approved/scene-03-high-knoll-fort.webp",
+      "sceneTypes": [
+        "castle",
+        "highland"
+      ],
+      "sourceKey": "highKnoll"
+    },
+    {
+      "id": "sandy-bay",
+      "name": "サンディ湾",
+      "nameLocal": "Sandy Bay",
+      "description": "南岸の火山性の湾。暗い砂と黒い岩、急斜面の奥へ延びる緑の谷が、島の地形の起伏を伝える。",
+      "coordinates": {
+        "latitude": -16.004002,
+        "longitude": -5.714604
+      },
+      "image": "assets/images/unitedkingdom/saint-helena/approved/scene-04-sandy-bay.webp",
+      "sceneTypes": [
+        "beach",
+        "rock"
+      ],
+      "sourceKey": "sandyBay"
+    },
+    {
+      "id": "heart-shaped-waterfall",
+      "name": "ハート・シェイプド滝",
+      "nameLocal": "Heart Shaped Waterfall",
+      "description": "乾いた玄武岩の崖に、自然がつくったハート形のくぼみ。雨量に応じて細い水が落ちる季節の滝。",
+      "coordinates": {
+        "latitude": -15.9483,
+        "longitude": -5.71559
+      },
+      "image": "assets/images/unitedkingdom/saint-helena/approved/scene-05-heart-shaped-waterfall.webp",
+      "sceneTypes": [
+        "waterfall",
+        "rock"
+      ],
+      "sourceKey": "waterfall"
+    },
+    {
+      "id": "plantation-house",
+      "name": "プランテーション・ハウス",
+      "nameLocal": "Plantation House",
+      "description": "東インド会社時代に建てられた白いジョージアン様式の邸宅。現在の総督公邸の庭には長寿のゾウガメも暮らす。",
+      "coordinates": {
+        "latitude": -15.955579,
+        "longitude": -5.720813
+      },
+      "image": "assets/images/unitedkingdom/saint-helena/approved/scene-06-plantation-house.webp",
+      "sceneTypes": [
+        "palace",
+        "garden"
+      ],
+      "sourceKey": "plantation"
+    },
+    {
+      "id": "napoleons-tomb",
+      "name": "ナポレオンの墓所",
+      "nameLocal": "Napoleon’s Tomb",
+      "description": "木立の静かな谷に残る、ナポレオンが一時埋葬された場所。簡素な石と鉄柵が歴史の重さを伝える。",
+      "coordinates": {
+        "latitude": -15.95828,
+        "longitude": -5.69816
+      },
+      "image": "assets/images/unitedkingdom/saint-helena/approved/scene-07-napoleons-tomb.webp",
+      "sceneTypes": [
+        "tomb",
+        "forest"
+      ],
+      "sourceKey": "tomb"
+    },
+    {
+      "id": "millennium-forest",
+      "name": "ミレニアム・フォレスト",
+      "nameLocal": "Millennium Forest",
+      "description": "かつて固有林が失われた乾いた丘に、ガムウッドなどの固有樹を植え直す長期の森林再生プロジェクト。",
+      "coordinates": {
+        "latitude": -15.94304,
+        "longitude": -5.66793
+      },
+      "image": "assets/images/unitedkingdom/saint-helena/approved/scene-08-millennium-forest.webp",
+      "sceneTypes": [
+        "forest"
+      ],
+      "sourceKey": "forest"
+    }
+  ],
+  "signatureFacts": [
+    {
+      "topicKey": "jacobs-ladder-steps",
+      "label": "崖を登る石段",
+      "value": "699段",
+      "note": "1829年に傾斜鉄道として設けられたルートが、今はジェームズタウンとラダー・ヒルをつなぐ急階段になっている。",
+      "icon": "history",
+      "sourceKey": "jacobsLadder",
+      "interestReason": "平地の少ない島で、人が高低差をどのように越えてきたかを実感できる。"
+    },
+    {
+      "topicKey": "highest-peak",
+      "label": "島の最高地点",
+      "value": "約820m",
+      "note": "ダイアナズ・ピーク付近の高地は湿潤な雲霧林。低地の乾いた谷や海岸とは、短い移動で景観が変わる。",
+      "icon": "landscape",
+      "sourceKey": "area",
+      "interestReason": "小さな火山島に乾燥地と湿潤な山地が共存している。"
+    },
+    {
+      "topicKey": "distance-to-mainland",
+      "label": "アフリカ大陸から",
+      "value": "約1,900km",
+      "note": "南大西洋の孤立した島。空路が開かれる以前、海上交通が旅と物資を支えてきた。",
+      "icon": "globe",
+      "sourceKey": "area",
+      "interestReason": "島の風景だけでは想像しにくい隔絶性を距離で捉えられる。"
+    }
+  ],
+  "encounters": [
+    {
+      "title": "699段の先で港町を見下ろす",
+      "icon": "history",
+      "category": "LANDSCAPE"
+    },
+    {
+      "title": "霧の稜線で固有の植物に出会う",
+      "icon": "leaf",
+      "category": "NATURE"
+    },
+    {
+      "title": "南岸の黒い砂と火山岩を歩く",
+      "icon": "sea",
+      "category": "LANDSCAPE"
+    },
+    {
+      "title": "森を育て直す人々の営みに触れる",
+      "icon": "leaf",
+      "category": "DAILY_LIFE"
+    }
+  ],
+  "culture": [
+    {
+      "topicKey": "napoleon-exile",
+      "themeEn": "HISTORY",
+      "themeJa": "流刑の島",
+      "icon": "history",
+      "title": "皇帝の最後の6年が、島の歴史に残る",
+      "text": "ナポレオンは1815年にセントヘレナへ送られ、1821年にこの島で亡くなった。ロングウッドの住居と墓所には、遠く離れた島がヨーロッパ史の舞台になった時間が残る。",
+      "points": [
+        "ロングウッド・ハウスには流刑期の生活の痕跡がある",
+        "墓所は1840年の遺骸移送後も歴史を伝える場所として残る"
+      ],
+      "sourceKey": "napoleon"
+    },
+    {
+      "topicKey": "east-india-company",
+      "themeEn": "HISTORY",
+      "themeJa": "海上交易の拠点",
+      "icon": "history",
+      "title": "船が立ち寄る島として、街と要塞が築かれた",
+      "text": "セントヘレナは17世紀から東インド会社の航路を支える寄港地となり、ジェームズタウンや島内の防御施設が整えられた。山の中の街にも大洋を横断した交易の歴史がある。",
+      "points": [
+        "ジェームズタウンは天然の谷と港を利用して築かれた",
+        "高地の砦は海上交通を守るための防衛の歴史を物語る"
+      ],
+      "sourceKey": "history"
+    },
+    {
+      "topicKey": "liberated-africans",
+      "themeEn": "MEMORY",
+      "themeJa": "海の記憶",
+      "icon": "culture",
+      "title": "奴隷貿易の終焉を、島の記憶として考える",
+      "text": "19世紀、英国海軍が奴隷船から解放したアフリカ人が島へ運ばれた。ルパーツ・バレーには移送された人々の埋葬地があり、島の歴史は単なる寄港地の物語では終わらない。",
+      "points": [
+        "多くの人が過酷な航海と保護の過程で命を落とした",
+        "今日も記憶の継承と調査が続いている"
+      ],
+      "sourceKey": "history"
+    },
+    {
+      "topicKey": "endemic-forest-restoration",
+      "themeEn": "NATURE",
+      "themeJa": "生態系を取り戻す",
+      "icon": "leaf",
+      "title": "かつての森を、一本ずつ再び育てる",
+      "text": "人の移住後に大きく失われた固有林を回復するため、ミレニアム・フォレストではガムウッドなどの植栽が続く。大きな森林だけでなく、小さな苗木にも未来の島の姿がある。",
+      "points": [
+        "かつてのグレート・ウッドの一部で植栽が進む",
+        "固有種保全は高地の雲霧林でも重要な課題"
+      ],
+      "sourceKey": "forest"
+    },
+    {
+      "topicKey": "saints-cuisine",
+      "themeEn": "LIFE",
+      "themeJa": "島の食卓",
+      "icon": "food",
+      "title": "遠い土地から伝わった味が、家庭料理になる",
+      "text": "魚のケーキ、カレー風味の米料理、ココナッツの菓子。限られた食材を工夫してきた島の暮らしには、航路を通じて交わった食文化が感じられる。",
+      "points": [
+        "地元で「Saints」と呼ばれる人々の家庭料理を味わう",
+        "海の魚と持ち込まれた香辛料が一つの食卓に並ぶ"
+      ],
+      "sourceKey": "food"
+    }
+  ],
+  "taste": {
+    "title": "セントヘレナで食べたいもの",
+    "kicker": "TASTE OF SAINT HELENA",
+    "intro": "魚とジャガイモの揚げ焼き、スパイスの米料理、ココナッツのケーキ、果実入りのプディング。南大西洋の島の家庭料理を4皿で知る。",
+    "items": [
+      {
+        "id": "fishcakes",
+        "name": "セントヘレナ・フィッシュケーキ",
+        "nameLocal": "Saint Helena Fishcakes",
+        "text": "魚とジャガイモ、香味野菜を合わせて小判形にまとめ、表面をこんがり焼く・揚げる。島の定番のおかず。",
+        "image": "assets/images/unitedkingdom/saint-helena/approved/food-01-fishcakes.webp",
+        "sourceKey": "fishcakes"
+      },
+      {
+        "id": "plo",
+        "name": "プロ",
+        "nameLocal": "Plo",
+        "text": "米、肉、ジャガイモ、野菜をスパイスで炊き込む一鍋料理。家庭によって具材の組み合わせが変わる。",
+        "image": "assets/images/unitedkingdom/saint-helena/approved/food-02-plo.webp",
+        "sourceKey": "plo"
+      },
+      {
+        "id": "coconut-fingers",
+        "name": "ココナッツ・フィンガーズ",
+        "nameLocal": "Coconut Fingers",
+        "text": "細長いスポンジケーキをピンク色のアイシングに浸し、ココナッツで包む甘い菓子。",
+        "image": "assets/images/unitedkingdom/saint-helena/approved/food-03-coconut-fingers.webp",
+        "sourceKey": "coconutFingers"
+      },
+      {
+        "id": "boiled-pudding",
+        "name": "ボイルド・プディング",
+        "nameLocal": "Boiled Pudding",
+        "text": "ドライフルーツとスパイス入りの生地を布に包んで蒸し煮にする。濃い茶色の生地を厚く切って味わう。",
+        "image": "assets/images/unitedkingdom/saint-helena/approved/food-04-boiled-pudding.webp",
+        "sourceKey": "boiledPudding"
+      }
+    ]
+  },
+  "travelTrivia": [
+    {
+      "topicKey": "jonathan-tortoise",
+      "categoryEn": "WILDLIFE",
+      "categoryJa": "長寿の住人",
+      "icon": "wildlife",
+      "title": "世界的な長寿のゾウガメが暮らす",
+      "text": "総督公邸の庭では、19世紀から島に暮らすゾウガメのジョナサンが知られる。人間よりはるかに長い時間をこの島で過ごしてきた。",
+      "sourceKey": "jonathan"
+    },
+    {
+      "topicKey": "wirebird-name",
+      "categoryEn": "WILDLIFE",
+      "categoryJa": "島の鳥",
+      "icon": "wildlife",
+      "title": "ワイヤーバードは、この島だけのチドリ",
+      "text": "細い脚を持つ固有のセントヘレナチドリは、ワイヤーバードの愛称で知られる。森ではなく草地を歩く姿を見つけたい。",
+      "sourceKey": "wirebird"
+    },
+    {
+      "topicKey": "coffee",
+      "categoryEn": "FOOD",
+      "categoryJa": "豆の旅",
+      "icon": "food",
+      "title": "コーヒーの原点は18世紀の島への持ち込み",
+      "text": "遠い島で栽培されるセントヘレナのコーヒーは、18世紀に持ち込まれたアラビカ種に由来する。島の風土と距離が味の物語をつくる。",
+      "sourceKey": "coffee"
+    },
+    {
+      "topicKey": "first-atlantic-flight",
+      "categoryEn": "ACCESS",
+      "categoryJa": "空の玄関",
+      "icon": "map",
+      "title": "定期旅客便が始まったのは2017年",
+      "text": "長く船での到着が基本だった島に、2017年から定期商業航空便が就航した。海だけに開かれていた島の旅が変わった。",
+      "sourceKey": "travel"
+    }
+  ],
+  "forWhom": [
+    {
+      "title": "海岸と高地の落差を歩いて確かめたい人",
+      "text": "ジェームズタウンの乾いた崖、南岸の火山地形、中央の雲霧林と、島の景観の変化をたどりたい人。"
+    },
+    {
+      "title": "ナポレオンと大西洋の歴史を知りたい人",
+      "text": "住居と墓所だけでなく交易と植民地支配の記憶を読み解きたい人。"
+    },
+    {
+      "title": "静かな島で長く過ごしたい人",
+      "text": "便数の少なさを踏まえて滞在を組み、固有の自然や島の暮らしにゆっくり触れたい人。"
+    }
+  ],
+  "notes": [
+    {
+      "title": "航空便は週1便を基本に、予備日を考える",
+      "text": "定期便はヨハネスブルグとの週末便が基本。天候・運航条件により変更されるため、往復便と宿泊に余裕を持たせたい。",
+      "sourceKey": "flights"
+    },
+    {
+      "title": "移動は距離よりも急坂を意識する",
+      "text": "島内の道は細く曲がりくねり、急な坂道もある。バスの運行状況とレンタカー・タクシーの利用条件を事前に確認したい。",
+      "sourceKey": "travel"
+    },
+    {
+      "title": "滝と高地の歩道は天候に左右される",
+      "text": "ハート・シェイプド滝の流量は季節・降雨によって変わる。高地は霧や強風、ぬかるみに備え、当日の現地案内を優先する。",
+      "sourceKey": "waterfall"
+    },
+    {
+      "title": "入島条件と保険を公式案内で確認する",
+      "text": "入国許可、滞在費、医療保険などの要件は変更され得る。出発前に政府の最新の訪問条件を確認する。",
+      "sourceKey": "entry"
+    }
+  ],
+  "travelScale": {
+    "kicker": "DURATION",
+    "title": "旅の目安日程",
+    "intro": "島の航空アクセスを踏まえ、約1週間の滞在を基本とする編集上の例。ジェームズタウンを拠点に、東・南・中央高地を日別に巡る。",
+    "items": [
+      {
+        "duration": "3〜4日",
+        "title": "歴史の島に触れる短期滞在",
+        "icon": "history",
+        "text": "実際の航空便接続が確保できる場合の短い滞在。例：ジェームズタウン → ジェイコブズ・ラダー → ロングウッド・ハウス → ナポレオンの墓所 → ジェームズタウン。"
+      },
+      {
+        "duration": "約1週間",
+        "title": "海岸から雲霧林まで巡る",
+        "icon": "map",
+        "text": "ジェームズタウンを拠点に、歴史遺産と山歩き、南岸の谷、森林再生地を日ごとに分ける。例：ジェームズタウン → サンディ湾 → ダイアナズ・ピーク → ミレニアム・フォレスト → ジェームズタウン。"
+      },
+      {
+        "duration": "10日以上",
+        "title": "天候に合わせて島の暮らしを知る",
+        "icon": "compass",
+        "text": "余裕を持ち、悪天候で予定を替えながら歴史遺産、海辺、村、保全活動をゆっくり訪ねる。例：ジェームズタウン → セント・ポール地区 → ロングウッド → 北東部 → ジェームズタウン。"
+      }
+    ]
+  },
+  "bestSeason": {
+    "windows": [
+      {
+        "label": "12〜3月",
+        "reason": "南半球の暖かい季節。沿岸散策と海の活動を計画しやすいが、日差しや海況に注意したい。"
+      },
+      {
+        "label": "5〜9月",
+        "reason": "高地に雨・霧が現れやすい季節。滝や緑の景観を楽しみつつ、強風とぬかるみに備える。"
+      }
+    ]
+  },
+  "seasons": [
+    {
+      "months": "12〜2月",
+      "label": "夏",
+      "icon": "sun",
+      "color": "#92a253",
+      "text": "海辺が比較的暖かい季節。日差しと海況に注意し、島内の涼しい高地との気候差を感じたい。"
+    },
+    {
+      "months": "3〜5月",
+      "label": "秋",
+      "icon": "leaf",
+      "color": "#73966f",
+      "text": "沿岸と高地の気温差が残る。雨や雲が増える日もあり、歩道と景色は天候に合わせて選ぶ。"
+    },
+    {
+      "months": "6〜8月",
+      "label": "冬",
+      "icon": "weather",
+      "color": "#6b90a5",
+      "text": "島内でも高地はひんやり湿り、風や霧が多い。滝や山の植物を訪ねる日は足元に注意。"
+    },
+    {
+      "months": "9〜11月",
+      "label": "春",
+      "icon": "leaf",
+      "color": "#b77a49",
+      "text": "春に向けて日が長くなり、歩く旅を組みやすくなる。気温と海の条件は地点によって異なる。"
+    }
+  ],
+  "transport": {
+    "icon": "map",
+    "title": "南アフリカとの定期便、島内は道路交通",
+    "text": "ヨハネスブルグとの週末のAirlink便が基本。2026年12月中旬〜2027年3月中旬はケープタウンとの季節火曜便が発表されている。島内ではレンタカー、タクシー、路線バスを状況に合わせて使う。",
+    "sourceKeys": [
+      "travel",
+      "flights"
+    ]
+  },
+  "nextRoutesIntro": "空路で南アフリカへ戻り、大陸の風景へ旅をつなぐ。出発日・乗継・天候の余裕を持って計画する。",
+  "nextRoutes": [
+    {
+      "countryEn": "SOUTH AFRICA",
+      "countryJa": "南アフリカ",
+      "flag": "🇿🇦",
+      "path": "St Helena → Johannesburg / Cape Town (seasonal)",
+      "description": "ヨハネスブルグへの定期便が基本。ケープタウン便は公表された季節運航期間を確認する。",
+      "href": "countries/southafrica/",
+      "travelerRoute": true,
+      "status": "OPEN",
+      "sourceKey": "flights"
+    }
+  ],
+  "relatedCountries": [
+    {
+      "nameJa": "南アフリカ",
+      "nameEn": "SOUTH AFRICA",
+      "href": "countries/southafrica/",
+      "flag": "🇿🇦",
+      "reason": "空路の結節点から、南部アフリカの旅へ。",
+      "affinityType": "LANDSCAPE"
+    },
+    {
+      "nameJa": "ナミビア",
+      "nameEn": "NAMIBIA",
+      "href": "countries/namibia/",
+      "flag": "🇳🇦",
+      "reason": "大西洋の乾いた海岸と岩の地形を別の大陸側から見比べる。",
+      "affinityType": "LANDSCAPE"
+    }
+  ],
+  "nextRegion": {
+    "slug": "jersey",
+    "nameEn": "JERSEY",
+    "nameJa": "ジャージー"
+  },
+  "sourcesVerifiedAt": "2026-11-12",
+  "updatedAt": "2026-11-12",
+  "sourceDates": {
+    "population": "end June 2025 island resident on-island 3,980, SHG statistics page accessed 2026-11-12",
+    "area": "2023 Government Marine Management Plan: island land area 122 km²; Japan area GSI government; comparison rounded",
+    "japanArea": "Geospatial Information Authority of Japan national area, approximate comparison",
+    "status": "UK Overseas Territory administered separately; checked 2026-11-12",
+    "transport": "SHG 2025-11-06 timetable announcement through March 2027; checked 2026-11-12",
+    "seasons": "Editorial seasonal summary, checked 2026-11-12",
+    "map": "2026-11-12: amCharts high-detail Saint Helena districts union, the coastline vectors are not a survey of 2026 conditions"
+  },
+  "sources": {
+    "population": "https://www.sainthelena.gov.sh/st-helena/statistics/",
+    "area": "https://www.sainthelena.gov.sh/wp-content/uploads/2023/06/EX-GAZ-31-Management-Plan-for-Marine-Protected-Area.pdf",
+    "territoryStatus": "https://www.gov.uk/government/world/organisations/government-of-st-helena",
+    "history": "https://www.sainthelena.gov.sh/st-helena/history-and-heritage/",
+    "heritage": "https://www.sainthelena.gov.sh/st-helena/history-and-heritage/",
+    "jacobsLadder": "https://www.uk-sthelenaheritagetrust.org/jacobs-ladder",
+    "napoleon": "https://fondationnapoleon.org/en/activities-and-services/preserving-heritage/operation-st-helena/",
+    "conservation": "https://www.sainthelena.gov.sh/app/uploads/2026/01/Appendix-3-NCAs-2.pdf",
+    "sandyBay": "https://commons.wikimedia.org/wiki/Category:Sandy_Bay,_Saint_Helena",
+    "waterfall": "https://www.sainthelena.gov.sh/app/uploads/2026/01/Appendix-3-NCAs-2.pdf",
+    "plantation": "https://www.sainthelena.gov.sh/app/uploads/2026/01/Appendix-3-NCAs-2.pdf",
+    "highKnoll": "https://www.sainthelena.gov.sh/app/uploads/2026/01/Appendix-3-NCAs-2.pdf",
+    "forest": "https://www.sainthelena.gov.sh/app/uploads/2026/01/Appendix-3-NCAs-2.pdf",
+    "tomb": "https://www.sainthelena.gov.sh/app/uploads/2026/01/Appendix-3-NCAs-2.pdf",
+    "dianasPeak": "https://www.sainthelena.gov.sh/wp-content/uploads/2023/06/EX-GAZ-31-Management-Plan-for-Marine-Protected-Area.pdf",
+    "travel": "https://www.sainthelena.gov.sh/st-helena/visiting/",
+    "flights": "https://www.sainthelena.gov.sh/airlink-flight-schedule-to-march-2027-announced/",
+    "entry": "https://www.sainthelena.gov.sh/st-helena/entry-requirements/",
+    "food": "https://www.saintcooks.com/st-helena-recipes",
+    "fishcakes": "https://www.saintcooks.com/st-helena-recipes",
+    "plo": "https://www.saintcooks.com/st-helena-recipes",
+    "coconutFingers": "https://www.saintcooks.com/st-helena-island-recipes/st-helena-coconut-fingers",
+    "boiledPudding": "https://www.saintcooks.com/st-helena-island-recipes/boiled-pudding",
+    "jonathan": "https://www.sainthelena.gov.sh/st-helena/history-and-heritage/",
+    "wirebird": "https://www.sainthelena.gov.sh/app/uploads/2026/01/Appendix-3-NCAs-2.pdf",
+    "coffee": "https://www.st-helena-coffee.com/",
+    "mapCoast": "https://github.com/amcharts/amcharts5-dist/blob/main/geodata/saintHelenaHigh.js",
+    "mapLicense": "https://amcharts.com/svg-maps/saint-helena/",
+    "japanArea": "https://www.gsi.go.jp/KOKUJYOHO/MENCHO-title.htm",
+    "currency": "https://www.sainthelena.gov.sh/st-helena/visiting/"
+  }
+}
