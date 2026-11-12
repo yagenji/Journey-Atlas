@@ -1,0 +1,638 @@
+{
+  "schemaVersion": 1,
+  "contentQaVersion": 6,
+  "parentSlug": "unitedkingdom",
+  "slug": "isle-of-man",
+  "regionPublished": false,
+  "nameEn": "ISLE OF MAN",
+  "nameJa": "マン島",
+  "region": "NORTHERN EUROPE / 54°N",
+  "parentNameJa": "イギリス",
+  "parentNameEn": "UNITED KINGDOM",
+  "parentReturnDescription": "英国と王室属領の島々から旅を広げる",
+  "travelThemes": [
+    "地球の風景",
+    "時をたどる",
+    "道の先へ"
+  ],
+  "seo": {
+    "description": "英国王室属領マン島。ピール城、ラクシー水車、スネーフェル山、茅葺き集落、海峡と電気鉄道を8景と地図で巡る。"
+  },
+  "hero": {
+    "name": "ピール城とセント・パトリック島",
+    "location": "Peel Castle / St Patrick’s Isle",
+    "image": "assets/images/unitedkingdom/isle-of-man/approved/hero-peel-castle.webp",
+    "coordinates": {
+      "latitude": 54.22661,
+      "longitude": -4.6991
+    },
+    "lead": "アイリッシュ海に浮かぶマン島は、英国の一部ではない王室属領。海に張り出す城跡、赤い大水車、走り続ける古い電車をたどると、小さな島に固有の時間が見えてくる。",
+    "description": "アイリッシュ海へ突き出す岩の島に、低く長い城壁が連なる。港と砂浜から見つめると、海と城跡の重なりが際立つ。",
+    "sceneTypes": [
+      "castle",
+      "island"
+    ],
+    "sourceKey": "peelCastle"
+  },
+  "profile": [
+    {
+      "label": "中心都市",
+      "value": "ダグラス"
+    },
+    {
+      "label": "人口",
+      "value": "84,069人（2021年国勢調査）",
+      "sourceKey": "census"
+    },
+    {
+      "label": "面積",
+      "value": "約572km²（日本の約0.15%）",
+      "sourceKey": "area"
+    },
+    {
+      "label": "言語",
+      "value": "英語、マン島語（Manx Gaelic）",
+      "sourceKey": "language"
+    },
+    {
+      "label": "主な宗教",
+      "value": "キリスト教など。無宗教の人もいる",
+      "sourceKey": "census"
+    },
+    {
+      "label": "通貨",
+      "value": "マン島ポンド（英ポンドと等価）",
+      "sourceKey": "currency"
+    }
+  ],
+  "historyContext": {
+    "text": "マン島は英国の構成地域でも海外領土でもなく、英国王室属領である。独自の立法府Tynwald、政府、法律、司法制度を持つ。ノース人勢力が海域を往来した歴史を背景に、英国君主を通じて王冠との関係を保つ。外交・防衛については英国政府が責任を負う。",
+    "sourceKeys": [
+      "status",
+      "tynwald"
+    ]
+  },
+  "map": {
+    "svg": "assets/images/unitedkingdom/isle-of-man/map-isle-of-man.svg",
+    "bounds": {
+      "west": -4.91,
+      "east": -4.2,
+      "south": 54.02,
+      "north": 54.44
+    },
+    "singleMapMobile": true,
+    "source": "Who’s On First Isle of Man country geometry 85632461 from foursquare Quattroshapes (CC BY 2.0), original WGS84 main island (455 vertices) and Calf of Man (24 vertices), coastline simplified with Douglas-Peucker 0.0013° for atlas scale; verified 2026-11-12. https://github.com/whosonfirst-data/whosonfirst-data-admin-im/blob/master/data/856/324/61/85632461.geojson ; Who’s On First license: https://whosonfirst.org/docs/licenses/ . No invented coastline. St Patrick's Isle coastline at Peel is supplemented by OpenStreetMap Peel admin-8 boundary relation 1061133 (data 2024-09-11; OpenStreetMap contributors, ODbL 1.0; https://github.com/dankarran/isleofman-opendata/blob/main/data/openstreetmap/sources/manual/admin_boundaries.geojson)."
+  },
+  "scenes": [
+    {
+      "id": "laxey-wheel",
+      "name": "ラクシー・ホイール",
+      "nameLocal": "Great Laxey Wheel / Lady Isabella",
+      "description": "鉱山の排水のために造られた巨大な水車。赤い車輪と白い支持構造が、島の産業の記憶を伝える。",
+      "coordinates": {
+        "latitude": 54.23856,
+        "longitude": -4.40739
+      },
+      "image": "assets/images/unitedkingdom/isle-of-man/approved/scene-01-laxey-wheel.webp",
+      "sceneTypes": [
+        "monument"
+      ],
+      "sourceKey": "laxeyWheel"
+    },
+    {
+      "id": "castle-rushen",
+      "name": "キャッスル・ラッシェン",
+      "nameLocal": "Castle Rushen / Castletown",
+      "description": "キャッスルタウン中心部に残る中世の石造城郭。重なる外壁と四角い主塔は、港の城跡とは異なる表情を見せる。",
+      "coordinates": {
+        "latitude": 54.07379,
+        "longitude": -4.65287
+      },
+      "image": "assets/images/unitedkingdom/isle-of-man/approved/scene-02-castle-rushen.webp",
+      "sceneTypes": [
+        "castle"
+      ],
+      "sourceKey": "castleRushen"
+    },
+    {
+      "id": "snaefell-summit",
+      "name": "スネーフェル山頂",
+      "nameLocal": "Snaefell Summit",
+      "description": "石の露出する山頂から草地の丘が広がり、その先に海が見える。島で最も高い山の開放的な景色。",
+      "coordinates": {
+        "latitude": 54.26324,
+        "longitude": -4.46167
+      },
+      "image": "assets/images/unitedkingdom/isle-of-man/approved/scene-03-snaefell-summit.webp",
+      "sceneTypes": [
+        "peak"
+      ],
+      "sourceKey": "snaefell"
+    },
+    {
+      "id": "cregneash",
+      "name": "クレグニーシュの茅葺き集落",
+      "nameLocal": "Cregneash",
+      "description": "白い石壁と厚い茅葺き屋根の家が、低い石垣沿いに並ぶ。伝統的な農村の暮らしを伝える集落。",
+      "coordinates": {
+        "latitude": 54.06968,
+        "longitude": -4.76819
+      },
+      "image": "assets/images/unitedkingdom/isle-of-man/approved/scene-04-cregneash.webp",
+      "sceneTypes": [
+        "village"
+      ],
+      "sourceKey": "cregneash"
+    },
+    {
+      "id": "the-sound",
+      "name": "ザ・サウンドとカーフ島",
+      "nameLocal": "The Sound / Kitterland / Calf of Man",
+      "description": "本島とカーフ島を分ける海峡。手前の岩礁キッターランドと向こうの低い島影に、潮の流れが見える。",
+      "coordinates": {
+        "latitude": 54.06392,
+        "longitude": -4.79354
+      },
+      "image": "assets/images/unitedkingdom/isle-of-man/approved/scene-05-the-sound.webp",
+      "sceneTypes": [
+        "island",
+        "cliff"
+      ],
+      "sourceKey": "theSound"
+    },
+    {
+      "id": "bradda-head",
+      "name": "ブラッダ・ヘッドとミルナーズ・タワー",
+      "nameLocal": "Bradda Head / Milner’s Tower",
+      "description": "ポート・エリンの湾を囲む草地の岬。尾根の先には鍵の形を意匠とする石造の記念塔が立つ。",
+      "coordinates": {
+        "latitude": 54.09447,
+        "longitude": -4.77207
+      },
+      "image": "assets/images/unitedkingdom/isle-of-man/approved/scene-06-bradda-head.webp",
+      "sceneTypes": [
+        "cliff",
+        "monument"
+      ],
+      "sourceKey": "bradda"
+    },
+    {
+      "id": "douglas-promenade",
+      "name": "ダグラスの海岸通り",
+      "nameLocal": "Douglas Promenade / Douglas Bay",
+      "description": "ゆるやかに弧を描く湾沿いに、淡い色のヴィクトリア朝の家並みが続く。海を眺めながら歩ける街の表情。",
+      "coordinates": {
+        "latitude": 54.15941,
+        "longitude": -4.47583
+      },
+      "image": "assets/images/unitedkingdom/isle-of-man/approved/scene-07-douglas-promenade.webp",
+      "sceneTypes": [
+        "bay",
+        "oldtown"
+      ],
+      "sourceKey": "douglas"
+    },
+    {
+      "id": "manx-electric-railway",
+      "name": "マン島電気鉄道",
+      "nameLocal": "Manx Electric Railway / Groudle",
+      "description": "えんじ色とクリーム色の木造電車が、架線に沿って海岸の丘を進む。島の移動と産業遺産が重なる景色。",
+      "coordinates": {
+        "latitude": 54.178,
+        "longitude": -4.43039
+      },
+      "image": "assets/images/unitedkingdom/isle-of-man/approved/scene-08-manx-electric-railway.webp",
+      "sceneTypes": [
+        "railway"
+      ],
+      "sourceKey": "electricRailway"
+    }
+  ],
+  "signatureFacts": [
+    {
+      "topicKey": "tynwald-tradition",
+      "label": "議会の歴史",
+      "value": "1,000年以上",
+      "note": "マン島のTynwaldはノース人時代に起源を持つ議会の伝統を今に伝える。起源の年については伝承と史料を区別したい。",
+      "icon": "history",
+      "sourceKey": "tynwald",
+      "interestReason": "小さな自治島に長い議会の歴史が続くことがわかる。"
+    },
+    {
+      "topicKey": "biosphere-2016",
+      "label": "島全体の生物圏保存地域",
+      "value": "2016年",
+      "note": "マン島はUNESCOの生物圏保存地域に指定された。自然と人々の暮らしを一体として考える取り組み。",
+      "icon": "leaf",
+      "sourceKey": "biosphere",
+      "interestReason": "自然保護と地域社会のつながりを島全体で考えることができる。"
+    },
+    {
+      "topicKey": "coastal-trail",
+      "label": "島を巡る海岸歩道",
+      "value": "約153km",
+      "note": "Raad ny Foillanは島の海岸をたどる周回歩道。町、砂浜、草地の岬と岩礁の風景が続く。",
+      "icon": "map",
+      "sourceKey": "coastTrail",
+      "interestReason": "島の輪郭を歩く旅のスケールが伝わる。"
+    }
+  ],
+  "encounters": [
+    {
+      "title": "古城を囲む港と小さな砂浜",
+      "icon": "history",
+      "category": "HISTORY"
+    },
+    {
+      "title": "赤い大水車を見上げる",
+      "icon": "history",
+      "category": "HISTORY"
+    },
+    {
+      "title": "石垣と茅葺き屋根の村道",
+      "icon": "city",
+      "category": "DAILY_LIFE"
+    },
+    {
+      "title": "海峡の岩礁に集まる海鳥",
+      "icon": "wildlife",
+      "category": "NATURE"
+    },
+    {
+      "title": "湾に沿って続く淡色の街並み",
+      "icon": "city",
+      "category": "DAILY_LIFE"
+    },
+    {
+      "title": "岬の先で感じる潮の風",
+      "icon": "sea",
+      "category": "LANDSCAPE"
+    },
+    {
+      "title": "木造電車のゆっくりした揺れ",
+      "icon": "map",
+      "category": "ACTIVITY"
+    },
+    {
+      "title": "燻製ニシンが並ぶ港町の食卓",
+      "icon": "food",
+      "category": "FOOD"
+    }
+  ],
+  "culture": [
+    {
+      "topicKey": "manx-language",
+      "themeEn": "LANGUAGE",
+      "themeJa": "言葉の再生",
+      "icon": "culture",
+      "title": "島の地名に、マン島語が息づく",
+      "text": "ケルト語派に属するマン島語（Gaelg）は、教育や音楽、地域活動を通して継承・復興が進められている。",
+      "points": [
+        "英語とは異なる語源の地名に出会う",
+        "言葉を学び直す活動が島の文化をつなぐ"
+      ],
+      "sourceKey": "language"
+    },
+    {
+      "topicKey": "tt-racing",
+      "themeEn": "CULTURE",
+      "themeJa": "島の行事",
+      "icon": "culture",
+      "title": "公道がレースコースに変わる時期がある",
+      "text": "1907年に始まったマン島TTでは、公道の一部が競技のコースになる。レースの季節には道路規制と宿泊需要が大きく変わる。",
+      "points": [
+        "モータースポーツが長く続く島の行事になった",
+        "旅の予定と交通を左右する規模のイベント"
+      ],
+      "sourceKey": "tt"
+    },
+    {
+      "topicKey": "heritage-transport",
+      "themeEn": "HISTORY",
+      "themeJa": "産業の記憶",
+      "icon": "history",
+      "title": "鉱山の大水車と古い電車が残る",
+      "text": "鉱山の排水を担ったラクシーの水車や歴史ある電気鉄道に、ヴィクトリア朝の技術と島の暮らしが重なる。",
+      "points": [
+        "水車は鉱山の排水のために稼働した",
+        "保存車両が移動手段としても親しまれる"
+      ],
+      "sourceKey": "laxeyWheel"
+    },
+    {
+      "topicKey": "kipper-fishing",
+      "themeEn": "FOOD",
+      "themeJa": "海の仕事",
+      "icon": "food",
+      "title": "港の燻製ニシンに漁業の記憶が残る",
+      "text": "ピールではニシンの燻製文化が受け継がれてきた。魚の香りは島の港町の仕事と食卓をつなぐ。",
+      "points": [
+        "沿岸の漁業が地域の料理を育んだ",
+        "燻製は保存食の知恵から親しまれてきた"
+      ],
+      "sourceKey": "kippers"
+    },
+    {
+      "topicKey": "crofting-life",
+      "themeEn": "LIFE",
+      "themeJa": "農村の暮らし",
+      "icon": "city",
+      "title": "茅葺き屋根が海風の強い農村を語る",
+      "text": "クレグニーシュに残る白い石造家屋と厚い茅葺き屋根は、島の農村生活を伝える歴史資料でもある。",
+      "points": [
+        "低い家屋と石垣が斜面に沿って続く",
+        "保存される農村の住まいから暮らしを知る"
+      ],
+      "sourceKey": "cregneash"
+    }
+  ],
+  "taste": {
+    "title": "マン島で食べたいもの",
+    "kicker": "TASTE OF ISLE OF MAN",
+    "intro": "燻製ニシン、海の小さなホタテ、島の在来種の羊肉、素朴な焼き菓子。海と草地が近い島の味を4皿で知る。",
+    "items": [
+      {
+        "id": "manx-kippers",
+        "name": "マン島の燻製ニシン",
+        "nameLocal": "Manx kippers",
+        "text": "開いたニシンを塩漬け・燻製した島の伝統食。香ばしい黄金褐色の魚をシンプルに味わう。",
+        "image": "assets/images/unitedkingdom/isle-of-man/approved/food-01-manx-kippers.webp",
+        "sourceKey": "kippers"
+      },
+      {
+        "id": "queenies",
+        "name": "クイーニーズのソテー",
+        "nameLocal": "Isle of Man Queenies",
+        "text": "マン島周辺で水揚げされる小ぶりなクイーン・スキャロップ。軽く焼いて甘みを楽しむ。",
+        "image": "assets/images/unitedkingdom/isle-of-man/approved/food-02-queenies.webp",
+        "sourceKey": "queenies"
+      },
+      {
+        "id": "manx-loaghtan-lamb",
+        "name": "マンクス・ロアタン羊のロースト",
+        "nameLocal": "Manx Loaghtan lamb",
+        "text": "マン島の在来種Loaghtan羊の肉を焼き上げる。骨付きのラムを季節の付け合わせと。",
+        "image": "assets/images/unitedkingdom/isle-of-man/approved/food-03-manx-loaghtan-lamb.webp",
+        "sourceKey": "loaghtan"
+      },
+      {
+        "id": "bonnag",
+        "name": "ボナッグ",
+        "nameLocal": "Bonnag",
+        "text": "島に伝わる素朴な焼き菓子・パン。果実入りの一種は、切り口の生地とレーズンの甘みが特徴。",
+        "image": "assets/images/unitedkingdom/isle-of-man/approved/food-04-bonnag.webp",
+        "sourceKey": "bonnag"
+      }
+    ]
+  },
+  "travelTrivia": [
+    {
+      "topicKey": "fairy-bridge",
+      "categoryEn": "FOLKLORE",
+      "categoryJa": "言い伝え",
+      "icon": "culture",
+      "title": "妖精の橋では挨拶をする？",
+      "text": "Fairy Bridgeを通るとき妖精に挨拶するという習慣が語り継がれる。道路沿いに伝承が今も残る。",
+      "sourceKey": "fairyBridge"
+    },
+    {
+      "topicKey": "manx-cat",
+      "categoryEn": "WILDLIFE",
+      "categoryJa": "ネコ",
+      "icon": "wildlife",
+      "title": "尻尾の短いマン島猫にも個体差がある",
+      "text": "マン島猫は短い尾で有名だが、すべてが無尾というわけではない。尾の長さには幅がある。",
+      "sourceKey": "manxCat"
+    },
+    {
+      "topicKey": "triskelion",
+      "categoryEn": "SYMBOL",
+      "categoryJa": "紋章",
+      "icon": "culture",
+      "title": "3本の脚が島のシンボル",
+      "text": "マン島の旗には3本の脚を組み合わせたトリスケリオンが描かれる。島の建築や公共空間にも見つかる。",
+      "sourceKey": "flag"
+    },
+    {
+      "topicKey": "viking-boats",
+      "categoryEn": "HISTORY",
+      "categoryJa": "歴史",
+      "icon": "history",
+      "title": "ヴァイキングの航路の交点だった",
+      "text": "ノルウェーやブリテン諸島、アイルランドへ船が行き交った時代、この島も海上の往来に組み込まれていた。",
+      "sourceKey": "tynwald"
+    }
+  ],
+  "forWhom": [
+    {
+      "title": "石の城と産業遺産を訪ねたい人",
+      "text": "海に張り出す城跡、町の中世城郭、古い水車や電車の違いを楽しみたい人。"
+    },
+    {
+      "title": "岬と小さな海峡を歩きたい人",
+      "text": "厳しい登山より、海風の中で短い散策をいくつも重ねたい人。"
+    },
+    {
+      "title": "島の言葉や暮らしに触れたい人",
+      "text": "独自の議会、言語、料理、農村の文化を景色と一緒に知りたい人。"
+    }
+  ],
+  "notes": [
+    {
+      "title": "英国の一部ではない王室属領",
+      "text": "旅券・入域やビザの扱いは国籍と経由地で異なる場合がある。旅行直前に公的情報で確認する。",
+      "sourceKey": "status"
+    },
+    {
+      "title": "史跡と鉄道は季節営業に注意",
+      "text": "城郭の修復工事や施設の休館、電気鉄道・登山鉄道の季節ダイヤを訪問前に確かめたい。",
+      "sourceKey": "heritageTransport"
+    },
+    {
+      "title": "TTの開催時期は交通と宿泊に余裕を",
+      "text": "5〜6月頃のマン島TT期間中は道路規制や宿泊混雑がある。日程が重なる場合は事前確認が必要。",
+      "sourceKey": "tt"
+    },
+    {
+      "title": "天候に左右される海の移動",
+      "text": "島への航空便・フェリーは天候などで変更がある。日程に余裕を持ち、港・空港の情報を確認したい。",
+      "sourceKey": "ferry"
+    }
+  ],
+  "travelScale": {
+    "kicker": "DURATION",
+    "title": "旅の目安日程",
+    "intro": "ダグラスを拠点に東西と南部を分けて巡ると移動しやすい。日数は交通・天候に余裕をもたせた編集上の目安。",
+    "items": [
+      {
+        "duration": "2〜3日",
+        "title": "水車と海の古城を巡る",
+        "icon": "city",
+        "text": "ダグラスに滞在し、北東のラクシーと西海岸ピールへ。例：ダグラス → ラクシー → ピール → ダグラス。"
+      },
+      {
+        "duration": "4〜5日",
+        "title": "山頂と南部の岬まで",
+        "icon": "map",
+        "text": "スネーフェルと古城、南部の村・海峡を日を分けて巡る。例：ダグラス → ラクシー → スネーフェル → ピール → キャッスルタウン → クレグニーシュ → ダグラス。"
+      },
+      {
+        "duration": "6〜7日",
+        "title": "海岸線に余白を残す",
+        "icon": "compass",
+        "text": "岬や小さな湾も加え、歩く時間を確保する。例：ダグラス → ラクシー → スネーフェル → ピール → ポート・エリン → ザ・サウンド → キャッスルタウン → ダグラス。"
+      }
+    ]
+  },
+  "bestSeason": {
+    "windows": [
+      {
+        "label": "5月",
+        "reason": "島の草地が緑に変わる。TTの規制・混雑は開催日程を確認。"
+      },
+      {
+        "label": "7〜9月",
+        "reason": "海岸散策に日照を使いやすい。雨や風の備えは必要。"
+      }
+    ]
+  },
+  "seasons": [
+    {
+      "months": "3〜5月",
+      "label": "春",
+      "icon": "leaf",
+      "color": "#73966f",
+      "text": "丘の緑と海辺の散策が始まる季節。史跡・鉄道の春季再開を確認。"
+    },
+    {
+      "months": "6〜8月",
+      "label": "夏",
+      "icon": "sun",
+      "color": "#bf9b55",
+      "text": "日が長く海岸に向く。TTの影響がある期間は交通・宿泊を早めに確認。"
+    },
+    {
+      "months": "9〜10月",
+      "label": "秋",
+      "icon": "leaf",
+      "color": "#b68a58",
+      "text": "柔らかい光の岬歩きが楽しめるが、風雨と施設の季節営業に注意。"
+    },
+    {
+      "months": "11〜2月",
+      "label": "冬",
+      "icon": "snow",
+      "color": "#7894a2",
+      "text": "静かな町と海の季節。短い日照と休業施設の多さを前提に計画する。"
+    }
+  ],
+  "transport": {
+    "icon": "map",
+    "title": "空路・フェリー、路線バスと遺産鉄道",
+    "text": "Ronaldsway空港とダグラス港が主な玄関口。島内は路線バスを軸に、Manx Electric RailwayやSnaefell Mountain Railwayなどの季節運行する遺産鉄道を組み合わせる。運行日と接続は最新情報を確認。",
+    "sourceKeys": [
+      "airport",
+      "ferry",
+      "heritageTransport"
+    ]
+  },
+  "nextRoutesIntro": "アイリッシュ海を越え、隣の地域へ旅をつなぐ。",
+  "nextRoutes": [
+    {
+      "countryEn": "UNITED KINGDOM",
+      "countryJa": "イギリス",
+      "flag": "🇬🇧",
+      "path": "Douglas → Liverpool / Heysham",
+      "description": "船で英国の西岸へ。マン島は英国の一部ではない点を踏まえ、海の両側の歴史をたどる。",
+      "href": "countries/unitedkingdom/",
+      "travelerRoute": true,
+      "status": "OPEN"
+    },
+    {
+      "countryEn": "IRELAND",
+      "countryJa": "アイルランド",
+      "flag": "🇮🇪",
+      "path": "Douglas → Dublin",
+      "description": "季節により運航される海路を使って、アイリッシュ海のもう一方の岸へ。",
+      "href": "countries/ireland/",
+      "travelerRoute": true,
+      "status": "SEASONAL",
+      "statusNote": "ダブリン航路は季節運航で変更や運休があるため、運航会社の最新時刻表を確認する。"
+    }
+  ],
+  "relatedCountries": [
+    {
+      "nameJa": "イギリス",
+      "nameEn": "UNITED KINGDOM",
+      "href": "countries/unitedkingdom/",
+      "flag": "🇬🇧",
+      "reason": "マン島と王室の関係、島から見た英国の歴史を比較する。",
+      "affinityType": "HISTORY"
+    },
+    {
+      "nameJa": "アイルランド",
+      "nameEn": "IRELAND",
+      "href": "countries/ireland/",
+      "flag": "🇮🇪",
+      "reason": "アイリッシュ海を挟むケルト文化と島の言葉のつながりをたどる。",
+      "affinityType": "CULTURE"
+    },
+    {
+      "nameJa": "ノルウェー",
+      "nameEn": "NORWAY",
+      "href": "countries/norway/",
+      "flag": "🇳🇴",
+      "reason": "海を行き来したノース人の歴史を、北欧側の港と文化から見つめ直す。",
+      "affinityType": "HISTORY"
+    }
+  ],
+  "sourcesVerifiedAt": "2026-11-11",
+  "updatedAt": "2026-11-12",
+  "sourceDates": {
+    "population": "2021 census; checked 2026-11-11",
+    "area": "Approximately 572 km², government data; checked 2026-11-11",
+    "status": "Crown Dependency constitutional status; checked 2026-11-11",
+    "transport": "Seasonal schedules vary; checked 2026-11-11",
+    "bestSeason": "Editorial recommendation, reviewed 2026-11-11",
+    "coastTrail": "Approx 153 km (95 mi); official walking guide checked 2026-11-11",
+    "map": "Who’s On First original geometry (Quattroshapes, source vertices 455 + 24); retrieved 2026-11-12; not a 2026 shoreline survey.; St Patrick's Isle supplemented with OSM Peel boundary, 2024-09-11 data"
+  },
+  "sources": {
+    "status": "https://www.tynwald.org.im/learn/system-of-governance",
+    "tynwald": "https://www.tynwald.org.im/index.php/about",
+    "census": "https://www.gov.im/census",
+    "area": "https://www.gov.im/about-the-government/departments/cabinet-office/media-centre/isle-of-man-an-overview/",
+    "language": "https://www.gov.im/about-the-government/departments/cabinet-office/media-centre/isle-of-man-an-overview/",
+    "currency": "https://www.gov.im/about-the-government/departments/cabinet-office/media-centre/isle-of-man-an-overview/",
+    "biosphere": "https://www.biosphere.im/biosphere/unesco-biosphere-isle-of-man",
+    "coastTrail": "https://www.visitisleofman.com/see-and-do/active-and-adventure/walking-and-hiking/self-guided-walks/raad-ny-foillan-coastal-path",
+    "peelCastle": "https://manxnationalheritage.im/our-sites/peel-castle/",
+    "laxeyWheel": "https://manxnationalheritage.im/learn/family-learning/museum-on-the-move-laxey-wheel-2/",
+    "castleRushen": "https://manxnationalheritage.im/our-sites/castle-castletown/",
+    "snaefell": "https://www.visitisleofman.com/experience/snaefell-mountain-p1295771",
+    "cregneash": "https://manxnationalheritage.im/our-sites/cregneash/",
+    "theSound": "https://www.visitisleofman.com/experience/calf-of-man-p1295221",
+    "bradda": "https://www.visitisleofman.com/",
+    "douglas": "https://www.visitisleofman.com/",
+    "electricRailway": "https://manxelectricrailway.co.uk/mer-stop-list/stops-and-stations-groudle-glen/",
+    "heritageTransport": "https://www.iombusandrail.im/heritage/timetables-fares-routes/timetables/",
+    "kippers": "https://www.slowfood.org.uk/ark-product/the-manx-kipper/",
+    "queenies": "https://www.gov.im/categories/leisure-and-entertainment/manx-food-and-drink/",
+    "loaghtan": "https://www.gov.uk/protected-food-drink-names/isle-of-man-manx-loaghtan-lamb",
+    "bonnag": "https://rnli.org/-/media/rnli/crew-room/feb_24/downloads/sf156_manx_bonnag_download.pdf?rev=6221f2489b8e4167a3951570e743b7c7",
+    "fairyBridge": "https://www.visitisleofman.com/blog/read/2024/11/fairy-culture-hotspots-on-the-isle-of-man-b417",
+    "manxCat": "https://www.gccfcats.org/getting-a-cat/choosing/cat-breeds/manx/",
+    "flag": "https://www.gov.im/about-the-government/",
+    "tt": "https://www.iomttraces.com/",
+    "airport": "https://www.iomairport.com/",
+    "ferry": "https://www.steam-packet.com/routes-and-times?segment=visitor",
+    "map": "https://github.com/whosonfirst-data/whosonfirst-data-admin-im/blob/master/data/856/324/61/85632461.geojson",
+    "locations": "https://www.openstreetmap.org/copyright",
+    "osmPeel": "https://github.com/dankarran/isleofman-opendata/blob/main/data/openstreetmap/sources/manual/admin_boundaries.geojson"
+  },
+  "nextRegion": {
+    "slug": "jersey",
+    "nameEn": "JERSEY",
+    "nameJa": "ジャージー"
+  }
+}
