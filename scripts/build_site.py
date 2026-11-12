@@ -647,6 +647,9 @@ def build_top_scene_index() -> None:
         "french-polynesia": ("🇵🇫", None),
         "french-guiana": ("🇬🇫", None),
         "gibraltar": ("🇬🇮", None),
+        "jersey": ("🇯🇪", None),
+        "isle-of-man": ("🇮🇲", None),
+        "bermuda": ("🇧🇲", None),  # British Overseas Territory in the North Atlantic.
         "england": ("🏴󠁧󠁢󠁥󠁮󠁧󠁿", "assets/icons/region-flags/england-waved.svg"),
         "scotland": ("🏴󠁧󠁢󠁳󠁣󠁴󠁿", "assets/icons/region-flags/scotland-waved.svg"),
         "wales": ("🏴󠁧󠁢󠁷󠁬󠁳󠁿", "assets/icons/region-flags/wales-waved.svg"),
@@ -668,7 +671,9 @@ def build_top_scene_index() -> None:
         if region_flag_asset and not (ROOT / region_flag_asset).is_file():
             raise FileNotFoundError(region_flag_asset)
         geo = str(region.get("region", "")).upper()
-        if "NORTH AMERICA" in geo or "CARIBBEAN" in geo:
+        if region["slug"] == "bermuda":
+            region_id = "north-america"
+        elif "NORTH AMERICA" in geo or "CARIBBEAN" in geo:
             region_id = "north-america"
         elif any(term in geo for term in ("SOUTH PACIFIC", "MELANESIA", "POLYNESIA", "OCEANIA")):
             region_id = "oceania"
