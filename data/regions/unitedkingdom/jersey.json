@@ -75,13 +75,14 @@
   "map": {
     "svg": "assets/images/unitedkingdom/jersey/map-jersey.svg",
     "bounds": {
-      "west": -2.315,
-      "east": -1.935,
-      "south": 49.105,
-      "north": 49.305
+      "west": -2.285,
+      "east": -1.985,
+      "south": 49.128,
+      "north": 49.288
     },
     "singleMapMobile": true,
-    "source": "Jersey main island shoreline: OpenStreetMap administrative relation 367988, reproduced from country-levels-export high-resolution JE polygon (174 source ring vertices, ODbL 1.0); https://github.com/hyperknot/country-levels-export/blob/master/geojson/high/iso1/JE.geojson (blob 2a7d73e7d71f73c9435b77f48ba821d246cc3761). 12 named-source offshore polygon rings from Who’s On First / foursquare Quattroshapes, CC BY 2.0; https://github.com/whosonfirst-data/whosonfirst-data-admin-je/blob/master/data/856/325/93/85632593.geojson (blob 064bafbc5bfa03035b68dfdd243149e499b1f243). Source checked 2026-11-12. Shoreline is generalized cartographic geometry, not a current hydrographic or tidal-flat survey."
+    "source": "Jersey mainland: OpenStreetMap relation 367988, country-levels-export high JE GeoJSON (174 shoreline vertices), ODbL 1.0. Nearshore islets 106/107 and remote source-geometry reefs (Les Écréhous 109–113; Les Minquiers 78–105) from Who’s On First / foursquare Quattroshapes CC BY 2.0. Main island enlarged within a consistent local-equirectangular projection; remote islets shown as labeled scale-specific insets. Sources checked 2026-11-12, not a contemporary tidal shoreline survey.",
+    "insetNote": "※ エクレウ諸島・ミンキエ諸島は、実際の位置関係・縮尺と異なる別枠表示です。"
   },
   "scenes": [
     {
@@ -607,7 +608,7 @@
     "bestSeason": "Editorial suggestion, reviewed 2026-11-12",
     "transport": "Routes vary; checked 2026-11-12",
     "tidalTrail": "48 miles / 77 km, Visit Jersey Tourism Board, checked 2026-11-12",
-    "map": "OSM-based high JE ring: 174 source vertices; Quattroshapes nearby islets: 12 source polygons; both inspected 2026-11-12; tidal coastline position varies with sea level and source generalization."
+    "map": "OSM high JE mainland (174 points) and Who’s On First / Quattroshapes remote reefs (35 source polygon rings), checked 2026-11-12; detached reef insets use different scales."
   },
   "sources": {
     "crownStatus": "https://www.gov.je/government/departments/jerseyworld/pages/relationshipeuanduk.aspx",
