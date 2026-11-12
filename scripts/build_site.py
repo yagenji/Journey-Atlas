@@ -647,6 +647,7 @@ def build_top_scene_index() -> None:
         "french-polynesia": ("🇵🇫", None),
         "french-guiana": ("🇬🇫", None),
         "gibraltar": ("🇬🇮", None),
+        "jersey": ("🇯🇪", None),
         "england": ("🏴󠁧󠁢󠁥󠁮󠁧󠁿", "assets/icons/region-flags/england-waved.svg"),
         "scotland": ("🏴󠁧󠁢󠁳󠁣󠁴󠁿", "assets/icons/region-flags/scotland-waved.svg"),
         "wales": ("🏴󠁧󠁢󠁷󠁬󠁳󠁿", "assets/icons/region-flags/wales-waved.svg"),
