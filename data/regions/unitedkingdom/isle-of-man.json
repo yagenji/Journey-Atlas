@@ -81,7 +81,7 @@
       "north": 54.492790697674415
     },
     "singleMapMobile": true,
-    "source": "Who’s On First Isle of Man country geometry 85632461 from foursquare Quattroshapes (CC BY 2.0), original WGS84 main island (455 vertices) and Calf of Man (24 vertices), coastline simplified with Douglas-Peucker 0.0013° for atlas scale; verified 2026-11-12. https://github.com/whosonfirst-data/whosonfirst-data-admin-im/blob/master/data/856/324/61/85632461.geojson ; Who’s On First license: https://whosonfirst.org/docs/licenses/ . No invented coastline. St Patrick's Isle coastline at Peel is supplemented by OpenStreetMap Peel admin-8 boundary relation 1061133 (data 2024-09-11; OpenStreetMap contributors, ODbL 1.0; https://github.com/dankarran/isleofman-opendata/blob/main/data/openstreetmap/sources/manual/admin_boundaries.geojson)."
+    "source": "Target land: GSHHG/GSHHS full-resolution shoreline via Basemap 2.0.0 (Paul Wessel and Walter H. F. Smith; https://www.soest.hawaii.edu/wessel/gshhg/), assigned with Natural Earth 1:10m Admin-0 countries ca96624a56bd078437bca8184e78163e5039ad19 (public domain) unit IMN (Isle of Man); internal land boundaries follow Natural Earth. Surrounding land: the same GSHHG shoreline, drawn to the canvas edge. WGS84; local-equirectangular-fit-v1, 1200x760. Includes the Calf of Man."
   },
   "scenes": [
     {
@@ -510,7 +510,9 @@
     "windows": [
       {
         "label": "5月",
-        "months": [5],
+        "months": [
+          5
+        ],
         "reason": "島の草地が緑に変わる。TTの規制・混雑は開催日程を確認。"
       },
       {
@@ -618,7 +620,7 @@
     "transport": "Seasonal schedules vary; checked 2026-11-11",
     "bestSeason": "Editorial recommendation, reviewed 2026-11-11",
     "coastTrail": "Approx 153 km (95 mi); official walking guide checked 2026-11-11",
-    "map": "Who’s On First original geometry (Quattroshapes, source vertices 455 + 24); retrieved 2026-11-12; not a 2026 shoreline survey.; St Patrick's Isle supplemented with OSM Peel boundary, 2024-09-11 data; map.bounds calibrated to shared local-equirectangular-fit-v1 projection"
+    "map": "Natural Earth 1:10m (ca96624) + GSHHG v2.3.7 shoreline, checked 2026-11-13"
   },
   "sources": {
     "status": "https://www.tynwald.org.im/learn/system-of-governance",
@@ -649,7 +651,7 @@
     "tt": "https://www.iomttraces.com/",
     "airport": "https://www.iomairport.com/",
     "ferry": "https://www.steam-packet.com/routes-and-times?segment=visitor",
-    "map": "https://github.com/whosonfirst-data/whosonfirst-data-admin-im/blob/master/data/856/324/61/85632461.geojson",
+    "map": "Natural Earth 1:10m Admin-0 (public domain): https://github.com/nvkelso/natural-earth-vector ; GSHHG shoreline: https://www.soest.hawaii.edu/wessel/gshhg/",
     "locations": "https://www.openstreetmap.org/copyright",
     "osmPeel": "https://github.com/dankarran/isleofman-opendata/blob/main/data/openstreetmap/sources/manual/admin_boundaries.geojson",
     "stoneCrosses": "https://manxnationalheritage.im/our-sites/isle-of-man-carved-stone-cross-collection/",

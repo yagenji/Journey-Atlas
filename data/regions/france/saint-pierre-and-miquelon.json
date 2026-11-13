@@ -79,9 +79,33 @@
       "south": 46.71,
       "north": 47.18
     },
-    "source": "Main shorelines of Saint-Pierre, Miquelon-Langlade, Île aux Marins and Grand Colombier: IGN ADMIN EXPRESS COG CARTO PE 2026 (Licence Ouverte / Etalab), 97501/97502 from Géoplateforme WFS, processed in https://github.com/ironlam/poligraph/blob/main/public/data/outremer-provenance.json (2026-10-11; 29m Douglas-Peucker simplification). https://cartes.gouv.fr/rechercher-une-donnee/dataset/IGNF_ADMIN-EXPRESS . Île aux Vainqueurs islet: Who's On First 85632371 / Quattroshapes CC BY 2.0, https://github.com/whosonfirst-data/whosonfirst-data-admin-pm/blob/master/data/856/323/71/85632371.geojson . WGS84 local-equirectangular-fit-v1 (1200×760). Natural Miquelon-Langlade isthmus and Grand Barachois lagoon follow sourced land/water boundary; no invented bridge, road, or lagoon shape. Saint-Pierre is shown in a different-scale inset. Scene coordinates unchanged and mapOffset is label-only. Coastline generalization is not a substitute for site-specific 2024 erosion survey.",
+    "source": "Target land: GSHHG/GSHHS full-resolution shoreline via Basemap 2.0.0 (Paul Wessel and Walter H. F. Smith; https://www.soest.hawaii.edu/wessel/gshhg/), assigned with Natural Earth 1:10m Admin-0 countries ca96624a56bd078437bca8184e78163e5039ad19 (public domain) unit SPM (Saint Pierre and Miquelon); internal land boundaries follow Natural Earth. Surrounding land: the same GSHHG shoreline, drawn to the canvas edge. WGS84; local-equirectangular-fit-v1, 1200x760. Newfoundland (Canada) is context only. Saint-Pierre inset: same geometry at uniform scale.",
     "singleMapMobile": true,
-    "insetNote": "※ サンピエールは、同じ地域を拡大した別枠表示です。"
+    "insetNote": "※ サンピエール島は、同じ地域を拡大した別枠表示です。",
+    "regions": [
+      {
+        "id": "saint-pierre",
+        "label": "サンピエール島",
+        "svgId": "spm-saint-pierre-detail",
+        "rect": {
+          "x": 40,
+          "y": 400,
+          "width": 350,
+          "height": 320
+        },
+        "sourceRect": {
+          "x": 585,
+          "y": 555,
+          "width": 170,
+          "height": 165
+        },
+        "sceneIds": [
+          "ile-aux-marins",
+          "cap-au-diable",
+          "anse-a-dinand"
+        ]
+      }
+    ]
   },
   "scenes": [
     {
@@ -98,11 +122,7 @@
       "sceneTypes": [
         "church",
         "village"
-      ],
-      "mapOffset": {
-        "x": 2.5,
-        "y": -3.3
-      }
+      ]
     },
     {
       "id": "grand-barachois",
@@ -150,7 +170,11 @@
       "sceneTypes": [
         "lighthouse",
         "cliff"
-      ]
+      ],
+      "mapOffset": {
+        "x": -2.5,
+        "y": 1.0
+      }
     },
     {
       "id": "miquelon-village",
@@ -181,11 +205,7 @@
       "sourceKey": "capAuDiable",
       "sceneTypes": [
         "cliff"
-      ],
-      "mapOffset": {
-        "x": 2,
-        "y": -2.6
-      }
+      ]
     },
     {
       "id": "belle-riviere",
@@ -219,8 +239,8 @@
         "wetland"
       ],
       "mapOffset": {
-        "x": -2.5,
-        "y": 1.6
+        "x": -3.5,
+        "y": 4.5
       }
     }
   ],
@@ -645,7 +665,7 @@
     "miquelonNature": "Official Tourism Miquelon and Langlade seasonal stays: https://www.spm-tourisme.fr/explorer/decouvrir-nos-iles-d-exception/miquelon-langlade-l-ile-nature/",
     "travel": "Official Tourism transport between islands: https://www.spm-tourisme.fr/sejourner/se-deplacer-sur-l-archipel/",
     "arrival": "Official Tourism flights/ferries: https://www.spm-tourisme.fr/sejourner/comment-venir/",
-    "mapGeometry": "Who’s On First ADM0 85632371, Quattroshapes CC BY 2.0, https://github.com/whosonfirst-data/whosonfirst-data-admin-pm/blob/master/data/856/323/71/85632371.geojson ; see also French DTAM 2026 shoreline surveys https://www.saint-pierre-et-miquelon.developpement-durable.gouv.fr/suivi-du-trait-de-cote-dans-l-archipel-de-saint-a1081.html and BRGM 2021 isthmus report https://www.saint-pierre-et-miquelon.developpement-durable.gouv.fr/IMG/pdf/rapport-expertise_isthmeml_brgm_2021.pdf",
+    "mapGeometry": "Natural Earth 1:10m Admin-0 (public domain): https://github.com/nvkelso/natural-earth-vector ; GSHHG shoreline: https://www.soest.hawaii.edu/wessel/gshhg/",
     "basqueFestival": "Saint-Pierre et Miquelon Tourisme, La Fête Basque, annual August pelota competitions: https://www.spm-tourisme.fr/explorer/decouvrir-nos-iles-d-exception/saint-pierre-l-ile-port/ ; 2026 festival https://www.spm-tourisme.fr/profiter/les-grands-evenements/",
     "ferryFortune": "https://en.wikipedia.org/wiki/SPM_Ferries"
   },
@@ -655,7 +675,7 @@
     "japanArea": "Japan geographic area approx 377,975km², rounded ratio 0.06%",
     "status": "current as of 2026-11-13",
     "transport": "checked 2026-11-13, timetables must be reconfirmed",
-    "map": "Who’s On First Quattroshapes source recorded 2020, retrieved and inspected 2026-11-13; coastline may have changed due to erosion",
+    "map": "Natural Earth 1:10m (ca96624) + GSHHG v2.3.7 shoreline, checked 2026-11-13",
     "basqueFestival": "2026 tourism schedule and annual August tradition, checked 2026-11-13"
   },
   "nextRoutesIntro": "海峡を渡る定期フェリーで、ニューファンドランド島へ。"

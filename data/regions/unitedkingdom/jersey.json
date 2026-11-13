@@ -81,7 +81,7 @@
       "north": 49.288
     },
     "singleMapMobile": true,
-    "source": "Jersey mainland: OpenStreetMap relation 367988, country-levels-export high JE GeoJSON (174 shoreline vertices), ODbL 1.0. Nearshore islets 106/107 and remote source-geometry reefs (Les Écréhous 109–113; Les Minquiers 78–105) from Who’s On First / foursquare Quattroshapes CC BY 2.0. Main island enlarged within a consistent local-equirectangular projection; remote islets shown as labeled scale-specific insets. Sources checked 2026-11-12, not a contemporary tidal shoreline survey.",
+    "source": "Target land: GSHHG/GSHHS full-resolution shoreline via Basemap 2.0.0 (Paul Wessel and Walter H. F. Smith; https://www.soest.hawaii.edu/wessel/gshhg/), assigned with Natural Earth 1:10m Admin-0 countries ca96624a56bd078437bca8184e78163e5039ad19 (public domain) unit JEY (Jersey); internal land boundaries follow Natural Earth. Surrounding land: the same GSHHG shoreline, drawn to the canvas edge. WGS84; local-equirectangular-fit-v1, 1200x760. Les Écréhous and Les Minquiers: same GSHHG shoreline in separate frames (not to position or scale).",
     "insetNote": "※ エクレウ諸島・ミンキエ諸島は、実際の位置関係・縮尺と異なる別枠表示です。"
   },
   "scenes": [
@@ -514,7 +514,9 @@
       },
       {
         "label": "9月",
-        "months": [9],
+        "months": [
+          9
+        ],
         "reason": "夏のピークを過ぎた海岸散策の候補。風雨と潮位に合わせて行程を調整する。"
       }
     ]
@@ -628,7 +630,7 @@
     "bestSeason": "Editorial suggestion, reviewed 2026-11-12",
     "transport": "Routes vary; checked 2026-11-12",
     "tidalTrail": "48 miles / 77 km, Visit Jersey Tourism Board, checked 2026-11-12",
-    "map": "OSM high JE mainland (174 points) and Who’s On First / Quattroshapes remote reefs (35 source polygon rings), checked 2026-11-12; detached reef insets use different scales."
+    "map": "Natural Earth 1:10m (ca96624) + GSHHG v2.3.7 shoreline, checked 2026-11-13"
   },
   "sources": {
     "crownStatus": "https://www.gov.je/government/departments/jerseyworld/pages/relationshipeuanduk.aspx",
@@ -657,7 +659,7 @@
     "jerriais": "https://www.jerriais.org.je/",
     "garden": "https://samaresmanor.com/",
     "jerseyHeritage": "https://www.jerseyheritage.org/",
-    "map": "https://github.com/whosonfirst-data/whosonfirst-data-admin-je/blob/master/data/856/325/93/85632593.geojson",
+    "map": "Natural Earth 1:10m Admin-0 (public domain): https://github.com/nvkelso/natural-earth-vector ; GSHHG shoreline: https://www.soest.hawaii.edu/wessel/gshhg/",
     "tidalTrail": "https://business.jersey.com/marketing/campaigns/jersey-tidal-trail/",
     "parishes": "https://www.gov.je/LifeEvents/MovingToJersey/WhyChooseJersey/Pages/Government.aspx",
     "stamps": "https://history.je/first-jersey-stamps/",
