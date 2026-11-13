@@ -85,7 +85,7 @@
       "north": -15.883983333333333
     },
     "singleMapMobile": true,
-    "source": "Saint Helena coastline: OpenStreetMap relation R155987, via Mapzen Extracts admin_level_1.json, © OpenStreetMap contributors (ODbL 1.0). Source main island has 4000 vertices, simplified to 423 for display; 9 visible offshore islets. WGS84 local equirectangular, only Saint Helena island."
+    "source": "Target land: GSHHG/GSHHS full-resolution shoreline via Basemap 2.0.0 (Paul Wessel and Walter H. F. Smith; https://www.soest.hawaii.edu/wessel/gshhg/), assigned with Natural Earth 1:10m Admin-0 countries ca96624a56bd078437bca8184e78163e5039ad19 (public domain) unit SHN (Saint Helena; Ascension and Tristan da Cunha are outside this map); internal land boundaries follow Natural Earth. Surrounding land: the same GSHHG shoreline, drawn to the canvas edge. WGS84; local-equirectangular-fit-v1, 1200x760."
   },
   "scenes": [
     {
@@ -134,7 +134,11 @@
         "castle",
         "highland"
       ],
-      "sourceKey": "highKnoll"
+      "sourceKey": "highKnoll",
+      "mapOffset": {
+        "x": 2.5,
+        "y": -3.5
+      }
     },
     {
       "id": "sandy-bay",
@@ -166,7 +170,11 @@
         "waterfall",
         "rock"
       ],
-      "sourceKey": "waterfall"
+      "sourceKey": "waterfall",
+      "mapOffset": {
+        "x": -3.0,
+        "y": -1.5
+      }
     },
     {
       "id": "plantation-house",
@@ -182,7 +190,11 @@
         "palace",
         "garden"
       ],
-      "sourceKey": "plantation"
+      "sourceKey": "plantation",
+      "mapOffset": {
+        "x": -2.5,
+        "y": 1.5
+      }
     },
     {
       "id": "napoleons-tomb",
@@ -607,7 +619,7 @@
     "status": "UK Overseas Territory administered separately; checked 2026-11-12",
     "transport": "SHG 2025-11-06 timetable announcement through March 2027; checked 2026-11-12",
     "seasons": "Editorial seasonal summary, checked 2026-11-12",
-    "map": "OpenStreetMap relation R155987 via Mapzen Extracts archive, verified 2026-11-13"
+    "map": "Natural Earth 1:10m (ca96624) + GSHHG v2.3.7 shoreline, checked 2026-11-13"
   },
   "sources": {
     "population": "https://www.sainthelena.gov.sh/st-helena/statistics/",

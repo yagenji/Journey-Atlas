@@ -82,7 +82,8 @@
       "south": 49.34,
       "north": 49.8
     },
-    "singleMapMobile": true
+    "singleMapMobile": true,
+    "source": "Target land: GSHHG/GSHHS full-resolution shoreline via Basemap 2.0.0 (Paul Wessel and Walter H. F. Smith; https://www.soest.hawaii.edu/wessel/gshhg/), assigned with Natural Earth 1:10m Admin-0 countries ca96624a56bd078437bca8184e78163e5039ad19 (public domain) unit GGY (Bailiwick of Guernsey: Guernsey, Alderney, Sark, Herm, Jethou); internal land boundaries follow Natural Earth. Surrounding land: the same GSHHG shoreline, drawn to the canvas edge. WGS84; local-equirectangular-fit-v1, 1200x760. The Cotentin coast of France is context only."
   },
   "scenes": [
     {
@@ -211,7 +212,11 @@
         "garden",
         "flower"
       ],
-      "sourceKey": "laSeigneurie"
+      "sourceKey": "laSeigneurie",
+      "mapOffset": {
+        "x": 1.5,
+        "y": -3.5
+      }
     }
   ],
   "signatureFacts": [
@@ -622,7 +627,7 @@
     "status": "Crown Dependency constitutional relationship verified 2026-11-13",
     "tides": "Approx. 10 m tidal range (UKOTCF; checked 2026-11-13)",
     "renoir": "1883, 15 paintings; VisitGuernsey",
-    "map": "Who's On First Guernsey 85632547 Quattroshapes geometry, verified 2026-11-13; 80 source polygons; WGS84",
+    "map": "Natural Earth 1:10m (ca96624) + GSHHG v2.3.7 shoreline, checked 2026-11-13",
     "religion": "2001 census / UN reporting 2007; current breakdown not verified"
   },
   "sources": {
@@ -659,7 +664,7 @@
     "hermFerry": "https://www.visitguernsey.com/articles/2025/travel-guide-a-solo-trip-to-herm/",
     "sarkFerry": "https://www.sark.co.uk/travel-by-sea?lang=ja",
     "alderneyFerry": "https://www.visitalderney.com/travel/getting-here/",
-    "map": "https://github.com/whosonfirst-data/whosonfirst-data-admin-gg/blob/master/data/856/325/47/85632547.geojson",
+    "map": "Natural Earth 1:10m Admin-0 (public domain): https://github.com/nvkelso/natural-earth-vector ; GSHHG shoreline: https://www.soest.hawaii.edu/wessel/gshhg/",
     "jersey": "https://www.gov.je/government/departments/jerseyworld/pages/relationshipeuanduk.aspx",
     "religion": "https://digitallibrary.un.org/record/624986/files/E_C.12_GBR_5_Add.1-EN.pdf",
     "currency": "https://www.visitguernsey.com/planning/useful-information/things-to-know-on-island/",
