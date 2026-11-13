@@ -1,5 +1,6 @@
 """Multi-parent review routes and polar map anchors must remain consistent."""
 import copy
+import re
 import json
 import sys
 import unittest
@@ -64,7 +65,8 @@ class GreenlandRegion(unittest.TestCase):
         coords['latitude'] += .02
         with self.assertRaisesRegex(ValueError, 'coordinates disagree'):
             region.interactive_map_position(coords, 1, self.svg, self.data['map']['bounds'])
-        broken = self.svg.replace('data-x="518.563"', 'data-x="nan"')
+        marker = re.search(r'<g id="scene-marker-1"[^>]*>', self.svg).group(0)
+        broken = self.svg.replace(marker, re.sub(r'data-x="[^"]*"', 'data-x="nan"', marker))
         with self.assertRaisesRegex(ValueError, 'projected marker position'):
             region.interactive_map_position(self.data['scenes'][0]['coordinates'], 1, broken, self.data['map']['bounds'])
 
