@@ -5,6 +5,7 @@ from __future__ import annotations
 import json
 import os
 import sys
+import traceback
 from pathlib import Path
 
 from selenium.webdriver.common.by import By
@@ -64,6 +65,51 @@ def check(driver, viewport):
     # failing when an element read inside a wait condition goes stale.
     wait = WebDriverWait(driver, 40, ignored_exceptions=[StaleElementReferenceException])
     wait.until(lambda d: len(d.find_elements(By.CSS_SELECTOR, "#country-rail .country-card")) == 200)
+
+    # Discover-first review: verify the real published image and its link on
+    # every viewport. This guard is optional so the existing top remains valid
+    # if the review candidate is not adopted.
+    if driver.find_elements(By.ID, "ja-discover"):
+        wait.until(lambda d: d.execute_script("""
+          const img = document.querySelector('#ja-discover-image');
+          return !!img && img.complete && img.naturalWidth > 0 &&
+                 document.querySelector('#ja-discover').classList.contains('is-ready');
+        """))
+        # Archive the real first viewport (approved image included) for design review.
+        driver.execute_script("window.scrollTo(0, 0)")
+        screenshot_width = driver.execute_script("return window.innerWidth")
+        driver.save_screenshot(str(OUT / f"discover-{screenshot_width}.png"))
+
+        snapshot = driver.execute_script("""
+          const ids = ['ja-discover','scenery','map','lens-world',
+                       'ja-find','countries','themes','seasons','my-atlas'];
+          const dom = [...document.querySelectorAll('main *')];
+          return {
+            image: document.querySelector('#ja-discover-image').getAttribute('src'),
+            country: document.querySelector('#ja-discover-country').textContent.trim(),
+            scene: document.querySelector('#ja-discover-scene').textContent.trim(),
+            link: document.querySelector('#ja-discover-link').getAttribute('href'),
+            count: document.querySelector('#ja-discover-count').textContent.trim(),
+            sequence: ids.map(id => dom.indexOf(document.getElementById(id)))
+          };
+        """)
+        if snapshot["sequence"] != sorted(snapshot["sequence"]):
+            errors.append("Discover-first section order is incorrect")
+        if not snapshot["scene"] or not snapshot["country"] or not snapshot["image"] or not snapshot["link"].startswith("countries/"):
+            errors.append("Discover-first image/name/link is incomplete: " + repr(snapshot))
+        wait.until(lambda d: not d.find_element(By.ID, "ja-discover-next").get_property("disabled"))
+        driver.execute_script("document.getElementById('ja-discover-next').click()")
+        wait.until(lambda d: d.find_element(By.ID, "ja-discover-count").text.strip() != snapshot["count"])
+        next_row = driver.execute_script("""
+          const image = document.querySelector('#ja-discover-image');
+          return {country:document.querySelector('#ja-discover-country').textContent.trim(),
+            link:document.querySelector('#ja-discover-link').getAttribute('href'),
+            image:image.getAttribute('src'),loaded:image.complete && image.naturalWidth > 0};
+        """)
+        if (next_row["country"] == snapshot["country"] or
+                not next_row["link"].startswith("countries/") or
+                next_row["image"] == snapshot["image"] or not next_row["loaded"]):
+            errors.append("Discover-first next-scenery navigation is inconsistent: " + repr(next_row))
 
     cards = driver.find_elements(By.CSS_SELECTOR, "#country-rail .country-card")
     slugs = [card.get_attribute("data-slug") for card in cards]
@@ -301,12 +347,17 @@ def check(driver, viewport):
         errors.append("Season Wish filter did not intersect the selected month: " + repr(filtered))
     if "swish=1" not in driver.current_url:
         errors.append("Season Wish selection not persisted in URL")
-    other_season_region = next((el for el in driver.find_elements(
-        By.CSS_SELECTOR, "#season-region-tabs [data-season-region]"
-    ) if el.get_attribute("data-season-region") != "all" and
-        el.find_element(By.TAG_NAME, "span").text == "0"), None)
-    if other_season_region is not None:
-        driver.execute_script("arguments[0].click()", other_season_region)
+    # Click by a fresh DOM query: selecting a Wish filter can rebuild the
+    # region-tab row while Selenium is iterating over old WebElements.
+    clicked_other_season_region = driver.execute_script("""
+      const target = [...document.querySelectorAll(
+        '#season-region-tabs [data-season-region]'
+      )].find(el => el.dataset.seasonRegion !== 'all' &&
+        el.querySelector('span')?.textContent.trim() === '0');
+      if (target) target.click();
+      return Boolean(target);
+    """)
+    if clicked_other_season_region:
         if driver.find_elements(By.CSS_SELECTOR, "#season-results-grid .country-card"):
             errors.append("Season region and Wish filters were not intersected")
         driver.execute_script("arguments[0].click()", driver.find_element(
@@ -444,6 +495,7 @@ def main() -> int:
             try:
                 errors = check(driver, config)
             except Exception as exc:
+                print("TOP QA exception in " + label + ":\\n" + traceback.format_exc(), flush=True)
                 errors = [type(exc).__name__ + ": " + str(exc)[:350]]
             results[label] = {"pass": not errors, "errors": errors}
             driver.save_screenshot(str(OUT / (label + ".png")))
