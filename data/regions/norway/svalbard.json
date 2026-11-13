@@ -1,0 +1,680 @@
+{
+  "schemaVersion": 1,
+  "contentQaVersion": 6,
+  "parentSlug": "norway",
+  "slug": "svalbard",
+  "regionPublished": false,
+  "nameEn": "SVALBARD",
+  "nameJa": "スヴァールバル諸島",
+  "region": "NORTHERN EUROPE / 78°N",
+  "parentNameJa": "ノルウェー",
+  "parentNameEn": "NORWAY",
+  "parentReturnDescription": "ノルウェー本土から北極の島々へ、旅をつなぐ",
+  "travelThemes": [
+    "地球の風景",
+    "時をたどる",
+    "海の世界へ"
+  ],
+  "seo": {
+    "description": "ノルウェー領スヴァールバル諸島。ロングイェールビーン、氷河、種子貯蔵庫、炭鉱遺産、北極研究集落を実在の8景と地図でたどる。"
+  },
+  "hero": {
+    "name": "ロングイェールビーンとアドヴェントフィヨルド",
+    "location": "Longyearbyen / Adventfjorden",
+    "image": "assets/images/norway/svalbard/approved/hero-longyearbyen-adventfjorden.webp",
+    "coordinates": {
+      "latitude": 78.22223,
+      "longitude": 15.631533
+    },
+    "lead": "北緯78度。乾いた山肌の麓に、色とりどりの家が集まる。フィヨルドに面した町には石炭産業の記憶が残り、その外側には人の手が届きにくい北極の大地が広がる。",
+    "description": "ロングイェールビーンの高台から、低層の町並み、旧石炭施設とアドヴェントフィヨルドを望む。",
+    "sceneTypes": [
+      "colorful",
+      "fjord"
+    ],
+    "sourceKey": "hero"
+  },
+  "profile": [
+    {
+      "label": "中心地",
+      "value": "ロングイェールビーン"
+    },
+    {
+      "label": "人口",
+      "value": "2,933人（2026年7月1日、主要居住地の合計）",
+      "sourceKey": "population"
+    },
+    {
+      "label": "面積",
+      "value": "60,299km²（日本の約16%）",
+      "sourceKey": "area"
+    },
+    {
+      "label": "言語",
+      "value": "主にノルウェー語。英語も広く使われる",
+      "sourceKey": "travel"
+    },
+    {
+      "label": "主な宗教",
+      "value": "宗教別の構成比は確認できない"
+    },
+    {
+      "label": "通貨",
+      "value": "ノルウェー・クローネ（NOK）",
+      "sourceKey": "travel"
+    }
+  ],
+  "historyContext": {
+    "text": "スヴァールバル諸島はノルウェー王国の一部であり、独立国でも独立した自治州でもない。1920年署名のスヴァールバル条約は1925年に発効した。ノルウェー政府を代表する総督は警察・救難・環境保護などを担い、ロングイェールビーン地方議会は同町を中心とする生活・公共サービスを担当する。",
+    "sourceKeys": [
+      "status",
+      "treaty",
+      "governor",
+      "localCouncil"
+    ]
+  },
+  "map": {
+    "svg": "assets/images/norway/svalbard/map-svalbard.svg",
+    "bounds": {
+      "west": 9.5,
+      "east": 35,
+      "south": 74,
+      "north": 81.3
+    },
+    "singleMapMobile": true,
+    "insetNote": "※ ビョルン島は、実際の位置関係・縮尺と異なる別枠表示です。",
+    "source": "スヴァールバル諸島の陸地輪郭：WRI Open Data Portal Svalbard GeoJSON。極投影、海岸線は表示尺度に合わせ簡略化。ビョルン島は別枠（縮尺・位置は別）。氷河の詳細境界は資料時点を確定できないため描写しない（2026年11月13日確認）。"
+  },
+  "scenes": [
+    {
+      "id": "global-seed-vault",
+      "name": "スヴァールバル世界種子貯蔵庫",
+      "nameLocal": "Svalbard Global Seed Vault",
+      "description": "永久凍土の山腹に突き出すコンクリート製の小さな入口。世界各地の種子を保管する施設で、内部は通常の観光客には公開されない。",
+      "coordinates": {
+        "latitude": 78.235729,
+        "longitude": 15.491244
+      },
+      "image": "assets/images/norway/svalbard/approved/scene-01-global-seed-vault.webp",
+      "sceneTypes": [
+        "monument",
+        "rock"
+      ],
+      "sourceKey": "seedVault",
+      "mapOffset": {
+        "x": -3.5,
+        "y": -4.5
+      }
+    },
+    {
+      "id": "nordenskioldbreen",
+      "name": "ノルデンショルド氷河",
+      "nameLocal": "Nordenskiöldbreen / Adolfbukta",
+      "description": "ビレフィヨルド東側のアドルフブクタへ流れ込む氷河。水面から眺める氷壁の割れ目と背後の岩山が、氷河の厚みと動きを伝える。",
+      "coordinates": {
+        "latitude": 78.69013,
+        "longitude": 17.158943
+      },
+      "image": "assets/images/norway/svalbard/approved/scene-02-nordenskioldbreen.webp",
+      "sceneTypes": [
+        "glacier",
+        "fjord"
+      ],
+      "sourceKey": "nordenskioldbreen",
+      "mapOffset": {
+        "x": 2,
+        "y": -1
+      }
+    },
+    {
+      "id": "pyramiden",
+      "name": "ピラミーデン",
+      "nameLocal": "Pyramiden",
+      "description": "かつてのソ連系炭鉱集落。記念碑と低層住宅群の背後に北極圏の山が迫る。港への寄港や上陸は現在の運航・管理条件に左右される。",
+      "coordinates": {
+        "latitude": 78.6558,
+        "longitude": 16.3229
+      },
+      "image": "assets/images/norway/svalbard/approved/scene-03-pyramiden.webp",
+      "sceneTypes": [
+        "oldtown",
+        "peak"
+      ],
+      "sourceKey": "pyramiden",
+      "mapOffset": {
+        "x": -2,
+        "y": 1
+      }
+    },
+    {
+      "id": "adventdalen",
+      "name": "アドヴェントダーレン",
+      "nameLocal": "Adventdalen",
+      "description": "川が複数の流路に分かれ、石礫の広い谷底を縫う。短い夏には丈の低いツンドラが色づき、木々のない山肌が谷を囲む。",
+      "coordinates": {
+        "latitude": 78.19331,
+        "longitude": 15.930761
+      },
+      "image": "assets/images/norway/svalbard/approved/scene-04-adventdalen.webp",
+      "sceneTypes": [
+        "river",
+        "highland"
+      ],
+      "sourceKey": "adventdalen",
+      "mapOffset": {
+        "x": 4,
+        "y": 2
+      }
+    },
+    {
+      "id": "gruve-3",
+      "name": "第3炭鉱",
+      "nameLocal": "Gruve 3 / Longyearbyen",
+      "description": "ロングイェールビーン近くの旧炭鉱。金属外壁の作業施設や搬送設備が残り、石炭採掘で発展した町の歴史を伝える。",
+      "coordinates": {
+        "latitude": 78.23837,
+        "longitude": 15.4446
+      },
+      "image": "assets/images/norway/svalbard/approved/scene-05-gruve-3.webp",
+      "sceneTypes": [
+        "monument"
+      ],
+      "sourceKey": "gruve3",
+      "mapOffset": {
+        "x": 4,
+        "y": -4
+      }
+    },
+    {
+      "id": "ny-alesund",
+      "name": "ニーオーレスン",
+      "nameLocal": "Ny-Ålesund / Kongsfjorden",
+      "description": "かつての炭鉱拠点から極地の国際研究集落へ。低層の色彩豊かな木造建築が並び、観測施設とフィヨルドの山並みが共存する。",
+      "coordinates": {
+        "latitude": 78.925,
+        "longitude": 11.933
+      },
+      "image": "assets/images/norway/svalbard/approved/scene-06-ny-alesund.webp",
+      "sceneTypes": [
+        "colorful",
+        "fjord"
+      ],
+      "sourceKey": "nyalesund"
+    },
+    {
+      "id": "tempelfjellet",
+      "name": "テンペルフィエレット",
+      "nameLocal": "Templet / Tempelfjorden",
+      "description": "水平に重なる岩の層と垂直に近い岩壁がフィヨルドに面する。岩石の堆積と侵食を読み取れる特徴的な北極の地形。",
+      "coordinates": {
+        "latitude": 78.41726,
+        "longitude": 16.72117
+      },
+      "image": "assets/images/norway/svalbard/approved/scene-07-tempelfjellet.webp",
+      "sceneTypes": [
+        "rock",
+        "fjord"
+      ],
+      "sourceKey": "tempelfjellet"
+    },
+    {
+      "id": "isfjord-radio",
+      "name": "イスフィヨルド・ラジオ",
+      "nameLocal": "Isfjord Radio / Kapp Linné",
+      "description": "イスフィヨルドの出口に建つ旧通信・気象観測施設。白い本館と通信アンテナ、開けた岩礁海岸が遠隔地の暮らしを物語る。",
+      "coordinates": {
+        "latitude": 78.06233,
+        "longitude": 13.615661
+      },
+      "image": "assets/images/norway/svalbard/approved/scene-08-isfjord-radio.webp",
+      "sceneTypes": [
+        "monument",
+        "fjord"
+      ],
+      "sourceKey": "isfjordRadio"
+    }
+  ],
+  "signatureFacts": [
+    {
+      "topicKey": "snow-ice-share",
+      "label": "雪・氷に覆われた面積",
+      "value": "55.4%",
+      "note": "2026年のノルウェー統計局の土地被覆値。諸島の過半を雪と氷が占め、場所や季節によって見える地形は変わる。",
+      "icon": "snow",
+      "sourceKey": "iceShare",
+      "interestReason": "雪や氷が一部の観光地だけでなく、諸島全体の基調だと分かる。"
+    },
+    {
+      "topicKey": "nationalities",
+      "label": "居住者の国籍",
+      "value": "66種類",
+      "note": "2026年1月の統計。小さな極地の集落には、多様な出身地の住民が暮らしている。",
+      "icon": "globe",
+      "sourceKey": "nationalities",
+      "interestReason": "隔絶した町にも世界の人々が交わることが伝わる。"
+    },
+    {
+      "topicKey": "latitude",
+      "label": "中心地の緯度",
+      "value": "北緯約78°",
+      "note": "ロングイェールビーンは高緯度の島にあり、白夜と極夜が暮らしのリズムを変える。",
+      "icon": "sun",
+      "sourceKey": "seasons",
+      "interestReason": "地理的位置を直感的に想像できる。"
+    }
+  ],
+  "encounters": [
+    {
+      "title": "海から眺める氷河の青い末端",
+      "icon": "snow",
+      "category": "LANDSCAPE"
+    },
+    {
+      "title": "旧炭鉱の骨組みに残る産業の時間",
+      "icon": "history",
+      "category": "HISTORY"
+    },
+    {
+      "title": "ツンドラの小さな花と広い谷",
+      "icon": "leaf",
+      "category": "NATURE"
+    },
+    {
+      "title": "極北の町を照らす長い夏の光",
+      "icon": "sun",
+      "category": "LIFE"
+    },
+    {
+      "title": "世界種子貯蔵庫の山腹に現れる入口",
+      "icon": "culture",
+      "category": "SCIENCE"
+    },
+    {
+      "title": "研究者が暮らす小さな集落の静けさ",
+      "icon": "city",
+      "category": "LIFE"
+    },
+    {
+      "title": "段になった岩壁を読むフィヨルド",
+      "icon": "map",
+      "category": "LANDSCAPE"
+    },
+    {
+      "title": "海風を受ける遠隔の通信施設",
+      "icon": "sea",
+      "category": "HISTORY"
+    }
+  ],
+  "culture": [
+    {
+      "topicKey": "coal-town",
+      "themeEn": "HISTORY",
+      "themeJa": "町の記憶",
+      "icon": "history",
+      "title": "石炭の町から、研究と観光の町へ",
+      "text": "ロングイェールビーンには旧炭鉱や石炭搬送設備が残り、資源採掘が住民の暮らしを形づくった歴史を今に伝える。",
+      "points": [
+        "旧炭鉱の見学は事業者が指定する範囲で行う",
+        "残された設備を産業遺産として見る"
+      ],
+      "sourceKey": "gruve3"
+    },
+    {
+      "topicKey": "polar-community",
+      "themeEn": "LIFE",
+      "themeJa": "暮らしを知る",
+      "icon": "culture",
+      "title": "小さな町に、さまざまな故郷がある",
+      "text": "極地の生活には輸送と天候の制約があり、同時に国際的な住民が働き学ぶ。大陸の都市とは異なる日常がある。",
+      "points": [
+        "短い夏と長い暗期を前提に生活が営まれる",
+        "観光客も地域社会の生活空間を尊重する"
+      ],
+      "sourceKey": "nationalities"
+    },
+    {
+      "topicKey": "research-station",
+      "themeEn": "SCIENCE",
+      "themeJa": "研究を知る",
+      "icon": "culture",
+      "title": "ニーオーレスンは、生活の場でもある研究拠点",
+      "text": "観測機器への干渉を抑えるため、通信機器や行動範囲に特別な制約がある。見学地というより研究者が働く町として訪れる。",
+      "points": [
+        "野外観測への影響がないよう行動する",
+        "訪問には組織された手配と現地の案内が必要"
+      ],
+      "sourceKey": "nyalesund"
+    },
+    {
+      "topicKey": "seed-heritage",
+      "themeEn": "SCIENCE",
+      "themeJa": "種を守る",
+      "icon": "leaf",
+      "title": "山奥の施設で、世界の農業を支える",
+      "text": "世界種子貯蔵庫は各国の遺伝資源保全施設のバックアップを担う。展示館ではないので、一般に見られるのは外側の入口である。",
+      "points": [
+        "種子が保全される意味を考える",
+        "内部の架空の展示を想像で補わない"
+      ],
+      "sourceKey": "seedVault"
+    },
+    {
+      "topicKey": "geologic-time",
+      "themeEn": "NATURE",
+      "themeJa": "岩を読む",
+      "icon": "map",
+      "title": "岩壁は、気の遠くなる地質の記録",
+      "text": "フィヨルド沿いに広がる水平に重なる岩の層や氷河が削った斜面は、土地が形成された過程を見せる。",
+      "points": [
+        "水平な地層と急な侵食斜面が対照的",
+        "氷河末端の位置は固定された線ではない"
+      ],
+      "sourceKey": "tempelfjellet"
+    },
+    {
+      "topicKey": "governance",
+      "themeEn": "HISTORY",
+      "themeJa": "制度を知る",
+      "icon": "culture",
+      "title": "同じノルウェーでも制度が違う",
+      "text": "スヴァールバル条約と特別な法制度の下にあり、総督と地方議会がそれぞれ異なる行政責任を担う。",
+      "points": [
+        "独立国として数えない",
+        "地方行政と国の代表機関を混同しない"
+      ],
+      "sourceKey": "governor"
+    }
+  ],
+  "taste": {
+    "title": "スヴァールバルで出会う味",
+    "kicker": "TASTE OF SVALBARD",
+    "intro": "極地の町で食べられるジビエと魚の料理、ノルウェーで親しまれるお菓子。現地で提供される料理と、現地で採れる食材は区別して紹介する。",
+    "items": [
+      {
+        "id": "reindeer-tartare",
+        "name": "トナカイ肉のタルタル",
+        "nameLocal": "Reindeer tartare",
+        "text": "細かく刻んだトナカイ肉にキノコなどを合わせた前菜。2026年の現地メニューに提供例がある。肉の産地や入手方法は断定しない。",
+        "image": "assets/images/norway/svalbard/approved/food-01-reindeer-tartare.webp",
+        "sourceKey": "reindeerTartare"
+      },
+      {
+        "id": "arctic-char-fillet",
+        "name": "ホッキョクイワナのソテー",
+        "nameLocal": "Pan-seared Arctic char fillet",
+        "text": "北方の魚を皮目から焼き、根菜のピューレや野菜を添えた盛り付け例。特定店舗の現在の一皿を正確に再現したものではない。",
+        "image": "assets/images/norway/svalbard/approved/food-02-arctic-char-fillet.webp",
+        "sourceKey": "arcticChar"
+      },
+      {
+        "id": "rock-ptarmigan",
+        "name": "ライチョウ胸肉のロースト",
+        "nameLocal": "Svalbard rock ptarmigan roast",
+        "text": "赤みのあるジビエ肉にベリーソースとキノコを添える料理例。現地での提供・狩猟・産地のすべてを一律には保証しない。",
+        "image": "assets/images/norway/svalbard/approved/food-03-svalbard-rock-ptarmigan.webp",
+        "sourceKey": "ptarmigan"
+      },
+      {
+        "id": "norwegian-waffles",
+        "name": "ノルウェー式ハート形ワッフル",
+        "nameLocal": "Norwegian heart-shaped waffles",
+        "text": "薄いハート形のワッフルにクリームとベリージャムを添えた例。ノルウェーで広く親しまれ、現地のカフェでも出会える味。",
+        "image": "assets/images/norway/svalbard/approved/food-04-norwegian-waffles.webp",
+        "sourceKey": "waffle"
+      }
+    ]
+  },
+  "travelTrivia": [
+    {
+      "topicKey": "ptarmigan-resident",
+      "categoryEn": "WILDLIFE",
+      "categoryJa": "野鳥",
+      "icon": "wildlife",
+      "title": "冬も島に残る、唯一の陸鳥",
+      "text": "スヴァールバルライチョウは、この諸島で一年中暮らす唯一の陸生鳥類。雪の季節には白い羽毛で身を守る。",
+      "sourceKey": "ptarmiganBird"
+    },
+    {
+      "topicKey": "arctic-world-archive",
+      "categoryEn": "HISTORY",
+      "categoryJa": "アーカイブ",
+      "icon": "history",
+      "title": "種だけでなく、世界の記録も炭鉱で眠る",
+      "text": "閉鎖された第3炭鉱の内部には、世界の文化資料などを長く残すArctic World Archiveがある。一般客は保管室に入れない。",
+      "sourceKey": "arcticWorldArchive"
+    },
+    {
+      "topicKey": "airship-norge",
+      "categoryEn": "HISTORY",
+      "categoryJa": "探検",
+      "icon": "history",
+      "title": "飛行船が北極点へ出発した町",
+      "text": "1926年、ニーオーレスンから飛行船「ノルゲ」が北極点を経由する探検飛行に出発した。",
+      "sourceKey": "norgeAirship"
+    },
+    {
+      "topicKey": "sun-festival",
+      "categoryEn": "LIFE",
+      "categoryJa": "祭り",
+      "icon": "sun",
+      "title": "太陽が戻る日を、町全体で祝う",
+      "text": "ロングイェールビーンでは、旧病院の階段に日差しが届く3月8日前後に「太陽祭」が開かれる。",
+      "sourceKey": "solfest"
+    },
+    {
+      "topicKey": "short-reindeer",
+      "categoryEn": "WILDLIFE",
+      "categoryJa": "動物",
+      "icon": "wildlife",
+      "title": "ずんぐりしたトナカイには理由がある",
+      "text": "スヴァールバルのトナカイは脚が短く、冬の分厚い毛皮によってさらに丸く見える。厳しい寒さへの適応だ。",
+      "sourceKey": "reindeerEcology"
+    }
+  ],
+  "forWhom": [
+    {
+      "title": "氷河と地層を、じっくり見たい人",
+      "text": "氷壁やフィヨルド、剥き出しの地層を観察し、極地の自然が刻む時間に触れたい人。"
+    },
+    {
+      "title": "産業と科学の歩みをたどりたい人",
+      "text": "炭鉱から研究拠点・世界的な種子保存へと移る人の営みに関心がある人。"
+    },
+    {
+      "title": "安全に配慮した極地旅行を求める人",
+      "text": "荒野へ無計画に入らず、適切なガイドや事業者と現地の規制を守って旅したい人。"
+    }
+  ],
+  "notes": [
+    {
+      "title": "集落外ではホッキョクグマ対策を",
+      "text": "集落外では遭遇に備える必要がある。十分な安全手段と適切なガイドを確保し、原則300m以上、3〜6月は500m以上の距離規制を守る。",
+      "sourceKey": "polarBear"
+    },
+    {
+      "title": "2026年の野外活動安全規則",
+      "text": "新規則は2026年1月1日施行。観光事業者の許可制度に注意。認定スヴァールバルガイド使用義務は2027年7月1日開始。",
+      "sourceKey": "fieldSafety"
+    },
+    {
+      "title": "保護区への上陸には制限がある",
+      "text": "自然保護区では観光上陸地や行動内容に制限がある。現行の総督案内と運航事業者の指示を優先する。",
+      "sourceKey": "protectedAreas"
+    },
+    {
+      "title": "氷河の末端へ近づきすぎない",
+      "text": "氷塊の崩落や波が発生することがある。海上の安全距離は現地条件と事業者の指示に従う。",
+      "sourceKey": "visitSafety"
+    },
+    {
+      "title": "研究集落は通常の観光地ではない",
+      "text": "ニーオーレスンでは組織された訪問の範囲に従い、研究設備と無線利用の制限を守る。",
+      "sourceKey": "nyalesund"
+    },
+    {
+      "title": "ピラミーデンへの上陸は保証されない",
+      "text": "政治情勢、船舶の運航、現地運営条件によって上陸可否が変わる。遠望と上陸を混同しない。",
+      "sourceKey": "pyramidenAccess"
+    },
+    {
+      "title": "集落間に道路はない",
+      "text": "遠隔地への移動は季節・海氷・天候で変わり、夏の船や雪上の組織ツアーなどを個別手配する。",
+      "sourceKey": "transport"
+    },
+    {
+      "title": "シェンゲン圏外の手続きを確認",
+      "text": "スヴァールバルはシェンゲン圏外。ノルウェー本土経由時は旅券やシェンゲン再入域条件を事前に確認する。",
+      "sourceKey": "travel"
+    }
+  ],
+  "travelScale": {
+    "kicker": "DURATION",
+    "title": "旅の目安日程",
+    "intro": "ロングイェールビーンを出発・帰着の拠点に。遠隔地の景色は、許可されたガイド付きの運航が成立するときに限られる。",
+    "items": [
+      {
+        "duration": "3〜4日",
+        "title": "町と炭鉱の歴史",
+        "icon": "city",
+        "text": "ロングイェールビーン → 種子貯蔵庫の外観 → 第3炭鉱の見学 → ロングイェールビーン。"
+      },
+      {
+        "duration": "5〜7日",
+        "title": "フィヨルドと氷河",
+        "icon": "sea",
+        "text": "ロングイェールビーン → ビレフィヨルドの船上観察 → ロングイェールビーン。荒天の予備日を含む。"
+      },
+      {
+        "duration": "8〜12日",
+        "title": "研究と沿岸の遠隔地",
+        "icon": "compass",
+        "text": "ロングイェールビーン → 組織された訪問がある場合にニーオーレスンやイスフィヨルド・ラジオ → ロングイェールビーン。"
+      }
+    ]
+  },
+  "bestSeason": {
+    "windows": [
+      {
+        "label": "6〜8月",
+        "reason": "白夜、ツンドラ、海上ツアーの機会が増える時期。海況と上陸規制に従う。"
+      },
+      {
+        "label": "3〜4月",
+        "reason": "雪原に光が戻る季節。雪上ツアーはガイドと積雪・安全条件次第。"
+      }
+    ]
+  },
+  "seasons": [
+    {
+      "months": "3〜5月",
+      "label": "光の戻る春",
+      "icon": "snow",
+      "color": "#7396af",
+      "text": "日照が戻っても雪と低温が続く。雪上移動は現地の安全・運航判断に従う。"
+    },
+    {
+      "months": "6〜8月",
+      "label": "白夜の夏",
+      "icon": "sun",
+      "color": "#92a253",
+      "text": "太陽が沈まない期間。船上の景色やツンドラを楽しめるが、風と低温への備えが必要。"
+    },
+    {
+      "months": "9〜10月",
+      "label": "短い秋",
+      "icon": "leaf",
+      "color": "#b77a49",
+      "text": "日が短くなり、海上運航は季節終盤へ。天候で変更されやすい。"
+    },
+    {
+      "months": "11〜2月",
+      "label": "極夜の冬",
+      "icon": "weather",
+      "color": "#5c7897",
+      "text": "太陽が昇らない季節を含む。行動範囲が制限され、条件が合えばオーロラも見られる。"
+    }
+  ],
+  "transport": {
+    "icon": "map",
+    "title": "空路で入島、遠隔地は組織ツアー",
+    "text": "主要な玄関口はスヴァールバル空港。オスロやトロムソから空路で向かい、遠隔地は季節・許可・運航に応じて船や雪上移動を手配する。居住地同士は公道でつながっていない。",
+    "sourceKeys": [
+      "transport",
+      "fieldSafety"
+    ]
+  },
+  "nextRoutesIntro": "空路でノルウェー本土へ戻り、北欧の旅をつなぐ。",
+  "nextRoutes": [
+    {
+      "countryEn": "NORWAY",
+      "countryJa": "ノルウェー",
+      "flag": "🇳🇴",
+      "path": "Longyearbyen → Tromsø / Oslo",
+      "description": "北極の島々から本土の港町やフィヨルドへ。",
+      "href": "countries/norway/",
+      "travelerRoute": true,
+      "status": "OPEN"
+    }
+  ],
+  "relatedCountries": [
+    {
+      "nameJa": "ノルウェー",
+      "nameEn": "NORWAY",
+      "href": "countries/norway/",
+      "flag": "🇳🇴",
+      "reason": "制度と航空路でつながるノルウェー本土へ。",
+      "affinityType": "GEOGRAPHY"
+    }
+  ],
+  "sourcesVerifiedAt": "2026-11-13",
+  "updatedAt": "2026-11-13",
+  "sourceDates": {
+    "population": "2026-07-01 (SSB, updated 2026-10-14; 2504+419+10)",
+    "area": "2026 (SSB Table 1, 60299 km², land plus fresh water)",
+    "snowIce": "2026 (SSB 55.4%)",
+    "nationalities": "2026-01-01 (SSB, published 2026-03-04)",
+    "status": "1920 treaty; Svalbard Act effective 1925-08-14",
+    "safety": "2026-01-01 field regulation; 2027-07-01 approved guide mandate",
+    "map": "WRI ODP geojson snapshot; acquisition vintage not identified, glacier boundaries intentionally omitted",
+    "bestSeason": "editorial as of 2026-11-13"
+  },
+  "sources": {
+    "status": "https://www.regjeringen.no/en/documents/meld.-st.-26-20232024/id3041130/?ch=1",
+    "treaty": "https://www.regjeringen.no/en/documents/meld.-st.-26-20232024/id3041130/?ch=2",
+    "governor": "https://www.sysselmesteren.no/en/the-governor-of-svalbard/",
+    "localCouncil": "https://www.lokalstyre.no/engelsk/longyearbyen-local-council/services/resident-information/about-longyearbyen-local-council/facts-about-longyearbyen",
+    "population": "https://www.ssb.no/en/befolkning/folketall/statistikk/befolkningen-pa-svalbard",
+    "nationalities": "https://www.ssb.no/befolkning/folketall/statistikk/befolkningen-pa-svalbard/artikler/hoy-befolkningsutskiftning-og-okende-mangfold-pa-svalbard-ved-inngangen-av-2026",
+    "area": "https://www.ssb.no/en/natur-og-miljo/areal/statistikk/areal-av-land-og-ferskvatn",
+    "iceShare": "https://www.ssb.no/svalbard/faktaside/svalbard",
+    "hero": "https://en.visitsvalbard.com/inspiration/various/the-most-romantic-spots-in-longyearbyen",
+    "seedVault": "https://www.seedvault.no/",
+    "nordenskioldbreen": "https://en.visitsvalbard.com/activity-planner/wildlife-and-glacier-hybrid-catamaran-tour-hurtigruten-svalbard-p5213823",
+    "pyramiden": "https://cruise-handbook.npolar.no/en/isfjorden/pyramiden.html",
+    "pyramidenAccess": "https://en.visitsvalbard.com/visitor-information/travel-information/how-to-get-to-the-russian-settlements",
+    "adventdalen": "https://en.visitsvalbard.com/things-to-do/a-historic-walk-in-adventdalen-hurtigruten-svalbard-p3696713",
+    "gruve3": "https://gruve3.no/mine-no-3",
+    "nyalesund": "https://en.visitsvalbard.com/visitor-information/destinations/ny-alesund",
+    "tempelfjellet": "https://npolar.no/en/themes/the-geology-of-svalbard/",
+    "isfjordRadio": "https://en.visitsvalbard.com/visitor-information/destinations/isfjord-radio",
+    "reindeerTartare": "https://svalbardadventures.com/wp-content/uploads/2026/03/Menu-020226-Copy.pdf",
+    "arcticChar": "https://www.radissonhotels.com/en-us/hotels/radisson-blu-spitsbergen-polar/dining/nansen",
+    "ptarmigan": "https://npolar.no/en/species/svalbard-rock-ptarmigan/",
+    "waffle": "https://en.visitsvalbard.com/visitor-information/faq",
+    "travel": "https://en.visitsvalbard.com/visitor-information/travel-information/everything-you-need-to-know-before-departure",
+    "seasons": "https://en.visitsvalbard.com/visitor-information/seasons",
+    "polarBear": "https://en.visitsvalbard.com/visitor-information/polar-bears",
+    "fieldSafety": "https://www.sysselmesteren.no/en/travel-in-svalbard/application-and-registration-requirement-for-trips-to-svalbard/",
+    "guideApproval": "https://www.sysselmesteren.no/en/approval-of-svalbard-guides/guide-approval--qa/",
+    "protectedAreas": "https://www.sysselmesteren.no/en/the-governor-of-svalbard/environmental-protection/protected-areas-in-svalbard/",
+    "visitSafety": "https://en.visitsvalbard.com/visitor-information/safety-in-svalbard",
+    "transport": "https://en.visitsvalbard.com/visitor-information/travel-information/everything-you-need-to-know-before-departure",
+    "mapSource": "https://github.com/wri/wri-odp/blob/master/ckan-backend-dev/src/ckanext-wri/ckanext/wri/world_geojsons/states/Norway/Svalbard.geojson",
+    "mapNPI": "https://geodata.npolar.no/",
+    "ptarmiganBird": "https://npolar.no/en/species/svalbard-rock-ptarmigan/",
+    "arcticWorldArchive": "https://en.visitsvalbard.com/inspiration/various/arctic-world-archive",
+    "solfest": "https://www.lokalstyre.no/engelsk/longyearbyen-local-council/services/culture-sports-and-leisure/solfestuka-2026",
+    "norgeAirship": "https://kingsbay.no/history/",
+    "reindeerEcology": "https://npolar.no/en/species/svalbard-reindeer/"
+  }
+}
