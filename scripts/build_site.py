@@ -651,6 +651,7 @@ def build_top_scene_index() -> None:
         "isle-of-man": ("🇮🇲", None),
         "bermuda": ("🇧🇲", None),  # British Overseas Territory in the North Atlantic.
         "falkland-islands": ("🇫🇰", None),  # British Overseas Territory in the South Atlantic.
+        "saint-helena": ("🇸🇭", None),  # British Overseas Territory in the South Atlantic; TOP flag.
         "england": ("🏴󠁧󠁢󠁥󠁮󠁧󠁿", "assets/icons/region-flags/england-waved.svg"),
         "scotland": ("🏴󠁧󠁢󠁳󠁣󠁴󠁿", "assets/icons/region-flags/scotland-waved.svg"),
         "wales": ("🏴󠁧󠁢󠁷󠁬󠁳󠁿", "assets/icons/region-flags/wales-waved.svg"),
