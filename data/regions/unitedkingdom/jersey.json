@@ -560,14 +560,14 @@
       "bus"
     ]
   },
-  "nextRoutesIntro": "海を越える船や飛行機で、他のチャンネル諸島やフランス・英国南岸へ旅をつなぐ。",
+  "nextRoutesIntro": "英仏海峡の定期フェリーで、フランス・英国南岸と隣の島へ。",
   "nextRoutes": [
     {
       "countryEn": "FRANCE",
       "countryJa": "フランス",
       "flag": "🇫🇷",
-      "path": "Saint Helier → Saint Malo / Normandy",
-      "description": "短い海路の先にあるノルマンディーとブルターニュへ。港町と大陸の文化をつないで巡る。",
+      "path": "Saint Helier → Saint-Malo",
+      "description": "セント・ヘリアから定期フェリーで南へ渡り、城壁の港町サン・マロへ。潮の満ち引きが大きな湾を越え、ブルターニュの海辺の町へつながる。",
       "href": "countries/france/",
       "travelerRoute": true,
       "status": "OPEN"
@@ -577,10 +577,21 @@
       "countryJa": "イギリス",
       "flag": "🇬🇧",
       "path": "Saint Helier → Poole / Portsmouth",
-      "description": "英国南岸の港町へ。これは別の国への旅であり、ジャージーが英国の一部であることを意味しない。",
+      "description": "セント・ヘリアから定期フェリーで英仏海峡を北へ渡り、イングランド南岸のプールやポーツマスへ。花崗岩の城と砂浜の島から、英国の港町へ旅をつなぐ。",
       "href": "countries/unitedkingdom/",
       "travelerRoute": true,
       "status": "OPEN"
+    },
+    {
+      "countryEn": "GUERNSEY",
+      "countryJa": "ガーンジー",
+      "flag": "🇬🇬",
+      "path": "Saint Helier → St Peter Port",
+      "description": "海を渡ってもう一つの王室属領ガーンジーへ。坂の多い港町と小島の景色を見比べる。",
+      "href": "countries/unitedkingdom/guernsey/",
+      "travelerRoute": true,
+      "status": "CHECK_CURRENT_CONDITIONS",
+      "statusNote": "島間の便は限られ、時期によって設定がない。DFDSとBrittany Ferriesの時刻表を確認する。"
     }
   ],
   "relatedCountries": [
@@ -589,16 +600,24 @@
       "nameEn": "FRANCE",
       "href": "countries/france/",
       "flag": "🇫🇷",
-      "reason": "大陸ノルマンディーへ、歴史と海辺の暮らしのつながりをたどる。",
-      "affinityType": "HISTORY"
+      "reason": "干潮で海底が現れるほどの大きな潮の満ち引きに惹かれたなら、湾の対岸のモン・サン・ミシェルで、潮が引くと島へ歩いて渡れる風景を見られる。",
+      "affinityType": "LANDSCAPE"
     },
     {
-      "nameJa": "イギリス",
-      "nameEn": "UNITED KINGDOM",
-      "href": "countries/unitedkingdom/",
-      "flag": "🇬🇧",
-      "reason": "海の向こうの英国南岸へ。島と英国の制度上の違いも知る。",
-      "affinityType": "CULTURE"
+      "nameJa": "カナダ",
+      "nameEn": "CANADA",
+      "href": "countries/canada/",
+      "flag": "🇨🇦",
+      "reason": "潮位差が10mを超える海岸に惹かれたなら、世界最大級の潮位差で知られるファンディ湾で、干潮時に海の底を歩ける。",
+      "affinityType": "LANDSCAPE"
+    },
+    {
+      "nameJa": "マダガスカル",
+      "nameEn": "MADAGASCAR",
+      "href": "countries/madagascar/",
+      "flag": "🇲🇬",
+      "reason": "ジェラルド・ダレルが創設した動物園と保全の取り組みに惹かれたなら、その保全団体が長く活動するマダガスカルで、キツネザルが暮らす森を訪ねられる。",
+      "affinityType": "WILDLIFE"
     }
   ],
   "sourcesVerifiedAt": "2026-11-12",
@@ -643,7 +662,8 @@
     "map": "Natural Earth 1:10m Admin-0 (public domain): https://github.com/nvkelso/natural-earth-vector ; GSHHG shoreline: https://www.soest.hawaii.edu/wessel/gshhg/",
     "tidalTrail": "https://business.jersey.com/marketing/campaigns/jersey-tidal-trail/",
     "parishes": "https://www.gov.je/LifeEvents/MovingToJersey/WhyChooseJersey/Pages/Government.aspx",
-    "stamps": "https://history.je/first-jersey-stamps/"
+    "stamps": "https://history.je/first-jersey-stamps/",
+    "ferries2026": "https://business.jersey.com/news/dfds-publishes-full-2026-sailing-schedule-with-15-early-booking-offer/"
   },
   "nextRegion": {
     "slug": "gibraltar",
