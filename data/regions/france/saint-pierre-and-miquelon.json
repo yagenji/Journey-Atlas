@@ -79,8 +79,9 @@
       "south": 46.71,
       "north": 47.18
     },
-    "source": "Target land, islands and coastline: Who’s On First Saint Pierre and Miquelon ADM0 85632371, Quattroshapes geometry (CC BY 2.0), retrieved 2026-11-13: https://github.com/whosonfirst-data/whosonfirst-data-admin-pm/blob/master/data/856/323/71/85632371.geojson . WGS84 local equirectangular projection, 1200x760. 8 sourced island polygons including Saint-Pierre, Île aux Marins, Miquelon and Langlade. Miquelon and Langlade joined by the actual naturally formed sandy isthmus, not a bridge. Grand Barachois represented by the water indentation of the original coastline; no additional lagoon or coastal polygons invented. Full overview uses the recorded local-equirectangular-fit-v1 map bounds; an inset enlarges the same Saint-Pierre source geometry at a separate, explicitly identified scale. Map anchors always use the overview geographic projection; optional label-only offsets are recorded in Scene JSON. Note: Quattroshapes historical source may not capture subsequent erosion at the moving isthmus.",
-    "singleMapMobile": true
+    "source": "Main shorelines of Saint-Pierre, Miquelon-Langlade, Île aux Marins and Grand Colombier: IGN ADMIN EXPRESS COG CARTO PE 2026 (Licence Ouverte / Etalab), 97501/97502 from Géoplateforme WFS, processed in https://github.com/ironlam/poligraph/blob/main/public/data/outremer-provenance.json (2026-10-11; 29m Douglas-Peucker simplification). https://cartes.gouv.fr/rechercher-une-donnee/dataset/IGNF_ADMIN-EXPRESS . Île aux Vainqueurs islet: Who's On First 85632371 / Quattroshapes CC BY 2.0, https://github.com/whosonfirst-data/whosonfirst-data-admin-pm/blob/master/data/856/323/71/85632371.geojson . WGS84 local-equirectangular-fit-v1 (1200×760). Natural Miquelon-Langlade isthmus and Grand Barachois lagoon follow sourced land/water boundary; no invented bridge, road, or lagoon shape. Saint-Pierre is shown in a different-scale inset. Scene coordinates unchanged and mapOffset is label-only. Coastline generalization is not a substitute for site-specific 2024 erosion survey.",
+    "singleMapMobile": true,
+    "insetNote": "※ サンピエールは、同じ地域を拡大した別枠表示です。"
   },
   "scenes": [
     {
@@ -182,7 +183,7 @@
         "cliff"
       ],
       "mapOffset": {
-        "x": 2.0,
+        "x": 2,
         "y": -2.6
       }
     },
