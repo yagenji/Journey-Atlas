@@ -1,0 +1,647 @@
+{
+  "schemaVersion": 1,
+  "contentQaVersion": 6,
+  "parentSlug": "france",
+  "slug": "saint-pierre-and-miquelon",
+  "regionPublished": false,
+  "nameEn": "SAINT PIERRE AND MIQUELON",
+  "nameJa": "サンピエール島・ミクロン島",
+  "region": "NORTHERN NORTH AMERICA / 47°N",
+  "parentNameJa": "フランス",
+  "parentNameEn": "FRANCE",
+  "parentReturnDescription": "フランスの8つの景色を見る",
+  "seo": {
+    "description": "北大西洋に残るフランスの島々、サンピエール島・ミクロン島。港町、漁村、砂州のラグーン、灯台と森を8つの景色で旅する。"
+  },
+  "hero": {
+    "name": "サンピエールの港町",
+    "location": "Port de Saint-Pierre / Saint-Pierre",
+    "image": "assets/images/france/saint-pierre-and-miquelon/approved/hero-saint-pierre-waterfront.webp",
+    "coordinates": {
+      "latitude": 46.77722,
+      "longitude": -56.16972
+    },
+    "lead": "カナダ・ニューファンドランド島の沖合に浮かぶ、フランスの海外自治体サンピエール島・ミクロン島。色彩のある木造の港町から、歴史の残る小島、長い自然の砂州、海に面した灯台、北方の森まで。近い島々を行き来するだけで、風景も暮らしも静かに変わっていく。",
+    "description": "防波堤に守られたサンピエール港。漁船の向こうに低い家並みと教会、岩のある丘陵が連なる。",
+    "sceneTypes": [
+      "harbor",
+      "colorful"
+    ],
+    "sourceKeys": [
+      "saintPierreTown",
+      "portLocation"
+    ]
+  },
+  "profile": [
+    {
+      "label": "中心都市",
+      "value": "サンピエール（Saint-Pierre）",
+      "sourceKey": "status"
+    },
+    {
+      "label": "人口",
+      "value": "5,790人（2023年基準、2026年施行の人口）",
+      "sourceKey": "population"
+    },
+    {
+      "label": "面積",
+      "value": "約242km²（日本の約0.06%）",
+      "sourceKey": "area"
+    },
+    {
+      "label": "言語",
+      "value": "フランス語（公用語）",
+      "sourceKey": "status"
+    },
+    {
+      "label": "主な宗教",
+      "value": "キリスト教（歴史的なカトリック文化）",
+      "sourceKey": "marinsChurch"
+    },
+    {
+      "label": "通貨",
+      "value": "ユーロ（EUR）",
+      "sourceKey": "status"
+    }
+  ],
+  "historyContext": {
+    "text": "サンピエール島・ミクロン島は、カナダ・ニューファンドランド島の沖にあるフランスの海外自治体（COM）。フランスの海外県でも独立国家でもなく、フランス憲法第74条に基づく制度を持つ。欧州連合の領域ではなく、EUとの関係では海外国・領域（PTOM）にあたる。英仏間で帰属が揺れた後、1816年にフランス領としての統治が確定した。",
+    "sourceKeys": [
+      "status",
+      "history"
+    ]
+  },
+  "map": {
+    "svg": "assets/images/france/saint-pierre-and-miquelon/map-saint-pierre-and-miquelon.svg",
+    "bounds": {
+      "west": -56.46,
+      "east": -56.06,
+      "south": 46.71,
+      "north": 47.18
+    },
+    "source": "Target land, islands and coastline: Who’s On First Saint Pierre and Miquelon ADM0 85632371, Quattroshapes geometry (CC BY 2.0), retrieved 2026-11-13: https://github.com/whosonfirst-data/whosonfirst-data-admin-pm/blob/master/data/856/323/71/85632371.geojson . WGS84 local equirectangular projection, 1200x760. 8 sourced island polygons including Saint-Pierre, Île aux Marins, Miquelon and Langlade. Miquelon and Langlade joined by the actual naturally formed sandy isthmus, not a bridge. Grand Barachois represented by the water indentation of the original coastline; no additional lagoon or coastal polygons invented. Full overview uses the recorded local-equirectangular-fit-v1 map bounds; an inset enlarges the same Saint-Pierre source geometry at a separate, explicitly identified scale. Map anchors always use the overview geographic projection; optional label-only offsets are recorded in Scene JSON. Note: Quattroshapes historical source may not capture subsequent erosion at the moving isthmus.",
+    "singleMapMobile": true
+  },
+  "scenes": [
+    {
+      "id": "ile-aux-marins",
+      "name": "イル・オ・マラン",
+      "nameLocal": "Île aux Marins / Notre-Dame-des-Marins",
+      "description": "かつて漁師の家族が暮らした小島。白い木造教会と低い家並みが、タラ漁に支えられた島の記憶を伝える。",
+      "coordinates": {
+        "latitude": 46.78405,
+        "longitude": -56.14966
+      },
+      "image": "assets/images/france/saint-pierre-and-miquelon/approved/scene-01-ile-aux-marins.webp",
+      "sourceKey": "ileAuxMarins",
+      "sceneTypes": [
+        "church",
+        "village"
+      ],
+      "mapOffset": {
+        "x": 2.5,
+        "y": -3.3
+      }
+    },
+    {
+      "id": "grand-barachois",
+      "name": "グラン・バラショワ",
+      "nameLocal": "Grand Barachois / Miquelon-Langlade",
+      "description": "ミクロンとラングラードを結ぶ砂州の内側に広がる汽水性ラグーン。砂丘と湿地には水鳥が集まり、岸辺ではアザラシの姿も見られる。",
+      "coordinates": {
+        "latitude": 46.988333,
+        "longitude": -56.327222
+      },
+      "image": "assets/images/france/saint-pierre-and-miquelon/approved/scene-02-grand-barachois.webp",
+      "sourceKey": "grandBarachois",
+      "sceneTypes": [
+        "lagoon",
+        "wetland"
+      ]
+    },
+    {
+      "id": "vallee-cormorandiere",
+      "name": "コルモランディエールの谷",
+      "nameLocal": "Vallée de la Cormorandière / Miquelon",
+      "description": "ミクロン北部の草地と低い岩山に伸びる谷。地表近くの植物と湿り気を帯びた地形をたどり、島の自然の変化を体感する。",
+      "coordinates": {
+        "latitude": 47.13621,
+        "longitude": -56.35422
+      },
+      "image": "assets/images/france/saint-pierre-and-miquelon/approved/scene-03-vallee-cormorandiere.webp",
+      "sourceKey": "cormorandiere",
+      "sceneTypes": [
+        "wetland",
+        "grassland"
+      ]
+    },
+    {
+      "id": "phare-cap-blanc",
+      "name": "カップ・ブラン灯台",
+      "nameLocal": "Phare du Cap Blanc / Miquelon",
+      "description": "1883年から西岸を見守る灯台。白い円筒塔を支える三角形の控壁と赤い灯室は、荒れる海に向き合う建築の姿を残す。",
+      "coordinates": {
+        "latitude": 47.105033,
+        "longitude": -56.398917
+      },
+      "image": "assets/images/france/saint-pierre-and-miquelon/approved/scene-04-phare-du-cap-blanc.webp",
+      "sourceKey": "capBlanc",
+      "sceneTypes": [
+        "lighthouse",
+        "cliff"
+      ]
+    },
+    {
+      "id": "miquelon-village",
+      "name": "ミクロン村",
+      "nameLocal": "Village de Miquelon / Notre-Dame-des-Ardilliers",
+      "description": "黄土色の木造教会と背の低い住宅が並ぶ集落。農業と沿岸漁業の拠点として続く、もう一つの島の暮らしに触れる。",
+      "coordinates": {
+        "latitude": 47.10043,
+        "longitude": -56.37786
+      },
+      "image": "assets/images/france/saint-pierre-and-miquelon/approved/scene-05-miquelon-village.webp",
+      "sourceKey": "miquelonVillage",
+      "sceneTypes": [
+        "village",
+        "church"
+      ]
+    },
+    {
+      "id": "cap-au-diable",
+      "name": "カップ・オ・ディアブル",
+      "nameLocal": "Cap au Diable / Saint-Pierre",
+      "description": "岩盤が露出した岬と、外洋の波に削られた海岸。低い草地を進む小道から、港町とは異なる荒々しい北大西洋を見る。",
+      "coordinates": {
+        "latitude": 46.80903,
+        "longitude": -56.19409
+      },
+      "image": "assets/images/france/saint-pierre-and-miquelon/approved/scene-06-cap-au-diable.webp",
+      "sourceKey": "capAuDiable",
+      "sceneTypes": [
+        "cliff"
+      ],
+      "mapOffset": {
+        "x": 2.0,
+        "y": -2.6
+      }
+    },
+    {
+      "id": "belle-riviere",
+      "name": "ベル・リヴィエール",
+      "nameLocal": "Belle Rivière / Langlade",
+      "description": "川辺の礫と針葉樹の森がつくる静かな風景。木々が密になる谷筋は、ラングラードの草地や砂丘とは別の表情を見せる。",
+      "coordinates": {
+        "latitude": 46.8967,
+        "longitude": -56.30051
+      },
+      "image": "assets/images/france/saint-pierre-and-miquelon/approved/scene-07-belle-riviere.webp",
+      "sourceKey": "belleRiviere",
+      "sceneTypes": [
+        "river",
+        "forest"
+      ]
+    },
+    {
+      "id": "anse-a-dinand",
+      "name": "アンス・ア・ディナン",
+      "nameLocal": "Anse à Dinand / Saint-Pierre",
+      "description": "泥炭地と亜寒帯の草地が海岸へ続く入江。風の通る高みから海の向こうのミクロン＝ラングラードを望む。",
+      "coordinates": {
+        "latitude": 46.80274,
+        "longitude": -56.19957
+      },
+      "image": "assets/images/france/saint-pierre-and-miquelon/approved/scene-08-anse-a-dinand.webp",
+      "sourceKey": "anseDinand",
+      "sceneTypes": [
+        "bay",
+        "wetland"
+      ],
+      "mapOffset": {
+        "x": -2.5,
+        "y": 1.6
+      }
+    }
+  ],
+  "taste": {
+    "title": "サンピエール島・ミクロン島で食べたいもの",
+    "kicker": "TASTE OF SAINT PIERRE AND MIQUELON",
+    "intro": "タラとホタテ、ロブスター、鴨のフォアグラ。北大西洋の海の幸と、島の農業が育てた4品。",
+    "items": [
+      {
+        "id": "boulettes-morue",
+        "name": "タラの揚げ団子",
+        "nameLocal": "Boulettes de morue",
+        "text": "ほぐしたタラとジャガイモなどを合わせ、小さく丸めて揚げる。かつてのタラ漁の記憶につながる家庭的な一皿。",
+        "image": "assets/images/france/saint-pierre-and-miquelon/approved/food-01-boulettes-de-morue.webp",
+        "sourceKey": "codFood"
+      },
+      {
+        "id": "coquilles-st-jacques",
+        "name": "ホタテの殻焼き",
+        "nameLocal": "Coquilles Saint-Jacques",
+        "text": "ミクロン周辺で食べられるホタテを貝殻に盛り、ソースとともに焼く。豊かな海の恵みを感じる料理。",
+        "image": "assets/images/france/saint-pierre-and-miquelon/approved/food-02-coquilles-saint-jacques.webp",
+        "sourceKey": "foodLocal"
+      },
+      {
+        "id": "homard",
+        "name": "ロブスター",
+        "nameLocal": "Homard",
+        "text": "島の沿岸で水揚げされるロブスター。茹でたり焼いたりして、身の甘みを楽しむ。",
+        "image": "assets/images/france/saint-pierre-and-miquelon/approved/food-03-homard.webp",
+        "sourceKey": "foodLocal"
+      },
+      {
+        "id": "foie-gras-canard",
+        "name": "鴨のフォアグラ",
+        "nameLocal": "Foie gras de canard",
+        "text": "ミクロンの農場で飼育される鴨から生まれる加工品。テリーヌなどに仕立て、少量を味わう。",
+        "image": "assets/images/france/saint-pierre-and-miquelon/approved/food-04-foie-gras-de-canard.webp",
+        "sourceKey": "foodFarms"
+      }
+    ]
+  },
+  "signatureFacts": [
+    {
+      "topicKey": "sand-isthmus",
+      "label": "ミクロンとラングラードを結ぶ自然の砂州",
+      "value": "約12km",
+      "note": "砂や礫が長い時間をかけて積もった地形「ラ・デュンヌ」。ラグーンと外洋を隔てて二つの島をつなぐ。",
+      "icon": "landscape",
+      "sourceKey": "isthmus",
+      "interestReason": "人工の橋ではない細い自然地形が島々の形を決めている。"
+    },
+    {
+      "topicKey": "near-newfoundland",
+      "label": "ニューファンドランドからの距離",
+      "value": "約25km",
+      "note": "カナダの海岸からわずか数十kmにフランスの港町がある。大西洋を越えずに出会えるフランスの島。",
+      "icon": "sea",
+      "sourceKey": "geography",
+      "interestReason": "ヨーロッパと北米の位置関係を思い直す距離。"
+    },
+    {
+      "topicKey": "cod-fishing-change",
+      "label": "島の産業を変えたタラ漁の転機",
+      "value": "1992年",
+      "note": "タラ漁が大きく縮小した年。かつて漁船が集まった港町は、行政サービスなどを支える経済へ移行した。",
+      "icon": "history",
+      "sourceKey": "economy",
+      "interestReason": "港の景色の背景にある産業転換を知る。"
+    }
+  ],
+  "encounters": [
+    {
+      "title": "色鮮やかな港の木造家屋を歩く",
+      "icon": "city",
+      "category": "CULTURE"
+    },
+    {
+      "title": "漁村の小さな教会で島の歴史に触れる",
+      "icon": "history",
+      "category": "HISTORY"
+    },
+    {
+      "title": "砂州を隔てたラグーンと外洋を見比べる",
+      "icon": "sea",
+      "category": "LANDSCAPE"
+    },
+    {
+      "title": "湿原の植物と渡り鳥を観察する",
+      "icon": "wildlife",
+      "category": "NATURE"
+    },
+    {
+      "title": "白い灯台の向こうに荒れる海を見る",
+      "icon": "shore",
+      "category": "LANDSCAPE"
+    },
+    {
+      "title": "ミクロン村で農業と漁業の暮らしに出会う",
+      "icon": "home",
+      "category": "CULTURE"
+    },
+    {
+      "title": "ベル・リヴィエールの森と川を歩く",
+      "icon": "leaf",
+      "category": "NATURE"
+    },
+    {
+      "title": "夏の島で自由に歩く馬の姿を見かける",
+      "icon": "wildlife",
+      "category": "WILDLIFE"
+    }
+  ],
+  "culture": [
+    {
+      "topicKey": "cod-heritage",
+      "themeEn": "HISTORY",
+      "themeJa": "漁業の記憶",
+      "icon": "history",
+      "title": "タラ漁が小さな島に港をつくった",
+      "text": "ニューファンドランド沖の豊かな漁場に近いことから、サンピエールは漁船の寄港地として発展した。イル・オ・マランの木造家屋や教会には、大漁業の時代の暮らしが伝わる。",
+      "points": [
+        "港の倉庫と家並みに漁業の歴史が残る",
+        "漁師の家族が暮らした小島は現在、歴史を伝える場所になっている"
+      ],
+      "sourceKey": "saintPierreTown"
+    },
+    {
+      "topicKey": "prohibition",
+      "themeEn": "HISTORY",
+      "themeJa": "禁酒法時代",
+      "icon": "history",
+      "title": "北米の禁酒法が港町の商いを変えた",
+      "text": "1920年代から1933年、米国の禁酒法時代には酒類の中継や密輸が島の経済に大きな影響を与えた。町には当時の資料をたどる博物館や歴史案内がある。",
+      "points": [
+        "1922年には外国産酒類の輸入を認める制度が導入された",
+        "禁酒法終結後に、この時代の繁栄も幕を下ろした"
+      ],
+      "sourceKey": "prohibition"
+    },
+    {
+      "topicKey": "miquelon-culture",
+      "themeEn": "CULTURE",
+      "themeJa": "移住と暮らし",
+      "icon": "culture",
+      "title": "アカディアとフランスの沿岸文化が交わる",
+      "text": "ミクロンにはアカディア系住民の足跡があり、サンピエールにはノルマンディー、ブルターニュ、バスクなどからの移住が町の文化を形づくった。",
+      "points": [
+        "ミクロン村の教会は地域の暮らしの中心にある",
+        "漁業と農業の両方が島の生活を支えてきた"
+      ],
+      "sourceKey": "history"
+    },
+    {
+      "topicKey": "isthmus-erosion",
+      "themeEn": "NATURE",
+      "themeJa": "変わる海岸線",
+      "icon": "sea",
+      "title": "砂州は海がつくり、海が削っている",
+      "text": "ミクロンとラングラードを結ぶ砂州は氷期後の堆積物から形づくられた。波と風による侵食が続き、海岸線の変化が継続的に監視されている。",
+      "points": [
+        "グラン・バラショワは砂州の内側にできた塩性ラグーン",
+        "砂州の維持には高潮や海面変化の影響がある"
+      ],
+      "sourceKey": "isthmusErosion"
+    },
+    {
+      "topicKey": "northern-nature",
+      "themeEn": "NATURE",
+      "themeJa": "北方の生態系",
+      "icon": "leaf",
+      "title": "泥炭地と北方の森が同じ島にある",
+      "text": "平らな湿地と岩の丘、針葉樹が混じる森林が近い距離で現れる。植物の変化を追う自然観察コースは、北大西洋の気候と地形を読み解く手がかりになる。",
+      "points": [
+        "湿地は渡り鳥の利用する場所でもある",
+        "ラングラードでは川辺に森が広がる"
+      ],
+      "sourceKey": "nature"
+    },
+    {
+      "topicKey": "island-food",
+      "themeEn": "FOOD",
+      "themeJa": "海と農業",
+      "icon": "food",
+      "title": "海の幸だけではないミクロンの食卓",
+      "text": "ホタテやロブスターなどの漁獲物に加え、島では19世紀から農業と畜産も続いてきた。鴨のフォアグラのような加工品にも地域の食文化が表れる。",
+      "points": [
+        "鮮魚や加工海産物を扱う店がある",
+        "農家は鴨の加工品や果実加工品もつくる"
+      ],
+      "sourceKey": "foodLocal"
+    }
+  ],
+  "travelTrivia": [
+    {
+      "topicKey": "old-name",
+      "categoryEn": "HISTORY",
+      "categoryJa": "古い地名",
+      "icon": "history",
+      "title": "島の最初の欧州名は「一万一千人の乙女の島」",
+      "text": "1520年、ポルトガルの航海者がこの島々を聖ウルスラの伝説にちなむ名前で記録したと伝えられる。現在の地名とは全く違う響きだ。",
+      "sourceKey": "saintPierreTown"
+    },
+    {
+      "topicKey": "horses-summer",
+      "categoryEn": "WILDLIFE",
+      "categoryJa": "夏の馬",
+      "icon": "wildlife",
+      "title": "自由に歩く馬にも、飼い主がいる",
+      "text": "ミクロン＝ラングラードでは夏、馬が放牧されて歩く姿を見られる。野生の馬のように見えても、飼い主がいる。",
+      "sourceKey": "horses"
+    },
+    {
+      "topicKey": "miquelon-run",
+      "categoryEn": "CULTURE",
+      "categoryJa": "島の大会",
+      "icon": "culture",
+      "title": "小さな島で「25km」のランニング大会",
+      "text": "ミクロンでは25kmを走る大会が開催され、速さを競う人だけでなく完走を目指す参加者や家族も集まる。",
+      "sourceKey": "run25"
+    },
+    {
+      "topicKey": "summer-langlade",
+      "categoryEn": "LIFE",
+      "categoryJa": "夏の島",
+      "icon": "home",
+      "title": "夏に賑わい、冬は静まるラングラード",
+      "text": "ラングラードは常住人口がほとんどなく、夏には島の住民がセカンドハウスへ集まる。季節によって島の生活音が変わる。",
+      "sourceKey": "miquelonNature"
+    },
+    {
+      "topicKey": "basque-pelota",
+      "categoryEn": "CULTURE",
+      "categoryJa": "球技",
+      "icon": "culture",
+      "title": "北大西洋の島で、バスクの球技が受け継がれる",
+      "text": "毎年8月、サンピエールではバスクの祭りが開かれ、ペロタという伝統球技を地元の選手とフランス本土・カナダからの参加者が競う。",
+      "sourceKey": "basqueFestival"
+    }
+  ],
+  "forWhom": [
+    {
+      "title": "港町と北大西洋の歴史を知りたい人",
+      "text": "タラ漁、移住、禁酒法時代の記憶を、海辺の町並みと小島から読み解きたい人。"
+    },
+    {
+      "title": "砂州・ラグーン・湿地をゆっくり歩きたい人",
+      "text": "グラン・バラショワの砂丘やミクロンの自然観察路を、天候に合わせて巡りたい人。"
+    },
+    {
+      "title": "小さな島々の暮らしの違いに触れたい人",
+      "text": "サンピエールの港、ミクロンの農業、夏のラングラードを行き来してみたい人。"
+    }
+  ],
+  "notes": [
+    {
+      "title": "島間の船は天候に左右される",
+      "text": "サンピエールからミクロン・ラングラードへの船便は、海況と季節による運航変更がある。前後の日程に余裕を持ち、出発直前の案内を確認する。",
+      "sourceKey": "travel"
+    },
+    {
+      "title": "自然の砂州を人工の道路・橋と混同しない",
+      "text": "ミクロンとラングラードを結ぶのは自然堆積で形成された細い陸地。砂州や湿地を歩く際は指定ルートと現地案内を優先する。",
+      "sourceKey": "isthmus"
+    },
+    {
+      "title": "夏の自然観察は予約と足元の準備を",
+      "text": "グラン・バラショワとコルモランディエールの案内付き観察は夏季が中心。湿地と岩場に適した靴を用意し、運営状況を確認する。",
+      "sourceKey": "grandBarachois"
+    },
+    {
+      "title": "クジラ・鳥・アザラシには距離を取る",
+      "text": "野生動物は見られることがあっても出会いは保証されない。繁殖地や休息場所を妨げず、ガイドの指示を守る。",
+      "sourceKey": "nature"
+    }
+  ],
+  "travelScale": {
+    "kicker": "DURATION",
+    "title": "旅の目安日程",
+    "intro": "サンピエールに滞在し、船便に合わせてミクロン＝ラングラードを別日で巡ると景観の違いを知りやすい。海況が変わりやすいため予備日を見込む。",
+    "items": [
+      {
+        "duration": "2〜3日",
+        "title": "港町と漁村の歴史を知る",
+        "icon": "history",
+        "text": "サンピエールを起点に港町とイル・オ・マランを訪ねる。例：サンピエール → イル・オ・マラン → サンピエール。"
+      },
+      {
+        "duration": "4〜5日",
+        "title": "砂州とミクロン村を加える",
+        "icon": "map",
+        "text": "サンピエールを拠点にミクロンで宿泊し、ラグーンと灯台を巡る。例：サンピエール → ミクロン村 → グラン・バラショワ → カップ・ブラン灯台 → ミクロン村 → サンピエール。"
+      },
+      {
+        "duration": "6日以上",
+        "title": "ラングラードの森まで深く歩く",
+        "icon": "compass",
+        "text": "船の予備日を確保し、ミクロン北部の谷とラングラードの森を分けて訪ねる。例：サンピエール → ミクロン → コルモランディエール → ラングラード → ミクロン → サンピエール。"
+      }
+    ]
+  },
+  "bestSeason": {
+    "windows": [
+      {
+        "label": "6〜9月",
+        "reason": "夏の自然観察や島間移動を組み立てやすい時期。ただし風・霧・船便変更には通年の注意が必要。"
+      }
+    ]
+  },
+  "seasons": [
+    {
+      "months": "12〜2月",
+      "icon": "weather",
+      "color": "#8697ac",
+      "text": "冬の寒さと風が強い時期。移動や屋外活動は天候の制約を受けやすい。"
+    },
+    {
+      "months": "3〜5月",
+      "icon": "leaf",
+      "color": "#779e86",
+      "text": "春へ移る季節。風や霧の影響が残り、日によって体感温度が変わる。"
+    },
+    {
+      "months": "6〜8月",
+      "icon": "sun",
+      "color": "#afae6b",
+      "text": "草地と花が季節の色を帯びる夏。自然観察や島めぐりの計画を立てやすい。"
+    },
+    {
+      "months": "9〜11月",
+      "icon": "weather",
+      "color": "#b18466",
+      "text": "秋が深まる時期。ハイキングの際は強風・急変する天候や狩猟期の立入案内に注意。"
+    }
+  ],
+  "transport": {
+    "icon": "sea",
+    "title": "カナダから空路・航路、島内は船と車",
+    "text": "ニューファンドランドのフォーチュンからサンピエールへのフェリーが通年運航され、ミクロン便は季節制限がある。島間はフェリーや国内線を利用し、陸上では車・徒歩を組み合わせる。夏のパリ便などは運航年と日程を確認したい。",
+    "sourceKeys": [
+      "travel",
+      "arrival"
+    ]
+  },
+  "nextRegion": {
+    "slug": "guadeloupe",
+    "nameEn": "GUADELOUPE",
+    "nameJa": "グアドループ"
+  },
+  "nextRoutes": [],
+  "relatedCountries": [
+    {
+      "nameJa": "カナダ",
+      "nameEn": "CANADA",
+      "href": "countries/canada/",
+      "flag": "🇨🇦",
+      "reason": "島々のすぐ北にあるニューファンドランドへ。海峡の両側で漁港と海岸景観を比べる。",
+      "affinityType": "LANDSCAPE"
+    },
+    {
+      "nameJa": "アイスランド",
+      "nameEn": "ICELAND",
+      "href": "countries/iceland/",
+      "flag": "🇮🇸",
+      "reason": "北大西洋の海鳥と荒天の海岸を、火山の島でも見比べる。",
+      "affinityType": "NATURE"
+    },
+    {
+      "nameJa": "ノルウェー",
+      "nameEn": "NORWAY",
+      "href": "countries/norway/",
+      "flag": "🇳🇴",
+      "reason": "海沿いの集落と北方の風景を、フィヨルドと漁港の国へつなぐ。",
+      "affinityType": "LANDSCAPE"
+    }
+  ],
+  "travelThemes": [
+    "地球の風景",
+    "暮らしに出会う",
+    "歴史を旅する"
+  ],
+  "sourcesVerifiedAt": "2026-11-13",
+  "sources": {
+    "status": "French Overseas Ministry, Saint-Pierre-et-Miquelon COM / PTOM: https://www.outre-mer.gouv.fr/territoires/saint-pierre-et-miquelon",
+    "population": "INSEE Populations des collectivités outre-mer en 2023 (effective 2026): https://www.insee.fr/fr/statistiques/8680667",
+    "area": "French DTAM Geography and Climate, 242 km2: https://www.saint-pierre-et-miquelon.developpement-durable.gouv.fr/geographie-et-climat-a12.html",
+    "history": "Saint-Pierre et Miquelon Tourisme, archipelago history / 1816 and settlement: https://www.spm-tourisme.fr/explorer/decouvrir-nos-iles-d-exception/",
+    "geography": "Saint Pierre Miquelon Prefecture Presentation (25 km Newfoundland and island geography): https://www.saint-pierre-et-miquelon.gouv.fr/Presentation-de-l-archipel/Presentation2",
+    "saintPierreTown": "Official Saint Pierre Miquelon Tourism, Saint-Pierre port town: https://www.spm-tourisme.fr/explorer/decouvrir-nos-iles-d-exception/saint-pierre-l-ile-port/",
+    "portLocation": "GeoNames port coordinates via Mapcarta: https://mapcarta.com/19197632",
+    "ileAuxMarins": "French Culture Ministry, Notre-Dame-des-Marins 1872-74: https://pop.culture.gouv.fr/notice/merimee/PA97500007 ; OSM mapped church via https://mapcarta.com/W220422999",
+    "marinsChurch": "French Culture Ministry, Notre-Dame-des-Marins: https://pop.culture.gouv.fr/notice/merimee/PA97500007",
+    "grandBarachois": "Miquelon-Langlade Tourism lagoon observations: https://www.spm-tourisme.fr/profiter/balades-et-randonnees/miquelon/balade-la-lagune-du-grand-barachois/ ; Geonames mapped lagoon https://mapcarta.com/19197286",
+    "cormorandiere": "Official Tourism Cormorandière hike: https://www.spm-tourisme.fr/profiter/balades-et-randonnees/miquelon/balade-la-vallee-de-la-cormorandiere/ ; OSM pond https://mapcarta.com/fr/19197582",
+    "capBlanc": "DTAM 2026 lighthouse navigation coordinates 47°06.302N 56°23.935W: https://www.saint-pierre-et-miquelon.developpement-durable.gouv.fr/avis-aux-navigateurs-phare-du-cap-blanc-a1076.html",
+    "miquelonVillage": "OSM church Notre-Dame-des-Ardilliers via https://mapcarta.com/es/W206464504 ; Local Tourism Miquelon village https://www.spm-tourisme.fr/explorer/decouvrir-nos-iles-d-exception/miquelon-langlade-l-ile-nature/",
+    "capAuDiable": "Tourism Cap au Diable trail: https://www.spm-tourisme.fr/profiter/balades-et-randonnees/saint-pierre/cap-au-diable-sentier/ ; OSM locality https://mapcarta.com/19196900",
+    "belleRiviere": "GeoNames Belle Rivière stream via https://mapcarta.com/fr/19197120",
+    "anseDinand": "Official Tourism Saint Pierre Anse à Dinand: https://www.spm-tourisme.fr/explorer/nature-spectaculaire/randonnees/balades-randonnees-et-trek-a-saint-pierre/ ; GeoNames https://mapcarta.com/fr/19196898",
+    "isthmus": "Tourism Miquelon-Langlade 12km sand isthmus: https://www.spm-tourisme.fr/explorer/decouvrir-nos-iles-d-exception/miquelon-langlade-l-ile-nature/",
+    "isthmusErosion": "BRGM Coastal erosion Isthmus Miquelon-Langlade 2021: https://www.saint-pierre-et-miquelon.developpement-durable.gouv.fr/IMG/pdf/rapport-expertise_isthmeml_brgm_2021.pdf",
+    "economy": "Overseas ministry fishing decline in 1992: https://www.outre-mer.gouv.fr/territoires/saint-pierre-et-miquelon",
+    "prohibition": "Saint Pierre and Miquelon Tourisme Prohibition history 1922-33: https://www.spm-tourisme.fr/s-inspirer/idees-sejours/journee-prohibition-a-saint-pierre-e-miquelon/",
+    "nature": "Tourism Nature Spectaculaire: https://www.spm-tourisme.fr/explorer/nature-spectaculaire/ ; Miquelon eco tours: https://www.spm-tourisme.fr/explorer/nature-spectaculaire/maison-de-la-nature-et-de-l-environnement/",
+    "foodLocal": "Official Tourism Miquelon-Langlade local scallops, lobster, foie gras: https://www.spm-tourisme.fr/explorer/decouvrir-nos-iles-d-exception/miquelon-langlade-l-ile-nature/",
+    "foodFarms": "Tourism local agricultural products and duck foie gras: https://www.spm-tourisme.fr/explorer/gastronomie-locale-et-francaise/gouter-les-produits-locaux/",
+    "codFood": "Ministère de l’Agriculture, Saveurs de Saint-Pierre-et-Miquelon: boulettes de morue à base de pomme de terre, https://agriculture.gouv.fr/saveurs-de-saint-pierre-et-miquelon",
+    "horses": "Official Tourism roaming horses owned by residents: https://www.spm-tourisme.fr/explorer/nature-spectaculaire/randonnees/randonnee-equestre-a-saint-pierre-et-miquelon/",
+    "run25": "Official Tourism 25kms de Miquelon: https://www.spm-tourisme.fr/explorer/decouvrir-nos-iles-d-exception/miquelon-langlade-l-ile-nature/",
+    "miquelonNature": "Official Tourism Miquelon and Langlade seasonal stays: https://www.spm-tourisme.fr/explorer/decouvrir-nos-iles-d-exception/miquelon-langlade-l-ile-nature/",
+    "travel": "Official Tourism transport between islands: https://www.spm-tourisme.fr/sejourner/se-deplacer-sur-l-archipel/",
+    "arrival": "Official Tourism flights/ferries: https://www.spm-tourisme.fr/sejourner/comment-venir/",
+    "mapGeometry": "Who’s On First ADM0 85632371, Quattroshapes CC BY 2.0, https://github.com/whosonfirst-data/whosonfirst-data-admin-pm/blob/master/data/856/323/71/85632371.geojson ; see also French DTAM 2026 shoreline surveys https://www.saint-pierre-et-miquelon.developpement-durable.gouv.fr/suivi-du-trait-de-cote-dans-l-archipel-de-saint-a1081.html and BRGM 2021 isthmus report https://www.saint-pierre-et-miquelon.developpement-durable.gouv.fr/IMG/pdf/rapport-expertise_isthmeml_brgm_2021.pdf",
+    "basqueFestival": "Saint-Pierre et Miquelon Tourisme, La Fête Basque, annual August pelota competitions: https://www.spm-tourisme.fr/explorer/decouvrir-nos-iles-d-exception/saint-pierre-l-ile-port/ ; 2026 festival https://www.spm-tourisme.fr/profiter/les-grands-evenements/"
+  },
+  "sourceDates": {
+    "population": "2023-01-01, entered into force 2026-01-01, INSEE published 2025-12-29",
+    "area": "2023 DTAM geographic reference",
+    "japanArea": "Japan geographic area approx 377,975km², rounded ratio 0.06%",
+    "status": "current as of 2026-11-13",
+    "transport": "checked 2026-11-13, timetables must be reconfirmed",
+    "map": "Who’s On First Quattroshapes source recorded 2020, retrieved and inspected 2026-11-13; coastline may have changed due to erosion",
+    "basqueFestival": "2026 tourism schedule and annual August tradition, checked 2026-11-13"
+  }
+}
