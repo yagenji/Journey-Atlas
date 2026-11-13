@@ -570,14 +570,26 @@
     "nameEn": "GUADELOUPE",
     "nameJa": "グアドループ"
   },
-  "nextRoutes": [],
+  "nextRoutes": [
+    {
+      "countryEn": "CANADA",
+      "countryJa": "カナダ",
+      "flag": "🇨🇦",
+      "path": "Saint-Pierre → Fortune",
+      "description": "サンピエールから定期フェリーで海峡を北へ渡り、ニューファンドランド島ブリン半島のフォーチュンへ。フランスの小さな港町から、カナダの漁村と大西洋岸の景色へ旅をつなぐ。",
+      "href": "countries/canada/",
+      "travelerRoute": true,
+      "status": "CHECK_CURRENT_CONDITIONS",
+      "statusNote": "通年運航だが冬季は便数が大きく減る。SPM Ferriesの時刻表を確認する。"
+    }
+  ],
   "relatedCountries": [
     {
       "nameJa": "カナダ",
       "nameEn": "CANADA",
       "href": "countries/canada/",
       "flag": "🇨🇦",
-      "reason": "島々のすぐ北にあるニューファンドランドへ。海峡の両側で漁港と海岸景観を比べる。",
+      "reason": "霧の漁港と色とりどりの木造家屋に惹かれたなら、ニューファンドランドのセントジョンズや入り江の漁村で、北大西洋の海辺の暮らしをもっと広く見られる。",
       "affinityType": "LANDSCAPE"
     },
     {
@@ -585,16 +597,16 @@
       "nameEn": "ICELAND",
       "href": "countries/iceland/",
       "flag": "🇮🇸",
-      "reason": "北大西洋の海鳥と荒天の海岸を、火山の島でも見比べる。",
+      "reason": "海鳥が群れる荒天の海岸に惹かれたなら、アイスランドの断崖に集まるパフィンの営巣地で、北大西洋の海鳥の世界を見られる。",
       "affinityType": "NATURE"
     },
     {
-      "nameJa": "ノルウェー",
-      "nameEn": "NORWAY",
-      "href": "countries/norway/",
-      "flag": "🇳🇴",
-      "reason": "海沿いの集落と北方の風景を、フィヨルドと漁港の国へつなぐ。",
-      "affinityType": "LANDSCAPE"
+      "nameJa": "スペイン",
+      "nameEn": "SPAIN",
+      "href": "countries/spain/",
+      "flag": "🇪🇸",
+      "reason": "島に残るバスク系移民の伝統、壁打ち球技ペロタのコートやバスク祭に惹かれたなら、スペインのバスク地方で、その文化の源流に出会える。",
+      "affinityType": "CULTURE"
     }
   ],
   "travelThemes": [
@@ -634,7 +646,8 @@
     "travel": "Official Tourism transport between islands: https://www.spm-tourisme.fr/sejourner/se-deplacer-sur-l-archipel/",
     "arrival": "Official Tourism flights/ferries: https://www.spm-tourisme.fr/sejourner/comment-venir/",
     "mapGeometry": "Who’s On First ADM0 85632371, Quattroshapes CC BY 2.0, https://github.com/whosonfirst-data/whosonfirst-data-admin-pm/blob/master/data/856/323/71/85632371.geojson ; see also French DTAM 2026 shoreline surveys https://www.saint-pierre-et-miquelon.developpement-durable.gouv.fr/suivi-du-trait-de-cote-dans-l-archipel-de-saint-a1081.html and BRGM 2021 isthmus report https://www.saint-pierre-et-miquelon.developpement-durable.gouv.fr/IMG/pdf/rapport-expertise_isthmeml_brgm_2021.pdf",
-    "basqueFestival": "Saint-Pierre et Miquelon Tourisme, La Fête Basque, annual August pelota competitions: https://www.spm-tourisme.fr/explorer/decouvrir-nos-iles-d-exception/saint-pierre-l-ile-port/ ; 2026 festival https://www.spm-tourisme.fr/profiter/les-grands-evenements/"
+    "basqueFestival": "Saint-Pierre et Miquelon Tourisme, La Fête Basque, annual August pelota competitions: https://www.spm-tourisme.fr/explorer/decouvrir-nos-iles-d-exception/saint-pierre-l-ile-port/ ; 2026 festival https://www.spm-tourisme.fr/profiter/les-grands-evenements/",
+    "ferryFortune": "https://en.wikipedia.org/wiki/SPM_Ferries"
   },
   "sourceDates": {
     "population": "2023-01-01, entered into force 2026-01-01, INSEE published 2025-12-29",
@@ -644,5 +657,6 @@
     "transport": "checked 2026-11-13, timetables must be reconfirmed",
     "map": "Who’s On First Quattroshapes source recorded 2020, retrieved and inspected 2026-11-13; coastline may have changed due to erosion",
     "basqueFestival": "2026 tourism schedule and annual August tradition, checked 2026-11-13"
-  }
+  },
+  "nextRoutesIntro": "海峡を渡る定期フェリーで、ニューファンドランド島へ。"
 }

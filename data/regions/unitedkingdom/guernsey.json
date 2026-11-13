@@ -575,43 +575,54 @@
       "description": "海を渡ってもう一つの王室属領へ。港町と城、潮間帯を見比べる。",
       "href": "countries/unitedkingdom/jersey/",
       "travelerRoute": true,
-      "status": "OPEN"
+      "status": "CHECK_CURRENT_CONDITIONS",
+      "statusNote": "島間の便は限られ、時期によって設定がない。Brittany FerriesとDFDSの時刻表を確認する。"
     },
     {
       "countryEn": "FRANCE",
       "countryJa": "フランス",
       "flag": "🇫🇷",
-      "path": "St Peter Port → St Malo / Normandy",
-      "description": "海峡の向こうのブルターニュ・ノルマンディーへ船でつなぐ。",
+      "path": "St Peter Port → Saint-Malo",
+      "description": "セント・ピーター・ポートから定期フェリーで南へ渡り、城壁に囲まれたブルターニュの港町サン・マロへ。花崗岩の島から、海賊の町として栄えた大陸の港へつながる。",
       "href": "countries/france/",
+      "travelerRoute": true,
+      "status": "OPEN"
+    },
+    {
+      "countryEn": "UNITED KINGDOM",
+      "countryJa": "イギリス",
+      "flag": "🇬🇧",
+      "path": "St Peter Port → Poole / Portsmouth",
+      "description": "セント・ピーター・ポートから定期フェリーで英仏海峡を北へ渡り、イングランド南岸のプールやポーツマスへ。小さな島の港から、軍港と入り江の続く英国の海岸へ旅をつなぐ。",
+      "href": "countries/unitedkingdom/",
       "travelerRoute": true,
       "status": "OPEN"
     }
   ],
   "relatedCountries": [
     {
-      "nameJa": "イギリス",
-      "nameEn": "UNITED KINGDOM",
-      "href": "countries/unitedkingdom/",
-      "flag": "🇬🇧",
-      "reason": "英国王室との関係から群島の歴史をたどる。",
-      "affinityType": "HISTORY"
-    },
-    {
       "nameJa": "フランス",
       "nameEn": "FRANCE",
       "href": "countries/france/",
       "flag": "🇫🇷",
-      "reason": "ノルマン語や地名、海辺の暮らしに残る大陸とのつながり。",
-      "affinityType": "CULTURE"
+      "reason": "ヴィクトル・ユゴーが亡命生活を送ったオートヴィル・ハウスに惹かれたなら、パリのヴォージュ広場にあるヴィクトル・ユゴー記念館で、作家のもう一つの住まいを訪ねられる。",
+      "affinityType": "HISTORY"
     },
     {
-      "nameJa": "ベルギー",
-      "nameEn": "BELGIUM",
-      "href": "countries/belgium/",
-      "flag": "🇧🇪",
-      "reason": "海峡の東に広がる北海沿岸、港町と運河の景色へ旅を続ける。",
-      "affinityType": "GEOGRAPHY"
+      "nameJa": "スペイン",
+      "nameEn": "SPAIN",
+      "href": "countries/spain/",
+      "flag": "🇪🇸",
+      "reason": "貝殻や割れた陶器で覆われた小さな礼拝堂リトル・チャペルに惹かれたなら、バルセロナのグエル公園で、砕いたタイルを貼るガウディのモザイクを見られる。",
+      "affinityType": "ARCHITECTURE"
+    },
+    {
+      "nameJa": "アルバニア",
+      "nameEn": "ALBANIA",
+      "href": "countries/albania/",
+      "flag": "🇦🇱",
+      "reason": "島じゅうに残るドイツ占領期の掩体壕や砲台に惹かれたなら、国じゅうに数十万のトーチカが残るアルバニアで、要塞化された風景の別の物語をたどれる。",
+      "affinityType": "HISTORY"
     }
   ],
   "sourcesVerifiedAt": "2026-11-13",
@@ -663,7 +674,8 @@
     "jersey": "https://www.gov.je/government/departments/jerseyworld/pages/relationshipeuanduk.aspx",
     "religion": "https://digitallibrary.un.org/record/624986/files/E_C.12_GBR_5_Add.1-EN.pdf",
     "currency": "https://www.visitguernsey.com/planning/useful-information/things-to-know-on-island/",
-    "populationCoverage": "https://unstats.un.org/unsd/demographic-social/products/dyb/documents/metadata/2024/Guernsey-2024-PE-Metadata.pdf"
+    "populationCoverage": "https://unstats.un.org/unsd/demographic-social/products/dyb/documents/metadata/2024/Guernsey-2024-PE-Metadata.pdf",
+    "ferries2026": "https://www.bailiwickexpress.com/news-ge/2026-schedules-now-out/"
   },
   "nextRegion": {
     "slug": "jersey",
