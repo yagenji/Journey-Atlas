@@ -1,0 +1,669 @@
+{
+  "schemaVersion": 1,
+  "contentQaVersion": 6,
+  "parentSlug": "unitedkingdom",
+  "slug": "guernsey",
+  "regionPublished": false,
+  "nameEn": "GUERNSEY",
+  "nameJa": "ガーンジー",
+  "region": "NORTHERN EUROPE / 49°N",
+  "parentNameJa": "イギリス",
+  "parentNameEn": "UNITED KINGDOM",
+  "parentReturnDescription": "英国と王室属領の島々から旅を広げる",
+  "travelThemes": [
+    "地球の風景",
+    "時をたどる",
+    "海の世界へ"
+  ],
+  "seo": {
+    "description": "石の海城とセント・ピーター・ポート、サーク島の崖道、エルム島の貝殻浜、オルダニーの砦。英国王室属領ガーンジーの8景と地図を巡る。"
+  },
+  "hero": {
+    "name": "キャッスル・コルネットとセント・ピーター・ポート港",
+    "location": "Castle Cornet / St Peter Port Harbour",
+    "image": "assets/images/unitedkingdom/guernsey/approved/hero-st-peter-port-castle-cornet.webp",
+    "coordinates": {
+      "latitude": 49.45311,
+      "longitude": -2.5267
+    },
+    "lead": "英仏海峡の南に、石の砦と幾つもの小島が連なるガーンジー。古い港町を歩き、切り立ったサークの尾根やエルムの白砂、潮で姿を変える砦を渡ると、一つの群島の多彩な暮らしが見えてくる。",
+    "description": "セント・ピーター・ポート港の向こうに、岩礁の上へ重なるキャッスル・コルネットの城壁を望む。",
+    "sceneTypes": [
+      "castle",
+      "harbor"
+    ],
+    "sourceKey": "castleCornet"
+  },
+  "profile": [
+    {
+      "label": "中心都市",
+      "value": "セント・ピーター・ポート"
+    },
+    {
+      "label": "人口",
+      "value": "64,781人（2023年末公表値・後日修正予定）",
+      "sourceKey": "population"
+    },
+    {
+      "label": "面積",
+      "value": "約78km²（日本の約0.02%・代官管轄区全体）",
+      "sourceKey": "area"
+    },
+    {
+      "label": "言語",
+      "value": "主に英語。ガーンジー語（Guernésiais）も継承される",
+      "sourceKey": "language"
+    },
+    {
+      "label": "主な宗教",
+      "value": "キリスト教など",
+      "sourceKey": "status"
+    },
+    {
+      "label": "通貨",
+      "value": "英ポンド（GBP）と等価のガーンジー・ポンド",
+      "sourceKey": "status"
+    }
+  ],
+  "historyContext": {
+    "text": "ガーンジーは英国の構成地域でも海外領土でもなく、英国王室に属する自治地域（王室属領）である。代官管轄区はガーンジー、オルダニー、サークという自治制度の異なる3つの管轄から成り、エルム島はガーンジー側の行政下にある。各島の議会・法律・税制を一律に扱うことはできず、英国政府は防衛と対外関係に責任を負う。",
+    "sourceKeys": [
+      "status",
+      "jurisdictions",
+      "alderneyGov",
+      "sarkGov"
+    ]
+  },
+  "map": {
+    "svg": "assets/images/unitedkingdom/guernsey/map-guernsey.svg",
+    "bounds": {
+      "west": -2.76,
+      "east": -2.1,
+      "south": 49.34,
+      "north": 49.8
+    },
+    "singleMapMobile": true
+  },
+  "scenes": [
+    {
+      "id": "la-coupee",
+      "name": "ラ・クーペ",
+      "nameLocal": "La Coupée / Sark",
+      "description": "サーク島の本島とリトル・サークをつなぐ狭い尾根道。両側が海へ切れ落ちる崖の上を歩く。",
+      "coordinates": {
+        "latitude": 49.4208,
+        "longitude": -2.3662
+      },
+      "image": "assets/images/unitedkingdom/guernsey/approved/scene-01-la-coupee.webp",
+      "sceneTypes": [
+        "cliff",
+        "road"
+      ],
+      "sourceKey": "laCoupee"
+    },
+    {
+      "id": "shell-beach",
+      "name": "シェル・ビーチ",
+      "nameLocal": "Shell Beach / Herm",
+      "description": "細かな貝殻片が砂に混じるエルム島東岸の長い浜。水際は透明な浅瀬と岩礁へ変わる。",
+      "coordinates": {
+        "latitude": 49.48008,
+        "longitude": -2.44776
+      },
+      "image": "assets/images/unitedkingdom/guernsey/approved/scene-02-shell-beach.webp",
+      "sceneTypes": [
+        "beach",
+        "island"
+      ],
+      "sourceKey": "shellBeach"
+    },
+    {
+      "id": "moulin-huet-bay",
+      "name": "ムーラン・ユエ湾",
+      "nameLocal": "Moulin Huet Bay / Guernsey",
+      "description": "花崗岩の岩礁が浮かぶ南岸の小さな入り江。ルノワールも描いた青緑の海と断崖が向き合う。",
+      "coordinates": {
+        "latitude": 49.42447,
+        "longitude": -2.54629
+      },
+      "image": "assets/images/unitedkingdom/guernsey/approved/scene-03-moulin-huet-bay.webp",
+      "sceneTypes": [
+        "bay",
+        "cliff"
+      ],
+      "sourceKey": "moulinHuet"
+    },
+    {
+      "id": "fort-grey",
+      "name": "フォート・グレイ",
+      "nameLocal": "Fort Grey / Guernsey",
+      "description": "島の西岸に立つ白い円筒塔と低い石造防壁。岩礁上の砦は「カップとソーサー」の愛称でも知られる。",
+      "coordinates": {
+        "latitude": 49.43931,
+        "longitude": -2.65505
+      },
+      "image": "assets/images/unitedkingdom/guernsey/approved/scene-04-fort-grey.webp",
+      "sceneTypes": [
+        "castle",
+        "island"
+      ],
+      "sourceKey": "fortGrey"
+    },
+    {
+      "id": "little-chapel",
+      "name": "リトル・チャペル",
+      "nameLocal": "Little Chapel / Guernsey",
+      "description": "割れた陶器や貝殻を一面に敷き詰めた小さな礼拝堂。色とりどりのモザイクが木々の緑に映える。",
+      "coordinates": {
+        "latitude": 49.44259,
+        "longitude": -2.58771
+      },
+      "image": "assets/images/unitedkingdom/guernsey/approved/scene-05-little-chapel.webp",
+      "sceneTypes": [
+        "church",
+        "monument"
+      ],
+      "sourceKey": "littleChapel"
+    },
+    {
+      "id": "fort-clonque",
+      "name": "フォート・クロンケ",
+      "nameLocal": "Fort Clonque / Alderney",
+      "description": "オルダニー島西岸の岩礁上に築かれた砦。潮によって海に沈む細い連絡路の先に石造建物が続く。",
+      "coordinates": {
+        "latitude": 49.7136,
+        "longitude": -2.23274
+      },
+      "image": "assets/images/unitedkingdom/guernsey/approved/scene-06-fort-clonque.webp",
+      "sceneTypes": [
+        "castle",
+        "island"
+      ],
+      "sourceKey": "fortClonque"
+    },
+    {
+      "id": "dehus-dolmen",
+      "name": "デユス・ドルメン",
+      "nameLocal": "Dehus Dolmen / Guernsey",
+      "description": "草に覆われた低い墳丘の内側に、古い石組みの通路と墓室が残る。新石器時代の島の記憶。",
+      "coordinates": {
+        "latitude": 49.49714,
+        "longitude": -2.50648
+      },
+      "image": "assets/images/unitedkingdom/guernsey/approved/scene-07-dehus-dolmen.webp",
+      "sceneTypes": [
+        "tomb",
+        "monument"
+      ],
+      "sourceKey": "dehus"
+    },
+    {
+      "id": "la-seigneurie-gardens",
+      "name": "ラ・セニュリー庭園",
+      "nameLocal": "La Seigneurie Gardens / Sark",
+      "description": "サーク島の歴史的な邸宅を囲む庭園。石壁、曲がる小径、季節の花々と時計塔が重なる。",
+      "coordinates": {
+        "latitude": 49.43727,
+        "longitude": -2.36182
+      },
+      "image": "assets/images/unitedkingdom/guernsey/approved/scene-08-la-seigneurie-gardens.webp",
+      "sceneTypes": [
+        "garden",
+        "flower"
+      ],
+      "sourceKey": "laSeigneurie"
+    }
+  ],
+  "signatureFacts": [
+    {
+      "topicKey": "tidal-range",
+      "label": "大潮の干満差",
+      "value": "約10m",
+      "note": "海が引くと浜と岩礁が広がり、潮汐路の景色が変わる。海の動きが旅の動線を左右する。",
+      "icon": "sea",
+      "sourceKey": "tides",
+      "interestReason": "潮位によって同じ場所の見える陸地と道が大きく変わる島だと伝わる。"
+    },
+    {
+      "topicKey": "three-jurisdictions",
+      "label": "異なる自治の仕組み",
+      "value": "3つ",
+      "note": "ガーンジー、オルダニー、サークはそれぞれ自治制度を持つ。一つの群島を、単一の行政単位として説明できない。",
+      "icon": "history",
+      "sourceKey": "jurisdictions",
+      "interestReason": "一つの王室属領の中に複数の自治制度が並ぶ独特さがわかる。"
+    },
+    {
+      "topicKey": "renoir-paintings",
+      "label": "ルノワールの滞在作",
+      "value": "15点",
+      "note": "1883年の滞在中に制作した作品の多くがムーラン・ユエ湾を描く。実景に画家の視点を重ねられる。",
+      "icon": "culture",
+      "sourceKey": "renoir",
+      "interestReason": "一つの小さな入り江が印象派の連作につながった意外性がある。"
+    }
+  ],
+  "encounters": [
+    {
+      "title": "断崖に細く続く尾根道",
+      "icon": "map",
+      "category": "LANDSCAPE"
+    },
+    {
+      "title": "貝殻片の白い浜と浅瀬",
+      "icon": "sea",
+      "category": "NATURE"
+    },
+    {
+      "title": "花崗岩の岩礁が並ぶ入り江",
+      "icon": "sea",
+      "category": "LANDSCAPE"
+    },
+    {
+      "title": "西岸の岩礁に建つ白い砦",
+      "icon": "history",
+      "category": "HISTORY"
+    },
+    {
+      "title": "陶片の色で覆われた礼拝堂",
+      "icon": "culture",
+      "category": "HISTORY"
+    },
+    {
+      "title": "潮で閉ざされる砦への道",
+      "icon": "map",
+      "category": "ACTIVITY"
+    },
+    {
+      "title": "草の墳丘に口を開ける石室",
+      "icon": "history",
+      "category": "HISTORY"
+    },
+    {
+      "title": "石壁と季節の花に囲まれた庭",
+      "icon": "leaf",
+      "category": "NATURE"
+    }
+  ],
+  "culture": [
+    {
+      "topicKey": "guernesiais",
+      "themeEn": "LANGUAGE",
+      "themeJa": "言葉を知る",
+      "icon": "culture",
+      "title": "島の言葉はノルマン語の系譜にある",
+      "text": "地名や家族名に残るGuernésiais（ガーンジー語）は、ノルマン語の一変種。英語が日常の中心となった今も、地元の語りや学習を通して継承される。",
+      "points": [
+        "看板や地名にフランス語と似た響きが混じる",
+        "サークには異なるノルマン系方言の歴史もある"
+      ],
+      "sourceKey": "language"
+    },
+    {
+      "topicKey": "guernsey-knit",
+      "themeEn": "CRAFT",
+      "themeJa": "暮らしの手仕事",
+      "icon": "culture",
+      "title": "海の仕事着から広がった「ガーンジー編み」",
+      "text": "漁師の防寒着として育まれたウールのセーター「guernsey」は、丈夫な編み地と実用的なつくりで知られる。海辺の暮らしが衣服のかたちに残る。",
+      "points": [
+        "細かな編み柄と厚い生地に用途が表れる",
+        "地元の工房や市場で手仕事に出会える"
+      ],
+      "sourceKey": "jumper"
+    },
+    {
+      "topicKey": "victor-hugo",
+      "themeEn": "LITERATURE",
+      "themeJa": "文学を知る",
+      "icon": "culture",
+      "title": "ヴィクトル・ユゴーが海を見下ろして書いた場所",
+      "text": "フランスから亡命した作家はセント・ピーター・ポートのオートヴィル・ハウスで暮らし、『レ・ミゼラブル』などを執筆した。家の内装にも本人の思想が見える。",
+      "points": [
+        "丘の上の家から港と海を望める",
+        "部屋の装飾に作家の創作が息づく"
+      ],
+      "sourceKey": "hugo"
+    },
+    {
+      "topicKey": "occupation-memory",
+      "themeEn": "HISTORY",
+      "themeJa": "記憶をたどる",
+      "icon": "history",
+      "title": "海岸の堡塁は20世紀の占領を語る",
+      "text": "ガーンジーは1940年から1945年までドイツ軍に占領された。沿岸のコンクリート構造物や展示施設が、島民の避難、日常、解放の記憶を伝える。",
+      "points": [
+        "石の旧砦と戦時のコンクリート堡塁を見比べる",
+        "解放の日の記憶が今も地域行事に残る"
+      ],
+      "sourceKey": "occupation"
+    },
+    {
+      "topicKey": "alderney-seabirds",
+      "themeEn": "NATURE",
+      "themeJa": "海鳥を知る",
+      "icon": "leaf",
+      "title": "オルダニー沖の小島は海鳥の繁殖地",
+      "text": "バーフー島のパフィンやレ・ゼタックのカツオドリなど、沿岸の小島は繁殖する海鳥を支える。観察は上陸規制や野生生物の保護に配慮して行う。",
+      "points": [
+        "海からしか眺められない繁殖地がある",
+        "春から夏の観察は季節に左右される"
+      ],
+      "sourceKey": "puffins"
+    },
+    {
+      "topicKey": "tidal-ecology",
+      "themeEn": "NATURE",
+      "themeJa": "潮間帯を知る",
+      "icon": "sea",
+      "title": "一日の中で海と陸が入れ替わる",
+      "text": "潮が引くと岩間の水たまりや砂地が広く現れる。小さな生物の棲みかであると同時に、歩く場所やボートの発着を変える自然のリズムでもある。",
+      "points": [
+        "岩場の潮だまりに生き物を見つける",
+        "満ち引きに合わせて浜の表情が変わる"
+      ],
+      "sourceKey": "tides"
+    }
+  ],
+  "taste": {
+    "title": "ガーンジーで食べたいもの",
+    "kicker": "TASTE OF GUERNSEY",
+    "intro": "豆の煮込み、ドライフルーツ入りのパン、リンゴの焼き菓子、海のカニ。島の台所と海辺の軽食を4品で知る。",
+    "items": [
+      {
+        "id": "guernsey-bean-jar",
+        "name": "ガーンジー・ビーン・ジャー",
+        "nameLocal": "Guernsey Bean Jar",
+        "text": "豆と豚肉などを時間をかけて煮込む伝統料理。寒い日の食卓に親しまれる、素朴で滋味深い一皿。",
+        "image": "assets/images/unitedkingdom/guernsey/approved/food-01-guernsey-bean-jar.webp",
+        "sourceKey": "beanJar"
+      },
+      {
+        "id": "guernsey-gache",
+        "name": "ガーンジー・ガッシュ",
+        "nameLocal": "Guernsey Gâche",
+        "text": "レーズンやサルタナ、柑橘ピールを練り込んで焼くフルーツパン。切り口から甘い果実がのぞく。",
+        "image": "assets/images/unitedkingdom/guernsey/approved/food-02-guernsey-gache.webp",
+        "sourceKey": "gache"
+      },
+      {
+        "id": "gache-melee",
+        "name": "ガッシュ・メレ",
+        "nameLocal": "Gâche Mélée",
+        "text": "リンゴを生地にたっぷり混ぜ込んだ伝統的な焼き菓子。しっとりとした断面に果肉が残る。",
+        "image": "assets/images/unitedkingdom/guernsey/approved/food-03-gache-melee.webp",
+        "sourceKey": "gacheMelee"
+      },
+      {
+        "id": "crab-sandwich",
+        "name": "ガーンジー・クラブ・サンドイッチ",
+        "nameLocal": "Guernsey Crab Sandwich",
+        "text": "地元で水揚げされるカニの身をパンに挟む海辺の軽食。浜のキオスクなどでも出会える。",
+        "image": "assets/images/unitedkingdom/guernsey/approved/food-04-guernsey-crab-sandwich.webp",
+        "sourceKey": "crabSandwich"
+      }
+    ]
+  },
+  "travelTrivia": [
+    {
+      "topicKey": "chapel-rebuilt",
+      "categoryEn": "ODD HISTORY",
+      "categoryJa": "小さすぎた礼拝堂",
+      "icon": "history",
+      "title": "司教が入れず、礼拝堂を建て直した？",
+      "text": "リトル・チャペルは造り直しを経て今の姿に。以前の建物は訪れた司教が入口を通れなかったため取り壊されたという。",
+      "sourceKey": "littleChapel"
+    },
+    {
+      "topicKey": "sark-dark-sky",
+      "categoryEn": "STARLIGHT",
+      "categoryJa": "星空の島",
+      "icon": "leaf",
+      "title": "街灯の少ない島が世界初の「暗い空の島」に",
+      "text": "サーク島は2011年に世界初のDark Sky Islandとして認定された。街路の人工照明が少ない夜には天の川を見上げられる。",
+      "sourceKey": "darkSky"
+    },
+    {
+      "topicKey": "guardian-tomb",
+      "categoryEn": "ANCIENT ART",
+      "categoryJa": "石に刻まれた人",
+      "icon": "history",
+      "title": "古い墓室の天井石に「番人」がいる",
+      "text": "デユス・ドルメンの石には、顔や腕、弓のようなものを表した人物の彫刻が残り「墓の守護者」と呼ばれる。",
+      "sourceKey": "dehus"
+    },
+    {
+      "topicKey": "noon-gun",
+      "categoryEn": "CASTLE CUSTOM",
+      "categoryJa": "正午の砲声",
+      "icon": "history",
+      "title": "城では正午に大砲が鳴る",
+      "text": "キャッスル・コルネットでは公開期間中、19世紀風の衣装を着た砲手が正午の空砲を披露する。海の城に時刻を告げる習慣が残る。",
+      "sourceKey": "castleCornet"
+    },
+    {
+      "topicKey": "blonde-hedgehog",
+      "categoryEn": "WILDLIFE",
+      "categoryJa": "金髪のハリネズミ",
+      "icon": "leaf",
+      "title": "オルダニーには淡い色のハリネズミがいる",
+      "text": "オルダニーでは体毛が淡いブロンドのハリネズミが知られる。アルビノとは異なる色素の変化によるもので、夕暮れ以降に姿を見せる。",
+      "sourceKey": "alderneyHedgehog"
+    }
+  ],
+  "forWhom": [
+    {
+      "title": "崖と白い浜をゆっくり歩きたい人",
+      "text": "サークの細い尾根やエルムの浜、ガーンジー南岸の入り江を徒歩で味わいたい人。"
+    },
+    {
+      "title": "小さな島の歴史が好きな人",
+      "text": "港の城、古代の墳丘、占領期の記憶を時代をまたいで見て歩きたい人。"
+    },
+    {
+      "title": "島ごとの違いを巡りたい人",
+      "text": "フェリーで島を渡り、庭園、海鳥、漁港とそれぞれの暮らしを重ねたい人。"
+    }
+  ],
+  "notes": [
+    {
+      "title": "潮位を確認して岩礁へ",
+      "text": "フォート・クロンケの連絡路は高潮時に水没することがある。満潮の前後や強風時は渡らず、現地の安全案内に従う。",
+      "sourceKey": "fortClonque"
+    },
+    {
+      "title": "島間の船は天候に左右される",
+      "text": "エルム、サーク、オルダニーへの船は運行日・発着地・便数が変わる。訪問前日に運航会社の最新案内を確認する。",
+      "sourceKey": "interIsland"
+    },
+    {
+      "title": "サークの道は徒歩と自転車が中心",
+      "text": "サークでは一般の自動車は使われず、徒歩、自転車、馬車などで巡る。崖沿いの道は雨や風の日に無理をしない。",
+      "sourceKey": "darkSky"
+    },
+    {
+      "title": "史跡と庭園は開場情報を確認",
+      "text": "城・砦・庭園は季節によって開館や見学範囲が変わる。訪問前に各公式サイトで最新情報を確かめる。",
+      "sourceKey": "castleCornet"
+    }
+  ],
+  "travelScale": {
+    "kicker": "DURATION",
+    "title": "旅の目安日程",
+    "intro": "セント・ピーター・ポートを拠点に、ガーンジー島内を歩き、船で近隣の島へ渡る構成。便の運航と天候を見込んだ編集上の周遊例。",
+    "items": [
+      {
+        "duration": "2〜3日",
+        "title": "港と南岸の景色を歩く",
+        "icon": "map",
+        "text": "セント・ピーター・ポート → キャッスル・コルネット → リトル・チャペル → ムーラン・ユエ湾 → セント・ピーター・ポート。"
+      },
+      {
+        "duration": "4〜5日",
+        "title": "エルムとサークを加える",
+        "icon": "sea",
+        "text": "セント・ピーター・ポート → エルム島（往復） → サーク島（ラ・クーペと庭園、往復） → ガーンジー西岸 → セント・ピーター・ポート。"
+      },
+      {
+        "duration": "6〜7日",
+        "title": "オルダニーまで群島を巡る",
+        "icon": "compass",
+        "text": "セント・ピーター・ポート → エルム島（往復） → サーク島（往復） → オルダニー島（往復） → デユス・ドルメン → セント・ピーター・ポート。"
+      }
+    ]
+  },
+  "bestSeason": {
+    "windows": [
+      {
+        "label": "5〜6月",
+        "reason": "花が増える季節。島内ハイキングと海岸散策の候補に。風や海の冷たさには備えたい。"
+      },
+      {
+        "label": "7〜9月",
+        "reason": "比較的日照が長く、島間航路を組みやすい時期。混雑と海況に合わせて移動を調整する。"
+      }
+    ]
+  },
+  "seasons": [
+    {
+      "months": "3〜5月",
+      "label": "春",
+      "icon": "leaf",
+      "color": "#73966f",
+      "text": "草地と庭に花が増え、海鳥が繁殖地へ戻る。海風は冷たく、船の欠航も念頭に。"
+    },
+    {
+      "months": "6〜8月",
+      "label": "夏",
+      "icon": "sun",
+      "color": "#92a253",
+      "text": "白砂浜と島歩きが主役。日差しの強い日も、潮位と風で海の予定を決める。"
+    },
+    {
+      "months": "9〜11月",
+      "label": "秋",
+      "icon": "leaf",
+      "color": "#b77a49",
+      "text": "初秋は歩きやすい日もあるが、後半は風雨が増える。リンゴの焼き菓子にも季節感がある。"
+    },
+    {
+      "months": "12〜2月",
+      "label": "冬",
+      "icon": "snow",
+      "color": "#6b90a5",
+      "text": "海風が強く、島間の移動に制約が出ることもある。町歩きと屋内の歴史展示を中心に。"
+    }
+  ],
+  "transport": {
+    "icon": "map",
+    "title": "港を起点にフェリーで島めぐり",
+    "text": "ガーンジー空港とセント・ピーター・ポート港が玄関口。エルム・サークへは港から船が出る。オルダニーへは航空便や季節運航の船があり、島内はバスと徒歩などを組み合わせる。",
+    "sourceKeys": [
+      "interIsland",
+      "hermFerry",
+      "sarkFerry",
+      "alderneyFerry"
+    ]
+  },
+  "nextRoutesIntro": "英仏海峡の船を使い、近隣の島と大陸へ旅をつなぐ。",
+  "nextRoutes": [
+    {
+      "countryEn": "JERSEY",
+      "countryJa": "ジャージー",
+      "flag": "🇯🇪",
+      "path": "St Peter Port → Saint Helier",
+      "description": "海を渡ってもう一つの王室属領へ。港町と城、潮間帯を見比べる。",
+      "href": "countries/unitedkingdom/jersey/",
+      "travelerRoute": true,
+      "status": "OPEN"
+    },
+    {
+      "countryEn": "FRANCE",
+      "countryJa": "フランス",
+      "flag": "🇫🇷",
+      "path": "St Peter Port → St Malo / Normandy",
+      "description": "海峡の向こうのブルターニュ・ノルマンディーへ船でつなぐ。",
+      "href": "countries/france/",
+      "travelerRoute": true,
+      "status": "OPEN"
+    }
+  ],
+  "relatedCountries": [
+    {
+      "nameJa": "ジャージー",
+      "nameEn": "JERSEY",
+      "href": "countries/unitedkingdom/jersey/",
+      "flag": "🇯🇪",
+      "reason": "英仏海峡に並ぶ別の王室属領。海岸と制度の違いを知る。",
+      "affinityType": "GEOGRAPHY"
+    },
+    {
+      "nameJa": "イギリス",
+      "nameEn": "UNITED KINGDOM",
+      "href": "countries/unitedkingdom/",
+      "flag": "🇬🇧",
+      "reason": "英国王室との関係から群島の歴史をたどる。",
+      "affinityType": "HISTORY"
+    },
+    {
+      "nameJa": "フランス",
+      "nameEn": "FRANCE",
+      "href": "countries/france/",
+      "flag": "🇫🇷",
+      "reason": "ノルマン語や地名、海辺の暮らしに残る大陸とのつながり。",
+      "affinityType": "CULTURE"
+    }
+  ],
+  "sourcesVerifiedAt": "2026-11-13",
+  "updatedAt": "2026-11-13",
+  "sourceDates": {
+    "population": "2023-12-31; published 2024-10-29; known migration revision pending as of 2026-11-13",
+    "area": "Bailiwick approximately 78 km² (UKOTCF; checked 2026-11-13)",
+    "status": "Crown Dependency constitutional relationship verified 2026-11-13",
+    "tides": "Approx. 10 m tidal range (UKOTCF; checked 2026-11-13)",
+    "renoir": "1883, 15 paintings; VisitGuernsey",
+    "map": "Who's On First Guernsey 85632547 Quattroshapes geometry, verified 2026-11-13; 80 source polygons; WGS84"
+  },
+  "sources": {
+    "status": "https://commonslibrary.parliament.uk/research-briefings/cbp-8611/",
+    "jurisdictions": "https://committees.parliament.uk/publications/7227/documents/75911/default/",
+    "alderneyGov": "https://www.acre.gov.gg/about-alderney",
+    "sarkGov": "https://parliament.gg/parliamentary-business/assets/propositions/P2025-43",
+    "area": "https://www.ukotcf.org/territories/guernsey.cfm",
+    "population": "https://www.bailiwickexpress.com/news-ge/focus-is-it-census-time/",
+    "populationWarning": "https://www.bailiwickexpress.com/news-ge/data-delays-to-continue-into-2026/",
+    "language": "https://www.visitguernsey.com/articles/2020/which-languages-are-spoken-in-guernsey",
+    "castleCornet": "https://www.visitguernsey.com/experiences/activities/castle-cornet-its-museums/",
+    "laCoupee": "https://www.sark.co.uk/",
+    "shellBeach": "https://www.visitguernsey.com/experiences/activities/shell-beach/",
+    "moulinHuet": "https://www.visitguernsey.com/experiences/activities/moulin-huet-bay/",
+    "fortGrey": "https://www.visitguernsey.com/experiences/activities/fort-grey/",
+    "littleChapel": "https://www.visitguernsey.com/experiences/activities/the-little-chapel/",
+    "fortClonque": "https://cms.landmarktrust.org.uk/properties/fort-clonque/",
+    "dehus": "https://www.visitguernsey.com/experiences/activities/le-dehus-burial-chamber/",
+    "laSeigneurie": "https://www.visitguernsey.com/experiences/island-hopping/sark/",
+    "tides": "https://www.ukotcf.org/territories/guernsey.cfm",
+    "renoir": "https://www.visitguernsey.com/experiences/activities/renoir-walk/",
+    "jumper": "https://www.visitguernsey.com/articles/2023/the-history-of-the-guernsey/",
+    "hugo": "https://www.visitguernsey.com/experiences/activities/victor-hugo-house-hauteville-house/",
+    "occupation": "https://www.visitguernsey.com/experiences/ww2-history/",
+    "puffins": "https://www.visitalderney.com/our-island/nature/",
+    "darkSky": "https://www.visitguernsey.com/experiences/island-hopping/sark/",
+    "alderneyHedgehog": "https://www.visitalderney.com/our-island/nature/iconic-residents/",
+    "beanJar": "https://www.visitguernsey.com/articles/2020/5-traditional-guernsey-recipes-to-try-at-home/",
+    "gache": "https://www.visitguernsey.com/articles/2020/5-traditional-guernsey-recipes-to-try-at-home/",
+    "gacheMelee": "https://www.visitguernsey.com/articles/2020/5-traditional-guernsey-recipes-to-try-at-home/",
+    "crabSandwich": "https://www.visitguernsey.com/articles/2023/10-beach-kiosks-and-cafes-on-the-islands-of-guernsey/",
+    "interIsland": "https://www.visitguernsey.com/planning/getting-around/inter-island-travel/",
+    "hermFerry": "https://www.visitguernsey.com/articles/2025/travel-guide-a-solo-trip-to-herm/",
+    "sarkFerry": "https://www.sark.co.uk/travel-by-sea?lang=ja",
+    "alderneyFerry": "https://www.visitalderney.com/travel/getting-here/",
+    "map": "https://github.com/whosonfirst-data/whosonfirst-data-admin-gg/blob/master/data/856/325/47/85632547.geojson",
+    "jersey": "https://www.gov.je/government/departments/jerseyworld/pages/relationshipeuanduk.aspx"
+  },
+  "nextRegion": {
+    "slug": "jersey",
+    "nameEn": "JERSEY",
+    "nameJa": "ジャージー"
+  }
+}
