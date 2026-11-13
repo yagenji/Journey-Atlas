@@ -41,7 +41,7 @@
     },
     {
       "label": "人口",
-      "value": "64,781人（2023年末公表値・後日修正予定）",
+      "value": "64,781人（2023年末公表値、ガーンジー島など・改定予定）",
       "sourceKey": "population"
     },
     {
@@ -57,12 +57,12 @@
     {
       "label": "主な宗教",
       "value": "キリスト教など",
-      "sourceKey": "status"
+      "sourceKey": "religion"
     },
     {
       "label": "通貨",
       "value": "英ポンド（GBP）と等価のガーンジー・ポンド",
-      "sourceKey": "status"
+      "sourceKey": "currency"
     }
   ],
   "historyContext": {
@@ -617,12 +617,13 @@
   "sourcesVerifiedAt": "2026-11-13",
   "updatedAt": "2026-11-13",
   "sourceDates": {
-    "population": "2023-12-31; published 2024-10-29; known migration revision pending as of 2026-11-13",
+    "population": "2023-12-31; published 2024-10-29; Guernsey, Herm, Jethou, Lihou; excludes Alderney/Sark; delayed revision pending as of 2026-11-13",
     "area": "Bailiwick approximately 78 km² (UKOTCF; checked 2026-11-13)",
     "status": "Crown Dependency constitutional relationship verified 2026-11-13",
     "tides": "Approx. 10 m tidal range (UKOTCF; checked 2026-11-13)",
     "renoir": "1883, 15 paintings; VisitGuernsey",
-    "map": "Who's On First Guernsey 85632547 Quattroshapes geometry, verified 2026-11-13; 80 source polygons; WGS84"
+    "map": "Who's On First Guernsey 85632547 Quattroshapes geometry, verified 2026-11-13; 80 source polygons; WGS84",
+    "religion": "2001 census / UN reporting 2007; current breakdown not verified"
   },
   "sources": {
     "status": "https://commonslibrary.parliament.uk/research-briefings/cbp-8611/",
@@ -634,7 +635,7 @@
     "populationWarning": "https://www.bailiwickexpress.com/news-ge/data-delays-to-continue-into-2026/",
     "language": "https://www.visitguernsey.com/articles/2020/which-languages-are-spoken-in-guernsey",
     "castleCornet": "https://www.visitguernsey.com/experiences/activities/castle-cornet-its-museums/",
-    "laCoupee": "https://www.sark.co.uk/",
+    "laCoupee": "https://www.visitguernsey.com/experiences/hiking/hiking-routes/sark-clifftop-paths-la-coupee-little-sark/",
     "shellBeach": "https://www.visitguernsey.com/experiences/activities/shell-beach/",
     "moulinHuet": "https://www.visitguernsey.com/experiences/activities/moulin-huet-bay/",
     "fortGrey": "https://www.visitguernsey.com/experiences/activities/fort-grey/",
@@ -659,7 +660,10 @@
     "sarkFerry": "https://www.sark.co.uk/travel-by-sea?lang=ja",
     "alderneyFerry": "https://www.visitalderney.com/travel/getting-here/",
     "map": "https://github.com/whosonfirst-data/whosonfirst-data-admin-gg/blob/master/data/856/325/47/85632547.geojson",
-    "jersey": "https://www.gov.je/government/departments/jerseyworld/pages/relationshipeuanduk.aspx"
+    "jersey": "https://www.gov.je/government/departments/jerseyworld/pages/relationshipeuanduk.aspx",
+    "religion": "https://digitallibrary.un.org/record/624986/files/E_C.12_GBR_5_Add.1-EN.pdf",
+    "currency": "https://www.visitguernsey.com/planning/useful-information/things-to-know-on-island/",
+    "populationCoverage": "https://unstats.un.org/unsd/demographic-social/products/dyb/documents/metadata/2024/Guernsey-2024-PE-Metadata.pdf"
   },
   "nextRegion": {
     "slug": "jersey",
