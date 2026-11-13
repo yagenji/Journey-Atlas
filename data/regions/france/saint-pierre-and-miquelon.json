@@ -75,11 +75,11 @@
     "svg": "assets/images/france/saint-pierre-and-miquelon/map-saint-pierre-and-miquelon.svg",
     "bounds": {
       "west": -56.46,
-      "east": -56.1,
+      "east": -56.06,
       "south": 46.71,
       "north": 47.18
     },
-    "source": "Target land, islands and coastline: Who’s On First Saint Pierre and Miquelon ADM0 85632371, Quattroshapes geometry (CC BY 2.0), retrieved 2026-11-13: https://github.com/whosonfirst-data/whosonfirst-data-admin-pm/blob/master/data/856/323/71/85632371.geojson . WGS84 local equirectangular projection, 1200x760. 8 sourced island polygons including Saint-Pierre, Île aux Marins, Miquelon and Langlade. Miquelon and Langlade joined by the actual naturally formed sandy isthmus, not a bridge. Grand Barachois represented by the water indentation of the original coastline; no additional lagoon or coastal polygons invented. Main map and enlarged Saint-Pierre detail use the same coastline at differing scales. Note: Quattroshapes historical source may not capture subsequent erosion at the moving isthmus.",
+    "source": "Target land, islands and coastline: Who’s On First Saint Pierre and Miquelon ADM0 85632371, Quattroshapes geometry (CC BY 2.0), retrieved 2026-11-13: https://github.com/whosonfirst-data/whosonfirst-data-admin-pm/blob/master/data/856/323/71/85632371.geojson . WGS84 local equirectangular projection, 1200x760. 8 sourced island polygons including Saint-Pierre, Île aux Marins, Miquelon and Langlade. Miquelon and Langlade joined by the actual naturally formed sandy isthmus, not a bridge. Grand Barachois represented by the water indentation of the original coastline; no additional lagoon or coastal polygons invented. Full overview uses the recorded local-equirectangular-fit-v1 map bounds; an inset enlarges the same Saint-Pierre source geometry at a separate, explicitly identified scale. Map anchors always use the overview geographic projection; optional label-only offsets are recorded in Scene JSON. Note: Quattroshapes historical source may not capture subsequent erosion at the moving isthmus.",
     "singleMapMobile": true
   },
   "scenes": [
@@ -97,7 +97,11 @@
       "sceneTypes": [
         "church",
         "village"
-      ]
+      ],
+      "mapOffset": {
+        "x": 2.5,
+        "y": -3.3
+      }
     },
     {
       "id": "grand-barachois",
@@ -176,7 +180,11 @@
       "sourceKey": "capAuDiable",
       "sceneTypes": [
         "cliff"
-      ]
+      ],
+      "mapOffset": {
+        "x": 2.0,
+        "y": -2.6
+      }
     },
     {
       "id": "belle-riviere",
@@ -208,7 +216,11 @@
       "sceneTypes": [
         "bay",
         "wetland"
-      ]
+      ],
+      "mapOffset": {
+        "x": -2.5,
+        "y": 1.6
+      }
     }
   ],
   "taste": {
