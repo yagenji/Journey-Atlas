@@ -82,8 +82,32 @@
       "north": 81.3
     },
     "singleMapMobile": true,
-    "insetNote": "※ ビョルン島は、実際の位置関係・縮尺と異なる別枠表示です。",
-    "source": "スヴァールバル諸島の陸地輪郭：WRI Open Data Portal Svalbard GeoJSON。極投影、海岸線は表示尺度に合わせ簡略化。ビョルン島は別枠（縮尺・位置は別）。氷河の詳細境界は資料時点を確定できないため描写しない（2026年11月13日確認）。"
+    "insetNote": "※ ビョルン島は、実際の位置関係・縮尺と異なる別枠表示です。※ ロングイェールビーン周辺は、同じ地域を拡大した別枠表示です。",
+    "source": "海岸線・独立した島々：GSHHG/GSHHS intermediate（Basemap 2.0.0同梱、v2.3.7、GNU LGPL-3.0-or-later）。北極ステレオ図法。ロングイェールビーン周辺は同一海岸線を拡大表示、ビョルン島は別枠。氷河範囲は年次が検証済みのポリゴンを取得できていないため推測で描かない。2026-11-13確認。",
+    "regions": [
+      {
+        "id": "longyearbyen-detail",
+        "label": "ロングイェールビーン周辺",
+        "svgId": "svalbard-longyearbyen-detail",
+        "rect": {
+          "x": 846,
+          "y": 424,
+          "width": 329,
+          "height": 256
+        },
+        "sourceRect": {
+          "x": 308,
+          "y": 345,
+          "width": 212,
+          "height": 158
+        },
+        "sceneIds": [
+          "global-seed-vault",
+          "adventdalen",
+          "gruve-3"
+        ]
+      }
+    ]
   },
   "scenes": [
     {
@@ -102,8 +126,8 @@
       ],
       "sourceKey": "seedVault",
       "mapOffset": {
-        "x": -3.5,
-        "y": -4.5
+        "x": -2.5,
+        "y": -4
       }
     },
     {
@@ -163,7 +187,7 @@
       "sourceKey": "adventdalen",
       "mapOffset": {
         "x": 4,
-        "y": 2
+        "y": 0
       }
     },
     {
@@ -181,8 +205,8 @@
       ],
       "sourceKey": "gruve3",
       "mapOffset": {
-        "x": 4,
-        "y": -4
+        "x": -2.5,
+        "y": 4
       }
     },
     {
@@ -487,43 +511,23 @@
   ],
   "notes": [
     {
-      "title": "集落外ではホッキョクグマ対策を",
-      "text": "集落外では遭遇に備える必要がある。十分な安全手段と適切なガイドを確保し、原則300m以上、3〜6月は500m以上の距離規制を守る。",
+      "title": "集落外では野生動物への対策を",
+      "text": "集落外はホッキョクグマの生息域。適切なガイド・安全装備を確保し、接近禁止距離（通常300m、3〜6月は500m）を守る。",
       "sourceKey": "polarBear"
     },
     {
-      "title": "2026年の野外活動安全規則",
-      "text": "新規則は2026年1月1日施行。観光事業者の許可制度に注意。認定スヴァールバルガイド使用義務は2027年7月1日開始。",
+      "title": "ガイド制度と自然保護区の規則",
+      "text": "2026年の野外活動規則と保護区の上陸制限を確認。認定ガイドに関する2027年の制度変更も事業者へ確認する。",
       "sourceKey": "fieldSafety"
     },
     {
-      "title": "保護区への上陸には制限がある",
-      "text": "自然保護区では観光上陸地や行動内容に制限がある。現行の総督案内と運航事業者の指示を優先する。",
-      "sourceKey": "protectedAreas"
-    },
-    {
-      "title": "氷河の末端へ近づきすぎない",
-      "text": "氷塊の崩落や波が発生することがある。海上の安全距離は現地条件と事業者の指示に従う。",
+      "title": "遠隔地の移動は天候と許可次第",
+      "text": "海上ツアーや雪上移動は季節・海氷・天候に左右される。氷河の崩落を避け、研究拠点や旧炭鉱集落への上陸は指定条件に従う。",
       "sourceKey": "visitSafety"
     },
     {
-      "title": "研究集落は通常の観光地ではない",
-      "text": "ニーオーレスンでは組織された訪問の範囲に従い、研究設備と無線利用の制限を守る。",
-      "sourceKey": "nyalesund"
-    },
-    {
-      "title": "ピラミーデンへの上陸は保証されない",
-      "text": "政治情勢、船舶の運航、現地運営条件によって上陸可否が変わる。遠望と上陸を混同しない。",
-      "sourceKey": "pyramidenAccess"
-    },
-    {
-      "title": "集落間に道路はない",
-      "text": "遠隔地への移動は季節・海氷・天候で変わり、夏の船や雪上の組織ツアーなどを個別手配する。",
-      "sourceKey": "transport"
-    },
-    {
-      "title": "シェンゲン圏外の手続きを確認",
-      "text": "スヴァールバルはシェンゲン圏外。ノルウェー本土経由時は旅券やシェンゲン再入域条件を事前に確認する。",
+      "title": "本土経由時の入域条件を確認",
+      "text": "スヴァールバルはシェンゲン圏外。ノルウェー本土を経由する場合は旅券と再入域条件、保険を出発前に確認する。",
       "sourceKey": "travel"
     }
   ],
@@ -622,8 +626,24 @@
       "nameEn": "NORWAY",
       "href": "countries/norway/",
       "flag": "🇳🇴",
-      "reason": "制度と航空路でつながるノルウェー本土へ。",
+      "reason": "本土のフィヨルドと北極の島々をつなぎ、沿岸の風景を比べる。",
       "affinityType": "GEOGRAPHY"
+    },
+    {
+      "nameJa": "アイスランド",
+      "nameEn": "ICELAND",
+      "href": "countries/iceland/",
+      "flag": "🇮🇸",
+      "reason": "北大西洋の氷河と火山、温泉という別の極北の景色へ。",
+      "affinityType": "LANDSCAPE"
+    },
+    {
+      "nameJa": "カナダ",
+      "nameEn": "CANADA",
+      "href": "countries/canada/",
+      "flag": "🇨🇦",
+      "reason": "北極圏の広い大地と、そこに根づく人々の暮らしを訪ねる。",
+      "affinityType": "CULTURE"
     }
   ],
   "sourcesVerifiedAt": "2026-11-13",
@@ -635,7 +655,7 @@
     "nationalities": "2026-01-01 (SSB, published 2026-03-04)",
     "status": "1920 treaty; Svalbard Act effective 1925-08-14",
     "safety": "2026-01-01 field regulation; 2027-07-01 approved guide mandate",
-    "map": "WRI ODP geojson snapshot; acquisition vintage not identified, glacier boundaries intentionally omitted",
+    "map": "GSHHG v2.3.7 intermediate-resolution coastlines from Basemap 2.0.0; represented coastline vintage not separately specified; checked 2026-11-13. Glacier outlines omitted.",
     "bestSeason": "editorial as of 2026-11-13"
   },
   "sources": {
@@ -669,7 +689,7 @@
     "protectedAreas": "https://www.sysselmesteren.no/en/the-governor-of-svalbard/environmental-protection/protected-areas-in-svalbard/",
     "visitSafety": "https://en.visitsvalbard.com/visitor-information/safety-in-svalbard",
     "transport": "https://en.visitsvalbard.com/visitor-information/travel-information/everything-you-need-to-know-before-departure",
-    "mapSource": "https://github.com/wri/wri-odp/blob/master/ckan-backend-dev/src/ckanext-wri/ckanext/wri/world_geojsons/states/Norway/Svalbard.geojson",
+    "mapSource": "https://www.soest.hawaii.edu/pwessel/gshhg/",
     "mapNPI": "https://geodata.npolar.no/",
     "ptarmiganBird": "https://npolar.no/en/species/svalbard-rock-ptarmigan/",
     "arcticWorldArchive": "https://en.visitsvalbard.com/inspiration/various/arctic-world-archive",
