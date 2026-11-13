@@ -36,8 +36,9 @@
   },
   "profile": [
     {
-      "label": "中心都市",
-      "value": "セント・ヘリア"
+      "label": "首府",
+      "value": "セント・ヘリア（St Helier）",
+      "sourceKey": "profile"
     },
     {
       "label": "人口",
@@ -236,9 +237,9 @@
       "topicKey": "normandy-distance",
       "label": "フランスの海岸まで",
       "value": "約22km",
-      "note": "ノルマンディーから近いチャンネル諸島の島。英国王室との結びつきと、大陸への地理的な近さが重なる。",
+      "note": "ジャージー政府の島の概要では、フランスの海岸から14マイル（22km）。英国王室との結びつきと、大陸への近さが重なる島。",
       "icon": "globe",
-      "sourceKey": "parishes",
+      "sourceKey": "profile",
       "interestReason": "英国ではない王室属領が大陸のすぐ沖にあるとわかる。"
     }
   ],
@@ -281,7 +282,7 @@
     {
       "title": "西岸の波に向かうサーファー",
       "icon": "sea",
-      "category": "ACTIVITY"
+      "category": "DAILY_LIFE"
     }
   ],
   "culture": [
@@ -312,43 +313,43 @@
       "sourceKey": "warTunnels"
     },
     {
-      "topicKey": "cotil-potatoes",
-      "themeEn": "FOOD",
-      "themeJa": "畑を知る",
-      "icon": "food",
-      "title": "斜面の畑から届く、春の新ジャガ",
-      "text": "急斜面の畑はcôtilと呼ばれ、Jersey Royalの栽培に使われる。かつて海藻を肥料として利用した島の農業は、海と畑の距離の近さを示す。",
+      "topicKey": "neolithic-passage-grave",
+      "themeEn": "HISTORY",
+      "themeJa": "古代を知る",
+      "icon": "history",
+      "title": "ピラミッドより古い、春分・秋分に向く石の墓",
+      "text": "東部のラ・ウーグ・ビーは、土の塚の中に石の通路と墓室を築いた新石器時代の墓。エジプトのピラミッドより前に造られ、通路は春分・秋分の太陽に合わせた向きを持つ。",
       "points": [
-        "急斜面の畑は春の収穫を支える",
-        "海藻の利用から、海と農地のつながりが見える"
+        "ヨーロッパでも屈指の新石器時代の通路墓とされる",
+        "太陽の動きと墓の構造が結びつく"
       ],
-      "sourceKey": "jerseyRoyal"
+      "sourceKey": "dolmens"
     },
     {
-      "topicKey": "oyster-farming",
-      "themeEn": "FOOD",
-      "themeJa": "海の仕事",
-      "icon": "sea",
-      "title": "大きな干満差が牡蠣養殖を支える",
-      "text": "東側のロイヤル・ベイ・オブ・グルーヴィルでは、干満によって海面から現れる潮間帯で牡蠣が育てられる。海岸の地形が食卓につながる。",
+      "topicKey": "flower-parade",
+      "themeEn": "CULTURE",
+      "themeJa": "祭りを知る",
+      "icon": "culture",
+      "title": "国王の戴冠を祝って始まった、花の山車の行列",
+      "text": "「バトル・オブ・フラワーズ」は、エドワード7世の戴冠を島で祝う催しとして1902年に始まった。今も毎年8月、花で飾った山車が通りを進む島の夏の大きな行事になっている。",
       "points": [
-        "干潟は海の生きものを育てる場でもある",
-        "その日の潮位で浜の見え方が変わる"
+        "初回は戴冠式の当日に花の行列が行われた",
+        "開催週末は宿や交通が混みやすい"
       ],
-      "sourceKey": "oysters"
+      "sourceKey": "battleFlowers"
     },
     {
-      "topicKey": "harbour-economy",
-      "themeEn": "LIFE",
-      "themeJa": "港の暮らし",
-      "icon": "city",
-      "title": "海に開いた港が、外の世界との接点になる",
-      "text": "小さな港には漁船とヨットが並び、島の物流、観光、人々の行き来を支える。港から歩くと市場や歴史的な街路に出会う。",
+      "topicKey": "wildlife-trust",
+      "themeEn": "NATURE",
+      "themeJa": "保全を知る",
+      "icon": "leaf",
+      "title": "作家ダレルが開いた、絶滅危惧種のための動物園",
+      "text": "博物学者で作家のジェラルド・ダレルは1959年にジャージー動物園を開き、1963年に保全のための慈善団体を設立した。島の動物園は、世界各地の絶滅危惧種を守る活動の拠点になっている。",
       "points": [
-        "港には日常の仕事と旅の入り口が重なる",
-        "海沿いの町と島の内陸が近い"
+        "展示だけでなく、繁殖と保全を目的に始まった",
+        "マダガスカルなど海外の保全活動ともつながる"
       ],
-      "sourceKey": "goreyHarbour"
+      "sourceKey": "durrell"
     },
     {
       "topicKey": "manor-gardens",
@@ -471,14 +472,14 @@
       "sourceKey": "tideSafety"
     },
     {
-      "title": "城や施設の開館期間を再確認",
-      "text": "季節や工事によって公開日が変わる。城と戦争トンネルなどの公式情報を、訪れる直前に確かめる。",
+      "title": "エリザベス城は潮で渡り方が変わる",
+      "text": "干潮時は土手道を歩いて渡れるが、潮が満ちると水陸両用の「キャッスル・フェリー」に乗る。公開は例年3月下旬〜10月末で、2026年シーズンは終了し2027年3月に再開予定。",
       "sourceKey": "elizabethCastle"
     },
     {
-      "title": "他の島へ渡る便は接続に余裕を",
-      "text": "島間の航空便や船便は季節と天候で変わる。乗り継ぎには余裕を持たせたい。",
-      "sourceKey": "ferry"
+      "title": "他の島や大陸への船は時刻表から組む",
+      "text": "セント・ヘリアからはDFDSの船がプール／ポーツマス、サン・マロ、ガーンジーへ向かう。島間便は設定のない日もあるため、往復の便を決めてから宿を押さえる。",
+      "sourceKey": "ferries2026"
     }
   ],
   "travelScale": {
@@ -499,7 +500,7 @@
         "text": "西の海岸、南西の砂浜、歴史遺産を日を分けて組み合わせる。例：セント・ヘリア → セント・オービン → ラ・コルビエール → セント・ブレレード → セント・ヘリア。"
       },
       {
-        "duration": "6〜7日",
+        "duration": "6日以上",
         "title": "潮の島を一周する",
         "icon": "compass",
         "text": "潮位を見ながら南東岸の干潟、北西岸の入り江と庭園も加える。例：セント・ヘリア → ゴリー → ラ・ロック → セント・ブレレード → セント・オーエン湾 → プレモン湾 → セント・ヘリア。"
@@ -573,14 +574,15 @@
       "status": "OPEN"
     },
     {
-      "countryEn": "UNITED KINGDOM",
-      "countryJa": "イギリス",
-      "flag": "🇬🇧",
+      "countryEn": "ENGLAND",
+      "countryJa": "イングランド",
+      "flag": "🏴󠁧󠁢󠁥󠁮󠁧󠁿",
       "path": "Saint Helier → Poole / Portsmouth",
       "description": "セント・ヘリアから定期フェリーで英仏海峡を北へ渡り、イングランド南岸のプールやポーツマスへ。花崗岩の城と砂浜の島から、英国の港町へ旅をつなぐ。",
-      "href": "countries/unitedkingdom/",
+      "href": "countries/unitedkingdom/england/",
       "travelerRoute": true,
-      "status": "OPEN"
+      "status": "OPEN",
+      "flagAsset": "assets/icons/region-flags/england-waved.svg"
     },
     {
       "countryEn": "GUERNSEY",
@@ -596,12 +598,12 @@
   ],
   "relatedCountries": [
     {
-      "nameJa": "フランス",
-      "nameEn": "FRANCE",
-      "href": "countries/france/",
-      "flag": "🇫🇷",
-      "reason": "干潮で海底が現れるほどの大きな潮の満ち引きに惹かれたなら、湾の対岸のモン・サン・ミシェルで、潮が引くと島へ歩いて渡れる風景を見られる。",
-      "affinityType": "LANDSCAPE"
+      "nameJa": "アイルランド",
+      "nameEn": "IRELAND",
+      "href": "countries/ireland/",
+      "flag": "🇮🇪",
+      "reason": "新石器時代の石の墓ラ・ウーグ・ビーに惹かれたなら、アイルランドのブルー・ナ・ボーニャで、冬至の朝日が通路の奥へ届くニューグレンジの巨大な墓を訪ねられる。",
+      "affinityType": "HISTORY"
     },
     {
       "nameJa": "カナダ",
@@ -620,7 +622,7 @@
       "affinityType": "WILDLIFE"
     }
   ],
-  "sourcesVerifiedAt": "2026-11-12",
+  "sourcesVerifiedAt": "2026-11-13",
   "updatedAt": "2026-11-12",
   "sourceDates": {
     "population": "2025-12-31 (provisional estimate); published 2026-09-23",
@@ -630,7 +632,13 @@
     "bestSeason": "Editorial suggestion, reviewed 2026-11-12",
     "transport": "Routes vary; checked 2026-11-12",
     "tidalTrail": "48 miles / 77 km, Visit Jersey Tourism Board, checked 2026-11-12",
-    "map": "Natural Earth 1:10m (ca96624) + GSHHG v2.3.7 shoreline, checked 2026-11-13"
+    "map": "Natural Earth 1:10m (ca96624) + GSHHG v2.3.7 shoreline, checked 2026-11-13",
+    "crownStatus": "Crown Dependency relationship (gov.je), checked 2026-11-13",
+    "history": "1204 separation from mainland Normandy (gov.je history), checked 2026-11-13",
+    "profile": "gov.je Jersey profile: capital St Helier; 14 miles (22 km) from French coast; checked 2026-11-13",
+    "elizabethCastle": "Jersey Heritage: open 20 March–31 October; closed until March 2027; checked 2026-11-13",
+    "battleFlowers": "States Assembly briefing: created for Edward VII coronation (1902); held in August (ITV 2026-08-13)",
+    "durrell": "Durrell: Jersey Zoo founded 1959, trust 1963; checked 2026-11-13"
   },
   "sources": {
     "crownStatus": "https://www.gov.je/government/departments/jerseyworld/pages/relationshipeuanduk.aspx",
@@ -663,11 +671,28 @@
     "tidalTrail": "https://business.jersey.com/marketing/campaigns/jersey-tidal-trail/",
     "parishes": "https://www.gov.je/LifeEvents/MovingToJersey/WhyChooseJersey/Pages/Government.aspx",
     "stamps": "https://history.je/first-jersey-stamps/",
-    "ferries2026": "https://business.jersey.com/news/dfds-publishes-full-2026-sailing-schedule-with-15-early-booking-offer/"
+    "ferries2026": "https://business.jersey.com/news/dfds-publishes-full-2026-sailing-schedule-with-15-early-booking-offer/",
+    "dolmens": "https://jersey.com/inspire-me/inspiration/discover-dolmens",
+    "battleFlowers": "https://statesassembly.gov.je/BriefingPapers/Pages/Coronation-celebrations-in-Jersey.aspx",
+    "battleFlowersDate": "https://www.itv.com/news/channel/2026-08-13/what-you-need-to-know-as-jerseys-battle-of-flowers-returns",
+    "durrell": "https://www.durrell.org/news/gerald-durrell-s-centenary-a-year-of-celebrations-starts-today/"
   },
   "nextRegion": {
-    "slug": "gibraltar",
-    "nameEn": "GIBRALTAR",
-    "nameJa": "ジブラルタル"
+    "slug": "guernsey",
+    "nameEn": "GUERNSEY",
+    "nameJa": "ガーンジー"
+  },
+  "capital": {
+    "nameJa": "セント・ヘリア",
+    "labelJa": "首府",
+    "coordinates": {
+      "latitude": 49.1836,
+      "longitude": -2.1065
+    },
+    "labelPosition": "left",
+    "labelOffset": {
+      "x": -8,
+      "y": -8
+    }
   }
 }

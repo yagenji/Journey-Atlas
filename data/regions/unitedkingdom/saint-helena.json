@@ -36,9 +36,9 @@
   },
   "profile": [
     {
-      "label": "中心都市",
-      "value": "ジェームズタウン",
-      "sourceKey": "history"
+      "label": "首府",
+      "value": "ジェームズタウン（Jamestown）",
+      "sourceKey": "britannica"
     },
     {
       "label": "人口",
@@ -244,16 +244,16 @@
       "value": "約820m",
       "note": "ダイアナズ・ピーク付近の高地は湿潤な雲霧林。低地の乾いた谷や海岸とは、短い移動で景観が変わる。",
       "icon": "landscape",
-      "sourceKey": "area",
+      "sourceKey": "britannica",
       "interestReason": "小さな火山島に乾燥地と湿潤な山地が共存している。"
     },
     {
       "topicKey": "distance-to-mainland",
       "label": "アフリカ大陸から",
-      "value": "約1,900km",
-      "note": "南大西洋の孤立した島。空路が開かれる以前、海上交通が旅と物資を支えてきた。",
+      "value": "約1,950km",
+      "note": "アフリカ南西岸から西へ約1,950km。空路が開かれる以前は、海上交通が旅と物資を支えてきた。",
       "icon": "globe",
-      "sourceKey": "area",
+      "sourceKey": "britannica",
       "interestReason": "島の風景だけでは想像しにくい隔絶性を距離で捉えられる。"
     }
   ],
@@ -291,7 +291,7 @@
     {
       "title": "流刑時代の住居と墓所に刻まれた記憶",
       "icon": "history",
-      "category": "HISTORY"
+      "category": "CULTURE"
     },
     {
       "title": "魚のケーキと香辛料が香る島の食卓",
@@ -353,17 +353,17 @@
       "sourceKey": "forest"
     },
     {
-      "topicKey": "saints-cuisine",
-      "themeEn": "LIFE",
-      "themeJa": "島の食卓",
-      "icon": "food",
-      "title": "遠い土地から伝わった味が、家庭料理になる",
-      "text": "魚のケーキ、カレー風味の米料理、ココナッツの菓子。限られた食材を工夫してきた島の暮らしには、航路を通じて交わった食文化が感じられる。",
+      "topicKey": "whale-shark-season",
+      "themeEn": "NATURE",
+      "themeJa": "海の巨人",
+      "icon": "sea",
+      "title": "南半球の夏、沖にジンベエザメが集まる",
+      "text": "12月から3月にかけて、島の沖にはジンベエザメが姿を見せる。地元の海洋ツアーで安全な距離から観察でき、保護のためジンベエザメとのダイビングは禁止されている。",
       "points": [
-        "地元で「Saints」と呼ばれる人々の家庭料理を味わう",
-        "海の魚と持ち込まれた香辛料が一つの食卓に並ぶ"
+        "観察は水面からのスノーケリングが基本",
+        "出会える時期は南半球の夏に重なる"
       ],
-      "sourceKey": "food"
+      "sourceKey": "marineBrochure"
     },
     {
       "topicKey": "flax-era",
@@ -456,13 +456,13 @@
       "sourceKey": "travel"
     },
     {
-      "topicKey": "island-postage-stamps",
-      "categoryEn": "POSTAGE",
-      "categoryJa": "島の切手",
-      "icon": "culture",
-      "title": "島の固有種や歴史が、切手になる",
-      "text": "セントヘレナでは島独自の切手が発行されてきた。固有の動植物や歴史的な出来事を題材にした図柄は、遠い島の文化を世界へ伝える小さな窓でもある。",
-      "sourceKey": "stamps"
+      "topicKey": "french-owned-sites",
+      "categoryEn": "HISTORY",
+      "categoryJa": "島の中のフランス",
+      "icon": "history",
+      "title": "ナポレオンゆかりの地は、フランスの財産",
+      "text": "ロングウッド・ハウスとナポレオンが最初に葬られた谷は1858年にフランスの所有となった。英国の海外領土の中で、今もフランス政府の財産として管理されている。",
+      "sourceKey": "napoleon"
     }
   ],
   "forWhom": [
@@ -509,11 +509,11 @@
       {
         "duration": "3〜4日",
         "title": "歴史の島に触れる短期滞在",
-        "icon": "history",
+        "icon": "city",
         "text": "実際の航空便接続が確保できる場合の短い滞在。例：ジェームズタウン → ジェイコブズ・ラダー → ロングウッド・ハウス → ナポレオンの墓所 → ジェームズタウン。"
       },
       {
-        "duration": "約1週間",
+        "duration": "5〜9日",
         "title": "海岸から雲霧林まで巡る",
         "icon": "map",
         "text": "ジェームズタウンを拠点に、歴史遺産と山歩き、南岸の谷、森林再生地を日ごとに分ける。例：ジェームズタウン → サンディ湾 → ダイアナズ・ピーク → ミレニアム・フォレスト → ジェームズタウン。"
@@ -550,7 +550,7 @@
       "months": "3〜5月",
       "label": "秋",
       "icon": "leaf",
-      "color": "#73966f",
+      "color": "#b77a49",
       "text": "沿岸と高地の気温差が残る。雨や雲が増える日もあり、歩道と景色は天候に合わせて選ぶ。"
     },
     {
@@ -564,7 +564,7 @@
       "months": "9〜11月",
       "label": "春",
       "icon": "leaf",
-      "color": "#b77a49",
+      "color": "#73966f",
       "text": "春に向けて日が長くなり、歩く旅を組みやすくなる。気温と海の条件は地点によって異なる。"
     }
   ],
@@ -606,9 +606,9 @@
     }
   ],
   "nextRegion": {
-    "slug": "jersey",
-    "nameEn": "JERSEY",
-    "nameJa": "ジャージー"
+    "slug": "falkland-islands",
+    "nameEn": "FALKLAND ISLANDS",
+    "nameJa": "フォークランド（マルビナス）諸島"
   },
   "sourcesVerifiedAt": "2026-11-13",
   "updatedAt": "2026-11-13",
@@ -619,7 +619,12 @@
     "status": "UK Overseas Territory administered separately; checked 2026-11-12",
     "transport": "SHG 2025-11-06 timetable announcement through March 2027; checked 2026-11-12",
     "seasons": "Editorial seasonal summary, checked 2026-11-12",
-    "map": "Natural Earth 1:10m (ca96624) + GSHHG v2.3.7 shoreline, checked 2026-11-13"
+    "map": "Natural Earth 1:10m (ca96624) + GSHHG v2.3.7 shoreline, checked 2026-11-13",
+    "territoryStatus": "UK government organisation page, checked 2026-11-13",
+    "history": "St Helena Government history and heritage page, checked 2026-11-13",
+    "britannica": "Britannica: capital Jamestown; Diana Peak 820 m; about 1,950 km west of Africa; checked 2026-11-13",
+    "marineBrochure": "St Helena Tourism marine brochure (2026): whale sharks December–March; diving with them prohibited",
+    "napoleon": "Longwood House and Valley of the Tomb French property since 1858 (Fondation Napoléon)"
   },
   "sources": {
     "population": "https://www.sainthelena.gov.sh/st-helena/statistics/",
@@ -653,6 +658,22 @@
     "japanArea": "https://www.gsi.go.jp/KOKUJYOHO/MENCHO-title.htm",
     "currency": "https://www.sainthelena.gov.sh/st-helena/visiting/",
     "flaxHistory": "https://www.friendsofsthelena.com/upload/files/Colonial_Annual_Report_1929.pdf",
-    "stamps": "https://www.sainthelena.gov.sh/public-services/coins-and-stamps/"
+    "stamps": "https://www.sainthelena.gov.sh/public-services/coins-and-stamps/",
+    "britannica": "https://www.britannica.com/EBchecked/topic/517243/Saint-Helena",
+    "marineBrochure": "https://antor.com/wp-content/uploads/2026/06/Marine-Activities-Brochure_compressed.pdf",
+    "frenchDomains": "https://ste-helene.domaine-national.fr/"
+  },
+  "capital": {
+    "nameJa": "ジェームズタウン",
+    "labelJa": "首府",
+    "coordinates": {
+      "latitude": -15.9244,
+      "longitude": -5.7181
+    },
+    "labelPosition": "right",
+    "labelOffset": {
+      "x": 0,
+      "y": 0
+    }
   }
 }

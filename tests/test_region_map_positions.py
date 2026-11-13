@@ -71,9 +71,11 @@ class RegionMapPositions(unittest.TestCase):
         self.assertNotIn('スコットランドの景色の地図', page)
         self.assertNotIn('DATA SOURCES', page)
         self.assertNotIn('参考資料', page)
-        scotland = json.loads((ROOT / 'data/regions/unitedkingdom/scotland.json').read_text())
-        self.assertEqual('href="countries/unitedkingdom/scotland/"' in page,
-                         scotland.get('regionPublished') is True)
+        ni = json.loads((ROOT / 'data/regions/unitedkingdom/northern-ireland.json').read_text())
+        next_slug = ni['nextRegion']['slug']
+        next_region = json.loads((ROOT / f'data/regions/unitedkingdom/{next_slug}.json').read_text())
+        self.assertEqual(f'href="countries/unitedkingdom/{next_slug}/"' in page,
+                         next_region.get('regionPublished') is True)
 
 
 if __name__ == '__main__':

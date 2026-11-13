@@ -316,8 +316,14 @@ def validate_capital_label_collision(errors: list[str], filename: str, data: dic
             f"{filename}: capital name label leaves the 1200×760 map canvas; adjust labelPosition / labelOffset without changing coordinates",
         )
 
+    inset_ids = {
+        scene_id
+        for detail in (map_data.get("regions") or [])
+        if isinstance(detail, dict)
+        for scene_id in (detail.get("sceneIds") or [])
+    }
     for index, scene in enumerate(scenes, 1):
-        if not isinstance(scene, dict):
+        if not isinstance(scene, dict) or scene.get("id") in inset_ids:
             continue
         point = project_marker(scene, map_data)
         if not point:
@@ -506,8 +512,18 @@ def validate_capital_label_collision_v6(errors: list[str], filename: str, data: 
         right + V6_LABEL_SAFETY_MARGIN,
         bottom + V6_LABEL_SAFETY_MARGIN,
     )
+    # Scenes listed in a detail inset are drawn inside that inset, not at
+    # their raw main-map position, so they cannot collide with the capital label.
+    inset_ids = {
+        scene_id
+        for detail in (map_data.get("regions") or [])
+        if isinstance(detail, dict)
+        for scene_id in (detail.get("sceneIds") or [])
+    }
     for index, scene in enumerate(scenes, 1):
         if not isinstance(scene, dict):
+            continue
+        if scene.get("id") in inset_ids:
             continue
         point = project_marker(scene, map_data)
         if not point:
