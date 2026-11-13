@@ -34,7 +34,7 @@
   },
   "profile": [
     {
-      "label": "中心都市",
+      "label": "首府",
       "value": "サンピエール（Saint-Pierre）",
       "sourceKey": "status"
     },
@@ -286,7 +286,7 @@
   "signatureFacts": [
     {
       "topicKey": "sand-isthmus",
-      "label": "ミクロンとラングラードを結ぶ自然の砂州",
+      "label": "島をつなぐ自然の砂州",
       "value": "約12km",
       "note": "砂や礫が長い時間をかけて積もった地形「ラ・デュンヌ」。ラグーンと外洋を隔てて二つの島をつなぐ。",
       "icon": "landscape",
@@ -316,12 +316,12 @@
     {
       "title": "色鮮やかな港の木造家屋を歩く",
       "icon": "city",
-      "category": "CULTURE"
+      "category": "CITY"
     },
     {
       "title": "漁村の小さな教会で島の歴史に触れる",
       "icon": "history",
-      "category": "HISTORY"
+      "category": "FAITH"
     },
     {
       "title": "砂州を隔てたラグーンと外洋を見比べる",
@@ -341,7 +341,7 @@
     {
       "title": "ミクロン村で農業と漁業の暮らしに出会う",
       "icon": "home",
-      "category": "CULTURE"
+      "category": "DAILY_LIFE"
     },
     {
       "title": "ベル・リヴィエールの森と川を歩く",
@@ -382,7 +382,7 @@
       "sourceKey": "prohibition"
     },
     {
-      "topicKey": "miquelon-culture",
+      "topicKey": "acadian-basque-roots",
       "themeEn": "CULTURE",
       "themeJa": "移住と暮らし",
       "icon": "culture",
@@ -395,7 +395,7 @@
       "sourceKey": "history"
     },
     {
-      "topicKey": "isthmus-erosion",
+      "topicKey": "shifting-dune-coast",
       "themeEn": "NATURE",
       "themeJa": "変わる海岸線",
       "icon": "sea",
@@ -454,7 +454,7 @@
       "sourceKey": "horses"
     },
     {
-      "topicKey": "miquelon-run",
+      "topicKey": "island-25k-race",
       "categoryEn": "CULTURE",
       "categoryJa": "島の大会",
       "icon": "culture",
@@ -525,7 +525,7 @@
       {
         "duration": "2〜3日",
         "title": "港町と漁村の歴史を知る",
-        "icon": "history",
+        "icon": "city",
         "text": "サンピエールを起点に港町とイル・オ・マランを訪ねる。例：サンピエール → イル・オ・マラン → サンピエール。"
       },
       {
@@ -552,28 +552,32 @@
   },
   "seasons": [
     {
-      "months": "12〜2月",
-      "icon": "weather",
-      "color": "#8697ac",
-      "text": "冬の寒さと風が強い時期。移動や屋外活動は天候の制約を受けやすい。"
-    },
-    {
       "months": "3〜5月",
+      "label": "春",
       "icon": "leaf",
-      "color": "#779e86",
+      "color": "#73966f",
       "text": "春へ移る季節。風や霧の影響が残り、日によって体感温度が変わる。"
     },
     {
       "months": "6〜8月",
+      "label": "夏",
       "icon": "sun",
-      "color": "#afae6b",
+      "color": "#92a253",
       "text": "草地と花が季節の色を帯びる夏。自然観察や島めぐりの計画を立てやすい。"
     },
     {
       "months": "9〜11月",
+      "label": "秋",
       "icon": "weather",
-      "color": "#b18466",
+      "color": "#b77a49",
       "text": "秋が深まる時期。ハイキングの際は強風・急変する天候や狩猟期の立入案内に注意。"
+    },
+    {
+      "months": "12〜2月",
+      "label": "冬",
+      "icon": "weather",
+      "color": "#6b90a5",
+      "text": "冬の寒さと風が強い時期。移動や屋外活動は天候の制約を受けやすい。"
     }
   ],
   "transport": {
@@ -605,12 +609,12 @@
   ],
   "relatedCountries": [
     {
-      "nameJa": "カナダ",
-      "nameEn": "CANADA",
-      "href": "countries/canada/",
-      "flag": "🇨🇦",
-      "reason": "霧の漁港と色とりどりの木造家屋に惹かれたなら、ニューファンドランドのセントジョンズや入り江の漁村で、北大西洋の海辺の暮らしをもっと広く見られる。",
-      "affinityType": "LANDSCAPE"
+      "nameJa": "ノルウェー",
+      "nameEn": "NORWAY",
+      "href": "countries/norway/",
+      "flag": "🇳🇴",
+      "reason": "タラ漁が育てた港町の歴史に惹かれたなら、ノルウェーのロフォーテン諸島で、干しダラの棚が並ぶ北の漁村を訪ねられる。",
+      "affinityType": "HISTORY"
     },
     {
       "nameJa": "アイスランド",
@@ -632,7 +636,7 @@
   "travelThemes": [
     "地球の風景",
     "暮らしに出会う",
-    "歴史を旅する"
+    "時をたどる"
   ],
   "sourcesVerifiedAt": "2026-11-13",
   "sources": {
@@ -676,7 +680,21 @@
     "status": "current as of 2026-11-13",
     "transport": "checked 2026-11-13, timetables must be reconfirmed",
     "map": "Natural Earth 1:10m (ca96624) + GSHHG v2.3.7 shoreline, checked 2026-11-13",
-    "basqueFestival": "2026 tourism schedule and annual August tradition, checked 2026-11-13"
+    "basqueFestival": "2026 tourism schedule and annual August tradition, checked 2026-11-13",
+    "history": "Official tourism history page (1816 French administration), checked 2026-11-13"
   },
-  "nextRoutesIntro": "海峡を渡る定期フェリーで、ニューファンドランド島へ。"
+  "nextRoutesIntro": "海峡を渡る定期フェリーで、ニューファンドランド島へ。",
+  "capital": {
+    "nameJa": "サンピエール",
+    "labelJa": "首府",
+    "coordinates": {
+      "latitude": 46.7804,
+      "longitude": -56.1772
+    },
+    "labelPosition": "left",
+    "labelOffset": {
+      "x": 0,
+      "y": 0
+    }
+  }
 }

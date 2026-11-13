@@ -4,13 +4,52 @@
   "nameEn": "UNITED KINGDOM",
   "nameJa": "イギリス",
   "region": "NORTHERN EUROPE / 55°N",
-  "regionDiscoveryIntro": "4つの構成国と、地中海の入口にある英国海外領土ジブラルタルへ。それぞれに異なる風景と文化をたどる。",
+  "regionDiscoveryIntro": "4つの構成国と、王室属領・海外領土の島々へ。英仏海峡のジャージーとガーンジー、アイリッシュ海のマン島、地中海の入口のジブラルタル、大西洋のバミューダ、南大西洋のセントヘレナとフォークランド（マルビナス）諸島まで、異なる風景と文化をたどる。",
   "regionDiscoveries": [
-    {"kind": "region", "slug": "england"},
-    {"kind": "region", "slug": "scotland"},
-    {"kind": "region", "slug": "wales"},
-    {"kind": "region", "slug": "northern-ireland"},
-    {"kind": "region", "slug": "gibraltar"}
+    {
+      "kind": "region",
+      "slug": "england"
+    },
+    {
+      "kind": "region",
+      "slug": "scotland"
+    },
+    {
+      "kind": "region",
+      "slug": "wales"
+    },
+    {
+      "kind": "region",
+      "slug": "northern-ireland"
+    },
+    {
+      "kind": "region",
+      "slug": "gibraltar"
+    },
+    {
+      "kind": "region",
+      "slug": "jersey"
+    },
+    {
+      "kind": "region",
+      "slug": "guernsey"
+    },
+    {
+      "kind": "region",
+      "slug": "isle-of-man"
+    },
+    {
+      "kind": "region",
+      "slug": "bermuda"
+    },
+    {
+      "kind": "region",
+      "slug": "saint-helena"
+    },
+    {
+      "kind": "region",
+      "slug": "falkland-islands"
+    }
   ],
   "seo": {
     "description": "テムズ川沿いの大都市から、白亜の崖、ハイランド、ウェールズの山と城、北アイルランドの玄武岩海岸へ。イギリスの8つの景色と地図から、4つの構成国の違いをたどる。"
@@ -33,7 +72,10 @@
     }
   },
   "hero": {
-    "sceneTypes": ["palace", "river"],
+    "sceneTypes": [
+      "palace",
+      "river"
+    ],
     "lead": "テムズ川に面した国会議事堂の時計塔「ビッグ・ベン」から、ロンドンの旅が始まる。コッツウォルズの石の村、スコットランドのハイランドと古城、ウェールズの山、北アイルランドの柱状の岩が並ぶ海岸。四つの国には、それぞれの言葉と風土がある。",
     "image": "assets/images/united-kingdom/approved/hero-westminster-thames.webp",
     "location": "Palace of Westminster / River Thames, London",
@@ -62,7 +104,9 @@
   "scenes": [
     {
       "id": "seven-sisters",
-      "sceneTypes": ["cliff"],
+      "sceneTypes": [
+        "cliff"
+      ],
       "name": "セブン・シスターズ",
       "nameLocal": "Seven Sisters / Cuckmere Haven",
       "mapLabel": "Seven Sisters",
@@ -79,7 +123,10 @@
     },
     {
       "id": "hadrians-wall",
-      "sceneTypes": ["ruins", "grassland"],
+      "sceneTypes": [
+        "ruins",
+        "grassland"
+      ],
       "name": "ハドリアヌスの長城",
       "nameLocal": "Hadrian’s Wall / Steel Rigg and Crag Lough",
       "mapLabel": "Hadrian’s Wall",
@@ -116,7 +163,9 @@
     },
     {
       "id": "glen-coe",
-      "sceneTypes": ["canyon"],
+      "sceneTypes": [
+        "canyon"
+      ],
       "name": "グレン・コー",
       "nameLocal": "Glen Coe / Three Sisters",
       "mapLabel": "Glen Coe",
@@ -129,7 +178,10 @@
     },
     {
       "id": "eryri-llyn-llydaw",
-      "sceneTypes": ["lake", "peak"],
+      "sceneTypes": [
+        "lake",
+        "peak"
+      ],
       "name": "エリリ / スリン・リダウ",
       "nameLocal": "Eryri / Llyn Llydaw",
       "mapLabel": "Eryri",
@@ -146,7 +198,10 @@
     },
     {
       "id": "caernarfon-castle",
-      "sceneTypes": ["castle", "harbor"],
+      "sceneTypes": [
+        "castle",
+        "harbor"
+      ],
       "name": "カーナーヴォン城",
       "nameLocal": "Caernarfon Castle / River Seiont",
       "mapLabel": "Caernarfon",
@@ -163,7 +218,10 @@
     },
     {
       "id": "giants-causeway",
-      "sceneTypes": ["rock", "cliff"],
+      "sceneTypes": [
+        "rock",
+        "cliff"
+      ],
       "name": "ジャイアンツ・コーズウェー",
       "nameLocal": "Giant’s Causeway / Grand Causeway",
       "mapLabel": "Giant’s Causeway",
@@ -176,7 +234,10 @@
     },
     {
       "id": "silent-valley",
-      "sceneTypes": ["lake", "peak"],
+      "sceneTypes": [
+        "lake",
+        "peak"
+      ],
       "name": "サイレント・バレー",
       "nameLocal": "Silent Valley / Mourne Mountains",
       "mapLabel": "Silent Valley",

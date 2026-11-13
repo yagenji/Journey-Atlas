@@ -36,8 +36,9 @@
   },
   "profile": [
     {
-      "label": "中心地",
-      "value": "ロングイェールビーン"
+      "label": "首府",
+      "value": "ロングイェールビーン（行政の中心地）",
+      "sourceKey": "longyearbyenHandbook"
     },
     {
       "label": "人口",
@@ -56,7 +57,8 @@
     },
     {
       "label": "主な宗教",
-      "value": "宗教別の構成比は確認できない"
+      "value": "キリスト教（ノルウェー国教会のスヴァールバル教会）など。宗教別の統計はない",
+      "sourceKey": "longyearbyenHandbook"
     },
     {
       "label": "通貨",
@@ -266,7 +268,8 @@
       "note": "2026年のノルウェー統計局の土地被覆値。諸島の過半を雪と氷が占め、場所や季節によって見える地形は変わる。",
       "icon": "snow",
       "sourceKey": "iceShare",
-      "interestReason": "雪や氷が一部の観光地だけでなく、諸島全体の基調だと分かる。"
+      "interestReason": "雪や氷が一部の観光地だけでなく、諸島全体の基調だと分かる。",
+      "exceptionalScale": true
     },
     {
       "topicKey": "nationalities",
@@ -278,13 +281,13 @@
       "interestReason": "隔絶した町にも世界の人々が交わることが伝わる。"
     },
     {
-      "topicKey": "latitude",
-      "label": "中心地の緯度",
-      "value": "北緯約78°",
-      "note": "ロングイェールビーンは高緯度の島にあり、白夜と極夜が暮らしのリズムを変える。",
+      "topicKey": "midnight-sun",
+      "label": "白夜が続く期間",
+      "value": "約4か月",
+      "note": "4月20日ごろから8月23日ごろまで太陽が沈まない。逆に11月中旬から1月下旬は、太陽が昇らない極夜になる。",
       "icon": "sun",
-      "sourceKey": "seasons",
-      "interestReason": "地理的位置を直感的に想像できる。"
+      "sourceKey": "svalbardLight",
+      "interestReason": "光の巡りが本土の北欧とも大きく違い、旅の季節選びを左右することがわかる。"
     }
   ],
   "encounters": [
@@ -296,7 +299,7 @@
     {
       "title": "旧炭鉱の骨組みに残る産業の時間",
       "icon": "history",
-      "category": "HISTORY"
+      "category": "WORK"
     },
     {
       "title": "ツンドラの小さな花と広い谷",
@@ -306,17 +309,17 @@
     {
       "title": "極北の町を照らす長い夏の光",
       "icon": "sun",
-      "category": "LIFE"
+      "category": "SEASON"
     },
     {
       "title": "世界種子貯蔵庫の山腹に現れる入口",
       "icon": "culture",
-      "category": "SCIENCE"
+      "category": "ARCHITECTURE"
     },
     {
       "title": "研究者が暮らす小さな集落の静けさ",
       "icon": "city",
-      "category": "LIFE"
+      "category": "WORK"
     },
     {
       "title": "段になった岩壁を読むフィヨルド",
@@ -326,7 +329,7 @@
     {
       "title": "海風を受ける遠隔の通信施設",
       "icon": "sea",
-      "category": "HISTORY"
+      "category": "ARCHITECTURE"
     }
   ],
   "culture": [
@@ -344,17 +347,17 @@
       "sourceKey": "gruve3"
     },
     {
-      "topicKey": "polar-community",
+      "topicKey": "shoes-off-indoors",
       "themeEn": "LIFE",
       "themeJa": "暮らしを知る",
       "icon": "culture",
-      "title": "小さな町に、さまざまな故郷がある",
-      "text": "極地の生活には輸送と天候の制約があり、同時に国際的な住民が働き学ぶ。大陸の都市とは異なる日常がある。",
+      "title": "建物に入ったら、まず靴を脱ぐ",
+      "text": "ロングイェールビーンでは、屋外用の靴を脱いで室内に入るのが一般的で、一部の公共の建物でも同じ習慣がある。雪や泥を持ち込まない極北の町の作法として、旅行者も入口で足元を確かめたい。",
       "points": [
-        "短い夏と長い暗期を前提に生活が営まれる",
-        "観光客も地域社会の生活空間を尊重する"
+        "宿や施設の入口では、周りの人に合わせて靴を脱ぐ",
+        "室内用の厚手の靴下があると過ごしやすい"
       ],
-      "sourceKey": "nationalities"
+      "sourceKey": "longyearbyenHandbook"
     },
     {
       "topicKey": "research-station",
@@ -396,17 +399,17 @@
       "sourceKey": "tempelfjellet"
     },
     {
-      "topicKey": "governance",
+      "topicKey": "heritage-before-1946",
       "themeEn": "HISTORY",
-      "themeJa": "制度を知る",
-      "icon": "culture",
-      "title": "同じノルウェーでも制度が違う",
-      "text": "スヴァールバル条約と特別な法制度の下にあり、総督と地方議会がそれぞれ異なる行政責任を担う。",
+      "themeJa": "遺構を守る",
+      "icon": "history",
+      "title": "1946年より前の痕跡は、すべて保護対象",
+      "text": "スヴァールバルでは1946年より前の文化遺産が自動的に保護される。年代を問わず墓や骨、捕鯨・セイウチ猟の遺物も対象で、それぞれ周囲100mが保護区域になる。",
       "points": [
-        "独立国として数えない",
-        "地方行政と国の代表機関を混同しない"
+        "古い小屋の部材や骨を動かしたり持ち帰ったりしない",
+        "一年中立ち入りが禁じられた遺跡区域もある"
       ],
-      "sourceKey": "governor"
+      "sourceKey": "culturalHeritage"
     }
   ],
   "taste": {
@@ -540,19 +543,19 @@
         "duration": "3〜4日",
         "title": "町と炭鉱の歴史",
         "icon": "city",
-        "text": "ロングイェールビーン → 種子貯蔵庫の外観 → 第3炭鉱の見学 → ロングイェールビーン。"
+        "text": "町と旧炭鉱の歴史を知る短い滞在。例：ロングイェールビーン → 世界種子貯蔵庫（外観） → 第3炭鉱 → ロングイェールビーン。"
       },
       {
         "duration": "5〜7日",
         "title": "フィヨルドと氷河",
-        "icon": "sea",
-        "text": "ロングイェールビーン → ビレフィヨルドの船上観察 → ロングイェールビーン。荒天の予備日を含む。"
+        "icon": "map",
+        "text": "フィヨルドの船上観察を加え、荒天の予備日を含める。例：ロングイェールビーン → ピラミーデン → ノルデンショルド氷河（船上観察） → ロングイェールビーン。"
       },
       {
-        "duration": "8〜12日",
+        "duration": "8日以上",
         "title": "研究と沿岸の遠隔地",
         "icon": "compass",
-        "text": "ロングイェールビーン → 組織された訪問がある場合にニーオーレスンやイスフィヨルド・ラジオ → ロングイェールビーン。"
+        "text": "組織されたツアーがある場合に遠隔地まで足を延ばす。例：ロングイェールビーン → イスフィヨルド・ラジオ → ニーオーレスン → ロングイェールビーン。"
       }
     ]
   },
@@ -573,7 +576,7 @@
       "months": "3〜5月",
       "label": "光の戻る春",
       "icon": "snow",
-      "color": "#7396af",
+      "color": "#73966f",
       "text": "日照が戻っても雪と低温が続く。雪上移動は現地の安全・運航判断に従う。"
     },
     {
@@ -594,7 +597,7 @@
       "months": "11〜2月",
       "label": "極夜の冬",
       "icon": "weather",
-      "color": "#5c7897",
+      "color": "#6b90a5",
       "text": "太陽が昇らない季節を含む。行動範囲が制限され、条件が合えばオーロラも見られる。"
     }
   ],
@@ -611,12 +614,12 @@
   "nextRoutes": [],
   "relatedCountries": [
     {
-      "nameJa": "ノルウェー",
-      "nameEn": "NORWAY",
-      "href": "countries/norway/",
-      "flag": "🇳🇴",
-      "reason": "氷河が海に落ちるフィヨルドと沿岸の集落に惹かれたなら、ノルウェー本土のロフォーテン諸島やトロムソで、山と海が迫る北の海岸をもう少し穏やかな季節感で味わえる。",
-      "affinityType": "LANDSCAPE"
+      "nameJa": "南極",
+      "nameEn": "ANTARCTICA",
+      "href": "countries/antarctica/",
+      "flag": "🇦🇶",
+      "reason": "各国の研究者が暮らすニーオーレスンに惹かれたなら、南極では、氷床と海岸に各国の観測基地が点在する、もう一つの極地の科学の現場を見られる。",
+      "affinityType": "NATURE"
     },
     {
       "nameJa": "アイスランド",
@@ -645,7 +648,13 @@
     "status": "1920 treaty; Svalbard Act effective 1925-08-14",
     "safety": "2026-01-01 field regulation; 2027-07-01 approved guide mandate",
     "map": "GSHHG v2.3.7 intermediate-resolution coastlines from Basemap 2.0.0; represented coastline vintage not separately specified; checked 2026-11-13. Glacier outlines omitted.",
-    "bestSeason": "editorial as of 2026-11-13"
+    "bestSeason": "editorial as of 2026-11-13",
+    "treaty": "Svalbard Treaty signed 1920, in force 1925 (Meld. St. 26 2023–2024)",
+    "governor": "Governor of Svalbard page, checked 2026-11-13",
+    "localCouncil": "Longyearbyen local council facts, checked 2026-11-13",
+    "svalbardLight": "Visit Svalbard: midnight sun ~20 Apr–23 Aug; polar night ~14 Nov–29 Jan",
+    "longyearbyenHandbook": "Norwegian Polar Institute cruise handbook: Longyearbyen administrative centre; shoes off indoors",
+    "culturalHeritage": "Governor of Svalbard: pre-1946 monuments automatically protected, 100 m zone; checked 2026-11-13"
   },
   "sources": {
     "status": "https://www.regjeringen.no/en/documents/meld.-st.-26-20232024/id3041130/?ch=1",
@@ -684,6 +693,22 @@
     "arcticWorldArchive": "https://en.visitsvalbard.com/inspiration/various/arctic-world-archive",
     "solfest": "https://www.lokalstyre.no/engelsk/longyearbyen-local-council/services/culture-sports-and-leisure/solfestuka-2026",
     "norgeAirship": "https://kingsbay.no/history/",
-    "reindeerEcology": "https://npolar.no/en/species/svalbard-reindeer/"
+    "reindeerEcology": "https://npolar.no/en/species/svalbard-reindeer/",
+    "svalbardLight": "https://en.visitsvalbard.com/inspiration/various/the-svalbard-light",
+    "longyearbyenHandbook": "https://cruise-handbook.npolar.no/en/isfjorden/longyearbyen.html",
+    "culturalHeritage": "https://www.sysselmesteren.no/en/the-governor-of-svalbard/environmental-protection/cultural-heritage-management"
+  },
+  "capital": {
+    "nameJa": "ロングイェールビーン",
+    "labelJa": "首府",
+    "coordinates": {
+      "latitude": 78.2232,
+      "longitude": 15.6267
+    },
+    "labelPosition": "right",
+    "labelOffset": {
+      "x": 0,
+      "y": 16
+    }
   }
 }

@@ -36,8 +36,9 @@
   },
   "profile": [
     {
-      "label": "中心都市",
-      "value": "ハミルトン"
+      "label": "首府",
+      "value": "ハミルトン（Hamilton）",
+      "sourceKey": "hamiltonCapital"
     },
     {
       "label": "人口",
@@ -236,16 +237,16 @@
       "note": "1931〜1948年に走った鉄道の跡は、海岸や木立をつなぐ散策路になった。",
       "icon": "map",
       "sourceKey": "railway",
-      "interestReason": "島の交通史を景色として歩ける。"
+      "interestReason": "鉄道が消えた後も、その線路跡が島を東西に歩いて横断する道として生きていることがわかる。"
     },
     {
-      "topicKey": "oldest-town",
-      "label": "セント・ジョージズの入植",
-      "value": "1612年",
-      "note": "1612年に恒久的な英国人入植が始まったセント・ジョージズ。旧市街とその防衛施設はUNESCO世界遺産に登録されている。",
-      "icon": "history",
-      "sourceKey": "worldHeritage",
-      "interestReason": "低層の石造りの町に長い歴史が残る。"
+      "topicKey": "nearest-land",
+      "label": "最も近い陸地まで",
+      "value": "約965km",
+      "note": "西のノースカロライナ州ハッテラス岬が最寄りの陸地。カリブ海ではなく北大西洋のただ中に、150を超える島と小島が連なる。",
+      "icon": "globe",
+      "sourceKey": "ukota",
+      "interestReason": "カリブ海の島と思われがちなバミューダの位置を、距離で正しくつかめる。"
     }
   ],
   "encounters": [
@@ -267,12 +268,12 @@
     {
       "title": "港と旧海軍倉庫の時計塔",
       "icon": "city",
-      "category": "HISTORY"
+      "category": "ARCHITECTURE"
     },
     {
       "title": "汽水湿地に立ち寄る水鳥",
       "icon": "leaf",
-      "category": "NATURE"
+      "category": "WILDLIFE"
     },
     {
       "title": "日曜日の塩ダラの朝食",
@@ -282,12 +283,12 @@
     {
       "title": "旧線路を歩く海沿いの小径",
       "icon": "map",
-      "category": "ACTIVITY"
+      "category": "MOVEMENT"
     },
     {
       "title": "石の砦から見渡す大西洋",
       "icon": "history",
-      "category": "HISTORY"
+      "category": "ARCHITECTURE"
     }
   ],
   "culture": [
@@ -331,17 +332,17 @@
       "sourceKey": "worldHeritage"
     },
     {
-      "topicKey": "food-mixing",
-      "themeEn": "FOOD",
-      "themeJa": "味を知る",
-      "icon": "food",
-      "title": "塩ダラとキャッサバに、島の食の混ざり合いを見る",
-      "text": "バミューダ料理には英国、アフリカ、ポルトガルなど複数の系譜が重なる。塩ダラの朝食やキャッサバパイは、家庭の味として受け継がれてきた。",
+      "topicKey": "emancipation-cricket",
+      "themeEn": "CULTURE",
+      "themeJa": "祝日を知る",
+      "icon": "culture",
+      "title": "奴隷解放を祝う2日間、島がクリケットに沸く",
+      "text": "夏の木曜と金曜に開かれる「カップ・マッチ」は、東のセント・ジョージズと西のサマセットが戦うクリケットの対抗戦。初日は1834年の奴隷制廃止を記念するEmancipation Day、2日目は奴隷制廃止を訴えたメアリー・プリンスにちなむMary Prince Dayで、どちらも祝日になる。",
       "points": [
-        "食材と調理法の背景に海を越えた歴史がある",
-        "日曜の朝や祝いの食卓にも伝統料理が並ぶ"
+        "1902年から毎年の対抗戦として続く",
+        "観戦と野外の集まりが、島の夏を象徴する光景になる"
       ],
-      "sourceKey": "foodCulture"
+      "sourceKey": "cupMatch"
     },
     {
       "topicKey": "wetlands",
@@ -357,17 +358,17 @@
       "sourceKey": "spittalPond"
     },
     {
-      "topicKey": "railway-memory",
-      "themeEn": "LIFE",
-      "themeJa": "島を歩く",
-      "icon": "map",
-      "title": "走らなくなった鉄道は、島をつなぐ散策路になった",
-      "text": "かつて東西を結んだ鉄道は1948年に運行を終えた。線路跡は木々の間や海沿いを通るRailway Trailとして再生された。",
+      "topicKey": "gombey-drums",
+      "themeEn": "CULTURE",
+      "themeJa": "踊りを知る",
+      "icon": "culture",
+      "title": "太鼓と仮面の踊り手が通りを進む「ゴンベイ」",
+      "text": "ゴンベイは、西アフリカの踊りにカリブ海や先住アメリカ、英国軍楽の影響が重なった島の伝統芸能。装飾豊かな衣装と仮面の踊り手が、太鼓のリズムとリーダーの笛の合図で通りを踊り進む。",
       "points": [
-        "鉄道の痕跡を徒歩や自転車で感じられる",
-        "観光地だけでない日常の島の輪郭に出会う"
+        "ボクシング・デーには、かつて奴隷にされた人々がクリスマスに休みを得た日の記憶が重なる",
+        "衣装の意匠は家族の中で受け継がれることが多い"
       ],
-      "sourceKey": "railway"
+      "sourceKey": "gombey"
     }
   ],
   "taste": {
@@ -495,7 +496,7 @@
       {
         "duration": "2〜3日",
         "title": "砂浜と港町に触れる",
-        "icon": "sea",
+        "icon": "city",
         "text": "ハミルトンを拠点に南岸の砂浜、西の海軍施設を巡る。例：ハミルトン → ホースシュー・ベイ → ロイヤル・ネイバル・ドックヤード → ハミルトン。"
       },
       {
@@ -505,7 +506,7 @@
         "text": "東西の見どころを分けて巡り、セント・ジョージズの町にも立ち寄る。例：ハミルトン → クリスタル・ケーブ → セント・ジョージズ → セント・キャサリン砦 → ハミルトン。"
       },
       {
-        "duration": "6〜7日",
+        "duration": "6日以上",
         "title": "自然の島をゆっくり知る",
         "icon": "compass",
         "text": "湿地と入り江、旧鉄道の散策路も加える。例：ハミルトン → スピットル・ポンド → フラッツ・ビレッジ → セント・ジョージズ → サマセット橋 → ハミルトン。"
@@ -566,11 +567,11 @@
   "nextRoutes": [],
   "relatedCountries": [
     {
-      "nameJa": "イギリス",
-      "nameEn": "UNITED KINGDOM",
-      "href": "countries/unitedkingdom/",
-      "flag": "🇬🇧",
-      "reason": "王立海軍造船所の石造りの要塞と英国風の街並みに惹かれたなら、ポーツマスやプリマスの軍港と、イギリス各地の古い港町で、その源流をたどれる。",
+      "nameJa": "マルタ",
+      "nameEn": "MALTA",
+      "href": "countries/malta/",
+      "flag": "🇲🇹",
+      "reason": "旧英国海軍造船所と石造りの砦に惹かれたなら、マルタのグランド・ハーバーで、要塞都市ヴァレッタと海軍の港町が湾を挟んで向かい合う景色を見られる。",
       "affinityType": "HISTORY"
     },
     {
@@ -590,7 +591,7 @@
       "affinityType": "LANDSCAPE"
     }
   ],
-  "sourcesVerifiedAt": "2026-11-12",
+  "sourcesVerifiedAt": "2026-11-13",
   "updatedAt": "2026-11-12",
   "sourceDates": {
     "population": "2024-12-31",
@@ -600,7 +601,12 @@
     "railway": "1931–1948",
     "map": "Natural Earth 1:10m (ca96624) + GSHHG v2.3.7 shoreline, checked 2026-11-13",
     "weather": "2026-11-12",
-    "shipwrecks": "2024-08-08 (government article updated 2026-07-14)"
+    "shipwrecks": "2024-08-08 (government article updated 2026-07-14)",
+    "constitution": "1968 Constitution; parliamentary report, checked 2026-11-13",
+    "worldHeritage": "UNESCO 983 (St George and related fortifications), checked 2026-11-13",
+    "hamiltonCapital": "Seat of Government moved to Hamilton January 1815 (City of Hamilton), checked 2026-11-13",
+    "ukota": "UKOTA: over 150 islands; Cape Hatteras about 965 km west; checked 2026-11-13",
+    "cupMatch": "Bermuda Tourism Authority Cup Match 101 (2026), checked 2026-11-13"
   },
   "sources": {
     "population": "https://www.gov.bm/sites/default/files/2026-02/Bermuda%20Digest%20of%20Statistics%202025.pdf",
@@ -640,11 +646,28 @@
     "bermudaCedar": "https://environment.bm/bermuda-cedar",
     "bermudaShorts": "https://www.gotobermuda.com/plan/inspiration/article/how-bermuda-shorts-became-the-ultimate-island-fashion-statement",
     "moongate": "https://www.gotobermuda.com/plan/inspiration/article/your-bermuda-bucket-list-fall-edition",
-    "govCoastline": "https://services1.arcgis.com/4TXrdeWh0RyCqPgB/ArcGIS/rest/services/BDA_MSP_DataForSeaSketch_Vector_v2/FeatureServer/296"
+    "govCoastline": "https://services1.arcgis.com/4TXrdeWh0RyCqPgB/ArcGIS/rest/services/BDA_MSP_DataForSeaSketch_Vector_v2/FeatureServer/296",
+    "hamiltonCapital": "https://cityofhamilton.bm/about/",
+    "ukota": "https://ukota.org/member-territories/bermuda/",
+    "cupMatch": "https://www.gotobermuda.com/sites/default/files/2026-07/cup-match-101-updated_2026.pdf",
+    "gombey": "https://www.gotobermuda.com/inspiration/article/introduction-gombeys-bermuda"
   },
   "nextRegion": {
-    "slug": "gibraltar",
-    "nameEn": "GIBRALTAR",
-    "nameJa": "ジブラルタル"
+    "slug": "saint-helena",
+    "nameEn": "SAINT HELENA",
+    "nameJa": "セントヘレナ"
+  },
+  "capital": {
+    "nameJa": "ハミルトン",
+    "labelJa": "首府",
+    "coordinates": {
+      "latitude": 32.2949,
+      "longitude": -64.783
+    },
+    "labelPosition": "right",
+    "labelOffset": {
+      "x": 0,
+      "y": 0
+    }
   }
 }

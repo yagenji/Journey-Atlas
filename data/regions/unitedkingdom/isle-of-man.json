@@ -36,8 +36,9 @@
   },
   "profile": [
     {
-      "label": "中心都市",
-      "value": "ダグラス"
+      "label": "首府",
+      "value": "ダグラス（Douglas）",
+      "sourceKey": "factbook"
     },
     {
       "label": "人口",
@@ -210,13 +211,13 @@
   ],
   "signatureFacts": [
     {
-      "topicKey": "tynwald-tradition",
-      "label": "議会の歴史",
-      "value": "1,000年以上",
-      "note": "マン島のTynwaldはノース人時代に起源を持つ議会の伝統を今に伝える。起源の年については伝承と史料を区別したい。",
+      "topicKey": "waterwheel-diameter",
+      "label": "ラクシー・ホイールの直径",
+      "value": "約22m",
+      "note": "1854年に鉱山の排水用に造られた「レディ・イザベラ」。今も回る水車として世界最大とされる。",
       "icon": "history",
-      "sourceKey": "tynwald",
-      "interestReason": "小さな自治島に長い議会の歴史が続くことがわかる。"
+      "sourceKey": "laxeyWheelSite",
+      "interestReason": "小さな島の鉱山が、世界最大級の産業機械を生んだことがわかる。"
     },
     {
       "topicKey": "biosphere-2016",
@@ -241,12 +242,12 @@
     {
       "title": "古城を囲む港と小さな砂浜",
       "icon": "history",
-      "category": "HISTORY"
+      "category": "ARCHITECTURE"
     },
     {
       "title": "赤い大水車を見上げる",
       "icon": "history",
-      "category": "HISTORY"
+      "category": "WORK"
     },
     {
       "title": "石垣と茅葺き屋根の村道",
@@ -256,7 +257,7 @@
     {
       "title": "海峡の岩礁に集まる海鳥",
       "icon": "wildlife",
-      "category": "NATURE"
+      "category": "WILDLIFE"
     },
     {
       "title": "湾に沿って続く淡色の街並み",
@@ -271,7 +272,7 @@
     {
       "title": "木造電車のゆっくりした揺れ",
       "icon": "map",
-      "category": "ACTIVITY"
+      "category": "MOVEMENT"
     },
     {
       "title": "燻製ニシンが並ぶ港町の食卓",
@@ -307,30 +308,30 @@
       "sourceKey": "tt"
     },
     {
-      "topicKey": "heritage-transport",
-      "themeEn": "HISTORY",
-      "themeJa": "産業の記憶",
-      "icon": "history",
-      "title": "鉱山の大水車と古い電車が残る",
-      "text": "鉱山の排水を担ったラクシーの水車や歴史ある電気鉄道に、ヴィクトリア朝の技術と島の暮らしが重なる。",
+      "topicKey": "rushes-rent",
+      "themeEn": "CULTURE",
+      "themeJa": "言い伝えを知る",
+      "icon": "culture",
+      "title": "島の“家賃”は、海の神へ納めるイグサの束",
+      "text": "言い伝えでは、各家の代表が夏至の前夜にサウス・バルール山でイグサを刈り、島に住まわせてくれる海の神マナナンへの一年分の“家賃”として納めた。",
       "points": [
-        "水車は鉱山の排水のために稼働した",
-        "保存車両が移動手段としても親しまれる"
+        "今も7月の式典の日、丘から礼拝堂への道にイグサが敷かれる",
+        "古い習わしを復活させる動きもある"
       ],
-      "sourceKey": "laxeyWheel"
+      "sourceKey": "manannanRushes"
     },
     {
-      "topicKey": "kipper-fishing",
-      "themeEn": "FOOD",
-      "themeJa": "海の仕事",
-      "icon": "food",
-      "title": "港の燻製ニシンに漁業の記憶が残る",
-      "text": "ピールではニシンの燻製文化が受け継がれてきた。魚の香りは島の港町の仕事と食卓をつなぐ。",
+      "topicKey": "hill-assembly",
+      "themeEn": "HISTORY",
+      "themeJa": "議会を知る",
+      "icon": "history",
+      "title": "毎年7月、丘の上で法律が告げられる",
+      "text": "セント・ジョンズのティンワルド・ヒルでは、毎年7月5日（週末なら翌月曜）に野外で議会の式典が開かれる。新しい法律はこの丘で18か月以内に公布されなければ効力を失い、誰でも救済を求める請願を提出できる。",
       "points": [
-        "沿岸の漁業が地域の料理を育んだ",
-        "燻製は保存食の知恵から親しまれてきた"
+        "ヴァイキングの入植に由来する野外の集会が、1,000年以上続くとされる",
+        "島のナショナル・デーとして多くの人が集まる"
       ],
-      "sourceKey": "kippers"
+      "sourceKey": "tynwaldDay"
     },
     {
       "topicKey": "crofting-life",
@@ -427,13 +428,13 @@
       "sourceKey": "flag"
     },
     {
-      "topicKey": "viking-boats",
-      "categoryEn": "HISTORY",
-      "categoryJa": "歴史",
-      "icon": "history",
-      "title": "ヴァイキングの航路の交点だった",
-      "text": "ノルウェーやブリテン諸島、アイルランドへ船が行き交った時代、この島も海上の往来に組み込まれていた。",
-      "sourceKey": "tynwald"
+      "topicKey": "longtail-word",
+      "categoryEn": "FOLKLORE",
+      "categoryJa": "言わない言葉",
+      "icon": "culture",
+      "title": "島では「ラット」と口にしない",
+      "text": "マン島ではネズミを指す“rat”という言葉を避け、「ロングテール（長い尾）」と呼ぶ習慣がある。ブームタウン・ラッツが島で公演した夜は、一夜限り「ブームタウン・ロングテールズ」を名乗ったという。",
+      "sourceKey": "quirkyFacts"
     },
     {
       "topicKey": "hop-tu-naa-turnip-lantern",
@@ -461,14 +462,9 @@
   ],
   "notes": [
     {
-      "title": "英国の一部ではない王室属領",
-      "text": "旅券・入域やビザの扱いは国籍と経由地で異なる場合がある。旅行直前に公的情報で確認する。",
-      "sourceKey": "status"
-    },
-    {
-      "title": "史跡と鉄道は季節営業に注意",
-      "text": "城郭の修復工事や施設の休館、電気鉄道・登山鉄道の季節ダイヤを訪問前に確かめたい。",
-      "sourceKey": "heritageTransport"
+      "title": "バスと遺産鉄道は乗り放題券でまとめる",
+      "text": "バスと遺産鉄道に乗れるGo Exploreカードは1・3・5・7日券がある。ダグラスからスネーフェルやポート・エリンへ鉄道で向かう日を中心に、日数を合わせて選ぶ。",
+      "sourceKey": "goExplore"
     },
     {
       "title": "TTの開催時期は交通と宿泊に余裕を",
@@ -476,8 +472,8 @@
       "sourceKey": "tt"
     },
     {
-      "title": "天候に左右される海の移動",
-      "text": "島への航空便・フェリーは天候などで変更がある。日程に余裕を持ち、港・空港の情報を確認したい。",
+      "title": "フェリーは港と季節で便数が変わる",
+      "text": "ダグラスとヘイシャム・リヴァプールを結ぶ便は時期で本数が変わり、ダブリン便は季節運航で2026年夏は一部運休した。予約前に運航会社の最新の時刻表を確認する。",
       "sourceKey": "ferry"
     }
   ],
@@ -499,7 +495,7 @@
         "text": "スネーフェルと古城、南部の村・海峡を日を分けて巡る。例：ダグラス → ラクシー → スネーフェル → ピール → キャッスルタウン → クレグニーシュ → ダグラス。"
       },
       {
-        "duration": "6〜7日",
+        "duration": "6日以上",
         "title": "海岸線に余白を残す",
         "icon": "compass",
         "text": "岬や小さな湾も加え、歩く時間を確保する。例：ダグラス → ラクシー → スネーフェル → ピール → ポート・エリン → ザ・サウンド → キャッスルタウン → ダグラス。"
@@ -533,21 +529,21 @@
       "months": "6〜8月",
       "label": "夏",
       "icon": "sun",
-      "color": "#bf9b55",
+      "color": "#92a253",
       "text": "日が長く海岸に向く。TTの影響がある期間は交通・宿泊を早めに確認。"
     },
     {
       "months": "9〜10月",
       "label": "秋",
       "icon": "leaf",
-      "color": "#b68a58",
+      "color": "#b77a49",
       "text": "柔らかい光の岬歩きが楽しめるが、風雨と施設の季節営業に注意。"
     },
     {
       "months": "11〜2月",
       "label": "冬",
       "icon": "snow",
-      "color": "#7894a2",
+      "color": "#6b90a5",
       "text": "静かな町と海の季節。短い日照と休業施設の多さを前提に計画する。"
     }
   ],
@@ -564,14 +560,15 @@
   "nextRoutesIntro": "アイリッシュ海を越え、隣の地域へ旅をつなぐ。",
   "nextRoutes": [
     {
-      "countryEn": "UNITED KINGDOM",
-      "countryJa": "イギリス",
-      "flag": "🇬🇧",
+      "countryEn": "ENGLAND",
+      "countryJa": "イングランド",
+      "flag": "🏴󠁧󠁢󠁥󠁮󠁧󠁿",
       "path": "Douglas → Liverpool / Heysham",
       "description": "ダグラスから定期フェリーでアイリッシュ海を東へ渡り、リヴァプールやランカシャーのヘイシャムへ。丘と岬の島から、港湾都市と北イングランドの海岸へ旅をつなぐ。",
-      "href": "countries/unitedkingdom/",
+      "href": "countries/unitedkingdom/england/",
       "travelerRoute": true,
-      "status": "OPEN"
+      "status": "OPEN",
+      "flagAsset": "assets/icons/region-flags/england-waved.svg"
     },
     {
       "countryEn": "IRELAND",
@@ -582,16 +579,16 @@
       "href": "countries/ireland/",
       "travelerRoute": true,
       "status": "SEASONAL",
-      "statusNote": "ダブリン航路は季節運航で変更や運休があるため、運航会社の最新時刻表を確認する。"
+      "statusNote": "ダブリン航路は季節運航。2026年は7月23日〜10月1日に運休したため、運航会社の最新時刻表を確認する。"
     }
   ],
   "relatedCountries": [
     {
-      "nameJa": "アイルランド",
-      "nameEn": "IRELAND",
-      "href": "countries/ireland/",
-      "flag": "🇮🇪",
-      "reason": "ケルト十字や島の言葉マン語に残るゲール文化に惹かれたなら、アイルランド西部のゲールタハト（アイルランド語圏）で、同じ文化圏の言葉と音楽に出会える。",
+      "nameJa": "フランス",
+      "nameEn": "FRANCE",
+      "href": "countries/france/",
+      "flag": "🇫🇷",
+      "reason": "学び直されて息を吹き返したマン島語に惹かれたなら、ブルターニュで、同じケルト語派のブルトン語が道標や音楽、祭りの中に息づく様子に出会える。",
       "affinityType": "CULTURE"
     },
     {
@@ -620,7 +617,11 @@
     "transport": "Seasonal schedules vary; checked 2026-11-11",
     "bestSeason": "Editorial recommendation, reviewed 2026-11-11",
     "coastTrail": "Approx 153 km (95 mi); official walking guide checked 2026-11-11",
-    "map": "Natural Earth 1:10m (ca96624) + GSHHG v2.3.7 shoreline, checked 2026-11-13"
+    "map": "Natural Earth 1:10m (ca96624) + GSHHG v2.3.7 shoreline, checked 2026-11-13",
+    "tynwald": "Tynwald: over 1,000 years of open-air assemblies; checked 2026-11-13",
+    "laxeyWheelSite": "Manx National Heritage: built 1854, 72 ft 6 in (over 22 m); checked 2026-11-13",
+    "tynwaldDay": "Tynwald Day 5 July (Monday 6 July in 2026); checked 2026-11-13",
+    "dublinSuspension": "Douglas–Dublin suspended 23 July–1 October 2026 (published 2026-05-25)"
   },
   "sources": {
     "status": "https://www.tynwald.org.im/learn/system-of-governance",
@@ -655,11 +656,32 @@
     "locations": "https://www.openstreetmap.org/copyright",
     "osmPeel": "https://github.com/dankarran/isleofman-opendata/blob/main/data/openstreetmap/sources/manual/admin_boundaries.geojson",
     "stoneCrosses": "https://manxnationalheritage.im/our-sites/isle-of-man-carved-stone-cross-collection/",
-    "hopTuNaa": "https://www.visitisleofman.com/blog/read/2026/09/fun-facts-about-hop-tu-naa-on-the-isle-of-man-the-original-halloween-festival-b113"
+    "hopTuNaa": "https://www.visitisleofman.com/blog/read/2026/09/fun-facts-about-hop-tu-naa-on-the-isle-of-man-the-original-halloween-festival-b113",
+    "factbook": "https://www.cia.gov/the-world-factbook/about/archives/2023/countries/isle-of-man/summaries",
+    "laxeyWheelSite": "https://manxnationalheritage.im/our-sites/laxey-wheel/",
+    "manannanRushes": "https://www.culturevannin.im/news_story_583299.html",
+    "tynwaldDay": "https://tynwald.org.im/tynwald-day",
+    "quirkyFacts": "https://www.visitisleofman.com/blog/read/2024/11/30-quirky-facts-about-the-isle-of-man-b405",
+    "goExplore": "https://www.iombusandrail.im/explore-our-island/visitor-guide/",
+    "ferry2026": "https://www.steam-packet.com/news/isle-of-man-steam-packet-company-reveal-enhanced-ireland-liverpool-and-heysham-schedule-for-2026-and-2027",
+    "dublinSuspension": "https://www.cruisemapper.com/news/16258-isle-of-man-steam-packet-suspends-dublin-service"
   },
   "nextRegion": {
-    "slug": "jersey",
-    "nameEn": "JERSEY",
-    "nameJa": "ジャージー"
+    "slug": "bermuda",
+    "nameEn": "BERMUDA",
+    "nameJa": "バミューダ"
+  },
+  "capital": {
+    "nameJa": "ダグラス",
+    "labelJa": "首府",
+    "coordinates": {
+      "latitude": 54.1523,
+      "longitude": -4.4861
+    },
+    "labelPosition": "left",
+    "labelOffset": {
+      "x": -8,
+      "y": 0
+    }
   }
 }

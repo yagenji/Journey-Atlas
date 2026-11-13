@@ -36,8 +36,9 @@
   },
   "profile": [
     {
-      "label": "中心都市",
-      "value": "セント・ピーター・ポート"
+      "label": "首府",
+      "value": "セント・ピーター・ポート（St Peter Port）",
+      "sourceKey": "capitalStp"
     },
     {
       "label": "人口",
@@ -267,22 +268,22 @@
     {
       "title": "西岸の岩礁に建つ白い砦",
       "icon": "history",
-      "category": "HISTORY"
+      "category": "ARCHITECTURE"
     },
     {
       "title": "陶片の色で覆われた礼拝堂",
       "icon": "culture",
-      "category": "HISTORY"
+      "category": "FAITH"
     },
     {
       "title": "潮で閉ざされる砦への道",
       "icon": "map",
-      "category": "ACTIVITY"
+      "category": "MOVEMENT"
     },
     {
       "title": "草の墳丘に口を開ける石室",
       "icon": "history",
-      "category": "HISTORY"
+      "category": "CULTURE"
     },
     {
       "title": "石壁と季節の花に囲まれた庭",
@@ -357,17 +358,17 @@
       "sourceKey": "puffins"
     },
     {
-      "topicKey": "tidal-ecology",
-      "themeEn": "NATURE",
-      "themeJa": "潮間帯を知る",
-      "icon": "sea",
-      "title": "一日の中で海と陸が入れ替わる",
-      "text": "潮が引くと岩間の水たまりや砂地が広く現れる。小さな生物の棲みかであると同時に、歩く場所やボートの発着を変える自然のリズムでもある。",
+      "topicKey": "golden-milk-cattle",
+      "themeEn": "LIFE",
+      "themeJa": "島の牛を知る",
+      "icon": "leaf",
+      "title": "1819年から、島に外の牛を入れない",
+      "text": "ガーンジーでは1819年から法律で牛の輸入を禁じ、在来のガーンジー牛の血統を守ってきた。ベータカロテンを多く含む金色がかった牛乳が特徴で、この牛は英国、北米、ニュージーランドなど世界の牧場へ広がった。",
       "points": [
-        "岩場の潮だまりに生き物を見つける",
-        "満ち引きに合わせて浜の表情が変わる"
+        "世界のガーンジー牛のうち、島にいるのは約1割",
+        "中世に修道士が連れてきたと伝えられる"
       ],
-      "sourceKey": "tides"
+      "sourceKey": "guernseyDairy"
     }
   ],
   "taste": {
@@ -487,9 +488,9 @@
       "sourceKey": "darkSky"
     },
     {
-      "title": "史跡と庭園は開場情報を確認",
-      "text": "城・砦・庭園は季節によって開館や見学範囲が変わる。訪問前に各公式サイトで最新情報を確かめる。",
-      "sourceKey": "castleCornet"
+      "title": "キャッスル・コルネットは橋の改修で閉場中",
+      "text": "城と港を結ぶ橋の床版を架け替えるため、2026年は9月6日で公開を終えた。工事は2027年5月ごろ完了の見込みで、訪問前に再開日を確認する。",
+      "sourceKey": "castleBridge"
     }
   ],
   "travelScale": {
@@ -500,20 +501,20 @@
       {
         "duration": "2〜3日",
         "title": "港と南岸の景色を歩く",
-        "icon": "map",
-        "text": "セント・ピーター・ポート → キャッスル・コルネット → リトル・チャペル → ムーラン・ユエ湾 → セント・ピーター・ポート。"
+        "icon": "city",
+        "text": "例：セント・ピーター・ポート → キャッスル・コルネット → リトル・チャペル → ムーラン・ユエ湾 → セント・ピーター・ポート。"
       },
       {
         "duration": "4〜5日",
         "title": "エルムとサークを加える",
-        "icon": "sea",
-        "text": "セント・ピーター・ポート → エルム島（往復） → サーク島（ラ・クーペと庭園、往復） → ガーンジー西岸 → セント・ピーター・ポート。"
+        "icon": "map",
+        "text": "例：セント・ピーター・ポート → エルム島（往復） → サーク島（ラ・クーペと庭園、往復） → ガーンジー西岸 → セント・ピーター・ポート。"
       },
       {
-        "duration": "6〜7日",
+        "duration": "6日以上",
         "title": "オルダニーまで群島を巡る",
         "icon": "compass",
-        "text": "セント・ピーター・ポート → エルム島（往復） → サーク島（往復） → オルダニー島（往復） → デユス・ドルメン → セント・ピーター・ポート。"
+        "text": "例：セント・ピーター・ポート → エルム島（往復） → サーク島（往復） → オルダニー島（往復） → デユス・ドルメン → セント・ピーター・ポート。"
       }
     ]
   },
@@ -594,24 +595,25 @@
       "status": "OPEN"
     },
     {
-      "countryEn": "UNITED KINGDOM",
-      "countryJa": "イギリス",
-      "flag": "🇬🇧",
+      "countryEn": "ENGLAND",
+      "countryJa": "イングランド",
+      "flag": "🏴󠁧󠁢󠁥󠁮󠁧󠁿",
       "path": "St Peter Port → Poole / Portsmouth",
       "description": "セント・ピーター・ポートから定期フェリーで英仏海峡を北へ渡り、イングランド南岸のプールやポーツマスへ。小さな島の港から、軍港と入り江の続く英国の海岸へ旅をつなぐ。",
-      "href": "countries/unitedkingdom/",
+      "href": "countries/unitedkingdom/england/",
       "travelerRoute": true,
-      "status": "OPEN"
+      "status": "OPEN",
+      "flagAsset": "assets/icons/region-flags/england-waved.svg"
     }
   ],
   "relatedCountries": [
     {
-      "nameJa": "フランス",
-      "nameEn": "FRANCE",
-      "href": "countries/france/",
-      "flag": "🇫🇷",
-      "reason": "ヴィクトル・ユゴーが亡命生活を送ったオートヴィル・ハウスに惹かれたなら、パリのヴォージュ広場にあるヴィクトル・ユゴー記念館で、作家のもう一つの住まいを訪ねられる。",
-      "affinityType": "HISTORY"
+      "nameJa": "ニュージーランド",
+      "nameEn": "NEW ZEALAND",
+      "href": "countries/newzealand/",
+      "flag": "🇳🇿",
+      "reason": "世界初の「暗い空の島」サークの星空に惹かれたなら、南島のアオラキ・マッケンジー国際ダークスカイ保護区で、南半球の天の川を見上げられる。",
+      "affinityType": "NATURE"
     },
     {
       "nameJa": "スペイン",
@@ -639,7 +641,12 @@
     "tides": "Approx. 10 m tidal range (UKOTCF; checked 2026-11-13)",
     "renoir": "1883, 15 paintings; VisitGuernsey",
     "map": "Natural Earth 1:10m (ca96624) + GSHHG v2.3.7 shoreline, checked 2026-11-13",
-    "religion": "2001 census / UN reporting 2007; current breakdown not verified"
+    "religion": "2001 census / UN reporting 2007; current breakdown not verified",
+    "jurisdictions": "UK Parliament committee publication on Crown Dependencies, checked 2026-11-13",
+    "alderneyGov": "Alderney government page, checked 2026-11-13",
+    "sarkGov": "States of Guernsey proposition P2025-43, checked 2026-11-13",
+    "guernseyDairy": "Guernsey Dairy: cattle import banned since 1819; checked 2026-11-13",
+    "castleBridge": "Guernsey Press 2026-02-03: closes 6 September 2026; bridge works expected complete May 2027"
   },
   "sources": {
     "status": "https://commonslibrary.parliament.uk/research-briefings/cbp-8611/",
@@ -680,11 +687,27 @@
     "religion": "https://digitallibrary.un.org/record/624986/files/E_C.12_GBR_5_Add.1-EN.pdf",
     "currency": "https://www.visitguernsey.com/planning/useful-information/things-to-know-on-island/",
     "populationCoverage": "https://unstats.un.org/unsd/demographic-social/products/dyb/documents/metadata/2024/Guernsey-2024-PE-Metadata.pdf",
-    "ferries2026": "https://www.bailiwickexpress.com/news-ge/2026-schedules-now-out/"
+    "ferries2026": "https://www.bailiwickexpress.com/news-ge/2026-schedules-now-out/",
+    "capitalStp": "https://www.visitguernsey.com/see-and-do/st-peter-port/",
+    "guernseyDairy": "https://guernseydairy.com/article/170963/Our-Guernseys",
+    "castleBridge": "https://guernseypress.com/news/2026/02/03/early-summer-closing-at-castle-cornet-due-to-bridge-repairs"
   },
   "nextRegion": {
-    "slug": "jersey",
-    "nameEn": "JERSEY",
-    "nameJa": "ジャージー"
+    "slug": "isle-of-man",
+    "nameEn": "ISLE OF MAN",
+    "nameJa": "マン島"
+  },
+  "capital": {
+    "nameJa": "セント・ピーター・ポート",
+    "labelJa": "首府",
+    "coordinates": {
+      "latitude": 49.4555,
+      "longitude": -2.5368
+    },
+    "labelPosition": "left",
+    "labelOffset": {
+      "x": 0,
+      "y": -24
+    }
   }
 }
