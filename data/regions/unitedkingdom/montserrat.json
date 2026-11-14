@@ -82,7 +82,7 @@
       "north": 16.85
     },
     "singleMapMobile": true,
-    "source": "Island outline: Natural Earth 1:10m Admin-0 (public domain), WGS84; local-equirectangular-fit-v1 / 1200x760. Coastline simplified for this scale, no invented points. Hero + 8 Scene map anchors use documented geographic positions; S08 is the named Soldier Ghaut locality (GeoNames), NOT the petroglyph panel. Do not use map to navigate to the protected rock art. Exclusion Zone V boundary is not represented; check current MVO guidance."
+    "source": "Montserrat coastline: three parish polygons from amCharts 4 GeoData Montserrat High (source: https://github.com/amcharts/amcharts4-geodata/blob/master/dist/es2015/json/montserratHigh.json ; Free amCharts linkware license: https://github.com/amcharts/amcharts4/blob/master/dist/script/LICENSE ; visible map attribution and MAP-DATA-LICENSE.md). WGS84 geographic vertices, local-equirectangular-fit-v1. The S08 marker identifies Soldier Ghaut locality, not rock-art panel. Hazard Zone V is not drawn."
   },
   "scenes": [
     {
@@ -185,7 +185,8 @@
       "coordinates": {
         "latitude": 16.80199,
         "longitude": -62.20613
-      }
+      },
+      "mapSurface": "water"
     },
     {
       "id": "carrs-bay",
@@ -202,7 +203,8 @@
       "coordinates": {
         "latitude": 16.79635,
         "longitude": -62.20929
-      }
+      },
+      "mapSurface": "water"
     },
     {
       "id": "petroglyphs",
