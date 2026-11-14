@@ -59,6 +59,27 @@ EXPECTED = {
 def check(driver, viewport):
     errors = []
     set_viewport(driver, viewport)
+    # Informational pages use the published Country and Region indexes, and
+    # should resolve their public totals before the homepage is exercised.
+    driver.get(BASE + "/about/?qa=destination-scope")
+    about_wait = WebDriverWait(driver, 30)
+    about_wait.until(lambda d: d.execute_script(
+        "return document.documentElement.dataset.atlasCountsReady === 'true'"))
+    about_total = driver.find_element(
+        By.CSS_SELECTOR, '#destination-scope [data-atlas-count="total"]').get_attribute("textContent").strip()
+    about_regions = driver.find_element(
+        By.CSS_SELECTOR, '#destination-scope [data-atlas-count="regions"]').get_attribute("textContent").strip()
+    if int(about_total) != 200 + int(about_regions):
+        errors.append("ABOUT total is not base 200 plus published details: " + about_total)
+    if len(driver.find_elements(By.CSS_SELECTOR, '[data-atlas-detail-regions] li')) < 11:
+        errors.append("ABOUT detail Region listing is missing parent groups")
+    driver.get(BASE + "/faq/?qa=destination-scope")
+    about_wait.until(lambda d: d.execute_script(
+        "return document.documentElement.dataset.atlasCountsReady === 'true'"))
+    faq_total = driver.find_element(
+        By.CSS_SELECTOR, '#faq-basics [data-atlas-count="total"]').get_attribute("textContent").strip()
+    if faq_total != about_total:
+        errors.append("ABOUT and FAQ disagree on public destination total")
     driver.get(BASE + "/?qa=top-200")
     # Result grids rerender while indexes and images settle; retry instead of
     # failing when an element read inside a wait condition goes stale.
@@ -74,7 +95,7 @@ def check(driver, viewport):
     if driver.find_elements(By.CSS_SELECTOR, "#country-detail-regions, .top-subregions"):
         errors.append("Obsolete regional link strip remains on TOP")
 
-    if driver.find_element(By.ID, "country-count").text.strip() != "200 DESTINATIONS":
+    if driver.find_element(By.ID, "country-count").text.strip() != "200 COUNTRY PAGES":
         errors.append("TOP parent count is not 200")
 
     # TOP's shared Region runtime index must include all newly published
@@ -102,42 +123,21 @@ def check(driver, viewport):
         if not row.get("flag") or not row.get("flagAsset", "").endswith("/" + name):
             errors.append("TOP UK Region flag SVG missing: " + slug + " " + repr(row))
 
+    # The Country search is deliberately limited to base Country Pages, even
+    # though all published detail Regions stay in the shared discovery index.
     query = driver.find_element(By.ID, "country-search")
-    for label, slug in [("イングランド", "england"), ("スコットランド", "scotland"), ("ウェールズ", "wales"), ("北アイルランド", "northern-ireland"), ("マカオ", "macau")] + [
-        (row[1], slug) for slug, row in REGION_EXPECTED.items()
-    ]:
+    for label in ("イングランド", "スコットランド", "マカオ", "グリーンランド", "キュラソー"):
         query.clear()
         query.send_keys(label)
-        wait.until(lambda d: any(
-            el.get_attribute("data-slug") == slug
-            for el in d.find_elements(By.CSS_SELECTOR, "#country-grid .country-card")
-        ))
-        if slug in REGION_FLAGS or slug in UK_REGION_FLAG_ASSETS:
-            # Read the card in one DOM snapshot: the search grid rerenders while
-            # its index and images settle, invalidating retained elements.
-            def card_snapshot(d, slug=slug):
-                return d.execute_script("""
-                  const c = document.querySelector('#country-grid .country-card[data-slug="' + arguments[0] + '"]');
-                  if (!c) return null;
-                  const f = c.querySelector('.country-card__flag');
-                  const i = c.querySelector('.country-card__flag-image');
-                  return {flag: f ? f.textContent : null,
-                          src: i ? i.getAttribute('src') : null,
-                          loaded: i ? (i.complete && i.naturalWidth > 0) : null};
-                """, slug)
-            if slug in REGION_FLAGS:
-                snap = wait.until(lambda d: card_snapshot(d))
-                if snap["flag"] != REGION_FLAGS[slug]:
-                    errors.append("Region card missing territory flag: " + slug + " " + repr(snap["flag"]))
-            else:
-                try:
-                    snap = wait.until(lambda d: (lambda s: s if s and s["loaded"] else None)(card_snapshot(d)))
-                except Exception:
-                    snap = card_snapshot(driver) or {}
-                if not (snap.get("src") or "").endswith("/" + UK_REGION_FLAG_ASSETS[slug]):
-                    errors.append("Region card wrong flag artwork: " + slug)
-                if not snap.get("loaded"):
-                    errors.append("Region card flag SVG failed loading: " + slug)
+        wait.until(lambda d: "検索結果" in d.find_element(By.ID, "all-countries-title").text)
+        result_slugs = driver.execute_script(
+            "return Array.from(document.querySelectorAll('#country-grid .country-card')).map(el => el.dataset.slug)")
+        if any(slug not in slugs for slug in result_slugs):
+            errors.append("Detail Region appeared in Country search: " + label + " " + repr(result_slugs))
+    query.clear()
+    query.send_keys("フランス")
+    wait.until(lambda d: d.execute_script(
+        'return !!document.querySelector(\'#country-grid .country-card[data-slug="france"]\')'))
     query.clear()
     query.send_keys(Keys.ESCAPE)
 
@@ -196,6 +196,13 @@ def check(driver, viewport):
     summary_text = driver.find_element(By.CSS_SELECTOR, ".ja-mine-summary").get_attribute("textContent")
     if "0 / 200" not in summary_text:
         errors.append("Detail wishlist affected parent 200-count total")
+    expected_regions = len(runtime_regions) + 2  # legacy Hong Kong and Macau
+    wait.until(lambda d: " / " + str(expected_regions) in d.find_element(
+        By.CSS_SELECTOR, ".ja-detail-summary").get_attribute("textContent"))
+    detail_summary = driver.execute_script(
+        "return document.querySelector('.ja-detail-summary')?.textContent || ''").strip()
+    if " / " + str(expected_regions) not in detail_summary:
+        errors.append("Detail Region denominator missing: " + detail_summary)
     driver.execute_script(
         "localStorage.removeItem('journey-atlas:wish:hong-kong')"
     )
@@ -211,11 +218,13 @@ def check(driver, viewport):
     wait.until(lambda d: d.find_elements(By.CSS_SELECTOR, ".ja-detail-summary"))
     wait.until(lambda d: "行きたい 1" in d.find_element(
         By.CSS_SELECTOR, ".ja-detail-summary").get_attribute("textContent"))
+    # A Region-only Wish belongs in My Atlas, not the 200-country shortcut.
     driver.execute_script("arguments[0].click()", driver.find_element(By.ID, "wish-link"))
-    wait.until(lambda d: any(
-        el.get_attribute("data-slug") == "england"
-        for el in d.find_elements(By.CSS_SELECTOR, "#country-grid .country-card")
-    ))
+    region_wish_cards = driver.execute_script(
+        "return Array.from(document.querySelectorAll('#country-grid .country-card')).map(el => el.dataset.slug)")
+    if "england" in region_wish_cards:
+        errors.append("Region-only Wish leaked into Country shortcut")
+
     driver.execute_script(
         "localStorage.removeItem('journey-atlas:region-wish:unitedkingdom:england')"
     )
