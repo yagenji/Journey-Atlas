@@ -197,9 +197,12 @@ def check(driver, viewport):
     summary_text = driver.find_element(By.CSS_SELECTOR, ".ja-mine-summary").get_attribute("textContent")
     if "0 / 200" not in summary_text:
         errors.append("Detail wishlist affected parent 200-count total")
-    detail_summary = driver.find_element(By.CSS_SELECTOR, ".ja-detail-summary").get_attribute("textContent").strip()
     expected_regions = len(runtime_regions) + 2  # legacy Hong Kong and Macau
-    if str(expected_regions) not in detail_summary:
+    wait.until(lambda d: " / " + str(expected_regions) in d.find_element(
+        By.CSS_SELECTOR, ".ja-detail-summary").get_attribute("textContent"))
+    detail_summary = driver.find_element(
+        By.CSS_SELECTOR, ".ja-detail-summary").get_attribute("textContent").strip()
+    if " / " + str(expected_regions) not in detail_summary:
         errors.append("Detail Region denominator missing: " + detail_summary)
     driver.execute_script(
         "localStorage.removeItem('journey-atlas:wish:hong-kong')"
