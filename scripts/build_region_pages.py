@@ -514,7 +514,9 @@ def render_region(data: dict, *, site_url: str, version: str) -> tuple[str, str,
         + ''.join(f'<span class="country-theme-chip">{esc(label)}</span>'
                   for label in (data.get('travelThemes') or region_theme_labels(parent)))
         + '</div></div></div></section>')
-    result.append('<aside class="hero-caption" id="hero-caption" aria-label="表紙の景色">'
+    result.append('<aside class="hero-caption" id="hero-caption" aria-label="表紙の景色" '
+        f'data-scene-types="{esc(",".join(hero.get("sceneTypes", [])))}" '
+        f'data-scene-lat="{esc(str((hero.get("coordinates") or {}).get("latitude", "")))}">'
         '<div class="hero-caption__inner page-shell">'
         '<div class="hero-caption__body">'
         f'<p class="hero-caption__name">{esc(hero["name"])}</p>'
@@ -613,6 +615,7 @@ def render_region(data: dict, *, site_url: str, version: str) -> tuple[str, str,
         number = str(i)
         result.append(f'<article class="scene-card region-scene" data-scene="{esc(scene["id"])}" '
             f'data-scene-types="{esc(",".join(scene.get("sceneTypes", [])))}" '
+            f'data-scene-lat="{esc(str((scene.get("coordinates") or {}).get("latitude", "")))}" '
             f'id="scene-{esc(scene["id"])}" role="button" tabindex="0" aria-pressed="false" '
             f'aria-label="{number} {esc(scene["name"])}を選択">'
             '<div class="scene-image media-slot" role="img" '
