@@ -271,22 +271,22 @@
     // independent wishes and visits; no automatic parent selection.
     const detailWishCount = detailWant.length + regionWishes.length;
     const detailVisitCount = detailSeen.length + regionVisits.length;
+    const detailTotal = publishedRegionCount === null ? null : publishedRegionCount + all.filter(c => detailSlugs.has(c.slug)).length;
     summary.replaceChildren();
-    [['VISITED', seen.length, '行った国・地域'], ['WISHLIST', want.length, '行きたい国・地域']].forEach(([tag, count, name]) => {
+    [
+      ['VISITED', seen.length, '行った国・地域', detailVisitCount, '行った詳細地域', 'visited'],
+      ['WISHLIST', want.length, '行きたい国・地域', detailWishCount, '行きたい詳細地域', 'wished']
+    ].forEach(([tag, count, name, detailCount, detailName, kind]) => {
       const item = make('div', 'ja-summary-item');
-      item.append(make('span', '', tag), make('strong', '', count + ' / ' + parents.length), make('small', '', name));
+      item.dataset.summaryKind = kind;
+      const detail = make('p', 'ja-summary-detail');
+      detail.append(
+        make('span', 'ja-summary-detail__label', detailName),
+        make('strong', 'ja-summary-detail__count', detailCount + (detailTotal === null ? '' : ' / ' + detailTotal))
+      );
+      item.append(make('span', '', tag), make('strong', '', count + ' / ' + parents.length), make('small', '', name), detail);
       summary.append(item);
     });
-    let detailSummary = mine.querySelector('.ja-detail-summary');
-    if (!detailSummary) {
-      detailSummary = make('p', 'ja-detail-summary');
-      summary.after(detailSummary);
-    }
-    const detailTotal = publishedRegionCount === null ? null : publishedRegionCount + all.filter(c => detailSlugs.has(c.slug)).length;
-    detailSummary.textContent = '詳細地域　行った ' + detailVisitCount
-      + (detailTotal === null ? '' : ' / ' + detailTotal)
-      + '　／　行きたい ' + detailWishCount
-      + (detailTotal === null ? '' : ' / ' + detailTotal);
     const seenColumn = make('div', 'ja-mine-column');
     const wantColumn = make('div', 'ja-mine-column');
     seenColumn.append(sectionFor('行った国・地域', seen, '国ページの「この国に行った」または地図から登録できます。', true));
