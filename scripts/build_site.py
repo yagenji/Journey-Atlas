@@ -671,6 +671,7 @@ def build_top_scene_index() -> None:
         "saint-helena": ("🇸🇭", None),  # British Overseas Territory in the South Atlantic; TOP flag.
         "saint-pierre-and-miquelon": ("🇵🇲", None),  # French overseas collectivity in the North Atlantic.
         "svalbard": ("🇳🇴", None),  # Svalbard is part of Norway; it has no separate official flag.
+        "christmas-island": ("🇨🇽", None),  # Australian external territory, ISO 3166-1 CX.
         "england": ("🏴󠁧󠁢󠁥󠁮󠁧󠁿", "assets/icons/region-flags/england-waved.svg"),
         "scotland": ("🏴󠁧󠁢󠁳󠁣󠁴󠁿", "assets/icons/region-flags/scotland-waved.svg"),
         "wales": ("🏴󠁧󠁢󠁷󠁬󠁳󠁿", "assets/icons/region-flags/wales-waved.svg"),
@@ -696,7 +697,7 @@ def build_top_scene_index() -> None:
             region_id = "north-america"
         elif "NORTH AMERICA" in geo or "CARIBBEAN" in geo:
             region_id = "north-america"
-        elif any(term in geo for term in ("SOUTH PACIFIC", "MELANESIA", "POLYNESIA", "OCEANIA")):
+        elif any(term in geo for term in ("SOUTH PACIFIC", "MELANESIA", "POLYNESIA", "OCEANIA", "AUSTRALIA / NEW ZEALAND")):
             region_id = "oceania"
         elif "EUROPE" in geo or "NORTH ATLANTIC" in geo:
             region_id = "europe"

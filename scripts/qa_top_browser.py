@@ -468,10 +468,22 @@ def main() -> int:
     results = {}
     try:
         for label, config in VIEWPORTS.items():
-            try:
-                errors = check(driver, config)
-            except Exception as exc:
-                errors = [type(exc).__name__ + ": " + str(exc)[:350]]
+            # The TOP search/region grids update asynchronously. A Selenium
+            # element can become stale between successive reads even when the
+            # rendered state is correct. Retry only that transient condition,
+            # on a fresh page, without swallowing assertion/QA failures.
+            for attempt in range(2):
+                try:
+                    errors = check(driver, config)
+                    break
+                except StaleElementReferenceException as exc:
+                    if attempt == 0:
+                        print(f"RETRY TOP {label}: stale DOM element", flush=True)
+                        continue
+                    errors = [type(exc).__name__ + ": " + str(exc)[:350]]
+                except Exception as exc:
+                    errors = [type(exc).__name__ + ": " + str(exc)[:350]]
+                    break
             results[label] = {"pass": not errors, "errors": errors}
             driver.save_screenshot(str(OUT / (label + ".png")))
             print(("PASS" if not errors else "FAIL") + " TOP " + label + ": " + repr(errors), flush=True)
