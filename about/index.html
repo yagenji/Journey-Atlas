@@ -20,10 +20,21 @@
   <link rel="preconnect" href="https://fonts.gstatic.com" crossorigin>
   <link href="https://fonts.googleapis.com/css2?family=Hanken+Grotesk:wght@400;500;600;700&family=Shippori+Mincho:wght@400;500;600&family=Zen+Kaku+Gothic+New:wght@400;500;700&display=swap" rel="stylesheet">
   <link rel="stylesheet" href="assets/css/top-preview.css">
-  <link rel="stylesheet" href="assets/css/site-info.css?v=20261114-home-steps-v1">
+  <link rel="stylesheet" href="assets/css/site-info.css?v=20260908-palette-v1">
   <link rel="stylesheet" href="assets/css/site-unify.css?v=20260907-info-header-v3">
   <link rel="stylesheet" href="assets/css/site-nav.css?v=20261103-my-atlas-nav-1">
   <link rel="stylesheet" href="assets/css/site-footer.css?v=20260908-footer-unify-v1">
+  <style>
+    /* ABOUT-only mobile home-screen instructions: preserve shared site-info styles. */
+    #home-screen h3{margin:18px 0 6px;color:var(--info-text);font:700 13px/1.55 var(--info-jp)}
+    #home-screen ol{max-width:820px;margin:10px 0 18px;padding:0;list-style:none;counter-reset:home-screen-step}
+    #home-screen ol li{counter-increment:home-screen-step;padding-left:28px}
+    #home-screen ol li::before{
+      content:counter(home-screen-step) ".";
+      left:1px;top:7px;width:auto;height:auto;border-radius:0;background:none;
+      color:var(--info-accent);font:700 12px/1.8 var(--info-jp)
+    }
+  </style>
 </head>
 <body class="info-page">
   <header class="top-header shell is-scroll-sticky">
