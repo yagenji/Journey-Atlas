@@ -89,8 +89,56 @@
       "east": -176.08,
       "north": -13.14
     },
-    "source": "WGS84 island outlines from GSHHS coastline geometry; Wallis and Futuna/Alofi shown at separate enlarged scales. Source/license and coastline detail to be verified by map QA.",
-    "insetNote": "※ ウォリス諸島とフツナ・アロフィ諸島は、実際の位置関係・縮尺と異なる別枠表示です。"
+    "source": "Cartography: WGS84. Wallis ʻUvea and three offshore islets use actual GSHHS intermediate-resolution (GSHHG via Basemap 2.0.0, LGPL 3.0), unaltered polygon vertices; Futuna and Alofi use Natural Earth 1:10m v5.1.2 outlines (public domain) via ironlam/poligraph outremer.geojson (geometry sourced from ne_10m_admin_0_countries and ne_10m_minor_islands). True positions and island separation preserved. Two inset views enlarge the same geographic coordinates with uniform scales; small motus absent from the data are intentionally omitted rather than invented. No fictitious coral reef or lagoon outline is drawn.",
+    "insetNote": "※ ウォリス諸島とフツナ・アロフィ諸島は、実際の位置関係・縮尺と異なる別枠表示です。",
+    "regions": [
+      {
+        "id": "futuna-alofi",
+        "label": "Futuna / Alofi",
+        "svgId": "wf-futuna-detail",
+        "rect": {
+          "x": 45,
+          "y": 200,
+          "width": 535,
+          "height": 520
+        },
+        "sourceRect": {
+          "x": 35,
+          "y": 610,
+          "width": 155,
+          "height": 135
+        },
+        "sceneIds": [
+          "poi-basilica",
+          "mont-puke",
+          "alofitai",
+          "leava-harbour"
+        ]
+      },
+      {
+        "id": "wallis",
+        "label": "Wallis / ʻUvea",
+        "svgId": "wf-wallis-detail",
+        "rect": {
+          "x": 620,
+          "y": 190,
+          "width": 535,
+          "height": 530
+        },
+        "sourceRect": {
+          "x": 1080,
+          "y": 35,
+          "width": 116,
+          "height": 125
+        },
+        "sceneIds": [
+          "talietumu",
+          "mata-utu-cathedral",
+          "sainte-bernadette",
+          "faioa"
+        ]
+      }
+    ]
   },
   "scenes": [
     {
