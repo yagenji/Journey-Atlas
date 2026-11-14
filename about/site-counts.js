@@ -30,6 +30,7 @@
       const value = counts[node.dataset.atlasCount];
       if (Number.isInteger(value)) node.textContent = String(value);
     });
+    document.documentElement.dataset.atlasCountsReady = 'true';
     if (!list) return;
 
     // Existing HTML stays as a readable fallback until the published indexes load.
