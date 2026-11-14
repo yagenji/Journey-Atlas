@@ -1,6 +1,13 @@
 {
   "description": "Geographic datasets used to draw the Country maps. countries maps each Country slug to the dataset ids its map is actually drawn from (cross-check-only sources are not listed); the map legend and the map-sources page are generated from this file. regions maps each detail-region page (parent/slug) the same way.",
   "sources": {
+    "abs-wof-cx": {
+      "label": "Australian Bureau of Statistics / Who's On First（クリスマス島）",
+      "license": "CC BY 2.5 AU（ABS）",
+      "licenseUrl": "https://creativecommons.org/licenses/by/2.5/au/",
+      "url": "https://github.com/whosonfirst-data/whosonfirst-data-admin-cx/blob/main/data/856/722/79/85672279.geojson",
+      "detail": "Based on ABS 2011 geography from Who's On First (feature 85672279); shoreline generalized within 12 m. WOF license: https://github.com/whosonfirst-data/whosonfirst-data-admin-cx/blob/main/LICENSE.md"
+    },
     "naturalearth": {
       "label": "Natural Earth",
       "license": "パブリックドメイン",
@@ -13,6 +20,13 @@
       "licenseUrl": "https://www.gnu.org/licenses/lgpl-3.0.html",
       "url": "https://www.soest.hawaii.edu/pwessel/gshhg/",
       "detail": "海岸線・島・湖、周辺の国境（Basemap 2.0.0 に同梱のデータを使用）。"
+    },
+    "deep-nf": {
+      "label": "DEEP Norfolk Island GeoJSON",
+      "license": "AGPL-3.0（リポジトリ）",
+      "licenseUrl": "https://github.com/eoglethorpe/deep/blob/master/LICENSE",
+      "url": "https://github.com/eoglethorpe/deep/blob/master/static/files/countries/Norfolk%20Island.NFK.NF.geo.json",
+      "detail": "ネピアン島の簡略海岸線ポリゴン。元データの個別ライセンス表記は未確認。"
     },
     "noaa": {
       "label": "NOAA",
@@ -90,6 +104,13 @@
       "label": "Tractatenblad 2023, 66（オランダ・フランス国境条約 附属書A）",
       "url": "https://zoek.officielebekendmakingen.nl/trb-2023-66.html",
       "detail": "シント・マールテンとサン・マルタンの陸上境界。"
+    },
+    "geoboundaries-vgb-vir": {
+      "label": "geoBoundaries / gbHumanitarian（VGB・VIR）",
+      "license": "CC BY 3.0 IGO",
+      "licenseUrl": "https://creativecommons.org/licenses/by/3.0/igo/",
+      "url": "https://www.geoboundaries.org/",
+      "detail": "英領ヴァージン諸島と周辺の米領ヴァージン諸島の島の輪郭（2017年 ADM1 simplified）。"
     }
   },
   "countries": {
@@ -902,6 +923,14 @@
     ]
   },
   "regions": {
+    "australia/christmas-island": [
+      "abs-wof-cx"
+    ],
+    "australia/norfolk-island": [
+      "naturalearth",
+      "gshhg",
+      "deep-nf"
+    ],
     "denmark/faroe-islands": [
       "naturalearth",
       "gshhg"
@@ -941,10 +970,6 @@
       "gshhg"
     ],
     "france/saint-pierre-and-miquelon": [
-      "naturalearth",
-      "gshhg"
-    ],
-    "france/wallis-and-futuna": [
       "naturalearth",
       "gshhg"
     ],
@@ -1024,6 +1049,16 @@
       "gshhg"
     ],
     "norway/svalbard": [
+      "gshhg"
+    ],
+    "unitedkingdom/british-virgin-islands": [
+      "geoboundaries-vgb-vir"
+    ],
+    "unitedkingdom/turks-and-caicos-islands": [
+      "naturalearth"
+    ],
+    "france/wallis-and-futuna": [
+      "naturalearth",
       "gshhg"
     ]
   }
