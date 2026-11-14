@@ -322,7 +322,7 @@ def prepare_generic_country_page() -> None:
     )
     for asset in ("assets/js/similar-scenes.js", "assets/css/similar-scenes.css"):
         page = re.sub(
-            re.escape(asset) + r'\\?v=[^"]+',
+            re.escape(asset) + r'\?v=[^"]+',
             f"{asset}?v={BUILD_VERSION}",
             page,
             count=1,
