@@ -157,6 +157,33 @@ a{color:inherit}
   font:500 12px/1.9 var(--info-jp);
 }
 .info-section p:last-child{margin-bottom:0}
+.info-section h3{
+  margin:18px 0 6px;
+  color:var(--info-text);
+  font:700 13px/1.55 var(--info-jp);
+}
+.info-section ol{
+  max-width:820px;
+  margin:10px 0 18px;
+  padding:0;
+  list-style:none;
+  counter-reset:info-step;
+}
+.info-section ol li{
+  counter-increment:info-step;
+  padding-left:28px;
+}
+.info-section ol li::before{
+  content:counter(info-step) ".";
+  left:1px;
+  top:7px;
+  width:auto;
+  height:auto;
+  border-radius:0;
+  background:none;
+  color:var(--info-accent);
+  font:700 12px/1.8 var(--info-jp);
+}
 .info-section ul{
   max-width:820px;
   margin:10px 0 0;
