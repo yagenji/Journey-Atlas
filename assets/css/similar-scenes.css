@@ -4,6 +4,11 @@
 .similar-scenes__head h2{margin:2px 0 0;font:600 20px/1.4 "Shippori Mincho","Yu Mincho",serif;color:#173b5d}
 .similar-scenes__intro{margin:4px 0 0;font-size:12px;line-height:1.7;color:#5d6b73}
 .similar-scenes__grid{display:grid;grid-template-columns:repeat(6,minmax(0,1fr));gap:12px}
+.similar-scenes__grid[data-count="1"]{grid-template-columns:repeat(1,minmax(0,1fr));max-width:320px}
+.similar-scenes__grid[data-count="2"]{grid-template-columns:repeat(2,minmax(0,1fr));max-width:652px}
+.similar-scenes__grid[data-count="3"]{grid-template-columns:repeat(3,minmax(0,1fr));max-width:984px}
+.similar-scenes__grid[data-count="4"]{grid-template-columns:repeat(4,minmax(0,1fr));max-width:1316px}
+.similar-scenes__grid[data-count="5"]{grid-template-columns:repeat(5,minmax(0,1fr));max-width:1648px}
 .similar-scene{display:flex;flex-direction:column;gap:6px;min-width:0;color:#173b5d;text-decoration:none}
 .similar-scene>img{display:block;width:100%;aspect-ratio:3/2;height:auto;object-fit:cover;border-radius:8px;background:#e7ece9}
 .similar-scene:hover b{text-decoration:underline;text-underline-offset:3px}
@@ -16,6 +21,6 @@
 .similar-scenes__more:hover{border-bottom-color:#234866}
 /* Phones: one sideways row instead of a tall stack. */
 @media (max-width:760px){
-  .similar-scenes__grid{grid-template-columns:none;grid-auto-flow:column;grid-auto-columns:clamp(120px,30%,180px);overflow-x:auto;scroll-snap-type:x proximity;padding-bottom:4px;scrollbar-width:thin}
+  .similar-scenes__grid,.similar-scenes__grid[data-count]{grid-template-columns:none;max-width:none;grid-auto-flow:column;grid-auto-columns:clamp(120px,30%,180px);overflow-x:auto;scroll-snap-type:x proximity;padding-bottom:4px;scrollbar-width:thin}
   .similar-scene{scroll-snap-align:start}
 }
