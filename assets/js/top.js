@@ -45,8 +45,7 @@ const lensNextButton = document.querySelector('[data-lens-next]');
 const lensCount = document.querySelector('[data-lens-count]');
 const LENS_RSS_URL = 'https://journey.yagenji.com/rss.xml';
 const LENS_LINK_PATTERN = /^https:\/\/journey\.yagenji\.com\/([a-z]+)(\d+)\/$/;
-const ATLAS_TOTAL = 200;
-const INDEX_TITLE = '索引　すべての国・地域（A–Z）';
+const INDEX_TITLE = '索引　基本の200の国・地域（A–Z）';
 
 function syncScrollHeader() {
   const header = document.querySelector('.top-header');
@@ -237,7 +236,7 @@ coreRegistryPromise
       }
       if(searchInput?.value.trim())searchInput.dispatchEvent(new Event('input'));
     });
-    if(count) count.textContent=`${destinations.length} DESTINATIONS`;
+    if(count) count.textContent=`${destinations.length} COUNTRY PAGES`;
     renderRail(destinations);
     // The A–Z panel starts hidden; build its cards only after the visitor opens it.
     if(allPanel&&!allPanel.hidden)renderGrid(destinations);
@@ -752,26 +751,9 @@ function searchCountries(){
     const bySeason=row.seasons.find((season)=>season.key.includes(query));
     if(bySeason){scored.push([4,country]);searchCaptions.set(country.slug,`季節：${bySeason.months}`);}
   });
-  // A country-name hit (タイ → Thailand) wins outright; scene/season matches are for words
-  // that are not country names (オーロラ, フィヨルド, 紅葉), so they would only add noise here.
-  const detailMatches=detailDestinations.filter(country=>normalizeSearch(
-    country.nameEn+' '+country.nameJa+' '+country.slug
-  ).includes(query));
-  const named=scored.filter(([rank])=>rank<=1);
-  if(named.length||detailMatches.length){
-    searchCaptions=new Map();
-    return [...named.sort((a,b)=>a[0]-b[0]).map(([,country])=>country),...detailMatches];
-  }
-  // Searching a Region Scene should open the Region, not wrongly promote its
-  // parent Country or omit the scenic location from the TOP index.
-  const regionSceneMatches=query.length>=2?detailDestinations.filter(country=>{
-    const row=sceneIndex?.get(country.slug);
-    if(!row)return false;
-    const match=row.scenes.find(scene=>scene.key.includes(query)||scene.text.includes(query));
-    if(match)searchCaptions.set(country.slug,`景色：${match.name}`);
-    return Boolean(match);
-  }):[];
-  return [...scored.sort((a,b)=>a[0]-b[0]).map(([,country])=>country),...regionSceneMatches];
+  // Country search is limited to the 200 base Country Pages.
+  // Detail Regions remain accessible via parent pages, map, themes, seasons and scenery.
+  return scored.sort((a,b)=>a[0]-b[0]).map(([,country])=>country);
 }
 searchInput?.addEventListener('input',()=>{
   const wasHidden=Boolean(allPanel?.hidden);
@@ -795,7 +777,22 @@ searchInput?.addEventListener('keydown',(event)=>{
 });
 themeResultsSearch?.addEventListener('input',()=>{themeLimit=THEME_PAGE;renderThemeResults();});
 themeResultsClear?.addEventListener('click',clearThemeResults);
-wishButton?.addEventListener('click',()=>{const wished=getWishedSlugs();if(wished.length===0){showToast('行ってみたい旅先はまだ保存されていません。国・地域ページから追加できます。');return;}setAllPanel(true,false);if(searchInput)searchInput.value='';document.querySelector('#countries')?.classList.remove('is-searching');if(allTitle)allTitle.textContent=INDEX_TITLE;renderGrid([...destinations,...detailDestinations].filter((country)=>wished.includes(country.slug)));showToast(`${wished.length}件の行ってみたい国・地域を表示しています。`);});
+wishButton?.addEventListener('click',()=>{
+  const wished=getWishedSlugs();
+  const countryWishes=destinations.filter(country=>wished.includes(country.slug));
+  if(!countryWishes.length){
+    showToast(wished.length
+      ? '詳細地域のWishリストはマイアトラスで確認できます。'
+      : '国のWishリストはまだありません。国ページから追加できます。');
+    return;
+  }
+  setAllPanel(true,false);
+  if(searchInput)searchInput.value='';
+  document.querySelector('#countries')?.classList.remove('is-searching');
+  if(allTitle)allTitle.textContent='行ってみたい国・地域 '+countryWishes.length+'件';
+  renderGrid(countryWishes);
+  showToast(countryWishes.length+'件の行ってみたい国・地域を表示しています。詳細地域はマイアトラスで確認できます。');
+});
 document.querySelectorAll('[data-country-focus]').forEach((button)=>button.addEventListener('click',()=>focusCountry(button.dataset.countryFocus)));
 document.querySelectorAll('[data-theme]').forEach((button)=>button.addEventListener('click',()=>showTheme(button.dataset.theme)));
 document.querySelector('[data-open-all]')?.addEventListener('click',()=>setAllPanel(true));
