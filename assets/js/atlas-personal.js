@@ -184,6 +184,17 @@
   const mine = make('section', 'ja-panel ja-mine');
   host.append(mine);
   let registry = [];
+  let publishedRegionCount = null;
+  // The published Region index is the source of truth for the detail denominator.
+  // Keep the subtotals visible even if this optional request fails.
+  const regionsReady = window.JourneyAtlasRegionsPromise ||
+    fetchJSON('data/top-scene-index.json').then(data => data.regionHeroes || []);
+  regionsReady.then(regions => {
+    if (Array.isArray(regions) && regions.length) {
+      publishedRegionCount = regions.length;
+      renderMine();
+    }
+  }).catch(() => {});
   const summary = make('div', 'ja-mine-summary');
   const groups = make('div', 'ja-mine-groups');
   const tools = make('div', 'ja-backup-tools');
@@ -271,7 +282,11 @@
       detailSummary = make('p', 'ja-detail-summary');
       summary.after(detailSummary);
     }
-    detailSummary.textContent = '詳細地域　行った ' + detailVisitCount + '　／　行きたい ' + detailWishCount;
+    const detailTotal = publishedRegionCount === null ? null : publishedRegionCount + all.filter(c => detailSlugs.has(c.slug)).length;
+    detailSummary.textContent = '詳細地域　行った ' + detailVisitCount
+      + (detailTotal === null ? '' : ' / ' + detailTotal)
+      + '　／　行きたい ' + detailWishCount
+      + (detailTotal === null ? '' : ' / ' + detailTotal);
     const seenColumn = make('div', 'ja-mine-column');
     const wantColumn = make('div', 'ja-mine-column');
     seenColumn.append(sectionFor('行った国・地域', seen, '国ページの「この国に行った」または地図から登録できます。', true));
