@@ -30,8 +30,10 @@
       const value = counts[node.dataset.atlasCount];
       if (Number.isInteger(value)) node.textContent = String(value);
     });
-    document.documentElement.dataset.atlasCountsReady = 'true';
-    if (!list) return;
+    if (!list) {
+      document.documentElement.dataset.atlasCountsReady = 'true';
+      return;
+    }
 
     // Existing HTML stays as a readable fallback until the published indexes load.
     // Its parent order is preserved; new parent groups are appended automatically.
@@ -60,5 +62,6 @@
       li.append(link, '：' + names.join('、') + '。');
       return li;
     }));
+    document.documentElement.dataset.atlasCountsReady = 'true';
   }).catch(() => { /* Keep the server-rendered fallback rather than a false zero. */ });
 })();
