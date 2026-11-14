@@ -221,7 +221,7 @@ def package_runtime_data(slugs: list[str]) -> set[str]:
             lat = (primary.get("coordinates") or {}).get("latitude")
             if isinstance(lat, (int, float)) and abs(lat) >= 50 and types.intersection(
                 {"fjord", "island", "peak", "cliff"}
-            ) and any(scene.get("sceneTypes", [None])[0] == "glacier"
+            ) and any((scene.get("sceneTypes") or [None])[0] == "glacier"
                       for scene in page.get("scenes", [])):
                 types.add("glacier")
             if types:
