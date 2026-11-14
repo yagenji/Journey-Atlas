@@ -141,6 +141,14 @@ jobs:
               }
               for path in files
           )
+          # The same selector serves every destination. Its dedicated QA
+          # executes against every Country/Region; browser checks cover diverse
+          # representative pages and all Regions of the selected parents.
+          if "assets/js/similar-scenes.js" in files:
+              slugs = {
+                  "antarctica", "namibia", "iceland", "japan", "oman",
+                  "colombia", "france", "unitedkingdom",
+              }
           run = bool(slugs or shared or top_changed)
           with open(output, "a", encoding="utf-8") as handle:
               handle.write("slugs=" + ",".join(sorted(slugs)) + "\n")
@@ -175,6 +183,10 @@ jobs:
         env:
           JOURNEY_ATLAS_SITE_URL: http://127.0.0.1:4173/
         run: python3 scripts/build_cloudflare.py
+
+      - name: Audit recommendations across all Countries and Regions
+        if: steps.target.outputs.run == 'true'
+        run: node scripts/qa_similar_scenes.cjs
 
       - name: Start local site
         if: steps.target.outputs.run == 'true'
