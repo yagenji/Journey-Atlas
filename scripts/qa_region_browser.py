@@ -447,7 +447,40 @@ def main() -> int:
                                         and mobile_inset.get("width", 0) >= 250))
                                     and mobile_inset.get("loaded")):
                                 problems.append(f"Region mobile detail failed: {mobile_inset}")
-                        if not (len(detail) == 1
+                            # The responsive map must expose every distinct inset, not
+                            # silently show only the first one on mobile.
+                            if len(detail) > 1:
+                                mobile_panels = driver.execute_script("""
+                                    return [...document.querySelectorAll('.region-map-detail-mobile')].map(root => {
+                                        const hits=[...root.querySelectorAll('.region-map-hit')];
+                                        const pts=hits.map(hit => {
+                                            const r=hit.getBoundingClientRect();
+                                            return {x:r.x+r.width/2,y:r.y+r.height/2};
+                                        });
+                                        let minGap=Infinity;
+                                        for (let i=0;i<pts.length;i++) for (let j=i+1;j<pts.length;j++)
+                                            minGap=Math.min(minGap,Math.hypot(pts[i].x-pts[j].x,pts[i].y-pts[j].y));
+                                        return {ids:hits.map(hit=>hit.dataset.scene),
+                                            visible:getComputedStyle(root).display!=='none',
+                                            width:root.getBoundingClientRect().width,
+                                            gap:minGap,
+                                            loaded:root.querySelector('img')?.naturalWidth > 0};
+                                    });
+                                """)
+                                panels_ok = len(mobile_panels) == len(detail)
+                                if panels_ok:
+                                    for panel, spec in zip(mobile_panels, detail):
+                                        if not (set(panel.get("ids", [])) == set(spec["sceneIds"])
+                                                and panel.get("loaded")
+                                                and panel.get("visible") == (label == "mobile")
+                                                and (label != "mobile" or
+                                                     (panel.get("gap", 0) >= 27 and panel.get("width", 0) >= 250))):
+                                            panels_ok = False
+                                            break
+                                if not panels_ok:
+                                    problems.append(f"Region multi-inset mobile QA failed: {mobile_panels}")
+
+                        if not (len(detail) >= 1
                                 and 0 <= detail[0]["rect"]["x"] <= 1200 - detail[0]["rect"]["width"]
                                 and 0 <= detail[0]["rect"]["y"] <= 760 - detail[0]["rect"]["height"]
                                 and detail[0]["rect"]["width"] >= 300
