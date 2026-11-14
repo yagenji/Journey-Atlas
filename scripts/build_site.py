@@ -579,15 +579,22 @@ def build_top_season_index() -> None:
 def build_top_scene_index() -> None:
     """Source-led labels for the top-page gallery: Scenes and Country Hero locations.
 
-    Each Scene row is [id, name, sceneTypes, image]; Hero types are keyed by slug in heroTypes.
+    Each Scene row is [id, name, sceneTypes, image, latitude]; Hero metadata is keyed by slug.
 
     Scene entries are published only when their thumbnail exists. Hero names come from the
     corresponding Country JSON, not from a generic country-name placeholder.
     """
+    def scene_latitude(entry: dict) -> float | None:
+        value = (entry.get("coordinates") or {}).get("latitude")
+        if isinstance(value, (int, float)) and not isinstance(value, bool) and -90 <= value <= 90:
+            return round(float(value), 5)
+        return None
+
     thumbs = ROOT / "assets/images/top/scenes"
     countries: dict[str, list] = {}
     heroes: dict[str, str] = {}
     hero_types: dict[str, list] = {}
+    hero_latitudes: dict[str, float | None] = {}
     missing = 0
     for path in sorted((ROOT / "data/countries").glob("*.json")):
         data = json.loads(path.read_text(encoding="utf-8"))
@@ -598,6 +605,7 @@ def build_top_scene_index() -> None:
         hero_name = str(hero.get("name") or hero.get("location") or "").strip()
         if hero.get("image") and hero_name:
             heroes[slug] = hero_name
+            hero_latitudes[slug] = scene_latitude(hero)
             if hero.get("sceneTypes"):
                 hero_types[slug] = hero["sceneTypes"]
         rows = []
@@ -615,7 +623,8 @@ def build_top_scene_index() -> None:
             if image and not (ROOT / image).is_file():
                 raise FileNotFoundError(f"{slug}/{scene_id}: {image}")
             rows.append([scene_id, str(scene.get("name", "")).strip(), scene.get("sceneTypes", []),
-                         image[len(own):] if image.startswith(own) else image])
+                         image[len(own):] if image.startswith(own) else image,
+                         scene_latitude(scene)])
         if rows:
             countries[slug] = rows
     if missing:
@@ -703,6 +712,8 @@ def build_top_scene_index() -> None:
             "travelThemes": region.get("travelThemes", []),
             "image": hero["image"],
             "sceneTypes": hero.get("sceneTypes", []),
+            "latitude": scene_latitude(hero),
+            "pageLatitudes": [scene_latitude(item) for item in [hero, *region.get("scenes", [])]],
             # Hero + Scene types for this Region page's similar-scene suggestions.
             "pageTypes": [item.get("sceneTypes", []) for item in [hero, *region.get("scenes", [])]],
             "href": f"countries/{parent}/{region['slug']}/",
@@ -710,7 +721,8 @@ def build_top_scene_index() -> None:
     # Scene types drive the top-page scene index (see data/scene-taxonomy.json).
     taxonomy = json.loads((ROOT / "data/scene-taxonomy.json").read_text(encoding="utf-8"))
     payload = {
-        "version": 6, "countries": countries, "heroes": heroes, "heroTypes": hero_types,
+        "version": 7, "countries": countries, "heroes": heroes, "heroTypes": hero_types,
+        "heroLatitudes": hero_latitudes,
         "regionHeroes": region_heroes, "sceneTypes": taxonomy["groups"],
     }
     (ROOT / "data/top-scene-index.json").write_text(
