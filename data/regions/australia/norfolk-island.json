@@ -84,7 +84,7 @@
       "north": -28.984
     },
     "singleMapMobile": true,
-    "source": "GSHHG/GSHHS intermediate shorelines (Norfolk + Phillip), Paul Wessel & Walter H. F. Smith, LGPL; WGS84. Nepean Island shown only as GeoNames centre point because its shoreline is not included in the available GSHHG intermediate data. Draft geographic QA pending detailed shoreline verification."
+    "source": "Norfolk and Phillip Island coastlines plus minor islets: GSHHG high-resolution, GSHHG-gmt v2.3.7, Paul Wessel & Walter H. F. Smith, LGPL-3.0, WGS84. Nepean Island: DEEP Norfolk Island NF GeoJSON polygon (repository AGPL-3.0; individual data license not separately documented). Coastlines are generalized source polygons, not invented geometry. Projection: local-equirectangular-fit-v1, 1200x760."
   },
   "scenes": [
     {
@@ -584,8 +584,8 @@
       "affinityType": "CULTURE"
     }
   ],
-  "sourcesVerifiedAt": "2026-11-14",
-  "updatedAt": "2026-11-14",
+  "sourcesVerifiedAt": "2026-11-15",
+  "updatedAt": "2026-11-15",
   "sourceDates": {
     "population": "2021 ABS census",
     "area": "Norfolk Island National Park Management Plan 2025",
@@ -593,7 +593,7 @@
     "governanceAug2026": "2026-08-03",
     "worldHeritage": "2010 inscription",
     "climate": "BOM long-term climate",
-    "map": "GSHHG intermediate, not full resolution; Nepean centre only"
+    "map": "GSHHG high-resolution 2.3.7 (2017); DEEP NF geometry (undated, retrieved 2026-11-15)"
   },
   "sources": {
     "status": "https://www.infrastructure.gov.au/territories-regions-cities/territories/norfolk-island/governance-administration",
@@ -623,7 +623,8 @@
     "transport": "https://tourismhub.norfolkisland.com.au/faqs/",
     "map": "https://www.soest.hawaii.edu/wessel/gshhg/",
     "nepeanCentre": "https://www.geonames.org/2155545/nepean-island.html",
-    "muddaHeritage": "https://www.infrastructure.gov.au/sites/default/files/migrated/territories/norfolk_island/files/KAVHA-Heritage-Management-Plan.pdf"
+    "muddaHeritage": "https://www.infrastructure.gov.au/sites/default/files/migrated/territories/norfolk_island/files/KAVHA-Heritage-Management-Plan.pdf",
+    "mapNepean": "https://github.com/eoglethorpe/deep/blob/master/static/files/countries/Norfolk%20Island.NFK.NF.geo.json"
   },
   "capital": {
     "nameJa": "キングストン",
