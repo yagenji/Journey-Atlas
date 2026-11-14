@@ -66,9 +66,9 @@ def check(driver, viewport):
     about_wait.until(lambda d: d.execute_script(
         "return document.documentElement.dataset.atlasCountsReady === 'true'"))
     about_total = driver.find_element(
-        By.CSS_SELECTOR, '#destination-scope [data-atlas-count="total"]').text
+        By.CSS_SELECTOR, '#destination-scope [data-atlas-count="total"]').get_attribute("textContent").strip()
     about_regions = driver.find_element(
-        By.CSS_SELECTOR, '#destination-scope [data-atlas-count="regions"]').text
+        By.CSS_SELECTOR, '#destination-scope [data-atlas-count="regions"]').get_attribute("textContent").strip()
     if int(about_total) != 200 + int(about_regions):
         errors.append("ABOUT total is not base 200 plus published details: " + about_total)
     if len(driver.find_elements(By.CSS_SELECTOR, '[data-atlas-detail-regions] li')) < 11:
@@ -77,7 +77,7 @@ def check(driver, viewport):
     about_wait.until(lambda d: d.execute_script(
         "return document.documentElement.dataset.atlasCountsReady === 'true'"))
     faq_total = driver.find_element(
-        By.CSS_SELECTOR, '#faq-basics [data-atlas-count="total"]').text
+        By.CSS_SELECTOR, '#faq-basics [data-atlas-count="total"]').get_attribute("textContent").strip()
     if faq_total != about_total:
         errors.append("ABOUT and FAQ disagree on public destination total")
     driver.get(BASE + "/?qa=top-200")
