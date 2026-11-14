@@ -130,15 +130,14 @@ def check(driver, viewport):
         query.clear()
         query.send_keys(label)
         wait.until(lambda d: "検索結果" in d.find_element(By.ID, "all-countries-title").text)
-        result_slugs = [el.get_attribute("data-slug") for el in driver.find_elements(
-            By.CSS_SELECTOR, "#country-grid .country-card")]
+        result_slugs = driver.execute_script(
+            "return Array.from(document.querySelectorAll('#country-grid .country-card')).map(el => el.dataset.slug)")
         if any(slug not in slugs for slug in result_slugs):
             errors.append("Detail Region appeared in Country search: " + label + " " + repr(result_slugs))
     query.clear()
     query.send_keys("フランス")
-    wait.until(lambda d: any(
-        el.get_attribute("data-slug") == "france"
-        for el in d.find_elements(By.CSS_SELECTOR, "#country-grid .country-card")))
+    wait.until(lambda d: d.execute_script(
+        'return !!document.querySelector(\'#country-grid .country-card[data-slug="france"]\')'))
     query.clear()
     query.send_keys(Keys.ESCAPE)
 
@@ -200,8 +199,8 @@ def check(driver, viewport):
     expected_regions = len(runtime_regions) + 2  # legacy Hong Kong and Macau
     wait.until(lambda d: " / " + str(expected_regions) in d.find_element(
         By.CSS_SELECTOR, ".ja-detail-summary").get_attribute("textContent"))
-    detail_summary = driver.find_element(
-        By.CSS_SELECTOR, ".ja-detail-summary").get_attribute("textContent").strip()
+    detail_summary = driver.execute_script(
+        "return document.querySelector('.ja-detail-summary')?.textContent || ''").strip()
     if " / " + str(expected_regions) not in detail_summary:
         errors.append("Detail Region denominator missing: " + detail_summary)
     driver.execute_script(
@@ -221,8 +220,8 @@ def check(driver, viewport):
         By.CSS_SELECTOR, ".ja-detail-summary").get_attribute("textContent"))
     # A Region-only Wish belongs in My Atlas, not the 200-country shortcut.
     driver.execute_script("arguments[0].click()", driver.find_element(By.ID, "wish-link"))
-    region_wish_cards = [el.get_attribute("data-slug") for el in driver.find_elements(
-        By.CSS_SELECTOR, "#country-grid .country-card")]
+    region_wish_cards = driver.execute_script(
+        "return Array.from(document.querySelectorAll('#country-grid .country-card')).map(el => el.dataset.slug)")
     if "england" in region_wish_cards:
         errors.append("Region-only Wish leaked into Country shortcut")
 
