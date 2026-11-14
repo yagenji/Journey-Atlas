@@ -75,13 +75,13 @@
   "map": {
     "svg": "assets/images/unitedkingdom/british-virgin-islands/map-british-virgin-islands.svg",
     "bounds": {
-      "west": -64.91,
-      "east": -64.23,
-      "south": 18.26,
-      "north": 18.79
+      "west": -65.11,
+      "east": -64.22,
+      "south": 18.18,
+      "north": 18.8
     },
     "singleMapMobile": true,
-    "source": "PREP SPEC ONLY — final SVG not yet generated. WGS84. Use verified GSHHG/GSHHS coastline at sufficiently high resolution, Natural Earth administrative attribution, OpenStreetMap for spot checks. Render Tortola, Virgin Gorda, Anegada, Jost Van Dyke, Norman Island and neighbouring islands in true relative geometry. Distinguish US Virgin Islands as foreign context, not as target land. See MAP_PREP.md. License: GSHHG (check redistribution conditions at source); Natural Earth public domain; OpenStreetMap ODbL."
+    "source": "Geography: geoBoundaries gbHumanitarian ADM1 2017 VGB (target) and VIR (United States Virgin Islands context), simplified release; CC BY 3.0 IGO, derived source geoBoundaries VGB-ADM1-34233081 and corresponding VIR ADM1; source repository robit-man/tiny-atlas/elevation_model/geojson/ADM1/{VGB,VIR}.geojson. Geographic shapes retained in WGS84; local-equirectangular-fit-v1, 1200x760. Map context is not part of the target territory."
   },
   "scenes": [
     {
@@ -539,7 +539,7 @@
     "flamingoCount": "2022-01-05 annual bird count",
     "flamingoIntroduced": "1992",
     "hurricane": "annual June–November",
-    "map": "GSHHG/GSHHS intended source; final coastline extraction pending"
+    "map": "geoBoundaries gbHumanitarian ADM1 VGB/VIR, boundary year 2017; metadata verified 2026-11-15"
   },
   "sources": {
     "status": "https://www.gov.uk/government/speeches/the-uk-is-committed-to-respecting-and-defending-the-right-of-the-people-of-its-overseas-territories-to-determine-their-own-future-uk-statement-at-the-",
@@ -574,7 +574,7 @@
     "hurricane": "https://www.nhc.noaa.gov/climo/",
     "normanHistory": "https://www.irf.org/wp-content/uploads/2013/06/TortolaSisterIslandsNaturalHistory-OnlineVersion_2015.pdf",
     "osm": "https://www.openstreetmap.org/copyright",
-    "map": "https://www.soest.hawaii.edu/wessel/gshhg/"
+    "map": "https://github.com/robit-man/tiny-atlas/tree/main/elevation_model/geojson/ADM1"
   },
   "nextRegion": {
     "slug": "bermuda",
