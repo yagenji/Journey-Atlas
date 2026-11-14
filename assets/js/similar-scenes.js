@@ -1,12 +1,25 @@
-/* JOURNEY ATLAS — この景色が好きなら: three scenes from other countries that share
-   this page's scene types (data/scene-taxonomy.json). Built entirely from the shared
-   scene index, so any newly typed Scene joins the pool without per-page setup. */
+/* JOURNEY ATLAS — 「この景色が好きなら」.
+   Rank real, published scenery by subject and geographic context. Never fill a
+   fixed number of cards with unrelated types merely for variety. */
 (() => {
   'use strict';
-  const INDEX = 'data/top-scene-index.json?v=20261109-scene-view-1';
+  const INDEX = 'data/top-scene-index.json?v=20261114-scenery-affinity-2';
   const PICKS = 6;
+  const MIN_SCORE = 4.25;
   // Detail areas count as part of their parent for "another country".
   const FAMILY = {'hong-kong': 'china', macau: 'china'};
+  // Geography is a useful guardrail for climate-dependent natural scenery.
+  // It is NOT a substitute for the taxonomy: ice on tropical mountains is real.
+  const LAT_SENSITIVE = new Set([
+    'fjord', 'island', 'bay', 'harbor', 'beach', 'lagoon', 'reef', 'cliff',
+    'forest', 'rainforest', 'grassland', 'wetland', 'dune', 'oasis',
+    'rock', 'cave', 'lake', 'river', 'birds', 'wildlife', 'marine'
+  ]);
+  // Broad labels alone are weaker evidence of visual resemblance.
+  const BROAD = new Set([
+    'island', 'bay', 'harbor', 'rock', 'cliff', 'birds', 'beach',
+    'lake', 'river', 'village', 'road', 'peak'
+  ]);
   const json = url => fetch(url).then(response => {
     if (!response.ok) throw Error('HTTP ' + response.status);
     return response.json();
@@ -17,29 +30,22 @@
     if (text !== undefined) element.textContent = text;
     return element;
   };
-  const shuffle = list => {
-    const copy = [...list];
-    for (let i = copy.length - 1; i > 0; i--) {
-      const j = Math.floor(Math.random() * (i + 1));
-      [copy[i], copy[j]] = [copy[j], copy[i]];
-    }
-    return copy;
-  };
+  const latitude = value => typeof value === 'number' && Number.isFinite(value) && Math.abs(value) <= 90
+    ? value : null;
 
-  function ownTypes(data, index) {
-    let lists = [data.hero, ...(data.scenes || [])].filter(Boolean).map(entry => entry.sceneTypes || []);
-    if (!lists.some(list => list.length) && data.regionParent) {
-      // Region pages are static; their types travel in the shared index.
-      lists = (index.regionHeroes || []).find(region => region.slug === data.slug)?.pageTypes || [];
-    }
-    lists = lists.filter(list => list.length);
-    const order = [];
-    // Main subjects first, in page order; second types only fill gaps.
-    [0, 1].forEach(position => lists.forEach(list => {
-      const type = list[position];
-      if (type && !order.includes(type)) order.push(type);
+  function ownScenes(data, index) {
+    let entries = [data.hero, ...(data.scenes || [])].filter(Boolean).map(entry => ({
+      types: Array.isArray(entry.sceneTypes) ? entry.sceneTypes : [],
+      latitude: latitude(entry.coordinates?.latitude)
     }));
-    return order;
+    if (!entries.some(entry => entry.types.length) && data.regionParent) {
+      // Compatibility with older published Region markup.
+      const region = (index.regionHeroes || []).find(item => item.slug === data.slug);
+      entries = (region?.pageTypes || []).map((types, i) => ({
+        types, latitude: latitude(region?.pageLatitudes?.[i])
+      }));
+    }
+    return entries;
   }
 
   function buildPool(index, registry, regionByIso) {
@@ -48,8 +54,9 @@
     Object.entries(index.countries || {}).forEach(([slug, rows]) => {
       const place = destinations.get(slug);
       if (!place) return;
-      rows.forEach(([id, name, types = []]) => types.length && pool.push({
+      rows.forEach(([id, name, types = [], , sceneLatitude]) => types.length && pool.push({
         slug, family: FAMILY[slug] || slug, name, types, place,
+        latitude: latitude(sceneLatitude),
         region: regionByIso.get(place.iso2),
         image: `assets/images/top/scenes/${slug}/${id}.webp`,
         href: `${place.href}#${encodeURIComponent(id)}`
@@ -60,43 +67,75 @@
       if (!place?.image || !index.heroes?.[slug]) return;
       pool.push({
         slug, family: FAMILY[slug] || slug, name: index.heroes[slug], types, place,
+        latitude: latitude(index.heroLatitudes?.[slug]),
         region: regionByIso.get(place.iso2), image: place.image, href: `${place.href}#hero-caption`
       });
     });
     (index.regionHeroes || []).forEach(region => region.sceneTypes?.length && pool.push({
       slug: region.slug, family: region.parentSlug, name: region.heroName, types: region.sceneTypes,
-      place: region, region: region.regionId, image: region.image, href: `${region.href}#hero-caption`
+      place: region, region: region.regionId, latitude: latitude(region.latitude),
+      image: region.image, href: `${region.href}#hero-caption`
     }));
     return pool;
   }
 
-  function choose(order, pool, family, homeRegion) {
-    const picks = [];
-    const families = new Set([family]);
-    const regions = [homeRegion];
-    // Go round the page's types until six are found, so a page with few types still fills the row.
-    let added = true;
-    while (picks.length < PICKS && added) {
-      added = false;
-      for (const type of order) {
-        if (picks.length === PICKS) break;
-        const open = pool.filter(item => item.types.includes(type) && !families.has(item.family));
-        if (!open.length) continue;
-        // Prefer the same main subject, then a part of the world not yet shown.
-        const score = item => (item.types[0] === type ? 2 : 0) + (regions.includes(item.region) ? 0 : 1);
-        const best = Math.max(...open.map(score));
-        const pick = shuffle(open.filter(item => score(item) === best))[0];
-        picks.push({...pick, reason: type});
-        families.add(pick.family);
-        regions.push(pick.region);
-        added = true;
+  function affinity(anchor, candidate) {
+    let best = 0;
+    let matching = 0;
+    for (let i = 0; i < anchor.types.length; i++) {
+      const type = anchor.types[i];
+      for (let j = 0; j < candidate.types.length; j++) {
+        if (type !== candidate.types[j]) continue;
+        let geographicBonus = 0;
+        if (LAT_SENSITIVE.has(type)) {
+          if (anchor.latitude !== null && candidate.latitude !== null) {
+            // Compare distance from the equator, not hemisphere. Similar polar
+            // landscapes exist at opposite ends of the planet.
+            const delta = Math.abs(Math.abs(anchor.latitude) - Math.abs(candidate.latitude));
+            if (delta > 30) continue;
+            geographicBonus = 1.2 * (1 - delta / 30);
+          } else {
+            geographicBonus = -0.6; // Unknown context must not look like a strong match.
+          }
+        }
+        let match = i === 0 ? (j === 0 ? 6 : 4.5) : (j === 0 ? 3.5 : 2.5);
+        if (BROAD.has(type) && anchor.types.length === 1 && candidate.types.length === 1) {
+          match -= 1.1;
+        }
+        best = Math.max(best, match + geographicBonus);
+        matching++;
       }
     }
-    return picks;
+    return best + (matching > 1 ? 1.4 : 0);
+  }
+
+  function choose(anchors, pool, family) {
+    const scored = [];
+    for (const candidate of pool) {
+      if (candidate.family === family) continue;
+      let best = 0;
+      for (let i = 0; i < anchors.length; i++) {
+        if (!anchors[i].types.length) continue;
+        // The Hero is the primary visual promise. The eight Scenes are
+        // supporting evidence, not eight unrelated quotas to satisfy.
+        const weight = i === 0 ? 1 : 0.72;
+        best = Math.max(best, affinity(anchors[i], candidate) * weight);
+      }
+      if (best >= MIN_SCORE) scored.push({...candidate, score: best});
+    }
+    // Stable ordering, strongest resemblance first. Country and continent
+    // diversity never override the match, and weak matches are left out.
+    scored.sort((a, b) => b.score - a.score ||
+      a.family.localeCompare(b.family) || a.name.localeCompare(b.name));
+    const seen = new Set([family]);
+    return scored.filter(item => {
+      if (seen.has(item.family)) return false;
+      seen.add(item.family);
+      return true;
+    }).slice(0, PICKS);
   }
 
   function render(picks) {
-    // A small extra after the page has closed: below the closing links, not before them.
     const closing = document.querySelector('.journey-footer');
     const grid = document.querySelector('#scene-cards, .scene-grid');
     const anchor = closing || grid?.closest('section');
@@ -108,7 +147,7 @@
     const title = make('h2', '', 'この景色が好きなら');
     title.id = 'similar-scenes-title';
     titleWrap.append(make('span', 'section-kicker-en', 'IF YOU LIKE THIS SCENERY'), title,
-      make('p', 'similar-scenes__intro', `${document.querySelector('.region-country-page') ? 'この地域' : 'この国'}の景色と同じ種類の景色を、ほかの国から。`));
+      make('p', 'similar-scenes__intro', `${document.querySelector('.region-country-page') ? 'この地域' : 'この国'}の景色と、主題や自然環境が近い景色を、ほかの国から。`));
     const list = make('div', 'similar-scenes__grid');
     list.setAttribute('role', 'list');
     picks.forEach(pick => {
@@ -144,7 +183,6 @@
     head.append(titleWrap, more);
     section.append(head, list);
     anchor.after(section);
-    // On phones the row scrolls sideways, so lazy loading would leave the hidden photos blank; load all six once the row is near.
     if ('IntersectionObserver' in window) {
       const watch = new IntersectionObserver(entries => {
         if (!entries.some(entry => entry.isIntersecting)) return;
@@ -161,14 +199,13 @@
       const [index, registry, taxonomy] = await Promise.all([
         json(INDEX), json('data/atlas-destinations.json'), json('data/region-taxonomy.json')
       ]);
-      const order = ownTypes(data, index);
-      if (!order.length) return;
+      const anchors = ownScenes(data, index);
+      if (!anchors.some(entry => entry.types.length)) return;
       const regionByIso = new Map();
       (taxonomy.regions || []).forEach(region => (region.iso2 || []).forEach(iso => regionByIso.set(iso, region.id)));
       const places = registry.destinations || [];
-      const self = places.find(item => item.slug === data.slug) || places.find(item => item.slug === data.regionParent);
       const family = data.regionParent || FAMILY[data.slug] || data.slug;
-      const picks = choose(order, buildPool(index, places, regionByIso), family, regionByIso.get(self?.iso2));
+      const picks = choose(anchors, buildPool(index, places, regionByIso), family);
       if (!picks.length) return;
       render(picks);
     } catch (error) {
