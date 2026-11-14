@@ -161,6 +161,7 @@
       make('p', 'similar-scenes__intro', `${document.querySelector('.region-country-page') ? 'この地域' : 'この国'}の景色と、主題や自然環境が近い景色を、ほかの国から。`));
     const list = make('div', 'similar-scenes__grid');
     list.setAttribute('role', 'list');
+    list.dataset.count = String(picks.length);
     picks.forEach(pick => {
       const card = make('a', 'similar-scene');
       card.href = pick.href;
