@@ -320,6 +320,13 @@ def prepare_generic_country_page() -> None:
         page,
         count=1,
     )
+    for asset in ("assets/js/similar-scenes.js", "assets/css/similar-scenes.css"):
+        page = re.sub(
+            re.escape(asset) + r'\\?v=[^"]+',
+            f"{asset}?v={BUILD_VERSION}",
+            page,
+            count=1,
+        )
     path.write_text(page, encoding="utf-8")
 
 
