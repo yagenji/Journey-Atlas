@@ -35,6 +35,40 @@
       color:var(--info-accent);font:700 12px/1.8 var(--info-jp)
     }
   </style>
+  <style>
+    /* Simple, accessible topic groups limited to ABOUT and FAQ pages. */
+    .info-topic-index{margin:-18px 0 26px}
+    .info-topic-index p{margin:0 0 12px;color:var(--info-muted);font:700 11px/1.5 var(--info-jp)}
+    .info-topic-index__links{display:flex;flex-wrap:wrap;gap:8px}
+    .info-topic-index a{display:inline-flex;align-items:center;min-height:38px;padding:8px 13px;border:1px solid var(--info-line);border-radius:99px;background:var(--info-panel);color:var(--info-ink);font:700 11.5px/1.4 var(--info-jp);text-decoration:none}
+    .info-topic-index a:hover,.info-topic-index a:focus-visible{border-color:var(--info-accent);text-decoration:underline;text-underline-offset:3px}
+    .info-topic{margin:0 0 12px;border:1px solid var(--info-line);border-radius:12px;overflow:hidden;background:var(--info-panel)}
+    .info-topic > summary{position:relative;display:block;cursor:pointer;list-style:none;padding:19px 48px 19px 22px}
+    .info-topic > summary::-webkit-details-marker{display:none}
+    .info-topic > summary::after{content:"+";position:absolute;right:21px;top:50%;transform:translateY(-50%);color:var(--info-accent);font:500 23px/1 var(--info-sans)}
+    .info-topic[open] > summary::after{content:"−"}
+    .info-topic > summary:focus-visible{outline:2px solid var(--info-accent);outline-offset:-3px}
+    .info-topic__eyebrow{display:block;margin-bottom:5px;color:var(--info-accent);font:700 10px/1.4 var(--info-sans);letter-spacing:.07em}
+    .info-topic__title{display:block;color:var(--info-ink);font:700 16px/1.5 var(--info-jp)}
+    .info-topic__desc{display:block;margin-top:4px;color:var(--info-muted);font:500 11px/1.65 var(--info-jp)}
+    .info-topic__content{padding:0 22px 14px}
+    .info-topic__content > .info-section:first-child{border-top:1px solid var(--info-line)}
+    .info-topic__content > .info-section:last-child{border-bottom:0}
+    .faq-list{border-top:0}
+    .faq-topic .info-topic__content{padding-bottom:6px}
+    .faq-topic .faq-item:first-child{border-top:1px solid var(--info-line)}
+    .faq-topic .faq-item:last-child{border-bottom:0}
+    .info-topic,.info-topic [id]{scroll-margin-top:110px}
+    @media(max-width:600px){
+      .info-topic-index{margin:-16px 0 22px}
+      .info-topic-index__links{display:grid;grid-template-columns:repeat(2,minmax(0,1fr));gap:8px}
+      .info-topic-index a{border-radius:9px;min-height:44px;padding:9px 11px}
+      .info-topic > summary{padding:17px 43px 17px 16px}
+      .info-topic > summary::after{right:15px}
+      .info-topic__title{font-size:14px}
+      .info-topic__content{padding:0 16px 10px}
+    }
+  </style>
 </head>
 <body class="info-page">
   <header class="top-header shell is-scroll-sticky">
@@ -67,6 +101,23 @@
       <p>JOURNEY ATLASは、国・地図・テーマ・季節・景色から次の旅先と出会い、気に入った世界をマイアトラスに残せるビジュアル図鑑です。</p>
     </header>
 
+    <nav class="info-topic-index" aria-label="カテゴリから探す">
+      <p>カテゴリから探す</p>
+      <div class="info-topic-index__links">
+        <a href="about/#about-explore">旅先とCountry Page</a>
+        <a href="about/#about-editorial">掲載範囲とビジュアル</a>
+        <a href="about/#about-my-atlas">旅の記録とスマートフォン</a>
+        <a href="about/#about-sources">JOURNEY LENSとデータ出典</a>
+      </div>
+    </nav>
+
+    <details class="info-topic" id="about-explore" open>
+      <summary>
+        <span class="info-topic__eyebrow">01 / EXPLORE</span>
+        <span class="info-topic__title">旅先とCountry Page</span>
+        <span class="info-topic__desc">5つの探し方・国のページ・8つの景観</span>
+      </summary>
+      <div class="info-topic__content">
     <section class="info-section">
       <h2>旅先を探す、5つの入口</h2>
       <p>旅先の探し方は、「何が決まっているか」によって変わります。行きたい国があるとき、旅でしたいことがあるとき、出かける月が決まっているとき。まだ何も決めていないときも、今の気分に合う入口から世界を探せます。</p>
@@ -90,7 +141,16 @@
       <p>各Country Pageの8景は「観光地Top 8」ではありません。ひとつの有名な景色だけで国を代表させず、地域、地形、都市と自然、海・山・湖・森・平原、建築、文化、季節などの多様性が伝わるように選んでいます。</p>
       <p>各景観は実在する場所を基準とし、その場所を特徴づける地形や建築などを大切にします。テーマの割り当ても、単に要素が存在するかではなく、その国へ旅をしたいと思う理由になるかを基準にしています。</p>
     </section>
+      </div>
+    </details>
 
+    <details class="info-topic" id="about-editorial">
+      <summary>
+        <span class="info-topic__eyebrow">02 / EDITORIAL</span>
+        <span class="info-topic__title">掲載範囲とビジュアル</span>
+        <span class="info-topic__desc">200の旅先と33の詳細地域・景観画像の考え方</span>
+      </summary>
+      <div class="info-topic__content">
     <section class="info-section">
       <h2>景観イメージと実際の写真</h2>
       <p>JOURNEY ATLASの風景や料理のビジュアルは、旅先への興味を広げるための表現です。Country PageのHeroや8景は実在の場所を題材に、写実性と柔らかな水彩表現を組み合わせて制作しています。現地で撮影された記録写真ではなく、実際の見え方や季節を保証するものではありません。</p>
@@ -128,7 +188,16 @@
       <p>香港・マカオは中国の特別行政区であり、中国からたどる詳細地域ページとして紹介しています。両地域の従来のページURLは、既存のリンクや保存済みの旅先を失わないために維持します。ページが存在することと、200のCountry Pageとして数えることは区別しています。</p>
       <p>この掲載区分は旅先を見つけるための編集上の整理であり、国家承認、領有権、国境に関する本サイトの法的判断を示すものではありません。</p>
     </section>
+      </div>
+    </details>
 
+    <details class="info-topic" id="about-my-atlas">
+      <summary>
+        <span class="info-topic__eyebrow">03 / MY ATLAS</span>
+        <span class="info-topic__title">旅の記録とスマートフォン</span>
+        <span class="info-topic__desc">Wishリスト・お気に入り・ホーム画面への追加</span>
+      </summary>
+      <div class="info-topic__content">
     <section class="info-section">
       <h2>マイアトラスで、旅の記録を振り返る</h2>
       <p>トップページのメニューにある<a href="./#my-atlas">「マイアトラス」</a>は、「景色から探す」の下にある折りたたみ式の記録ページです。行った国・地域を世界地図に塗る「わたしの地図」と、行きたい国・地域の記録を一か所で振り返れます。お気に入りの景色は<a href="./#scenery">「景色から探す」</a>の「♡ 保存した景色」で確認できます。<strong>「／200」は基本の旅先</strong>の集計です。33の詳細地域は基本の200とは別に記録・表示され、詳細地域を登録しても親の国の記録は自動的には増えません。</p>
@@ -162,7 +231,16 @@
       <p><strong>Wishリストの保存について：</strong>行きたい国・地域、行った国・地域、お気に入りの景色は、利用しているブラウザやホーム画面から開いたサイトの保存領域に記録されます。ホーム画面に追加するだけで保存済みデータが引き継がれるとは限らず、端末間でも自動同期されません。追加後はアイコンから開いて記録を確認してください。必要な場合は、マイアトラスの「保存データを書き出す」「保存データを読み込む」で移し替え、大切なデータは定期的にバックアップしてください。</p>
       <p>操作の参考：<a href="https://support.apple.com/ja-jp/guide/iphone/iph42ab2f3a7/27/ios/27" target="_blank" rel="noopener noreferrer">Apple公式ガイド</a>、<a href="https://support.google.com/chrome/answer/15085120?co=GENIE.Platform%3DAndroid&amp;hl=ja" target="_blank" rel="noopener noreferrer">Google Chrome公式ヘルプ</a>。端末やOSのバージョンによりメニュー名が異なることがあります。</p>
     </section>
+      </div>
+    </details>
 
+    <details class="info-topic" id="about-sources">
+      <summary>
+        <span class="info-topic__eyebrow">04 / SOURCES</span>
+        <span class="info-topic__title">JOURNEY LENSとデータ出典</span>
+        <span class="info-topic__desc">写真メディアとの違い・地図の出典とライセンス</span>
+      </summary>
+      <div class="info-topic__content">
     <section class="info-section">
       <h2>JOURNEY LENSとの関係</h2>
       <p>JOURNEY ATLASは、まだ知らない世界から「行きたい場所」を見つけるための図鑑。<a href="https://journey.yagenji.com/" target="_blank" rel="noopener noreferrer">JOURNEY LENS</a>は、実際に訪れた場所を写真と物語で記録する旅のメディアです。</p>
@@ -194,6 +272,8 @@
       </ul>
     </section>
     <!-- map-data:end -->
+      </div>
+    </details>
   </main>
 
   <footer class="atlas-footer" aria-label="サイトフッター">
@@ -207,6 +287,24 @@
       <small class="atlas-footer__copyright">© JOURNEY ATLAS</small>
     </div>
   </footer>
+  <script>
+    /* Preserve links to sections such as /about/#map-data inside closed topics. */
+    (() => {
+      const revealTopic = () => {
+        if (!window.location.hash) return;
+        let target;
+        try { target = document.getElementById(decodeURIComponent(window.location.hash.slice(1))); }
+        catch (_) { return; }
+        if (!target) return;
+        const topic = target.closest('details.info-topic');
+        if (!topic || topic.open) return;
+        topic.open = true;
+        requestAnimationFrame(() => target.scrollIntoView({block:'start'}));
+      };
+      window.addEventListener('hashchange', revealTopic);
+      revealTopic();
+    })();
+  </script>
   <script src="assets/js/site-nav.js?v=20261028-1" defer></script>
 </body>
 </html>

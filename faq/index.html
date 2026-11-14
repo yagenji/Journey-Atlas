@@ -24,6 +24,40 @@
   <link rel="stylesheet" href="assets/css/site-unify.css?v=20260907-info-header-v3">
   <link rel="stylesheet" href="assets/css/site-nav.css?v=20261103-my-atlas-nav-1">
   <link rel="stylesheet" href="assets/css/site-footer.css?v=20260908-footer-unify-v1">
+  <style>
+    /* Simple, accessible topic groups limited to ABOUT and FAQ pages. */
+    .info-topic-index{margin:-18px 0 26px}
+    .info-topic-index p{margin:0 0 12px;color:var(--info-muted);font:700 11px/1.5 var(--info-jp)}
+    .info-topic-index__links{display:flex;flex-wrap:wrap;gap:8px}
+    .info-topic-index a{display:inline-flex;align-items:center;min-height:38px;padding:8px 13px;border:1px solid var(--info-line);border-radius:99px;background:var(--info-panel);color:var(--info-ink);font:700 11.5px/1.4 var(--info-jp);text-decoration:none}
+    .info-topic-index a:hover,.info-topic-index a:focus-visible{border-color:var(--info-accent);text-decoration:underline;text-underline-offset:3px}
+    .info-topic{margin:0 0 12px;border:1px solid var(--info-line);border-radius:12px;overflow:hidden;background:var(--info-panel)}
+    .info-topic > summary{position:relative;display:block;cursor:pointer;list-style:none;padding:19px 48px 19px 22px}
+    .info-topic > summary::-webkit-details-marker{display:none}
+    .info-topic > summary::after{content:"+";position:absolute;right:21px;top:50%;transform:translateY(-50%);color:var(--info-accent);font:500 23px/1 var(--info-sans)}
+    .info-topic[open] > summary::after{content:"−"}
+    .info-topic > summary:focus-visible{outline:2px solid var(--info-accent);outline-offset:-3px}
+    .info-topic__eyebrow{display:block;margin-bottom:5px;color:var(--info-accent);font:700 10px/1.4 var(--info-sans);letter-spacing:.07em}
+    .info-topic__title{display:block;color:var(--info-ink);font:700 16px/1.5 var(--info-jp)}
+    .info-topic__desc{display:block;margin-top:4px;color:var(--info-muted);font:500 11px/1.65 var(--info-jp)}
+    .info-topic__content{padding:0 22px 14px}
+    .info-topic__content > .info-section:first-child{border-top:1px solid var(--info-line)}
+    .info-topic__content > .info-section:last-child{border-bottom:0}
+    .faq-list{border-top:0}
+    .faq-topic .info-topic__content{padding-bottom:6px}
+    .faq-topic .faq-item:first-child{border-top:1px solid var(--info-line)}
+    .faq-topic .faq-item:last-child{border-bottom:0}
+    .info-topic,.info-topic [id]{scroll-margin-top:110px}
+    @media(max-width:600px){
+      .info-topic-index{margin:-16px 0 22px}
+      .info-topic-index__links{display:grid;grid-template-columns:repeat(2,minmax(0,1fr));gap:8px}
+      .info-topic-index a{border-radius:9px;min-height:44px;padding:9px 11px}
+      .info-topic > summary{padding:17px 43px 17px 16px}
+      .info-topic > summary::after{right:15px}
+      .info-topic__title{font-size:14px}
+      .info-topic__content{padding:0 16px 10px}
+    }
+  </style>
 </head>
 <body class="info-page">
   <header class="top-header shell is-scroll-sticky">
@@ -56,7 +90,26 @@
       <p>5つの旅先検索、Country Page、マイアトラス、スマートフォンのホーム画面への追加、保存データの引き継ぎについてまとめました。</p>
     </header>
 
+    <nav class="info-topic-index" aria-label="カテゴリから探す">
+      <p>カテゴリから探す</p>
+      <div class="info-topic-index__links">
+        <a href="faq/#faq-basics">サイトの基本と掲載範囲</a>
+        <a href="faq/#faq-explore">旅先の探し方</a>
+        <a href="faq/#faq-country">Country Pageと掲載情報</a>
+        <a href="faq/#faq-my-atlas">旅の記録とWishリスト</a>
+        <a href="faq/#faq-mobile">スマートフォンで使う</a>
+        <a href="faq/#faq-other">JOURNEY LENS・お問い合わせ</a>
+      </div>
+    </nav>
+
     <div class="faq-list">
+    <details class="info-topic faq-topic" id="faq-basics" open>
+      <summary>
+        <span class="info-topic__eyebrow">01 / BASICS</span>
+        <span class="info-topic__title">サイトの基本と掲載範囲</span>
+        <span class="info-topic__desc">JOURNEY ATLASとは・200の旅先と33の詳細地域</span>
+      </summary>
+      <div class="info-topic__content">
       <details class="faq-item" open>
         <summary>JOURNEY ATLASは、どんなサイトですか？</summary>
         <div class="faq-answer">
@@ -89,7 +142,16 @@
           <p>各親国のページや名前の検索からたどれます。テーマ・景色から探すでも該当する地域を紹介しています。香港・マカオは中国の特別行政区であり、従来のURLを既存のリンクや保存済みの旅先のために維持しています。</p>
         </div>
       </details>
+      </div>
+    </details>
 
+    <details class="info-topic faq-topic" id="faq-explore">
+      <summary>
+        <span class="info-topic__eyebrow">02 / EXPLORE</span>
+        <span class="info-topic__title">旅先の探し方</span>
+        <span class="info-topic__desc">国・地図・テーマ・季節・景色から探す</span>
+      </summary>
+      <div class="info-topic__content">
       <details class="faq-item">
         <summary>旅先はどのように探せますか？</summary>
         <div class="faq-answer">
@@ -156,24 +218,16 @@
           <p>キーボードでは ← → で前後、スペースで一時停止・再生、Fで全画面、Escで閉じます。スマートフォンでは左右のスワイプで切り替えられ、画面をタップすると操作ボタンの表示・非表示を切り替えます。</p>
         </div>
       </details>
+      </div>
+    </details>
 
-      <details class="faq-item">
-        <summary>マイアトラスでは、何ができますか？</summary>
-        <div class="faq-answer">
-          <p><a href="./#my-atlas">マイアトラス</a>は、トップページの「景色から探す」の下、ABOUTの上にあります。上部メニューの「マイアトラス」を選ぶと自動で開きます。行った国・地域と行きたい国・地域を一か所で確認でき、各国ページにも移動できます。お気に入りの景色は「景色から探す」で確認できます。</p><p><strong>「／200」は基本の旅先の集計</strong>です。33の詳細地域は独立して保存・表示し、詳細地域を行った・行きたいにしても親の国には自動反映しません。</p>
-          <p>行った国は<a href="./#my-atlas">マイアトラス</a>の「わたしの地図」で、行きたい国はCountry Pageの「この国に行きたい」で登録します。お気に入りの景色はHeroと8つの景観のハートから保存できます。</p>
-          <p>「わたしの地図」では、行った国と行きたい国を世界地図に塗り分けて表示し、その地図を画像にして保存・共有することもできます。</p>
-        </div>
-      </details>
-
-      <details class="faq-item">
-        <summary>Heroや景色をお気に入りに保存するには？</summary>
-        <div class="faq-answer">
-          <p>各Country Pageで、Hero画像の下にある説明文の横のハートを押すと、表紙の景色を保存できます。8つの景観は、画像の上にあるハートで保存できます。ハートをもう一度押すと解除できます。</p>
-          <p>保存した景色は<a href="./#scenery">「景色から探す」</a>の「♡ 保存した景色」を選ぶと、Heroも含めてお気に入りだけを地域ごとに表示し、各地域の保存件数を確認できます。</p>
-        </div>
-      </details>
-
+    <details class="info-topic faq-topic" id="faq-country">
+      <summary>
+        <span class="info-topic__eyebrow">03 / COUNTRY</span>
+        <span class="info-topic__title">Country Pageと掲載情報</span>
+        <span class="info-topic__desc">8つの景観・地図・写真表現・情報の確認</span>
+      </summary>
+      <div class="info-topic__content">
       <details class="faq-item">
         <summary>Country Pageには何が載っていますか？</summary>
         <div class="faq-answer">
@@ -219,6 +273,32 @@
           <p>本サイトの情報を利用したことによって生じた損害等について、JOURNEY ATLASは責任を負いかねます。</p>
         </div>
       </details>
+      </div>
+    </details>
+
+    <details class="info-topic faq-topic" id="faq-my-atlas">
+      <summary>
+        <span class="info-topic__eyebrow">04 / MY ATLAS</span>
+        <span class="info-topic__title">旅の記録とWishリスト</span>
+        <span class="info-topic__desc">訪問履歴・行きたい場所・保存・バックアップ</span>
+      </summary>
+      <div class="info-topic__content">
+      <details class="faq-item">
+        <summary>マイアトラスでは、何ができますか？</summary>
+        <div class="faq-answer">
+          <p><a href="./#my-atlas">マイアトラス</a>は、トップページの「景色から探す」の下、ABOUTの上にあります。上部メニューの「マイアトラス」を選ぶと自動で開きます。行った国・地域と行きたい国・地域を一か所で確認でき、各国ページにも移動できます。お気に入りの景色は「景色から探す」で確認できます。</p><p><strong>「／200」は基本の旅先の集計</strong>です。33の詳細地域は独立して保存・表示し、詳細地域を行った・行きたいにしても親の国には自動反映しません。</p>
+          <p>行った国は<a href="./#my-atlas">マイアトラス</a>の「わたしの地図」で、行きたい国はCountry Pageの「この国に行きたい」で登録します。お気に入りの景色はHeroと8つの景観のハートから保存できます。</p>
+          <p>「わたしの地図」では、行った国と行きたい国を世界地図に塗り分けて表示し、その地図を画像にして保存・共有することもできます。</p>
+        </div>
+      </details>
+
+      <details class="faq-item">
+        <summary>Heroや景色をお気に入りに保存するには？</summary>
+        <div class="faq-answer">
+          <p>各Country Pageで、Hero画像の下にある説明文の横のハートを押すと、表紙の景色を保存できます。8つの景観は、画像の上にあるハートで保存できます。ハートをもう一度押すと解除できます。</p>
+          <p>保存した景色は<a href="./#scenery">「景色から探す」</a>の「♡ 保存した景色」を選ぶと、Heroも含めてお気に入りだけを地域ごとに表示し、各地域の保存件数を確認できます。</p>
+        </div>
+      </details>
 
       <details class="faq-item">
         <summary>「行った国・地域」は地図以外からも選べますか？</summary>
@@ -245,6 +325,31 @@
       </details>
 
       <details class="faq-item">
+        <summary>マイアトラスの記録を、別の端末へ引き継げますか？</summary>
+        <div class="faq-answer">
+          <p>自動同期には対応していませんが、<a href="./#my-atlas">「マイアトラス」</a>の「保存データを書き出す」でJSONファイルを保存し、別の端末・ブラウザの「保存データを読み込む」から手動で引き継げます。基本の200の旅先と詳細地域の行った・行きたい記録、お気に入りの景色が対象です。</p>
+          <p>読み込んだ記録は既存の記録を削除せずに追加されますが、同じ保存対象がある場合は読み込んだ内容で更新されることがあります。記録は利用中のブラウザのローカルストレージに保存され、本サイトのサーバーには復元用バックアップがありません。大切な記録は定期的にJSONファイルへ書き出し、ご自身で保管してください。</p>
+        </div>
+      </details>
+
+      <details class="faq-item">
+        <summary>記録が消えたり、別の端末への引き継ぎに失敗した場合はどうなりますか？</summary>
+        <div class="faq-answer">
+          <p>ブラウザのサイトデータ削除、端末の変更・故障、ブラウザの不具合などにより、行った国・地域、行きたい国・地域、お気に入りの景色が失われたり、引き継げない場合があります。本サイトは復元用バックアップを保持しておらず、記録の完全な保存・復元・引き継ぎを保証しません。</p>
+          <p>データ消失や引き継ぎ失敗によって生じた損害については、本サイトの故意または重大な過失による場合など法令上免責が認められない場合を除き、責任を負いません。データの保護には、<a href="./#my-atlas">マイアトラス</a>から定期的にJSONファイルを書き出し、保管してください。詳しくは<a href="privacy/">プライバシーポリシー</a>をご覧ください。</p>
+        </div>
+      </details>
+      </div>
+    </details>
+
+    <details class="info-topic faq-topic" id="faq-mobile">
+      <summary>
+        <span class="info-topic__eyebrow">05 / MOBILE</span>
+        <span class="info-topic__title">スマートフォンで使う</span>
+        <span class="info-topic__desc">iPhone・Androidのホーム画面と保存データ</span>
+      </summary>
+      <div class="info-topic__content">
+      <details class="faq-item">
         <summary>iPhone・Androidのホーム画面からJOURNEY ATLASを開くには？</summary>
         <div class="faq-answer">
           <p><strong>iPhone（Safari）：</strong>サイトを開く → 共有ボタン（またはページメニューの「共有」）→「ホーム画面に追加」→ 必要に応じて「ウェブアプリとして開く」を選ぶ →「追加」。</p>
@@ -260,23 +365,16 @@
           <p>アイコンから開いたあと、行きたい国・地域やお気に入りの景色が表示されるか確認してください。引き継ぎが必要なときは、元の画面の<a href="./#my-atlas">マイアトラス</a>で「保存データを書き出す」を行い、利用する画面で「保存データを読み込む」を選びます。記録を残すために、定期的なJSONファイルのバックアップをおすすめします。</p>
         </div>
       </details>
+      </div>
+    </details>
 
-      <details class="faq-item">
-        <summary>マイアトラスの記録を、別の端末へ引き継げますか？</summary>
-        <div class="faq-answer">
-          <p>自動同期には対応していませんが、<a href="./#my-atlas">「マイアトラス」</a>の「保存データを書き出す」でJSONファイルを保存し、別の端末・ブラウザの「保存データを読み込む」から手動で引き継げます。基本の200の旅先と詳細地域の行った・行きたい記録、お気に入りの景色が対象です。</p>
-          <p>読み込んだ記録は既存の記録を削除せずに追加されますが、同じ保存対象がある場合は読み込んだ内容で更新されることがあります。記録は利用中のブラウザのローカルストレージに保存され、本サイトのサーバーには復元用バックアップがありません。大切な記録は定期的にJSONファイルへ書き出し、ご自身で保管してください。</p>
-        </div>
-      </details>
-
-      <details class="faq-item">
-        <summary>記録が消えたり、別の端末への引き継ぎに失敗した場合はどうなりますか？</summary>
-        <div class="faq-answer">
-          <p>ブラウザのサイトデータ削除、端末の変更・故障、ブラウザの不具合などにより、行った国・地域、行きたい国・地域、お気に入りの景色が失われたり、引き継げない場合があります。本サイトは復元用バックアップを保持しておらず、記録の完全な保存・復元・引き継ぎを保証しません。</p>
-          <p>データ消失や引き継ぎ失敗によって生じた損害については、本サイトの故意または重大な過失による場合など法令上免責が認められない場合を除き、責任を負いません。データの保護には、<a href="./#my-atlas">マイアトラス</a>から定期的にJSONファイルを書き出し、保管してください。詳しくは<a href="privacy/">プライバシーポリシー</a>をご覧ください。</p>
-        </div>
-      </details>
-
+    <details class="info-topic faq-topic" id="faq-other">
+      <summary>
+        <span class="info-topic__eyebrow">06 / OTHER</span>
+        <span class="info-topic__title">JOURNEY LENS・お問い合わせ</span>
+        <span class="info-topic__desc">サイトの違い・掲載内容のご連絡</span>
+      </summary>
+      <div class="info-topic__content">
       <details class="faq-item">
         <summary>JOURNEY ATLASとJOURNEY LENSの違いは何ですか？</summary>
         <div class="faq-answer">
@@ -291,6 +389,8 @@
           <p>地名、統計、画像、表示上の問題など、気づいた点があればページ下部の<a href="mailto:journeylensmy@gmail.com?subject=JOURNEY%20ATLAS%20%E3%81%B8%E3%81%AE%E3%81%94%E9%80%A3%E7%B5%A1">お問い合わせ</a>からご連絡ください。内容を確認し、必要な修正を行います。</p>
         </div>
       </details>
+      </div>
+    </details>
     </div>
 
     <aside class="info-contact">
@@ -310,6 +410,24 @@
       <small class="atlas-footer__copyright">© JOURNEY ATLAS</small>
     </div>
   </footer>
+  <script>
+    /* Preserve links to sections such as /about/#map-data inside closed topics. */
+    (() => {
+      const revealTopic = () => {
+        if (!window.location.hash) return;
+        let target;
+        try { target = document.getElementById(decodeURIComponent(window.location.hash.slice(1))); }
+        catch (_) { return; }
+        if (!target) return;
+        const topic = target.closest('details.info-topic');
+        if (!topic || topic.open) return;
+        topic.open = true;
+        requestAnimationFrame(() => target.scrollIntoView({block:'start'}));
+      };
+      window.addEventListener('hashchange', revealTopic);
+      revealTopic();
+    })();
+  </script>
   <script src="assets/js/site-nav.js?v=20261028-1" defer></script>
 </body>
 </html>
