@@ -59,6 +59,27 @@ EXPECTED = {
 def check(driver, viewport):
     errors = []
     set_viewport(driver, viewport)
+    # Informational pages use the published Country and Region indexes, and
+    # should resolve their public totals before the homepage is exercised.
+    driver.get(BASE + "/about/?qa=destination-scope")
+    about_wait = WebDriverWait(driver, 30)
+    about_wait.until(lambda d: d.execute_script(
+        "return document.documentElement.dataset.atlasCountsReady === 'true'"))
+    about_total = driver.find_element(
+        By.CSS_SELECTOR, '#destination-scope [data-atlas-count="total"]').text
+    about_regions = driver.find_element(
+        By.CSS_SELECTOR, '#destination-scope [data-atlas-count="regions"]').text
+    if int(about_total) != 200 + int(about_regions):
+        errors.append("ABOUT total is not base 200 plus published details: " + about_total)
+    if len(driver.find_elements(By.CSS_SELECTOR, '[data-atlas-detail-regions] li')) < 11:
+        errors.append("ABOUT detail Region listing is missing parent groups")
+    driver.get(BASE + "/faq/?qa=destination-scope")
+    about_wait.until(lambda d: d.execute_script(
+        "return document.documentElement.dataset.atlasCountsReady === 'true'"))
+    faq_total = driver.find_element(
+        By.CSS_SELECTOR, '#faq-basics [data-atlas-count="total"]').text
+    if faq_total != about_total:
+        errors.append("ABOUT and FAQ disagree on public destination total")
     driver.get(BASE + "/?qa=top-200")
     # Result grids rerender while indexes and images settle; retry instead of
     # failing when an element read inside a wait condition goes stale.
@@ -111,8 +132,7 @@ def check(driver, viewport):
         wait.until(lambda d: "検索結果" in d.find_element(By.ID, "all-countries-title").text)
         result_slugs = [el.get_attribute("data-slug") for el in driver.find_elements(
             By.CSS_SELECTOR, "#country-grid .country-card")]
-        if any(slug in REGION_EXPECTED or slug in ("england", "scotland", "macau")
-               for slug in result_slugs):
+        if any(slug not in slugs for slug in result_slugs):
             errors.append("Detail Region appeared in Country search: " + label + " " + repr(result_slugs))
     query.clear()
     query.send_keys("フランス")
