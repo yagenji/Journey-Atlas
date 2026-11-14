@@ -14,6 +14,13 @@
       "url": "https://www.soest.hawaii.edu/pwessel/gshhg/",
       "detail": "海岸線・島・湖、周辺の国境（Basemap 2.0.0 に同梱のデータを使用）。"
     },
+    "deep-nf": {
+      "label": "DEEP Norfolk Island GeoJSON",
+      "license": "AGPL-3.0（リポジトリ）",
+      "licenseUrl": "https://github.com/eoglethorpe/deep/blob/master/LICENSE",
+      "url": "https://github.com/eoglethorpe/deep/blob/master/static/files/countries/Norfolk%20Island.NFK.NF.geo.json",
+      "detail": "ネピアン島の簡略海岸線ポリゴン。元データの個別ライセンス表記は未確認。"
+    },
     "noaa": {
       "label": "NOAA",
       "license": "パブリックドメイン",
@@ -902,6 +909,10 @@
     ]
   },
   "regions": {
+    "australia/norfolk-island": [
+      "gshhg",
+      "deep-nf"
+    ],
     "denmark/faroe-islands": [
       "naturalearth",
       "gshhg"
@@ -955,9 +966,6 @@
     "netherlands/sint-maarten": [
       "osm",
       "nl-treaty-2023"
-    ],
-    "norway/svalbard": [
-      "gshhg"
     ],
     "portugal/azores": [
       "naturalearth",
@@ -1023,6 +1031,9 @@
     ],
     "unitedstates/puerto-rico": [
       "naturalearth",
+      "gshhg"
+    ],
+    "norway/svalbard": [
       "gshhg"
     ]
   }
