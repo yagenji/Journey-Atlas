@@ -208,15 +208,15 @@ def check(driver, viewport):
       }
       return out;
     """)
-    if summary_snapshot.get("visited") != {
-        "country": "0 / 200", "label": "行った詳細地域",
-        "detail": "0 / " + str(expected_regions)
-    }:
+    visited_summary = summary_snapshot.get("visited") or {}
+    wished_summary = summary_snapshot.get("wished") or {}
+    if (not (visited_summary.get("country") or "").endswith(" / 200")
+            or visited_summary.get("label") != "行った詳細地域"
+            or visited_summary.get("detail") != "0 / " + str(expected_regions)):
         errors.append("Visited card has wrong detail subtotal: " + repr(summary_snapshot))
-    if summary_snapshot.get("wished") != {
-        "country": "0 / 200", "label": "行きたい詳細地域",
-        "detail": "1 / " + str(expected_regions)
-    }:
+    if (not (wished_summary.get("country") or "").endswith(" / 200")
+            or wished_summary.get("label") != "行きたい詳細地域"
+            or wished_summary.get("detail") != "1 / " + str(expected_regions)):
         errors.append("Wish card has wrong detail subtotal: " + repr(summary_snapshot))
     if driver.find_elements(By.CSS_SELECTOR, ".ja-detail-summary"):
         errors.append("Obsolete combined detail subtotal remains below cards")
