@@ -141,6 +141,11 @@ jobs:
               }
               for path in files
           )
+          # The scenery recommender is shared by every Country and Region.
+          # Check all routes when it changes, even if a Region template change
+          # would otherwise narrow the QA target list to Region parents.
+          if "assets/js/similar-scenes.js" in files:
+              slugs.clear()
           run = bool(slugs or shared or top_changed)
           with open(output, "a", encoding="utf-8") as handle:
               handle.write("slugs=" + ",".join(sorted(slugs)) + "\n")
