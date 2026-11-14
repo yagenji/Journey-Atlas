@@ -77,7 +77,7 @@
       "south": 17.55,
       "north": 18.53
     },
-    "source": "GSHHS intermediate (i) coastline, Basemap 2.0.0, Paul Wessel / Walter H. F. Smith, LGPL; WGS84 local-equirectangular-fit-v1 (1200×760). Major three islands preserved at true relative positions. Buck Island (St Croix) and some small offshore contours not resolved at this coastline resolution; map QA remains open."
+    "source": "GSHHS/GSHHG intermediate (i) WGS84 shoreline, distributed via Basemap 2.0.0, Wessel & Smith, LGPL-3.0-or-later, https://www.soest.hawaii.edu/wessel/gshhg/; all contours are actual source geometry, no invented offshore land; British Virgin Islands are shown as context. Tiny Buck Island coastline is unresolved in this resolution and remains the one outstanding map-geometry QA issue. local-equirectangular-fit-v1, 1200×760."
   },
   "scenes": [
     {
@@ -94,7 +94,11 @@
         "square",
         "oldtown"
       ],
-      "sourceKey": "historicSites"
+      "sourceKey": "historicSites",
+      "mapOffset": {
+        "x": -3.5,
+        "y": -4
+      }
     },
     {
       "id": "fort-christian",
@@ -109,7 +113,11 @@
       "sceneTypes": [
         "castle"
       ],
-      "sourceKey": "historicSites"
+      "sourceKey": "historicSites",
+      "mapOffset": {
+        "x": 4,
+        "y": -2
+      }
     },
     {
       "id": "hassel-island",
@@ -125,7 +133,11 @@
         "castle",
         "harbor"
       ],
-      "sourceKey": "fortWilloughby"
+      "sourceKey": "fortWilloughby",
+      "mapOffset": {
+        "x": 0.3,
+        "y": 5
+      }
     },
     {
       "id": "annaberg-plantation",
@@ -140,7 +152,11 @@
       "sceneTypes": [
         "ruins"
       ],
-      "sourceKey": "annaberg"
+      "sourceKey": "annaberg",
+      "mapOffset": {
+        "x": 3,
+        "y": -3
+      }
     },
     {
       "id": "reef-bay-petroglyphs",
@@ -156,7 +172,11 @@
         "rockart",
         "rainforest"
       ],
-      "sourceKey": "reefBay"
+      "sourceKey": "reefBay",
+      "mapOffset": {
+        "x": -3,
+        "y": 2.5
+      }
     },
     {
       "id": "fort-christiansvaern",
@@ -586,7 +606,7 @@
     "transfer": "1917-03-31",
     "hurricane": "Atlantic season: June 1–November 30",
     "transport": "Checked 2026-11-15, schedules change",
-    "map": "GSHHS intermediate resolution; Buck Island geometry unresolved"
+    "map": "GSHHS version 2.3.6 (Basemap 2.0.0), checked 2026-11-15. Buck Island coastline outstanding."
   },
   "sources": {
     "territory": "https://omb.vi.gov/about-us/",
@@ -613,7 +633,7 @@
     "map": "https://www.soest.hawaii.edu/wessel/gshhg/"
   },
   "sourceNotes": {
-    "mapGeometry": "Three principal island outlines derive from actual GSHHS intermediate coastline; some smaller island contours are absent from source and are not fabricated. Buck Island S08 marker uses its geographic coordinate even though the island polygon is not resolved; map QA requires high-resolution shoreline.",
+    "mapGeometry": "Major island outlines, true relative island position, and visible small islets use GSHHS i source coastlines. Buck Island reef island is not resolved at this scale and has no fabricated polygon; its S08 map marker uses the real coordinate. A higher-resolution shoreline check is still necessary for complete Map QA.",
     "imageTransfer": "Exactly 13 approved images are supplied separately by the user, not added in this PR.",
     "publication": "regionPublished:false: remain unpublished and excluded from normal discovery until explicit final approval."
   },
