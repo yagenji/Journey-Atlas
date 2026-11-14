@@ -70,9 +70,13 @@ def include_pager_neighbors(slugs: list[str]) -> list[str]:
     """
     registry = json.loads((ROOT / "data/atlas-destinations.json").read_text(encoding="utf-8"))
     taxonomy = json.loads((ROOT / "data/region-taxonomy.json").read_text(encoding="utf-8"))
+    # The live atlas-order.js excludes China detail pages from the 200-page
+    # Country pager. Match its order so every actual previous/next Hero is packed.
+    detail_slugs = set(registry.get("detailRegionSlugs") or ["hong-kong", "macau"])
     by_iso = {
         item["iso2"]: item for item in registry.get("destinations", [])
         if item.get("atlasPublished") and item.get("href")
+        and item.get("slug") not in detail_slugs
     }
     pages: list[str] = []
     used: set[str] = set()
