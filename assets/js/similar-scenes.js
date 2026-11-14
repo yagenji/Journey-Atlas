@@ -13,7 +13,8 @@
   const LAT_SENSITIVE = new Set([
     'fjord', 'island', 'bay', 'harbor', 'beach', 'lagoon', 'reef', 'cliff',
     'forest', 'rainforest', 'grassland', 'wetland', 'dune', 'oasis',
-    'rock', 'cave', 'lake', 'river', 'birds', 'wildlife', 'marine'
+    'rock', 'cave', 'lake', 'river', 'waterfall', 'birds', 'wildlife', 'marine',
+    'village', 'oldtown', 'colorful'
   ]);
   // Broad labels alone are weaker evidence of visual resemblance.
   const BROAD = new Set([
@@ -92,8 +93,9 @@
             // Compare distance from the equator, not hemisphere. Similar polar
             // landscapes exist at opposite ends of the planet.
             const delta = Math.abs(Math.abs(anchor.latitude) - Math.abs(candidate.latitude));
-            if (delta > 30) continue;
-            geographicBonus = 1.2 * (1 - delta / 30);
+            const maxDelta = BROAD.has(type) ? 24 : 30;
+            if (delta > maxDelta) continue;
+            geographicBonus = 1.2 * (1 - delta / maxDelta);
           } else {
             geographicBonus = -0.6; // Unknown context must not look like a strong match.
           }
@@ -110,16 +112,25 @@
   }
 
   function choose(anchors, pool, family) {
+    // This section describes the *cover scenery*, not an equal-weight tour of
+    // every unrelated landmark in a country. Scenes refine a focus only when
+    // there is direct, visible environmental continuity.
+    const focal = anchors[0]?.types.length ? anchors[0] : anchors.find(item => item.types.length);
+    if (!focal) return [];
+    const polarCoast = Math.abs(focal.latitude ?? 0) >= 50 &&
+      focal.types.some(type => ['fjord', 'island', 'peak', 'cliff'].includes(type));
+    const iceAnchors = polarCoast
+      ? anchors.slice(1).filter(item => item.types[0] === 'glacier')
+      : [];
     const scored = [];
     for (const candidate of pool) {
       if (candidate.family === family) continue;
-      let best = 0;
-      for (let i = 0; i < anchors.length; i++) {
-        if (!anchors[i].types.length) continue;
-        // The Hero is the primary visual promise. The eight Scenes are
-        // supporting evidence, not eight unrelated quotas to satisfy.
-        const weight = i === 0 ? 1 : 0.72;
-        best = Math.max(best, affinity(anchors[i], candidate) * weight);
+      let best = affinity(focal, candidate);
+      // A high-latitude fjord or coast backed by glacier Scenes can also
+      // recommend other glaciers; a city scene cannot send a desert page to
+      // unrelated cities or waterfalls merely to fill six cards.
+      for (const ice of iceAnchors) {
+        best = Math.max(best, affinity(ice, candidate) * 0.72);
       }
       if (best >= MIN_SCORE) scored.push({...candidate, score: best});
     }
