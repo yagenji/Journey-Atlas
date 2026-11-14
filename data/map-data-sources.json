@@ -1,6 +1,13 @@
 {
   "description": "Geographic datasets used to draw the Country maps. countries maps each Country slug to the dataset ids its map is actually drawn from (cross-check-only sources are not listed); the map legend and the map-sources page are generated from this file. regions maps each detail-region page (parent/slug) the same way.",
   "sources": {
+    "abs-wof-cx": {
+      "label": "Australian Bureau of Statistics / Who's On First（クリスマス島）",
+      "license": "CC BY 2.5 AU（ABS）",
+      "licenseUrl": "https://creativecommons.org/licenses/by/2.5/au/",
+      "url": "https://github.com/whosonfirst-data/whosonfirst-data-admin-cx/blob/main/data/856/722/79/85672279.geojson",
+      "detail": "Based on ABS 2011 geography from Who's On First (feature 85672279); shoreline generalized within 12 m. WOF license: https://github.com/whosonfirst-data/whosonfirst-data-admin-cx/blob/main/LICENSE.md"
+    },
     "naturalearth": {
       "label": "Natural Earth",
       "license": "パブリックドメイン",
@@ -916,6 +923,9 @@
     ]
   },
   "regions": {
+    "australia/christmas-island": [
+      "abs-wof-cx"
+    ],
     "australia/norfolk-island": [
       "gshhg",
       "deep-nf"
