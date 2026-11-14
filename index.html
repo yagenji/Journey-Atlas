@@ -79,14 +79,17 @@
       }
     }
     
-    .ja-detail-summary{margin:8px 0 18px;font-size:12px;letter-spacing:.02em;color:#68747d}
+    .ja-summary-detail{display:flex;align-items:baseline;justify-content:space-between;flex-wrap:wrap;gap:4px 12px;margin:12px 0 0;padding-top:10px;border-top:1px solid #e8ebe8}
+    .ja-summary-item .ja-summary-detail__label{font:500 12px/1.6 "Zen Kaku Gothic New",sans-serif;letter-spacing:normal;color:#647178}
+    .ja-summary-item .ja-summary-detail__count{font-size:15px;line-height:1.6;font-weight:600;color:#244764}
+    @media(max-width:420px){.ja-summary-item .ja-summary-detail__label{font-size:10px}.ja-summary-item .ja-summary-detail__count{font-size:13px}}
   </style>
   <script src="assets/js/atlas-order.js?v=20261029-1" defer></script>
-  <script src="assets/js/top.js?v=20261114-country-scope-1" defer></script>
+  <script src="assets/js/top.js?v=20261114-country-label-2" defer></script>
   <script src="assets/js/scene-view.js?v=20261109-1" defer></script>
-  <script src="assets/js/map-regions.js?v=20261114-country-scope-1" defer></script>
+  <script src="assets/js/map-regions.js?v=20261114-country-label-2" defer></script>
   <script src="assets/js/header-scroll.js?v=20260826-2241" defer></script>
-  <script src="assets/js/atlas-personal.js?v=20261114-scope-counts-1" defer></script>
+  <script src="assets/js/atlas-personal.js?v=20261114-detail-summary-2" defer></script>
   <script src="assets/js/atlas-map-share.js?v=20261107-map-modes-1" defer></script>
   <script src="assets/js/atlas-my-map.js?v=20261107-map-counts-2" defer></script>
 </head>
@@ -142,7 +145,7 @@
     </section>
 
     <section class="explore shell" id="explore" aria-label="世界の探し方">
-      <a class="explore-card explore-card--country" href="#countries"><div class="explore-card__art explore-card__art--symbol" aria-hidden="true"><svg viewBox="0 0 64 64" focusable="false"><circle cx="32" cy="32" r="22"/><ellipse cx="32" cy="32" rx="10" ry="22"/><path d="M10 32h44M14 20h36M14 44h36"/></svg></div><div class="explore-card__copy"><div><span class="explore-card__kicker">EXPLORE BY COUNTRY</span><h2>国から探す</h2><p>基本の200の国・地域から、次の旅先を見つける</p></div><b>›</b></div></a>
+      <a class="explore-card explore-card--country" href="#countries"><div class="explore-card__art explore-card__art--symbol" aria-hidden="true"><svg viewBox="0 0 64 64" focusable="false"><circle cx="32" cy="32" r="22"/><ellipse cx="32" cy="32" rx="10" ry="22"/><path d="M10 32h44M14 20h36M14 44h36"/></svg></div><div class="explore-card__copy"><div><span class="explore-card__kicker">EXPLORE BY COUNTRY</span><h2>国から探す</h2><p>200の国・地域から、次の旅先を見つける</p></div><b>›</b></div></a>
       <a class="explore-card explore-card--map" href="#map"><div class="explore-card__art explore-card__art--symbol" aria-hidden="true"><svg viewBox="0 0 64 64" focusable="false"><path d="m9 15 15-5 16 6 15-5v38l-15 5-16-6-15 5zM24 10v38M40 16v38"/></svg></div><div class="explore-card__copy"><div><span class="explore-card__kicker">EXPLORE BY MAP</span><h2>地図から探す</h2><p>世界地図から、気になる国を見つけよう</p></div><b>›</b></div></a>
       <a class="explore-card explore-card--theme" href="#themes"><div class="explore-card__art explore-card__art--symbol" aria-hidden="true"><svg viewBox="0 0 64 64" focusable="false"><circle cx="32" cy="32" r="22"/><path d="m42 22-6 14-14 6 6-14z"/></svg></div><div class="explore-card__copy"><div><span class="explore-card__kicker">EXPLORE BY THEME</span><h2>テーマから探す</h2><p>行きたい理由から、世界を選ぶ</p></div><b>›</b></div></a>
       <a class="explore-card explore-card--season" href="#seasons"><div class="explore-card__art explore-card__art--symbol" aria-hidden="true"><svg viewBox="0 0 64 64" focusable="false"><rect x="11" y="14" width="42" height="40" rx="5"/><path d="M21 9v10M43 9v10M11 26h42M22 36h1M32 36h1M42 36h1M22 45h1M32 45h1"/></svg></div><div class="explore-card__copy"><div><span class="explore-card__kicker">EXPLORE BY SEASON</span><h2>季節から探す</h2><p>旅に出る月から、いま行きたい国を選ぶ</p></div><b>›</b></div></a>
@@ -161,7 +164,7 @@
       </div>
       <div class="rail-wrap">
         <button class="rail-arrow rail-arrow--prev" type="button" data-country-scroll="prev" aria-label="前の国を見る">‹</button>
-        <div class="country-rail" id="country-rail" aria-label="基本の200の国・地域"></div>
+        <div class="country-rail" id="country-rail" aria-label="200の国・地域"></div>
         <button class="rail-arrow rail-arrow--next" type="button" data-country-scroll="next" aria-label="次の国を見る">›</button>
       </div>
       <div class="rail-meta"><div class="rail-dots" aria-hidden="true"><i class="is-active"></i><i></i><i></i><i></i><i></i><i></i><i></i></div><span id="country-count">200 COUNTRY PAGES</span></div>
@@ -207,7 +210,7 @@
             <span class="map-region-kicker" id="map-region-kicker">WORLD</span>
             <h3 id="map-region-title">世界</h3>
             <p id="map-region-copy">大地域を選んでください。</p>
-            <span class="map-region-count" id="map-region-count">200 基本の国・地域</span>
+            <span class="map-region-count" id="map-region-count">200の国・地域</span>
             <div class="map-region-list" id="map-region-list"></div>
             <p class="map-country-status" id="map-country-status"></p>
           </aside>
@@ -316,7 +319,7 @@
       </div>
       <div class="about-note__content">
         <p class="about-note__lead">JOURNEY ATLASは、次に行きたい世界と出会うための旅のビジュアル図鑑です。</p>
-        <p>旅の計画を完成させるための情報サイトではなく、基本の200の国・地域と、その先に広がる詳細地域の景色や文化を知り、「ここへ行ってみたい」と思える場所を見つけるためにつくっています。</p>
+        <p>旅の計画を完成させるための情報サイトではなく、200の国・地域と、その先に広がる詳細地域の景色や文化を知り、「ここへ行ってみたい」と思える場所を見つけるためにつくっています。</p>
         <a class="about-note__link" href="about/">このサイトについて詳しく見る <span>›</span></a>
       </div>
     </section>

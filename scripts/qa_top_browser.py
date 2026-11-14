@@ -191,18 +191,35 @@ def check(driver, viewport):
         "localStorage.setItem('journey-atlas:wish:hong-kong', 'true')"
     )
     driver.refresh()
-    wait.until(lambda d: "行きたい 1" in d.find_element(
-        By.CSS_SELECTOR, ".ja-detail-summary").get_attribute("textContent"))
-    summary_text = driver.find_element(By.CSS_SELECTOR, ".ja-mine-summary").get_attribute("textContent")
-    if "0 / 200" not in summary_text:
-        errors.append("Detail wishlist affected parent 200-count total")
     expected_regions = len(runtime_regions) + 2  # legacy Hong Kong and Macau
-    wait.until(lambda d: " / " + str(expected_regions) in d.find_element(
-        By.CSS_SELECTOR, ".ja-detail-summary").get_attribute("textContent"))
-    detail_summary = driver.execute_script(
-        "return document.querySelector('.ja-detail-summary')?.textContent || ''").strip()
-    if " / " + str(expected_regions) not in detail_summary:
-        errors.append("Detail Region denominator missing: " + detail_summary)
+    wait.until(lambda d: d.execute_script("""
+      const wish = document.querySelector('[data-summary-kind="wished"] .ja-summary-detail__count');
+      return wish && wish.textContent.trim() === '1 / ' + arguments[0];
+    """, str(expected_regions)))
+    summary_snapshot = driver.execute_script("""
+      const out = {};
+      for (const kind of ['visited', 'wished']) {
+        const card = document.querySelector('[data-summary-kind="' + kind + '"]');
+        out[kind] = card ? {
+          country: card.querySelector('strong')?.textContent,
+          label: card.querySelector('.ja-summary-detail__label')?.textContent,
+          detail: card.querySelector('.ja-summary-detail__count')?.textContent
+        } : null;
+      }
+      return out;
+    """)
+    visited_summary = summary_snapshot.get("visited") or {}
+    wished_summary = summary_snapshot.get("wished") or {}
+    if (not (visited_summary.get("country") or "").endswith(" / 200")
+            or visited_summary.get("label") != "行った詳細地域"
+            or visited_summary.get("detail") != "0 / " + str(expected_regions)):
+        errors.append("Visited card has wrong detail subtotal: " + repr(summary_snapshot))
+    if (not (wished_summary.get("country") or "").endswith(" / 200")
+            or wished_summary.get("label") != "行きたい詳細地域"
+            or wished_summary.get("detail") != "1 / " + str(expected_regions)):
+        errors.append("Wish card has wrong detail subtotal: " + repr(summary_snapshot))
+    if driver.find_elements(By.CSS_SELECTOR, ".ja-detail-summary"):
+        errors.append("Obsolete combined detail subtotal remains below cards")
     driver.execute_script(
         "localStorage.removeItem('journey-atlas:wish:hong-kong')"
     )
@@ -215,9 +232,10 @@ def check(driver, viewport):
       );
     """)
     driver.refresh()
-    wait.until(lambda d: d.find_elements(By.CSS_SELECTOR, ".ja-detail-summary"))
-    wait.until(lambda d: "行きたい 1" in d.find_element(
-        By.CSS_SELECTOR, ".ja-detail-summary").get_attribute("textContent"))
+    wait.until(lambda d: d.execute_script("""
+      const wish = document.querySelector('[data-summary-kind="wished"] .ja-summary-detail__count');
+      return wish && wish.textContent.trim() === '1 / ' + arguments[0];
+    """, str(expected_regions)))
     # A Region-only Wish belongs in My Atlas, not the 200-country shortcut.
     driver.execute_script("arguments[0].click()", driver.find_element(By.ID, "wish-link"))
     region_wish_cards = driver.execute_script(
