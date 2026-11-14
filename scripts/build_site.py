@@ -652,6 +652,7 @@ def build_top_scene_index() -> None:
         "curacao": ("🇨🇼", None),
         "sint-maarten": ("🇸🇽", None),
         "puerto-rico": ("🇵🇷", None),
+        "mariana-islands": ("🇺🇸", None),  # Guam and CNMI geographic Region; no shared regional flag.
         "zanzibar": ("🇹🇿", None),  # No Zanzibar subdivision emoji; use the parent Tanzania flag.
         "azores": ("🇵🇹", None),  # No Unicode subdivision flag; Portuguese autonomous region.
         "canary-islands": ("🇮🇨", None),  # Canary Islands regional flag, not the parent Spain flag.
@@ -700,7 +701,7 @@ def build_top_scene_index() -> None:
             region_id = "north-america"
         elif "NORTH AMERICA" in geo or "CARIBBEAN" in geo:
             region_id = "north-america"
-        elif any(term in geo for term in ("SOUTH PACIFIC", "MELANESIA", "POLYNESIA", "OCEANIA", "AUSTRALIA / NEW ZEALAND")):
+        elif any(term in geo for term in ("SOUTH PACIFIC", "MELANESIA", "MICRONESIA", "POLYNESIA", "OCEANIA", "AUSTRALIA / NEW ZEALAND")):
             region_id = "oceania"
         elif "EUROPE" in geo or "NORTH ATLANTIC" in geo:
             region_id = "europe"
