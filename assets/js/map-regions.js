@@ -176,7 +176,7 @@
     kicker.textContent = 'WORLD';
     title.textContent = '世界';
     copy.textContent = `地域を選ぶと、その地域の国・地域が一覧で表示されます。${HOW}`;
-    count.textContent = `${parentDestinations().length || 200} DESTINATIONS`;
+    count.textContent = `${parentDestinations().length || 200} 基本の国・地域`;
     status.textContent = '';
     // World view: the panel lists the regions themselves so it is never an empty dead end.
     list.className = 'map-country-nav map-world-regions';
@@ -196,7 +196,7 @@
     kicker.textContent = s ? `${r.labelEn} / ${s.labelEn}` : r.labelEn;
     title.textContent = s ? s.label : r.label;
     copy.textContent = `${HOW}小さな国や島は、さらに拡大すると国土そのものが見えます。`;
-    count.textContent = `${countries(codes).length} DESTINATIONS`;
+    count.textContent = `${countries(codes).length} 基本の国・地域`;
     status.textContent = p ? `${p.nameJa}を選択中` : '';
     right(codes, p);
     renderSub(r);

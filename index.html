@@ -3,13 +3,13 @@
 <head>
   <meta charset="utf-8">
   <meta name="viewport" content="width=device-width, initial-scale=1">
-  <meta name="description" content="200の旅先をイラストと地図でめぐり、次に行きたい場所を見つけるビジュアル図鑑、JOURNEY ATLAS。">
+  <meta name="description" content="国とその先の地域まで。景色と地図から次に行きたい場所に出会う旅のビジュアル図鑑、JOURNEY ATLAS。">
   <title>JOURNEY ATLAS</title>
   <link rel="canonical" href="https://atlas.yagenji.com/">
   <meta property="og:type" content="website">
   <meta property="og:site_name" content="JOURNEY ATLAS">
   <meta property="og:title" content="JOURNEY ATLAS">
-  <meta property="og:description" content="200の旅先をイラストと地図でめぐり、次に行きたい場所を見つけるビジュアル図鑑、JOURNEY ATLAS。">
+  <meta property="og:description" content="国とその先の地域まで。景色と地図から次に行きたい場所に出会う旅のビジュアル図鑑、JOURNEY ATLAS。">
   <meta property="og:url" content="https://atlas.yagenji.com/">
   <meta property="og:image" content="https://atlas.yagenji.com/assets/images/top/regions/top-asia.webp?v=20261107-og-top-asia-1">
   <meta property="og:image:type" content="image/webp">
@@ -82,11 +82,11 @@
     .ja-detail-summary{margin:8px 0 18px;font-size:12px;letter-spacing:.02em;color:#68747d}
   </style>
   <script src="assets/js/atlas-order.js?v=20261029-1" defer></script>
-  <script src="assets/js/top.js?v=20261110-saved-regions-1" defer></script>
+  <script src="assets/js/top.js?v=20261114-country-scope-1" defer></script>
   <script src="assets/js/scene-view.js?v=20261109-1" defer></script>
-  <script src="assets/js/map-regions.js?v=20261107-all-regions-1" defer></script>
+  <script src="assets/js/map-regions.js?v=20261114-country-scope-1" defer></script>
   <script src="assets/js/header-scroll.js?v=20260826-2241" defer></script>
-  <script src="assets/js/atlas-personal.js?v=20261110-scenery-simplify-1" defer></script>
+  <script src="assets/js/atlas-personal.js?v=20261114-scope-counts-1" defer></script>
   <script src="assets/js/atlas-map-share.js?v=20261107-map-modes-1" defer></script>
   <script src="assets/js/atlas-my-map.js?v=20261107-map-counts-2" defer></script>
 </head>
@@ -119,7 +119,7 @@
       <div class="hero-copy">
         <h1 class="hero-title"><span>次に行きたい世界を、</span><span>見つける。</span></h1>
         <p class="lead">世界には、まだ見ぬ景色がある。<br>見に行くほどに、世界は広くなる。</p>
-        <p class="lead lead-description">心に残る出会い、その土地に息づく文化や人々の暮らし。<br>200の旅先をイラストとともにめぐる、<br>旅のビジュアル図鑑です。</p>
+        <p class="lead lead-description">心に残る風景、その土地に息づく文化や人々の暮らし。<br>国から、その先の地域まで。まだ知らない世界と出会う、<br>旅のビジュアル図鑑です。</p>
       </div>
 
       <div class="hero-visual" id="hero-visual">
@@ -142,7 +142,7 @@
     </section>
 
     <section class="explore shell" id="explore" aria-label="世界の探し方">
-      <a class="explore-card explore-card--country" href="#countries"><div class="explore-card__art explore-card__art--symbol" aria-hidden="true"><svg viewBox="0 0 64 64" focusable="false"><circle cx="32" cy="32" r="22"/><ellipse cx="32" cy="32" rx="10" ry="22"/><path d="M10 32h44M14 20h36M14 44h36"/></svg></div><div class="explore-card__copy"><div><span class="explore-card__kicker">EXPLORE BY COUNTRY</span><h2>国から探す</h2><p>200の旅先から、旅のインスピレーションを得る</p></div><b>›</b></div></a>
+      <a class="explore-card explore-card--country" href="#countries"><div class="explore-card__art explore-card__art--symbol" aria-hidden="true"><svg viewBox="0 0 64 64" focusable="false"><circle cx="32" cy="32" r="22"/><ellipse cx="32" cy="32" rx="10" ry="22"/><path d="M10 32h44M14 20h36M14 44h36"/></svg></div><div class="explore-card__copy"><div><span class="explore-card__kicker">EXPLORE BY COUNTRY</span><h2>国から探す</h2><p>基本の200の国・地域から、次の旅先を見つける</p></div><b>›</b></div></a>
       <a class="explore-card explore-card--map" href="#map"><div class="explore-card__art explore-card__art--symbol" aria-hidden="true"><svg viewBox="0 0 64 64" focusable="false"><path d="m9 15 15-5 16 6 15-5v38l-15 5-16-6-15 5zM24 10v38M40 16v38"/></svg></div><div class="explore-card__copy"><div><span class="explore-card__kicker">EXPLORE BY MAP</span><h2>地図から探す</h2><p>世界地図から、気になる国を見つけよう</p></div><b>›</b></div></a>
       <a class="explore-card explore-card--theme" href="#themes"><div class="explore-card__art explore-card__art--symbol" aria-hidden="true"><svg viewBox="0 0 64 64" focusable="false"><circle cx="32" cy="32" r="22"/><path d="m42 22-6 14-14 6 6-14z"/></svg></div><div class="explore-card__copy"><div><span class="explore-card__kicker">EXPLORE BY THEME</span><h2>テーマから探す</h2><p>行きたい理由から、世界を選ぶ</p></div><b>›</b></div></a>
       <a class="explore-card explore-card--season" href="#seasons"><div class="explore-card__art explore-card__art--symbol" aria-hidden="true"><svg viewBox="0 0 64 64" focusable="false"><rect x="11" y="14" width="42" height="40" rx="5"/><path d="M21 9v10M43 9v10M11 26h42M22 36h1M32 36h1M42 36h1M22 45h1M32 45h1"/></svg></div><div class="explore-card__copy"><div><span class="explore-card__kicker">EXPLORE BY SEASON</span><h2>季節から探す</h2><p>旅に出る月から、いま行きたい国を選ぶ</p></div><b>›</b></div></a>
@@ -151,20 +151,20 @@
 
     <section class="countries shell" id="countries">
       <div class="section-head">
-        <div><span class="section-kicker">EXPLORE BY COUNTRY</span><h2>国から探す</h2><p>世界200の旅先を、イラストで紹介しています。</p></div>
+        <div><span class="section-kicker">EXPLORE BY COUNTRY</span><h2>国から探す</h2><p>世界の基本となる200の国・地域を、イラストで紹介しています。</p></div>
         <div class="country-head-actions">
-          <label class="country-search country-search--head"><span aria-hidden="true">⌕</span><input id="country-search" type="search" placeholder="国名や景色で検索（例：フィヨルド）" autocomplete="off" aria-label="国名や景色の名前で検索" enterkeyhint="search"></label>
-          <button class="all-countries-toggle random-country-toggle" id="random-country" type="button">ランダムに旅先を選ぶ <span>›</span></button>
+          <label class="country-search country-search--head"><span aria-hidden="true">⌕</span><input id="country-search" type="search" placeholder="200の国・地域を検索（例：フィヨルド）" autocomplete="off" aria-label="国名や景色の名前で検索" enterkeyhint="search"></label>
+          <button class="all-countries-toggle random-country-toggle" id="random-country" type="button">ランダムに国・地域を選ぶ <span>›</span></button>
           <button class="all-countries-toggle wish-list-toggle" id="wish-link" type="button">♡ 行ってみたい国 <span>›</span></button>
           <button class="all-countries-toggle" id="all-countries-toggle" type="button" aria-expanded="false" aria-controls="all-countries-panel">索引（A–Z）を見る <span>›</span></button>
         </div>
       </div>
       <div class="rail-wrap">
         <button class="rail-arrow rail-arrow--prev" type="button" data-country-scroll="prev" aria-label="前の国を見る">‹</button>
-        <div class="country-rail" id="country-rail" aria-label="200の旅先"></div>
+        <div class="country-rail" id="country-rail" aria-label="基本の200の国・地域"></div>
         <button class="rail-arrow rail-arrow--next" type="button" data-country-scroll="next" aria-label="次の国を見る">›</button>
       </div>
-      <div class="rail-meta"><div class="rail-dots" aria-hidden="true"><i class="is-active"></i><i></i><i></i><i></i><i></i><i></i><i></i></div><span id="country-count">200 DESTINATIONS</span></div>
+      <div class="rail-meta"><div class="rail-dots" aria-hidden="true"><i class="is-active"></i><i></i><i></i><i></i><i></i><i></i><i></i></div><span id="country-count">200 COUNTRY PAGES</span></div>
       <div class="all-countries-panel" id="all-countries-panel" hidden>
         <div class="all-countries-panel__head"><div><strong id="all-countries-title">索引　すべての国・地域（A–Z）</strong></div><button type="button" class="results-close-head" id="all-countries-close">一覧を閉じる ×</button></div>
         <div class="alphabet" aria-label="英語名の頭文字で絞り込む"><button type="button" data-letter="all" class="is-active">すべて</button><span></span><div id="alphabet-buttons"></div><button type="button" data-letter="#">その他</button></div>
@@ -207,7 +207,7 @@
             <span class="map-region-kicker" id="map-region-kicker">WORLD</span>
             <h3 id="map-region-title">世界</h3>
             <p id="map-region-copy">大地域を選んでください。</p>
-            <span class="map-region-count" id="map-region-count">200 DESTINATIONS</span>
+            <span class="map-region-count" id="map-region-count">200 基本の国・地域</span>
             <div class="map-region-list" id="map-region-list"></div>
             <p class="map-country-status" id="map-country-status"></p>
           </aside>
@@ -316,7 +316,7 @@
       </div>
       <div class="about-note__content">
         <p class="about-note__lead">JOURNEY ATLASは、次に行きたい世界と出会うための旅のビジュアル図鑑です。</p>
-        <p>旅の計画を完成させるための情報サイトではなく、景色と地図からまだ知らない国や地域を知り、「ここへ行ってみたい」と思える場所を見つけるためにつくっています。</p>
+        <p>旅の計画を完成させるための情報サイトではなく、基本の200の国・地域と、その先に広がる詳細地域の景色や文化を知り、「ここへ行ってみたい」と思える場所を見つけるためにつくっています。</p>
         <a class="about-note__link" href="about/">このサイトについて詳しく見る <span>›</span></a>
       </div>
     </section>
