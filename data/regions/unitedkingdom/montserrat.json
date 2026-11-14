@@ -82,7 +82,7 @@
       "north": 16.85
     },
     "singleMapMobile": true,
-    "source": "Island outline: Natural Earth 1:10m Admin-0 (public domain), WGS84; local-equirectangular-fit-v1 / 1200x760. Coastline simplified for this scale, no invented points. Hero + 8 Scene map anchors use documented geographic positions; S08 is the named Soldier Ghaut locality (GeoNames), NOT the petroglyph panel. Do not use map to navigate to the protected rock art. Exclusion Zone V boundary is not represented; check current MVO guidance."
+    "source": "© OpenStreetMap contributors, ODbL 1.0. Montserrat real coastline: OpenStreetMap boundary relation 537257, high-resolution export by hyperknot/country-levels-export (https://github.com/hyperknot/country-levels-export/blob/master/geojson/high/iso1/MS.geojson). Original 97 segments projected to WGS84 local-equirectangular-fit-v1, no invented coastline. Scene 08 map marker is Soldier Ghaut named locality, NOT exact petroglyph panel. Hazard Zone V is not represented; consult current MVO guidance."
   },
   "scenes": [
     {
@@ -134,7 +134,8 @@
       "coordinates": {
         "latitude": 16.81007,
         "longitude": -62.20541
-      }
+      },
+      "mapSurface": "water"
     },
     {
       "id": "runaway-ghaut",
@@ -185,6 +186,11 @@
       "coordinates": {
         "latitude": 16.80199,
         "longitude": -62.20613
+      },
+      "mapSurface": "water",
+      "mapOffset": {
+        "x": 2.5,
+        "y": 0
       }
     },
     {
@@ -202,6 +208,11 @@
       "coordinates": {
         "latitude": 16.79635,
         "longitude": -62.20929
+      },
+      "mapSurface": "water",
+      "mapOffset": {
+        "x": -2.5,
+        "y": 1.4
       }
     },
     {
