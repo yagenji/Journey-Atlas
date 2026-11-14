@@ -46,7 +46,7 @@ const lensCount = document.querySelector('[data-lens-count]');
 const LENS_RSS_URL = 'https://journey.yagenji.com/rss.xml';
 const LENS_LINK_PATTERN = /^https:\/\/journey\.yagenji\.com\/([a-z]+)(\d+)\/$/;
 const ATLAS_TOTAL = 200; // Fixed base Country Page scope; excludes detail Regions.
-const INDEX_TITLE = '索引　基本の200の国・地域（A–Z）';
+const INDEX_TITLE = '索引　200の国・地域（A–Z）';
 
 function syncScrollHeader() {
   const header = document.querySelector('.top-header');
