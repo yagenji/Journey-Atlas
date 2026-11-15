@@ -651,6 +651,7 @@ def build_top_scene_index() -> None:
         "aruba": ("🇦🇼", None),
         "curacao": ("🇨🇼", None),
         "sint-maarten": ("🇸🇽", None),
+        "caribbean-netherlands": ("🇧🇶", None),  # Caribbean Netherlands: Bonaire, Sint Eustatius and Saba (BQ).
         "puerto-rico": ("🇵🇷", None),
         "us-virgin-islands": ("🇻🇮", None),  # U.S. Virgin Islands territory flag.
         "mariana-islands": ("🇺🇸", None),  # Guam and CNMI geographic Region; no shared regional flag.
