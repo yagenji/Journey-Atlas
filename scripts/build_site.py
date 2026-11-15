@@ -674,12 +674,14 @@ def build_top_scene_index() -> None:
         "guernsey": ("🇬🇬", None),  # Guernsey Bailiwick Crown Dependency.
         "isle-of-man": ("🇮🇲", None),
         "bermuda": ("🇧🇲", None),  # British Overseas Territory in the North Atlantic.
+        "anguilla": ("🇦🇮", None),  # British Overseas Territory in the Caribbean.
         "turks-and-caicos-islands": ("🇹🇨", None),  # British Overseas Territory in the Caribbean.
         "british-virgin-islands": ("🇻🇬", None),  # British Overseas Territory in the Caribbean.
         "cayman-islands": ("🇰🇾", None),  # British Overseas Territory in the Caribbean.
         "montserrat": ("🇲🇸", None),  # British Overseas Territory in the Caribbean.
         "falkland-islands": ("🇫🇰", None),  # British Overseas Territory in the South Atlantic.
         "saint-helena": ("🇸🇭", None),  # British Overseas Territory in the South Atlantic; TOP flag.
+        "tristan-da-cunha": ("🇬🇧", None),  # Constituent island group of the UK Overseas Territory; no Unicode Tristan flag.
         "saint-pierre-and-miquelon": ("🇵🇲", None),  # French overseas collectivity in the North Atlantic.
         "svalbard": ("🇳🇴", None),  # Svalbard is part of Norway; it has no separate official flag.
         "christmas-island": ("🇨🇽", None),  # Australian external territory, ISO 3166-1 CX.
