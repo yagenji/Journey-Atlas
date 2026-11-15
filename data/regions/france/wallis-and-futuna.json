@@ -1,0 +1,717 @@
+{
+  "schemaVersion": 1,
+  "contentQaVersion": 6,
+  "parentSlug": "france",
+  "slug": "wallis-and-futuna",
+  "regionPublished": true,
+  "nameEn": "WALLIS AND FUTUNA",
+  "nameJa": "ウォリス・フツナ",
+  "region": "POLYNESIA / 14°S",
+  "parentNameJa": "フランス",
+  "parentNameEn": "FRANCE",
+  "parentReturnDescription": "フランスの8つの景色を見る",
+  "seo": {
+    "description": "ウォリスの火口湖と礁湖、フツナの険しい山、アロフィの海岸。三つの伝統王国と海の暮らしを、8つの実景と4つの味でたどる。"
+  },
+  "hero": {
+    "name": "ラロラロ湖",
+    "location": "Lac Lalolalo / Wallis (ʻUvea)",
+    "image": "assets/images/france/wallis-and-futuna/approved/hero-lac-lalolalo.webp",
+    "coordinates": {
+      "latitude": -13.3,
+      "longitude": -176.23389
+    },
+    "lead": "浅い礁湖に抱かれたウォリスと、切り立つ緑のフツナ、森をまとうアロフィ。離れた島々に、海の暮らしと三つの伝統王国の文化が重なる。",
+    "description": "ウォリス島の火山活動の痕跡を残す火口湖。整備された展望台から、急な崖に包まれた深い緑の湖面を望む。",
+    "sourceKeys": [
+      "tourismWallis",
+      "lalolalo"
+    ],
+    "sceneTypes": [
+      "lake",
+      "forest"
+    ]
+  },
+  "profile": [
+    {
+      "label": "首府",
+      "value": "マタウトゥ（Mata-Utu）",
+      "sourceKey": "institutions"
+    },
+    {
+      "label": "人口",
+      "value": "11,151人（2023年国勢調査・常住人口）",
+      "sourceKey": "population"
+    },
+    {
+      "label": "面積",
+      "value": "約142km²（日本の約0.04%）",
+      "sourceKey": "area"
+    },
+    {
+      "label": "言語",
+      "value": "フランス語（公用語）、ウォリス語・フツナ語",
+      "sourceKey": "institutions"
+    },
+    {
+      "label": "主な宗教",
+      "value": "キリスト教（カトリックが中心）",
+      "sourceKey": "churches"
+    },
+    {
+      "label": "通貨",
+      "value": "CFPフラン（XPF）",
+      "sourceKey": "travel"
+    }
+  ],
+  "historyContext": {
+    "text": "ウォリス・フツナはフランス共和国の海外自治体（collectivité d’outre-mer）で、独立国家ではない。1961年にフランスの海外領土となり、2003年から現在の海外自治体の地位にある。伝統的なウヴェア（ウォリス）、アロ、シガヴ（フツナ）の三王国を基礎とする行政区が設けられ、各王はその区の評議会を主宰する。一方、フランス政府の代表である上級行政官が国家権限を担い、選挙で選ばれる領土議会が地域の意思決定に関わる。",
+    "sourceKeys": [
+      "institutions",
+      "authority"
+    ]
+  },
+  "capital": {
+    "nameJa": "マタウトゥ",
+    "labelJa": "首府",
+    "coordinates": {
+      "latitude": -13.2818,
+      "longitude": -176.1734
+    },
+    "labelPosition": "right",
+    "sourceKey": "institutions"
+  },
+  "map": {
+    "svg": "assets/images/france/wallis-and-futuna/map-wallis-and-futuna.svg",
+    "bounds": {
+      "west": -178.28,
+      "south": -14.43,
+      "east": -176.08,
+      "north": -13.14
+    },
+    "source": "Cartography: WGS84. ʻUvea/Wallis mainland and 14 real offshore islet shorelines: Who’s On First region 85680901 (Mapzen-derived and Quattroshapes alternative geometry; attribution/license https://github.com/whosonfirst-data/whosonfirst-data-admin-wf/blob/master/LICENSE.md); Futuna and Alofi: Natural Earth 1:10m v5.1.2, public domain. Geographic coordinates and separate island-group insets preserved with uniform scales per inset. Lagoon waters are shown as water; no unverified coral reef boundary has been invented.",
+    "insetNote": "※ ウォリス諸島とフツナ・アロフィ諸島は、実際の位置関係・縮尺と異なる別枠表示です。",
+    "regions": [
+      {
+        "id": "futuna-alofi",
+        "label": "Futuna / Alofi",
+        "svgId": "wf-futuna-detail",
+        "rect": {
+          "x": 45,
+          "y": 200,
+          "width": 535,
+          "height": 520
+        },
+        "sourceRect": {
+          "x": 35,
+          "y": 610,
+          "width": 155,
+          "height": 135
+        },
+        "sceneIds": [
+          "poi-basilica",
+          "mont-puke",
+          "alofitai",
+          "leava-harbour"
+        ]
+      },
+      {
+        "id": "wallis",
+        "label": "Wallis / ʻUvea",
+        "svgId": "wf-wallis-detail",
+        "rect": {
+          "x": 620,
+          "y": 190,
+          "width": 535,
+          "height": 530
+        },
+        "sourceRect": {
+          "x": 1080,
+          "y": 35,
+          "width": 116,
+          "height": 125
+        },
+        "sceneIds": [
+          "talietumu",
+          "mata-utu-cathedral",
+          "sainte-bernadette",
+          "faioa"
+        ]
+      }
+    ]
+  },
+  "scenes": [
+    {
+      "id": "talietumu",
+      "name": "タリエトゥム",
+      "nameLocal": "Talietumu / Kolonui",
+      "mapLabel": "Talietumu",
+      "description": "15世紀のトンガ系勢力が築いた石造の囲郭。草地の中に低い玄武岩の石壁と高い基壇が残り、海を渡った支配の歴史を伝える。",
+      "coordinates": {
+        "latitude": -13.33681,
+        "longitude": -176.20897
+      },
+      "image": "assets/images/france/wallis-and-futuna/approved/scene-01-talietumu.webp",
+      "sceneTypes": [
+        "ruins",
+        "monument"
+      ],
+      "sourceKey": "tourismWallis"
+    },
+    {
+      "id": "mata-utu-cathedral",
+      "name": "マタウトゥ大聖堂",
+      "nameLocal": "Cathédrale Notre-Dame-de-l’Assomption",
+      "mapLabel": "Mata-Utu Cathedral",
+      "description": "青黒い火山石を積んだ壁、左右の四角い塔、正面の十字架。首府の海辺で、王国の歴史とカトリック信仰が重なる。",
+      "coordinates": {
+        "latitude": -13.28283,
+        "longitude": -176.17339
+      },
+      "image": "assets/images/france/wallis-and-futuna/approved/scene-02-mata-utu-cathedral.webp",
+      "sceneTypes": [
+        "church",
+        "monument"
+      ],
+      "sourceKey": "churches"
+    },
+    {
+      "id": "sainte-bernadette",
+      "name": "サント＝ベルナデット礼拝堂",
+      "nameLocal": "Chapelle Sainte-Bernadette / Lausikula",
+      "mapLabel": "Sainte-Bernadette",
+      "description": "海岸の崖を背負うラウシクラの礼拝堂。洞窟の祈りの場を起点に、2014年に現在の建物が祝別された。",
+      "coordinates": {
+        "latitude": -13.31444,
+        "longitude": -176.24417
+      },
+      "image": "assets/images/france/wallis-and-futuna/approved/scene-03-sainte-bernadette.webp",
+      "sceneTypes": [
+        "church",
+        "cliff"
+      ],
+      "sourceKey": "churches"
+    },
+    {
+      "id": "faioa",
+      "name": "ファイオア小島",
+      "nameLocal": "Îlot Faioa / Lagon de Wallis",
+      "mapLabel": "Faioa",
+      "description": "ウォリス南側の珊瑚礁に囲まれた浅い海。小島の白砂と海岸林、透き通る水の色が近い距離で変わる。",
+      "coordinates": {
+        "latitude": -13.37768,
+        "longitude": -176.17041
+      },
+      "image": "assets/images/france/wallis-and-futuna/approved/scene-04-faioa.webp",
+      "sceneTypes": [
+        "lagoon",
+        "island"
+      ],
+      "sourceKey": "tourismWallis",
+      "mapSurface": "land"
+    },
+    {
+      "id": "poi-basilica",
+      "name": "ポイの聖堂",
+      "nameLocal": "Basilique Saint-Pierre-Chanel de Poï / Futuna",
+      "mapLabel": "Basilique de Poï",
+      "description": "フツナ島の緑の山腹を背に立つ白い聖堂。聖ピエール・シャネルの記憶と巡礼の信仰がこの地に集まる。",
+      "coordinates": {
+        "latitude": -14.29541,
+        "longitude": -178.09248
+      },
+      "image": "assets/images/france/wallis-and-futuna/approved/scene-05-poi-basilica.webp",
+      "sceneTypes": [
+        "church",
+        "monument"
+      ],
+      "sourceKey": "churches"
+    },
+    {
+      "id": "mont-puke",
+      "name": "プケ山",
+      "nameLocal": "Mont Puke / Futuna",
+      "mapLabel": "Mont Puke",
+      "description": "フツナの険しい中央稜線。熱帯の緑が山の斜面を覆い、尾根の先で外洋へ落ち込む海岸地形を見渡す。",
+      "coordinates": {
+        "latitude": -14.26997,
+        "longitude": -178.13886
+      },
+      "image": "assets/images/france/wallis-and-futuna/approved/scene-06-mont-puke.webp",
+      "sceneTypes": [
+        "peak",
+        "rainforest"
+      ],
+      "sourceKey": "tourismFutuna"
+    },
+    {
+      "id": "alofitai",
+      "name": "アロフィタイの海岸",
+      "nameLocal": "Alofitai / Alofi",
+      "mapLabel": "Alofitai",
+      "description": "アロフィ島北岸の静かな海辺。海岸林と砂浜の先に、狭い水道を隔ててフツナの山並みが続く。",
+      "coordinates": {
+        "latitude": -14.33306,
+        "longitude": -178.06722
+      },
+      "image": "assets/images/france/wallis-and-futuna/approved/scene-07-alofitai.webp",
+      "sceneTypes": [
+        "beach",
+        "forest"
+      ],
+      "sourceKey": "alofiCoastSurvey"
+    },
+    {
+      "id": "leava-harbour",
+      "name": "レアヴァの港",
+      "nameLocal": "Leava Harbour / Sigave, Futuna",
+      "mapLabel": "Leava",
+      "description": "フツナ西側の小さな港。岸壁と海沿いの家々のすぐ背後に山が立ち上がり、礁湖に囲まれたウォリスとは違う海岸の暮らしが見える。",
+      "coordinates": {
+        "latitude": -14.2961,
+        "longitude": -178.1585
+      },
+      "image": "assets/images/france/wallis-and-futuna/approved/scene-08-leava-harbour.webp",
+      "sceneTypes": [
+        "harbor",
+        "village"
+      ],
+      "sourceKey": "tourismFutuna"
+    }
+  ],
+  "taste": {
+    "title": "ウォリス・フツナで食べたいもの",
+    "kicker": "TASTE OF WALLIS AND FUTUNA",
+    "intro": "地中窯の火で蒸した肉、海の魚とココナッツミルク、根菜と果実の甘味。島の食卓に、火山石と海と森の恵みが並ぶ。",
+    "items": [
+      {
+        "id": "umu-roast-pork",
+        "name": "ウムで調理した豚肉",
+        "nameLocal": "Umu-style Roast Pork",
+        "text": "熱した火山石を敷く地中窯で、葉に包んで蒸し上げる豚肉。祝いの席にも登場する伝統的な調理法。",
+        "image": "assets/images/france/wallis-and-futuna/approved/food-01-umu-roast-pork.webp",
+        "sourceKey": "flavors"
+      },
+      {
+        "id": "raw-fish-coconut-milk",
+        "name": "魚のココナッツミルク和え",
+        "nameLocal": "Raw Fish with Coconut Milk",
+        "text": "新鮮な生魚をライムやココナッツミルクで和える。家庭ごとに野菜の組み合わせも変わる。",
+        "image": "assets/images/france/wallis-and-futuna/approved/food-02-raw-fish-coconut-milk.webp",
+        "sourceKey": "flavors"
+      },
+      {
+        "id": "faikai-malaulau",
+        "name": "ファイカイ",
+        "nameLocal": "Faikai (Malaulau)",
+        "text": "キャッサバやタロイモの粉と砂糖を使う甘味。もっちりした生地を甘い蜜とともに味わう。",
+        "image": "assets/images/france/wallis-and-futuna/approved/food-03-faikai-malaulau.webp",
+        "sourceKey": "flavors"
+      },
+      {
+        "id": "sofesofe",
+        "name": "ソフェソフェ",
+        "nameLocal": "Sofesofe",
+        "text": "バナナやパパイヤにココナッツミルクを合わせる、素朴な果実の甘味。",
+        "image": "assets/images/france/wallis-and-futuna/approved/food-04-sofesofe.webp",
+        "sourceKey": "flavors"
+      }
+    ]
+  },
+  "signatureFacts": [
+    {
+      "topicKey": "island-separation",
+      "label": "島嶼群を隔てる海",
+      "value": "約230km",
+      "note": "ウォリス島とフツナ・アロフィ島群は、同じ自治体でも海を挟んで大きく離れる。",
+      "interestReason": "ひと続きの島ではなく、異なる地形と暮らしを持つ二つの島嶼群だと理解できる。",
+      "sourceKey": "tourismFutuna",
+      "icon": "sea"
+    },
+    {
+      "topicKey": "futuna-summit",
+      "label": "フツナの最高地点",
+      "value": "524m",
+      "note": "プケ山は海から急に盛り上がる山岳島フツナの最高峰。海辺との高度差が小さな島を特徴づける。",
+      "interestReason": "礁湖を持つ低いウォリスとの地形の落差が明瞭になる。",
+      "sourceKey": "tourismFutuna",
+      "icon": "landscape"
+    },
+    {
+      "topicKey": "crater-lake-depth",
+      "label": "ラロラロ火口湖の水深",
+      "value": "80m以上",
+      "note": "森に包まれた火口湖は深く、湖面を囲む火口壁も急峻。外洋とはつながっていない。",
+      "interestReason": "穏やかな湖面の下に火山地形の大きな深さが隠れていると分かる。",
+      "sourceKey": "tourismWallis",
+      "icon": "waterfall"
+    }
+  ],
+  "encounters": [
+    {
+      "title": "火口湖の縁を覆う濃い森",
+      "icon": "leaf",
+      "category": "NATURE"
+    },
+    {
+      "title": "ラグーンの小島へ向かうボート",
+      "icon": "sea",
+      "category": "MOVEMENT"
+    },
+    {
+      "title": "草地に続く玄武岩の石積み",
+      "icon": "landmark",
+      "category": "HISTORY"
+    },
+    {
+      "title": "礼拝前後の静かな教会前庭",
+      "icon": "culture",
+      "category": "CULTURE"
+    },
+    {
+      "title": "フツナの山をかすめる雨雲",
+      "icon": "landscape",
+      "category": "LANDSCAPE"
+    },
+    {
+      "title": "レアヴァの小さな港の仕事",
+      "icon": "sea",
+      "category": "WORK"
+    },
+    {
+      "title": "海辺の集落を行き交う人々",
+      "icon": "city",
+      "category": "DAILY_LIFE"
+    },
+    {
+      "title": "祝いの席で分け合う地中窯の食事",
+      "icon": "food",
+      "category": "FOOD"
+    }
+  ],
+  "culture": [
+    {
+      "topicKey": "customary-leadership",
+      "themeEn": "SOCIETY",
+      "themeJa": "社会を知る",
+      "icon": "culture",
+      "title": "三王国の相談の仕組みが、いまも暮らしにある",
+      "text": "各王国の王を中心に、区や村の首長が地域の慣習と共同生活を支える。フランスの行政機関と並んで機能する、島独自の意思決定の形。",
+      "points": [
+        "各王国に独自の慣習的な役職がある",
+        "地域の行事や共同作業には村のまとまりが見える"
+      ],
+      "sourceKey": "institutions"
+    },
+    {
+      "topicKey": "katoaga-ceremonies",
+      "themeEn": "CUSTOM",
+      "themeJa": "祝祭を知る",
+      "icon": "culture",
+      "title": "贈り物を並べ、共同体の節目を祝う",
+      "text": "大きな宗教行事や祝いの日には、カトアガと呼ばれる贈答と分かち合いの儀礼が行われる。食べ物や伝統的な品々が共同体のつながりを表す。",
+      "points": [
+        "ミサのあとに贈答や伝統舞踊が続くことがある",
+        "観光客の参加や撮影には現地の許可を尊重する"
+      ],
+      "sourceKey": "churches"
+    },
+    {
+      "topicKey": "weaving-and-tapa",
+      "themeEn": "ART",
+      "themeJa": "手仕事を知る",
+      "icon": "culture",
+      "title": "植物の繊維から布と暮らしの品をつくる",
+      "text": "タパや編み物は、植物を生かした島の手仕事。模様や技法に、日常の道具と儀礼を結ぶ文化が伝わる。",
+      "points": [
+        "タパは樹皮を加工してつくる伝統的な布",
+        "椰子の葉や植物繊維の編み方も受け継がれる"
+      ],
+      "sourceKey": "authority"
+    },
+    {
+      "topicKey": "pierre-chanel",
+      "themeEn": "FAITH",
+      "themeJa": "信仰をたどる",
+      "icon": "culture",
+      "title": "フツナの巡礼地につながる宣教の記憶",
+      "text": "1837年にフツナへ渡ったマリスト会のピエール・シャネルは1841年に殺害され、のちにオセアニアの最初の殉教聖人として信仰を集めた。ポイの聖堂はその記憶を伝える。",
+      "points": [
+        "フツナの信仰史に深く関わる人物",
+        "巡礼者や地元の礼拝に配慮して訪れたい"
+      ],
+      "sourceKey": "tourismFutuna"
+    },
+    {
+      "topicKey": "lagoon-and-upland",
+      "themeEn": "NATURE",
+      "themeJa": "島の地形",
+      "icon": "leaf",
+      "title": "同じ自治体に、礁湖の島と山岳島がある",
+      "text": "ウォリスの周囲には珊瑚礁と小島が広がる一方、フツナは急な山地が狭い沿岸部へ迫る。地形の違いが、船の出入りや集落の場所を変えている。",
+      "points": [
+        "ウォリスは礁湖と火口湖を併せ持つ",
+        "フツナは外洋に面した急斜面が目立つ"
+      ],
+      "sourceKey": "geography"
+    },
+    {
+      "topicKey": "coastal-custom",
+      "themeEn": "COMMUNITY",
+      "themeJa": "暮らしにふれる",
+      "icon": "culture",
+      "title": "海辺にも村のしきたりがある",
+      "text": "海岸、小島、森の利用には土地の慣習と共同体の決まりが関わることがある。人のいない場所に見えても、訪ねる前に現地で確認する姿勢が大切。",
+      "points": [
+        "私有地や慣習的管理区域に無断で入らない",
+        "地元の案内人の判断を優先する"
+      ],
+      "sourceKey": "authority"
+    }
+  ],
+  "travelTrivia": [
+    {
+      "topicKey": "wallis-settlement",
+      "categoryEn": "VILLAGES",
+      "categoryJa": "村",
+      "title": "ウォリス島には21の村がある",
+      "text": "島は三つの地区に分かれ、計21の村が首長を中心に暮らしを営む。首府もそのひとつの村に位置する。",
+      "sourceKey": "institutions",
+      "icon": "city"
+    },
+    {
+      "topicKey": "futuna-hoorn",
+      "categoryEn": "HISTORY",
+      "categoryJa": "海の名前",
+      "title": "オランダの船が「ホールン諸島」と呼んだ",
+      "text": "1616年に到達したオランダ人航海者は、フツナとアロフィをホールン諸島と名づけた。遠洋航海の歴史が地名に残る。",
+      "sourceKey": "tourismFutuna",
+      "icon": "sea"
+    },
+    {
+      "topicKey": "wallis-church-stone",
+      "categoryEn": "ARCHITECTURE",
+      "categoryJa": "建築",
+      "title": "大聖堂の建設には7年を費やした",
+      "text": "マタウトゥの大聖堂は1952年に建設が始まり、1959年に完成。青黒い火山石の壁が島の自然を映す。",
+      "sourceKey": "churches",
+      "icon": "landmark"
+    },
+    {
+      "topicKey": "alofi-channel",
+      "categoryEn": "GEOGRAPHY",
+      "categoryJa": "島の間",
+      "title": "アロフィとフツナの間は約1.5km",
+      "text": "二つの島は近く見えても狭い海峡を隔てる別の陸地。海況によって渡航の難しさも変わる。",
+      "sourceKey": "tourismFutuna",
+      "icon": "sea"
+    },
+    {
+      "topicKey": "lalolalo-eel",
+      "categoryEn": "NATURE",
+      "categoryJa": "湖の生きもの",
+      "title": "火口湖には特別なウナギの話がある",
+      "text": "現地観光局は、ラロラロ湖の深みにこの湖に固有とされる目の退化したウナギが暮らすと案内する。調査例は限られるため伝承と生物学的確認を区別したい。",
+      "sourceKey": "tourismWallis",
+      "icon": "wildlife"
+    }
+  ],
+  "forWhom": [
+    {
+      "title": "海と山の異なる島景色を知りたい人",
+      "text": "ウォリスの火口湖と礁湖、フツナの山岳地形を見比べながら旅したい人。"
+    },
+    {
+      "title": "ポリネシアの共同体文化に関心がある人",
+      "text": "伝統王国の仕組み、儀礼、教会と村の関係を、静かに学びたい人。"
+    },
+    {
+      "title": "人の少ない島でゆっくり過ごしたい人",
+      "text": "船と小型機の便数を考慮し、自然と暮らしに合わせて予定を組みたい人。"
+    }
+  ],
+  "notes": [
+    {
+      "title": "礼拝と慣習的管理区域を尊重",
+      "text": "教会、王国の行事、海岸や小島には撮影・立入の決まりがある場合がある。訪問前に現地の管理者へ確認する。",
+      "sourceKey": "authority"
+    },
+    {
+      "title": "島間の小型機と宿を早めに確保",
+      "text": "ウォリス〜フツナの航空機は小型で座席数が限られる。運航日・欠航時の振替、島ごとの宿泊先を事前に確認する。",
+      "sourceKey": "travel"
+    },
+    {
+      "title": "火口の崖と山道は無理をしない",
+      "text": "ラロラロ湖の眺望は整備された展望地点から。プケ山の山歩きは降雨・足場・案内人の有無を現地で確かめる。",
+      "sourceKey": "tourismWallis"
+    },
+    {
+      "title": "出入域条件と通貨を事前に確認",
+      "text": "EU域外のフランス海外自治体であり、パスポート・ビザ条件はフランス本土と同一とは限らない。現金や利用可能な決済方法も確認する。",
+      "sourceKey": "travel"
+    }
+  ],
+  "travelScale": {
+    "kicker": "DURATION",
+    "title": "旅の目安日程",
+    "intro": "ウォリスとフツナを一度に巡るなら、島間便の運航に合わせた余裕が必要。以下は予約できる便と海況を前提とする編集上の周遊例。",
+    "items": [
+      {
+        "duration": "3〜4日",
+        "title": "ウォリスを中心に短く巡る",
+        "icon": "city",
+        "text": "例：マタウトゥ → タリエトゥム → ラロラロ湖 → マタウトゥ。ラグーンの小島への船は海況と手配次第で加える。"
+      },
+      {
+        "duration": "6〜8日",
+        "title": "二つの島群を行き来する",
+        "icon": "map",
+        "text": "例：マタウトゥ（ウォリス）→（航空便）フツナ → レアヴァ → ポイ → レアヴァ →（航空便）マタウトゥ。山歩きは天候が許す日に。"
+      },
+      {
+        "duration": "9〜12日",
+        "title": "アロフィを加えて余白を持つ",
+        "icon": "compass",
+        "text": "例：マタウトゥ → フツナ（レアヴァ）→（現地船・海況次第）アロフィ → レアヴァ → マタウトゥ。欠航に備えて帰路の予備日を設ける。"
+      }
+    ]
+  },
+  "bestSeason": {
+    "windows": [
+      {
+        "label": "5〜10月",
+        "months": [
+          5,
+          6,
+          7,
+          8,
+          9,
+          10
+        ],
+        "reason": "貿易風の影響で比較的過ごしやすい日も多い時期。フツナでは通年の降雨に注意し、山と小島への移動は天候次第。"
+      }
+    ]
+  },
+  "seasons": [
+    {
+      "months": "12〜2月",
+      "icon": "weather",
+      "color": "#6b90a5",
+      "text": "暖かく湿度が高い雨季の中心。大雨や熱帯低気圧による航空便・船の影響に注意。"
+    },
+    {
+      "months": "3〜5月",
+      "icon": "leaf",
+      "color": "#73966f",
+      "text": "雨の多い時期から貿易風の季節への移り目。山の雲と海況を確認して行き先を選ぶ。"
+    },
+    {
+      "months": "6〜8月",
+      "icon": "sun",
+      "color": "#92a253",
+      "text": "比較的涼しく過ごしやすい季節。風が強まる日はラグーン外縁や小島への船に影響する。"
+    },
+    {
+      "months": "9〜11月",
+      "icon": "sun",
+      "color": "#b77a49",
+      "text": "暖かな季節へ移る時期。10〜11月は雨量が増える傾向があり、島間の旅程に余白を。"
+    }
+  ],
+  "transport": {
+    "icon": "map",
+    "title": "島間の航空便・現地の車と船",
+    "text": "国際便は主にニューカレドニア方面からウォリスへ。フツナへは座席数の少ない島間航空便を利用する。ウォリスとフツナを結ぶ定期旅客船はなく、島内はレンタカー等、小島へは現地手配の船が基本。",
+    "sourceKey": "travel"
+  },
+  "nextRegion": {
+    "slug": "french-polynesia",
+    "nameJa": "フランス領ポリネシア",
+    "nameEn": "FRENCH POLYNESIA"
+  },
+  "nextRoutes": [
+    {
+      "countryEn": "NEW CALEDONIA",
+      "countryJa": "ニューカレドニア",
+      "path": "Mata-Utu → Nouméa",
+      "description": "ウォリスの国際空路がつながるニューカレドニアへ。島の文化と海の景色を別のフランス太平洋地域で見比べる。運航曜日は出発前に確認。",
+      "flag": "🇳🇨",
+      "travelerRoute": true,
+      "status": "OPEN",
+      "sourceKey": "travel"
+    },
+    {
+      "countryEn": "FRENCH POLYNESIA",
+      "countryJa": "フランス領ポリネシア",
+      "path": "Mata-Utu → Nouméa → Papeete（接続便を確認）",
+      "description": "広い南太平洋のポリネシアへ。直行便を前提にせず、航空接続を確認して組み合わせる文化比較の旅。",
+      "flag": "🇵🇫",
+      "travelerRoute": false,
+      "status": "IDEA",
+      "sourceKey": "travel"
+    }
+  ],
+  "relatedCountries": [
+    {
+      "nameJa": "サモア",
+      "nameEn": "SAMOA",
+      "href": "countries/samoa/",
+      "flag": "🇼🇸",
+      "reason": "ポリネシアの村の暮らしと慣習を比べる。",
+      "affinityType": "CULTURE"
+    },
+    {
+      "nameJa": "トンガ",
+      "nameEn": "TONGA",
+      "href": "countries/tonga/",
+      "flag": "🇹🇴",
+      "reason": "海を越えた歴史と王権文化の接点をたどる。",
+      "affinityType": "HISTORY"
+    },
+    {
+      "nameJa": "フィジー",
+      "nameEn": "FIJI",
+      "href": "countries/fiji/",
+      "flag": "🇫🇯",
+      "reason": "太平洋の島々の食文化と海岸景観を見比べる。",
+      "affinityType": "ISLAND"
+    }
+  ],
+  "travelThemes": [
+    "海の世界へ",
+    "暮らしに出会う",
+    "地球の風景"
+  ],
+  "sourcesVerifiedAt": "2026-11-15",
+  "sources": {
+    "institutions": "https://www.assembleeterritoriale.wf/assemblee/organisation-politique",
+    "authority": "https://www.wallis-et-futuna.gouv.fr/Actions-de-l-Etat/Culture-et-patrimoine",
+    "population": "https://www.insee.fr/fr/statistiques/7756933",
+    "area": "https://data.un.org/legacy/en/iso/wf.html",
+    "status": "https://www.assembleeterritoriale.wf/assemblee/organisation-politique",
+    "tourismWallis": "https://www.wallis-futuna.travel/a-voir-a-faire/itineraires-conseilles/16-itineraires-wallis",
+    "tourismFutuna": "https://www.wallis-futuna.travel/en/discover-our-islands/discover-futuna",
+    "churches": "https://www.wallis-futuna.travel/en/discover-our-islands/churches",
+    "flavors": "https://www.wallis-futuna.travel/en/discover-our-islands/island-savours",
+    "transport": "https://www.wallis-futuna.travel/en/what-to-see-do/transport",
+    "travel": "https://www.wallis-futuna.travel/en/what-to-see-do/useful-information",
+    "mountain": "https://www.wallis-futuna.travel/en/discover-our-islands/discover-futuna",
+    "lalolalo": "https://www.wallis-et-futuna.gouv.fr/Publications/Autres-dossiers-archives/Articles-archives/2018/Wallis-Le-chantier-du-belvedere-de-LALOLALO",
+    "geography": "https://cnes.fr/geoimage/wallis-futuna-iles-de-futuna-alofi-un-petit-archipel-coeur-pacifique-sud",
+    "alofiCoastSurvey": "https://decapoda.nhm.org/pdfs/30457/30457.pdf",
+    "geographyWof": "https://github.com/whosonfirst-data/whosonfirst-data-admin-wf/blob/master/data/856/809/01/85680901.geojson"
+  },
+  "sourceDates": {
+    "population": "2023 census, INSEE published 2024-01-29",
+    "area": "UN Data 2025",
+    "japanArea": "approx. 378,000 km²",
+    "institutions": "assembly verified 2026-11-15",
+    "coastline": "Who’s On First ʻUvea feature 85680901 (15 polygons; 14 motus), checked 2026-11-15; Natural Earth v5.1.2 for Futuna and Alofi",
+    "mountain": "tourism office, checked 2026-11-15",
+    "transport": "tourism office information verified 2026-11-15; live schedules not verified",
+    "climate": "tourism office guidance checked 2026-11-15",
+    "food": "tourism office checked 2026-11-15",
+    "alofiCoastSurvey": "Field survey GPS coordinates 2007-10-11, published CRISP 2008"
+  }
+}
