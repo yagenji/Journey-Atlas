@@ -83,23 +83,23 @@
       "north": 18.65
     },
     "singleMapMobile": true,
-    "source": "Anguilla target land: Natural Earth 1:10m Admin-0 AIA (public domain), https://geojson-maps.kyd.au/countries/10m/AIA.geojson and https://github.com/LonnyGomes/CountryGeoJSONCollection ; includes main island, Sombrero, Scrub, Dog, and Prickly Pear Cays. Sandy Island coastline is omitted at this scale; its center is shown as a geographic marker sourced from OSM coastline way 195370662 (ODbL), https://www.openstreetmap.org/way/195370662 . WGS84; local-equirectangular-fit-v1; 1200x760. Geographic islands are in true relative positions, no artificial shoreline. Mainland inset repeats the same verified public-domain polygon at uniform 2× display scale (not an independently drawn coast).",
+    "source": "OpenStreetMap coastline ways, ODbL 1.0, retrieved 2026-11-15. Mainland: ways 22335558, 1558284973 and 673063895 joined at shared node IDs; offshore islands include ways 195334955 (Prickly Pear East), 195340661 (West), 195370662 (Sandy Island), 22871487 (Dog), 22636920 (Scrub), 25220044 (Sombrero), 24762572 (Scilly Cay), and associated mapped islets. WGS84 local-equirectangular-fit-v1, 1200x760. Full mainland coastline is repeated unchanged at uniform 2x scale in a detail inset. No inferred shoreline. Visible inland water: OpenStreetMap water ways 45202248, 522228932, including Road Salt Pond; same ODbL source.",
     "regions": [
       {
         "id": "anguilla-mainland-detail",
         "label": "アンギラ本島",
         "svgId": "anguilla-mainland-detail",
         "rect": {
-          "x": 610,
-          "y": 95,
-          "width": 550,
-          "height": 340
+          "x": 400,
+          "y": 80,
+          "width": 760,
+          "height": 420
         },
         "sourceRect": {
-          "x": 700,
-          "y": 525,
-          "width": 260,
-          "height": 180
+          "x": 600,
+          "y": 510,
+          "width": 380,
+          "height": 210
         },
         "sceneIds": [
           "big-spring",
@@ -131,8 +131,8 @@
       ],
       "sourceKey": "bigSpring",
       "mapOffset": {
-        "x": -3.6909087,
-        "y": -4.3502024
+        "x": -2.4409087,
+        "y": -5.7975709
       }
     },
     {
@@ -146,13 +146,12 @@
       },
       "image": "assets/images/unitedkingdom/anguilla/approved/scene-02-wallblake-house.webp",
       "sceneTypes": [
-        "palace",
         "monument"
       ],
       "sourceKey": "wallblake",
       "mapOffset": {
-        "x": 4.0570832,
-        "y": 4.2842105
+        "x": 2.9737499,
+        "y": 5.4684211
       }
     },
     {
@@ -171,8 +170,8 @@
       ],
       "sourceKey": "roadBay",
       "mapOffset": {
-        "x": -3.9214114,
-        "y": 4.6541498
+        "x": -4.3380781,
+        "y": 3.8646761
       }
     },
     {
@@ -191,9 +190,10 @@
       ],
       "sourceKey": "littleBay",
       "mapOffset": {
-        "x": -1.5497559,
+        "x": -1.2997559,
         "y": -7.1238866
-      }
+      },
+      "mapSurface": "water"
     },
     {
       "id": "prickly-pear-east",
@@ -227,8 +227,8 @@
       ],
       "sourceKey": "islandHarbour",
       "mapOffset": {
-        "x": 3.9144219,
-        "y": 3.3544534
+        "x": 3.8310885,
+        "y": 4.6702429
       }
     },
     {
@@ -247,8 +247,8 @@
       ],
       "sourceKey": "stMary",
       "mapOffset": {
-        "x": 3.1249523,
-        "y": -5.9010121
+        "x": 3.4582857,
+        "y": -4.9799595
       }
     },
     {
@@ -267,8 +267,8 @@
       ],
       "sourceKey": "crocusHill",
       "mapOffset": {
-        "x": -2.0904079,
-        "y": 3.9032389
+        "x": -4.3404079,
+        "y": 0.7453441
       }
     }
   ],
@@ -310,7 +310,7 @@
     {
       "title": "石灰岩の窪地に残る岩刻画",
       "icon": "history",
-      "category": "HISTORY"
+      "category": "CULTURE"
     },
     {
       "title": "石造と木造が重なる古い家",
@@ -384,19 +384,6 @@
       "sourceKey": "wallblake"
     },
     {
-      "topicKey": "anguilla-revolution",
-      "themeEn": "HISTORY",
-      "themeJa": "自治を知る",
-      "icon": "history",
-      "title": "1967年、島の自治をめぐる意思が表明された",
-      "text": "アンギラ革命は、セントキッツとの連合に対する住民の反発から起こった。独立国家となったのではなく、英国との別の関係を選ぶ歴史につながった。",
-      "points": [
-        "5月30日はアンギラ・デーとして記憶される",
-        "現在の英国海外領土としての位置づけに続く"
-      ],
-      "sourceKey": "localHistory"
-    },
-    {
       "topicKey": "offshore-birds",
       "themeEn": "NATURE",
       "themeJa": "離島の自然",
@@ -419,7 +406,7 @@
         "id": "grilled-crayfish",
         "name": "グリルド・クレイフィッシュ",
         "nameLocal": "Grilled Anguillian Crayfish",
-        "text": "海産のクレイフィッシュを割って焼いた一皿。淡水ザリガニではなく、現地法令ではPanulirus guttatusを指す。",
+        "text": "海産のクレイフィッシュを割って香ばしく焼いた一皿。身の甘さと、焼き目のついた殻の香りを楽しむ。",
         "image": "assets/images/unitedkingdom/anguilla/approved/food-01-grilled-crayfish.webp",
         "sourceKey": "crayfish"
       },
@@ -473,8 +460,8 @@
       "categoryEn": "ARCHITECTURE",
       "categoryJa": "教会",
       "icon": "history",
-      "title": "町の教会は2018年に准大聖堂となった",
-      "text": "ザ・バレーのセント・メアリー教会は、2018年の教会会議でPro-Cathedralの位置づけとなった。",
+      "title": "教会の外に独立した鐘楼が立つ",
+      "text": "セント・メアリーの鐘楼は1928年、教会堂の外に建てられた。石材にはアンギラと沖のスクラブ島の石が使われた。",
       "sourceKey": "stMary"
     },
     {
@@ -492,7 +479,7 @@
       "categoryJa": "離島",
       "icon": "sea",
       "title": "本島の北西には小さなソンブレロ島も",
-      "text": "地図から離れた北西の海上にあるソンブレロ島も、アンギラに属する小さな岩島。",
+      "text": "本島から離れた北西の海上にあるソンブレロ島も、アンギラに属する小さな岩島。",
       "sourceKey": "biodiversity"
     }
   ],
@@ -528,7 +515,7 @@
     },
     {
       "title": "海産物の漁獲規則を確認",
-      "text": "クレイフィッシュは抱卵個体の捕獲などが禁止される。具体的な禁漁期間は現行の規則・公告を現地で確認し、未確認の期間を断定しない。",
+      "text": "クレイフィッシュなどの漁獲には、大きさや抱卵個体の保護に関する規則がある。禁漁や保護の条件は、現地の最新の案内で確認する。",
       "sourceKey": "fisheries"
     }
   ],
@@ -540,20 +527,20 @@
       {
         "duration": "2〜3日",
         "title": "白砂の海と古い港に触れる",
-        "icon": "sea",
-        "text": "Shoal Bay Eastで海岸を歩き、ザ・バレーの歴史建築とSandy Groundの港へ。"
+        "icon": "city",
+        "text": "例：ザ・バレーを拠点に、ショール・ベイ・イーストとサンディ・グラウンドをそれぞれ往復し、ザ・バレーへ戻る。"
       },
       {
         "duration": "4〜5日",
         "title": "先住民遺跡と入り江を加える",
-        "icon": "history",
-        "text": "Island HarbourとBig Spring（要事前確認）、船でLittle Bayへ。海の景色と島の歴史をつなぐ。"
+        "icon": "map",
+        "text": "例：ザ・バレー → アイランド・ハーバー／ビッグ・スプリング（要事前確認）→ ザ・バレー。別日にクロッカス湾から船でリトル・ベイを往復し、同じ拠点へ戻る。"
       },
       {
         "duration": "6日以上",
         "title": "沖の小島へ足を延ばす",
         "icon": "compass",
-        "text": "Prickly Pear Eastへ船で渡る日を確保し、Crocus Hillの眺めや島の集落もゆっくり訪ねる。"
+        "text": "例：ザ・バレーを拠点に本島を巡り、サンディ・グラウンドからプリックリー・ペア・イーストへの往復船旅を加える。海況に備える予備日を設け、ザ・バレーへ戻る。"
       }
     ]
   },
@@ -561,7 +548,14 @@
     "windows": [
       {
         "label": "12〜4月",
-        "reason": "比較的乾燥した時期の海岸散策と島巡りに向く。海風・波・混雑には注意する。"
+        "reason": "比較的乾燥した時期の海岸散策と島巡りに向く。海風・波・混雑には注意する。",
+        "months": [
+          12,
+          1,
+          2,
+          3,
+          4
+        ]
       }
     ]
   },
@@ -607,6 +601,17 @@
   "nextRoutesIntro": "海を越えれば仏領サン・マルタンと蘭領シント・マールテン。両地域はアンギラとは別の行政区域で、船の運航と出入境条件を確認して旅をつなぐ。",
   "nextRoutes": [
     {
+      "countryEn": "SAINT MARTIN",
+      "countryJa": "サン・マルタン",
+      "flag": "🇫🇷",
+      "path": "Blowing Point → Marigot",
+      "description": "ブローイング・ポイントからフェリーで、隣島の仏領サン・マルタンのマリゴへ。港町と海岸を巡る旅につながる。",
+      "href": "countries/france/saint-martin/",
+      "travelerRoute": true,
+      "status": "CHECK_CURRENT_CONDITIONS",
+      "statusNote": "運航と出入境条件は、渡航直前に港湾局の案内で確認する。"
+    },
+    {
       "countryEn": "SINT MAARTEN",
       "countryJa": "シント・マールテン",
       "flag": "🇸🇽",
@@ -641,21 +646,24 @@
       "href": "countries/barbados/",
       "flag": "🇧🇧",
       "reason": "英国カリブ海地域の歴史と海辺の生活をさらに知るなら、バルバドスの町と海岸へ。",
-      "affinityType": "LIFE"
+      "affinityType": "CULTURE"
     }
   ],
   "sourcesVerifiedAt": "2026-11-15",
   "updatedAt": "2026-11-15",
   "sourceDates": {
     "population": "2024-12-31",
-    "area": "UN Statistical Yearbook 2025",
-    "status": "1980 separation; current UK Overseas Territory status checked 2026-11-15",
-    "bigSpring": "600–1200 CE petroglyphs; trust page checked 2026-11-15",
-    "saltPonds": "UK overseas territories biodiversity strategy 2025; revised 2026-01-12",
-    "wallblakeAccess": "2024-09-09 government record describing restrictions since 2017",
-    "fisheries": "R.R.A. F40-1 regulations 2010, government PDF checked 2026-11-15",
-    "map": "Natural Earth 1:10m (AIA), checked 2026-11-15; Sandy Island OSM coastline way 195370662, checked 2026-11-15",
-    "stMary": "2018 Pro-Cathedral designation; parish website checked 2026-11-15"
+    "area": "2025",
+    "status": "2026-11-15",
+    "bigSpring": "2026-11-15",
+    "wallblakeAccess": "2024-09-09",
+    "fisheries": "2010",
+    "map": "2026-11-15",
+    "stMary": "1928",
+    "ukHistory": "2026-11-15",
+    "localHistory": "2026-11-15",
+    "biodiversity": "2026-01-12",
+    "bestSeason": "2026-11-15"
   },
   "sources": {
     "population": "https://statistics.gov.ai/",
@@ -672,7 +680,7 @@
     "littleBay": "https://ivisitanguilla.com/explore-our-island/",
     "pricklyPear": "https://www.keybiodiversityareas.org/en/site/factsheet/21965",
     "islandHarbour": "https://axanationaltrust.com/protected-areas/",
-    "stMary": "https://www.stmarysparishai.com/",
+    "stMary": "https://www.stmarysparishai.com/st-mary-page",
     "crocusHill": "https://anguillafocus.com/executive-council-meets-at-anguillas-old-courthouse-on-crocus-hill/",
     "biodiversity": "https://www.gov.uk/government/publications/uk-overseas-territories-biodiversity-strategy/uk-overseas-territories-biodiversity-strategy",
     "fisheries": "https://www.gov.ai/laws/F040-01-Fisheries%20Protection%20Regulations/docs/F040-01-Fisheries%20Protection%20Regulations_13.pdf",
@@ -683,12 +691,15 @@
     "boatRace": "https://ivisitanguilla.com/explore-our-island/",
     "transport": "https://anguillaports.com/bpft/",
     "weather": "https://rcc.cimh.edu.bb/caribbean-climatology/",
-    "map": "https://geojson-maps.kyd.au/countries/10m/AIA.geojson",
+    "map": "https://www.openstreetmap.org/copyright",
     "osm": "https://www.openstreetmap.org/copyright",
     "fountain": "https://www.aahsanguilla.com/fountain-cavern--big-spring.html",
     "shoalBay": "https://ivisitanguilla.com/explore-our-island/",
     "transportGov": "https://www.gov.ai/service/transportations/transportations-blowing-point-ferry-terminal",
-    "sandyIslandCoastline": "https://www.openstreetmap.org/way/195370662"
+    "sandyIslandCoastline": "https://www.openstreetmap.org/way/195370662",
+    "boatTrips": "https://ivisitanguilla.com/what-is-a-cay/",
+    "pricklyPearCoastline": "https://www.openstreetmap.org/way/195334955",
+    "bestSeason": "https://rcc.cimh.edu.bb/caribbean-climatology/"
   },
   "nextRegion": {
     "slug": "bermuda",
