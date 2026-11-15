@@ -1,6 +1,13 @@
 {
   "description": "Geographic datasets used to draw the Country maps. countries maps each Country slug to the dataset ids its map is actually drawn from (cross-check-only sources are not listed); the map legend and the map-sources page are generated from this file. regions maps each detail-region page (parent/slug) the same way.",
   "sources": {
+    "world-countries-bes": {
+      "label": "World Countries BES / Natural Earth-derived outlines",
+      "license": "ODbL 1.0（配布データ）",
+      "licenseUrl": "https://opendatacommons.org/licenses/odbl/1-0/",
+      "url": "https://github.com/mledoze/countries/blob/master/data/bes.geo.json",
+      "detail": "カリブ・オランダ3島の地理形状（BES GeoJSON）。2026-11-15取得。"
+    },
     "abs-wof-cx": {
       "label": "Australian Bureau of Statistics / Who's On First（クリスマス島）",
       "license": "CC BY 2.5 AU（ABS）",
@@ -111,6 +118,13 @@
       "licenseUrl": "https://creativecommons.org/licenses/by/3.0/igo/",
       "url": "https://www.geoboundaries.org/",
       "detail": "英領ヴァージン諸島と周辺の米領ヴァージン諸島の島の輪郭（2017年 ADM1 simplified）。"
+    },
+    "whosonfirst-wf": {
+      "label": "Who's On First（ウォリス島・小島）",
+      "license": "WOF CC0 / Quattroshapes CC BY",
+      "licenseUrl": "https://github.com/whosonfirst-data/whosonfirst-data-admin-wf/blob/master/LICENSE.md",
+      "url": "https://github.com/whosonfirst-data/whosonfirst-data-admin-wf/blob/master/data/856/809/01/85680901.geojson",
+      "detail": "ʻUvea（feature 85680901）の本島と14小島の海岸線。地図作成時に実座標を投影。元データの制作・ライセンスはリンク先を参照。"
     }
   },
   "countries": {
@@ -923,6 +937,10 @@
     ]
   },
   "regions": {
+    "netherlands/caribbean-netherlands": [
+      "world-countries-bes",
+      "gshhg"
+    ],
     "australia/christmas-island": [
       "abs-wof-cx"
     ],
@@ -1069,6 +1087,10 @@
     ],
     "unitedkingdom/montserrat": [
       "osm"
+    ],
+    "france/wallis-and-futuna": [
+      "naturalearth",
+      "whosonfirst-wf"
     ]
   }
 }
