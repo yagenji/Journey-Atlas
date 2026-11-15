@@ -228,7 +228,9 @@ def region_scene_map_position(scene: dict, index: int, svg: str, map_data: dict)
         if node is None:
             raise ValueError('Inset artwork missing')
         scale = float(node.get('data-scale', 'nan'))
-        if not (math.isfinite(scale) and 1 < scale <= 5):
+        # Remote single islands (e.g. Pitcairn on a 7-degree overview) need a
+        # stronger zoom than coastal details; 40x keeps the check a sanity bound.
+        if not (math.isfinite(scale) and 1 < scale <= 40):
             raise ValueError('Invalid inset magnification')
         sx = 1200 * pos[0] / 100
         sy = 760 * pos[1] / 100

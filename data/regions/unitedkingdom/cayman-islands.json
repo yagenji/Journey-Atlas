@@ -83,7 +83,7 @@
       "north": 19.84
     },
     "singleMapMobile": true,
-    "source": "Natural Earth 1:10m Admin-0 Cayman Islands coastline (public domain; via https://github.com/BenPortner/geojson-atlas, geojson/natural_earth/countries/10m/KY.geojson); WGS84, real relative positions of Grand Cayman, Little Cayman and Cayman Brac; local-equirectangular-fit-v1, 1200x760; verified 2026-11-14."
+    "source": "Target land: GSHHG/GSHHS full-resolution shoreline via Basemap 2.0.0 (Paul Wessel and Walter H. F. Smith; https://www.soest.hawaii.edu/wessel/gshhg/), assigned with Natural Earth 1:10m Admin-0 map subunits ca96624a56bd078437bca8184e78163e5039ad19 (public domain) unit CYM (Cayman Islands); internal land boundaries follow Natural Earth. Surrounding land: the same GSHHG shoreline, drawn to the canvas edge. WGS84; local-equirectangular-fit-v1, 1200x760."
   },
   "scenes": [
     {
@@ -115,7 +115,11 @@
       "sceneTypes": [
         "cave"
       ],
-      "sourceKey": "crystalCaves"
+      "sourceKey": "crystalCaves",
+      "mapOffset": {
+        "x": 3.0,
+        "y": 0.4
+      }
     },
     {
       "id": "qeii-botanic-park",
@@ -131,7 +135,11 @@
         "garden",
         "forest"
       ],
-      "sourceKey": "botanicPark"
+      "sourceKey": "botanicPark",
+      "mapOffset": {
+        "x": 2.6,
+        "y": 5.6
+      }
     },
     {
       "id": "george-town-waterfront",
@@ -147,7 +155,11 @@
         "harbor",
         "square"
       ],
-      "sourceKey": "waterfront"
+      "sourceKey": "waterfront",
+      "mapOffset": {
+        "x": -1.645,
+        "y": 5.665
+      }
     },
     {
       "id": "cayman-brac-bluff",
@@ -163,7 +175,11 @@
         "cliff",
         "rock"
       ],
-      "sourceKey": "bluff"
+      "sourceKey": "bluff",
+      "mapOffset": {
+        "x": 3.042,
+        "y": 0.423
+      }
     },
     {
       "id": "cayman-brac-heritage-house",
@@ -179,7 +195,11 @@
         "village",
         "monument"
       ],
-      "sourceKey": "heritageHouse"
+      "sourceKey": "heritageHouse",
+      "mapOffset": {
+        "x": -1.618,
+        "y": -0.68
+      }
     },
     {
       "id": "booby-pond",
@@ -195,7 +215,11 @@
         "wetland",
         "birds"
       ],
-      "sourceKey": "boobyPond"
+      "sourceKey": "boobyPond",
+      "mapOffset": {
+        "x": -2.519,
+        "y": 1.187
+      }
     },
     {
       "id": "owen-island",
@@ -211,7 +235,11 @@
         "island",
         "lagoon"
       ],
-      "sourceKey": "owenIsland"
+      "sourceKey": "owenIsland",
+      "mapOffset": {
+        "x": 2.571,
+        "y": -0.66
+      }
     }
   ],
   "signatureFacts": [
@@ -615,7 +643,7 @@
     "beachAccess": "https://gov.ky/web/publiclands",
     "heritage": "https://www.museum.ky/",
     "caymanThanksgiving": "https://www.visitcaymanislands.com/pt-br/inspiration/celebrate-cayman-thanksgiving",
-    "coastline": "https://github.com/BenPortner/geojson-atlas/blob/main/geojson/natural_earth/countries/10m/KY.geojson"
+    "coastline": "Natural Earth 1:10m map subunits (public domain): https://github.com/nvkelso/natural-earth-vector ; GSHHG shoreline: https://www.soest.hawaii.edu/wessel/gshhg/"
   },
   "capital": {
     "nameJa": "ジョージタウン",
@@ -627,7 +655,7 @@
     "labelPosition": "right",
     "labelOffset": {
       "x": 0,
-      "y": 0
+      "y": -34
     }
   },
   "travelScale": {

@@ -83,8 +83,55 @@
       "north": 21.30499675
     },
     "singleMapMobile": true,
-    "source": "GSHHG intermediate-resolution WGS84 shoreline via Basemap 2.0.0 (Paul Wessel and Walter H. F. Smith; https://www.soest.hawaii.edu/wessel/gshhg/), area_thresh=0: thirteen real island coastlines from Guam to Maug. Farallon de Pajaros and Farallon de Medinilla are tiny unfilled positional locator symbols only. Southern-detail inset repeats same real polygons at expressly enlarged scale; no fabricated maritime boundary. Checked 2026-11-15.",
-    "insetNote": "※ 南部の島々は、同じ地域を拡大した別枠表示です。"
+    "source": "Target land: GSHHG/GSHHS high-resolution shoreline via Basemap 2.0.0 (Paul Wessel and Walter H. F. Smith; https://www.soest.hawaii.edu/wessel/gshhg/), assigned with Natural Earth 1:10m Admin-0 map subunits ca96624a56bd078437bca8184e78163e5039ad19 (public domain) unit GUM (Guam) and MNP (Northern Mariana Islands); internal land boundaries follow Natural Earth. Surrounding land: the same GSHHG shoreline, drawn to the canvas edge. WGS84; local-equirectangular-fit-v1, 1200x760. Saipan–Tinian and Guam insets: same geometry at uniform scale.",
+    "insetNote": "※ サイパン島・テニアン島とグアムは、同じ地域を拡大した別枠表示です。",
+    "regions": [
+      {
+        "id": "saipan-tinian",
+        "label": "サイパン島・テニアン島",
+        "svgId": "mar-saipan-detail",
+        "rect": {
+          "x": 720,
+          "y": 40,
+          "width": 440,
+          "height": 340
+        },
+        "sourceRect": {
+          "x": 618,
+          "y": 503,
+          "width": 34,
+          "height": 42
+        },
+        "sceneIds": [
+          "bird-island",
+          "the-grotto",
+          "house-of-taga"
+        ]
+      },
+      {
+        "id": "guam",
+        "label": "グアム",
+        "svgId": "mar-guam-detail",
+        "rect": {
+          "x": 720,
+          "y": 410,
+          "width": 440,
+          "height": 320
+        },
+        "sourceRect": {
+          "x": 541,
+          "y": 646,
+          "width": 38,
+          "height": 46
+        },
+        "sceneIds": [
+          "two-lovers-point",
+          "fort-soledad",
+          "gef-pago",
+          "cetti-bay"
+        ]
+      }
+    ]
   },
   "scenes": [
     {
@@ -117,7 +164,11 @@
         "castle",
         "bay"
       ],
-      "sourceKey": "fortSoledad"
+      "sourceKey": "fortSoledad",
+      "mapOffset": {
+        "x": -0.892,
+        "y": 7.396
+      }
     },
     {
       "id": "gef-pago",
@@ -132,7 +183,11 @@
       "sceneTypes": [
         "village"
       ],
-      "sourceKey": "gefPago"
+      "sourceKey": "gefPago",
+      "mapOffset": {
+        "x": 3.712,
+        "y": -2.405
+      }
     },
     {
       "id": "cetti-bay",
@@ -148,7 +203,11 @@
         "bay",
         "highland"
       ],
-      "sourceKey": "cetti"
+      "sourceKey": "cetti",
+      "mapOffset": {
+        "x": -1.811,
+        "y": -7.042
+      }
     },
     {
       "id": "bird-island",
@@ -164,7 +223,11 @@
         "island",
         "cliff"
       ],
-      "sourceKey": "birdIsland"
+      "sourceKey": "birdIsland",
+      "mapOffset": {
+        "x": -4.568,
+        "y": 1.759
+      }
     },
     {
       "id": "the-grotto",
@@ -180,7 +243,11 @@
         "cave",
         "marine"
       ],
-      "sourceKey": "grotto"
+      "sourceKey": "grotto",
+      "mapOffset": {
+        "x": 4.596,
+        "y": -2.033
+      }
     },
     {
       "id": "house-of-taga",

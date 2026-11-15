@@ -82,8 +82,8 @@
       "south": -14.44,
       "north": -14.1
     },
-    "source": "American Samoa target land (Tutuila, Aunuʻu, Ofu, Olosega, Taʻū, Swains Island, two small Tutuila islets): OpenStreetMap admin-level 4 country polygons via hyperknot/country-levels-export, AS high GeoJSON, © OpenStreetMap contributors, ODbL 1.0. Simplified at 0.0025 degrees for 1200×760 display, original coordinates preserved. Rose Atoll is not present in this polygon set: its verified center is plotted as a location dot, not fabricated coastline. Main view is an enlarged regional excerpt with genuine coordinate relationships; geographic overview uses independent true-coordinate WGS84 projection.",
-    "insetNote": "※ 上部の位置関係図ではSwains IslandとRose Atollを含む全域を実際の経緯度で示しています。主図はTutuila〜Taʻūを同一縮尺で拡大しています。"
+    "source": "Target land: GSHHG/GSHHS full-resolution shoreline via Basemap 2.0.0 (Paul Wessel and Walter H. F. Smith; https://www.soest.hawaii.edu/wessel/gshhg/), assigned with Natural Earth 1:10m Admin-0 map subunits ca96624a56bd078437bca8184e78163e5039ad19 (public domain) unit ASM (American Samoa); internal land boundaries follow Natural Earth. Surrounding land: the same GSHHG shoreline, drawn to the canvas edge. WGS84; local-equirectangular-fit-v1, 1200x760. Overview inset: the whole territory including Swains Island and Rose Atoll as points, at a smaller scale.",
+    "insetNote": "※ 全域図（スウェインズ島・ローズ環礁を含む）は、実際の位置関係・縮尺と異なる別枠表示です。"
   },
   "scenes": [
     {
@@ -101,7 +101,11 @@
         "harbor"
       ],
       "sourceKey": "trails",
-      "mapLabel": "Mount ʻAlava"
+      "mapLabel": "Mount ʻAlava",
+      "mapOffset": {
+        "x": -1.895,
+        "y": 0.976
+      }
     },
     {
       "id": "pola-island",
@@ -119,7 +123,11 @@
       ],
       "sourceKey": "geoPola",
       "mapLabel": "Pola Island",
-      "mapSurface": "water"
+      "mapSurface": "water",
+      "mapOffset": {
+        "x": 0.649,
+        "y": -1.177
+      }
     },
     {
       "id": "blunts-point",
@@ -136,7 +144,11 @@
         "harbor"
       ],
       "sourceKey": "blunts",
-      "mapLabel": "Blunts Point"
+      "mapLabel": "Blunts Point",
+      "mapOffset": {
+        "x": 2.014,
+        "y": 1.386
+      }
     },
     {
       "id": "fagatele-bay",
@@ -191,7 +203,11 @@
       "mapLabel": "Ofu Reef",
       "mapCoordinateSourceKey": "usgsOfu",
       "mapCoordinateNote": "Ofu Beach沿岸の代表測点。実際の水中撮影GPSを示すものではない。",
-      "mapSurface": "water"
+      "mapSurface": "water",
+      "mapOffset": {
+        "x": -0.077,
+        "y": 7.629
+      }
     },
     {
       "id": "olosega-village",
@@ -208,7 +224,11 @@
         "peak"
       ],
       "sourceKey": "islands",
-      "mapLabel": "Olosega"
+      "mapLabel": "Olosega",
+      "mapOffset": {
+        "x": 2.642,
+        "y": 0.3
+      }
     },
     {
       "id": "siu-point",
@@ -619,8 +639,8 @@
     "labelPosition": "right",
     "sourceKey": "islands",
     "labelOffset": {
-      "x": 45,
-      "y": 65
+      "x": 0,
+      "y": 34
     }
   },
   "sourcesVerifiedAt": "2026-11-15",
@@ -631,7 +651,7 @@
     "park": "NPS management page updated 2026-07-08",
     "visa": "American Samoa Legal Affairs website checked 2026-11-15; rules subject to change",
     "transport": "2026-11-15: limited services; no fixed flight timetable stated",
-    "map": "2026-11-15: OSM admin level 4 AS high, via country-levels-export, SHA 733a983b56cdc82367358ef2468a8dc6ce2d1510"
+    "map": "Natural Earth 1:10m (ca96624) + GSHHG v2.3.7 shoreline, checked 2026-11-15"
   },
   "sources": {
     "status": "https://www.doi.gov/oia/islands/american-samoa",
@@ -652,7 +672,7 @@
     "visa": "https://legalaffairs.as.gov/visa-entry",
     "permit": "https://legalaffairs.as.gov/usvisa30day",
     "aunuu": "https://americansamoa.noaa.gov/visit/places-to-go.html",
-    "coast": "https://github.com/hyperknot/country-levels-export/blob/master/geojson/high/iso1/AS.geojson",
+    "coast": "Natural Earth 1:10m map subunits (public domain): https://github.com/nvkelso/natural-earth-vector ; GSHHG shoreline: https://www.soest.hawaii.edu/wessel/gshhg/",
     "samoaAirways": "https://www.samoaairways.com/",
     "panikeke": "https://americansamoapocketguide.com/traditional-american-samoan-food-foods-to-try-in-american-samoa",
     "usgsOfu": "https://waterdata.usgs.gov/monitoring-location/USGS-141037169391201/",

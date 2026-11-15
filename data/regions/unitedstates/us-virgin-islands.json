@@ -77,7 +77,7 @@
       "south": 17.55,
       "north": 18.53
     },
-    "source": "Target USVI land including Saint Thomas, Saint John, Saint Croix, Buck Island and Hassel Island: OpenStreetMap admin-level 2 geometry, via hyperknot/country-levels-export VI high GeoJSON (© OpenStreetMap contributors, ODbL 1.0; https://github.com/hyperknot/country-levels-export/blob/master/geojson/high/iso1/VI.geojson; https://www.openstreetmap.org/copyright). All 25 source land polygons are projected from original WGS84 longitude/latitude without invented or relocated coastlines. British Virgin Islands surroundings: GSHHG/GSHHS intermediate (i) coastline from Basemap 2.0.0, Paul Wessel and Walter H. F. Smith, LGPL-3.0-or-later (https://www.soest.hawaii.edu/wessel/gshhg/). local-equirectangular-fit-v1, viewBox 1200×760; display-scale generalization, not survey-grade."
+    "source": "Target land: GSHHG/GSHHS full-resolution shoreline via Basemap 2.0.0 (Paul Wessel and Walter H. F. Smith; https://www.soest.hawaii.edu/wessel/gshhg/), assigned with Natural Earth 1:10m Admin-0 map subunits ca96624a56bd078437bca8184e78163e5039ad19 (public domain) unit VIR (U.S. Virgin Islands); internal land boundaries follow Natural Earth. Surrounding land: the same GSHHG shoreline, drawn to the canvas edge. WGS84; local-equirectangular-fit-v1, 1200x760. The British Virgin Islands and Puerto Rico (Culebra) are context only."
   },
   "scenes": [
     {
@@ -174,8 +174,8 @@
       ],
       "sourceKey": "reefBay",
       "mapOffset": {
-        "x": -3,
-        "y": 2.5
+        "x": 1.04,
+        "y": 2.011
       }
     },
     {
@@ -612,11 +612,11 @@
       "latitude": 18.34054,
       "longitude": -64.92972
     },
-    "labelPosition": "right",
+    "labelPosition": "left",
     "sourceKey": "territory",
     "labelOffset": {
       "x": 0,
-      "y": 0
+      "y": -30
     }
   },
   "travelThemes": [
@@ -632,7 +632,7 @@
     "transfer": "1917-03-31",
     "hurricane": "Atlantic season: June 1–November 30",
     "transport": "Checked 2026-11-15, schedules change",
-    "map": "2026-11-15: OSM-derived country-levels-export VI high 25 polygons, © OpenStreetMap contributors ODbL 1.0; GSHHG i BVI context.",
+    "map": "Natural Earth 1:10m (ca96624) + GSHHG v2.3.7 shoreline, checked 2026-11-15",
     "carnivals": "Recurring seasons verified 2026-11-15; annual exact dates may change"
   },
   "sources": {
@@ -657,7 +657,7 @@
     "air": "https://www.visitusvi.com/airline-information/fly-the-whale/",
     "transport": "https://www.visitusvi.com/travel-information/transportation/",
     "hurricane": "https://www.nhc.noaa.gov/aboutgloss.shtml",
-    "map": "https://github.com/hyperknot/country-levels-export/blob/master/geojson/high/iso1/VI.geojson",
+    "map": "Natural Earth 1:10m map subunits (public domain): https://github.com/nvkelso/natural-earth-vector ; GSHHG shoreline: https://www.soest.hawaii.edu/wessel/gshhg/",
     "buckIslandCoastline": "https://github.com/hokiespurs/buck-island-ortho-map/blob/master/assets/buckbounds.geojson",
     "buckIslandSatellite": "https://science.nasa.gov/earth/earth-observatory/sea-turtle-beaches-eastern-st-croix-36263/",
     "hasselIslandSurvey": "https://www.loc.gov/item/vi0192/",

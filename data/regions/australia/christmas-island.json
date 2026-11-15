@@ -84,7 +84,7 @@
       "north": -10.39
     },
     "singleMapMobile": true,
-    "source": "Christmas Island shoreline: Australian Bureau of Statistics 2011 geography via Who’s On First feature 85672279 (src:geom=ausstat), licensed CC BY 2.5 Australia; simplified only for legibility on a 1200x760 canvas. Geometry source: https://github.com/whosonfirst-data/whosonfirst-data-admin-cx/blob/main/data/856/722/79/85672279.geojson. Coordinates stored independently in Region JSON."
+    "source": "Target land: GSHHG/GSHHS full-resolution shoreline via Basemap 2.0.0 (Paul Wessel and Walter H. F. Smith; https://www.soest.hawaii.edu/wessel/gshhg/), assigned with Natural Earth 1:10m Admin-0 map subunits ca96624a56bd078437bca8184e78163e5039ad19 (public domain) unit CXR (Christmas Island); internal land boundaries follow Natural Earth. Surrounding land: the same GSHHG shoreline, drawn to the canvas edge. WGS84; local-equirectangular-fit-v1, 1200x760."
   },
   "scenes": [
     {
@@ -170,7 +170,11 @@
         "bay"
       ],
       "sourceKey": "flying",
-      "coordinateSourceKey": "flyingCoord"
+      "coordinateSourceKey": "flyingCoord",
+      "mapOffset": {
+        "x": -3.303,
+        "y": -2.166
+      }
     },
     {
       "id": "south-point-railway",
@@ -613,7 +617,7 @@
     "roadAccess": "Parks Australia CRAB board latest observed 2026-11-06 (dynamic; recheck for travel)",
     "margaretUpgrade": "2023-11-03 Parks Australia upgrade announcement",
     "southPointPhoto": "Wikimedia Commons photo dated 2018-08-21",
-    "mapGeometry": "ABS 2011 geography via Who’s On First (2011 coastline; source and license verified 2026-11-15).",
+    "mapGeometry": "Natural Earth 1:10m (ca96624) + GSHHG v2.3.7 shoreline, checked 2026-11-15",
     "japanArea": "2026-07-01: Japan 377,973.68 km² (Geospatial Information Authority of Japan)"
   },
   "sources": {
@@ -653,7 +657,7 @@
     "lilyCoord": "https://www.ga.gov.au/image_cache/GA4102.pdf",
     "geoMap": "https://gadm.org/maps/CXR.html",
     "japanArea": "https://www.gsi.go.jp/KOKUJYOHO/MENCHO-title.htm",
-    "coastline": "https://github.com/whosonfirst-data/whosonfirst-data-admin-cx/blob/main/data/856/722/79/85672279.geojson",
-    "coastlineLicense": "https://whosonfirst.org/docs/sources/list/"
+    "coastline": "Natural Earth 1:10m map subunits (public domain): https://github.com/nvkelso/natural-earth-vector ; GSHHG shoreline: https://www.soest.hawaii.edu/wessel/gshhg/",
+    "coastlineLicense": "Natural Earth 1:10m map subunits (public domain): https://github.com/nvkelso/natural-earth-vector ; GSHHG shoreline: https://www.soest.hawaii.edu/wessel/gshhg/"
   }
 }
