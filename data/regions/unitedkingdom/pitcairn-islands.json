@@ -376,6 +376,32 @@
         "検疫は来訪者も守るべき日常の制度"
       ],
       "sourceKey": "entry"
+    },
+    {
+      "topicKey": "shared-catch",
+      "themeEn": "LIFE",
+      "themeJa": "暮らしを知る",
+      "icon": "sea",
+      "title": "釣った魚を分け合う、小さな島の食卓",
+      "text": "ピトケアンでは漁は観光体験であると同時に、島の暮らしを支える営みでもある。島の観光局は、住民が集まって漁をし、獲れた魚を分け合う習慣を伝えている。",
+      "points": [
+        "共同の漁と魚の分け合いが、島の生活に息づいている",
+        "海は眺める景色であると同時に、日々の食卓につながる"
+      ],
+      "sourceKey": "localFishing"
+    },
+    {
+      "topicKey": "island-artisans",
+      "themeEn": "CULTURE",
+      "themeJa": "文化を知る",
+      "icon": "culture",
+      "title": "木彫りや編みかごが、島の外へ旅をする",
+      "text": "木彫り、編みかご、手づくりの装身具などは、島民が受け継ぐ手仕事。寄港する船の旅行者に紹介されるだけでなく、島のオンラインギャラリーを通じて世界各地にも届けられている。",
+      "points": [
+        "木彫りや編みかごには、島の自然と手仕事が表れる",
+        "遠隔の島から作品を発送する仕組みも暮らしの一部"
+      ],
+      "sourceKey": "islandArtisans"
     }
   ],
   "taste": {
@@ -480,11 +506,6 @@
   ],
   "notes": [
     {
-      "title": "船でしか訪ねられない島",
-      "text": "ピトケアン諸島には空港がない。マングアレヴァからのチャーター補給船と、沖合の船から長艇への乗り換えが基本。航海や上陸は天候・海況次第で中止・変更される。",
-      "sourceKey": "entry"
-    },
-    {
       "title": "短期訪問と長期滞在の違い",
       "text": "14日以内で到着・出発が同一船舶の場合、通常は事前の査証申請を要しないが、2026年の島政府の規則では到着時に短期訪問ビザを申請し、必要な入域・検疫申告を行う。英国FCDOはこれを「14日以内は査証不要」と案内する。性格・健康・保険・経済力等の要件を満たす必要がある。14日を超える場合は出発前に長期訪問ビザの取得が必要。",
       "sourceKey": "immigration"
@@ -500,24 +521,18 @@
       "sourceKey": "vesselGuide2026"
     },
     {
-      "title": "病院への移送と保険",
-      "text": "島の医療施設や薬品には限界がある。重大な病気や負傷では長艇・船舶による移送が必要で、海況によっては数日以上かかりうる。医療・緊急移送を含む十分な保険を備える。",
+      "title": "医療と島内散策の安全",
+      "text": "島の医療施設や薬品には限界がある。重い病気やけがの際は船舶による緊急移送に時間がかかることがあり、医療・移送を含む保険が必要。Down RopeやChristian’s Caveの急で滑りやすい道は島民の案内で歩き、崖や雨後の足場、外洋の波に注意する。",
       "sourceKey": "safety"
     },
     {
-      "title": "島の歩道と海岸の安全",
-      "text": "Down RopeとChristian’s Caveの狭く滑りやすい山道は島民とともに歩く。崖の崩落、雨後の地面、外洋の波に注意する。",
-      "sourceKey": "safety"
-    },
-    {
-      "title": "検疫と食べ物の持込み",
-      "text": "外来種持込み防止のため動植物・種子・土・畜産物の持込みには制限がある。蜂蜜と使用済み養蜂用品の持込みは違法。必ず申告と現地当局の指示に従う。",
-      "sourceKey": "entry"
-    },
-    {
-      "title": "宿泊・支払い・通信",
-      "text": "宿泊はホームステイが中心。日程、食事、通信、支払い方法を事前に受入先へ確認する。島には一般的な携帯電話網がなく、利用可能な接続設備は宿により異なる。",
-      "sourceKey": "tourism"
+      "title": "検疫と滞在の準備",
+      "text": "外来種の持込みを防ぐため、動植物・種子・土・畜産物などに制限があり、蜂蜜と使用済み養蜂用品は持ち込めない。必要な申告を行う。宿泊はホームステイが中心で、食事・支払い方法・通信設備は受入先に事前確認する。",
+      "sourceKey": "entry",
+      "sourceKeys": [
+        "entry",
+        "tourism"
+      ]
     }
   ],
   "travelScale": {
@@ -617,16 +632,24 @@
       "nameEn": "FRANCE",
       "href": "countries/france/",
       "flag": "🇫🇷",
-      "reason": "ピトケアンへの玄関口となるフランス領ポリネシアのマングアレヴァから、南太平洋の多様な海と島へ。",
-      "affinityType": "ROUTE"
+      "reason": "フランス領ポリネシアのマングアレヴァはピトケアンへの海路の玄関口。タヒチとの文化的なつながりもたどれる。",
+      "affinityType": "CULTURE"
     },
     {
-      "nameJa": "イギリス",
-      "nameEn": "UNITED KINGDOM",
-      "href": "countries/unitedkingdom/",
-      "flag": "🇬🇧",
-      "reason": "離れた南太平洋の海外領土が、英国とどのようにつながっているかをたどる。",
+      "nameJa": "オーストラリア",
+      "nameEn": "AUSTRALIA",
+      "href": "countries/australia/",
+      "flag": "🇦🇺",
+      "reason": "1856年にピトケアン島民が集団移住したノーフォーク島は、現在オーストラリアの外部領土。南太平洋で分かれた人々の歴史をたどる。",
       "affinityType": "HISTORY"
+    },
+    {
+      "nameJa": "チリ",
+      "nameEn": "CHILE",
+      "href": "countries/chile/",
+      "flag": "🇨🇱",
+      "reason": "チリ領ラパ・ヌイのモアイが立つ海岸へ。大洋に隔てられたポリネシアの島々が、それぞれに育んだ文化と景色を見比べる。",
+      "affinityType": "CULTURE"
     }
   ],
   "nextRegion": {
@@ -650,7 +673,9 @@
     "vesselGuide2026": "GPI Guide for Visiting Vessels, March 2026 (access checked 2026-11-15)",
     "vesselOrdinance2026": "Immigration Control Amendment Ordinance 2026, made 15 April, effective following publication 27 April 2026",
     "darkSky": "International Dark Sky Sanctuary since March 2019, government environment portal checked 2026-11-15",
-    "postage": "First island postage stamps issued 15 October 1940, Smithsonian National Postal Museum"
+    "postage": "First island postage stamps issued 15 October 1940, Smithsonian National Postal Museum",
+    "localFishing": "島政府観光局『Local Services & Activities』、2026-11-15確認",
+    "islandArtisans": "島政府観光局『Pitcairn Islands Artisans’ Online Success Story』、2026-11-15確認"
   },
   "sources": {
     "status": "https://www.government.pn/",
@@ -686,7 +711,9 @@
     "postage": "https://postalmuseum.si.edu/exhibition/international-philately-oceania-polynesia/pitcairn-islands",
     "geoLand": "https://github.com/LonnyGomes/CountryGeoJSONCollection/blob/master/geojson/PCN.geojson",
     "atollGeomorphology": "https://library.sprep.org/sites/default/files/2_26.pdf",
-    "atollResearch": "https://www.pew.org/-/media/legacy/uploadedfiles/peg/publications/report/pitcairnmarineresearchoutlineplanpdf.pdf"
+    "atollResearch": "https://www.pew.org/-/media/legacy/uploadedfiles/peg/publications/report/pitcairnmarineresearchoutlineplanpdf.pdf",
+    "localFishing": "https://www.visitpitcairn.pn/local-services-activities",
+    "islandArtisans": "https://www.visitpitcairn.pn/the-pitkern-blog/pitcairn-islands-artisans-online-success-story"
   },
   "capital": {
     "nameJa": "アダムズタウン",
