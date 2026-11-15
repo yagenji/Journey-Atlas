@@ -82,11 +82,25 @@
       "north": -23.5
     },
     "singleMapMobile": true,
-    "source": "Natural Earth 1:10m PCN terrestrial land polygons (public domain) via LonnyGomes/CountryGeoJSONCollection, blob SHA 340b548c41034fc971bc10b285818c47b0cf0fee. WGS84 local-equirectangular-fit-v1, 1200x760. All four island land footprints and geographic scene anchors are projected from actual coordinates; coarse shoreline simplification is explicitly disclosed. The outlines of coral reefs and lagoon water at Oeno and Ducie are intentionally not drawn: this is an island-position reference map, not a maritime chart. Source geometry and visible anchors verified 2026-11-15. For higher-resolution reef study see Spencer (1989) Atoll Research Bulletin 321–329 and UN Geospatial Map 3312 Rev. 1 (2017); no derivative contours from these sources are drawn.",
-    "detailMaps": [
+    "source": "Target land: GSHHG/GSHHS full-resolution shoreline via Basemap 2.0.0 (Paul Wessel and Walter H. F. Smith; https://www.soest.hawaii.edu/wessel/gshhg/), assigned with Natural Earth 1:10m Admin-0 map subunits ca96624a56bd078437bca8184e78163e5039ad19 (public domain) unit PCN (Pitcairn Islands); internal land boundaries follow Natural Earth. Surrounding land: the same GSHHG shoreline, drawn to the canvas edge. WGS84; local-equirectangular-fit-v1, 1200x760. Henderson, Oeno and Ducie are drawn at true positions; atoll lagoons filled. Pitcairn inset: same geometry at uniform scale.",
+    "insetNote": "※ ピトケアン島は、同じ地域を拡大した別枠表示です。",
+    "regions": [
       {
-        "label": "Pitcairn島の景色",
-        "svg": "assets/images/unitedkingdom/pitcairn-islands/map-pitcairn-islands-detail.svg",
+        "id": "pitcairn",
+        "label": "ピトケアン島",
+        "svgId": "pcn-pitcairn-detail",
+        "rect": {
+          "x": 620,
+          "y": 450,
+          "width": 540,
+          "height": 280
+        },
+        "sourceRect": {
+          "x": 203.5,
+          "y": 480.5,
+          "width": 13,
+          "height": 7.5
+        },
         "sceneIds": [
           "adamstown-square",
           "christians-cave",
@@ -96,8 +110,7 @@
           "sailors-hide"
         ]
       }
-    ],
-    "insetNote": "※ Pitcairn島の拡大図は、全域図と縮尺が異なります。陸地輪郭はNatural Earth 1:10mの簡略化形状です。"
+    ]
   },
   "scenes": [
     {
@@ -116,8 +129,8 @@
       ],
       "sourceKey": "adamstown",
       "mapOffset": {
-        "x": -3.8,
-        "y": -3.9
+        "x": 3.874,
+        "y": -0.004
       }
     },
     {
@@ -136,8 +149,8 @@
       ],
       "sourceKey": "cave",
       "mapOffset": {
-        "x": -1.4,
-        "y": -5.1
+        "x": -0.632,
+        "y": 7.357
       }
     },
     {
@@ -156,8 +169,8 @@
       ],
       "sourceKey": "downRope",
       "mapOffset": {
-        "x": 2.4,
-        "y": -3.9
+        "x": -1.935,
+        "y": 6.972
       }
     },
     {
@@ -176,8 +189,8 @@
       ],
       "sourceKey": "pool",
       "mapOffset": {
-        "x": -3.8,
-        "y": 3.7
+        "x": 3.04,
+        "y": 1.426
       }
     },
     {
@@ -194,11 +207,7 @@
         "cliff",
         "bay"
       ],
-      "sourceKey": "tedside",
-      "mapOffset": {
-        "x": -1.4,
-        "y": 5
-      }
+      "sourceKey": "tedside"
     },
     {
       "id": "sailors-hide",
@@ -216,8 +225,8 @@
       ],
       "sourceKey": "sailorsHide",
       "mapOffset": {
-        "x": 2.4,
-        "y": 3.7
+        "x": 0.845,
+        "y": -4.064
       }
     },
     {
@@ -667,7 +676,7 @@
     "immigration": "島政府2026年入域方針（2026年5月22日告知）・英国FCDO案内、2026-11-15確認",
     "shipping": "2026–2027公開案内、運航日程は随時変わる",
     "pineappleDuff": "島民の2023年1月12日記録",
-    "map": "Natural Earth 1:10m generalized land polygons inspected 2026-11-15; reef geometry not verified",
+    "map": "Natural Earth 1:10m (ca96624) + GSHHG v2.3.7 shoreline, checked 2026-11-15",
     "hendersonNorthBeach": "Smithsonian aerial photography and Admiralty Chart (1989 publication), north-coast reference point approximate to ~0.001 degree; checked 2026-11-15",
     "marineProtectedArea": "84万2,000km²、国連A/AC.109/2026/12、2026年1月30日発行",
     "vesselGuide2026": "GPI Guide for Visiting Vessels, March 2026 (access checked 2026-11-15)",
@@ -697,7 +706,7 @@
     "sailorsHide": "https://www.visitpitcairn.pn/local-services-activities",
     "henderson": "https://whc.unesco.org/en/list/487",
     "oeno": "https://www.government.pn/government/policies-annexes-and-forms",
-    "mapCoast": "https://github.com/LonnyGomes/CountryGeoJSONCollection/blob/master/geojson/PCN.geojson",
+    "mapCoast": "Natural Earth 1:10m map subunits (public domain): https://github.com/nvkelso/natural-earth-vector ; GSHHG shoreline: https://www.soest.hawaii.edu/wessel/gshhg/",
     "grilledFish": "https://www.visitpitcairn.pn/local-services-activities",
     "pilhi": "https://www.academia.edu/89131829/Pitcairn_Island_Heritage_of_Bounty_Descendants",
     "honey": "https://www.visitpitcairn.pn/local-services-activities",
@@ -709,7 +718,7 @@
     "vesselGuide2026": "https://static1.squarespace.com/static/6526ff6fef608a3828c13d05/t/6a1f3ba52f39d55b3fe4c819/1780431782288/GUIDE%2BFOR%2BVISITING%2BVESSELS%2Bas%2Bof%2BMarch%2B2026.pdf",
     "darkSky": "https://www.government.pn/environment",
     "postage": "https://postalmuseum.si.edu/exhibition/international-philately-oceania-polynesia/pitcairn-islands",
-    "geoLand": "https://github.com/LonnyGomes/CountryGeoJSONCollection/blob/master/geojson/PCN.geojson",
+    "geoLand": "Natural Earth 1:10m map subunits (public domain): https://github.com/nvkelso/natural-earth-vector ; GSHHG shoreline: https://www.soest.hawaii.edu/wessel/gshhg/",
     "atollGeomorphology": "https://library.sprep.org/sites/default/files/2_26.pdf",
     "atollResearch": "https://www.pew.org/-/media/legacy/uploadedfiles/peg/publications/report/pitcairnmarineresearchoutlineplanpdf.pdf",
     "localFishing": "https://www.visitpitcairn.pn/local-services-activities",

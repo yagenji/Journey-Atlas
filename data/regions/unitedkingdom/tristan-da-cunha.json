@@ -86,8 +86,36 @@
       "north": -36.827631067961164
     },
     "singleMapMobile": true,
-    "source": "All coastline polygons (Tristan da Cunha, Inaccessible Island, Nightingale Island and surrounding islets, and distant Gough Island) use 4 real OpenStreetMap island boundary relations 3672294 / 1974295 / 3672300 / 3672293, source https://github.com/missinglink/osm-boundaries/tree/4b9b610f25ec3477683c8a203ed486ecdb8c9f9f/data and https://www.openstreetmap.org/copyright ; © OpenStreetMap contributors, ODbL 1.0. Geometry confirmed 2026-11-15. Gough Island detached at different scale with explicit inset note. WGS84 coordinate anchors with visual-only callout offsets.",
-    "insetNote": "※ ゴフ島は、実際の位置関係・縮尺と異なる別枠表示です。"
+    "source": "Target land: GSHHG/GSHHS full-resolution shoreline via Basemap 2.0.0 (Paul Wessel and Walter H. F. Smith; https://www.soest.hawaii.edu/wessel/gshhg/), assigned with Natural Earth 1:10m Admin-0 map subunits ca96624a56bd078437bca8184e78163e5039ad19 (public domain) unit SHT (Tristan da Cunha group); internal land boundaries follow Natural Earth. Surrounding land: the same GSHHG shoreline, drawn to the canvas edge. WGS84; local-equirectangular-fit-v1, 1200x760. Tristan inset: same geometry at uniform scale. Gough Island (about 400 km SSE): same shoreline in a separate frame (not to position or scale).",
+    "insetNote": "※ トリスタン・ダ・クーニャ島は、同じ地域を拡大した別枠表示です。\n※ ゴフ島は、実際の位置関係・縮尺と異なる別枠表示です。",
+    "regions": [
+      {
+        "id": "tristan",
+        "label": "トリスタン・ダ・クーニャ島",
+        "svgId": "tdc-tristan-detail",
+        "rect": {
+          "x": 40,
+          "y": 40,
+          "width": 420,
+          "height": 330
+        },
+        "sourceRect": {
+          "x": 512,
+          "y": 187,
+          "width": 124,
+          "height": 118
+        },
+        "sceneIds": [
+          "the-potato-patches",
+          "1961-volcano",
+          "calshot-harbour",
+          "st-marys-church",
+          "sandy-point",
+          "queen-marys-peak",
+          "stonyhill-point"
+        ]
+      }
+    ]
   },
   "scenes": [
     {
@@ -105,8 +133,8 @@
       ],
       "sourceKey": "potato",
       "mapOffset": {
-        "x": -3.586,
-        "y": 5.2152631578947375
+        "x": -0.7,
+        "y": 1.081
       }
     },
     {
@@ -129,8 +157,8 @@
         "lavaCoordinates"
       ],
       "mapOffset": {
-        "x": 4.130333333333334,
-        "y": -4.090263157894737
+        "x": 1.344,
+        "y": -5.833
       }
     },
     {
@@ -148,8 +176,8 @@
       ],
       "sourceKey": "shipping",
       "mapOffset": {
-        "x": 0.7944166666666667,
-        "y": 3.3042105263157895
+        "x": -2.468,
+        "y": -1.634
       }
     },
     {
@@ -168,8 +196,8 @@
       ],
       "sourceKey": "church",
       "mapOffset": {
-        "x": -0.9820833333333333,
-        "y": -7.539736842105263
+        "x": 2.002,
+        "y": 4.221
       }
     },
     {
@@ -186,11 +214,7 @@
         "beach",
         "cliff"
       ],
-      "sourceKey": "sandy",
-      "mapOffset": {
-        "x": 1.1943333333333335,
-        "y": -0.3103947368421053
-      }
+      "sourceKey": "sandy"
     },
     {
       "id": "queen-marys-peak",
@@ -206,11 +230,7 @@
         "volcano",
         "lake"
       ],
-      "sourceKey": "peak",
-      "mapOffset": {
-        "x": -0.816,
-        "y": 7.588947368421053
-      }
+      "sourceKey": "peak"
     },
     {
       "id": "stonyhill-point",
@@ -226,11 +246,7 @@
         "cliff",
         "rock"
       ],
-      "sourceKey": "stony",
-      "mapOffset": {
-        "x": 4.170166666666667,
-        "y": 3.3910526315789475
-      }
+      "sourceKey": "stony"
     },
     {
       "id": "nightingale-island",
@@ -672,7 +688,7 @@
     "stony": "https://www.bgs.ac.uk/geology-projects/volcanoes/volcanism-on-tristan-da-cunha/",
     "islands": "https://www.ukotcf.org.uk/southern-oceans/tristan-da-cunha/",
     "climate": "https://www.tristandc.com/visitsadmin.php",
-    "mapSource": "https://github.com/missinglink/osm-boundaries/tree/4b9b610f25ec3477683c8a203ed486ecdb8c9f9f/data",
+    "mapSource": "Natural Earth 1:10m map subunits (public domain): https://github.com/nvkelso/natural-earth-vector ; GSHHG shoreline: https://www.soest.hawaii.edu/wessel/gshhg/",
     "name": "https://www.tristandc.com/visits.php",
     "loveSocks": "https://www.tristandc.com/handlovesocks.php"
   },

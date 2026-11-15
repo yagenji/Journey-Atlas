@@ -84,7 +84,7 @@
       "north": -12.06143220339
     },
     "singleMapMobile": true,
-    "source": "Who’s On First / Mapzen geometry (record 85632495, src:geom=mz), source/license: https://github.com/whosonfirst-data/whosonfirst-data-admin-cc/blob/master/LICENSE.md . Source polygon components (excluding Christmas Island) simplified for 1200×760 rendering; North Keeling detached inset at different scale. Historical coastline dataset, not a current survey. WGS84.",
+    "source": "Target land: GSHHG/GSHHS full-resolution shoreline via Basemap 2.0.0 (Paul Wessel and Walter H. F. Smith; https://www.soest.hawaii.edu/wessel/gshhg/), assigned with Natural Earth 1:10m Admin-0 map subunits ca96624a56bd078437bca8184e78163e5039ad19 (public domain) unit CCK (Cocos (Keeling) Islands); internal land boundaries follow Natural Earth. Surrounding land: the same GSHHG shoreline, drawn to the canvas edge. WGS84; local-equirectangular-fit-v1, 1200x760. Lagoon is filled at the atoll scale. North Keeling (about 25 km north) is a point in a separate frame; it is below shoreline resolution.",
     "insetNote": "※ 北キーリング島は、実際の位置関係・縮尺と異なる別枠表示です。"
   },
   "scenes": [
@@ -120,7 +120,11 @@
         "garden"
       ],
       "sourceKey": "oceaniaHouse",
-      "coordinateSourceKey": "oceaniaCoord"
+      "coordinateSourceKey": "oceaniaCoord",
+      "mapOffset": {
+        "x": 0.142,
+        "y": 5.578
+      }
     },
     {
       "id": "the-rip",
@@ -137,7 +141,11 @@
         "marine"
       ],
       "sourceKey": "direction",
-      "coordinateSourceKey": "ripCoord"
+      "coordinateSourceKey": "ripCoord",
+      "mapOffset": {
+        "x": 3.556,
+        "y": 3.08
+      }
     },
     {
       "id": "direction-island-heritage",
@@ -154,7 +162,11 @@
         "ruins"
       ],
       "sourceKey": "nationalArchives",
-      "coordinateSourceKey": "directionIslandArea"
+      "coordinateSourceKey": "directionIslandArea",
+      "mapOffset": {
+        "x": -2.523,
+        "y": -6.47
+      }
     },
     {
       "id": "horsburgh-island-guns",
@@ -342,7 +354,7 @@
       "themeJa": "通信史",
       "icon": "history",
       "title": "1914年、海底ケーブルと軍艦が交差した",
-      "text": "ディレクション島の通信施設がドイツ巡洋艦エムデンに襲撃された。豪州艦シドニーとの戦闘後、エムデンは北ケーリング島で座礁した。",
+      "text": "ディレクション島の通信施設がドイツ巡洋艦エムデンに襲撃された。豪州艦シドニーとの戦闘後、エムデンは北キーリング島で座礁した。",
       "points": [
         "海底ケーブルが国際通信を担った",
         "北の島は現在国立公園で自由観光の対象ではない"
@@ -448,8 +460,8 @@
       "categoryEn": "WILDLIFE",
       "categoryJa": "島だけの鳥",
       "icon": "wildlife",
-      "title": "北の島から戻ってきた固有のクイナ",
-      "text": "ココス諸島固有のクイナの亜種は、一時は北ケーリング島だけに残った。2013年に南の環礁のホースバーグ島へ移され、野生での繁殖に成功した。",
+      "title": "世界でここだけのクイナが、南の環礁へ戻った",
+      "text": "ココス諸島固有のクイナの亜種は一時、北キーリング島だけに残った。2013年に北キーリング島の個体が南の環礁のホースバーグ島へ移され、そこでも数を増やしている。",
       "sourceKey": "cocosRail"
     },
     {
@@ -493,7 +505,7 @@
       "sourceKey": "direction"
     },
     {
-      "title": "北ケーリング島は自由訪問地ではない",
+      "title": "北キーリング島は自由訪問地ではない",
       "text": "Pulu Keeling National Parkには一般向け定期ツアーがない。研究者は公園職員の同行が必要で、活動内容に応じて許可が必要。",
       "sourceKey": "parkAccess"
     },
@@ -616,7 +628,7 @@
     "marinePark": "Parks Australia checked 2026-11-15 (internal area-number inconsistency, approximate display)",
     "flightService": "Tourism Association 2026-11-15, dynamic",
     "ferryService": "Tourism Association timetable 2026-11-15, dynamic",
-    "mapGeometry": "Who’s On First record 85632495 checked 2026-11-15; underlying coastline acquisition date not established",
+    "mapGeometry": "Natural Earth 1:10m (ca96624) + GSHHG v2.3.7 shoreline, checked 2026-11-15",
     "japanArea": "GSI 2026-07-01"
   },
   "sources": {
@@ -652,7 +664,7 @@
     "japanArea": "https://www.gsi.go.jp/KOKUJYOHO/MENCHO-title.htm",
     "ayamBeganaRecipe": "https://www.tasteatlas.com/ayam-begana",
     "jukongTradition": "https://www.legislation.gov.au/F2025L00071/asmade/2025-02-11/text/original/epub/OEBPS/document_1/document_1.html",
-    "cocosRail": "https://pulukeelingnationalpark.gov.au/discover/nature/animals/birds/cocos-buff-banded-rail/",
+    "cocosRail": "https://pulukeelingnationalpark.gov.au/discover/nature/animals/birds/cocos-buff-banded-rail/ ; Emu 116(1): Conservation status and reintroduction of the Cocos Buff-banded Rail (April 2013, 39 rails from Pulu Keeling to Horsburgh Island; ~121 individuals by June 2015): https://publish.csiro.au/mu/MU15052",
     "govTravel": "https://www.infrastructure.gov.au/territories-regions-cities/territories/indian-ocean-territories/cocos-keeling-islands/travel-information"
   },
   "nextRegion": {

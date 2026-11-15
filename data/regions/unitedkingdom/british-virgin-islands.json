@@ -81,7 +81,7 @@
       "north": 18.8
     },
     "singleMapMobile": true,
-    "source": "Geography: geoBoundaries gbHumanitarian ADM1 2017 VGB (target) and VIR (United States Virgin Islands context), simplified release; CC BY 3.0 IGO, derived source geoBoundaries VGB-ADM1-34233081 and corresponding VIR ADM1; source repository robit-man/tiny-atlas/elevation_model/geojson/ADM1/{VGB,VIR}.geojson. Geographic shapes retained in WGS84; local-equirectangular-fit-v1, 1200x760. Map context is not part of the target territory."
+    "source": "Target land: GSHHG/GSHHS full-resolution shoreline via Basemap 2.0.0 (Paul Wessel and Walter H. F. Smith; https://www.soest.hawaii.edu/wessel/gshhg/), assigned with Natural Earth 1:10m Admin-0 map subunits ca96624a56bd078437bca8184e78163e5039ad19 (public domain) unit VGB (British Virgin Islands); internal land boundaries follow Natural Earth. Surrounding land: the same GSHHG shoreline, drawn to the canvas edge. WGS84; local-equirectangular-fit-v1, 1200x760. The U.S. Virgin Islands are context only."
   },
   "scenes": [
     {
@@ -130,7 +130,11 @@
         "ruins",
         "cliff"
       ],
-      "sourceKey": "copper"
+      "sourceKey": "copper",
+      "mapOffset": {
+        "x": 1.908,
+        "y": -0.447
+      }
     },
     {
       "id": "flamingo-pond",
@@ -610,7 +614,7 @@
     "flamingoCount": "2022-01-05 annual bird count",
     "flamingoIntroduced": "1992",
     "hurricane": "annual June–November",
-    "map": "geoBoundaries gbHumanitarian ADM1 VGB/VIR, boundary year 2017; metadata verified 2026-11-15",
+    "map": "Natural Earth 1:10m (ca96624) + GSHHG v2.3.7 shoreline, checked 2026-11-15",
     "rmsRhoneMarinePark": "1867 shipwreck; marine park established 1980",
     "fungiMusic": "BVI Government announcement 2026-06-17"
   },
@@ -647,7 +651,7 @@
     "hurricane": "https://www.nhc.noaa.gov/climo/",
     "normanHistory": "https://www.irf.org/wp-content/uploads/2013/06/TortolaSisterIslandsNaturalHistory-OnlineVersion_2015.pdf",
     "osm": "https://www.openstreetmap.org/copyright",
-    "map": "https://github.com/robit-man/tiny-atlas/tree/main/elevation_model/geojson/ADM1",
+    "map": "Natural Earth 1:10m map subunits (public domain): https://github.com/nvkelso/natural-earth-vector ; GSHHG shoreline: https://www.soest.hawaii.edu/wessel/gshhg/",
     "rmsRhoneMarinePark": "https://www.bvinpt.org/dead-chest-rms-marine-park-info",
     "fungiMusic": "https://gov.vg/news/exploring-rhythm-nature-workshop-uncovers-history-fungi-music",
     "anegadaConchMounds": "https://www.bvitourism.com/anegada-conch-mound"

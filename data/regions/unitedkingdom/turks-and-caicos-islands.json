@@ -83,7 +83,7 @@
       "north": 22.1
     },
     "singleMapMobile": true,
-    "source": "Natural Earth Admin-0 country boundaries (v3.1.0), eFrane/admin0 TC.geojson (https://github.com/eFrane/admin0/blob/master/north-america/TC.geojson), CC0-1.0/public domain (https://github.com/eFrane/admin0/blob/master/package.json). WGS84, local-equirectangular-fit-v1, 1200x760. Reefs, banks, shoals and submerged sandbars not drawn as land; smaller cays below map-source resolution omitted."
+    "source": "Target land: GSHHG/GSHHS full-resolution shoreline via Basemap 2.0.0 (Paul Wessel and Walter H. F. Smith; https://www.soest.hawaii.edu/wessel/gshhg/), assigned with Natural Earth 1:10m Admin-0 map subunits ca96624a56bd078437bca8184e78163e5039ad19 (public domain) unit TCA (Turks and Caicos Islands); internal land boundaries follow Natural Earth. Surrounding land: the same GSHHG shoreline, drawn to the canvas edge. WGS84; local-equirectangular-fit-v1, 1200x760."
   },
   "scenes": [
     {
@@ -115,7 +115,11 @@
       "sceneTypes": [
         "cave"
       ],
-      "sourceKey": "conchBarCaves"
+      "sourceKey": "conchBarCaves",
+      "mapOffset": {
+        "x": 3.436,
+        "y": 5.327
+      }
     },
     {
       "id": "grand-turk-lighthouse",
@@ -131,7 +135,11 @@
         "lighthouse",
         "cliff"
       ],
-      "sourceKey": "grandTurkLighthouse"
+      "sourceKey": "grandTurkLighthouse",
+      "mapOffset": {
+        "x": 0.677,
+        "y": -1.043
+      }
     },
     {
       "id": "cockburn-town",
@@ -147,7 +155,11 @@
         "harbor",
         "oldtown"
       ],
-      "sourceKey": "cockburnTown"
+      "sourceKey": "cockburnTown",
+      "mapOffset": {
+        "x": -1.05,
+        "y": 4.031
+      }
     },
     {
       "id": "wades-green-plantation",
@@ -210,7 +222,11 @@
         "beach",
         "bay"
       ],
-      "sourceKey": "graceBay"
+      "sourceKey": "graceBay",
+      "mapOffset": {
+        "x": -0.642,
+        "y": 5.611
+      }
     }
   ],
   "signatureFacts": [
@@ -587,7 +603,7 @@
     "area": "2025 UN Data; note differing area conventions",
     "visiting": "2026-11-14 access check",
     "history": "2026-11-14 check",
-    "map": "Natural Earth v3.1.0 (eFrane/admin0), checked 2026-11-15"
+    "map": "Natural Earth 1:10m (ca96624) + GSHHG v2.3.7 shoreline, checked 2026-11-15"
   },
   "sources": {
     "status": "https://www.parliament.gov.tc/constitutional-overview",
@@ -626,9 +642,9 @@
     "grandTurkDonkeys": "https://www.visittci.com/grand-turk",
     "coatOfArms": "https://www.visittci.com/nature-and-history/history/turks-and-caicos-flag",
     "religion": "https://docstore.ohchr.org/SelfServices/FilesHandler.ashx?enc=c5KFUZb0ekmkf5dNiOxPtXP8WcqvT1Qnnr8n5pf56UMWtJ2kKeEgmMqIMJMRbFomxNJjNKJcH1JcYb1EEAyONA%3D%3D",
-    "mapGeometry": "https://github.com/eFrane/admin0/blob/master/north-america/TC.geojson",
+    "mapGeometry": "Natural Earth 1:10m map subunits (public domain): https://github.com/nvkelso/natural-earth-vector ; GSHHG shoreline: https://www.soest.hawaii.edu/wessel/gshhg/",
     "mapWest": "https://www.visittci.com/maps",
-    "mapGeometryLicense": "https://github.com/eFrane/admin0/blob/master/package.json"
+    "mapGeometryLicense": "Natural Earth 1:10m map subunits (public domain): https://github.com/nvkelso/natural-earth-vector ; GSHHG shoreline: https://www.soest.hawaii.edu/wessel/gshhg/"
   },
   "nextRegion": {
     "slug": "bermuda",
