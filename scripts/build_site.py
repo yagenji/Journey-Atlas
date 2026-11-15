@@ -652,6 +652,7 @@ def build_top_scene_index() -> None:
         "curacao": ("🇨🇼", None),
         "sint-maarten": ("🇸🇽", None),
         "puerto-rico": ("🇵🇷", None),
+        "us-virgin-islands": ("🇻🇮", None),  # U.S. Virgin Islands territory flag.
         "mariana-islands": ("🇺🇸", None),  # Guam and CNMI geographic Region; no shared regional flag.
         "zanzibar": ("🇹🇿", None),  # No Zanzibar subdivision emoji; use the parent Tanzania flag.
         "azores": ("🇵🇹", None),  # No Unicode subdivision flag; Portuguese autonomous region.
