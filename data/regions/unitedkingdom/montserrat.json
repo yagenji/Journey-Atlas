@@ -259,7 +259,8 @@
       "note": "島の陸地約103km²のうち約4割。国連2026年資料に示された区分で、火山活動が島の利用可能な土地を限っている。",
       "icon": "map",
       "sourceKey": "habitableArea",
-      "interestReason": "小さな島の中でも人が暮らせる面積が限られていることを実感できる。"
+      "interestReason": "小さな島の中でも人が暮らせる面積が限られていることを実感できる。",
+      "exceptionalScale": true
     },
     {
       "topicKey": "rockart-discoveries",
@@ -280,7 +281,7 @@
     {
       "title": "堆積物に埋もれた旧市街の歴史",
       "icon": "history",
-      "category": "HISTORY"
+      "category": "CITY"
     },
     {
       "title": "観測所で知る火山との共存",
@@ -310,7 +311,7 @@
     {
       "title": "岩刻画が伝える先住民の記憶",
       "icon": "history",
-      "category": "HISTORY"
+      "category": "CULTURE"
     }
   ],
   "culture": [
@@ -528,13 +529,13 @@
       {
         "duration": "2〜3日",
         "title": "火山と港の現在を見る",
-        "icon": "map",
+        "icon": "city",
         "text": "例：Little Bay → Jack Boy Hill → Montserrat Volcano Observatory → Little Bay。展望地点から火山を眺め、港へ戻る。"
       },
       {
         "duration": "4〜5日",
         "title": "森と浜辺を加える",
-        "icon": "leaf",
+        "icon": "map",
         "text": "例：Little Bay → Carr’s Bay → Runaway Ghaut → Oriole Walkway → Rendezvous Beach → Little Bay。海況と歩道の状態で行程を調整する。"
       },
       {
@@ -565,7 +566,7 @@
       "months": "12〜2月",
       "label": "乾季の入り口",
       "icon": "sun",
-      "color": "#8fa96d",
+      "color": "#6b90a5",
       "text": "比較的涼しく乾いた時期。森林散策と火山の遠望を組み合わせやすい。"
     },
     {
@@ -579,14 +580,14 @@
       "months": "6〜8月",
       "label": "夏",
       "icon": "sun",
-      "color": "#b6a05b",
+      "color": "#92a253",
       "text": "高温多湿で、6月から大西洋のハリケーン季節に入る。天候情報が重要。"
     },
     {
       "months": "9〜11月",
       "label": "秋",
       "icon": "leaf",
-      "color": "#8295ad",
+      "color": "#b77a49",
       "text": "熱帯低気圧と豪雨の影響に注意。海の移動と谷筋の散策は天候に合わせて判断する。"
     }
   ],
@@ -690,5 +691,43 @@
     "calabashCraft": "https://artscouncil.ms/festivals/montserrat-calabash-festival/",
     "arrowMusic": "https://www.visitmontserrat.com/about-montserrat/musical-pedigree/"
   },
-  "capital": null
+  "capital": null,
+  "officialSeats": [
+    {
+      "nameJa": "ブレイズ",
+      "nameEn": "Brades",
+      "roleJa": "政府の主要拠点",
+      "coordinates": {
+        "latitude": 16.7918,
+        "longitude": -62.2106
+      },
+      "labelPosition": "right",
+      "labelOffset": {
+        "x": 4,
+        "y": 8
+      },
+      "sourceKey": "status"
+    },
+    {
+      "nameJa": "プリマス",
+      "nameEn": "Plymouth",
+      "roleJa": "法定首府（1997年に放棄）",
+      "coordinates": {
+        "latitude": 16.7064,
+        "longitude": -62.2159
+      },
+      "labelPosition": "left",
+      "labelOffset": {
+        "x": 0,
+        "y": 0
+      },
+      "sourceKey": "status"
+    }
+  ],
+  "officialSeatsLegendJa": "法定首府と政府の主要拠点",
+  "nextRegion": {
+    "slug": "saint-helena",
+    "nameEn": "SAINT HELENA",
+    "nameJa": "セントヘレナ"
+  }
 }

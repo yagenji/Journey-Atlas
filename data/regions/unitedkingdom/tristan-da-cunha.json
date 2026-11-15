@@ -40,7 +40,7 @@
   },
   "profile": [
     {
-      "label": "中心集落",
+      "label": "首府",
       "value": "エディンバラ・オブ・ザ・セブン・シーズ（Edinburgh of the Seven Seas）",
       "sourceKey": "settlement"
     },
@@ -581,28 +581,28 @@
       "months": "9〜11月",
       "label": "春",
       "icon": "leaf",
-      "color": "#77946c",
+      "color": "#73966f",
       "text": "島の緑と海鳥の季節が進む。野生動物の繁殖地には接近制限がある。"
     },
     {
       "months": "12〜2月",
       "label": "夏",
       "icon": "sun",
-      "color": "#9ca659",
+      "color": "#92a253",
       "text": "南半球の夏。屋外活動の候補だが、海況による遅延や上陸不可は常に起こりうる。"
     },
     {
       "months": "3〜5月",
       "label": "秋",
       "icon": "leaf",
-      "color": "#b67e53",
+      "color": "#b77a49",
       "text": "変化の早い海上の天候に合わせた行程調整が必要。"
     },
     {
       "months": "6〜8月",
       "label": "冬",
       "icon": "snow",
-      "color": "#728fa3",
+      "color": "#6b90a5",
       "text": "強い風雨や山の寒さに備える。上陸や登山を日程だけで決められない。"
     }
   ],
@@ -631,12 +631,12 @@
   ],
   "relatedCountries": [
     {
-      "nameJa": "南アフリカ",
-      "nameEn": "SOUTH AFRICA",
-      "href": "countries/southafrica/",
-      "flag": "🇿🇦",
-      "reason": "南大西洋の荒波と、海から切り立つ火山の島影に惹かれたなら、ケープ半島の喜望峰で、二つの大洋の風が吹きつける断崖を見られる。",
-      "affinityType": "LANDSCAPE"
+      "nameJa": "ポルトガル",
+      "nameEn": "PORTUGAL",
+      "href": "countries/portugal/",
+      "flag": "🇵🇹",
+      "reason": "島の名は、1506年にこの島を目にしたポルトガルの航海者トリスタン・ダ・クーニャにちなむ。リスボンのベレン地区で、大航海時代の船出の港をたどれる。",
+      "affinityType": "HISTORY"
     },
     {
       "nameJa": "アイスランド",
@@ -662,7 +662,8 @@
     "area": "2020",
     "shipping": "2026-11-15",
     "visits": "2026-11-15",
-    "mapSource": "2026-11-15"
+    "mapSource": "2026-11-15",
+    "status": "historyContext source; QA reviewed 2026-11-16"
   },
   "sources": {
     "status": "https://www.gov.uk/government/world/organisations/saint-helena-ascension-and-tristan-da-cunha-government",
@@ -693,9 +694,22 @@
     "loveSocks": "https://www.tristandc.com/handlovesocks.php"
   },
   "nextRegion": {
-    "slug": "saint-helena",
-    "nameEn": "SAINT HELENA",
-    "nameJa": "セントヘレナ"
+    "slug": "falkland-islands",
+    "nameEn": "FALKLAND ISLANDS",
+    "nameJa": "フォークランド（マルビナス）諸島"
   },
-  "capital": null
+  "capital": {
+    "nameJa": "エディンバラ・オブ・ザ・セブン・シーズ",
+    "labelJa": "首府",
+    "coordinates": {
+      "latitude": -37.0675,
+      "longitude": -12.3105
+    },
+    "labelPosition": "right",
+    "labelOffset": {
+      "x": 0,
+      "y": 0
+    },
+    "sourceKey": "status"
+  }
 }

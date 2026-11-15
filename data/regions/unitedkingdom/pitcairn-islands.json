@@ -36,7 +36,7 @@
   },
   "profile": [
     {
-      "label": "中心集落",
+      "label": "首府",
       "value": "アダムズタウン（Adamstown）",
       "sourceKey": "unReport2026"
     },
@@ -279,7 +279,8 @@
       "note": "小さな島々を取り巻く広大な海は海洋保護区として管理され、海の生態系の価値を示している。",
       "icon": "sea",
       "sourceKey": "unReport2026",
-      "interestReason": "陸地の小ささと海洋保護のスケールを対比できる。"
+      "interestReason": "陸地の小ささと海洋保護のスケールを対比できる。",
+      "exceptionalScale": true
     },
     {
       "topicKey": "airport-zero",
@@ -300,7 +301,7 @@
     {
       "title": "小さな広場に置かれたバウンティ号の錨",
       "icon": "history",
-      "category": "HISTORY"
+      "category": "CULTURE"
     },
     {
       "title": "山道で出会う島民の生活",
@@ -310,7 +311,7 @@
     {
       "title": "岩窟に残る反乱者の物語",
       "icon": "history",
-      "category": "HISTORY"
+      "category": "CULTURE"
     },
     {
       "title": "先住ポリネシア人の岩刻画",
@@ -550,22 +551,22 @@
     "intro": "航海計画と天候が最優先。以下は観光プログラムの保証ではなく、島に滞在できた場合の編集上の選択肢。",
     "items": [
       {
-        "duration": "1日",
+        "duration": "1〜2日",
         "title": "小さな集落に触れる",
-        "icon": "sea",
-        "text": "本船から長艇で上陸できれば、Bounty BayとAdamstownの中心をゆっくり歩く。海況が悪ければ上陸できない。"
+        "icon": "city",
+        "text": "例：Bounty Bay → Adamstown → Bounty Bay。本船から長艇で上陸できた場合に、集落の中心をゆっくり歩く。海況が悪ければ上陸できない。"
       },
       {
-        "duration": "2〜3日",
+        "duration": "3〜4日",
         "title": "歴史と自然を歩く",
         "icon": "map",
-        "text": "Adamstownを拠点に、島民と相談してChristian’s Cave、St Paul’s Pool、海岸の自然歩道などを天候に合わせて選ぶ。"
+        "text": "例：Adamstown → Christian’s Cave → St Paul’s Pool → Adamstown。島民と相談し、天候に合わせて歩く道を選ぶ。"
       },
       {
-        "duration": "4日以上",
+        "duration": "5日以上",
         "title": "長い島の生活に近づく",
         "icon": "compass",
-        "text": "Adamstownを拠点に、船の運航を考慮しながら島の歴史、自然、食の体験を増やす。14日を超える滞在には事前の長期訪問ビザが必要。無人3島を定期的に巡れる旅程ではない。"
+        "text": "14日を超える滞在には事前の長期訪問ビザが必要。例：Adamstown → Tedside → Sailor’s Hide → Adamstown。補給船の運航に合わせて滞在を組み、食や手仕事の体験を加える。"
       }
     ]
   },
@@ -662,9 +663,9 @@
     }
   ],
   "nextRegion": {
-    "slug": "saint-helena",
-    "nameEn": "SAINT HELENA",
-    "nameJa": "セントヘレナ"
+    "slug": "england",
+    "nameEn": "ENGLAND",
+    "nameJa": "イングランド"
   },
   "sourcesVerifiedAt": "2026-11-15",
   "updatedAt": "2026-11-15",
@@ -684,7 +685,8 @@
     "darkSky": "International Dark Sky Sanctuary since March 2019, government environment portal checked 2026-11-15",
     "postage": "First island postage stamps issued 15 October 1940, Smithsonian National Postal Museum",
     "localFishing": "島政府観光局『Local Services & Activities』、2026-11-15確認",
-    "islandArtisans": "島政府観光局『Pitcairn Islands Artisans’ Online Success Story』、2026-11-15確認"
+    "islandArtisans": "島政府観光局『Pitcairn Islands Artisans’ Online Success Story』、2026-11-15確認",
+    "unReport2026": "historyContext source; QA reviewed 2026-11-16"
   },
   "sources": {
     "status": "https://www.government.pn/",
@@ -726,7 +728,7 @@
   },
   "capital": {
     "nameJa": "アダムズタウン",
-    "labelJa": "中心集落",
+    "labelJa": "首府",
     "coordinates": {
       "latitude": -25.066,
       "longitude": -130.101

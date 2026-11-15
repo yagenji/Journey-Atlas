@@ -305,7 +305,8 @@
       "note": "NOAAのNational Marine Sanctuary of American Samoaは、沿岸のサンゴ礁から沖合まで6つの区域を保護する。13,581平方マイルの保護水域をkm²へ換算した値で、陸地面積ではない。",
       "icon": "sea",
       "sourceKey": "sanctuary",
-      "interestReason": "小さな島の周囲に広がる海の保護の大きさを知る。"
+      "interestReason": "小さな島の周囲に広がる海の保護の大きさを知る。",
+      "exceptionalScale": true
     },
     {
       "topicKey": "park-lease",
@@ -570,26 +571,30 @@
     {
       "months": "6〜9月",
       "icon": "sun",
-      "color": "#799d83",
-      "text": "比較的雨の少ない季節。山道とリーフの状態は当日確認する。"
+      "color": "#6b90a5",
+      "text": "比較的雨の少ない季節。山道とリーフの状態は当日確認する。",
+      "label": "乾季"
     },
     {
       "months": "10〜11月",
       "icon": "weather",
-      "color": "#99ab85",
-      "text": "降雨が増え始める移行期。島間移動を柔軟に計画する。"
+      "color": "#73966f",
+      "text": "降雨が増え始める移行期。島間移動を柔軟に計画する。",
+      "label": "雨季への移行期"
     },
     {
       "months": "12〜3月",
       "icon": "weather",
-      "color": "#648aa0",
-      "text": "雨の多い時期。強い雨、海況、交通への影響に備える。"
+      "color": "#92a253",
+      "text": "雨の多い時期。強い雨、海況、交通への影響に備える。",
+      "label": "雨季"
     },
     {
       "months": "4〜5月",
       "icon": "leaf",
-      "color": "#9cae81",
-      "text": "雨季から比較的乾いた時期への移行。日による天候差がある。"
+      "color": "#b77a49",
+      "text": "雨季から比較的乾いた時期への移行。日による天候差がある。",
+      "label": "乾季への移行期"
     }
   ],
   "transport": {
@@ -617,11 +622,11 @@
   ],
   "relatedCountries": [
     {
-      "nameJa": "サモア",
-      "nameEn": "SAMOA",
-      "href": "countries/samoa/",
-      "flag": "🇼🇸",
-      "reason": "文化が連続する一方、政治制度と日付が異なるポリネシアの隣国。",
+      "nameJa": "フィジー",
+      "nameEn": "FIJI",
+      "href": "countries/fiji/",
+      "flag": "🇫🇯",
+      "reason": "村の作法を尊重して訪ねる旅に惹かれたなら、フィジーの村へ。訪問時にカヴァを贈るセブセブの儀礼に、Fa‘asamoaと響き合う太平洋の共同体の文化を見る。",
       "affinityType": "CULTURE"
     },
     {
@@ -633,12 +638,12 @@
       "affinityType": "ISLAND"
     },
     {
-      "nameJa": "アメリカ合衆国",
-      "nameEn": "UNITED STATES",
-      "href": "countries/unitedstates/",
-      "flag": "🇺🇸",
-      "reason": "炎のついたナイフを回すサモアのファイアーナイフ・ダンスに惹かれたなら、ハワイ・オアフ島のポリネシア・カルチャー・センターで、その世界大会を見られる。",
-      "affinityType": "CULTURE"
+      "nameJa": "パラオ",
+      "nameEn": "PALAU",
+      "href": "countries/palau/",
+      "flag": "🇵🇼",
+      "reason": "広い海洋保護区に惹かれたなら、自国の海の大部分を保護区に定めたパラオへ。サンゴ礁と石灰岩の島々の海を、守られた環境の中で眺められる。",
+      "affinityType": "NATURE"
     }
   ],
   "capital": {
@@ -648,11 +653,11 @@
       "latitude": -14.2756,
       "longitude": -170.702
     },
-    "labelPosition": "right",
+    "labelPosition": "left",
     "sourceKey": "islands",
     "labelOffset": {
       "x": 0,
-      "y": 34
+      "y": -36
     }
   },
   "sourcesVerifiedAt": "2026-11-15",
@@ -663,7 +668,9 @@
     "park": "NPS management page updated 2026-07-08",
     "visa": "American Samoa Legal Affairs website checked 2026-11-15; rules subject to change",
     "transport": "2026-11-15: limited services; no fixed flight timetable stated",
-    "map": "Natural Earth 1:10m (ca96624) + GSHHG v2.3.7 shoreline, checked 2026-11-15"
+    "map": "Natural Earth 1:10m (ca96624) + GSHHG v2.3.7 shoreline, checked 2026-11-15",
+    "history": "historyContext source; QA reviewed 2026-11-16",
+    "status": "historyContext source; QA reviewed 2026-11-16"
   },
   "sources": {
     "status": "https://www.doi.gov/oia/islands/american-samoa",
@@ -700,5 +707,10 @@
     "imageTransfer": "All 13 approved assets prepared locally; S07 is the explicitly regenerated and approved replacement.",
     "publication": "regionPublished=true after explicit user final approval; available in published Region discovery."
   },
-  "updatedAt": "2026-11-15"
+  "updatedAt": "2026-11-15",
+  "nextRegion": {
+    "slug": "puerto-rico",
+    "nameEn": "PUERTO RICO",
+    "nameJa": "プエルトリコ"
+  }
 }

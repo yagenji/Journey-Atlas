@@ -213,33 +213,39 @@ def interactive_map_position(coords: dict, marker_index: int, svg: str,
     return 100 * (px + 2.7) / 864, 100 * (py - 2.8) / 547.2
 
 
+def region_inset_position(pos: tuple[float, float], detail: dict, svg: str,
+                          label: str) -> tuple[float, float]:
+    """Move an overview position into a verified, uniformly scaled detail inset."""
+    if 'data-map-inset-standard="true"' not in svg:
+        raise ValueError('Region inset metadata exists without inset artwork')
+    source, rect = detail['sourceRect'], detail['rect']
+    # SVG uses a uniform fitted scale; the padding is symmetric in both axes.
+    svg_id = detail.get('svgId', 'ni-north-coast-detail')
+    node = ET.fromstring(svg).find(f'.//*[@id="{svg_id}"]')
+    if node is None:
+        raise ValueError('Inset artwork missing')
+    scale = float(node.get('data-scale', 'nan'))
+    # Remote single islands (e.g. Pitcairn on a 7-degree overview) need a
+    # stronger zoom than coastal details; 40x keeps the check a sanity bound.
+    if not (math.isfinite(scale) and 1 < scale <= 40):
+        raise ValueError('Invalid inset magnification')
+    sx = 1200 * pos[0] / 100
+    sy = 760 * pos[1] / 100
+    x = rect['x'] + (rect['width'] - source['width'] * scale) / 2 + (sx - source['x']) * scale
+    y = rect['y'] + (rect['height'] - source['height'] * scale) / 2 + (sy - source['y']) * scale
+    if not (rect['x'] <= x <= rect['x'] + rect['width']
+            and rect['y'] <= y <= rect['y'] + rect['height']):
+        raise ValueError(f"{label} is outside inset {detail['id']}")
+    return 100 * x / 1200, 100 * y / 760
+
+
 def region_scene_map_position(scene: dict, index: int, svg: str, map_data: dict) -> tuple[float, float]:
     """Keep real anchors, applying verified insets or bounded label-only offsets."""
     pos = interactive_map_position(scene['coordinates'], index, svg, map_data['bounds'])
     for detail in map_data.get('regions') or []:
         if scene['id'] not in detail.get('sceneIds', []):
             continue
-        if 'data-map-inset-standard="true"' not in svg:
-            raise ValueError('Region inset metadata exists without inset artwork')
-        source, rect = detail['sourceRect'], detail['rect']
-        # SVG uses a uniform fitted scale; the padding is symmetric in both axes.
-        svg_id = detail.get('svgId', 'ni-north-coast-detail')
-        node = ET.fromstring(svg).find(f'.//*[@id="{svg_id}"]')
-        if node is None:
-            raise ValueError('Inset artwork missing')
-        scale = float(node.get('data-scale', 'nan'))
-        # Remote single islands (e.g. Pitcairn on a 7-degree overview) need a
-        # stronger zoom than coastal details; 40x keeps the check a sanity bound.
-        if not (math.isfinite(scale) and 1 < scale <= 40):
-            raise ValueError('Invalid inset magnification')
-        sx = 1200 * pos[0] / 100
-        sy = 760 * pos[1] / 100
-        x = rect['x'] + (rect['width'] - source['width'] * scale) / 2 + (sx - source['x']) * scale
-        y = rect['y'] + (rect['height'] - source['height'] * scale) / 2 + (sy - source['y']) * scale
-        if not (rect['x'] <= x <= rect['x'] + rect['width']
-                and rect['y'] <= y <= rect['y'] + rect['height']):
-            raise ValueError(f"Scene {index} is outside inset {detail['id']}")
-        pos = (100 * x / 1200, 100 * y / 760)
+        pos = region_inset_position(pos, detail, svg, f'Scene {index}')
         break
     offset = scene.get('mapOffset')
     if offset is None:
@@ -321,15 +327,40 @@ def region_seat_legend(data: dict) -> str:
     return data.get('officialSeatsLegendJa', '政府・議会などの所在地')
 
 
-def region_seat_marker(seat: dict, data: dict, svg: str) -> str:
-    x, y = region_display_marker_position(seat, 'capital', svg, data['map']['bounds'])
+def region_seat_inset(seat: dict, data: dict) -> dict | None:
+    """The detail inset a capital/seat is drawn in (insetId), or None for the overview."""
+    inset_id = seat.get('insetId')
+    if not inset_id:
+        return None
+    for detail in data['map'].get('regions') or []:
+        if detail.get('id') == inset_id:
+            return detail
+    raise ValueError(f'Unknown capital/seat insetId: {inset_id}')
+
+
+def region_seat_position(seat: dict, data: dict, svg: str) -> tuple[float, float]:
+    detail = region_seat_inset(seat, data)
+    if detail is None:
+        return region_display_marker_position(seat, 'capital', svg, data['map']['bounds'])
+    if seat.get('mapOffset') is not None:
+        raise ValueError('Inset capital/seat markers use labelOffset, not mapOffset')
+    pos = region_capital_map_position(seat['coordinates'], data['map']['bounds'], svg)
+    return region_inset_position(pos, detail, svg, seat['nameJa'])
+
+
+def region_seat_html(seat: dict, left: float, top: float) -> str:
     role = seat.get('roleJa') or seat.get('labelJa') or '首都'
     return ('<div class="map-capital-marker region-map-capital" role="img" '
             f'aria-label="{esc(role)}：{esc(seat["nameJa"])}" '
-            f'style="left:{x:.5f}%;top:{y:.5f}%" '
+            f'style="left:{left:.5f}%;top:{top:.5f}%" '
             f'data-label-position="{esc(seat.get("labelPosition", "right"))}">'
             '<i aria-hidden="true"></i>'
             f'<span{region_capital_label_style(seat)}>{esc(seat["nameJa"])}</span></div>')
+
+
+def region_seat_marker(seat: dict, data: dict, svg: str) -> str:
+    x, y = region_seat_position(seat, data, svg)
+    return region_seat_html(seat, x, y)
 
 
 def region_capital_map_position(coords: dict, bounds: dict, svg: str = '') -> tuple[float, float]:
@@ -415,6 +446,13 @@ def mobile_region_detail(data: dict, svg: str, map_version: str) -> str:
                 f'aria-label="{index} {esc(scene["name"])}を選択" aria-pressed="false">'
                 f'<b aria-hidden="true">{index}</b></button>'
             )
+        for seat in region_map_seats(data):
+            if seat.get('insetId') != detail.get('id'):
+                continue
+            x, y = region_seat_position(seat, data, svg)
+            pieces.append(region_seat_html(
+                seat, 100 * (12 * x - rect['x']) / rect['width'],
+                100 * (7.6 * y - rect['y']) / rect['height']))
         pieces.append('</div>')
     return ''.join(pieces)
 

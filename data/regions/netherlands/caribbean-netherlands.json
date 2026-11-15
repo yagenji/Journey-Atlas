@@ -36,7 +36,7 @@
   },
   "profile": [
     {
-      "label": "行政の中心",
+      "label": "首府",
       "value": "ボネール：クラレンダイク／シント・ユースタティウス：オラニエスタッド／サバ：ザ・ボトム",
       "sourceKey": "status"
     },
@@ -314,13 +314,13 @@
       "interestReason": "平坦なオランダのイメージを、カリブ海の山が変える。"
     },
     {
-      "topicKey": "bonaire-pop-share",
-      "label": "3島の人口がボネールに集中",
-      "value": "約83％",
-      "note": "2026年1月1日の人口33,229人のうち、27,611人がボネールに住む。",
-      "icon": "users",
-      "sourceKey": "population",
-      "interestReason": "3島は地理だけでなく人口規模も大きく違う。"
+      "topicKey": "marine-park-dive-sites",
+      "label": "海洋公園のダイブサイト",
+      "value": "100か所以上",
+      "note": "ボネール国立海洋公園は島の高潮線から沖合（水深60m、または岸から75m）までを保護区とし、100か所以上のダイブサイトを含む。",
+      "icon": "sea",
+      "sourceKey": "marinePark",
+      "interestReason": "島をぐるりと囲む保護された海に、岸から入れる潜水地点が並ぶ。"
     }
   ],
   "encounters": [
@@ -547,9 +547,9 @@
   ],
   "notes": [
     {
-      "title": "ボネールと北部2島は大きく離れている",
-      "text": "ボネールはサバ・シント・ユースタティウスから約800km離れている。後者の2島は互いに近いが、ボネールとの移動には別途乗り継ぎを見込む。",
-      "sourceKey": "status"
+      "title": "ボネールの海と国立公園はネイチャー・フィーが必要",
+      "text": "ボネール国立海洋公園で泳ぐ・潜る人とワシントン・スラフバーイ国立公園の利用者は、ネイチャー・フィーの支払いが義務。1〜12月の暦年単位で有効。",
+      "sourceKey": "marinePark"
     },
     {
       "title": "山道と海上交通は当日の情報を確認",
@@ -570,20 +570,20 @@
       {
         "duration": "3〜4日",
         "title": "ボネールの水辺をめぐる",
-        "icon": "sea",
-        "text": "クラレンダイク → 塩田と白い小屋跡 → ラック湾 → ゴトー湖 → クラレンダイク。ボネール内を周遊する。"
+        "icon": "city",
+        "text": "例：クラレンダイク → 塩田と白い小屋跡 → ラック湾 → ゴトー湖 → クラレンダイク。ボネール内を周遊する。"
       },
       {
         "duration": "5〜7日",
         "title": "北部2島の山と歴史",
         "icon": "map",
-        "text": "シント・マールテン経由でサバへ → マウント・シーナリー → サバ港・空港経由でシント・ユースタティウスへ → オラニエ砦・ザ・クイル → シント・マールテン方面へ戻る。実際の運航日で調整する。"
+        "text": "例：シント・マールテン経由でサバへ → マウント・シーナリー → サバ港・空港経由でシント・ユースタティウスへ → オラニエ砦・ザ・クイル → シント・マールテン方面へ戻る。実際の運航日で調整する。"
       },
       {
-        "duration": "10〜14日以上",
+        "duration": "8日以上",
         "title": "3島の違いをたどる",
         "icon": "compass",
-        "text": "ボネール：クラレンダイク周遊 → 航空乗継ぎ → シント・マールテンを拠点にサバ・シント・ユースタティウスを周遊 → シント・マールテンへ戻る。各区間は便の接続次第。"
+        "text": "例：ボネール：クラレンダイク周遊 → 航空乗継ぎ → シント・マールテンを拠点にサバ・シント・ユースタティウスを周遊 → シント・マールテンへ戻る。各区間は便の接続次第。"
       }
     ]
   },
@@ -604,7 +604,7 @@
       "months": "1〜3月",
       "label": "北部の乾季寄り",
       "icon": "sun",
-      "color": "#92a253",
+      "color": "#6b90a5",
       "text": "北部2島では比較的雨の少ない時期。山の雲霧林は湿りやすく、歩道の状態を現地確認する。"
     },
     {
@@ -618,14 +618,14 @@
       "months": "7〜9月",
       "label": "高温と熱帯低気圧",
       "icon": "sun",
-      "color": "#b77a49",
+      "color": "#92a253",
       "text": "北部小アンティルではハリケーンへの警戒を強める時期。交通と屋外活動は天候優先。"
     },
     {
       "months": "10〜12月",
       "label": "雨と変わる緑",
       "icon": "weather",
-      "color": "#6b90a5",
+      "color": "#b77a49",
       "text": "ボネールでは降雨が増える時期があり、北部2島の登山路もぬかるみやすい。"
     }
   ],
@@ -655,12 +655,12 @@
   ],
   "relatedCountries": [
     {
-      "nameJa": "オランダ",
-      "nameEn": "NETHERLANDS",
-      "href": "countries/netherlands/",
-      "flag": "🇳🇱",
-      "reason": "ボネールの塩田やサバの家並みに残るオランダの時代に惹かれたなら、アムステルダムの運河と港町で、カリブまで船を送った海洋国家の本拠地を歩ける。",
-      "affinityType": "HISTORY"
+      "nameJa": "コスタリカ",
+      "nameEn": "COSTA RICA",
+      "href": "countries/costarica/",
+      "flag": "🇨🇷",
+      "reason": "霧に包まれたサバ島の山頂林に惹かれたなら、モンテベルデの雲霧林へ。霧が育てるコケやシダ、着生植物の森を、もっと大きなスケールで歩ける。",
+      "affinityType": "NATURE"
     },
     {
       "nameJa": "ボリビア",
@@ -689,7 +689,9 @@
     "scenery": "official tourism page accessed 2026-11-14",
     "map": "Natural Earth 10m-derived world-countries BES coastline and GSHHS intermediate, checked 2026-11-15",
     "heroSalt": "Wikimedia geotagged camera photo dated 2014-10-27",
-    "transport": "Current 2026-11-15; operator schedules can change; checked 2026-11-15"
+    "transport": "Current 2026-11-15; operator schedules can change; checked 2026-11-15",
+    "marinePark": "STINAPA Bonaire, checked 2026-11-16",
+    "governance": "historyContext source; QA reviewed 2026-11-16"
   },
   "sources": {
     "status": "https://www.government.nl/themes/government-and-democracy/caribbean-parts-of-the-kingdom/question-and-answer/what-are-the-different-parts-of-the-kingdom-of-the-netherlands",
@@ -728,6 +730,64 @@
     "sabaLaceCraft": "https://www.sabatourism.com/things-to-do/",
     "bonaire1000Steps": "https://bonaireisland.com/experiences/beaches/sites/1000-steps/",
     "statiaBlueBeads": "https://www.government.nl/documents/2022/12/19/speech-by-marnix-van-rij-state-secretary-for-tax-affairs-and-the-tax-administration-on-sint-eustatius",
-    "statiaBlueBeadsResearch": "https://surface.syr.edu/beads/vol32/iss1/7/"
+    "statiaBlueBeadsResearch": "https://surface.syr.edu/beads/vol32/iss1/7/",
+    "marinePark": "https://stinapabonaire.org/bonaire-national-marine-park/coastal-waters/"
+  },
+  "capital": null,
+  "officialSeats": [
+    {
+      "nameJa": "クラレンダイク",
+      "nameEn": "Kralendijk",
+      "roleJa": "ボネールの行政の中心",
+      "coordinates": {
+        "latitude": 12.15,
+        "longitude": -68.2667
+      },
+      "labelPosition": "left",
+      "labelOffset": {
+        "x": 0,
+        "y": 8
+      },
+      "sourceKey": "status",
+      "insetId": "bonaire-detail"
+    },
+    {
+      "nameJa": "オラニエスタッド",
+      "nameEn": "Oranjestad",
+      "roleJa": "シント・ユースタティウスの行政の中心",
+      "coordinates": {
+        "latitude": 17.4833,
+        "longitude": -62.9833
+      },
+      "labelPosition": "right",
+      "labelOffset": {
+        "x": 0,
+        "y": 20
+      },
+      "sourceKey": "status",
+      "insetId": "north-detail"
+    },
+    {
+      "nameJa": "ザ・ボトム",
+      "nameEn": "The Bottom",
+      "roleJa": "サバの行政の中心",
+      "coordinates": {
+        "latitude": 17.6261,
+        "longitude": -63.2492
+      },
+      "labelPosition": "left",
+      "labelOffset": {
+        "x": 0,
+        "y": 8
+      },
+      "sourceKey": "status",
+      "insetId": "north-detail"
+    }
+  ],
+  "officialSeatsLegendJa": "各島の行政の中心",
+  "nextRegion": {
+    "slug": "aruba",
+    "nameEn": "ARUBA",
+    "nameJa": "アルバ"
   }
 }
