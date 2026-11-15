@@ -1,0 +1,662 @@
+{
+  "schemaVersion": 1,
+  "contentQaVersion": 6,
+  "parentSlug": "australia",
+  "slug": "cocos-keeling-islands",
+  "regionPublished": true,
+  "nameEn": "COCOS (KEELING) ISLANDS",
+  "nameJa": "ココス（キーリング）諸島",
+  "region": "AUSTRALIA / NEW ZEALAND / 12°S",
+  "parentNameJa": "オーストラリア",
+  "parentNameEn": "AUSTRALIA",
+  "parentReturnDescription": "オーストラリア本土とインド洋の外部領土を旅する",
+  "travelThemes": [
+    "海の世界へ",
+    "暮らしに出会う",
+    "時をたどる"
+  ],
+  "seo": {
+    "description": "インド洋に浮かぶオーストラリア外部領土。ディレクション島の白砂、ココス・マレーの暮らし、サンゴ礁、大戦の遺構を8景でたどる。"
+  },
+  "hero": {
+    "name": "コッシーズ・ビーチ",
+    "location": "Cossie’s Beach / Direction Island",
+    "image": "assets/images/australia/cocos-keeling-islands/approved/hero-cossies-beach.webp",
+    "coordinates": {
+      "latitude": -12.090553,
+      "longitude": 96.884736
+    },
+    "lead": "低い島の縁に、白砂とヤシが静かに続く。",
+    "description": "ディレクション島のラグーン側に延びるコッシーズ・ビーチ。浅い海とヤシ林に沿う浜辺は、山を持たないサンゴ環礁の姿をそのまま見せる。",
+    "sceneTypes": [
+      "beach",
+      "lagoon"
+    ],
+    "sourceKey": "direction",
+    "coordinateSourceKey": "heroCamera"
+  },
+  "profile": [
+    {
+      "label": "行政中心",
+      "value": "ウェスト島（West Island）",
+      "sourceKey": "govOverview"
+    },
+    {
+      "label": "人口",
+      "value": "593人（2021年国勢調査）",
+      "sourceKey": "census"
+    },
+    {
+      "label": "面積",
+      "value": "約14km²（日本の約0.004%）",
+      "sourceKey": "govOverview"
+    },
+    {
+      "label": "言語",
+      "value": "英語、ココス・マレー語など",
+      "sourceKey": "census"
+    },
+    {
+      "label": "主な宗教",
+      "value": "イスラム教など（2021年国勢調査で最多）",
+      "sourceKey": "census"
+    },
+    {
+      "label": "通貨",
+      "value": "オーストラリア・ドル（AUD）",
+      "sourceKey": "govOverview"
+    }
+  ],
+  "historyContext": {
+    "text": "ココス（キーリング）諸島はインド洋にあるオーストラリアの外部領土で、クリスマス島とは別の領土である。英国統治を経て1955年11月23日にオーストラリア領となった。コプラ生産をめぐる植民地時代の労働支配と、独自のココス・マレー文化の歴史を持つ。1984年には国連の監督下で住民がオーストラリアとの完全統合を選択した。",
+    "sourceKeys": [
+      "nationalArchives",
+      "parkCulture",
+      "historyReview"
+    ]
+  },
+  "map": {
+    "svg": "assets/images/australia/cocos-keeling-islands/map-cocos-keeling-islands.svg",
+    "bounds": {
+      "west": 96.795,
+      "east": 96.955,
+      "south": -12.22244915254,
+      "north": -12.06143220339
+    },
+    "singleMapMobile": true,
+    "source": "Who’s On First / Mapzen geometry (record 85632495, src:geom=mz), source/license: https://github.com/whosonfirst-data/whosonfirst-data-admin-cc/blob/master/LICENSE.md . Source polygon components (excluding Christmas Island) simplified for 1200×760 rendering; North Keeling detached inset at different scale. Historical coastline dataset, not a current survey. WGS84.",
+    "insetNote": "※ 北キーリング島は、実際の位置関係・縮尺と異なる別枠表示です。"
+  },
+  "scenes": [
+    {
+      "id": "home-island-kampong",
+      "name": "ホーム島のカンポン",
+      "nameLocal": "Home Island Kampong",
+      "description": "ココス・マレーの暮らしが続くホーム島。低い家並みとヤシの間に、ラグーンへつながる集落の道がある。訪問者は礼拝と住民の生活を尊重したい。",
+      "coordinates": {
+        "latitude": -12.11519,
+        "longitude": 96.89358
+      },
+      "image": "assets/images/australia/cocos-keeling-islands/approved/scene-01-home-island-kampong.webp",
+      "sceneTypes": [
+        "village",
+        "harbor"
+      ],
+      "sourceKey": "islands",
+      "coordinateSourceKey": "homeIslandArea"
+    },
+    {
+      "id": "oceania-house",
+      "name": "オセアニア・ハウス",
+      "nameLocal": "Oceania House / Home Island",
+      "description": "ココナッツ産業で島を支配したクルーニーズ＝ロス家ゆかりの邸宅。クリーム色の外壁と緑の建具、庭園に歴史が残る。内部の見学は、現在の訪問条件を確認したい。",
+      "coordinates": {
+        "latitude": -12.1204,
+        "longitude": 96.8947
+      },
+      "image": "assets/images/australia/cocos-keeling-islands/approved/scene-02-oceania-house.webp",
+      "sceneTypes": [
+        "monument",
+        "garden"
+      ],
+      "sourceKey": "oceaniaHouse",
+      "coordinateSourceKey": "oceaniaCoord"
+    },
+    {
+      "id": "the-rip",
+      "name": "ザ・リップのサンゴ礁",
+      "nameLocal": "The Rip / Direction Island",
+      "description": "浅い海にサンゴ群体と熱帯魚が広がる、ディレクション島のシュノーケリングポイント。強い潮流があり、入水時はその日の海況と安全情報が欠かせない。",
+      "coordinates": {
+        "latitude": -12.09478,
+        "longitude": 96.88685
+      },
+      "image": "assets/images/australia/cocos-keeling-islands/approved/scene-03-the-rip.webp",
+      "sceneTypes": [
+        "reef",
+        "marine"
+      ],
+      "sourceKey": "direction",
+      "coordinateSourceKey": "ripCoord"
+    },
+    {
+      "id": "direction-island-heritage",
+      "name": "ディレクション島の歴史散策路",
+      "nameLocal": "Direction Island Heritage Trail",
+      "description": "ヤシ林の小道の先に、1914年の通信施設襲撃とエムデン号の海戦につながる島の歴史がある。道沿いの案内板が当時の出来事を伝える。",
+      "coordinates": {
+        "latitude": -12.08888,
+        "longitude": 96.88355
+      },
+      "image": "assets/images/australia/cocos-keeling-islands/approved/scene-04-direction-island-heritage.webp",
+      "sceneTypes": [
+        "monument",
+        "ruins"
+      ],
+      "sourceKey": "nationalArchives",
+      "coordinateSourceKey": "directionIslandArea"
+    },
+    {
+      "id": "horsburgh-island-guns",
+      "name": "ホースバーグ島の沿岸砲",
+      "nameLocal": "Six Inch Guns / Horsburgh Island",
+      "description": "第二次世界大戦中の沿岸防衛施設。かつて2門あった砲は潮と風にさらされ著しく腐食し、片方はほぼ水没した。訪問可能性は現地の船と海況による。",
+      "coordinates": {
+        "latitude": -12.0812,
+        "longitude": 96.8438
+      },
+      "image": "assets/images/australia/cocos-keeling-islands/approved/scene-05-horsburgh-island-guns.webp",
+      "sceneTypes": [
+        "monument",
+        "ruins"
+      ],
+      "sourceKey": "heritage",
+      "coordinateSourceKey": "gunCoord"
+    },
+    {
+      "id": "south-island-lagoon",
+      "name": "サウス島のラグーン",
+      "nameLocal": "South Island Lagoon",
+      "description": "環礁の南東部では浅いラグーンと低いサンゴ島が接する。潮位によって水面と砂地の境目が変わり、外洋とは異なる静かな海の色が広がる。",
+      "coordinates": {
+        "latitude": -12.19161,
+        "longitude": 96.92288
+      },
+      "image": "assets/images/australia/cocos-keeling-islands/approved/scene-06-south-island-lagoon.webp",
+      "sceneTypes": [
+        "lagoon",
+        "island"
+      ],
+      "sourceKey": "islands",
+      "coordinateSourceKey": "southIslandArea"
+    },
+    {
+      "id": "pulu-maraya",
+      "name": "プル・マラヤの浅瀬",
+      "nameLocal": "Pulu Maraya / Scout Park",
+      "description": "ウェスト島南部から望む小さな島。干潮時には周囲の浅瀬の表情が変わるが、歩いて渡れる条件は潮位と海況に左右される。",
+      "coordinates": {
+        "latitude": -12.19913,
+        "longitude": 96.86599
+      },
+      "image": "assets/images/australia/cocos-keeling-islands/approved/scene-07-pulu-maraya.webp",
+      "sceneTypes": [
+        "island",
+        "lagoon"
+      ],
+      "sourceKey": "islands",
+      "coordinateSourceKey": "marayaCoord"
+    },
+    {
+      "id": "west-island-coast",
+      "name": "ウェスト島の外洋海岸",
+      "nameLocal": "West Island / Ocean Beach",
+      "description": "ウェスト島の西側、ラグーンではなくインド洋に面した海岸。ヤシと低い植生が続く砂浜に、外洋からの波が届く。",
+      "coordinates": {
+        "latitude": -12.196187,
+        "longitude": 96.834588
+      },
+      "image": "assets/images/australia/cocos-keeling-islands/approved/scene-08-west-island-coast.webp",
+      "sceneTypes": [
+        "beach",
+        "island"
+      ],
+      "sourceKey": "islands",
+      "coordinateSourceKey": "oceanBeachPhoto"
+    }
+  ],
+  "signatureFacts": [
+    {
+      "topicKey": "two-atolls",
+      "label": "2つの環礁に浮かぶ島々",
+      "value": "27のサンゴ島",
+      "note": "南側の馬蹄形の環礁と、約25km北に離れたNorth Keelingからなる。恒常的な居住島はWest IslandとHome Islandの2島。",
+      "icon": "landscape",
+      "sourceKey": "govOverview",
+      "interestReason": "環礁の輪郭と暮らしの拠点が一致しない、海の地理を知る。"
+    },
+    {
+      "topicKey": "vast-marine-park",
+      "label": "陸地をはるかに超える保護海域",
+      "value": "約46.7万km²",
+      "note": "2022年に設立されたココス（キーリング）諸島海洋公園。広大な外洋と海底を保全する。",
+      "icon": "sea",
+      "sourceKey": "marinePark",
+      "interestReason": "小さな陸地の外側には、桁違いに広い海の保護区域がある。"
+    },
+    {
+      "topicKey": "self-determination",
+      "label": "島の将来を決めた住民投票",
+      "value": "1984年",
+      "note": "国連監督下の自己決定の住民投票で、オーストラリアとの完全統合が選ばれた。",
+      "icon": "history",
+      "sourceKey": "nationalArchives",
+      "interestReason": "歴史を「遠い島の出来事」として終わらせない転機。"
+    }
+  ],
+  "encounters": [
+    {
+      "title": "ホーム島の家並みと海へ続く小道",
+      "icon": "home",
+      "category": "DAILY_LIFE"
+    },
+    {
+      "title": "ヤシの影が落ちる白砂の浜",
+      "icon": "sea",
+      "category": "LANDSCAPE"
+    },
+    {
+      "title": "浅いサンゴ礁を泳ぐ色彩豊かな魚",
+      "icon": "wildlife",
+      "category": "WILDLIFE"
+    },
+    {
+      "title": "静かな無人島の波音",
+      "icon": "sea",
+      "category": "NATURE"
+    },
+    {
+      "title": "海岸の塩風を受け続ける古い砲台",
+      "icon": "history",
+      "category": "HISTORY"
+    },
+    {
+      "title": "干潮時に現れる小島へ続く浅瀬",
+      "icon": "landscape",
+      "category": "LANDSCAPE"
+    },
+    {
+      "title": "ココス・マレーの家庭料理に香る香辛料",
+      "icon": "food",
+      "category": "FOOD"
+    },
+    {
+      "title": "通信線が世界につないだ島の記憶",
+      "icon": "history",
+      "category": "HISTORY"
+    }
+  ],
+  "culture": [
+    {
+      "topicKey": "cocos-malay",
+      "themeEn": "CULTURE",
+      "themeJa": "文化",
+      "icon": "culture",
+      "title": "海と祈りと、ココス・マレーの暮らし",
+      "text": "ホーム島ではココス・マレー語、イスラム教の礼拝、食と家族の習慣が日々の暮らしに息づく。観光客は住民の生活空間を尊重する。",
+      "points": [
+        "ホーム島の生活文化は観光用の展示ではない",
+        "礼拝中や民家・住民の撮影には配慮が必要"
+      ],
+      "sourceKey": "parkCulture"
+    },
+    {
+      "topicKey": "copra",
+      "themeEn": "HISTORY",
+      "themeJa": "歴史",
+      "icon": "history",
+      "title": "ヤシの実が生んだ産業と労働の歴史",
+      "text": "19世紀にココナッツ油とコプラ生産のため人々が移住した。クルーニーズ＝ロス家による長い支配のもと、労働者の生活や移動も制限された。",
+      "points": [
+        "1826年に恒常的な移住が始まった",
+        "島の暮らしを形づくった産業史は植民地支配と切り離せない"
+      ],
+      "sourceKey": "nationalArchives"
+    },
+    {
+      "topicKey": "oceania-house",
+      "themeEn": "HERITAGE",
+      "themeJa": "建築",
+      "icon": "history",
+      "title": "庭園に残るオセアニア・ハウス",
+      "text": "歴史的邸宅と庭園は、島を統治した家族の歴史と重なる。建物を見学する際には現在の利用形態と訪問条件を確認したい。",
+      "points": [
+        "ホーム島に残る歴史的な住宅建築",
+        "公開されていない内部への無断立入りは避ける"
+      ],
+      "sourceKey": "oceaniaHouse"
+    },
+    {
+      "topicKey": "cable-and-emden",
+      "themeEn": "HISTORY",
+      "themeJa": "通信史",
+      "icon": "history",
+      "title": "1914年、海底ケーブルと軍艦が交差した",
+      "text": "ディレクション島の通信施設がドイツ巡洋艦エムデンに襲撃された。豪州艦シドニーとの戦闘後、エムデンは北ケーリング島で座礁した。",
+      "points": [
+        "海底ケーブルが国際通信を担った",
+        "北の島は現在国立公園で自由観光の対象ではない"
+      ],
+      "sourceKey": "nationalArchives"
+    },
+    {
+      "topicKey": "coral-conservation",
+      "themeEn": "NATURE",
+      "themeJa": "保全",
+      "icon": "leaf",
+      "title": "小さな陸と、守るべき広い海",
+      "text": "島の周囲にはサンゴ礁、海草藻場、外洋が連なり、海洋公園が生態系を保護する。低い島の海岸は波浪・浸食の影響も受ける。",
+      "points": [
+        "ラグーンの浅瀬は陸地ではない",
+        "保護海域では区域により活動制限が異なる"
+      ],
+      "sourceKey": "marinePark"
+    },
+    {
+      "topicKey": "jukong-maritime-tradition",
+      "themeEn": "CULTURE",
+      "themeJa": "海の技術",
+      "icon": "sea",
+      "title": "浅い海に合わせて生まれた帆船ジュコン",
+      "text": "ココス・マレーの人々は、浅いラグーンでも航行できる木造帆船「ジュコン」を造り、漁や島々の移動に使ってきた。今もその船づくりの技術と帆走の競漕が受け継がれている。",
+      "points": [
+        "浅い喫水は、サンゴ環礁の海で培われた工夫",
+        "ホーム島周辺の帆船レースは、地域の文化を次世代へ伝える"
+      ],
+      "sourceKey": "jukongTradition"
+    }
+  ],
+  "taste": {
+    "kicker": "TASTE OF COCOS (KEELING) ISLANDS",
+    "title": "ココス・マレーの食卓",
+    "intro": "ココナッツ、香辛料、魚を使う島の味。マレー・インドネシア系の食文化とつながりながら、家庭ごとのレシピが受け継がれる。",
+    "items": [
+      {
+        "id": "ayam-begana",
+        "name": "アヤム・ベガナ",
+        "nameLocal": "Ayam Begana",
+        "text": "鶏肉をココナッツと香味野菜、ウコンなどの香辛料で調理するココス・マレーの料理。家庭ごとに味が異なる。",
+        "image": "assets/images/australia/cocos-keeling-islands/approved/food-01-ayam-begana.webp",
+        "sourceKey": "ayamBeganaRecipe"
+      },
+      {
+        "id": "nasi-uduk",
+        "name": "ナシ・ウドゥック",
+        "nameLocal": "Nasi Uduk",
+        "text": "ココナッツミルクで米を炊き上げる香りご飯。マレー・インドネシアの食文化とつながる。",
+        "image": "assets/images/australia/cocos-keeling-islands/approved/food-02-nasi-uduk.webp",
+        "sourceKey": "foodCulture"
+      },
+      {
+        "id": "satay-ayam",
+        "name": "サテー・アヤム",
+        "nameLocal": "Satay Ayam",
+        "text": "香辛料をまとわせた鶏肉の串を焼き、ピーナッツソースとともに食べる。島の作り手が伝えるレシピもある。",
+        "image": "assets/images/australia/cocos-keeling-islands/approved/food-03-satay-ayam.webp",
+        "sourceKey": "satayRecipe"
+      },
+      {
+        "id": "ikan-bakar",
+        "name": "イカン・バカール",
+        "nameLocal": "Ikan Bakar",
+        "text": "魚に香味ペーストを塗って香ばしく焼くマレー系の一皿。使う魚や味付けにはさまざまな家庭の工夫がある。",
+        "image": "assets/images/australia/cocos-keeling-islands/approved/food-04-ikan-bakar.webp",
+        "sourceKey": "foodCulture"
+      }
+    ]
+  },
+  "travelTrivia": [
+    {
+      "topicKey": "cossies-name",
+      "categoryEn": "HISTORY",
+      "categoryJa": "海辺の名前",
+      "icon": "sea",
+      "title": "浜の名に残る「Cossie’s」",
+      "text": "白砂の浜は2016年、当時の豪州総督ピーター・コスグローブにちなみCossie’s Beachと名付けられた。",
+      "sourceKey": "cossiesName"
+    },
+    {
+      "topicKey": "darwin",
+      "categoryEn": "SCIENCE",
+      "categoryJa": "自然史",
+      "icon": "landscape",
+      "title": "ダーウィンもこの環礁に上陸した",
+      "text": "1836年のビーグル号航海中、ダーウィンはサンゴ島を観察し、環礁がどのように形づくられるか考えを深めた。",
+      "sourceKey": "darwin"
+    },
+    {
+      "topicKey": "island-cable",
+      "categoryEn": "HISTORY",
+      "categoryJa": "海の通信",
+      "icon": "history",
+      "title": "海の小島が国際通信の中継地だった",
+      "text": "インド洋を横切る海底電信ケーブルは、離れた島々を国際通信網の一部にした。",
+      "sourceKey": "nationalArchives"
+    },
+    {
+      "topicKey": "north-keeling-rail",
+      "categoryEn": "WILDLIFE",
+      "categoryJa": "島だけの鳥",
+      "icon": "wildlife",
+      "title": "北の島から戻ってきた固有のクイナ",
+      "text": "ココス諸島固有のクイナの亜種は、一時は北ケーリング島だけに残った。2013年に南の環礁のホースバーグ島へ移され、野生での繁殖に成功した。",
+      "sourceKey": "cocosRail"
+    },
+    {
+      "topicKey": "runway-golf",
+      "categoryEn": "ISLAND LIFE",
+      "categoryJa": "滑走路とゴルフ",
+      "icon": "map",
+      "title": "国際空港の滑走路を横切るゴルフ場",
+      "text": "ウェスト島の9ホールのゴルフコースは、国際空港の滑走路を横切るという珍しい配置になっている。",
+      "sourceKey": "govTravel"
+    }
+  ],
+  "forWhom": [
+    {
+      "title": "海と環礁の形を体で知りたい人",
+      "text": "波の穏やかなラグーンと外洋側の海岸を歩き、干満の変化を見比べたい人。"
+    },
+    {
+      "title": "暮らしの背景に目を向けたい人",
+      "text": "ホーム島の生活文化・信仰・歴史を尊重し、人との距離を大切にして旅したい人。"
+    },
+    {
+      "title": "海と歴史の両方をたどりたい人",
+      "text": "通信の記憶と戦時の遺構を、島々の地理とともに知りたい人。"
+    }
+  ],
+  "notes": [
+    {
+      "title": "フェリー運航は渡航前と当日に再確認",
+      "text": "ウェスト島とホーム島の便は曜日ごとに違う。ディレクション島への便は最新時刻表の記載に従い、天候による変更も考慮する。",
+      "sourceKey": "ferry"
+    },
+    {
+      "title": "ホーム島は肩と膝を覆う服装で",
+      "text": "ココス・マレーの宗教文化と暮らしを尊重し、礼拝や住民、民家の撮影は許可を得る。",
+      "sourceKey": "weather"
+    },
+    {
+      "title": "ザ・リップの潮流に注意",
+      "text": "水中の流れと潮位は変わる。監視員がいない海に無理に入らず、現地の海況・安全案内を優先する。",
+      "sourceKey": "direction"
+    },
+    {
+      "title": "北ケーリング島は自由訪問地ではない",
+      "text": "Pulu Keeling National Parkには一般向け定期ツアーがない。研究者は公園職員の同行が必要で、活動内容に応じて許可が必要。",
+      "sourceKey": "parkAccess"
+    },
+    {
+      "title": "南側の無人島へは潮位と船の条件を優先",
+      "text": "サウス島やホースバーグ島、プル・マラヤへの移動は干潮・波・船の有無で変わる。アクセス可能と決めつけず現地確認する。",
+      "sourceKey": "islands"
+    }
+  ],
+  "travelScale": {
+    "kicker": "DURATION",
+    "title": "旅の目安日程",
+    "intro": "ウェスト島を拠点とする編集上の周遊例。フェリー・航空便・潮汐・海況に合わせ、各日の訪問先を調整する。",
+    "items": [
+      {
+        "duration": "3〜4日",
+        "title": "ウェスト島とホーム島",
+        "icon": "sea",
+        "text": "例：West Island → Home Island → West Island。別日にWest Island南部の海岸を巡って同じ拠点へ戻る。"
+      },
+      {
+        "duration": "約7日",
+        "title": "南側の環礁を知る",
+        "icon": "compass",
+        "text": "例：West Island → Home Island → West Island／West Island → Direction Island → West Island。現地の船が利用可能な日にラグーンを巡る。"
+      },
+      {
+        "duration": "10日以上",
+        "title": "潮汐と天候に余裕を持つ",
+        "icon": "hike",
+        "text": "West Islandを拠点にシュノーケリングや文化体験の予備日を確保。North Keelingは通常の観光行程に組み込まない。"
+      }
+    ]
+  },
+  "bestSeason": {
+    "windows": [
+      {
+        "label": "11〜4月",
+        "reason": "風が変わりやすいドルドラム期。比較的落ち着く日はダイビングやバードウォッチング向き。"
+      },
+      {
+        "label": "5〜10月",
+        "reason": "南東貿易風が続き、条件が合えばカイトサーフィン向き。海況には注意。"
+      }
+    ]
+  },
+  "seasons": [
+    {
+      "months": "12〜2月",
+      "label": "ドルドラム期",
+      "icon": "sun",
+      "color": "#9a9d5b",
+      "text": "貿易風が弱まる季節。海のアクティビティを計画しやすい日もあるが、風と波の変化を確認する。"
+    },
+    {
+      "months": "3〜5月",
+      "label": "雨の多い季節",
+      "icon": "weather",
+      "color": "#6c97a2",
+      "text": "雨量が増えやすい時期。5月ごろから南東貿易風が強まり始める。"
+    },
+    {
+      "months": "6〜8月",
+      "label": "南東貿易風",
+      "icon": "weather",
+      "color": "#729775",
+      "text": "安定した風が吹きやすい。カイトサーフィン向きの日がある一方、船やシュノーケルは海況次第。"
+    },
+    {
+      "months": "9〜11月",
+      "label": "貿易風から風の弱い季節へ",
+      "icon": "leaf",
+      "color": "#b47f55",
+      "text": "風の季節が終わり、11月ごろからドルドラム期に移る。雨季・乾季の単純な二分では表せない。"
+    }
+  ],
+  "transport": {
+    "icon": "sea",
+    "title": "パースから空路、島間はフェリーと地元の船",
+    "text": "観光局の2026年11月確認情報ではQantasLinkがパース発の便を月曜・金曜に案内。ウェスト島とホーム島の定期フェリー、ディレクション島の運航便はそれぞれ時刻表と海況を再確認する。",
+    "sourceKeys": [
+      "flights",
+      "ferry"
+    ]
+  },
+  "nextRoutesIntro": "",
+  "nextRoutes": [],
+  "relatedCountries": [
+    {
+      "nameJa": "オーストラリア",
+      "nameEn": "AUSTRALIA",
+      "href": "countries/australia/",
+      "flag": "🇦🇺",
+      "reason": "同じ国に属しながら、環礁とは大きく異なる大陸側の地形と自然を知る。",
+      "affinityType": "ISLAND"
+    },
+    {
+      "nameJa": "インドネシア",
+      "nameEn": "INDONESIA",
+      "href": "countries/indonesia/",
+      "flag": "🇮🇩",
+      "reason": "ココス・マレーの歴史や食文化とつながる島々をたどる。",
+      "affinityType": "CULTURE"
+    },
+    {
+      "nameJa": "モルディブ",
+      "nameEn": "MALDIVES",
+      "href": "countries/maldives/",
+      "flag": "🇲🇻",
+      "reason": "同じインド洋に浮かぶ別の環礁へ。砂州と島の暮らしを見比べながら、海が形づくる地理をたどる。",
+      "affinityType": "LANDSCAPE"
+    }
+  ],
+  "sourcesVerifiedAt": "2026-11-15",
+  "updatedAt": "2026-11-15",
+  "sourceDates": {
+    "population": "2021 Australian Census",
+    "area": "Australian Government overview checked 2026-11-15",
+    "territoryStatus": "1955-11-23 transfer; 1984 referendum",
+    "marinePark": "Parks Australia checked 2026-11-15 (internal area-number inconsistency, approximate display)",
+    "flightService": "Tourism Association 2026-11-15, dynamic",
+    "ferryService": "Tourism Association timetable 2026-11-15, dynamic",
+    "mapGeometry": "Who’s On First record 85632495 checked 2026-11-15; underlying coastline acquisition date not established",
+    "japanArea": "GSI 2026-07-01"
+  },
+  "sources": {
+    "govOverview": "https://www.infrastructure.gov.au/territories-regions/territories/indian-ocean-territories-christmas-island-and-cocos-keeling-islands/cocos-keeling-islands",
+    "census": "https://www.infrastructure.gov.au/territories-regions/territories/indian-ocean-territories-christmas-island-and-cocos-keeling-islands/cocos-keeling-islands/cocos-keeling-islands-census-data",
+    "nationalArchives": "https://www.naa.gov.au/help-your-research/fact-sheets/cocos-keeling-islands",
+    "parkCulture": "https://pulukeelingnationalpark.gov.au/discover/history-culture/",
+    "historyReview": "https://www.infrastructure.gov.au/sites/default/files/migrated/territories/publications/files/A_Federation_in_These_Seas_Part_3.pdf",
+    "marinePark": "https://australianmarineparks.gov.au/parks/indian-ocean-territories-marine-parks/cocos-keeling-islands-marine-park/",
+    "islands": "https://cocoskeelingislands.com.au/about/the-islands/",
+    "direction": "https://cocoskeelingislands.com.au/things-to-do/see-do/activities/direction-island-3/",
+    "oceaniaHouse": "https://cocoskeelingislands.com.au/operator/oceania-house-home-island/",
+    "heritage": "https://www.infrastructure.gov.au/sites/default/files/migrated/territories/publications/files/IOT_Heritage_Inventory_Final_Report_January_2009.pdf",
+    "foodCulture": "https://www.sbs.com.au/food/article/you-can-try-the-cuisine-of-the-cocos-islands-here/goxwjitbt",
+    "satayRecipe": "https://www.sbs.com.au/food/recipe/island-dreams-satay-skewers/94nrx607h",
+    "ferry": "https://cocoskeelingislands.com.au/what-to-know-before-you-come/ferry-timetable/",
+    "flights": "https://cocoskeelingislands.com.au/travel-info/plan/",
+    "weather": "https://cocoskeelingislands.com.au/about/weather/",
+    "parkAccess": "https://pulukeelingnationalpark.gov.au/access/park-access/",
+    "cossiesName": "https://www.abc.net.au/news/2016-12-03/two-remote-island-beaches-off-wa-coast-ranked-in-top-10/8088270",
+    "darwin": "https://pulukeelingnationalpark.gov.au/discover/history-culture/",
+    "heroCamera": "https://commons.wikimedia.org/wiki/File:Cocos_Keeling_Islands_Wikivoyage_banner.jpg",
+    "homeIslandArea": "https://mapcarta.com/15440424",
+    "oceaniaCoord": "https://en.wikipedia.org/wiki/Oceania_House",
+    "ripCoord": "https://mapcarta.com/N5156089223",
+    "directionIslandArea": "https://mapcarta.com/15440428",
+    "gunCoord": "https://en.wikipedia.org/wiki/Six_Inch_Guns,_Horsburgh_Island",
+    "southIslandArea": "https://mapcarta.com/15440392",
+    "marayaCoord": "https://mapcarta.com/W477773451",
+    "oceanBeachPhoto": "https://commons.wikimedia.org/wiki/File:Ocean_Beach_(23980693803).jpg",
+    "geofabrikGeometry": "https://download.geofabrik.de/australia-oceania/australia/cocos-islands.html",
+    "waCoast": "https://catalogue.data.wa.gov.au/group/australian-indian-ocean-territories-cocos-keeling-islands",
+    "japanArea": "https://www.gsi.go.jp/KOKUJYOHO/MENCHO-title.htm",
+    "ayamBeganaRecipe": "https://www.tasteatlas.com/ayam-begana",
+    "jukongTradition": "https://www.legislation.gov.au/F2025L00071/asmade/2025-02-11/text/original/epub/OEBPS/document_1/document_1.html",
+    "cocosRail": "https://pulukeelingnationalpark.gov.au/discover/nature/animals/birds/cocos-buff-banded-rail/",
+    "govTravel": "https://www.infrastructure.gov.au/territories-regions-cities/territories/indian-ocean-territories/cocos-keeling-islands/travel-information"
+  },
+  "nextRegion": {
+    "slug": "christmas-island",
+    "nameJa": "クリスマス島"
+  }
+}

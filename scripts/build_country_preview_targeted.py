@@ -70,9 +70,13 @@ def include_pager_neighbors(slugs: list[str]) -> list[str]:
     """
     registry = json.loads((ROOT / "data/atlas-destinations.json").read_text(encoding="utf-8"))
     taxonomy = json.loads((ROOT / "data/region-taxonomy.json").read_text(encoding="utf-8"))
+    # The live atlas-order.js excludes China detail pages from the 200-page
+    # Country pager. Match its order so every actual previous/next Hero is packed.
+    detail_slugs = set(registry.get("detailRegionSlugs") or ["hong-kong", "macau"])
     by_iso = {
         item["iso2"]: item for item in registry.get("destinations", [])
         if item.get("atlasPublished") and item.get("href")
+        and item.get("slug") not in detail_slugs
     }
     pages: list[str] = []
     used: set[str] = set()
@@ -202,11 +206,10 @@ def package_runtime_data(slugs: list[str]) -> set[str]:
     registry = json.loads((ROOT / "data" / "atlas-destinations.json").read_text(encoding="utf-8"))
     published = {item["slug"] for item in registry["destinations"]
                  if item.get("atlasPublished") and item.get("href")}
-    # The live similar-scenes UI needs up to six *distinct* other Country families
-    # per page. A fixed first-N subset can leave Regions with only 3-4 cards even
-    # though the full scene index has ample matching Scenes. Build a minimal
-    # image-complete support pool for every target Country and its Regions.
-    page_type_sets: list[set[str]] = []
+    # Select preview support scenes by the cover subject and approximate
+    # geographic context, rather than by alphabetical first-match families.
+    # The live recommender is allowed to return fewer than six cards.
+    page_focuses: list[tuple[set[str], float | None]] = []
     for slug in slugs:
         country = json.loads((COUNTRY_DIR / f"{slug}.json").read_text(encoding="utf-8"))
         family_pages = [country] + [
@@ -214,29 +217,59 @@ def package_runtime_data(slugs: list[str]) -> set[str]:
             for path in sorted((ROOT / "data" / "regions" / slug).glob("*.json"))
         ]
         for page in family_pages:
-            page_types = {
-                type_id
-                for entry in [page.get("hero", {}), *page.get("scenes", [])]
-                for type_id in entry.get("sceneTypes", [])
-            }
-            if page_types:
-                page_type_sets.append(page_types)
+            hero = page.get("hero") or {}
+            primary = hero if hero.get("sceneTypes") else next(
+                (item for item in page.get("scenes", []) if item.get("sceneTypes")), {}
+            )
+            types = set(primary.get("sceneTypes", []))
+            lat = (primary.get("coordinates") or {}).get("latitude")
+            if isinstance(lat, (int, float)) and abs(lat) >= 50 and types.intersection(
+                {"fjord", "island", "peak", "cliff"}
+            ) and any((scene.get("sceneTypes") or [None])[0] == "glacier"
+                      for scene in page.get("scenes", [])):
+                types.add("glacier")
+            if types:
+                page_focuses.append((types, lat))
 
+    latitude_sensitive = {
+        "fjord", "island", "bay", "harbor", "beach", "lagoon", "reef", "cliff",
+        "forest", "rainforest", "grassland", "wetland", "dune", "oasis",
+        "rock", "cave", "lake", "river", "waterfall", "birds", "wildlife",
+        "marine", "village", "oldtown", "colorful",
+    }
     support: dict[str, list] = {}
-    for page_types in page_type_sets:
-        matched_families = 0
-        for slug, rows in scene_index.get("countries", {}).items():
-            if slug in slugs or slug not in published:
+    for focus_types, focus_lat in page_focuses:
+        eligible: list[tuple[float, str, list]] = []
+        for candidate_slug, rows in scene_index.get("countries", {}).items():
+            if candidate_slug in slugs or candidate_slug not in published:
                 continue
-            match = next((row for row in rows
-                          if len(row) > 2 and page_types.intersection(row[2])), None)
-            if match is None:
+            for row in rows:
+                matches = focus_types.intersection(row[2])
+                if not matches:
+                    continue
+                scene_lat = row[4] if len(row) > 4 else None
+                delta = (abs(abs(scene_lat) - abs(focus_lat))
+                         if isinstance(scene_lat, (int, float)) and
+                            isinstance(focus_lat, (int, float)) else None)
+                if delta is not None and all(
+                    kind in latitude_sensitive and delta > (24 if kind in {
+                        "island", "bay", "harbor", "rock", "cliff", "birds",
+                        "beach", "lake", "river", "village"
+                    } else 30) for kind in matches
+                ):
+                    continue
+                eligible.append((len(matches) * 5 - (delta or 0) / 20,
+                                 candidate_slug, row))
+        eligible.sort(key=lambda value: (-value[0], value[1], value[2][0]))
+        selected_families: set[str] = set()
+        for _, candidate_slug, row in eligible:
+            if candidate_slug in selected_families:
                 continue
-            selected = support.setdefault(slug, [])
-            if not any(page_types.intersection(row[2]) for row in selected):
-                selected.append(match)
-            matched_families += 1
-            if matched_families >= 6:
+            selected_families.add(candidate_slug)
+            selected = support.setdefault(candidate_slug, [])
+            if row not in selected:
+                selected.append(row)
+            if len(selected_families) >= 10:
                 break
     scene_index["countries"] = {
         **{slug: rows for slug, rows in scene_index.get("countries", {}).items() if slug in slugs},
@@ -357,6 +390,8 @@ def main() -> int:
     if DIST.exists():
         shutil.rmtree(DIST)
     build_target_pages(packaged_slugs)
+    # Refresh the schema-7 scene index, including geography, for truthful preview QA.
+    build_site.build_top_scene_index()
     DIST.mkdir(parents=True, exist_ok=True)
     package_shared_runtime()
     refs = package_runtime_data(packaged_slugs)

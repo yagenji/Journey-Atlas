@@ -320,6 +320,13 @@ def prepare_generic_country_page() -> None:
         page,
         count=1,
     )
+    for asset in ("assets/js/similar-scenes.js", "assets/css/similar-scenes.css"):
+        page = re.sub(
+            re.escape(asset) + r'\?v=[^"]+',
+            f"{asset}?v={BUILD_VERSION}",
+            page,
+            count=1,
+        )
     path.write_text(page, encoding="utf-8")
 
 
@@ -579,15 +586,22 @@ def build_top_season_index() -> None:
 def build_top_scene_index() -> None:
     """Source-led labels for the top-page gallery: Scenes and Country Hero locations.
 
-    Each Scene row is [id, name, sceneTypes, image]; Hero types are keyed by slug in heroTypes.
+    Each Scene row is [id, name, sceneTypes, image, latitude]; Hero metadata is keyed by slug.
 
     Scene entries are published only when their thumbnail exists. Hero names come from the
     corresponding Country JSON, not from a generic country-name placeholder.
     """
+    def scene_latitude(entry: dict) -> float | None:
+        value = (entry.get("coordinates") or {}).get("latitude")
+        if isinstance(value, (int, float)) and not isinstance(value, bool) and -90 <= value <= 90:
+            return round(float(value), 5)
+        return None
+
     thumbs = ROOT / "assets/images/top/scenes"
     countries: dict[str, list] = {}
     heroes: dict[str, str] = {}
     hero_types: dict[str, list] = {}
+    hero_latitudes: dict[str, float | None] = {}
     missing = 0
     for path in sorted((ROOT / "data/countries").glob("*.json")):
         data = json.loads(path.read_text(encoding="utf-8"))
@@ -598,6 +612,7 @@ def build_top_scene_index() -> None:
         hero_name = str(hero.get("name") or hero.get("location") or "").strip()
         if hero.get("image") and hero_name:
             heroes[slug] = hero_name
+            hero_latitudes[slug] = scene_latitude(hero)
             if hero.get("sceneTypes"):
                 hero_types[slug] = hero["sceneTypes"]
         rows = []
@@ -615,7 +630,8 @@ def build_top_scene_index() -> None:
             if image and not (ROOT / image).is_file():
                 raise FileNotFoundError(f"{slug}/{scene_id}: {image}")
             rows.append([scene_id, str(scene.get("name", "")).strip(), scene.get("sceneTypes", []),
-                         image[len(own):] if image.startswith(own) else image])
+                         image[len(own):] if image.startswith(own) else image,
+                         scene_latitude(scene)])
         if rows:
             countries[slug] = rows
     if missing:
@@ -635,7 +651,11 @@ def build_top_scene_index() -> None:
         "aruba": ("🇦🇼", None),
         "curacao": ("🇨🇼", None),
         "sint-maarten": ("🇸🇽", None),
+        "caribbean-netherlands": ("🇧🇶", None),  # Caribbean Netherlands: Bonaire, Sint Eustatius and Saba (BQ).
         "puerto-rico": ("🇵🇷", None),
+        "us-virgin-islands": ("🇻🇮", None),  # U.S. Virgin Islands territory flag.
+        "american-samoa": ("🇦🇸", None),  # American Samoa territory flag.
+        "mariana-islands": ("🇺🇸", None),  # Guam and CNMI geographic Region; no shared regional flag.
         "zanzibar": ("🇹🇿", None),  # No Zanzibar subdivision emoji; use the parent Tanzania flag.
         "azores": ("🇵🇹", None),  # No Unicode subdivision flag; Portuguese autonomous region.
         "canary-islands": ("🇮🇨", None),  # Canary Islands regional flag, not the parent Spain flag.
@@ -643,7 +663,10 @@ def build_top_scene_index() -> None:
         "reunion": ("🇷🇪", None),  # French overseas department in the Indian Ocean.
         "mayotte": ("🇾🇹", None),  # French overseas department in the Mozambique Channel.
         "guadeloupe": ("🇬🇵", None),  # French overseas department in the Caribbean.
+        "saint-barthelemy": ("🇧🇱", None),  # French overseas collectivity; ISO 3166-1 BL.
+        "saint-martin": ("🇲🇫", None),  # French overseas collectivity; ISO 3166-1 MF.
         "new-caledonia": ("🇳🇨", None),
+        "wallis-and-futuna": ("🇼🇫", None),  # French overseas collectivity; ISO 3166-1 WF.
         "french-polynesia": ("🇵🇫", None),
         "french-guiana": ("🇬🇫", None),
         "gibraltar": ("🇬🇮", None),
@@ -651,10 +674,20 @@ def build_top_scene_index() -> None:
         "guernsey": ("🇬🇬", None),  # Guernsey Bailiwick Crown Dependency.
         "isle-of-man": ("🇮🇲", None),
         "bermuda": ("🇧🇲", None),  # British Overseas Territory in the North Atlantic.
+        "anguilla": ("🇦🇮", None),  # British Overseas Territory in the Caribbean.
+        "pitcairn-islands": ("🇵🇳", None),  # British Overseas Territory in the South Pacific.
+        "turks-and-caicos-islands": ("🇹🇨", None),  # British Overseas Territory in the Caribbean.
+        "british-virgin-islands": ("🇻🇬", None),  # British Overseas Territory in the Caribbean.
+        "cayman-islands": ("🇰🇾", None),  # British Overseas Territory in the Caribbean.
+        "montserrat": ("🇲🇸", None),  # British Overseas Territory in the Caribbean.
         "falkland-islands": ("🇫🇰", None),  # British Overseas Territory in the South Atlantic.
         "saint-helena": ("🇸🇭", None),  # British Overseas Territory in the South Atlantic; TOP flag.
+        "tristan-da-cunha": ("🇬🇧", None),  # Constituent island group of the UK Overseas Territory; no Unicode Tristan flag.
         "saint-pierre-and-miquelon": ("🇵🇲", None),  # French overseas collectivity in the North Atlantic.
         "svalbard": ("🇳🇴", None),  # Svalbard is part of Norway; it has no separate official flag.
+        "christmas-island": ("🇨🇽", None),  # Australian external territory, ISO 3166-1 CX.
+        "cocos-keeling-islands": ("🇨🇨", None),  # Australian external territory, ISO 3166-1 CC.
+        "norfolk-island": ("🇳🇫", None),  # Australian external territory, ISO 3166-1 NF.
         "england": ("🏴󠁧󠁢󠁥󠁮󠁧󠁿", "assets/icons/region-flags/england-waved.svg"),
         "scotland": ("🏴󠁧󠁢󠁳󠁣󠁴󠁿", "assets/icons/region-flags/scotland-waved.svg"),
         "wales": ("🏴󠁧󠁢󠁷󠁬󠁳󠁿", "assets/icons/region-flags/wales-waved.svg"),
@@ -680,7 +713,7 @@ def build_top_scene_index() -> None:
             region_id = "north-america"
         elif "NORTH AMERICA" in geo or "CARIBBEAN" in geo:
             region_id = "north-america"
-        elif any(term in geo for term in ("SOUTH PACIFIC", "MELANESIA", "POLYNESIA", "OCEANIA")):
+        elif any(term in geo for term in ("SOUTH PACIFIC", "MELANESIA", "MICRONESIA", "POLYNESIA", "OCEANIA", "AUSTRALIA / NEW ZEALAND")):
             region_id = "oceania"
         elif "EUROPE" in geo or "NORTH ATLANTIC" in geo:
             region_id = "europe"
@@ -703,6 +736,8 @@ def build_top_scene_index() -> None:
             "travelThemes": region.get("travelThemes", []),
             "image": hero["image"],
             "sceneTypes": hero.get("sceneTypes", []),
+            "latitude": scene_latitude(hero),
+            "pageLatitudes": [scene_latitude(item) for item in [hero, *region.get("scenes", [])]],
             # Hero + Scene types for this Region page's similar-scene suggestions.
             "pageTypes": [item.get("sceneTypes", []) for item in [hero, *region.get("scenes", [])]],
             "href": f"countries/{parent}/{region['slug']}/",
@@ -710,7 +745,8 @@ def build_top_scene_index() -> None:
     # Scene types drive the top-page scene index (see data/scene-taxonomy.json).
     taxonomy = json.loads((ROOT / "data/scene-taxonomy.json").read_text(encoding="utf-8"))
     payload = {
-        "version": 6, "countries": countries, "heroes": heroes, "heroTypes": hero_types,
+        "version": 7, "countries": countries, "heroes": heroes, "heroTypes": hero_types,
+        "heroLatitudes": hero_latitudes,
         "regionHeroes": region_heroes, "sceneTypes": taxonomy["groups"],
     }
     (ROOT / "data/top-scene-index.json").write_text(

@@ -107,13 +107,16 @@
     hero: {
       name: hero?.querySelector('.hero-caption__name')?.textContent?.trim() || '',
       image: assetPath(document.querySelector('.hero-art img')),
-      location: hero?.querySelector('.hero-caption__local')?.textContent?.trim() || ''
+      location: hero?.querySelector('.hero-caption__local')?.textContent?.trim() || '',
+      sceneTypes: (hero?.dataset.sceneTypes || '').split(',').filter(Boolean),
+      coordinates: {latitude: Number.parseFloat(hero?.dataset.sceneLat)}
     },
     scenes: cards.map(card => ({
       id: card.dataset.scene,
       name: card.querySelector('.scene-copy h3')?.textContent?.trim() || '',
       image: assetPath(card.querySelector('.scene-image img')),
-      sceneTypes: (card.dataset.sceneTypes || '').split(',').filter(Boolean)
+      sceneTypes: (card.dataset.sceneTypes || '').split(',').filter(Boolean),
+      coordinates: {latitude: Number.parseFloat(card.dataset.sceneLat)}
     }))
   };
   // atlas-personal.js provides the same Hero/Scene hearts as the Country pages.

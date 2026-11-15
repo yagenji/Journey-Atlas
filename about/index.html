@@ -24,6 +24,51 @@
   <link rel="stylesheet" href="assets/css/site-unify.css?v=20260907-info-header-v3">
   <link rel="stylesheet" href="assets/css/site-nav.css?v=20261103-my-atlas-nav-1">
   <link rel="stylesheet" href="assets/css/site-footer.css?v=20260908-footer-unify-v1">
+  <style>
+    /* ABOUT-only mobile home-screen instructions: preserve shared site-info styles. */
+    #home-screen h3{margin:18px 0 6px;color:var(--info-text);font:700 13px/1.55 var(--info-jp)}
+    #home-screen ol{max-width:820px;margin:10px 0 18px;padding:0;list-style:none;counter-reset:home-screen-step}
+    #home-screen ol li{counter-increment:home-screen-step;padding-left:28px}
+    #home-screen ol li::before{
+      content:counter(home-screen-step) ".";
+      left:1px;top:7px;width:auto;height:auto;border-radius:0;background:none;
+      color:var(--info-accent);font:700 12px/1.8 var(--info-jp)
+    }
+  </style>
+  <style>
+    /* Simple, accessible topic groups limited to ABOUT and FAQ pages. */
+    .info-topic-index{margin:-18px 0 26px}
+    .info-topic-index p{margin:0 0 12px;color:var(--info-muted);font:700 11px/1.5 var(--info-jp)}
+    .info-topic-index__links{display:flex;flex-wrap:wrap;gap:8px}
+    .info-topic-index a{display:inline-flex;align-items:center;min-height:38px;padding:8px 13px;border:1px solid var(--info-line);border-radius:99px;background:var(--info-panel);color:var(--info-ink);font:700 11.5px/1.4 var(--info-jp);text-decoration:none}
+    .info-topic-index a:hover,.info-topic-index a:focus-visible{border-color:var(--info-accent);text-decoration:underline;text-underline-offset:3px}
+    .info-topic{margin:0 0 12px;border:1px solid var(--info-line);border-radius:12px;overflow:hidden;background:var(--info-panel)}
+    .info-topic > summary{position:relative;display:block;cursor:pointer;list-style:none;padding:19px 48px 19px 22px}
+    .info-topic > summary::-webkit-details-marker{display:none}
+    .info-topic > summary::after{content:"+";position:absolute;right:21px;top:50%;transform:translateY(-50%);color:var(--info-accent);font:500 23px/1 var(--info-sans)}
+    .info-topic[open] > summary::after{content:"−"}
+    .info-topic > summary:focus-visible{outline:2px solid var(--info-accent);outline-offset:-3px}
+    .info-topic__eyebrow{display:block;margin-bottom:5px;color:var(--info-accent);font:700 10px/1.4 var(--info-sans);letter-spacing:.07em}
+    .info-topic__title{display:block;color:var(--info-ink);font:700 16px/1.5 var(--info-jp)}
+    .info-topic__desc{display:block;margin-top:4px;color:var(--info-muted);font:500 11px/1.65 var(--info-jp)}
+    .info-topic__content{padding:0 22px 14px}
+    .info-topic__content > .info-section:first-child{border-top:1px solid var(--info-line)}
+    .info-topic__content > .info-section:last-child{border-bottom:0}
+    .faq-list{border-top:0}
+    .faq-topic .info-topic__content{padding-bottom:6px}
+    .faq-topic .faq-item:first-child{border-top:1px solid var(--info-line)}
+    .faq-topic .faq-item:last-child{border-bottom:0}
+    .info-topic,.info-topic [id]{scroll-margin-top:110px}
+    @media(max-width:600px){
+      .info-topic-index{margin:-16px 0 22px}
+      .info-topic-index__links{display:grid;grid-template-columns:repeat(2,minmax(0,1fr));gap:8px}
+      .info-topic-index a{border-radius:9px;min-height:44px;padding:9px 11px}
+      .info-topic > summary{padding:17px 43px 17px 16px}
+      .info-topic > summary::after{right:15px}
+      .info-topic__title{font-size:14px}
+      .info-topic__content{padding:0 16px 10px}
+    }
+  </style>
 </head>
 <body class="info-page">
   <header class="top-header shell is-scroll-sticky">
@@ -56,11 +101,28 @@
       <p>JOURNEY ATLASは、国・地図・テーマ・季節・景色から次の旅先と出会い、気に入った世界をマイアトラスに残せるビジュアル図鑑です。</p>
     </header>
 
+    <nav class="info-topic-index" aria-label="カテゴリから探す">
+      <p>カテゴリから探す</p>
+      <div class="info-topic-index__links">
+        <a href="about/#about-explore">旅先とCountry Page</a>
+        <a href="about/#about-editorial">掲載範囲とビジュアル</a>
+        <a href="about/#about-my-atlas">旅の記録とスマートフォン</a>
+        <a href="about/#about-sources">JOURNEY LENSとデータ出典</a>
+      </div>
+    </nav>
+
+    <details class="info-topic" id="about-explore" open>
+      <summary>
+        <span class="info-topic__eyebrow">01 / EXPLORE</span>
+        <span class="info-topic__title">旅先とCountry Page</span>
+        <span class="info-topic__desc">5つの探し方・国のページ・8つの景観</span>
+      </summary>
+      <div class="info-topic__content">
     <section class="info-section">
       <h2>旅先を探す、5つの入口</h2>
       <p>旅先の探し方は、「何が決まっているか」によって変わります。行きたい国があるとき、旅でしたいことがあるとき、出かける月が決まっているとき。まだ何も決めていないときも、今の気分に合う入口から世界を探せます。</p>
       <ul>
-        <li><a href="./#countries">国から探す</a>：<strong>気になる国や調べたい国があるとき。</strong> 基本となる200の旅先を一覧やA–Z索引から探せます。香港・マカオや英国4地域に加え、デンマーク・フランス・オランダの詳細地域も名前で検索できます。国名だけでなく景色や季節のキーワードでも検索でき、ランダムに旅先を選ぶこともできます。</li>
+        <li><a href="./#countries">国から探す</a>：<strong>気になる国や調べたい国があるとき。</strong> 200の国・地域を一覧やA–Z索引から探せます。詳細地域は国検索の対象外ですが、親国ページや地図、テーマ、季節、景色から探せます。国名だけでなく景色や季節のキーワードでも検索でき、ランダムに旅先を選ぶこともできます。</li>
         <li><a href="./#map">地図から探す</a>：<strong>行きたい地域や世界の位置関係から考えたいとき。</strong> 世界地図から地域を選び、地理的なつながりを眺めながら国を見つけられます。</li>
         <li><a href="./#themes">テーマから探す</a>：<strong>自然、歴史、街歩き、食など、旅でしたいことがあるとき。</strong> 8つのテーマから国や詳細地域を選び、地域や月でも絞り込めます。</li>
         <li><a href="./#seasons">季節から探す</a>：<strong>旅行に行ける月が決まっているとき。</strong> 1〜12月から月を選び、その月が各国の「おすすめの時期」にあたる旅先を探せます。</li>
@@ -79,7 +141,16 @@
       <p>各Country Pageの8景は「観光地Top 8」ではありません。ひとつの有名な景色だけで国を代表させず、地域、地形、都市と自然、海・山・湖・森・平原、建築、文化、季節などの多様性が伝わるように選んでいます。</p>
       <p>各景観は実在する場所を基準とし、その場所を特徴づける地形や建築などを大切にします。テーマの割り当ても、単に要素が存在するかではなく、その国へ旅をしたいと思う理由になるかを基準にしています。</p>
     </section>
+      </div>
+    </details>
 
+    <details class="info-topic" id="about-editorial">
+      <summary>
+        <span class="info-topic__eyebrow">02 / EDITORIAL</span>
+        <span class="info-topic__title">掲載範囲とビジュアル</span>
+        <span class="info-topic__desc">国から探す200件と<span data-atlas-count="regions">50</span>の詳細地域・景観画像の考え方</span>
+      </summary>
+      <div class="info-topic__content">
     <section class="info-section">
       <h2>景観イメージと実際の写真</h2>
       <p>JOURNEY ATLASの風景や料理のビジュアルは、旅先への興味を広げるための表現です。Country PageのHeroや8景は実在の場所を題材に、写実性と柔らかな水彩表現を組み合わせて制作しています。現地で撮影された記録写真ではなく、実際の見え方や季節を保証するものではありません。</p>
@@ -87,8 +158,8 @@
     </section>
 
     <section class="info-section" id="destination-scope">
-      <h2>なぜ、200の旅先なのか</h2>
-      <p>JOURNEY ATLASの「200」は、単なる国連加盟国数ではありません。世界の国々を広く紹介し、地理的・文化的に独自の旅を見つけられるように定めた、基本となる旅先の数です。</p>
+      <h2>なぜ「国から探す」は200なのか</h2>
+      <p>JOURNEY ATLASの「200」は、単なる国連加盟国数ではありません。「国から探す」に掲載する200の国・地域を、地理的・文化的に独自の旅を見つけられるように定めています。詳細地域はこの200件に含めず、別の掲載単位として紹介します。</p>
       <p><strong>193＋2＋3＋1＋1＝200</strong>。内訳は次のとおりです。</p>
       <ul>
         <li><strong>193｜国連加盟国：</strong>国連に加盟する193か国。</li>
@@ -99,14 +170,38 @@
       </ul>
       <p>「日本が国家承認する追加の国」は、国連加盟国とオブザーバー国家で既に数えたものを除いた3つです。台湾は日本の国家承認国に含まれません。また、国連加盟国の北朝鮮は日本が国家承認していません。国連加盟・オブザーバー資格・国家承認は、それぞれ異なる基準として区別しています。</p>
       <p>出典：<a href="https://ask.un.org/faq/14345" target="_blank" rel="noopener noreferrer">国連「加盟国数」</a>、<a href="https://research.un.org/en/unmembers/observers" target="_blank" rel="noopener noreferrer">国連「非加盟オブザーバー国家」</a>、<a href="https://www.mofa.go.jp/mofaj/area/world.html" target="_blank" rel="noopener noreferrer">外務省「世界と日本のデータ」</a>（2026年11月確認）。</p>
-      <p><strong>Country Pageの正式な対象は200です。</strong> これとは別に、現在は13の詳細地域ページを公開しています。中国の香港・マカオ、イギリスのイングランド・スコットランド・ウェールズ・北アイルランド、デンマークのグリーンランド・フェロー諸島、フランスのフランス領ポリネシア・ニューカレドニア、オランダのアルバ・キュラソー・シント・マールテンです。これらの地域は200のCountry Pageには加算しません。</p>
+      <p><strong>「国から探す」の一覧と検索対象は200件です。</strong> これに加えて、<strong><span data-atlas-count="regions">50</span>件の詳細地域ページ</strong>を公開しており、サイト全体では<strong><span data-atlas-count="total">250</span>の旅先</strong>を紹介しています。詳細地域は国検索の200件に含みません。内訳は、公開中の地域ページ<span data-atlas-count="published">48</span>件と、中国の香港・マカオ<span data-atlas-count="legacy">2</span>件です。数値は公開済みのページから集計します。</p>
+      <p>詳細地域<span data-atlas-count="regions">50</span>ページの内訳（親国別）は次のとおりです。</p>
+      <ul data-atlas-detail-regions>
+        <li><a href="countries/australia/">オーストラリア（3）</a>：クリスマス島、ココス（キーリング）諸島、ノーフォーク島。</li>
+        <li><a href="countries/china/">中国（2）</a>：香港、マカオ。</li>
+        <li><a href="countries/denmark/">デンマーク（2）</a>：グリーンランド、フェロー諸島。</li>
+        <li><a href="countries/finland/">フィンランド（1）</a>：オーランド諸島。</li>
+        <li><a href="countries/france/">フランス（11）</a>：フランス領ギアナ、フランス領ポリネシア、グアドループ、マルティニーク、マヨット、ニューカレドニア、レユニオン、サンピエール島・ミクロン島、サン・バルテルミー、サン・マルタン（フランス領）、ウォリス・フツナ。</li>
+        <li><a href="countries/netherlands/">オランダ（4）</a>：アルバ、キュラソー、シント・マールテン、カリブ・オランダ。</li>
+        <li><a href="countries/norway/">ノルウェー（1）</a>：スヴァールバル諸島。</li>
+        <li><a href="countries/portugal/">ポルトガル（2）</a>：アゾレス諸島、マデイラ諸島。</li>
+        <li><a href="countries/spain/">スペイン（1）</a>：カナリア諸島。</li>
+        <li><a href="countries/tanzania/">タンザニア（1）</a>：ザンジバル。</li>
+        <li><a href="countries/unitedkingdom/">イギリス（18）</a>：イングランド、スコットランド、ウェールズ、北アイルランド、バミューダ、フォークランド（マルビナス）諸島、ジブラルタル、ガーンジー、マン島、ジャージー、セントヘレナ、アンギラ、ケイマン諸島、英領ヴァージン諸島、タークス・カイコス諸島、モントセラト、トリスタンダクーニャ、ピトケアン諸島。</li>
+        <li><a href="countries/unitedstates/">アメリカ（4）</a>：プエルトリコ、マリアナ諸島、米領ヴァージン諸島、米領サモア。</li>
+      </ul>
       <p>香港・マカオは中国の特別行政区であり、中国からたどる詳細地域ページとして紹介しています。両地域の従来のページURLは、既存のリンクや保存済みの旅先を失わないために維持します。ページが存在することと、200のCountry Pageとして数えることは区別しています。</p>
       <p>この掲載区分は旅先を見つけるための編集上の整理であり、国家承認、領有権、国境に関する本サイトの法的判断を示すものではありません。</p>
     </section>
+      </div>
+    </details>
 
+    <details class="info-topic" id="about-my-atlas">
+      <summary>
+        <span class="info-topic__eyebrow">03 / MY ATLAS</span>
+        <span class="info-topic__title">旅の記録とスマートフォン</span>
+        <span class="info-topic__desc">Wishリスト・お気に入り・ホーム画面への追加</span>
+      </summary>
+      <div class="info-topic__content">
     <section class="info-section">
       <h2>マイアトラスで、旅の記録を振り返る</h2>
-      <p>トップページのメニューにある<a href="./#my-atlas">「マイアトラス」</a>は、「景色から探す」の下にある折りたたみ式の記録ページです。行った国・地域を世界地図に塗る「わたしの地図」と、行きたい国・地域の記録を一か所で振り返れます。お気に入りの景色は<a href="./#scenery">「景色から探す」</a>の「♡ 保存した景色」で確認できます。<strong>「／200」は基本の旅先</strong>の集計です。13の詳細地域は基本の200とは別に記録・表示され、詳細地域を登録しても親の国（中国・イギリス・デンマーク・フランス・オランダ）の記録は自動的には増えません。</p>
+      <p>トップページのメニューにある<a href="./#my-atlas">「マイアトラス」</a>は、「景色から探す」の下にある折りたたみ式の記録ページです。行った国・地域を世界地図に塗る「わたしの地図」と、行きたい国・地域の記録を一か所で振り返れます。お気に入りの景色は<a href="./#scenery">「景色から探す」</a>の「♡ 保存した景色」で確認できます。<strong>「／200」は国から探すの国・地域</strong>の集計です。<span data-atlas-count="regions">50</span>の詳細地域は別に記録・表示され、詳細地域を登録しても親の国の記録は自動的には増えません。詳細地域も公開件数を分母として確認できます。</p>
       <ul>
         <li><strong>行った国・地域：</strong>マイアトラスの「わたしの地図」で、地図の国を押すか、国名一覧のチェックで登録します。小さな国・地域も名前から検索して選べます。</li>
         <li><strong>行きたい国・地域：</strong>Country Pageの「この国に行きたい」で登録します。<a href="./#countries">「国から探す」</a>の「行ってみたい国」からも確認できます。</li>
@@ -118,6 +213,35 @@
       <p>本サイトは記録の完全な保存・復元・引き継ぎを保証しません。データ消失や引き継ぎ失敗によって生じた損害については、本サイトの故意または重大な過失による場合など法令上免責が認められない場合を除き、責任を負いません。詳しくは<a href="privacy/">プライバシーポリシー</a>をご覧ください。</p>
     </section>
 
+    <section class="info-section" id="home-screen">
+      <h2>スマートフォンのホーム画面からすぐに開く</h2>
+      <p>JOURNEY ATLASは、アプリストアからのインストールやアカウント登録をせずに、iPhone・Androidのホーム画面にアイコンを追加できます。アイコンをタップすれば、すぐに旅先を探したり、<a href="./#my-atlas">マイアトラス</a>のWishリストを確認したりできます。</p>
+      <h3>iPhone（Safari）の場合</h3>
+      <ol>
+        <li>Safariで<a href="https://atlas.yagenji.com/">JOURNEY ATLAS</a>を開きます。</li>
+        <li>画面の共有ボタン（またはページメニューの「共有」）をタップします。</li>
+        <li>「ホーム画面に追加」を選びます。表示されない場合は、共有メニュー下部の「アクションを編集」から追加できます。</li>
+        <li>必要に応じて「ウェブアプリとして開く」を選び、「追加」をタップします。</li>
+      </ol>
+      <h3>Android（Google Chrome）の場合</h3>
+      <ol>
+        <li>Chromeで<a href="https://atlas.yagenji.com/">JOURNEY ATLAS</a>を開きます。</li>
+        <li>右上の「︙」メニューを開き、「ホーム画面に追加」または「インストールしてショートカットを作成」などの項目を選びます。</li>
+        <li>「ショートカットを作成」が表示されたら選び、名前を確認して「追加」をタップします。</li>
+      </ol>
+      <p><strong>Wishリストの保存について：</strong>行きたい国・地域、行った国・地域、お気に入りの景色は、利用しているブラウザやホーム画面から開いたサイトの保存領域に記録されます。ホーム画面に追加するだけで保存済みデータが引き継がれるとは限らず、端末間でも自動同期されません。追加後はアイコンから開いて記録を確認してください。必要な場合は、マイアトラスの「保存データを書き出す」「保存データを読み込む」で移し替え、大切なデータは定期的にバックアップしてください。</p>
+      <p>操作の参考：<a href="https://support.apple.com/ja-jp/guide/iphone/iph42ab2f3a7/27/ios/27" target="_blank" rel="noopener noreferrer">Apple公式ガイド</a>、<a href="https://support.google.com/chrome/answer/15085120?co=GENIE.Platform%3DAndroid&amp;hl=ja" target="_blank" rel="noopener noreferrer">Google Chrome公式ヘルプ</a>。端末やOSのバージョンによりメニュー名が異なることがあります。</p>
+    </section>
+      </div>
+    </details>
+
+    <details class="info-topic" id="about-sources">
+      <summary>
+        <span class="info-topic__eyebrow">04 / SOURCES</span>
+        <span class="info-topic__title">JOURNEY LENSとデータ出典</span>
+        <span class="info-topic__desc">写真メディアとの違い・地図の出典とライセンス</span>
+      </summary>
+      <div class="info-topic__content">
     <section class="info-section">
       <h2>JOURNEY LENSとの関係</h2>
       <p>JOURNEY ATLASは、まだ知らない世界から「行きたい場所」を見つけるための図鑑。<a href="https://journey.yagenji.com/" target="_blank" rel="noopener noreferrer">JOURNEY LENS</a>は、実際に訪れた場所を写真と物語で記録する旅のメディアです。</p>
@@ -132,8 +256,11 @@
       <p>国境の扱いは日本政府の立場に準拠しており、元データの表示と異なる場合があります。</p>
       <p>トップページの世界地図と「わたしの地図」は、Natural Earth（パブリックドメイン）をもとにJOURNEY ATLASが編集・彩色したものです。</p>
       <ul>
-        <li><a href="https://www.naturalearthdata.com/" target="_blank" rel="noopener noreferrer">Natural Earth</a>（パブリックドメイン）：国境・国土・湖（1:10m Cultural / Physical Vectors）。国・地域の地図199件で使用。</li>
-        <li><a href="https://www.soest.hawaii.edu/pwessel/gshhg/" target="_blank" rel="noopener noreferrer">GSHHG（Wessel &amp; Smith）</a>（<a href="https://www.gnu.org/licenses/lgpl-3.0.html" target="_blank" rel="noopener noreferrer">LGPL-3.0</a>）：海岸線・島・湖、周辺の国境（Basemap 2.0.0 に同梱のデータを使用）。国・地域の地図214件で使用。</li>
+        <li><a href="https://github.com/mledoze/countries/blob/master/data/bes.geo.json" target="_blank" rel="noopener noreferrer">World Countries BES / Natural Earth-derived outlines</a>（<a href="https://opendatacommons.org/licenses/odbl/1-0/" target="_blank" rel="noopener noreferrer">ODbL 1.0（配布データ）</a>）：カリブ・オランダ3島の地理形状（BES GeoJSON）。2026-11-15取得。</li>
+        <li><a href="https://github.com/whosonfirst-data/whosonfirst-data-admin-cx/blob/main/data/856/722/79/85672279.geojson" target="_blank" rel="noopener noreferrer">Australian Bureau of Statistics / Who&#x27;s On First（クリスマス島）</a>（<a href="https://creativecommons.org/licenses/by/2.5/au/" target="_blank" rel="noopener noreferrer">CC BY 2.5 AU（ABS）</a>）：Based on ABS 2011 geography from Who&#x27;s On First (feature 85672279); shoreline generalized within 12 m. WOF license: https://github.com/whosonfirst-data/whosonfirst-data-admin-cx/blob/main/LICENSE.md</li>
+        <li><a href="https://www.naturalearthdata.com/" target="_blank" rel="noopener noreferrer">Natural Earth</a>（パブリックドメイン）：国境・国土・湖（1:10m Cultural / Physical Vectors）。国・地域の地図204件で使用。</li>
+        <li><a href="https://www.soest.hawaii.edu/pwessel/gshhg/" target="_blank" rel="noopener noreferrer">GSHHG（Wessel &amp; Smith）</a>（<a href="https://www.gnu.org/licenses/lgpl-3.0.html" target="_blank" rel="noopener noreferrer">LGPL-3.0</a>）：海岸線・島・湖、周辺の国境（Basemap 2.0.0 に同梱のデータを使用）。国・地域の地図218件で使用。</li>
+        <li><a href="https://github.com/eoglethorpe/deep/blob/master/static/files/countries/Norfolk%20Island.NFK.NF.geo.json" target="_blank" rel="noopener noreferrer">DEEP Norfolk Island GeoJSON</a>（<a href="https://github.com/eoglethorpe/deep/blob/master/LICENSE" target="_blank" rel="noopener noreferrer">AGPL-3.0（リポジトリ）</a>）：ネピアン島の簡略海岸線ポリゴン。元データの個別ライセンス表記は未確認。</li>
         <li><a href="https://www.noaa.gov/" target="_blank" rel="noopener noreferrer">NOAA</a>（パブリックドメイン）：アメリカの国土（Basemap の UScounties データ。NOAA Coastal Geospatial Data Project に由来）。</li>
         <li><a href="https://www.usgs.gov/" target="_blank" rel="noopener noreferrer">USGS</a>（パブリックドメイン）：ミクロネシア連邦・レロ島の海岸線（1:25,000 地形図）。</li>
         <li><a href="https://worldwind.arc.nasa.gov/" target="_blank" rel="noopener noreferrer">NASA World Wind</a>（パブリックドメイン）：ミクロネシア連邦・アント環礁の小島の形（衛星画像から地図の縮尺で一般化）。</li>
@@ -143,12 +270,17 @@
         <li><a href="https://www.geoboundaries.org/" target="_blank" rel="noopener noreferrer">geoBoundaries（Copernicus Sentinel-2 データを加工）</a>（<a href="https://creativecommons.org/licenses/by/4.0/" target="_blank" rel="noopener noreferrer">CC BY 4.0</a>）：クック諸島の拡大図の島の形（gbOpen COK ADM0）。</li>
         <li><a href="https://www.geoboundaries.org/" target="_blank" rel="noopener noreferrer">geoBoundaries / Wikimedia Commons</a>（<a href="https://creativecommons.org/licenses/by/2.5/" target="_blank" rel="noopener noreferrer">CC BY 2.5</a>）：バルバドスの国土（gbOpen BRB ADM1 を結合）。</li>
         <li><a href="https://www.geoboundaries.org/" target="_blank" rel="noopener noreferrer">World Resources Institute, Congo Basin Forest Atlas（geoBoundaries 経由）</a>（<a href="https://creativecommons.org/licenses/by/4.0/" target="_blank" rel="noopener noreferrer">CC BY 4.0</a>）：赤道ギニアのコリスコ島・エロベイ諸島・アンノボン島の形（gbOpen GNQ ADM2）。</li>
-        <li><a href="https://www.openstreetmap.org/copyright" target="_blank" rel="noopener noreferrer">© OpenStreetMap contributors</a>（<a href="https://opendatacommons.org/licenses/odbl/1-0/" target="_blank" rel="noopener noreferrer">ODbL 1.0</a>）：国の輪郭・小さな島・周辺の海岸線（直接、または geoBoundaries・country-levels-export などを経由）。使用：バーレーン、バルバドス、ブルネイ、エストニア、フィンランド、グレナダ、ホンジュラス、香港、キリバス、クウェート、レソト、リヒテンシュタイン、マカオ、マーシャル諸島、モナコ、ナウル、ニウエ、パラオ、サンマリノ、サントメ・プリンシペ、シンガポール、セントビンセント・グレナディーン、トンガ、バチカン市国、シント・マールテン、ジブラルタル。</li>
+        <li><a href="https://www.openstreetmap.org/copyright" target="_blank" rel="noopener noreferrer">© OpenStreetMap contributors</a>（<a href="https://opendatacommons.org/licenses/odbl/1-0/" target="_blank" rel="noopener noreferrer">ODbL 1.0</a>）：国の輪郭・小さな島・周辺の海岸線（直接、または geoBoundaries・country-levels-export などを経由）。使用：バーレーン、バルバドス、ブルネイ、エストニア、フィンランド、グレナダ、ホンジュラス、香港、キリバス、クウェート、レソト、リヒテンシュタイン、マカオ、マーシャル諸島、モナコ、ナウル、ニウエ、パラオ、サンマリノ、サントメ・プリンシペ、シンガポール、セントビンセント・グレナディーン、トンガ、バチカン市国、サン・バルテルミー、サン・マルタン（フランス領）、カリブ・オランダ、シント・マールテン、アンギラ、ジブラルタル、モントセラト、トリスタンダクーニャ、米領サモア、米領ヴァージン諸島。</li>
         <li><a href="https://www.sla.gov.sg/" target="_blank" rel="noopener noreferrer">Singapore Land Authority</a>（<a href="https://data.gov.sg/open-data-licence" target="_blank" rel="noopener noreferrer">Singapore Open Data Licence</a>）：シンガポールのセントーサ島・ジュロン島・ウビン島・テコン島の形（National Map Polygon, 2025年6月）。</li>
-        <li><a href="https://zoek.officielebekendmakingen.nl/trb-2023-66.html" target="_blank" rel="noopener noreferrer">Tractatenblad 2023, 66（オランダ・フランス国境条約 附属書A）</a>：シント・マールテンとサン・マルタンの陸上境界。</li>
+        <li><a href="https://zoek.officielebekendmakingen.nl/trb-2023-66.html" target="_blank" rel="noopener noreferrer">Tractatenblad 2023, 66（オランダ・フランス国境条約 附属書A）</a>：シント・マールテンとサン・マルタンの陸上境界。使用：サン・マルタン（フランス領）、シント・マールテン。</li>
+        <li><a href="https://www.geoboundaries.org/" target="_blank" rel="noopener noreferrer">geoBoundaries / gbHumanitarian（VGB・VIR）</a>（<a href="https://creativecommons.org/licenses/by/3.0/igo/" target="_blank" rel="noopener noreferrer">CC BY 3.0 IGO</a>）：英領ヴァージン諸島と周辺の米領ヴァージン諸島の島の輪郭（2017年 ADM1 simplified）。</li>
+        <li><a href="https://github.com/whosonfirst-data/whosonfirst-data-admin-cc/blob/master/data/856/324/95/85632495.geojson" target="_blank" rel="noopener noreferrer">Who&#x27;s On First（ココス（キーリング）諸島）</a>（<a href="https://github.com/whosonfirst-data/whosonfirst-data-admin-cc/blob/master/LICENSE.md" target="_blank" rel="noopener noreferrer">WOF CC0（Mapzen / src:geom=mz）</a>）：北キーリング島と南ココス環礁の実海岸線56図形を抽出。クリスマス島は除外し、単純化してWGS84で投影。</li>
+        <li><a href="https://github.com/whosonfirst-data/whosonfirst-data-admin-wf/blob/master/data/856/809/01/85680901.geojson" target="_blank" rel="noopener noreferrer">Who&#x27;s On First（ウォリス島・小島）</a>（<a href="https://github.com/whosonfirst-data/whosonfirst-data-admin-wf/blob/master/LICENSE.md" target="_blank" rel="noopener noreferrer">WOF CC0 / Quattroshapes CC BY</a>）：ʻUvea（feature 85680901）の本島と14小島の海岸線。地図作成時に実座標を投影。元データの制作・ライセンスはリンク先を参照。</li>
       </ul>
     </section>
     <!-- map-data:end -->
+      </div>
+    </details>
   </main>
 
   <footer class="atlas-footer" aria-label="サイトフッター">
@@ -162,6 +294,25 @@
       <small class="atlas-footer__copyright">© JOURNEY ATLAS</small>
     </div>
   </footer>
+  <script>
+    /* Preserve links to sections such as /about/#map-data inside closed topics. */
+    (() => {
+      const revealTopic = () => {
+        if (!window.location.hash) return;
+        let target;
+        try { target = document.getElementById(decodeURIComponent(window.location.hash.slice(1))); }
+        catch (_) { return; }
+        if (!target) return;
+        const topic = target.closest('details.info-topic');
+        if (!topic || topic.open) return;
+        topic.open = true;
+        requestAnimationFrame(() => target.scrollIntoView({block:'start'}));
+      };
+      window.addEventListener('hashchange', revealTopic);
+      revealTopic();
+    })();
+  </script>
+  <script src="about/site-counts.js?v=20261114-1" defer></script>
   <script src="assets/js/site-nav.js?v=20261028-1" defer></script>
 </body>
 </html>

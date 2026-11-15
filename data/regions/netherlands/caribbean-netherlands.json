@@ -1,0 +1,733 @@
+{
+  "schemaVersion": 1,
+  "contentQaVersion": 6,
+  "parentSlug": "netherlands",
+  "slug": "caribbean-netherlands",
+  "regionPublished": true,
+  "nameEn": "CARIBBEAN NETHERLANDS",
+  "nameJa": "カリブ・オランダ",
+  "region": "CARIBBEAN / 15°N",
+  "parentNameJa": "オランダ",
+  "parentNameEn": "NETHERLANDS",
+  "parentReturnDescription": "ヨーロッパとカリブ海に広がるオランダの地域をたどる",
+  "travelThemes": [
+    "地球の風景",
+    "海の世界へ",
+    "時をたどる"
+  ],
+  "seo": {
+    "description": "ボネールの塩田とマングローブ、サバの雲霧林、シント・ユースタティウスの要塞と火口。カリブ・オランダ3島の8景と地図から知る。"
+  },
+  "hero": {
+    "name": "ボネール南部の塩田と塩山",
+    "location": "Bonaire Salt Pans / Pekelmeer, Bonaire",
+    "image": "assets/images/netherlands/caribbean-netherlands/approved/hero-bonaire-salt-pans.webp",
+    "coordinates": {
+      "latitude": 12.074028,
+      "longitude": -68.279986
+    },
+    "lead": "白い塩山と淡い色を帯びた塩田の向こうに、乾いたカリブの空が広がる。ボネールの南部から遠く離れた北の2島へ目を移すと、雲霧林に覆われた山と歴史ある港が現れる。同じオランダに属しながら、3島の風景は驚くほど異なる。",
+    "description": "ボネール島南部、海沿いの道から望む塩田と白い塩山。濃い海の青と控えめな淡紅色の塩田が平たい大地を分ける。",
+    "sceneTypes": [
+      "salt",
+      "island"
+    ],
+    "sourceKey": "heroSalt"
+  },
+  "profile": [
+    {
+      "label": "行政の中心",
+      "value": "ボネール：クラレンダイク／シント・ユースタティウス：オラニエスタッド／サバ：ザ・ボトム",
+      "sourceKey": "status"
+    },
+    {
+      "label": "人口",
+      "value": "33,229人（3島合計、2026年1月1日）",
+      "sourceKey": "population"
+    },
+    {
+      "label": "面積",
+      "value": "約322km²（3島合計、日本の約0.09%）",
+      "sourceKey": "area"
+    },
+    {
+      "label": "言語",
+      "value": "オランダ語。ボネールではパピアメント語、北部2島では英語も公用語",
+      "sourceKey": "languageCurrency"
+    },
+    {
+      "label": "主な宗教",
+      "value": "キリスト教諸派（島によってカトリック、メソジストなどの構成が異なる）",
+      "sourceKey": "religion"
+    },
+    {
+      "label": "通貨",
+      "value": "米ドル（USD）",
+      "sourceKey": "languageCurrency"
+    }
+  ],
+  "historyContext": {
+    "text": "カリブ・オランダは、カリブ海にあるオランダの3つの公共団体、ボネール、シント・ユースタティウス、サバの総称。2010年10月10日、オランダ領アンティルの解体に伴いオランダという国の一部になった。各島に島議会と執行機関があり、オランダの州には属さない。アルバ、キュラソー、シント・マールテンは同じ王国内にある別の構成国で、この地域には含まれない。",
+    "sourceKeys": [
+      "status",
+      "governance"
+    ]
+  },
+  "map": {
+    "svg": "assets/images/netherlands/caribbean-netherlands/map-caribbean-netherlands.svg",
+    "bounds": {
+      "west": -69.2,
+      "east": -62,
+      "south": 11.75,
+      "north": 17.9
+    },
+    "insetNote": "※ 北部2島とボネールは、それぞれ同じ地域を拡大した別枠表示です。広域図は3島の実際の位置関係を示します。",
+    "source": "Target islands: Natural Earth 10m-derived BES geometry from https://github.com/mledoze/countries/blob/master/data/bes.geo.json (ODbL-1.0, 2026-11-15 checked). Context coast: GSHHS intermediate via Basemap 2.0.0 (LGPL-3.0-or-later), https://www.soest.hawaii.edu/wessel/gshhg/. WGS84 local-equirectangular-fit-v1, 1200x760; enlarged insets preserve actual island outlines and coordinates. Not for navigation.",
+    "regions": [
+      {
+        "id": "north-detail",
+        "label": "SABA · STATIA",
+        "svgId": "cn-north-detail",
+        "rect": {
+          "x": 20,
+          "y": 20,
+          "width": 510,
+          "height": 290
+        },
+        "sourceRect": {
+          "x": 839,
+          "y": 3,
+          "width": 116,
+          "height": 78
+        },
+        "sceneIds": [
+          "mount-scenery",
+          "windwardside",
+          "fort-oranje",
+          "the-quill"
+        ]
+      },
+      {
+        "id": "bonaire-detail",
+        "label": "BONAIRE",
+        "svgId": "cn-bonaire-detail",
+        "rect": {
+          "x": 668,
+          "y": 425,
+          "width": 512,
+          "height": 300
+        },
+        "sourceRect": {
+          "x": 238,
+          "y": 674,
+          "width": 142,
+          "height": 80
+        },
+        "sceneIds": [
+          "goto-lake",
+          "lac-bay-mangroves",
+          "witte-pan-slave-huts",
+          "boka-slagbaai"
+        ]
+      }
+    ],
+    "singleMapMobile": true
+  },
+  "scenes": [
+    {
+      "id": "goto-lake",
+      "name": "ゴトー湖",
+      "nameLocal": "Goto Lake viewpoint / Gotomeer, Bonaire",
+      "description": "北西部の乾いた丘に囲まれた汽水の湖。道沿いの展望地点から、水面と遠くで採食するフラミンゴを見渡す。",
+      "coordinates": {
+        "latitude": 12.23232,
+        "longitude": -68.37073
+      },
+      "image": "assets/images/netherlands/caribbean-netherlands/approved/scene-01-goto-lake.webp",
+      "sceneTypes": [
+        "lake",
+        "birds"
+      ],
+      "sourceKey": "gotomeer",
+      "mapOffset": {
+        "x": 1.853,
+        "y": -0.388
+      }
+    },
+    {
+      "id": "lac-bay-mangroves",
+      "name": "ラック湾のマングローブ",
+      "nameLocal": "Mangrove Info Center / Lac Bay, Bonaire",
+      "description": "浅い湾に伸びるマングローブの根と、緑がかった穏やかな水面。保護区域ではガイド付きの自然観察で水路をたどる。",
+      "coordinates": {
+        "latitude": 12.11632,
+        "longitude": -68.22088
+      },
+      "image": "assets/images/netherlands/caribbean-netherlands/approved/scene-02-lac-bay-mangroves.webp",
+      "sceneTypes": [
+        "wetland",
+        "lagoon"
+      ],
+      "sourceKey": "lacBay",
+      "mapOffset": {
+        "x": 2.057,
+        "y": -1.136
+      }
+    },
+    {
+      "id": "witte-pan-slave-huts",
+      "name": "白い奴隷小屋跡",
+      "nameLocal": "Witte Pan Slave Huts, Bonaire",
+      "description": "南岸の塩田で強制労働を担わされた人々の宿泊に使われた、小さなサンゴ石造りの小屋跡。白い壁と低い開口部が過酷な歴史を今に伝える。",
+      "coordinates": {
+        "latitude": 12.05771,
+        "longitude": -68.28073
+      },
+      "image": "assets/images/netherlands/caribbean-netherlands/approved/scene-03-witte-pan-slave-huts.webp",
+      "sceneTypes": [
+        "monument"
+      ],
+      "sourceKey": "slaveHuts",
+      "mapOffset": {
+        "x": -0.378,
+        "y": 5.033
+      }
+    },
+    {
+      "id": "boka-slagbaai",
+      "name": "ボカ・スラフバーイ",
+      "nameLocal": "Boka Slagbaai / Washington Slagbaai National Park, Bonaire",
+      "description": "国立公園の西側に開く岩の入り江。乾いた低木とサボテンの斜面の下へ、波が打ち寄せる。",
+      "coordinates": {
+        "latitude": 12.26485,
+        "longitude": -68.41446
+      },
+      "image": "assets/images/netherlands/caribbean-netherlands/approved/scene-04-boka-slagbaai.webp",
+      "sceneTypes": [
+        "bay",
+        "cliff"
+      ],
+      "sourceKey": "boka",
+      "mapOffset": {
+        "x": -2.494,
+        "y": -3.744
+      }
+    },
+    {
+      "id": "mount-scenery",
+      "name": "マウント・シーナリー",
+      "nameLocal": "Mount Scenery Trail / Saba",
+      "description": "サバ島の高みへ登る石段の周囲を、コケやシダをまとった雲霧林が覆う。霧の合間に火山島の尾根が見える。",
+      "coordinates": {
+        "latitude": 17.63407,
+        "longitude": -63.23697
+      },
+      "image": "assets/images/netherlands/caribbean-netherlands/approved/scene-05-mount-scenery.webp",
+      "sceneTypes": [
+        "peak",
+        "rainforest"
+      ],
+      "sourceKey": "scenery",
+      "mapOffset": {
+        "x": -3.194,
+        "y": -4.609
+      }
+    },
+    {
+      "id": "windwardside",
+      "name": "ウィンドワードサイド",
+      "nameLocal": "Windwardside village, Saba",
+      "description": "急斜面の小村に、赤屋根・白壁・緑色の雨戸をもつ伝統的な住宅が点在する。",
+      "coordinates": {
+        "latitude": 17.62911,
+        "longitude": -63.23197
+      },
+      "image": "assets/images/netherlands/caribbean-netherlands/approved/scene-06-windwardside.webp",
+      "sceneTypes": [
+        "village",
+        "colorful"
+      ],
+      "sourceKey": "sabaArchitecture",
+      "mapOffset": {
+        "x": 3.537,
+        "y": -0.435
+      }
+    },
+    {
+      "id": "fort-oranje",
+      "name": "オラニエ砦",
+      "nameLocal": "Fort Oranje / Oranjestad, Sint Eustatius",
+      "description": "オラニエスタッドの崖上に立つ石造要塞。城壁と大砲のある広場からオラニエ湾を望む。",
+      "coordinates": {
+        "latitude": 17.48192,
+        "longitude": -62.98649
+      },
+      "image": "assets/images/netherlands/caribbean-netherlands/approved/scene-07-fort-oranje.webp",
+      "sceneTypes": [
+        "castle",
+        "cliff"
+      ],
+      "sourceKey": "fortOranje",
+      "mapOffset": {
+        "x": -2.465,
+        "y": 2.509
+      }
+    },
+    {
+      "id": "the-quill",
+      "name": "ザ・クイル",
+      "nameLocal": "The Quill / Sint Eustatius",
+      "description": "火山の火口縁から内側へ、濃い緑の森が落ち込む。溶岩ではなく熱帯の森林を抱えた火山地形。",
+      "coordinates": {
+        "latitude": 17.47799,
+        "longitude": -62.96381
+      },
+      "image": "assets/images/netherlands/caribbean-netherlands/approved/scene-08-the-quill.webp",
+      "sceneTypes": [
+        "volcano",
+        "forest"
+      ],
+      "sourceKey": "quill",
+      "mapOffset": {
+        "x": 3.362,
+        "y": -1.018
+      }
+    }
+  ],
+  "signatureFacts": [
+    {
+      "topicKey": "island-separation",
+      "label": "南北に離れた島々",
+      "value": "約817km",
+      "note": "ボネールとシント・ユースタティウスの代表地点間の直線距離。3島を1枚の小さな群島のように描くことはできない。",
+      "icon": "map",
+      "sourceKey": "geoDistance",
+      "interestReason": "ひとくくりの地域名に隠れた、海を隔てる大きな距離がわかる。"
+    },
+    {
+      "topicKey": "kingdom-highpoint",
+      "label": "オランダ王国の最高地点",
+      "value": "標高887m",
+      "note": "サバ島のマウント・シーナリー。ヨーロッパ側のオランダより高い火山性の山頂をもつ。",
+      "icon": "volcano",
+      "sourceKey": "scenery",
+      "interestReason": "平坦なオランダのイメージを、カリブ海の山が変える。"
+    },
+    {
+      "topicKey": "bonaire-pop-share",
+      "label": "3島の人口がボネールに集中",
+      "value": "約83％",
+      "note": "2026年1月1日の人口33,229人のうち、27,611人がボネールに住む。",
+      "icon": "users",
+      "sourceKey": "population",
+      "interestReason": "3島は地理だけでなく人口規模も大きく違う。"
+    }
+  ],
+  "encounters": [
+    {
+      "title": "海の青に接する白い塩山",
+      "icon": "sea",
+      "category": "LANDSCAPE"
+    },
+    {
+      "title": "塩湖の遠い水辺にいるフラミンゴ",
+      "icon": "leaf",
+      "category": "WILDLIFE"
+    },
+    {
+      "title": "マングローブの根の間を進む静かな水路",
+      "icon": "leaf",
+      "category": "NATURE"
+    },
+    {
+      "title": "乾いた海岸とサボテンの岩場",
+      "icon": "sea",
+      "category": "LANDSCAPE"
+    },
+    {
+      "title": "霧をまとったサバ島の石段",
+      "icon": "leaf",
+      "category": "NATURE"
+    },
+    {
+      "title": "白壁・赤屋根・緑の雨戸の集落",
+      "icon": "home",
+      "category": "DAILY_LIFE"
+    },
+    {
+      "title": "崖上の砦から眺める港",
+      "icon": "history",
+      "category": "ARCHITECTURE"
+    },
+    {
+      "title": "ヤギ肉の煮込みを囲む食卓",
+      "icon": "food",
+      "category": "FOOD"
+    }
+  ],
+  "culture": [
+    {
+      "topicKey": "salt-and-enslavement",
+      "themeEn": "HISTORY",
+      "themeJa": "歴史を知る",
+      "icon": "history",
+      "title": "塩の白さの背後に、強制労働の記憶がある",
+      "text": "ボネールの塩業は、植民地期に奴隷とされた人々の労働に支えられた。1863年にオランダ植民地で奴隷制が廃止されるまで、人々は長距離を歩いて塩田へ向かい、過酷な環境で塩を採った。小屋跡は単なる景観の飾りではない。",
+      "points": [
+        "小さな宿泊小屋が労働の厳しさを伝える",
+        "塩田は今も操業し、白い塩山が並ぶ"
+      ],
+      "sourceKey": "slaveHistory"
+    },
+    {
+      "topicKey": "lac-protection",
+      "themeEn": "NATURE",
+      "themeJa": "自然を知る",
+      "icon": "leaf",
+      "title": "浅い湾のマングローブが海の生命を守る",
+      "text": "ボネール南東部のラック湾には、島で重要なマングローブ林と浅い海草藻場が残る。根元と穏やかな水は多くの生きもののすみかとなり、立ち入りやツアーには保護ルールがある。",
+      "points": [
+        "海の浅さと森の根がひとつの生態系をつくる",
+        "ガイド付き観察は自然への負担を減らすための方法"
+      ],
+      "sourceKey": "lacBay"
+    },
+    {
+      "topicKey": "saba-cloudforest",
+      "themeEn": "NATURE",
+      "themeJa": "山を知る",
+      "icon": "leaf",
+      "title": "小さな火山島で、低地と山頂の植生が変わる",
+      "text": "サバの急な斜面を登るにつれ、乾いた低地から湿った高地の森林へと景観が変わる。山頂近くの雲霧林は、海から登る水蒸気と島の高低差が生む環境だ。",
+      "points": [
+        "標高差が短い移動の中に異なる森をつくる",
+        "湿った石段は天候によって滑りやすい"
+      ],
+      "sourceKey": "scenery"
+    },
+    {
+      "topicKey": "saba-road-community",
+      "themeEn": "LIFE",
+      "themeJa": "道をつくる",
+      "icon": "road",
+      "title": "「造れない」と言われた道を、島の人々が通した",
+      "text": "急斜面が続くサバでは、かつて港と集落の間を徒歩やロバで行き来した。住民ジョセファス・ランバート・ハッセルは通信教育で土木を学び、1938年に島の人々と道路建設を始めた。「The Road」は、険しい地形に合わせて暮らしを切り拓いた人々の仕事でもある。",
+      "points": [
+        "1943年にフォート・ベイからザ・ボトムまでの最初の区間が開通",
+        "その後も工事を続け、1958年に空港方面まで道路がつながった"
+      ],
+      "sourceKey": "sabaRoadHistory"
+    },
+    {
+      "topicKey": "statia-trading-port",
+      "themeEn": "HISTORY",
+      "themeJa": "港を知る",
+      "icon": "history",
+      "title": "オラニエスタッドの港は大西洋交易の要衝だった",
+      "text": "シント・ユースタティウスは18世紀に自由港として商業を発展させ、「Golden Rock」と呼ばれた。交易の繁栄には植民地支配や奴隷制も関わり、残る倉庫と砦はその複雑な歴史を物語る。",
+      "points": [
+        "砦と港は軍事・交易の結節点だった",
+        "海を越える交易は豊かさと搾取の双方を含む"
+      ],
+      "sourceKey": "fortOranje"
+    },
+    {
+      "topicKey": "different-island-voices",
+      "themeEn": "LIFE",
+      "themeJa": "暮らしを知る",
+      "icon": "culture",
+      "title": "同じ国に属しても、島ごとに言葉が違う",
+      "text": "ボネールではパピアメント語が日常的に話され、サバとシント・ユースタティウスでは英語が広く使われる。行政上ひとまとまりでも、歴史・つながり・暮らしの表情は島ごとに異なる。",
+      "points": [
+        "島ごとに使われる言葉の組み合わせが違う",
+        "地理的距離が日々の移動や交流にも影響する"
+      ],
+      "sourceKey": "languageCurrency"
+    }
+  ],
+  "taste": {
+    "title": "カリブ・オランダで食べたいもの",
+    "kicker": "TASTE OF CARIBBEAN NETHERLANDS",
+    "intro": "ボネールのスネックや家庭の食卓を中心に、カリブ海域で広く親しまれる料理を味わう。",
+    "items": [
+      {
+        "id": "kabritu-stoba",
+        "name": "カブリトゥ・ストバ",
+        "nameLocal": "Kabritu stobá / goat stew",
+        "text": "ヤギ肉を玉ねぎ、トマト、香辛料などとじっくり煮込む料理。米飯やフンチを添えることがある。",
+        "image": "assets/images/netherlands/caribbean-netherlands/approved/food-01-kabritu-stoba.webp",
+        "sourceKey": "food"
+      },
+      {
+        "id": "pan-bati",
+        "name": "パン・バティ",
+        "nameLocal": "Pan bati",
+        "text": "トウモロコシ粉と小麦粉などの生地を平たく焼く、柔らかなパン。煮込み料理の付け合わせにもなる。",
+        "image": "assets/images/netherlands/caribbean-netherlands/approved/food-02-pan-bati.webp",
+        "sourceKey": "food2"
+      },
+      {
+        "id": "pastechi",
+        "name": "パステチ",
+        "nameLocal": "Pastechi",
+        "text": "チーズや肉、魚などの具を包んで揚げる半月形の軽食。朝食や間食に親しまれる。",
+        "image": "assets/images/netherlands/caribbean-netherlands/approved/food-03-pastechi.webp",
+        "sourceKey": "pastechi"
+      },
+      {
+        "id": "kesio",
+        "name": "ケシオ",
+        "nameLocal": "Kesio / quesillo",
+        "text": "卵と牛乳などで作るカラメル風味のカスタードプリン。冷やして切り分け、皿に盛る。",
+        "image": "assets/images/netherlands/caribbean-netherlands/approved/food-04-kesio.webp",
+        "sourceKey": "kesio"
+      }
+    ]
+  },
+  "travelTrivia": [
+    {
+      "topicKey": "first-salute",
+      "categoryEn": "HISTORY",
+      "categoryJa": "砦の11発",
+      "icon": "history",
+      "title": "1776年、砦の礼砲が海の向こうへ届いた",
+      "text": "1776年11月16日、オラニエ砦は米国の船アンドリュー・ドリア号に礼砲で応えた。「ファースト・サルート」として今も記念される。",
+      "sourceKey": "fortOranje"
+    },
+    {
+      "topicKey": "saba-runway",
+      "categoryEn": "AIRPORT",
+      "categoryJa": "短い滑走路",
+      "icon": "map",
+      "title": "サバ島の空の玄関は約400mの滑走路",
+      "text": "海と断崖の間に設けられたファンチョ・E・ヤラウスクィン空港の滑走路は、商用空港として世界有数の短さ。",
+      "sourceKey": "sabaRunway"
+    },
+    {
+      "topicKey": "saba-lace",
+      "categoryEn": "CRAFT",
+      "categoryJa": "島の手仕事",
+      "icon": "culture",
+      "title": "サバのレースは、手紙で海を越えて売られた",
+      "text": "島の女性たちは「スパニッシュ・ワーク」をレース工芸として育てた。米国から届く荷物の送り主の住所を控え、作品を紹介する手紙を送って注文を集めたという。",
+      "sourceKey": "sabaLaceCraft"
+    },
+    {
+      "topicKey": "bonaire-1000-steps",
+      "categoryEn": "PLACE NAME",
+      "categoryJa": "名前の不思議",
+      "icon": "shore",
+      "title": "「1000段の階段」は、実際には約67段",
+      "text": "ボネールの海岸「1000 Steps」へ下りる階段は、実際には約67段。海から戻るときの上りが長く感じられることから、千段という名前になったと観光局は紹介する。",
+      "sourceKey": "bonaire1000Steps"
+    },
+    {
+      "topicKey": "statia-blue-beads",
+      "categoryEn": "HERITAGE",
+      "categoryJa": "青いビーズ",
+      "icon": "culture",
+      "title": "青いビーズに、解放の記憶を重ねる島",
+      "text": "シント・ユースタティウスでは植民地時代の青いガラス玉が見つかる。奴隷とされた人々の間の交換にも使われ、解放時に海へ投げたという伝承が残る。ただし、海へ投げた話は確定した史実ではない。",
+      "sourceKey": "statiaBlueBeads"
+    }
+  ],
+  "forWhom": [
+    {
+      "title": "島の地形と生態系の違いを見たい人",
+      "text": "塩田やマングローブ、乾いた海岸と雲霧林をそれぞれの土地で確かめたい人。"
+    },
+    {
+      "title": "海辺の風景の奥にある歴史を知りたい人",
+      "text": "塩業を支えた奴隷労働の跡や、要塞と港が伝える交易史をたどりたい人。"
+    },
+    {
+      "title": "小さな島を急がず歩きたい人",
+      "text": "サバの山道と赤屋根の集落、シント・ユースタティウスの火山を時間をかけて楽しみたい人。"
+    }
+  ],
+  "notes": [
+    {
+      "title": "ボネールと北部2島は大きく離れている",
+      "text": "ボネールはサバ・シント・ユースタティウスから約800km離れている。後者の2島は互いに近いが、ボネールとの移動には別途乗り継ぎを見込む。",
+      "sourceKey": "status"
+    },
+    {
+      "title": "山道と海上交通は当日の情報を確認",
+      "text": "サバの登山路は降雨後に滑りやすく、フェリーや航空便は天候・運航事情で変わる。現地公園・運航会社の最新案内を優先する。",
+      "sourceKey": "scenery"
+    },
+    {
+      "title": "自然保護と歴史遺構への配慮",
+      "text": "マングローブやフラミンゴの保護区域では立入規制を守り、奴隷小屋跡では強制労働の歴史を理解したうえで静かに見学する。",
+      "sourceKey": "slaveHuts"
+    }
+  ],
+  "travelScale": {
+    "kicker": "DURATION",
+    "title": "旅の目安日程",
+    "intro": "南のボネールと北の2島は別エリア。以下は現実の交通を前提にした編集上の周遊例で、乗継便の時刻は固定しない。",
+    "items": [
+      {
+        "duration": "3〜4日",
+        "title": "ボネールの水辺をめぐる",
+        "icon": "sea",
+        "text": "クラレンダイク → 塩田と白い小屋跡 → ラック湾 → ゴトー湖 → クラレンダイク。ボネール内を周遊する。"
+      },
+      {
+        "duration": "5〜7日",
+        "title": "北部2島の山と歴史",
+        "icon": "map",
+        "text": "シント・マールテン経由でサバへ → マウント・シーナリー → サバ港・空港経由でシント・ユースタティウスへ → オラニエ砦・ザ・クイル → シント・マールテン方面へ戻る。実際の運航日で調整する。"
+      },
+      {
+        "duration": "10〜14日以上",
+        "title": "3島の違いをたどる",
+        "icon": "compass",
+        "text": "ボネール：クラレンダイク周遊 → 航空乗継ぎ → シント・マールテンを拠点にサバ・シント・ユースタティウスを周遊 → シント・マールテンへ戻る。各区間は便の接続次第。"
+      }
+    ]
+  },
+  "bestSeason": {
+    "windows": [
+      {
+        "label": "1〜5月",
+        "reason": "ボネールの風と日差しを確かめつつ、北部2島では比較的落ち着く天候の日を選んで散策する。"
+      },
+      {
+        "label": "12〜4月",
+        "reason": "北部2島の火山・村歩きの候補。ただし山頂の霧や雨は通年あり得る。"
+      }
+    ]
+  },
+  "seasons": [
+    {
+      "months": "1〜3月",
+      "label": "北部の乾季寄り",
+      "icon": "sun",
+      "color": "#92a253",
+      "text": "北部2島では比較的雨の少ない時期。山の雲霧林は湿りやすく、歩道の状態を現地確認する。"
+    },
+    {
+      "months": "4〜6月",
+      "label": "風と日差し",
+      "icon": "leaf",
+      "color": "#73966f",
+      "text": "ボネールの乾いた海岸散策に向く日がある。海のアクティビティでは風向きや保護規制を確認する。"
+    },
+    {
+      "months": "7〜9月",
+      "label": "高温と熱帯低気圧",
+      "icon": "sun",
+      "color": "#b77a49",
+      "text": "北部小アンティルではハリケーンへの警戒を強める時期。交通と屋外活動は天候優先。"
+    },
+    {
+      "months": "10〜12月",
+      "label": "雨と変わる緑",
+      "icon": "weather",
+      "color": "#6b90a5",
+      "text": "ボネールでは降雨が増える時期があり、北部2島の登山路もぬかるみやすい。"
+    }
+  ],
+  "transport": {
+    "icon": "map",
+    "title": "南北2エリアを分けて計画する",
+    "text": "ボネールはフラミンゴ国際空港、サバはファンチョ・E・ヤラウスクィン空港、シント・ユースタティウスはF・D・ルーズベルト空港が玄関口。北部2島はシント・マールテン（オランダ王国内の別の構成国）を経由する便や船を利用できる。ボネールとの移動は乗継ぎが必要になり得るため、便と接続を確認する。",
+    "sourceKeys": [
+      "airFerry",
+      "ferryOfficial",
+      "status"
+    ]
+  },
+  "nextRoutesIntro": "サバとシント・ユースタティウスから、定期フェリーでセント・マーチン島へ。",
+  "nextRoutes": [
+    {
+      "countryEn": "SINT MAARTEN",
+      "countryJa": "シント・マールテン",
+      "flag": "🇸🇽",
+      "path": "Fort Bay / Oranjestad → Philipsburg",
+      "description": "サバのフォート・ベイやシント・ユースタティウスのオラニエスタットから定期フェリーで北へ渡り、フィリップスブルフへ。雲をまとう火山の島から、にぎやかな港町へ移る。",
+      "href": "countries/netherlands/sint-maarten/",
+      "travelerRoute": true,
+      "status": "CHECK_CURRENT_CONDITIONS",
+      "statusNote": "Makanaの運航日は限られ、代替船の運航などで時刻が変わる。現行の時刻表を確認する。"
+    }
+  ],
+  "relatedCountries": [
+    {
+      "nameJa": "オランダ",
+      "nameEn": "NETHERLANDS",
+      "href": "countries/netherlands/",
+      "flag": "🇳🇱",
+      "reason": "ボネールの塩田やサバの家並みに残るオランダの時代に惹かれたなら、アムステルダムの運河と港町で、カリブまで船を送った海洋国家の本拠地を歩ける。",
+      "affinityType": "HISTORY"
+    },
+    {
+      "nameJa": "ボリビア",
+      "nameEn": "BOLIVIA",
+      "href": "countries/bolivia/",
+      "flag": "🇧🇴",
+      "reason": "ボネールの塩田にたたずむフラミンゴの群れに惹かれたなら、ボリビアのラグナ・コロラダで、赤い湖にフラミンゴが集まる高地の風景を見られる。",
+      "affinityType": "WILDLIFE"
+    },
+    {
+      "nameJa": "アメリカ合衆国",
+      "nameEn": "UNITED STATES",
+      "href": "countries/unitedstates/",
+      "flag": "🇺🇸",
+      "reason": "1776年、シント・ユースタティウスが独立直後の米国旗に初めて礼砲を返した「ファースト・サルート」に惹かれたなら、フィラデルフィアの独立記念館で、同じ年の物語をたどれる。",
+      "affinityType": "HISTORY"
+    }
+  ],
+  "sourcesVerifiedAt": "2026-11-15",
+  "updatedAt": "2026-11-15",
+  "sourceDates": {
+    "population": "2026-01-01",
+    "area": "government public bodies profile, accessed 2026-11-14",
+    "religion": "2021 CBS population 15 and over, source published 2023-12-12",
+    "status": "2010-10-10 to current 2026-11-14",
+    "scenery": "official tourism page accessed 2026-11-14",
+    "map": "Natural Earth 10m-derived world-countries BES coastline and GSHHS intermediate, checked 2026-11-15",
+    "heroSalt": "Wikimedia geotagged camera photo dated 2014-10-27",
+    "transport": "Current 2026-11-15; operator schedules can change; checked 2026-11-15"
+  },
+  "sources": {
+    "status": "https://www.government.nl/themes/government-and-democracy/caribbean-parts-of-the-kingdom/question-and-answer/what-are-the-different-parts-of-the-kingdom-of-the-netherlands",
+    "governance": "https://www.government.nl/themes/government-and-democracy/caribbean-parts-of-the-kingdom/governance-of-bonaire-st-eustatius-and-saba",
+    "population": "https://www.cbs.nl/en-gb/figures/detail/85902ENG",
+    "area": "https://www.government.nl/themes/government-and-democracy/caribbean-parts-of-the-kingdom/question-and-answer/what-are-the-different-parts-of-the-kingdom-of-the-netherlands",
+    "languageCurrency": "https://www.government.nl/themes/government-and-democracy/caribbean-parts-of-the-kingdom/question-and-answer/what-are-the-different-parts-of-the-kingdom-of-the-netherlands",
+    "religion": "https://www.cbs.nl/en-gb/news/2023/50/most-people-in-the-caribbean-netherlands-belong-to-a-religious-group",
+    "geoDistance": "https://www.openstreetmap.org/copyright",
+    "heroSalt": "https://commons.wikimedia.org/wiki/File:Pekelmeer_salt_pans_(Bonaire_2014)_(15692457445).jpg",
+    "saltProduction": "https://bonaire.com/en/sightseeing/salt-production/",
+    "gotomeer": "https://mapcarta.com/N540059570",
+    "mangroves": "https://mapcarta.com/N3258954979",
+    "lacBay": "https://www.keybiodiversityareas.org/en/site/factsheet/19155",
+    "slaveHuts": "https://www.rijksoverheid.nl/documenten/2023/07/01/toespraak-minister-de-jonge",
+    "slaveHistory": "https://www.rijksoverheid.nl/documenten/2022/12/19/toespraak-minister-van-gennip-excuses-van-de-nederlandse-regering-voor-de-slavernij-en-het-slavernijverleden",
+    "abolition": "https://www.unesco.org/en/memory-world/lac/documentary-heritage-enslaved-people-dutch-caribbean-and-their-descendants-1839-1969",
+    "boka": "https://www.geonames.org/3513215/boka-slagbaai.html",
+    "scenery": "https://www.sabatourism.com/hiking/mt-scenery/",
+    "sabaArchitecture": "https://www.sabatourism.com/about-saba/",
+    "sabaRunway": "https://www.sabatourism.com/about-saba/",
+    "fortOranje": "https://www.statia-tourism.com/statia-day-2026-the-victory-1-sets-sail-to-steustatius",
+    "quill": "https://www.sinteustatius.com/experience/the-quill",
+    "food": "https://bonaire.com/en/blog/bonaire-local-food-kunuku-culture/",
+    "food2": "https://bonaire.com/en/blog/bonaire-local-food-kunuku-culture/",
+    "pastechi": "https://bonaire.com/en/blog/bonaire-street-food-local-snacks-kabritu-guide/",
+    "kesio": "https://infobonaire.com/restaurants-dining-cuisine/",
+    "climate": "https://www.knmi.nl/over-het-knmi/nieuws/het-klimaat-van-caribisch-nederland",
+    "airFerry": "https://www.sabatourism.com/getting-here",
+    "islandParks": "https://www.statia-tourism.com/frequently-asked-questions",
+    "map": "https://github.com/mledoze/countries/blob/master/data/bes.geo.json",
+    "ferryOfficial": "https://www.statiagovernment.com/nl/nieuwsoverzicht/artikel/statia-and-saba-partner-with-makana-ferry-to-improve-connectivity",
+    "bonaireCuracaoFlight": "https://www.directflights.com/BON-CUR",
+    "sxmSabaFerries": "https://www.visitstmaarten.com/st-maarten-ferries/",
+    "sabaRoadHistory": "https://www.sabatourism.com/about-saba/history-of-saba/",
+    "sabaLaceCraft": "https://www.sabatourism.com/things-to-do/",
+    "bonaire1000Steps": "https://bonaireisland.com/experiences/beaches/sites/1000-steps/",
+    "statiaBlueBeads": "https://www.government.nl/documents/2022/12/19/speech-by-marnix-van-rij-state-secretary-for-tax-affairs-and-the-tax-administration-on-sint-eustatius",
+    "statiaBlueBeadsResearch": "https://surface.syr.edu/beads/vol32/iss1/7/"
+  }
+}
