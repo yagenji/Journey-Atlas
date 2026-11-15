@@ -587,11 +587,11 @@
       "affinityType": "COAST"
     },
     {
-      "nameJa": "セントクリストファー・ネービス",
-      "nameEn": "SAINT KITTS AND NEVIS",
-      "href": "countries/stkittsnevis/",
-      "flag": "🇰🇳",
-      "reason": "火山の山並みと植民地期の港の町を巡り、カリブの島々が持つ異なる時間をたどる。",
+      "nameJa": "スウェーデン",
+      "nameEn": "SWEDEN",
+      "href": "countries/sweden/",
+      "flag": "🇸🇪",
+      "reason": "スウェーデン王にちなむ港町グスタビアの名と、通りに残るスウェーデン語の標識に惹かれたなら、ストックホルムの旧市街ガムラ・スタンで、1878年まで島を治めた王国の都を歩ける。",
       "affinityType": "HISTORY"
     },
     {
@@ -603,8 +603,29 @@
       "affinityType": "LANDSCAPE"
     }
   ],
-  "nextRoutesIntro": "海辺の小さな島を歩いたら、小アンティルの別の海岸や港へ旅をつなぐ。",
-  "nextRoutes": [],
+  "nextRoutesIntro": "セント・マーチン島の港へ、定期フェリーで旅をつなぐ。",
+  "nextRoutes": [
+    {
+      "countryEn": "SINT MAARTEN",
+      "countryJa": "シント・マールテン",
+      "flag": "🇸🇽",
+      "path": "Gustavia → Philipsburg",
+      "description": "グスタビアの港から定期フェリーで西へ渡り、シント・マールテンのフィリップスブルフへ。赤い屋根の小さな港町から、免税店と遊歩道が続くオランダ側の湾へつながる。",
+      "href": "countries/netherlands/sint-maarten/",
+      "travelerRoute": true,
+      "status": "OPEN"
+    },
+    {
+      "countryEn": "SAINT MARTIN",
+      "countryJa": "サン・マルタン",
+      "flag": "🇫🇷",
+      "path": "Gustavia → Marigot",
+      "description": "グスタビアから定期フェリーでマリゴへ。同じフランス領どうしで、静かな入り江の島から市場とビストロのある港町へ移る。",
+      "href": "countries/france/saint-martin/",
+      "travelerRoute": true,
+      "status": "OPEN"
+    }
+  ],
   "travelThemes": [
     "海の世界へ",
     "暮らしに出会う",
