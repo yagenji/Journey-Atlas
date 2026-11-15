@@ -346,7 +346,9 @@ def main() -> int:
                             problems.append(f"Northern Ireland map legend/capital failed: {legend_audit}")
                     if (region.get("map") or {}).get("regions"):
                         detail = (region.get("map") or {}).get("regions") or []
-                        inset = driver.execute_script("""
+                        insets = []
+                        for inset_data in detail:
+                            insets.append(driver.execute_script("""
                             const img = document.querySelector('#country-map-art .map-base');
                             const art = document.querySelector('#country-map-art');
                             const hits = [...art.querySelectorAll('.region-map-hit')];
@@ -378,7 +380,8 @@ def main() -> int:
                                 expected:[...expected],
                                 gapSvgPx:minGap/scale,
                                 mapImageLoaded:img?.naturalWidth > 0};
-                        """, detail)
+                            """, [inset_data]))
+                        inset = insets[0]
                         if (region.get("map") or {}).get("singleMapMobile"):
                             # The mobile layout must use exactly the same SVG/inset:
                             # no second enlarged map panel (inside or outside the frame).
@@ -409,8 +412,8 @@ def main() -> int:
                                     and single_map.get("extraMaps") == 0
                                     and single_map.get("mapImages") == 1
                                     and single_map.get("allCount") == 8
-                                    and single_map.get("insetCount") == len(detail[0]["sceneIds"])
-                                    and set(single_map.get("insetIds", [])) == set(detail[0]["sceneIds"])
+                                    and single_map.get("insetCount") == len({sid for group in detail for sid in group["sceneIds"]})
+                                    and set(single_map.get("insetIds", [])) == {sid for group in detail for sid in group["sceneIds"]}
                                     and single_map.get("visible")
                                     and (label != "mobile"
                                          or single_map.get("minGap", 0) >= single_map.get("maxMarkerWidth", 0) - 1)):
@@ -447,17 +450,72 @@ def main() -> int:
                                         and mobile_inset.get("width", 0) >= 250))
                                     and mobile_inset.get("loaded")):
                                 problems.append(f"Region mobile detail failed: {mobile_inset}")
-                        if not (len(detail) == 1
-                                and 0 <= detail[0]["rect"]["x"] <= 1200 - detail[0]["rect"]["width"]
-                                and 0 <= detail[0]["rect"]["y"] <= 760 - detail[0]["rect"]["height"]
-                                and detail[0]["rect"]["width"] >= 300
-                                and detail[0]["rect"]["height"] >= 250
-                                and inset.get("hasNote")
-                                and inset.get("noZoomButton")
-                                and inset.get("mapImageLoaded")
-                                and set(inset.get("insetIds", [])) == set(detail[0]["sceneIds"])
-                                and (label == "mobile" or inset.get("gapSvgPx", 0) >= 27)):
-                            problems.append(f"Region fixed inset map QA failed: {inset}")
+                        scene_ids = [sid for group in detail for sid in group["sceneIds"]]
+                        valid_insets = (
+                            len(detail) == len(insets)
+                            and len(scene_ids) == len(set(scene_ids))
+                            and all(
+                                0 <= group["rect"]["x"] <= 1200 - group["rect"]["width"]
+                                and 0 <= group["rect"]["y"] <= 760 - group["rect"]["height"]
+                                and group["rect"]["width"] >= 300
+                                and group["rect"]["height"] >= 250
+                                and result.get("hasNote")
+                                and result.get("noZoomButton")
+                                and result.get("mapImageLoaded")
+                                and set(result.get("insetIds", [])) == set(group["sceneIds"])
+                                and (label == "mobile" or result.get("gapSvgPx", 0) >= 27)
+                                for group, result in zip(detail, insets)
+                            )
+                        )
+                        if not valid_insets:
+                            problems.append(f"Region fixed inset map QA failed: {insets}")
+                        if len(detail) > 1 and not (region.get("map") or {}).get("singleMapMobile"):
+                            multi_mobile = driver.execute_script("""
+                                const roots = [...document.querySelectorAll('.region-map-detail-mobile')];
+                                const mainHits = document.querySelectorAll('#region-map-hits [data-map-inset="true"]');
+                                return {
+                                    count: roots.length,
+                                    overviewHidden: [...mainHits].every(h => getComputedStyle(h).display === 'none'),
+                                    panels: roots.map(root => {
+                                        const hits = [...root.querySelectorAll('.region-map-hit')];
+                                        const points = hits.map(h => {
+                                            const r = h.getBoundingClientRect();
+                                            return {x: r.x + r.width / 2, y: r.y + r.height / 2};
+                                        });
+                                        let gap = Infinity;
+                                        for (let i = 0; i < points.length; i++)
+                                            for (let j = i + 1; j < points.length; j++)
+                                                gap = Math.min(gap, Math.hypot(
+                                                    points[i].x - points[j].x, points[i].y - points[j].y));
+                                        return {
+                                            id: root.dataset.regionInset,
+                                            ids: hits.map(h => h.dataset.scene),
+                                            visible: getComputedStyle(root).display !== 'none',
+                                            loaded: !!root.querySelector('img')?.naturalWidth,
+                                            width: root.getBoundingClientRect().width,
+                                            gap
+                                        };
+                                    })
+                                };
+                            """)
+                            mobile = label == "mobile"
+                            expected_panels = [group["sceneIds"] for group in detail]
+                            if not (
+                                multi_mobile.get("count") == len(detail)
+                                and len(multi_mobile.get("panels", [])) == len(detail)
+                                and all(
+                                    set(panel["ids"]) == set(expected_ids)
+                                    and len(panel["ids"]) == len(expected_ids)
+                                    and panel.get("loaded")
+                                    and panel.get("visible") == mobile
+                                    and (not mobile or (panel.get("width", 0) >= 250
+                                        and panel.get("gap", 0) >= 27))
+                                    for panel, expected_ids
+                                    in zip(multi_mobile.get("panels", []), expected_panels)
+                                )
+                                and (not mobile or multi_mobile.get("overviewHidden"))
+                            ):
+                                problems.append(f"Region multiple mobile insets failed: {multi_mobile}")
                     # Optional island-group selector must keep only ONE visual map frame.
                     # It must restore the true-geography overview after every switch.
                     if (region.get("map") or {}).get("detailMaps"):
@@ -491,9 +549,9 @@ def main() -> int:
                         str(route.get("countryEn", "")).upper() in route_flags
                         for route in region.get("nextRoutes", [])
                     )
-                    expected_images = (14 + int(bool((region.get("map") or {}).get("regions"))
-                                       and not (region.get("map") or {}).get("singleMapMobile"))
-                                       + svg_flag_count)
+                    inset_images = (0 if (region.get("map") or {}).get("singleMapMobile")
+                                    else len((region.get("map") or {}).get("regions") or []))
+                    expected_images = 14 + inset_images + svg_flag_count
                     if audit["imageCount"] != expected_images or audit["broken"]:
                         problems.append(f"broken/missing images: {audit['broken']} ({audit['imageCount']}/{expected_images})")
                     # The recommender now suppresses low-confidence matches instead of
