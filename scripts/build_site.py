@@ -681,6 +681,7 @@ def build_top_scene_index() -> None:
         "saint-pierre-and-miquelon": ("🇵🇲", None),  # French overseas collectivity in the North Atlantic.
         "svalbard": ("🇳🇴", None),  # Svalbard is part of Norway; it has no separate official flag.
         "christmas-island": ("🇨🇽", None),  # Australian external territory, ISO 3166-1 CX.
+        "cocos-keeling-islands": ("🇨🇨", None),  # Australian external territory, ISO 3166-1 CC.
         "norfolk-island": ("🇳🇫", None),  # Australian external territory, ISO 3166-1 NF.
         "england": ("🏴󠁧󠁢󠁥󠁮󠁧󠁿", "assets/icons/region-flags/england-waved.svg"),
         "scotland": ("🏴󠁧󠁢󠁳󠁣󠁴󠁿", "assets/icons/region-flags/scotland-waved.svg"),
