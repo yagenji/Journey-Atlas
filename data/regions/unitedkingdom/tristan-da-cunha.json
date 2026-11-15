@@ -32,7 +32,11 @@
       "village",
       "volcano"
     ],
-    "sourceKey": "settlement"
+    "sourceKey": "settlement",
+    "mapOffset": {
+      "x": -4.808833333333333,
+      "y": -1.2653947368421055
+    }
   },
   "profile": [
     {
@@ -76,13 +80,14 @@
   "map": {
     "svg": "assets/images/unitedkingdom/tristan-da-cunha/map-tristan-da-cunha.svg",
     "bounds": {
-      "west": -12.83,
-      "east": -12.1,
-      "south": -37.57,
-      "north": -36.98
+      "west": -13.114895627977695,
+      "east": -11.387520554618515,
+      "south": -37.69831067961165,
+      "north": -36.827631067961164
     },
     "singleMapMobile": true,
-    "source": "Tristan, Inaccessible, Nightingale, Middle, Stoltenhoff and Gough island polygons derived from amCharts4 geodata saintHelenaHigh.ts (https://github.com/amcharts/amcharts4/blob/master/src/geodata/saintHelenaHigh.ts), © amCharts, CC BY 4.0 attribution included within SVG. WGS84 coordinates, local-equirectangular-fit-v1 for main island group at 37.2°S. Gough Island shown in detached, differently scaled inset with explicit note. Source verified 2026-11-15."
+    "source": "Tristan, Inaccessible, Nightingale, Middle, Stoltenhoff and Gough island polygons derived from amCharts4 geodata saintHelenaHigh.ts (https://github.com/amcharts/amcharts4/blob/master/src/geodata/saintHelenaHigh.ts), © amCharts, CC BY 4.0 attribution included within SVG. WGS84 coordinates, local-equirectangular-fit-v1 for main island group at 37.2°S. Gough Island shown in detached, differently scaled inset with explicit note. Source verified 2026-11-15.",
+    "insetNote": "※ ゴフ島は、実際の位置関係・縮尺と異なる別枠表示です。"
   },
   "scenes": [
     {
@@ -98,7 +103,11 @@
       "sceneTypes": [
         "farmland"
       ],
-      "sourceKey": "potato"
+      "sourceKey": "potato",
+      "mapOffset": {
+        "x": -3.586,
+        "y": 5.2152631578947375
+      }
     },
     {
       "id": "1961-volcano",
@@ -118,7 +127,11 @@
       "sourceKeys": [
         "volcano1961",
         "lavaCoordinates"
-      ]
+      ],
+      "mapOffset": {
+        "x": 4.130333333333334,
+        "y": -4.090263157894737
+      }
     },
     {
       "id": "calshot-harbour",
@@ -133,7 +146,11 @@
       "sceneTypes": [
         "harbor"
       ],
-      "sourceKey": "shipping"
+      "sourceKey": "shipping",
+      "mapOffset": {
+        "x": 0.7944166666666667,
+        "y": 3.3042105263157895
+      }
     },
     {
       "id": "st-marys-church",
@@ -149,7 +166,11 @@
         "church",
         "village"
       ],
-      "sourceKey": "church"
+      "sourceKey": "church",
+      "mapOffset": {
+        "x": -0.9820833333333333,
+        "y": -7.539736842105263
+      }
     },
     {
       "id": "sandy-point",
@@ -165,7 +186,11 @@
         "beach",
         "cliff"
       ],
-      "sourceKey": "sandy"
+      "sourceKey": "sandy",
+      "mapOffset": {
+        "x": 1.1943333333333335,
+        "y": -0.3103947368421053
+      }
     },
     {
       "id": "queen-marys-peak",
@@ -181,7 +206,11 @@
         "volcano",
         "lake"
       ],
-      "sourceKey": "peak"
+      "sourceKey": "peak",
+      "mapOffset": {
+        "x": -0.816,
+        "y": 7.588947368421053
+      }
     },
     {
       "id": "stonyhill-point",
@@ -197,7 +226,11 @@
         "cliff",
         "rock"
       ],
-      "sourceKey": "stony"
+      "sourceKey": "stony",
+      "mapOffset": {
+        "x": 4.170166666666667,
+        "y": 3.3910526315789475
+      }
     },
     {
       "id": "nightingale-island",
@@ -213,7 +246,11 @@
         "birds",
         "island"
       ],
-      "sourceKey": "islands"
+      "sourceKey": "islands",
+      "mapOffset": {
+        "x": -0.10258333333333335,
+        "y": -0.10486842105263158
+      }
     }
   ],
   "signatureFacts": [
@@ -507,22 +544,22 @@
   "travelScale": {
     "kicker": "DURATION",
     "title": "旅の目安日程",
-    "intro": "船の往復手配と上陸許可、海況が旅程を決める。以下は観光商品ではなく編集上の訪問イメージであり、予定通りの上陸を保証しない。",
+    "intro": "上陸許可と船の往復手配を確定したうえで検討する訪問範囲の目安。滞在日数を保証するものではなく、悪天候時には上陸自体ができない。",
     "items": [
       {
-        "duration": "寄港時の短時間",
+        "duration": "2〜3日",
         "title": "集落と港に触れる",
         "icon": "city",
         "text": "上陸が認められた場合に港と集落を往復する。例：船の投錨地 → カルショット港 → 集落 → カルショット港 → 船の投錨地。"
       },
       {
-        "duration": "数日滞在",
+        "duration": "4〜5日",
         "title": "畑と火山の麓を知る",
         "icon": "map",
         "text": "事前の滞在承認と帰路船便を確保し、許可された範囲で訪れる。例：集落 → ポテト・パッチーズ → 集落 → 1961年溶岩原 → 集落。"
       },
       {
-        "duration": "長期滞在",
+        "duration": "6日以上",
         "title": "天候と許可に合わせて深める",
         "icon": "compass",
         "text": "船便間隔と天候に余裕を持ち、ガイド付き山歩きや海岸・野鳥観察を検討。例：集落 → 1961年溶岩原 → 集落 → 現地許可のある海岸観察 → 集落。"
@@ -586,7 +623,8 @@
       "description": "島への航路はケープタウンとの往復が基本。ただし船の運航・寄港・上陸や出航日は保証されない。",
       "href": "countries/southafrica/",
       "travelerRoute": true,
-      "status": "CHECK_CURRENT_CONDITIONS"
+      "status": "CHECK_CURRENT_CONDITIONS",
+      "statusNote": "訪問・乗船予約・出航日・上陸可否は現地の最新情報を確認する。"
     }
   ],
   "relatedCountries": [
@@ -605,17 +643,24 @@
       "flag": "🇮🇸",
       "reason": "孤立した火山島の地形に惹かれたなら、アイスランドで火山がつくる大地と人々の暮らしの関係を比較できる。",
       "affinityType": "LANDSCAPE"
+    },
+    {
+      "nameJa": "ニュージーランド",
+      "nameEn": "NEW ZEALAND",
+      "href": "countries/newzealand/",
+      "flag": "🇳🇿",
+      "reason": "隔絶された海鳥の繁殖地と保全の取り組みに興味があるなら、ニュージーランドの亜南極諸島にも広がる豊かな海鳥の世界を知る旅につながる。",
+      "affinityType": "WILDLIFE"
     }
   ],
   "sourcesVerifiedAt": "2026-11-15",
   "updatedAt": "2026-11-15",
   "sourceDates": {
     "population": "2026-10-21",
-    "area": "2020 scientific publication",
-    "history": "1961–1963",
-    "shipping": "2026-11-15 check; variable schedules",
-    "visits": "2026-11-15 check",
-    "map": "amCharts4 high geodata checked 2026-11-15; coordinates WGS84; CC BY 4.0"
+    "area": "2020",
+    "shipping": "2026-11-15",
+    "visits": "2026-11-15",
+    "mapSource": "2026-11-15"
   },
   "sources": {
     "status": "https://www.gov.uk/government/world/organisations/saint-helena-ascension-and-tristan-da-cunha-government",
@@ -649,17 +694,5 @@
     "nameEn": "SAINT HELENA",
     "nameJa": "セントヘレナ"
   },
-  "capital": {
-    "nameJa": "エディンバラ・オブ・ザ・セブン・シーズ",
-    "labelJa": "中心集落",
-    "coordinates": {
-      "latitude": -37.06757,
-      "longitude": -12.31107
-    },
-    "labelPosition": "left",
-    "labelOffset": {
-      "x": 0,
-      "y": 0
-    }
-  }
+  "capital": null
 }
