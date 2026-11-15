@@ -370,6 +370,19 @@
         "野鳥の遭遇は保証されない"
       ],
       "sourceKey": "orielle"
+    },
+    {
+      "topicKey": "masquerade-heritage",
+      "themeEn": "CULTURE",
+      "themeJa": "踊りを知る",
+      "icon": "culture",
+      "title": "仮面をつけた踊りは、島の歴史を演じ続ける",
+      "text": "モントセラトのマスカレードは、仮面や華やかな衣装、踊りを組み合わせた伝統芸能。セント・パトリックス祭や年末のカーニバルで演じられ、島を離れて暮らす人々も文化の継承に取り組んでいる。",
+      "points": [
+        "伝統の仮面と踊りは、島の文化的な記憶を伝える",
+        "英国のモントセラト系コミュニティでも継承されている"
+      ],
+      "sourceKey": "masquerade"
     }
   ],
   "taste": {
@@ -413,40 +426,58 @@
   },
   "travelTrivia": [
     {
-      "topicKey": "returning-water",
-      "categoryEn": "LOCAL LEGEND",
-      "categoryJa": "水の言い伝え",
+      "topicKey": "alliouagana-old-name",
+      "categoryEn": "OLD NAME",
+      "categoryJa": "島の古い名前",
+      "icon": "history",
+      "title": "「モントセラト」より前の名前がある",
+      "text": "先住民タイノの人々は島を「Alliouagana（アリウアガナ）」と呼んだ。観光局は「とげのある低木の土地」という意味を紹介している。",
+      "sourceKey": "islandOldName"
+    },
+    {
+      "topicKey": "erin-on-flag",
+      "categoryEn": "FLAG DETAIL",
+      "categoryJa": "国旗の秘密",
+      "icon": "history",
+      "title": "旗の中の女性は、アイルランドを表している",
+      "text": "紋章の緑の衣を着た女性は、アイルランドを象徴するエリン。手には金色の竪琴を持ち、その紋章が国旗にも描かれている。",
+      "sourceKey": "flagSymbolism"
+    },
+    {
+      "topicKey": "mountain-chicken-frog",
+      "categoryEn": "WILDLIFE",
+      "categoryJa": "名前の意外性",
       "icon": "leaf",
-      "title": "湧水を飲むと、また島に戻ってくる？",
-      "text": "ランナウェイ・ゴートの水を飲んだ人は、いつかモントセラトへ戻ってくるという言い伝えがある。",
-      "sourceKey": "runaway"
+      "title": "「マウンテン・チキン」は鶏ではなくカエル",
+      "text": "名前に反して大型のカエルで、モントセラトとドミニカ国に生息する。かつて食用にもされたが、現在は絶滅の危機にあり保護活動が続く。",
+      "sourceKey": "mountainChicken"
     },
     {
-      "topicKey": "friday-goat",
-      "categoryEn": "FOOD",
-      "categoryJa": "金曜日の定番",
-      "icon": "food",
-      "title": "ゴート・ウォーターは金曜日の昼の味",
-      "text": "国民食のヤギ肉煮込みは祝いの食事だけでなく、金曜日に食べる身近な昼食としても親しまれる。",
-      "sourceKey": "goatWater"
-    },
-    {
-      "topicKey": "emerald-isle",
-      "categoryEn": "NICKNAME",
-      "categoryJa": "島の愛称",
-      "icon": "leaf",
-      "title": "「カリブ海のエメラルド島」と呼ばれる",
-      "text": "緑の山々とアイルランドにつながる歴史が重なり、モントセラトは「Emerald Isle of the Caribbean」と呼ばれる。",
-      "sourceKey": "profile"
-    },
-    {
-      "topicKey": "small-studio",
-      "categoryEn": "MUSIC",
-      "categoryJa": "音楽の島",
+      "topicKey": "calabash-craft",
+      "categoryEn": "LOCAL CRAFT",
+      "categoryJa": "島の工芸",
       "icon": "culture",
-      "title": "遠くの島が、世界的なアルバムの録音場所だった",
-      "text": "1980年代には多くの国際的な音楽家が島のAIR Studiosで作品を録音した。",
-      "sourceKey": "music"
+      "title": "ひとつの果実が、器にも楽器にもなる",
+      "text": "カラバッシュの硬い実を加工し、器、楽器、バッグ、装飾品などに仕立てる。地元の工芸を伝える祭りも開かれている。",
+      "sourceKey": "calabashCraft"
+    },
+    {
+      "topicKey": "arrow-hot-hot-hot",
+      "categoryEn": "LOCAL MUSIC",
+      "categoryJa": "世界へ響いた歌",
+      "icon": "culture",
+      "title": "世界に広がった「Hot! Hot! Hot!」は島生まれ",
+      "text": "1983年のヒット曲を歌ったArrow（アルフォンサス・カセル）はモントセラト出身。小さな島からソカ音楽を世界に広めた。",
+      "sourceKey": "arrowMusic"
+    },
+    {
+      "topicKey": "new-year-carnival",
+      "categoryEn": "YEAR-END FESTIVAL",
+      "categoryJa": "年越しの祭り",
+      "icon": "culture",
+      "title": "年末のカーニバルが、新年まで続く",
+      "text": "モントセラトのカーニバルは12月に始まり、1月1日まで続く。年の終わりと始まりを一続きの祭りで迎える。",
+      "sourceKey": "carnival"
     }
   ],
   "forWhom": [
@@ -637,7 +668,14 @@
     "map": "https://www.naturalearthdata.com/downloads/10m-cultural-vectors/",
     "mapGovernment": "https://services1.arcgis.com/4TXrdeWh0RyCqPgB/ArcGIS/rest/services/Montserrat_Vectors/FeatureServer/127",
     "habitableArea": "https://digitallibrary.un.org/record/4111020",
-    "soldierGhautLocality": "https://www.geonames.org/advanced-search.html?country=MS&q=Soldier+Ghaut"
+    "soldierGhautLocality": "https://www.geonames.org/advanced-search.html?country=MS&q=Soldier+Ghaut",
+    "masquerade": "https://www.gov.ms/2026/03/24/montserrat-flag-raised-at-uk-parliament-to-mark-st-patricks-day-commemoration/",
+    "islandOldName": "https://www.visitmontserrat.com/montserrat-history-facts/montserrat-history/",
+    "flagSymbolism": "https://www.gov.ms/about-us/",
+    "mountainChicken": "https://www.durrell.org/conservation/species/amphibians/mountain-chicken-frog/",
+    "calabashCraft": "https://artscouncil.ms/festivals/montserrat-calabash-festival/",
+    "arrowMusic": "https://www.visitmontserrat.com/about-montserrat/musical-pedigree/",
+    "carnival": "https://artscouncil.ms/festivals/montserrat-carnival/"
   },
   "capital": null
 }
