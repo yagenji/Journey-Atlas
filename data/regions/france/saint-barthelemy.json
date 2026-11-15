@@ -1,0 +1,628 @@
+{
+  "schemaVersion": 1,
+  "contentQaVersion": 6,
+  "parentSlug": "france",
+  "slug": "saint-barthelemy",
+  "regionPublished": false,
+  "nameEn": "SAINT BARTHÉLEMY",
+  "nameJa": "サン・バルテルミー",
+  "region": "CARIBBEAN / 17°N",
+  "parentNameJa": "フランス",
+  "parentNameEn": "FRANCE",
+  "parentReturnDescription": "フランスの8つの景色を見る",
+  "seo": {
+    "description": "フランス海外自治体サン・バルテルミー。グスタヴィアの港、スウェーデン期の砲台跡、漁村、入り江、ラグーン、岩海岸を8景と地図でたどる。"
+  },
+  "hero": {
+    "name": "フォール・グスタフから望むグスタヴィア港",
+    "location": "Gustavia Harbour / Fort Gustav viewpoint",
+    "image": "assets/images/france/saint-barthelemy/approved/hero.webp",
+    "coordinates": {
+      "latitude": 17.90145,
+      "longitude": -62.85209
+    },
+    "lead": "赤い屋根が港を囲むグスタヴィア。島を巡ると、スウェーデン統治の面影を残す砲台跡、漁村の小舟、波が砕ける岩礁が現れる。カリブ海の小さな島には、リゾートの華やかさだけではわからない時間が流れている。",
+    "description": "フォール・グスタフ周辺の丘から、グスタヴィアの自然港と斜面に広がる低い街並み、港の外へ続く海を望む。",
+    "sceneTypes": [
+      "harbor",
+      "oldtown"
+    ],
+    "sourceKeys": [
+      "fortGustav",
+      "tourism"
+    ]
+  },
+  "profile": [
+    {
+      "label": "首府",
+      "value": "グスタヴィア（Gustavia）",
+      "sourceKey": "status"
+    },
+    {
+      "label": "人口",
+      "value": "10,660人（2023年基準人口・2026年適用）",
+      "sourceKey": "population"
+    },
+    {
+      "label": "面積",
+      "value": "約21km²（日本の約0.006%）",
+      "sourceKey": "status"
+    },
+    {
+      "label": "言語",
+      "value": "フランス語（地域のクレオール語も話される）",
+      "sourceKey": "tourism"
+    },
+    {
+      "label": "主な宗教",
+      "value": "キリスト教（カトリックなど）",
+      "sourceKey": "tourism"
+    },
+    {
+      "label": "通貨",
+      "value": "ユーロ（EUR）",
+      "sourceKey": "status"
+    }
+  ],
+  "historyContext": {
+    "text": "サン・バルテルミーはフランス共和国の海外自治体（collectivité d’outre-mer）で、独立国家でも、現在のグアドループ県の一部でもない。1785年から1878年までスウェーデン領だった歴史を持ち、1878年にフランスへ復帰した。2007年にグアドループ県から分離して現在の海外自治体となった。欧州連合の制度上は2012年から海外の国・地域（OCT）に分類される。",
+    "sourceKeys": [
+      "status",
+      "euStatus"
+    ]
+  },
+  "map": {
+    "svg": "assets/images/france/saint-barthelemy/map-saint-barthelemy.svg",
+    "bounds": {
+      "west": -62.93,
+      "east": -62.77,
+      "south": 17.87,
+      "north": 17.969
+    },
+    "singleMapMobile": true,
+    "source": "© OpenStreetMap contributors, ODbL 1.0. Saint-Barthélemy boundary relation 537967, high-resolution geojson/high/iso1/BL.geojson from hyperknot/country-levels-export (https://github.com/hyperknot/country-levels-export/blob/master/geojson/high/iso1/BL.geojson). Four existing island polygons retained exactly at published WGS84 vertices, no invented coastlines or islets. local-equirectangular-fit-v1, 1200×760. Scene anchors are real point coordinates including beach/water-edge points, which can lie seaward of the simplified polygon. Not for navigation."
+  },
+  "scenes": [
+    {
+      "id": "fort-karl",
+      "name": "フォール・カールの砲台跡",
+      "nameLocal": "Fort Karl / Gustavia",
+      "description": "グスタヴィア南側の高台に残る砲台跡。乾いた草に覆われた低い石組みの向こうに、シェルビーチと自然の岬が開ける。",
+      "image": "assets/images/france/saint-barthelemy/approved/scene-01-fort-karl.webp",
+      "sceneTypes": [
+        "castle",
+        "cliff"
+      ],
+      "sourceKey": "fortKarl",
+      "mapLabel": "Fort Karl",
+      "coordinates": {
+        "latitude": 17.89305,
+        "longitude": -62.84973
+      }
+    },
+    {
+      "id": "corossol-village",
+      "name": "コロソルの漁村",
+      "nameLocal": "Corossol Village",
+      "description": "小さな舟が引き上げられ、低い家並みが海岸に沿う村。港町グスタヴィアとは違う、漁と手仕事に根ざした日常に出会う。",
+      "image": "assets/images/france/saint-barthelemy/approved/scene-02-corossol-village.webp",
+      "sceneTypes": [
+        "village",
+        "harbor"
+      ],
+      "sourceKey": "corossol",
+      "mapLabel": "Corossol",
+      "coordinates": {
+        "latitude": 17.90931,
+        "longitude": -62.85426
+      }
+    },
+    {
+      "id": "colombier-beach",
+      "name": "コロンビエの入り江",
+      "nameLocal": "Anse de Colombier / Colombier Beach",
+      "description": "徒歩道の先に、緑の岬に抱かれた弧状の白砂が現れる。道路が直接通じない自然海岸で、訪れるには徒歩または船を利用する。",
+      "image": "assets/images/france/saint-barthelemy/approved/scene-03-colombier-beach.webp",
+      "sceneTypes": [
+        "beach",
+        "bay"
+      ],
+      "sourceKey": "colombier",
+      "mapLabel": "Colombier Beach",
+      "coordinates": {
+        "latitude": 17.92411,
+        "longitude": -62.87003
+      },
+      "mapSurface": "water"
+    },
+    {
+      "id": "grand-fond",
+      "name": "グラン・フォンの岩海岸",
+      "nameLocal": "Grand Fond Coast",
+      "description": "南東の外海に面した岩と礫の海岸。白い波が低い岩に砕け、穏やかな入り江とは異なる大西洋側の表情を見せる。",
+      "image": "assets/images/france/saint-barthelemy/approved/scene-04-grand-fond.webp",
+      "sceneTypes": [
+        "cliff",
+        "rock"
+      ],
+      "sourceKey": "grandFond",
+      "mapLabel": "Grand Fond",
+      "coordinates": {
+        "latitude": 17.89125,
+        "longitude": -62.809417
+      }
+    },
+    {
+      "id": "grand-cul-de-sac",
+      "name": "グラン・キュル＝ド＝サックのラグーン",
+      "nameLocal": "Grand Cul-de-Sac Lagoon",
+      "description": "浅い青緑の水が低い丘の間に広がる北東部の湾。外海のうねりから守られた水面と砂地の色の変化が美しい。",
+      "image": "assets/images/france/saint-barthelemy/approved/scene-05-grand-cul-de-sac.webp",
+      "sceneTypes": [
+        "lagoon",
+        "bay"
+      ],
+      "sourceKey": "culdesac",
+      "mapLabel": "Grand Cul-de-Sac",
+      "coordinates": {
+        "latitude": 17.90809,
+        "longitude": -62.80626
+      }
+    },
+    {
+      "id": "lorient-church",
+      "name": "ロリアンの教会",
+      "nameLocal": "Église de Lorient",
+      "description": "集落の中にある白い小さな教会と独立した鐘楼。低い建物や植栽に囲まれ、島の信仰と地域の歴史が静かに残る。",
+      "image": "assets/images/france/saint-barthelemy/approved/scene-06-lorient-church.webp",
+      "sceneTypes": [
+        "church",
+        "monument"
+      ],
+      "sourceKey": "lorientChurch",
+      "mapLabel": "Lorient Church",
+      "coordinates": {
+        "latitude": 17.9054,
+        "longitude": -62.82373
+      }
+    },
+    {
+      "id": "grande-saline",
+      "name": "グランド・サリーヌの自然浜",
+      "nameLocal": "Grande Saline Beach",
+      "description": "乾いた丘を越えると、長い白砂の海岸が開ける。砂丘と海岸植物が残る未開発の浜で、波の状態を見て過ごしたい。",
+      "image": "assets/images/france/saint-barthelemy/approved/scene-07-grande-saline.webp",
+      "sceneTypes": [
+        "beach",
+        "bay"
+      ],
+      "sourceKey": "saline",
+      "mapLabel": "Grande Saline",
+      "coordinates": {
+        "latitude": 17.88719,
+        "longitude": -62.82131
+      },
+      "mapSurface": "water"
+    },
+    {
+      "id": "toiny-coast",
+      "name": "トワニーの荒い海岸",
+      "nameLocal": "Toiny Coast / Anse de Toiny",
+      "description": "東岸の岩に強い波が押し寄せる。緩やかな砂浜とは対照的に、風や流れの強さを景色として感じる海岸。",
+      "image": "assets/images/france/saint-barthelemy/approved/scene-08-toiny-coast.webp",
+      "sceneTypes": [
+        "cliff",
+        "bay"
+      ],
+      "sourceKey": "toiny",
+      "mapLabel": "Toiny Coast",
+      "coordinates": {
+        "latitude": 17.89694,
+        "longitude": -62.79737
+      },
+      "mapSurface": "water"
+    }
+  ],
+  "taste": {
+    "title": "サン・バルテルミーで食べたいもの",
+    "kicker": "TASTE OF SAINT BARTHÉLEMY",
+    "intro": "フランス料理の文化とカリブのクレオール料理が同じ島に息づく。漁や香辛料、ココナッツの味をたどる。",
+    "items": [
+      {
+        "id": "accras-de-morue",
+        "name": "塩ダラのアクラ",
+        "nameLocal": "Accras de Morue",
+        "text": "塩ダラをほぐして香草入りの生地に混ぜ、小さく揚げる。表面の香ばしさが食欲を誘うクレオールの前菜。",
+        "image": "assets/images/france/saint-barthelemy/approved/food-01-accras-de-morue.webp",
+        "sourceKey": "food"
+      },
+      {
+        "id": "colombo-de-cabri",
+        "name": "ヤギ肉のコロンボ",
+        "nameLocal": "Colombo de Cabri",
+        "text": "カリブ風のスパイスを使ってヤギ肉と野菜を煮込む。濃い黄土色のソースが広がる家庭料理。",
+        "image": "assets/images/france/saint-barthelemy/approved/food-02-colombo-de-cabri.webp",
+        "sourceKey": "food"
+      },
+      {
+        "id": "gratin-de-lambis",
+        "name": "ランビのグラタン",
+        "nameLocal": "Gratin de Lambis",
+        "text": "カリブの巻貝ランビを細かく刻み、クリーミーなソースとともにオーブンで焼いたグラタン。",
+        "image": "assets/images/france/saint-barthelemy/approved/food-03-gratin-de-lambis.webp",
+        "sourceKey": "food"
+      },
+      {
+        "id": "sorbet-coco",
+        "name": "ココナッツソルベ",
+        "nameLocal": "Sorbet Coco",
+        "text": "ココナッツの甘みと細かな氷の粒を楽しむ冷菓。フランス領カリブの暑い日に親しまれる。",
+        "image": "assets/images/france/saint-barthelemy/approved/food-04-sorbet-coco.webp",
+        "sourceKey": "food"
+      }
+    ]
+  },
+  "signatureFacts": [
+    {
+      "topicKey": "coast-length",
+      "label": "入り江と岩礁が続く海岸線",
+      "value": "約32km",
+      "note": "面積約21km²の小さな本島を、砂浜・岩海岸・入り江が細かく囲む。",
+      "icon": "sea",
+      "sourceKey": "status",
+      "interestReason": "小さな島の中でも海辺の景観が大きく変わる理由を伝える。"
+    },
+    {
+      "topicKey": "marine-reserve",
+      "label": "海を守る自然保護区",
+      "value": "約1,200ha",
+      "note": "1996年に指定された海洋自然保護区の規模。陸とは別に、サンゴ礁などの海の環境を守る。",
+      "icon": "leaf",
+      "sourceKey": "reserve",
+      "interestReason": "海の保全が地域の特徴であることを面積で伝える。"
+    },
+    {
+      "topicKey": "runway",
+      "label": "短い滑走路",
+      "value": "約650m",
+      "note": "レミ・ド・アエネン空港の滑走路。近隣島と結ぶ小型航空機が、島への旅の玄関口となる。",
+      "icon": "road",
+      "sourceKey": "air",
+      "interestReason": "空からのアクセスも島の地形と規模に左右されることを示す。"
+    }
+  ],
+  "encounters": [
+    {
+      "title": "丘の上から港に降りる坂道",
+      "icon": "road",
+      "category": "MOVEMENT"
+    },
+    {
+      "title": "海辺に引き上げたコロソルの小舟",
+      "icon": "sea",
+      "category": "WORK"
+    },
+    {
+      "title": "村で受け継がれる手仕事の気配",
+      "icon": "culture",
+      "category": "LIFE"
+    },
+    {
+      "title": "コロンビエへの乾いた徒歩道",
+      "icon": "hike",
+      "category": "MOVEMENT"
+    },
+    {
+      "title": "浅いラグーンの水色の変化",
+      "icon": "sea",
+      "category": "NATURE"
+    },
+    {
+      "title": "ロリアンの小さな祈りの場",
+      "icon": "culture",
+      "category": "FAITH"
+    },
+    {
+      "title": "岩海岸に砕ける波の音",
+      "icon": "shore",
+      "category": "LANDSCAPE"
+    },
+    {
+      "title": "塩ダラのアクラの香ばしさ",
+      "icon": "food",
+      "category": "FOOD"
+    }
+  ],
+  "culture": [
+    {
+      "topicKey": "water-supply",
+      "themeEn": "LIFE",
+      "themeJa": "島の水",
+      "icon": "sea",
+      "title": "雨水と海水からつくる暮らしの水",
+      "text": "大きな川や湖の乏しい島では、雨水をためる貯水設備や海水淡水化が生活を支える。青い海に囲まれていても、飲み水は島の大切な資源だ。",
+      "points": [
+        "雨水の貯蔵と海水淡水化を組み合わせる",
+        "水資源の確保は島の生活基盤"
+      ],
+      "sourceKey": "brochure"
+    },
+    {
+      "topicKey": "port-trade",
+      "themeEn": "HISTORY",
+      "themeJa": "港の記憶",
+      "icon": "history",
+      "title": "グスタヴィアに残る交易港の時間",
+      "text": "港の周辺にある低い街並みや旧施設の痕跡は、カリブの船が行き来した時代を伝える。港を歩くと、現在のリゾートと交易の過去が重なって見える。",
+      "points": [
+        "自然の港が船の往来を支えた",
+        "町の歴史を、高台と港の両方から読む"
+      ],
+      "sourceKey": "fortGustav"
+    },
+    {
+      "topicKey": "protected-sea",
+      "themeEn": "NATURE",
+      "themeJa": "海の保全",
+      "icon": "leaf",
+      "title": "海の利用にも保護のルールがある",
+      "text": "サンゴ礁と浅瀬の自然を守るため、海洋自然保護区では係留や生物の採取に規則が設けられている。風景を眺めるだけでなく、守る仕組みにも目を向けたい。",
+      "points": [
+        "海の利用には保護区の規則がある",
+        "生きものの生息地を傷めない行動が求められる"
+      ],
+      "sourceKey": "reserveLaw"
+    },
+    {
+      "topicKey": "traditional-crafts",
+      "themeEn": "LIFE",
+      "themeJa": "島の手仕事",
+      "icon": "culture",
+      "title": "港町の外にある、静かな暮らしの風景",
+      "text": "コロソルなどでは、漁村の生活や椰子を使った編み物の伝統をたどれる。豪華な観光の印象とは異なる、島の日常のリズムがある。",
+      "points": [
+        "漁と手仕事が同じ村に根づく",
+        "地元の暮らしを尊重して歩く"
+      ],
+      "sourceKey": "tourism"
+    }
+  ],
+  "travelTrivia": [
+    {
+      "topicKey": "le-carenage",
+      "categoryEn": "HISTORY",
+      "categoryJa": "港の名前",
+      "icon": "history",
+      "title": "グスタヴィアには、別の港町の名前があった",
+      "text": "スウェーデン統治以前の港はLe Carénageと呼ばれた。船を陸に引き上げて手入れする「カレナージュ」の意味が、地名に残っている。",
+      "sourceKey": "brochure"
+    },
+    {
+      "topicKey": "lorient-bell",
+      "categoryEn": "HISTORY",
+      "categoryJa": "教会の鐘",
+      "icon": "culture",
+      "title": "教会の鐘は遠いナントで鋳造された",
+      "text": "ロリアンの教会で受け継がれる鐘は1860年にフランスのナントで鋳造されたという。海を越えて届いた鐘の音が、村の歴史に重なる。",
+      "sourceKey": "lorientChurch"
+    },
+    {
+      "topicKey": "tree-terminal",
+      "categoryEn": "MOVEMENT",
+      "categoryJa": "空港の始まり",
+      "icon": "road",
+      "title": "最初の空港の待合所は、木陰だった",
+      "text": "観光局の記録によると、かつてサン＝ジャンの飛行場では大きな木の陰が旅客ターミナルの代わりを務めた。",
+      "sourceKey": "brochure"
+    },
+    {
+      "topicKey": "shell-beach-name",
+      "categoryEn": "NATURE",
+      "categoryJa": "海辺の発見",
+      "icon": "sea",
+      "title": "浜の名前は、本当に貝殻の破片から",
+      "text": "グスタヴィア近くのShell Beachは、砂に混じって見られる細かな貝殻の破片に由来する名を持つ。足元にも小さな発見がある。",
+      "sourceKey": "beaches"
+    },
+    {
+      "topicKey": "headwear-differences",
+      "categoryEn": "CULTURE",
+      "categoryJa": "村の装い",
+      "icon": "culture",
+      "title": "頭飾りにも、村ごとの違いがあった",
+      "text": "伝統衣装の頭飾りや帽子には、コロソル・コロンビエとキュル＝ド＝サック周辺で異なる意匠が伝わったとされる。",
+      "sourceKey": "brochure"
+    }
+  ],
+  "forWhom": [
+    {
+      "title": "異なる海岸を見比べたい人",
+      "text": "穏やかなラグーンと波の荒い岩海岸を行き来し、小さな島の地形の表情を味わいたい人。"
+    },
+    {
+      "title": "港町の歴史を歩きたい人",
+      "text": "グスタヴィアの坂道や砲台跡を巡り、カリブ海とヨーロッパの歴史が出会った場所を知りたい人。"
+    },
+    {
+      "title": "漁村の暮らしと自然を大切にしたい人",
+      "text": "賑やかなリゾートだけでなく、小舟のある海辺や徒歩でたどる浜の静けさに惹かれる人。"
+    }
+  ],
+  "notes": [
+    {
+      "title": "コロンビエへは徒歩道か船で",
+      "text": "コロンビエ・ビーチには一般車道が通じない。徒歩道は日差しが強く足元も不均一なので、水と歩きやすい靴を用意する。",
+      "sourceKey": "beaches"
+    },
+    {
+      "title": "グラン・フォンとトワニーは泳がず眺める",
+      "text": "岩礁、強い波、潮流の危険がある。観光局の案内を確認し、遊泳目的で海に入らない。",
+      "sourceKey": "beaches"
+    },
+    {
+      "title": "グランド・サリーヌも当日の海況を確認",
+      "text": "自然海岸では沖からのうねりや急な波の変化があり得る。現地の注意表示と海況を優先する。",
+      "sourceKey": "beaches"
+    },
+    {
+      "title": "保護区の海では現行ルールに従う",
+      "text": "海洋自然保護区の係留・採取・野生生物への接近には制限がある。現地の管理機関の最新案内を確認する。",
+      "sourceKey": "reserveLaw"
+    },
+    {
+      "title": "入域条件と運航状況を直前に確認",
+      "text": "サン・バルテルミーはシェンゲン域外。フランス政府の地域別入域条件を確認し、ハリケーン季節は小型機と海上交通の変更にも備える。",
+      "sourceKey": "schengen"
+    }
+  ],
+  "travelScale": {
+    "kicker": "DURATION",
+    "title": "旅の目安日程",
+    "intro": "グスタヴィアを拠点に海岸・村・遺構を巡る。以下は各地点を起点へ戻る編集上の周遊例。道路・徒歩道の状況や天候で行程を調整する。",
+    "items": [
+      {
+        "duration": "2〜3日",
+        "title": "港町と漁村の歴史をたどる",
+        "icon": "map",
+        "text": "例：Gustavia → Fort Gustav → Fort Karl → Corossol → Gustavia。高台から港を眺め、漁村を訪れて戻る。"
+      },
+      {
+        "duration": "4〜5日",
+        "title": "湾と荒い海岸を見比べる",
+        "icon": "sea",
+        "text": "例：Gustavia → Lorient → Grand Cul-de-Sac → Grand Fond → Grande Saline → Gustavia。浅いラグーンと波の荒い海を巡る。"
+      },
+      {
+        "duration": "6日以上",
+        "title": "徒歩道と島の暮らしを加える",
+        "icon": "compass",
+        "text": "例：Gustavia → Colombier（徒歩散策）→ Corossol → Lorient → Toiny → Grand Cul-de-Sac → Gustavia。滞在地で時間をとりながら一周する。"
+      }
+    ]
+  },
+  "bestSeason": {
+    "windows": [
+      {
+        "label": "12〜5月",
+        "reason": "比較的乾いた季節。港町の散策と徒歩道を組み合わせやすい。"
+      },
+      {
+        "label": "6〜11月",
+        "reason": "大西洋のハリケーン季節。天気予報と交通の運行情報を確認する。"
+      }
+    ]
+  },
+  "seasons": [
+    {
+      "months": "12〜2月",
+      "label": "乾季の前半",
+      "icon": "sun",
+      "color": "#7b9b8a",
+      "text": "比較的過ごしやすい日が多い時期。港町歩きや海岸の散策に向くが、混雑は事前確認。"
+    },
+    {
+      "months": "3〜5月",
+      "label": "乾季の後半",
+      "icon": "leaf",
+      "color": "#89ab78",
+      "text": "比較的乾いた気候が続き、海岸と丘の小径を組み合わせて巡りやすい。"
+    },
+    {
+      "months": "6〜8月",
+      "label": "暑く湿った季節",
+      "icon": "weather",
+      "color": "#b7a16a",
+      "text": "気温と湿度が高まり、6月からハリケーン季節に入る。日差しと気象変化に注意。"
+    },
+    {
+      "months": "9〜11月",
+      "label": "大雨と暴風雨に注意",
+      "icon": "weather",
+      "color": "#7d91a6",
+      "text": "熱帯低気圧の影響を受けることがある。航空・海上交通や散策の予定に余裕を持つ。"
+    }
+  ],
+  "transport": {
+    "icon": "map",
+    "title": "近隣島から小型機・船で渡り、島内は車中心",
+    "text": "Saint-Martin／Sint Maartenからの小型航空機やフェリーが一般的な入口。ほかの近隣島からの地域便は運航時期を確認する。島内は小型レンタカーやタクシーを利用し、徒歩でしか入れない海岸もある。",
+    "sourceKeys": [
+      "air",
+      "tourism"
+    ]
+  },
+  "relatedCountries": [
+    {
+      "nameJa": "アンティグア・バーブーダ",
+      "nameEn": "ANTIGUA AND BARBUDA",
+      "href": "countries/antiguabarbuda/",
+      "flag": "🇦🇬",
+      "reason": "小アンティルの海に浮かぶ入り江や港の歴史を、別の島国の景色から見比べられる。",
+      "affinityType": "COAST"
+    },
+    {
+      "nameJa": "セントクリストファー・ネービス",
+      "nameEn": "SAINT KITTS AND NEVIS",
+      "href": "countries/stkittsnevis/",
+      "flag": "🇰🇳",
+      "reason": "火山の山並みと植民地期の港の町を巡り、カリブの島々が持つ異なる時間をたどる。",
+      "affinityType": "HISTORY"
+    },
+    {
+      "nameJa": "ドミニカ国",
+      "nameEn": "DOMINICA",
+      "href": "countries/dominica/",
+      "flag": "🇩🇲",
+      "reason": "小さな入り江の風景から熱帯林と火山に覆われた島へ。カリブの自然の幅を感じられる。",
+      "affinityType": "LANDSCAPE"
+    }
+  ],
+  "nextRoutesIntro": "海辺の小さな島を歩いたら、小アンティルの別の海岸や港へ旅をつなぐ。",
+  "nextRoutes": [],
+  "travelThemes": [
+    "海の世界へ",
+    "暮らしに出会う",
+    "時をたどる"
+  ],
+  "sourcesVerifiedAt": "2026-11-15",
+  "updatedAt": "2026-11-15",
+  "sources": {
+    "status": "https://www.outre-mer.gouv.fr/territoires/saint-barthelemy",
+    "population": "https://www.insee.fr/fr/statistiques/8680667",
+    "euStatus": "https://international-partnerships.ec.europa.eu/countries/saint-barthelemy_en",
+    "schengen": "https://www.france-visas.gouv.fr/en/web/france-visas/la-france-dans-l-espace-schengen",
+    "tourism": "https://www.saintbarth-tourisme.com/discover",
+    "air": "https://www.saintbarth-tourisme.com/travel",
+    "beaches": "https://www.saintbarth-tourisme.com/wp-content/uploads/2023/10/PLAGES-ST-BARTH-2023.pdf",
+    "brochure": "https://www.saintbarth-tourisme.com/wp-content/uploads/2024/04/Uniquely-St-Barth.pdf",
+    "fortGustav": "https://www.inrap.fr/une-fouille-archeologique-sur-le-fort-gustaf-iii-de-gustavia-saint-barthelemy-17965",
+    "fortKarl": "https://mapcarta.com/fr/19503824",
+    "corossol": "https://mapcarta.com/19504618",
+    "colombier": "https://mapcarta.com/fr/19504644",
+    "grandFond": "https://www.comstbarth.fr/in/rest/public/Attachment/attach_cmsUpload_4109ab18-7167-4dea-a329-efb7c5a2e89b",
+    "culdesac": "https://mapcarta.com/19504164",
+    "lorientChurch": "https://pop.culture.gouv.fr/notice/merimee/PA97100007",
+    "saline": "https://mapcarta.com/W201864825",
+    "toiny": "https://mapcarta.com/W531023232",
+    "reserve": "https://www.agencedelenvironnement.fr/en/page/history-nature-reserve",
+    "reserveLaw": "https://www.legifrance.gouv.fr/loda/id/JORFTEXT000000563010/",
+    "food": "https://www.alacarte-stbarth.com/menu/1414966682.9321chez_rolande_menu141014.pdf",
+    "foodSecond": "https://eddysghetto.com/fr/",
+    "weather": "https://travel.state.gov/en/international-travel/travel-advisories/saint-barthelemy.html",
+    "map": "https://github.com/hyperknot/country-levels-export/blob/master/geojson/high/iso1/BL.geojson"
+  },
+  "sourceDates": {
+    "population": "INSEE municipal legal population 2023 reference, effective 2026; checked 2026-11-15",
+    "status": "Government of France overseas collectivity status and historical dates; checked 2026-11-15",
+    "euStatus": "EU overseas country/territory designation from 2012; checked 2026-11-15",
+    "coastline": "French Ministry for Overseas Territories, approximately 32 km; checked 2026-11-15",
+    "area": "French Ministry for Overseas Territories, approximately 21 km²; checked 2026-11-15",
+    "marineReserve": "1996 creation, 1200 ha cited by official reserve site; checked 2026-11-15",
+    "airport": "Saint-Barth Tourism, approx 650 m runway; checked 2026-11-15",
+    "food": "Chez Rolande printed menu and Eddy’s Ghetto published menu; dishes verified on 2026-11-15, availability may change",
+    "map": "OpenStreetMap relation 537967 via high-resolution GeoJSON iso1 BL; source fetched 2026-11-15; ODbL 1.0",
+    "seasons": "Atlantic hurricane season June-November; checked 2026-11-15",
+    "transport": "Saint-Barth tourism published transport guidance checked 2026-11-15; schedules variable",
+    "lorientBell": "French Ministry of Culture Lorient church heritage record; checked 2026-11-15"
+  }
+}
