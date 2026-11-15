@@ -83,7 +83,36 @@
       "north": 18.65
     },
     "singleMapMobile": true,
-    "source": "Anguilla target land: Natural Earth 1:10m Admin-0 AIA (public domain), https://geojson-maps.kyd.au/countries/10m/AIA.geojson and https://github.com/LonnyGomes/CountryGeoJSONCollection ; includes main island, Sombrero, Scrub, Dog, and Prickly Pear Cays. Sandy Island coastline is omitted at this scale; its center is shown as a geographic marker sourced from OSM coastline way 195370662 (ODbL), https://www.openstreetmap.org/way/195370662 . WGS84; local-equirectangular-fit-v1; 1200x760. Geographic islands are in true relative positions, no artificial shoreline."
+    "source": "Anguilla target land: Natural Earth 1:10m Admin-0 AIA (public domain), https://geojson-maps.kyd.au/countries/10m/AIA.geojson and https://github.com/LonnyGomes/CountryGeoJSONCollection ; includes main island, Sombrero, Scrub, Dog, and Prickly Pear Cays. Sandy Island coastline is omitted at this scale; its center is shown as a geographic marker sourced from OSM coastline way 195370662 (ODbL), https://www.openstreetmap.org/way/195370662 . WGS84; local-equirectangular-fit-v1; 1200x760. Geographic islands are in true relative positions, no artificial shoreline. Mainland inset repeats the same verified public-domain polygon at uniform 2× display scale (not an independently drawn coast).",
+    "regions": [
+      {
+        "id": "anguilla-mainland-detail",
+        "label": "アンギラ本島",
+        "svgId": "anguilla-mainland-detail",
+        "rect": {
+          "x": 610,
+          "y": 95,
+          "width": 550,
+          "height": 340
+        },
+        "sourceRect": {
+          "x": 700,
+          "y": 525,
+          "width": 260,
+          "height": 180
+        },
+        "sceneIds": [
+          "big-spring",
+          "wallblake-house",
+          "sandy-ground",
+          "little-bay",
+          "island-harbour",
+          "st-mary-pro-cathedral",
+          "crocus-hill"
+        ]
+      }
+    ],
+    "insetNote": "※ アンギラ本島は、同じ地域を拡大した別枠表示です。"
   },
   "scenes": [
     {
@@ -100,7 +129,11 @@
         "rockart",
         "cave"
       ],
-      "sourceKey": "bigSpring"
+      "sourceKey": "bigSpring",
+      "mapOffset": {
+        "x": -3.6909087,
+        "y": -4.3502024
+      }
     },
     {
       "id": "wallblake-house",
@@ -116,7 +149,11 @@
         "palace",
         "monument"
       ],
-      "sourceKey": "wallblake"
+      "sourceKey": "wallblake",
+      "mapOffset": {
+        "x": 4.0570832,
+        "y": 4.2842105
+      }
     },
     {
       "id": "sandy-ground",
@@ -132,7 +169,11 @@
         "harbor",
         "salt"
       ],
-      "sourceKey": "roadBay"
+      "sourceKey": "roadBay",
+      "mapOffset": {
+        "x": -3.9214114,
+        "y": 4.6541498
+      }
     },
     {
       "id": "little-bay",
@@ -148,7 +189,11 @@
         "bay",
         "cliff"
       ],
-      "sourceKey": "littleBay"
+      "sourceKey": "littleBay",
+      "mapOffset": {
+        "x": -1.5497559,
+        "y": -7.1238866
+      }
     },
     {
       "id": "prickly-pear-east",
@@ -180,7 +225,11 @@
         "harbor",
         "village"
       ],
-      "sourceKey": "islandHarbour"
+      "sourceKey": "islandHarbour",
+      "mapOffset": {
+        "x": 3.9144219,
+        "y": 3.3544534
+      }
     },
     {
       "id": "st-mary-pro-cathedral",
@@ -196,7 +245,11 @@
         "church",
         "monument"
       ],
-      "sourceKey": "stMary"
+      "sourceKey": "stMary",
+      "mapOffset": {
+        "x": 3.1249523,
+        "y": -5.9010121
+      }
     },
     {
       "id": "crocus-hill",
@@ -212,7 +265,11 @@
         "bay",
         "village"
       ],
-      "sourceKey": "crocusHill"
+      "sourceKey": "crocusHill",
+      "mapOffset": {
+        "x": -2.0904079,
+        "y": 3.9032389
+      }
     }
   ],
   "signatureFacts": [
