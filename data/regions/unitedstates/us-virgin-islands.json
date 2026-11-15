@@ -303,7 +303,7 @@
     {
       "title": "熱帯林を歩いて岩刻画へ",
       "icon": "history",
-      "category": "HISTORY"
+      "category": "CULTURE"
     },
     {
       "title": "トランク・ベイの透明な浅瀬",
@@ -313,12 +313,12 @@
     {
       "title": "クリスチャンステッドの黄色い城壁",
       "icon": "history",
-      "category": "HISTORY"
+      "category": "ARCHITECTURE"
     },
     {
       "title": "アナバーグの風車跡",
       "icon": "history",
-      "category": "HERITAGE"
+      "category": "ARCHITECTURE"
     },
     {
       "title": "バック島のサンゴ礁",
@@ -502,19 +502,19 @@
       {
         "duration": "3〜4日",
         "title": "北側の二島",
-        "text": "セント・トーマスの要塞と街路から、セント・ジョンのトランク・ベイへ。",
-        "icon": "sea"
+        "text": "例：Charlotte Amalie → Red Hook →（フェリー）Cruz Bay → Trunk Bay → Cruz Bay → Charlotte Amalie。セント・トーマスの要塞と街路から、セント・ジョンの浅瀬へ。",
+        "icon": "city"
       },
       {
         "duration": "5〜7日",
         "title": "森と植民地史へ",
-        "text": "北側二島でアナバーグとリーフ・ベイを訪ねる時間を取る。",
+        "text": "例：Cruz Bay → Annaberg → Reef Bay Trail → Cruz Bay。北側二島で、森と植民地史をたどる時間を取る。",
         "icon": "map"
       },
       {
         "duration": "8日以上",
         "title": "三島を巡る",
-        "text": "セント・クロイまで足を延ばし、クリスチャンステッド、ポイント・ユードール、バック島へ。",
+        "text": "例：Charlotte Amalie →（航空便または船）Christiansted → Point Udall → Christiansted → Buck Island → Christiansted。セント・クロイまで足を延ばす。",
         "icon": "compass"
       }
     ]
@@ -538,26 +538,30 @@
     {
       "months": "12〜3月",
       "icon": "sun",
-      "color": "#73966f",
-      "text": "比較的過ごしやすい乾季。海辺と街歩きに向く。"
+      "color": "#6b90a5",
+      "text": "比較的過ごしやすい乾季。海辺と街歩きに向く。",
+      "label": "乾季"
     },
     {
       "months": "4〜5月",
       "icon": "leaf",
-      "color": "#92a253",
-      "text": "雨が増え始める移行期。森や海の当日条件を確かめたい。"
+      "color": "#73966f",
+      "text": "雨が増え始める移行期。森や海の当日条件を確かめたい。",
+      "label": "雨季への移行期"
     },
     {
       "months": "6〜9月",
       "icon": "weather",
-      "color": "#b77a49",
-      "text": "暑さと雨が強まり、ハリケーン期に入る。"
+      "color": "#92a253",
+      "text": "暑さと雨が強まり、ハリケーン期に入る。",
+      "label": "雨季・ハリケーン期"
     },
     {
       "months": "10〜11月",
       "icon": "weather",
-      "color": "#6b90a5",
-      "text": "ハリケーン期終盤。航空・船便の変更に備えたい。"
+      "color": "#b77a49",
+      "text": "ハリケーン期終盤。航空・船便の変更に備えたい。",
+      "label": "ハリケーン期終盤"
     }
   ],
   "transport": {
@@ -615,8 +619,8 @@
     "labelPosition": "left",
     "sourceKey": "territory",
     "labelOffset": {
-      "x": 0,
-      "y": -30
+      "x": -4,
+      "y": 12
     }
   },
   "travelThemes": [
@@ -635,7 +639,8 @@
     "map": "Natural Earth 1:10m (ca96624) + GSHHG v2.3.7 shoreline, checked 2026-11-15",
     "carnivals": "Recurring seasons verified 2026-11-15; annual exact dates may change",
     "hamilton": "Checked 2026-11-15",
-    "saltRiver": "Checked 2026-11-15"
+    "saltRiver": "Checked 2026-11-15",
+    "slavery": "historyContext source; QA reviewed 2026-11-16"
   },
   "sources": {
     "territory": "https://omb.vi.gov/about-us/",
@@ -678,5 +683,10 @@
     "publication": "regionPublished:true: published after explicit user final approval."
   },
   "nextRoutesIntro": "定期フェリーで、隣の英領ヴァージン諸島へ。",
-  "updatedAt": "2026-11-15"
+  "updatedAt": "2026-11-15",
+  "nextRegion": {
+    "slug": "mariana-islands",
+    "nameEn": "MARIANA ISLANDS",
+    "nameJa": "マリアナ諸島"
+  }
 }

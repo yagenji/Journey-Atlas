@@ -37,7 +37,7 @@
   },
   "profile": [
     {
-      "label": "行政中心",
+      "label": "首府",
       "value": "フライング・フィッシュ・コーブ（Flying Fish Cove）",
       "sourceKey": "govStatus"
     },
@@ -259,7 +259,7 @@
   ],
   "encounters": [
     {
-      "title": "森から道路を横切る赤いカニの列（雨季）",
+      "title": "森から道路を横切る赤いカニの列",
       "icon": "wildlife",
       "category": "WILDLIFE"
     },
@@ -301,17 +301,17 @@
   ],
   "culture": [
     {
-      "topicKey": "territory",
-      "themeEn": "HISTORY",
-      "themeJa": "歴史",
-      "icon": "history",
-      "title": "オーストラリアの「州」ではない島",
-      "text": "クリスマス島は1958年にオーストラリアの領土となった。州ではなく外部領土として行政が行われている。",
+      "topicKey": "robber-crab",
+      "themeEn": "NATURE",
+      "themeJa": "自然",
+      "icon": "wildlife",
+      "title": "世界最大の陸生甲殻類、ヤシガニの島",
+      "text": "ヤシガニ（robber crab）は体重4kgを超え、脚を広げると1m近くになる。国立公園によると、クリスマス島には世界で最も大きく、最もよく守られた個体群が暮らす。",
       "points": [
-        "シンガポールを経た行政の歴史を持つ",
-        "インド洋に位置し、オーストラリア本土とは離れている"
+        "陸で暮らす甲殻類として世界最大",
+        "森の中では近づきすぎず、触れずに観察する"
       ],
-      "sourceKey": "history"
+      "sourceKey": "robberCrab"
     },
     {
       "topicKey": "mining",
@@ -353,17 +353,17 @@
       "sourceKey": "parkCulture"
     },
     {
-      "topicKey": "crab-protection",
-      "themeEn": "NATURE",
-      "themeJa": "保全",
-      "icon": "wildlife",
-      "title": "カニの道を先に通す",
-      "text": "赤ガニの移動期には道路が一時閉鎖され、カニが安全に渡るための橋も使われる。野生生物の移動が島の日常を変える。",
+      "topicKey": "lunar-new-year",
+      "themeEn": "CULTURE",
+      "themeJa": "祝祭",
+      "icon": "culture",
+      "title": "旧正月が2日間の祝日になる島",
+      "text": "クリスマス島は、オーストラリアで唯一、旧正月を公的な祝日とする地域で、休みは2日間続く。中心行事はプーン・サン・クラブで開かれ、獅子舞が通りを盛り上げる。",
       "points": [
-        "閉鎖は短い予告で変わることがある",
-        "案内板とレンジャーの指示を優先"
+        "マレー系住民のためにハリ・ラヤ・プアサとハリ・ラヤ・ハジも祝日",
+        "祝日の日付は毎年の行政告示で確認する"
       ],
-      "sourceKey": "crabMigration"
+      "sourceKey": "lunarNewYear"
     },
     {
       "topicKey": "conservation",
@@ -438,13 +438,13 @@
       "sourceKey": "crabMigration"
     },
     {
-      "topicKey": "living-waterfall",
-      "categoryEn": "CULTURE",
-      "categoryJa": "祈りの滝",
-      "icon": "waterfall",
-      "title": "熱帯雨林の滝は、信仰の場でもある",
-      "text": "ヒューズ・デールの滝は中国系仏教徒にとって大切な場所で、自然の景観だけではない意味を持つ。",
-      "sourceKey": "hughs"
+      "topicKey": "christmas-day-1643",
+      "categoryEn": "HISTORY",
+      "categoryJa": "島の名前",
+      "icon": "history",
+      "title": "島の名は、1643年のクリスマスに付けられた",
+      "text": "英国東インド会社の船ロイヤル・メアリー号のウィリアム・マイナーズ船長が、1643年12月25日に島の沖を通り、クリスマス島と名づけた。",
+      "sourceKey": "naming"
     },
     {
       "topicKey": "cave-water",
@@ -509,20 +509,20 @@
       {
         "duration": "2〜3日",
         "title": "港町と東側の海辺",
-        "icon": "sea",
+        "icon": "city",
         "text": "例：Flying Fish Cove → The Grotto → Lily Beach → Margaret Knoll。いずれも当日のアクセスと波を確認する。"
       },
       {
         "duration": "4〜5日",
         "title": "森林・海岸・産業史",
-        "icon": "hike",
-        "text": "上記にThe Blowholes、Hughs Dale、South Pointの旧駅跡を追加。4WDが必要な道と散策路を分けて巡る。"
+        "icon": "map",
+        "text": "例：Flying Fish Cove → The Blowholes → Hughs Dale → South Point → Flying Fish Cove。4WDが必要な道と散策路を分けて巡る。"
       },
       {
         "duration": "6日以上",
         "title": "野生生物と天候の余裕を持つ",
         "icon": "compass",
-        "text": "Dolly Beachへの往復や、赤ガニの観察条件に合わせた予備日を確保する。渡航前に雨季・道路閉鎖情報を確認。"
+        "text": "例：Flying Fish Cove → Dolly Beach → Flying Fish Cove。赤ガニの観察条件に合わせた予備日を確保し、渡航前に雨季・道路閉鎖情報を確認。"
       }
     ]
   },
@@ -543,28 +543,28 @@
       "months": "12〜2月",
       "label": "雨季",
       "icon": "weather",
-      "color": "#6c97a2",
+      "color": "#92a253",
       "text": "雨と湿度が増す時期。赤ガニの産卵・幼体の帰還は雨や月齢で変わり、道路閉鎖に注意。"
     },
     {
       "months": "3〜5月",
       "label": "雨季から乾季へ",
       "icon": "leaf",
-      "color": "#729775",
+      "color": "#b77a49",
       "text": "雨の多い時期から乾いた季節に向かう。木道や滝を訪れる時は滑りやすい足元に注意。"
     },
     {
       "months": "6〜8月",
       "label": "乾季",
       "icon": "sun",
-      "color": "#9a9d5b",
+      "color": "#6b90a5",
       "text": "比較的乾いて涼しく、森林散策と断崖の展望を組み合わせやすい。うねりには引き続き注意。"
     },
     {
       "months": "9〜11月",
       "label": "乾季から雨季へ",
       "icon": "weather",
-      "color": "#b47f55",
+      "color": "#73966f",
       "text": "雨季の入りを待つ時期。年により赤ガニ移動の開始が大きくずれるため、観察の確約はできない。"
     }
   ],
@@ -583,11 +583,11 @@
   "nextRoutes": [],
   "relatedCountries": [
     {
-      "nameJa": "オーストラリア",
-      "nameEn": "AUSTRALIA",
-      "href": "countries/australia/",
-      "flag": "🇦🇺",
-      "reason": "この外部領土の親国へ。大陸側の風景とインド洋の島の生態系を比べる。",
+      "nameJa": "キリバス",
+      "nameEn": "KIRIBATI",
+      "href": "countries/kiribati/",
+      "flag": "🇰🇮",
+      "reason": "太平洋にも「クリスマス島」がある。キリバスのキリスィマスィ島は、クックが1777年のクリスマス・イブに名づけた環礁で、同じ名を持つ別の島の海と鳥を見比べられる。",
       "affinityType": "ISLAND"
     },
     {
@@ -618,7 +618,13 @@
     "margaretUpgrade": "2023-11-03 Parks Australia upgrade announcement",
     "southPointPhoto": "Wikimedia Commons photo dated 2018-08-21",
     "mapGeometry": "Natural Earth 1:10m (ca96624) + GSHHG v2.3.7 shoreline, checked 2026-11-15",
-    "japanArea": "2026-07-01: Japan 377,973.68 km² (Geospatial Information Authority of Japan)"
+    "japanArea": "2026-07-01: Japan 377,973.68 km² (Geospatial Information Authority of Japan)",
+    "robberCrab": "Parks Australia robber crab page, checked 2026-11-16",
+    "lunarNewYear": "SBS News article (Lunar New Year 2024), checked 2026-11-16",
+    "naming": "Checked 2026-11-16",
+    "govStatus": "historyContext source; QA reviewed 2026-11-16",
+    "history": "historyContext source; QA reviewed 2026-11-16",
+    "southPointHeritage": "historyContext source; QA reviewed 2026-11-16"
   },
   "sources": {
     "govStatus": "https://www.infrastructure.gov.au/territories-regions-cities/territories/indian-ocean-territories/christmas-island",
@@ -658,6 +664,28 @@
     "geoMap": "https://gadm.org/maps/CXR.html",
     "japanArea": "https://www.gsi.go.jp/KOKUJYOHO/MENCHO-title.htm",
     "coastline": "Natural Earth 1:10m map subunits (public domain): https://github.com/nvkelso/natural-earth-vector ; GSHHG shoreline: https://www.soest.hawaii.edu/wessel/gshhg/",
-    "coastlineLicense": "Natural Earth 1:10m map subunits (public domain): https://github.com/nvkelso/natural-earth-vector ; GSHHG shoreline: https://www.soest.hawaii.edu/wessel/gshhg/"
+    "coastlineLicense": "Natural Earth 1:10m map subunits (public domain): https://github.com/nvkelso/natural-earth-vector ; GSHHG shoreline: https://www.soest.hawaii.edu/wessel/gshhg/",
+    "robberCrab": "https://christmasislandnationalpark.gov.au/discover/nature/animals/crabs/robber-crab/",
+    "lunarNewYear": "https://www.sbs.com.au/news/article/this-remote-australian-island-celebrates-lunar-new-year-with-two-public-holidays/c65vu3eew",
+    "naming": "https://en.wikipedia.org/wiki/William_Mynors"
+  },
+  "capital": {
+    "nameJa": "フライング・フィッシュ・コーブ",
+    "labelJa": "首府",
+    "coordinates": {
+      "latitude": -10.4217,
+      "longitude": 105.6791
+    },
+    "labelPosition": "left",
+    "labelOffset": {
+      "x": 0,
+      "y": -24
+    },
+    "sourceKey": "govStatus"
+  },
+  "nextRegion": {
+    "slug": "cocos-keeling-islands",
+    "nameEn": "COCOS (KEELING) ISLANDS",
+    "nameJa": "ココス（キーリング）諸島"
   }
 }

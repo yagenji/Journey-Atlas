@@ -249,13 +249,13 @@
       "interestReason": "島の風景が砂浜一色ではないとわかる。"
     },
     {
-      "topicKey": "little-water-size",
-      "label": "イグアナ保護区の小島",
-      "value": "約47ha",
-      "note": "Little Water Cayの面積約116.2エーカーを換算。固有イグアナの繁殖地。",
-      "icon": "leaf",
-      "sourceKey": "littleWaterCay",
-      "interestReason": "小さな陸地が種の生息を支える。"
+      "topicKey": "deep-channel-depth",
+      "label": "タークス諸島水道の深さ",
+      "value": "約1,830m",
+      "note": "タークス諸島とカイコス諸島の間を走る水道は深さ約1,830m（6,000フィート）。島々がのる浅い海台を途中で切り分けている。",
+      "icon": "sea",
+      "sourceKey": "whales",
+      "interestReason": "水深数mの浅瀬が広がる島々のすぐ隣に、深海の水道が口を開けている。"
     }
   ],
   "encounters": [
@@ -282,12 +282,12 @@
     {
       "title": "石造りの農園跡と強制労働の記憶",
       "icon": "history",
-      "category": "HISTORY"
+      "category": "ARCHITECTURE"
     },
     {
       "title": "低い塩田の石垣",
       "icon": "map",
-      "category": "HISTORY"
+      "category": "WORK"
     },
     {
       "title": "木道の脇で休むロックイグアナ",
@@ -430,13 +430,13 @@
       "sourceKey": "mercury7"
     },
     {
-      "topicKey": "caicos-turks",
-      "categoryEn": "GEOGRAPHY",
-      "categoryJa": "島の並び",
-      "icon": "map",
-      "title": "二つの島群は、深い海で隔てられている",
-      "text": "西側のカイコス群と東側のタークス群は別の島群。間には深いTurks Island Passageがある。",
-      "sourceKey": "islandGeography"
+      "topicKey": "humpback-season",
+      "categoryEn": "WILDLIFE",
+      "categoryJa": "冬の訪問者",
+      "icon": "sea",
+      "title": "冬の水道を、ザトウクジラが通り抜ける",
+      "text": "冬に北大西洋から出産と繁殖のために南下するザトウクジラが、タークス諸島水道を通る。ソルト・ケイやグランドタークでは1〜4月にホエールウォッチングのツアーが催される。",
+      "sourceKey": "whales"
     },
     {
       "topicKey": "crossing-place",
@@ -505,20 +505,20 @@
       {
         "duration": "3〜4日",
         "title": "Providencialesを中心に",
-        "icon": "sea",
-        "text": "Grace Bay、Chalk Sound、Little Water Cayを組み合わせて、海と保護区を訪ねる。"
+        "icon": "city",
+        "text": "例：Grace Bay → Chalk Sound → Grace Bay。別日にLeewardから船でLittle Water Cayを往復し、海と保護区を訪ねる。"
       },
       {
         "duration": "5〜7日",
         "title": "North / Middle Caicosを加える",
         "icon": "map",
-        "text": "旅客フェリーでNorth Caicosへ渡り、Wade’s Green、Conch Bar Caves、Mudjin Harbourを陸路で巡る。"
+        "text": "例：Providenciales → 旅客フェリー → North Caicos → Wade’s Green → Middle Caicos（Conch Bar Caves・Mudjin Harbour）→ North Caicos → Providenciales。"
       },
       {
         "duration": "8日以上",
         "title": "Grand TurkとSalt Cayへ",
         "icon": "compass",
-        "text": "グランドタークの灯台と街並み、ソルト・ケイの旧塩田を加える。運航日を優先して日程を確保する。"
+        "text": "例：Providenciales →（国内線）Grand Turk → Cockburn Town → Grand Turk Lighthouse → Salt Cay → Grand Turk → Providenciales。運航日を優先して日程を確保する。"
       }
     ]
   },
@@ -535,28 +535,28 @@
       "months": "12〜2月",
       "label": "冬",
       "icon": "sun",
-      "color": "#9bb5aa",
+      "color": "#6b90a5",
       "text": "日差しが穏やかで散策しやすい高需要期。風と外洋のうねりに注意。"
     },
     {
       "months": "3〜5月",
       "label": "春",
       "icon": "leaf",
-      "color": "#7b9d82",
+      "color": "#73966f",
       "text": "比較的降水が少ない時期。海岸と洞窟・遺跡訪問の組合せに向く。"
     },
     {
       "months": "6〜8月",
       "label": "夏",
       "icon": "sun",
-      "color": "#d8aa65",
+      "color": "#92a253",
       "text": "暑く海は穏やかな日もあるが、6月から大西洋のハリケーンシーズン。"
     },
     {
       "months": "9〜11月",
       "label": "秋",
       "icon": "weather",
-      "color": "#8193a5",
+      "color": "#b77a49",
       "text": "暴風雨への備えが必要。特に9〜10月は日程変更の余地を持たせる。"
     }
   ],
@@ -603,7 +603,11 @@
     "area": "2025 UN Data; note differing area conventions",
     "visiting": "2026-11-14 access check",
     "history": "2026-11-14 check",
-    "map": "Natural Earth 1:10m (ca96624) + GSHHG v2.3.7 shoreline, checked 2026-11-15"
+    "map": "Natural Earth 1:10m (ca96624) + GSHHG v2.3.7 shoreline, checked 2026-11-15",
+    "whales": "Visit Turks and Caicos Islands, checked 2026-11-16",
+    "status": "historyContext source; QA reviewed 2026-11-16",
+    "historySlavery": "historyContext source; QA reviewed 2026-11-16",
+    "historyPlantation": "historyContext source; QA reviewed 2026-11-16"
   },
   "sources": {
     "status": "https://www.parliament.gov.tc/constitutional-overview",
@@ -644,12 +648,13 @@
     "religion": "https://docstore.ohchr.org/SelfServices/FilesHandler.ashx?enc=c5KFUZb0ekmkf5dNiOxPtXP8WcqvT1Qnnr8n5pf56UMWtJ2kKeEgmMqIMJMRbFomxNJjNKJcH1JcYb1EEAyONA%3D%3D",
     "mapGeometry": "Natural Earth 1:10m map subunits (public domain): https://github.com/nvkelso/natural-earth-vector ; GSHHG shoreline: https://www.soest.hawaii.edu/wessel/gshhg/",
     "mapWest": "https://www.visittci.com/maps",
-    "mapGeometryLicense": "Natural Earth 1:10m map subunits (public domain): https://github.com/nvkelso/natural-earth-vector ; GSHHG shoreline: https://www.soest.hawaii.edu/wessel/gshhg/"
+    "mapGeometryLicense": "Natural Earth 1:10m map subunits (public domain): https://github.com/nvkelso/natural-earth-vector ; GSHHG shoreline: https://www.soest.hawaii.edu/wessel/gshhg/",
+    "whales": "https://www.visittci.com/salt-cay/things-to-do/whale-watching"
   },
   "nextRegion": {
-    "slug": "bermuda",
-    "nameEn": "BERMUDA",
-    "nameJa": "バミューダ"
+    "slug": "cayman-islands",
+    "nameEn": "CAYMAN ISLANDS",
+    "nameJa": "ケイマン諸島"
   },
   "capital": {
     "nameJa": "コックバーン・タウン",
@@ -661,7 +666,7 @@
     "labelPosition": "left",
     "labelOffset": {
       "x": 0,
-      "y": 0
+      "y": -12
     }
   }
 }
