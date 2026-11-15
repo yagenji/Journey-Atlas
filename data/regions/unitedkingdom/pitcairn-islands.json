@@ -83,20 +83,6 @@
     },
     "singleMapMobile": true,
     "source": "Target land: GSHHG/GSHHS full-resolution shoreline via Basemap 2.0.0 (Paul Wessel and Walter H. F. Smith; https://www.soest.hawaii.edu/wessel/gshhg/), assigned with Natural Earth 1:10m Admin-0 map subunits ca96624a56bd078437bca8184e78163e5039ad19 (public domain) unit PCN (Pitcairn Islands); internal land boundaries follow Natural Earth. Surrounding land: the same GSHHG shoreline, drawn to the canvas edge. WGS84; local-equirectangular-fit-v1, 1200x760. Henderson, Oeno and Ducie are drawn at true positions; atoll lagoons filled. Pitcairn inset: same geometry at uniform scale.",
-    "detailMaps": [
-      {
-        "label": "Pitcairn島の景色",
-        "svg": "assets/images/unitedkingdom/pitcairn-islands/map-pitcairn-islands-detail.svg",
-        "sceneIds": [
-          "adamstown-square",
-          "christians-cave",
-          "down-rope",
-          "st-pauls-pool",
-          "tedside",
-          "sailors-hide"
-        ]
-      }
-    ],
     "insetNote": "※ ピトケアン島は、同じ地域を拡大した別枠表示です。",
     "regions": [
       {
@@ -635,28 +621,28 @@
       "safety"
     ]
   },
-  "nextRoutesIntro": "本土への旅の入口と出口は海路にある。無人島へ定期船で巡る架空の周遊は案内しない。",
+  "nextRoutesIntro": "補給船の航海で、ガンビエ諸島へ。航海日は年に数回に限られる。",
   "nextRoutes": [
     {
       "countryEn": "FRENCH POLYNESIA",
       "countryJa": "フランス領ポリネシア",
       "flag": "🇵🇫",
-      "path": "Pitcairn → Mangareva → Tahiti",
-      "description": "条件が合えば補給船でマングアレヴァへ戻り、ガンビエ諸島からタヒチへ。航海は予約と天候に左右される。",
+      "path": "Adamstown → Rikitea",
+      "description": "アダムズタウン沖から補給船で北西へ渡り、ガンビエ諸島マンガレヴァ島のリキテアへ。断崖に囲まれた孤島から、ラグーンに浮かぶフランス領ポリネシアの島へつながる。",
       "href": "countries/france/french-polynesia/",
       "travelerRoute": true,
       "status": "CHECK_CURRENT_CONDITIONS",
-      "statusNote": "政府の2026/27航海予定と運航者への照会が必要。"
+      "statusNote": "補給船の旅客航海は年に数回で、予約と天候に左右される。ピトケアン政府の航海予定を確認する。"
     }
   ],
   "relatedCountries": [
     {
-      "nameJa": "フランス",
-      "nameEn": "FRANCE",
-      "href": "countries/france/",
-      "flag": "🇫🇷",
-      "reason": "フランス領ポリネシアのマングアレヴァはピトケアンへの海路の玄関口。タヒチとの文化的なつながりもたどれる。",
-      "affinityType": "CULTURE"
+      "nameJa": "セントビンセント・グレナディーン",
+      "nameEn": "ST. VINCENT & GRENADINES",
+      "href": "countries/stvincentgrenadines/",
+      "flag": "🇻🇨",
+      "reason": "バウンティ号の反乱の物語に惹かれたなら、ブライ艦長が後にパンノキを運んだセントビンセント島の植物園で、その航海の目的だった木を見られる。",
+      "affinityType": "HISTORY"
     },
     {
       "nameJa": "オーストラリア",
@@ -690,7 +676,7 @@
     "immigration": "島政府2026年入域方針（2026年5月22日告知）・英国FCDO案内、2026-11-15確認",
     "shipping": "2026–2027公開案内、運航日程は随時変わる",
     "pineappleDuff": "島民の2023年1月12日記録",
-    "map": "Natural Earth 1:10m generalized land polygons inspected 2026-11-15; reef geometry not verified",
+    "map": "Natural Earth 1:10m (ca96624) + GSHHG v2.3.7 shoreline, checked 2026-11-15",
     "hendersonNorthBeach": "Smithsonian aerial photography and Admiralty Chart (1989 publication), north-coast reference point approximate to ~0.001 degree; checked 2026-11-15",
     "marineProtectedArea": "84万2,000km²、国連A/AC.109/2026/12、2026年1月30日発行",
     "vesselGuide2026": "GPI Guide for Visiting Vessels, March 2026 (access checked 2026-11-15)",
