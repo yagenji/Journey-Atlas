@@ -549,9 +549,9 @@ def main() -> int:
                         str(route.get("countryEn", "")).upper() in route_flags
                         for route in region.get("nextRoutes", [])
                     )
-                    expected_images = (14 + int(bool((region.get("map") or {}).get("regions"))
-                                       and not (region.get("map") or {}).get("singleMapMobile"))
-                                       + svg_flag_count)
+                    inset_images = (0 if (region.get("map") or {}).get("singleMapMobile")
+                                    else len((region.get("map") or {}).get("regions") or []))
+                    expected_images = 14 + inset_images + svg_flag_count
                     if audit["imageCount"] != expected_images or audit["broken"]:
                         problems.append(f"broken/missing images: {audit['broken']} ({audit['imageCount']}/{expected_images})")
                     # The recommender now suppresses low-confidence matches instead of
