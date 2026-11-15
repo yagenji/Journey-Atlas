@@ -674,6 +674,7 @@ def build_top_scene_index() -> None:
         "guernsey": ("🇬🇬", None),  # Guernsey Bailiwick Crown Dependency.
         "isle-of-man": ("🇮🇲", None),
         "bermuda": ("🇧🇲", None),  # British Overseas Territory in the North Atlantic.
+        "anguilla": ("🇦🇮", None),  # British Overseas Territory in the Caribbean.
         "turks-and-caicos-islands": ("🇹🇨", None),  # British Overseas Territory in the Caribbean.
         "british-virgin-islands": ("🇻🇬", None),  # British Overseas Territory in the Caribbean.
         "cayman-islands": ("🇰🇾", None),  # British Overseas Territory in the Caribbean.
