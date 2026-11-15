@@ -663,6 +663,7 @@ def build_top_scene_index() -> None:
         "reunion": ("🇷🇪", None),  # French overseas department in the Indian Ocean.
         "mayotte": ("🇾🇹", None),  # French overseas department in the Mozambique Channel.
         "guadeloupe": ("🇬🇵", None),  # French overseas department in the Caribbean.
+        "saint-barthelemy": ("🇧🇱", None),  # French overseas collectivity; ISO 3166-1 BL.
         "new-caledonia": ("🇳🇨", None),
         "wallis-and-futuna": ("🇼🇫", None),  # French overseas collectivity; ISO 3166-1 WF.
         "french-polynesia": ("🇵🇫", None),
