@@ -662,6 +662,7 @@ def build_top_scene_index() -> None:
         "mayotte": ("🇾🇹", None),  # French overseas department in the Mozambique Channel.
         "guadeloupe": ("🇬🇵", None),  # French overseas department in the Caribbean.
         "new-caledonia": ("🇳🇨", None),
+        "wallis-and-futuna": ("🇼🇫", None),  # French overseas collectivity; ISO 3166-1 WF.
         "french-polynesia": ("🇵🇫", None),
         "french-guiana": ("🇬🇫", None),
         "gibraltar": ("🇬🇮", None),
