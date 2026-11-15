@@ -675,6 +675,7 @@ def build_top_scene_index() -> None:
         "isle-of-man": ("🇮🇲", None),
         "bermuda": ("🇧🇲", None),  # British Overseas Territory in the North Atlantic.
         "anguilla": ("🇦🇮", None),  # British Overseas Territory in the Caribbean.
+        "pitcairn-islands": ("🇵🇳", None),  # British Overseas Territory in the South Pacific.
         "turks-and-caicos-islands": ("🇹🇨", None),  # British Overseas Territory in the Caribbean.
         "british-virgin-islands": ("🇻🇬", None),  # British Overseas Territory in the Caribbean.
         "cayman-islands": ("🇰🇾", None),  # British Overseas Territory in the Caribbean.
