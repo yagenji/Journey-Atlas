@@ -83,8 +83,28 @@
       "north": 21.30499675
     },
     "singleMapMobile": true,
-    "source": "GSHHG intermediate-resolution WGS84 shoreline via Basemap 2.0.0 (Paul Wessel and Walter H. F. Smith; https://www.soest.hawaii.edu/wessel/gshhg/), area_thresh=0: thirteen real island coastlines from Guam to Maug. Farallon de Pajaros and Farallon de Medinilla are tiny unfilled positional locator symbols only. Southern-detail inset repeats same real polygons at expressly enlarged scale; no fabricated maritime boundary. Checked 2026-11-15.",
-    "insetNote": "※ 南部の島々は、同じ地域を拡大した別枠表示です。"
+    "source": "GSHHG intermediate-resolution WGS84 shoreline via Basemap 2.0.0 (Paul Wessel and Walter H. F. Smith; https://www.soest.hawaii.edu/wessel/gshhg/), area_thresh=0: thirteen real island coastlines from Guam to Maug. Farallon de Pajaros and Farallon de Medinilla are tiny unfilled positional locator symbols only. No fabricated maritime boundary. Enlarged detail maps for Guam and Saipan–Tinian use Natural Earth 1:10m (public domain) generalized shorelines. Checked 2026-11-15.",
+    "detailMaps": [
+      {
+        "label": "グアムの景色",
+        "svg": "assets/images/unitedstates/mariana-islands/map-mariana-islands-guam-detail.svg",
+        "sceneIds": [
+          "two-lovers-point",
+          "fort-soledad",
+          "gef-pago",
+          "cetti-bay"
+        ]
+      },
+      {
+        "label": "サイパン・テニアンの景色",
+        "svg": "assets/images/unitedstates/mariana-islands/map-mariana-islands-saipan-detail.svg",
+        "sceneIds": [
+          "bird-island",
+          "the-grotto",
+          "house-of-taga"
+        ]
+      }
+    ]
   },
   "scenes": [
     {
@@ -563,7 +583,7 @@
       "northernIslands"
     ]
   },
-  "nextRoutesIntro": "地理のつながりから、太平洋の別の島々へ。",
+  "nextRoutesIntro": "",
   "nextRoutes": [],
   "relatedCountries": [
     {
@@ -587,7 +607,7 @@
       "nameEn": "PHILIPPINES",
       "href": "countries/philippines/",
       "flag": "🇵🇭",
-      "reason": "スペイン統治期の海上交易に関心があるなら、マニラの歴史にも足を延ばしたい。",
+      "reason": "スペイン統治期にガレオン船が寄港したグアムの歴史に惹かれたなら、ガレオン貿易の拠点だったマニラのイントラムロスで、その航路のもう一方の港を歩ける。",
       "affinityType": "HISTORY"
     }
   ],
