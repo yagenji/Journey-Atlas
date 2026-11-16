@@ -36,7 +36,7 @@
   },
   "profile": [
     {
-      "label": "行政の中心",
+      "label": "首府",
       "value": "グアム：ハガニア／北マリアナ：サイパン（キャピトル・ヒル）",
       "sourceKey": "status"
     },
@@ -334,7 +334,7 @@
     {
       "title": "集落のそばに立つラッテストーン",
       "icon": "history",
-      "category": "HISTORY"
+      "category": "ARCHITECTURE"
     },
     {
       "title": "サンゴ礁の小島に集まる海鳥",
@@ -539,14 +539,9 @@
       "sourceKey": "entry"
     },
     {
-      "title": "グロットは海況と立入条件を優先",
-      "text": "洞窟の海水プールや水中トンネルは潜水経験・安全管理が必要。天候や波浪によって危険度が変わるため現地案内に従う。",
+      "title": "グロットとバード・アイランドは現地条件を確認",
+      "text": "グロットの海水プールや水中トンネルは潜水経験と安全管理が必要で、波で危険度が変わる。バード・アイランド展望台は2026年9月から整備工事中（2027年夏完成予定）で、見学条件を確かめる。",
       "sourceKey": "grotto"
-    },
-    {
-      "title": "バード・アイランド展望台は工事情報を確認",
-      "text": "2026年9月に展望台等の整備工事が始まり、2027年夏の完成予定と発表されている。現地の通行・見学条件を訪問前に確認する。",
-      "sourceKey": "birdConstruction"
     },
     {
       "title": "北部火山島への渡航は別計画",
@@ -596,28 +591,28 @@
       "months": "12〜2月",
       "label": "乾季の始まり",
       "icon": "sun",
-      "color": "#77a8a6",
+      "color": "#6b90a5",
       "text": "雨の少ない日が増える一方、季節風で波の高い海岸もある。"
     },
     {
       "months": "3〜5月",
       "label": "比較的乾いた季節",
       "icon": "sun",
-      "color": "#b5a976",
+      "color": "#73966f",
       "text": "暑さと紫外線に注意しながら、海岸や展望地を巡りやすい。"
     },
     {
       "months": "6〜8月",
       "label": "雨の多い季節",
       "icon": "weather",
-      "color": "#7ba4a6",
+      "color": "#92a253",
       "text": "にわか雨や強い日差しが交互に訪れる。台風情報を確かめたい。"
     },
     {
       "months": "9〜11月",
       "label": "雨季の後半",
       "icon": "weather",
-      "color": "#8297a2",
+      "color": "#b77a49",
       "text": "熱帯低気圧の動きに留意し、船・航空便に余裕を持たせる。"
     }
   ],
@@ -667,7 +662,10 @@
     "entry": "CNMI EVS-TAP停止 2026-10-30 14:00 EDT、米国CBP 2026-11-15確認",
     "map": "Natural Earth 1:10m (ca96624) + GSHHG v2.3.7 shoreline, checked 2026-11-15",
     "birdConstruction": "Marianas Visitors Authority 2026-09-04、完成予定2027年夏",
-    "anatahan": "2003 eruption; USGS checked 2026-11-15"
+    "anatahan": "2003 eruption; USGS checked 2026-11-15",
+    "guamStatus": "historyContext source; QA reviewed 2026-11-16",
+    "cnmiStatus": "historyContext source; QA reviewed 2026-11-16",
+    "carolinian": "historyContext source; QA reviewed 2026-11-16"
   },
   "sources": {
     "population": "https://www.census.gov/library/stories/2021/10/first-2020-census-united-states-island-areas-data-released-today.html",
@@ -704,5 +702,44 @@
     "ratOrdinance": "https://www.guampedia.com/american-style-colonialism/",
     "saipanSugarRail": "https://home.nps.gov/amme/learn/historyculture/battle-of-saipan.htm",
     "rotaWhiteEye": "https://www.fws.gov/species/rota-bridled-white-eye-zosterops-rotensis"
+  },
+  "capital": null,
+  "officialSeats": [
+    {
+      "nameJa": "ハガニア",
+      "nameEn": "Hagåtña",
+      "roleJa": "グアムの首府",
+      "coordinates": {
+        "latitude": 13.4757,
+        "longitude": 144.7489
+      },
+      "labelPosition": "right",
+      "labelOffset": {
+        "x": 0,
+        "y": 0
+      },
+      "sourceKey": "guamStatus"
+    },
+    {
+      "nameJa": "キャピトル・ヒル",
+      "nameEn": "Capitol Hill",
+      "roleJa": "北マリアナ諸島の首府",
+      "coordinates": {
+        "latitude": 15.2137,
+        "longitude": 145.7546
+      },
+      "labelPosition": "right",
+      "labelOffset": {
+        "x": 0,
+        "y": 0
+      },
+      "sourceKey": "cnmiStatus"
+    }
+  ],
+  "officialSeatsLegendJa": "グアム・北マリアナ諸島の首府",
+  "nextRegion": {
+    "slug": "american-samoa",
+    "nameEn": "AMERICAN SAMOA",
+    "nameJa": "米領サモア"
   }
 }

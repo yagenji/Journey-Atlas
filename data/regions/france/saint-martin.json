@@ -34,7 +34,7 @@
   },
   "profile": [
     {
-      "label": "行政中心",
+      "label": "首府",
       "value": "マリゴ（Marigot）",
       "sourceKey": "ministry"
     },
@@ -218,7 +218,7 @@
     }
   ],
   "taste": {
-    "title": "サン・マルタンで食べたいもの",
+    "title": "サン・マルタン（フランス領）で食べたいもの",
     "kicker": "TASTE OF SAINT-MARTIN",
     "intro": "ロロの炭火料理と、塩ダラや葉野菜を使うカリブの家庭の味。島で親しまれる素朴な料理をたどる。",
     "items": [
@@ -267,13 +267,13 @@
       "interestReason": "小さな島の中で標高と植生が大きく変わることを示す。"
     },
     {
-      "topicKey": "reserve-area",
-      "label": "海と湿地を守る自然保護区",
-      "value": "約3,060ha",
-      "note": "1998年に指定された国立自然保護区は海域と沿岸を中心に広がり、珊瑚礁、海草、マングローブを守る。",
-      "icon": "leaf",
-      "sourceKey": "reserve",
-      "interestReason": "島の景観を支える保護区の広がりがわかる。"
+      "topicKey": "1648-partition",
+      "label": "島を南北に分けた年",
+      "value": "1648年",
+      "note": "1648年、フランスとオランダは島を分け合う取り決めを結んだ。今も北側がフランスの海外自治体、南側がオランダ王国のシント・マールテンとなっている。",
+      "icon": "map",
+      "sourceKey": "ministry",
+      "interestReason": "一つの小さな島を、370年以上二つの国が分け合っている。"
     },
     {
       "topicKey": "1989-summit",
@@ -289,7 +289,7 @@
     {
       "title": "マリゴの港に市場が開く朝",
       "icon": "city",
-      "category": "LIFE"
+      "category": "DAILY_LIFE"
     },
     {
       "title": "ロロから漂う炭火の香り",
@@ -304,12 +304,12 @@
     {
       "title": "旧農園の石壁と木陰",
       "icon": "history",
-      "category": "HISTORY"
+      "category": "ARCHITECTURE"
     },
     {
       "title": "浅い海の色が変わるピネル島",
       "icon": "sea",
-      "category": "COAST"
+      "category": "LANDSCAPE"
     },
     {
       "title": "風の中に続くティンタマールの砂浜",
@@ -343,14 +343,14 @@
     },
     {
       "topicKey": "shared-border",
-      "themeEn": "HISTORY",
+      "themeEn": "CULTURE",
       "themeJa": "境界を知る",
       "icon": "map",
-      "title": "島は一つでも、行政と入域制度は別々",
-      "text": "1648年に始まった島の分割は、現在のフランス海外自治体とオランダ王国の構成国という異なる制度に続いている。2023年には陸上国境について新たな条約が署名された。",
+      "title": "国境を越えても、検問のない日常の行き来",
+      "text": "島の南北を結ぶ道路には検問所がなく、住民は買い物や仕事で日常的に行き来する。2023年には陸上の境界線を確定する条約が両国の間で署名された。",
       "points": [
-        "島内の行き来は日常的な生活圏の一部",
-        "旅行者の入域要件は同じとは限らない"
+        "北側はユーロ、南側はアンティル・ギルダーなど通貨が異なる",
+        "旅行者の入域要件は北と南で同じとは限らない"
       ],
       "sourceKey": "border"
     },
@@ -470,14 +470,9 @@
   ],
   "notes": [
     {
-      "title": "入域条件はフランス本土と同一ではない",
-      "text": "仏領サン・マルタンはシェンゲン圏外。国籍・旅程に応じたフランス海外領土のビザ要件と、オランダ側の空港に到着する際の入域条件をそれぞれ確認する。",
+      "title": "国境の南北で、入域条件と通貨が異なる",
+      "text": "仏領側はシェンゲン圏外で、オランダ側の空港に着く場合の入域条件も別に確認する。通貨も仏領側はユーロ、オランダ側はカリブ・ギルダーで、米ドルが使えることと法定通貨は同じではない。",
       "sourceKey": "visa"
-    },
-    {
-      "title": "国境を越えると法定通貨も異なる",
-      "text": "仏領側はユーロ、オランダ側はカリブ・ギルダー。米ドルの利用可能性と法定通貨は同義ではない。",
-      "sourceKey": "euro"
     },
     {
       "title": "小島と湿地では保護区規則を確認",
@@ -485,13 +480,8 @@
       "sourceKey": "reserveDecree"
     },
     {
-      "title": "山道と旧農園の利用条件",
-      "text": "ピク・パラディスへの歩道は天候で滑りやすい。ロトリー・ファームの施設や活動には別途利用条件がある。",
-      "sourceKey": "loterie"
-    },
-    {
-      "title": "ハリケーン季節は交通を柔軟に",
-      "text": "大西洋のハリケーン季節は6月1日から11月30日。航空便・船便の運行を確認する。",
+      "title": "山道とハリケーン季節は天候を優先",
+      "text": "ピク・パラディスへの歩道は雨で滑りやすく、ロトリー・ファームの施設や活動には別の利用条件がある。6月1日〜11月30日のハリケーン季節は航空便・船便の運行を確認する。",
       "sourceKey": "climate"
     }
   ],
@@ -515,7 +505,7 @@
       {
         "duration": "5日以上",
         "title": "小島と湿地を加えて巡る",
-        "icon": "sea",
+        "icon": "compass",
         "text": "例：Marigot → Cul-de-Sac（渡船）→ Îlet Pinel → Cul-de-Sac → Baie de l’Embouchure → Marigot。別日に運航条件を確認してTintamarreを往復する。"
       }
     ]
@@ -533,28 +523,28 @@
       "months": "12〜2月",
       "label": "乾季の前半",
       "icon": "sun",
-      "color": "#779b94",
+      "color": "#6b90a5",
       "text": "比較的涼しく乾いた季節。マリゴの街歩きや海岸散策に向く日が多い。"
     },
     {
       "months": "3〜5月",
       "label": "乾季の後半",
       "icon": "leaf",
-      "color": "#8aa976",
+      "color": "#73966f",
       "text": "比較的雨が少なく、山から海へ出かける旅を組みやすい。海上交通は波や風の状況を確認する。"
     },
     {
       "months": "6〜8月",
       "label": "湿度が高まる季節",
       "icon": "weather",
-      "color": "#b6a16c",
+      "color": "#92a253",
       "text": "暑さと降水が増え、6月からハリケーンの季節が始まる。船便・航空便の変更も想定する。"
     },
     {
       "months": "9〜11月",
       "label": "暴風雨に注意",
       "icon": "weather",
-      "color": "#7691a4",
+      "color": "#b77a49",
       "text": "大西洋のハリケーン季節は11月30日まで。気象情報を確認し、予定を柔軟に調整する。"
     }
   ],
@@ -615,12 +605,12 @@
       "affinityType": "COAST"
     },
     {
-      "nameJa": "フランス",
-      "nameEn": "FRANCE",
-      "href": "countries/france/",
-      "flag": "🇫🇷",
-      "reason": "グラン・カーズのビストロや朝のブーランジェリーに惹かれたなら、フランス本土の地方料理と市場で、カリブで出会ったフランスの食卓の源流を味わえる。",
-      "affinityType": "FOOD"
+      "nameJa": "ドミニカ共和国",
+      "nameEn": "DOMINICAN REPUBLIC",
+      "href": "countries/dominicanrepublic/",
+      "flag": "🇩🇴",
+      "reason": "一つの島を二つの国が分け合う姿に惹かれたなら、ハイチと島を分け合うイスパニョーラ島へ。国境を挟んで言葉や街並みが変わる島の成り立ちを比べられる。",
+      "affinityType": "HISTORY"
     },
     {
       "nameJa": "ドミニカ国",
@@ -646,7 +636,9 @@
     "religion": "Secondary historical qualitative account, denominational shares unverified; checked 2026-11-15",
     "sceneAnchors": "Îlet Pinel and Anse Marcel Mapcarta/OSM land points; cross-checked against exact 24-ring OSM coast polygons on 2026-11-15.",
     "saintMartinCarnival": "Collectivité de Saint-Martin cultural heritage article updated 2025-02-06; verified 2026-11-15",
-    "grandCaseTuesdays": "Collectivité executive council decision dated 2026-04-02 describes Grand-Case artisan market and 2026 edition; verified 2026-11-15"
+    "grandCaseTuesdays": "Collectivité executive council decision dated 2026-04-02 describes Grand-Case artisan market and 2026 edition; verified 2026-11-15",
+    "ministry": "historyContext source; QA reviewed 2026-11-16",
+    "eu": "historyContext source; QA reviewed 2026-11-16"
   },
   "sources": {
     "status": "https://www.legifrance.gouv.fr/codes/id/LEGISCTA000006164824",
@@ -694,5 +686,24 @@
     "海の世界へ",
     "暮らしに出会う",
     "食をめぐる"
-  ]
+  ],
+  "capital": {
+    "nameJa": "マリゴ",
+    "labelJa": "首府",
+    "coordinates": {
+      "latitude": 18.0681,
+      "longitude": -63.0836
+    },
+    "labelPosition": "right",
+    "labelOffset": {
+      "x": 0,
+      "y": 0
+    },
+    "sourceKey": "ministry"
+  },
+  "nextRegion": {
+    "slug": "saint-barthelemy",
+    "nameEn": "SAINT BARTHÉLEMY",
+    "nameJa": "サン・バルテルミー"
+  }
 }

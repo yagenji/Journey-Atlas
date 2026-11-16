@@ -241,7 +241,7 @@
   "signatureFacts": [
     {
       "topicKey": "sister-island-distance",
-      "label": "グランドケイマンから東の姉妹島まで",
+      "label": "姉妹島までの距離",
       "value": "約143km",
       "note": "グランドケイマンからケイマン・ブラックまでは約89マイル。さらにリトルケイマンとケイマン・ブラックの間にも約8kmの海峡がある。",
       "icon": "map",
@@ -258,13 +258,13 @@
       "interestReason": "小さな島の中にも劇的に異なる地形がある。"
     },
     {
-      "topicKey": "blue-iguana-conservation",
-      "label": "ブルーイグアナ保護の始まり",
-      "value": "1990年",
-      "note": "国際的な保護の取り組みが始まり、グランドケイマン固有の大型トカゲの繁殖・生息地回復が続いてきた。",
-      "icon": "wildlife",
-      "sourceKey": "blueIguana",
-      "interestReason": "青い海だけでなく、地上に固有の生態系があることを示す。"
+      "topicKey": "cayman-trench-depth",
+      "label": "ケイマン海溝の最深部",
+      "value": "7,686m",
+      "note": "ジャマイカとケイマン諸島の間の海底を走る海溝で、カリブ海で最も深い地点がある。",
+      "icon": "sea",
+      "sourceKey": "caymanTrench",
+      "interestReason": "白砂の浜の沖に、カリブ海で最も深い海が沈んでいる。"
     }
   ],
   "encounters": [
@@ -363,17 +363,17 @@
       "sourceKey": "status"
     },
     {
-      "topicKey": "family-food",
+      "topicKey": "catboat-heritage",
       "themeEn": "CULTURE",
-      "themeJa": "食を知る",
-      "icon": "food",
-      "title": "ゆっくり煮る家庭料理が受け継がれる",
-      "text": "長く煮込むケイマン式の牛肉、海で得られる魚、キャッサバの濃密な焼き菓子。祝い事や家族の食卓を通じて島の味が守られる。",
+      "themeJa": "海の手仕事",
+      "icon": "sea",
+      "title": "ウミガメ漁のために生まれた帆船、キャットボート",
+      "text": "1904年、ケイマン・ブラックの船大工ダニエル・ジャーヴィスが、船首と船尾がともにとがった喫水の浅い帆船を考案した。キャットボートはウミガメ漁に最適な船とされ、島々の漁師に広く使われた。",
       "points": [
-        "肉や魚を時間をかけて調理する",
-        "キャッサバやココナツが菓子にも使われる"
+        "1998年に保存のためのキャットボート・クラブが結成された",
+        "前寄りのマストと櫂で進む小さな木造船"
       ],
-      "sourceKey": "foodBeef"
+      "sourceKey": "catboat"
     },
     {
       "topicKey": "conservation-boundary",
@@ -587,9 +587,9 @@
     }
   ],
   "nextRegion": {
-    "slug": "bermuda",
-    "nameEn": "BERMUDA",
-    "nameJa": "バミューダ"
+    "slug": "british-virgin-islands",
+    "nameEn": "BRITISH VIRGIN ISLANDS",
+    "nameJa": "英領ヴァージン諸島"
   },
   "sourcesVerifiedAt": "2026-11-14",
   "updatedAt": "2026-11-15",
@@ -605,7 +605,10 @@
     "marine": "2026-11-14",
     "airTravel": "2026-11-14",
     "climate": "2026-11-14",
-    "coastline": "Natural Earth 1:10m; verified 2026-11-14"
+    "coastline": "Natural Earth 1:10m; verified 2026-11-14",
+    "caymanTrench": "Britannica, checked 2026-11-16",
+    "catboat": "Cayman Compass 2019-09-19, checked 2026-11-16",
+    "government": "historyContext source; QA reviewed 2026-11-16"
   },
   "sources": {
     "status": "https://gov.ky/ourislands",
@@ -639,7 +642,9 @@
     "beachAccess": "https://gov.ky/web/publiclands",
     "heritage": "https://www.museum.ky/",
     "caymanThanksgiving": "https://www.visitcaymanislands.com/pt-br/inspiration/celebrate-cayman-thanksgiving",
-    "coastline": "Natural Earth 1:10m map subunits (public domain): https://github.com/nvkelso/natural-earth-vector ; GSHHG shoreline: https://www.soest.hawaii.edu/wessel/gshhg/"
+    "coastline": "Natural Earth 1:10m map subunits (public domain): https://github.com/nvkelso/natural-earth-vector ; GSHHG shoreline: https://www.soest.hawaii.edu/wessel/gshhg/",
+    "caymanTrench": "https://www.britannica.com/place/Cayman-Trench",
+    "catboat": "https://www.caymancompass.com/2019/09/19/cayman-catboats-a-link-to-the-islands-past/"
   },
   "capital": {
     "nameJa": "ジョージタウン",
@@ -650,8 +655,8 @@
     },
     "labelPosition": "right",
     "labelOffset": {
-      "x": 0,
-      "y": -34
+      "x": 16,
+      "y": -36
     }
   },
   "travelScale": {
@@ -672,7 +677,7 @@
         "text": "グランドケイマン東側まで巡る。例：オーウェン・ロバーツ空港 → セブンマイル・ビーチ → クリスタル・ケーブズ → 植物公園 → ペドロ・セント・ジェームズ → ジョージタウン → オーウェン・ロバーツ空港。"
       },
       {
-        "duration": "8〜10日",
+        "duration": "7日以上",
         "title": "3島の個性に触れる",
         "icon": "compass",
         "text": "国内線で姉妹島を結ぶ周遊。例：オーウェン・ロバーツ空港 → グランドケイマン → ケイマン・ブラック → リトルケイマン → グランドケイマン → オーウェン・ロバーツ空港。"

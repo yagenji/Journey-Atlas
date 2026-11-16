@@ -80,3 +80,22 @@ class RegionMapPositions(unittest.TestCase):
 
 if __name__ == '__main__':
     unittest.main()
+
+
+class RegionInsetSeats(unittest.TestCase):
+    def test_official_seats_with_inset_id_are_drawn_inside_their_inset(self):
+        data = json.loads((ROOT / 'data/regions/netherlands/caribbean-netherlands.json').read_text())
+        svg = (ROOT / data['map']['svg']).read_text()
+        insets = {d['id']: d['rect'] for d in data['map']['regions']}
+        for seat in data['officialSeats']:
+            x, y = region.region_seat_position(seat, data, svg)
+            rect = insets[seat['insetId']]
+            self.assertTrue(rect['x'] <= 12 * x <= rect['x'] + rect['width'], seat['nameJa'])
+            self.assertTrue(rect['y'] <= 7.6 * y <= rect['y'] + rect['height'], seat['nameJa'])
+
+    def test_unknown_inset_id_is_rejected(self):
+        data = json.loads((ROOT / 'data/regions/netherlands/caribbean-netherlands.json').read_text())
+        svg = (ROOT / data['map']['svg']).read_text()
+        seat = dict(data['officialSeats'][0], insetId='missing')
+        with self.assertRaises(ValueError):
+            region.region_seat_position(seat, data, svg)

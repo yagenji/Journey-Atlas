@@ -37,7 +37,7 @@
   },
   "profile": [
     {
-      "label": "行政中心",
+      "label": "首府",
       "value": "ウェスト島（West Island）",
       "sourceKey": "govOverview"
     },
@@ -290,7 +290,7 @@
     {
       "title": "海岸の塩風を受け続ける古い砲台",
       "icon": "history",
-      "category": "HISTORY"
+      "category": "ARCHITECTURE"
     },
     {
       "title": "干潮時に現れる小島へ続く浅瀬",
@@ -305,7 +305,7 @@
     {
       "title": "通信線が世界につないだ島の記憶",
       "icon": "history",
-      "category": "HISTORY"
+      "category": "CULTURE"
     }
   ],
   "culture": [
@@ -336,17 +336,17 @@
       "sourceKey": "nationalArchives"
     },
     {
-      "topicKey": "oceania-house",
-      "themeEn": "HERITAGE",
-      "themeJa": "建築",
+      "topicKey": "land-purchase-1978",
+      "themeEn": "HISTORY",
+      "themeJa": "歴史",
       "icon": "history",
-      "title": "庭園に残るオセアニア・ハウス",
-      "text": "歴史的邸宅と庭園は、島を統治した家族の歴史と重なる。建物を見学する際には現在の利用形態と訪問条件を確認したい。",
+      "title": "1978年、一族の島の土地を国が買い取った",
+      "text": "19世紀からクルーニーズ＝ロス家が島の土地と暮らしを握ってきたが、1978年にオーストラリア政府が残りの土地を買い取った。ホーム島の一族の邸宅だけは売却から外され、1993年に別途取得された。",
       "points": [
-        "ホーム島に残る歴史的な住宅建築",
-        "公開されていない内部への無断立入りは避ける"
+        "約150年続いた一族による支配が終わる転機になった",
+        "邸宅オセアニア・ハウスは今も庭園とともに残る"
       ],
-      "sourceKey": "oceaniaHouse"
+      "sourceKey": "nationalArchives"
     },
     {
       "topicKey": "cable-and-emden",
@@ -362,17 +362,17 @@
       "sourceKey": "nationalArchives"
     },
     {
-      "topicKey": "coral-conservation",
-      "themeEn": "NATURE",
-      "themeJa": "保全",
-      "icon": "leaf",
-      "title": "小さな陸と、守るべき広い海",
-      "text": "島の周囲にはサンゴ礁、海草藻場、外洋が連なり、海洋公園が生態系を保護する。低い島の海岸は波浪・浸食の影響も受ける。",
+      "topicKey": "sabah-diaspora",
+      "themeEn": "CULTURE",
+      "themeJa": "人の移動",
+      "icon": "culture",
+      "title": "マレーシアのサバ州にも「ココス村」がある",
+      "text": "1950年代、ココス・マレーの人々の一部が英国の手配でマレーシアのサバ州へ移り住んだ。ラハダトゥとタワウにはカンポン・ココスと呼ばれる村があり、島に残る人口を大きく上回る共同体になっている。",
       "points": [
-        "ラグーンの浅瀬は陸地ではない",
-        "保護海域では区域により活動制限が異なる"
+        "サバ州のココス系住民は約4,000〜5,000人と推計される",
+        "海を隔てて、言葉と踊りが受け継がれている"
       ],
-      "sourceKey": "marinePark"
+      "sourceKey": "cocosMalays"
     },
     {
       "topicKey": "jukong-maritime-tradition",
@@ -390,7 +390,7 @@
   ],
   "taste": {
     "kicker": "TASTE OF COCOS (KEELING) ISLANDS",
-    "title": "ココス・マレーの食卓",
+    "title": "ココス（キーリング）諸島で食べたいもの",
     "intro": "ココナッツ、香辛料、魚を使う島の味。マレー・インドネシア系の食文化とつながりながら、家庭ごとのレシピが受け継がれる。",
     "items": [
       {
@@ -447,13 +447,13 @@
       "sourceKey": "darwin"
     },
     {
-      "topicKey": "island-cable",
-      "categoryEn": "HISTORY",
-      "categoryJa": "海の通信",
-      "icon": "history",
-      "title": "海の小島が国際通信の中継地だった",
-      "text": "インド洋を横切る海底電信ケーブルは、離れた島々を国際通信網の一部にした。",
-      "sourceKey": "nationalArchives"
+      "topicKey": "qantas-stopover",
+      "categoryEn": "AVIATION",
+      "categoryJa": "空の中継地",
+      "icon": "map",
+      "title": "豪州と南アフリカを結ぶ旅客機が、この島で給油した",
+      "text": "戦時中の滑走路は1950年代に改修され、パースとヨハネスブルグを結ぶカンタス航空や南アフリカ航空の中継地になった。1960年代には乗客がウェスト島に一泊する便もあり、その宿舎はカンタス・ハッツと呼ばれた。",
+      "sourceKey": "qantasHuts"
     },
     {
       "topicKey": "north-keeling-rail",
@@ -500,19 +500,9 @@
       "sourceKey": "weather"
     },
     {
-      "title": "ザ・リップの潮流に注意",
-      "text": "水中の流れと潮位は変わる。監視員がいない海に無理に入らず、現地の海況・安全案内を優先する。",
+      "title": "潮流と潮位で、海の行き先を選ぶ",
+      "text": "ザ・リップは水中の流れが強く、監視員はいない。サウス島やプル・マラヤなど南側の小島へは干潮・波・船の有無で行けるかが変わり、北キーリング島は一般の訪問先ではない。",
       "sourceKey": "direction"
-    },
-    {
-      "title": "北キーリング島は自由訪問地ではない",
-      "text": "Pulu Keeling National Parkには一般向け定期ツアーがない。研究者は公園職員の同行が必要で、活動内容に応じて許可が必要。",
-      "sourceKey": "parkAccess"
-    },
-    {
-      "title": "南側の無人島へは潮位と船の条件を優先",
-      "text": "サウス島やホースバーグ島、プル・マラヤへの移動は干潮・波・船の有無で変わる。アクセス可能と決めつけず現地確認する。",
-      "sourceKey": "islands"
     }
   ],
   "travelScale": {
@@ -523,20 +513,20 @@
       {
         "duration": "3〜4日",
         "title": "ウェスト島とホーム島",
-        "icon": "sea",
+        "icon": "city",
         "text": "例：West Island → Home Island → West Island。別日にWest Island南部の海岸を巡って同じ拠点へ戻る。"
       },
       {
-        "duration": "約7日",
+        "duration": "5〜9日",
         "title": "南側の環礁を知る",
-        "icon": "compass",
+        "icon": "map",
         "text": "例：West Island → Home Island → West Island／West Island → Direction Island → West Island。現地の船が利用可能な日にラグーンを巡る。"
       },
       {
         "duration": "10日以上",
         "title": "潮汐と天候に余裕を持つ",
-        "icon": "hike",
-        "text": "West Islandを拠点にシュノーケリングや文化体験の予備日を確保。North Keelingは通常の観光行程に組み込まない。"
+        "icon": "compass",
+        "text": "例：West Island → Home Island → Direction Island → West Island。潮汐とシュノーケリングの条件が合う日を選び、予備日を確保する。North Keelingは通常の観光行程に組み込まない。"
       }
     ]
   },
@@ -557,28 +547,28 @@
       "months": "12〜2月",
       "label": "ドルドラム期",
       "icon": "sun",
-      "color": "#9a9d5b",
+      "color": "#92a253",
       "text": "貿易風が弱まる季節。海のアクティビティを計画しやすい日もあるが、風と波の変化を確認する。"
     },
     {
       "months": "3〜5月",
       "label": "雨の多い季節",
       "icon": "weather",
-      "color": "#6c97a2",
+      "color": "#b77a49",
       "text": "雨量が増えやすい時期。5月ごろから南東貿易風が強まり始める。"
     },
     {
       "months": "6〜8月",
       "label": "南東貿易風",
       "icon": "weather",
-      "color": "#729775",
+      "color": "#6b90a5",
       "text": "安定した風が吹きやすい。カイトサーフィン向きの日がある一方、船やシュノーケルは海況次第。"
     },
     {
       "months": "9〜11月",
       "label": "貿易風から風の弱い季節へ",
       "icon": "leaf",
-      "color": "#b47f55",
+      "color": "#73966f",
       "text": "風の季節が終わり、11月ごろからドルドラム期に移る。雨季・乾季の単純な二分では表せない。"
     }
   ],
@@ -595,12 +585,12 @@
   "nextRoutes": [],
   "relatedCountries": [
     {
-      "nameJa": "オーストラリア",
-      "nameEn": "AUSTRALIA",
-      "href": "countries/australia/",
-      "flag": "🇦🇺",
-      "reason": "同じ国に属しながら、環礁とは大きく異なる大陸側の地形と自然を知る。",
-      "affinityType": "ISLAND"
+      "nameJa": "マレーシア",
+      "nameEn": "MALAYSIA",
+      "href": "countries/malaysia/",
+      "flag": "🇲🇾",
+      "reason": "1950年代に島から移り住んだ人々の村が、サバ州のラハダトゥやタワウに残る。ココス・マレーの言葉と暮らしが、海を越えてどう続いているかをたどれる。",
+      "affinityType": "CULTURE"
     },
     {
       "nameJa": "インドネシア",
@@ -629,7 +619,12 @@
     "flightService": "Tourism Association 2026-11-15, dynamic",
     "ferryService": "Tourism Association timetable 2026-11-15, dynamic",
     "mapGeometry": "Natural Earth 1:10m (ca96624) + GSHHG v2.3.7 shoreline, checked 2026-11-15",
-    "japanArea": "GSI 2026-07-01"
+    "japanArea": "GSI 2026-07-01",
+    "cocosMalays": "Checked 2026-11-16",
+    "qantasHuts": "Checked 2026-11-16",
+    "nationalArchives": "historyContext source; QA reviewed 2026-11-16",
+    "parkCulture": "historyContext source; QA reviewed 2026-11-16",
+    "historyReview": "historyContext source; QA reviewed 2026-11-16"
   },
   "sources": {
     "govOverview": "https://www.infrastructure.gov.au/territories-regions/territories/indian-ocean-territories-christmas-island-and-cocos-keeling-islands/cocos-keeling-islands",
@@ -665,10 +660,27 @@
     "ayamBeganaRecipe": "https://www.tasteatlas.com/ayam-begana",
     "jukongTradition": "https://www.legislation.gov.au/F2025L00071/asmade/2025-02-11/text/original/epub/OEBPS/document_1/document_1.html",
     "cocosRail": "https://pulukeelingnationalpark.gov.au/discover/nature/animals/birds/cocos-buff-banded-rail/ ; Emu 116(1): Conservation status and reintroduction of the Cocos Buff-banded Rail (April 2013, 39 rails from Pulu Keeling to Horsburgh Island; ~121 individuals by June 2015): https://publish.csiro.au/mu/MU15052",
-    "govTravel": "https://www.infrastructure.gov.au/territories-regions-cities/territories/indian-ocean-territories/cocos-keeling-islands/travel-information"
+    "govTravel": "https://www.infrastructure.gov.au/territories-regions-cities/territories/indian-ocean-territories/cocos-keeling-islands/travel-information",
+    "cocosMalays": "https://en.wikipedia.org/wiki/Cocos_Malays",
+    "qantasHuts": "https://en.wikipedia.org/wiki/Qantas_Huts"
   },
   "nextRegion": {
-    "slug": "christmas-island",
-    "nameJa": "クリスマス島"
+    "slug": "norfolk-island",
+    "nameEn": "NORFOLK ISLAND",
+    "nameJa": "ノーフォーク島"
+  },
+  "capital": {
+    "nameJa": "ウェスト島",
+    "labelJa": "首府",
+    "coordinates": {
+      "latitude": -12.1568,
+      "longitude": 96.8225
+    },
+    "labelPosition": "right",
+    "labelOffset": {
+      "x": 0,
+      "y": 0
+    },
+    "sourceKey": "govOverview"
   }
 }
