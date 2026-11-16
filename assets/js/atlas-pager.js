@@ -1,5 +1,5 @@
 // 図鑑のページ送り: Country pages turn like the pages of an atlas.
-// Order comes from atlas-order.js (chapters by region → subregion, A–Z inside a chapter). Adds (1) a 「前の国 / 次の国」 spread with a folio (e.g. 12 / 200) above the
+// Order comes from atlas-order.js (chapters by region → subregion, A–Z inside a chapter). Adds (1) a 「前のページ / 次のページ」 spread with a folio (e.g. 12 / 200) above the
 // site footer, (2) slim edge tabs on wide screens and (3) ← / → keys. The next page is prefetched.
 (()=>{
   const slug=document.documentElement.dataset.country||new URLSearchParams(location.search).get('country');
@@ -30,8 +30,8 @@
     const kicker=wraps
       ?(dir==='next'?'はじめのページへ':'最後のページへ')
       :dir==='next'
-        ?(newChapter?`次の章　${page.chapter.label}`:'次の国')
-        :(newChapter?`前の章　${page.chapter.label}`:'前の国');
+        ?(newChapter?`次の章　${page.chapter.label}`:'次のページ')
+        :(newChapter?`前の章　${page.chapter.label}`:'前のページ');
     a.setAttribute('aria-label',`${kicker}：${page.nameJa}`);
     const art=el('span','atlas-pager__art');
     if(page.image){
@@ -66,7 +66,7 @@
     [['prev',prev,'‹'],['next',next,'›']].forEach(([dir,page,arrow])=>{
       const a=el('a',`atlas-pager-tab atlas-pager-tab--${dir}`);
       a.href=page.href;
-      a.setAttribute('aria-label',`${dir==='next'?'次の国':'前の国'}：${page.nameJa}`);
+      a.setAttribute('aria-label',`${dir==='next'?'次のページ':'前のページ'}：${page.nameJa}`);
       a.append(el('span','atlas-pager-tab__arrow',arrow),el('span','atlas-pager-tab__name',page.nameEn));
       document.body.append(a);
     });

@@ -237,7 +237,7 @@ coreRegistryPromise
       }
       if(searchInput?.value.trim())searchInput.dispatchEvent(new Event('input'));
     });
-    if(count) count.textContent=`${destinations.length} COUNTRY PAGES`;
+    if(count) count.textContent=`${destinations.length} DESTINATIONS`;
     renderRail(destinations);
     // The A–Z panel starts hidden; build its cards only after the visitor opens it.
     if(allPanel&&!allPanel.hidden)renderGrid(destinations);
@@ -695,7 +695,7 @@ function makeWishlistFilterButton(section,selected){
   button.dataset.wishFilter=section;
   button.classList.toggle('is-active',selected);
   button.setAttribute('aria-pressed',String(selected));
-  button.setAttribute('aria-label','Wishリストに保存した国・地域だけを表示');
+  button.setAttribute('aria-label','Wishリストに保存した旅先だけを表示');
   button.textContent=(selected?'♥':'♡')+' Wishリスト';
   return button;
 }
@@ -784,15 +784,15 @@ wishButton?.addEventListener('click',()=>{
   if(!countryWishes.length){
     showToast(wished.length
       ? '詳細地域のWishリストはマイアトラスで確認できます。'
-      : '国のWishリストはまだありません。国ページから追加できます。');
+      : '200件の旅先のWishリストはまだありません。国ページから追加できます。');
     return;
   }
   setAllPanel(true,false);
   if(searchInput)searchInput.value='';
   document.querySelector('#countries')?.classList.remove('is-searching');
-  if(allTitle)allTitle.textContent='行ってみたい国・地域 '+countryWishes.length+'件';
+  if(allTitle)allTitle.textContent='行きたい旅先 '+countryWishes.length+'件';
   renderGrid(countryWishes);
-  showToast(countryWishes.length+'件の行ってみたい国・地域を表示しています。詳細地域はマイアトラスで確認できます。');
+  showToast(countryWishes.length+'件の行きたい旅先を表示しています。詳細地域はマイアトラスで確認できます。');
 });
 document.querySelectorAll('[data-country-focus]').forEach((button)=>button.addEventListener('click',()=>focusCountry(button.dataset.countryFocus)));
 document.querySelectorAll('[data-theme]').forEach((button)=>button.addEventListener('click',()=>showTheme(button.dataset.theme)));
@@ -1037,7 +1037,7 @@ function renderSeasonResults(){
   const regionLabel=themeRegions.find((region)=>region.id===seasonRegion)?.label;
   if(seasonTitle)seasonTitle.textContent=`${seasonMonth}月におすすめの旅先`;
   if(seasonMeta)seasonMeta.textContent=regionLabel?`${regionLabel}　${items.length} / ${wished.length} DESTINATIONS`:`${items.length} DESTINATIONS`;
-  if(seasonEmpty){seasonEmpty.textContent=seasonWishesOnly?'この条件に合うWishリストの国・地域はありません。':'該当する国・地域がありません。';seasonEmpty.hidden=items.length!==0;}
+  if(seasonEmpty){seasonEmpty.textContent=seasonWishesOnly?'この条件に合うWishリストの旅先はありません。':'該当する国・地域がありません。';seasonEmpty.hidden=items.length!==0;}
   seasonResults.hidden=false;
   saveTopState();
 }

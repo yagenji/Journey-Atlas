@@ -67,6 +67,16 @@ def collect_dom_audit(driver, viewport: dict) -> dict:
     )
     path = urlparse(driver.current_url).path
     audit["atlasFolioSlug"] = path.split("/countries/", 1)[-1].split("/", 1)[0]
+    audit["destinationCopy"] = driver.execute_script("""
+        return {
+            signature: document.querySelector('#signature-facts-title')?.textContent.trim(),
+            scenery: document.querySelector('.scenes-heading h2')?.textContent.trim(),
+            encounters: document.querySelector('.encounter-strip h3')?.textContent.trim(),
+            wish: document.querySelector('#wish-button strong')?.textContent.trim(),
+            visited: document.querySelector('#visited-button strong')?.textContent.trim(),
+            pager: [...document.querySelectorAll('.atlas-pager__kicker')].map(el => el.textContent.trim())
+        };
+    """)
     # China detail destinations must use the same Region layout language as
     # the United Kingdom's four sub-Country pages on every viewport.
     if audit["atlasFolioSlug"] in {"hong-kong", "macau"}:
@@ -175,8 +185,22 @@ def assert_audit(audit: dict, bg_checks: list[dict], browser_errors: list[dict])
             errors.append(f"{slug} Region wish-button label differs: {layout.get('wish')!r}")
         if layout.get("overflow", 0) > 2:
             errors.append(f"{slug} Region layout horizontal overflow: {layout['overflow']}px")
-    elif not isinstance(folio, str) or not folio.endswith(" / 200"):
-        errors.append(f"Country Page folio must use canonical 200 denominator: {slug} {folio!r}")
+    else:
+        if not isinstance(folio, str) or not folio.endswith(" / 200"):
+            errors.append(f"Country Page folio must use canonical 200 denominator: {slug} {folio!r}")
+        copy = audit.get("destinationCopy") or {}
+        if copy.get("signature") != "この土地を知る数字":
+            errors.append(f"Country signature heading mismatch: {slug} {copy.get('signature')!r}")
+        if copy.get("encounters") != "ここで出会えるもの":
+            errors.append(f"Country encounter heading mismatch: {slug} {copy.get('encounters')!r}")
+        if not (copy.get("scenery") or "").startswith("ここで見たい景色 "):
+            errors.append(f"Country scenery heading mismatch: {slug} {copy.get('scenery')!r}")
+        if copy.get("wish") not in {"ここに行きたい", "行きたい旅先に保存しました"}:
+            errors.append(f"Country wish label mismatch: {slug} {copy.get('wish')!r}")
+        if copy.get("visited") not in {"ここに行った", "ここに行きました"}:
+            errors.append(f"Country visited label mismatch: {slug} {copy.get('visited')!r}")
+        if any(("次の国" in label or "前の国" in label) for label in copy.get("pager", [])):
+            errors.append(f"Country pager has old country labels: {slug} {copy.get('pager')!r}")
     return errors
 
 

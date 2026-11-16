@@ -95,8 +95,21 @@ def check(driver, viewport):
     if driver.find_elements(By.CSS_SELECTOR, "#country-detail-regions, .top-subregions"):
         errors.append("Obsolete regional link strip remains on TOP")
 
-    if driver.find_element(By.ID, "country-count").text.strip() != "200 COUNTRY PAGES":
+    if driver.find_element(By.CSS_SELECTOR, "#my-atlas .ja-atlas-intro").text.strip() != "世界地図を塗って、行った旅先と行きたい旅先を振り返る":
+        errors.append("My Atlas intro uses outdated labels")
+    if driver.find_element(By.ID, "country-count").text.strip() != "200 DESTINATIONS":
         errors.append("TOP parent count is not 200")
+
+    # The canonical order is unchanged: South Korea turns to Taiwan on page 6.
+    atlas_order = driver.execute_async_script("""
+      const done = arguments[0];
+      window.JourneyAtlasOrder.load().then(({pages}) => {
+        const i = pages.findIndex(page => page.slug === 'southkorea');
+        done({count: pages.length, next: pages[i + 1]?.slug});
+      }).catch(error => done({error: String(error)}));
+    """)
+    if atlas_order != {"count": 200, "next": "taiwan"}:
+        errors.append("Canonical pager order changed: " + repr(atlas_order))
 
     # TOP's shared Region runtime index must include all newly published
     # Regions while keeping the canonical 200 parent count intact.
@@ -239,6 +252,7 @@ def check(driver, viewport):
         out[kind] = card ? {
           country: card.querySelector('strong')?.textContent,
           label: card.querySelector('.ja-summary-detail__label')?.textContent,
+          mainLabel: card.querySelector(':scope > small')?.textContent,
           detail: card.querySelector('.ja-summary-detail__count')?.textContent
         } : null;
       }
@@ -246,6 +260,10 @@ def check(driver, viewport):
     """)
     visited_summary = summary_snapshot.get("visited") or {}
     wished_summary = summary_snapshot.get("wished") or {}
+    if visited_summary.get("mainLabel") != "行った旅先":
+        errors.append("Visited destination label mismatch: " + repr(summary_snapshot))
+    if wished_summary.get("mainLabel") != "行きたい旅先":
+        errors.append("Wished destination label mismatch: " + repr(summary_snapshot))
     if (not (visited_summary.get("country") or "").endswith(" / 200")
             or visited_summary.get("label") != "行った詳細地域"
             or visited_summary.get("detail") != "0 / " + str(expected_regions)):

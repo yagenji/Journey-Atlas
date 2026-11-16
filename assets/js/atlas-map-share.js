@@ -159,8 +159,8 @@
       preview.hidden = true;
       saveButton.hidden = shareButton.hidden = true;
       note.textContent = mode === 'wished'
-        ? '行きたい国を登録すると、塗られた世界地図を画像にできます。'
-        : '行った国・地域を登録すると、塗られた世界地図を画像にできます。';
+        ? '行きたい旅先を登録すると、塗られた世界地図を画像にできます。'
+        : '行った旅先を登録すると、塗られた世界地図を画像にできます。';
       return;
     }
     saveButton.hidden = false;
@@ -188,7 +188,7 @@
   async function share() {
     const count = data.countries.filter(country => !data.isDetail(country) && (mode === 'wished' ? data.isWished : data.isVisited)(country)).length;
     const total = data.countries.filter(country => !data.isDetail(country)).length;
-    const label = mode === 'wished' ? '行きたい国・地域' : '行った国・地域';
+    const label = mode === 'wished' ? '行きたい旅先' : '行った旅先';
     try {
       await navigator.share({
         files: [file],

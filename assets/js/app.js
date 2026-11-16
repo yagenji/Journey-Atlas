@@ -890,8 +890,8 @@ function initVisitedButton(countrySlug, isRegion = false) {
     button.classList.toggle('is-saved', done);
     button.setAttribute('aria-pressed', String(done));
     button.querySelector('strong').textContent = done
-      ? (isRegion ? 'この地域に行きました' : 'この国に行きました')
-      : (isRegion ? 'この地域に行った' : 'この国に行った');
+      ? (isRegion ? 'この地域に行きました' : 'ここに行きました')
+      : (isRegion ? 'この地域に行った' : 'ここに行った');
     button.querySelector('.wish-icon').textContent = done ? '✓' : '○';
   };
   render();
@@ -923,8 +923,8 @@ function initWishButton(countrySlug, isRegion = false) {
     button.classList.toggle('is-saved', wished);
     button.querySelector('.wish-icon').textContent = wished ? '♥' : '♡';
     button.querySelector('strong').textContent = wished
-      ? (isRegion ? '行きたい地域に保存しました' : '行きたい国に保存しました')
-      : (isRegion ? 'この地域に行きたい' : 'この国に行きたい');
+      ? (isRegion ? '行きたい地域に保存しました' : '行きたい旅先に保存しました')
+      : (isRegion ? 'この地域に行きたい' : 'ここに行きたい');
     button.setAttribute('aria-pressed', String(wished));
   };
   update();
