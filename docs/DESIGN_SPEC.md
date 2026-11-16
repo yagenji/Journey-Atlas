@@ -74,7 +74,7 @@ Country Page
 ├── Atlas Panel
 │   ├── 旅の地図
 │   ├── 地図上の①〜⑧
-│   ├── この国で見たい景色8選
+│   ├── ここで見たい景色8選
 │   └── この国で出会えるもの
 │
 ├── Travel Information

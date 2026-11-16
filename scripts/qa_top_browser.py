@@ -238,6 +238,7 @@ def check(driver, viewport):
         const card = document.querySelector('[data-summary-kind="' + kind + '"]');
         out[kind] = card ? {
           country: card.querySelector('strong')?.textContent,
+          name: card.querySelector('small')?.textContent,
           label: card.querySelector('.ja-summary-detail__label')?.textContent,
           detail: card.querySelector('.ja-summary-detail__count')?.textContent
         } : null;
@@ -247,13 +248,17 @@ def check(driver, viewport):
     visited_summary = summary_snapshot.get("visited") or {}
     wished_summary = summary_snapshot.get("wished") or {}
     if (not (visited_summary.get("country") or "").endswith(" / 200")
+            or visited_summary.get("name") != "行った旅先"
             or visited_summary.get("label") != "行った詳細地域"
             or visited_summary.get("detail") != "0 / " + str(expected_regions)):
         errors.append("Visited card has wrong detail subtotal: " + repr(summary_snapshot))
     if (not (wished_summary.get("country") or "").endswith(" / 200")
+            or wished_summary.get("name") != "行きたい旅先"
             or wished_summary.get("label") != "行きたい詳細地域"
             or wished_summary.get("detail") != "1 / " + str(expected_regions)):
         errors.append("Wish card has wrong detail subtotal: " + repr(summary_snapshot))
+    if "行きたい旅先" not in driver.find_element(By.ID, "wish-link").text:
+        errors.append("TOP Wish shortcut retained country-only label")
     if driver.find_elements(By.CSS_SELECTOR, ".ja-detail-summary"):
         errors.append("Obsolete combined detail subtotal remains below cards")
     driver.execute_script(

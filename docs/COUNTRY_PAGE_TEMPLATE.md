@@ -9,7 +9,7 @@ Icelandを基準に、以後の国・地域ページを同じ構造で制作す�
 1. Header / utility navigation
 2. Hero
 3. 旅の地図
-4. この国で見たい景色
+4. ここで見たい景色
 5. その国で出会えるもの
 6. Beyond the Scenery
 7. Taste
@@ -18,7 +18,7 @@ Icelandを基準に、以後の国・地域ページを同じ構造で制作す�
 10. 旅するなら（旅の目安日程 / 季節 / 移動）
 11. NEXT ROUTES（0〜3件、成立する国のみ）
 12. NEXT DESTINATIONS
-13. 行きたい国保存
+13. 行きたい旅先を保存
 14. JOURNEY LENS
 15. Footer
 
@@ -166,7 +166,7 @@ Country最終QAでは次を確認する。
 
 - localStorage保存を維持。
 - account / loginは現段階では不要。
-- top pageの行きたい国表示と同じstorage keyを使う。
+- top pageの行きたい旅先表示と同じstorage keyを使う。
 
 ## 8. Navigation
 
