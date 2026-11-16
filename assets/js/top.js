@@ -237,7 +237,7 @@ coreRegistryPromise
       }
       if(searchInput?.value.trim())searchInput.dispatchEvent(new Event('input'));
     });
-    if(count) count.textContent=`${destinations.length} COUNTRY PAGES`;
+    if(count) count.textContent=`${destinations.length} DESTINATIONS`;
     renderRail(destinations);
     // The A–Z panel starts hidden; build its cards only after the visitor opens it.
     if(allPanel&&!allPanel.hidden)renderGrid(destinations);
