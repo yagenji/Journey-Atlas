@@ -33,8 +33,8 @@
   modes.setAttribute('aria-label', '地図の表示');
   const stage = make('div', 'ja-mymap__stage');
   const hint = make('p', 'ja-mymap__hint', TOUCH
-    ? '国をタップで「行った国」に印 ・ 2本指で移動・拡大'
-    : '国をクリックで「行った国」に印 ・ ホイールで拡大縮小 ・ ドラッグで移動');
+    ? '地図をタップして「行った旅先」に登録 ・ 2本指で移動・拡大'
+    : '地図をクリックして「行った旅先」に登録 ・ ホイールで拡大縮小 ・ ドラッグで移動');
   const status = make('p', 'ja-mymap__status');
   status.setAttribute('role', 'status');
   const share = make('button', 'ja-tool-button ja-mymap__share', '地図を画像にして共有');
@@ -117,7 +117,7 @@
         box.type = 'checkbox';
         box.dataset.visitedSlug = country.slug;
         box.checked = isVisited(country);
-        box.setAttribute('aria-label', country.nameJa + 'を行った国・地域にする');
+        box.setAttribute('aria-label', country.nameJa + 'を行った旅先にする');
         const flagMark = make('span', 'map-country-nav__flag', country.flag);
         flagMark.setAttribute('aria-hidden', 'true');
         const names = make('span', 'map-country-nav__names');
@@ -142,7 +142,7 @@
     const empty = picker.querySelector('.map-mine__no-results');
     empty.hidden = countries.length > 0;
     empty.textContent = visitedOnly && !needle
-      ? '行った国・地域はまだありません。「行った国・地域だけ表示」を外して追加できます。'
+      ? '行った旅先はまだありません。「行った旅先だけ表示」を外して追加できます。'
       : '該当する国・地域がありません。';
     rows.scrollTop = scrollTop;
     if (activeSlug) (rows.querySelector(`[data-visited-slug="${activeSlug}"]`) || picker.querySelector('[data-mine-filter]')).focus({preventScroll: true});
@@ -159,7 +159,7 @@
     }
     paint();
     renderCountries();
-    status.textContent = on ? country.nameJa + 'を「行った国」にしました' : country.nameJa + 'の印を外しました';
+    status.textContent = on ? country.nameJa + 'を行った旅先に記録しました' : country.nameJa + 'の印を外しました';
     // Same-tab writes fire no storage event; keep マイアトラス's lists in step.
     window.dispatchEvent(new StorageEvent('storage', {key: visitedKey(country.slug)}));
   }
@@ -169,18 +169,18 @@
     input.type = 'search';
     input.placeholder = '国・地域名で検索（例：マカオ）';
     input.autocomplete = 'off';
-    input.setAttribute('aria-label', '行った国・地域を検索');
-    search.append(make('span', '', '行った国・地域を選ぶ'), input);
+    input.setAttribute('aria-label', '行った旅先を検索');
+    search.append(make('span', '', '行った旅先を選ぶ'), input);
     const filter = make('label', 'map-mine__filter');
     const only = make('input');
     only.type = 'checkbox';
     only.dataset.mineFilter = '';
-    filter.append(only, document.createTextNode('行った国・地域だけ表示'));
+    filter.append(only, document.createTextNode('行った旅先だけ表示'));
     const count = make('p', 'map-mine__result-count');
     count.setAttribute('aria-live', 'polite');
     const rows = make('div', 'map-mine__countries');
     rows.setAttribute('role', 'group');
-    rows.setAttribute('aria-label', '行った国・地域の選択');
+    rows.setAttribute('aria-label', '行った旅先の選択');
     const empty = make('p', 'map-mine__no-results map-mine__empty');
     empty.hidden = true;
     picker.append(search, filter, count, rows, empty);
@@ -196,7 +196,7 @@
     svg.setAttribute('class', 'ja-mymap__map');
     svg.setAttribute('viewBox', view.join(' '));
     svg.setAttribute('role', 'img');
-    svg.setAttribute('aria-label', '行った国を塗る世界地図。国名の一覧からも選べます。');
+    svg.setAttribute('aria-label', '行った旅先を塗る世界地図。国・地域名の一覧からも選べます。');
     const ocean = document.createElementNS(NS, 'rect');
     ocean.setAttribute('width', WORLD[2]);
     ocean.setAttribute('height', WORLD[3]);
