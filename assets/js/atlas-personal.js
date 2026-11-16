@@ -274,8 +274,8 @@
     const detailTotal = publishedRegionCount === null ? null : publishedRegionCount + all.filter(c => detailSlugs.has(c.slug)).length;
     summary.replaceChildren();
     [
-      ['VISITED', seen.length, '行った国・地域', detailVisitCount, '行った詳細地域', 'visited'],
-      ['WISHLIST', want.length, '行きたい国・地域', detailWishCount, '行きたい詳細地域', 'wished']
+      ['VISITED', seen.length, '行った旅先', detailVisitCount, '行った詳細地域', 'visited'],
+      ['WISHLIST', want.length, '行きたい旅先', detailWishCount, '行きたい詳細地域', 'wished']
     ].forEach(([tag, count, name, detailCount, detailName, kind]) => {
       const item = make('div', 'ja-summary-item');
       item.dataset.summaryKind = kind;
@@ -289,11 +289,11 @@
     });
     const seenColumn = make('div', 'ja-mine-column');
     const wantColumn = make('div', 'ja-mine-column');
-    seenColumn.append(sectionFor('行った国・地域', seen, '国ページの「この国に行った」または地図から登録できます。', true));
+    seenColumn.append(sectionFor('行った旅先', seen, '国ページの「ここに行った」または地図から登録できます。', true));
     if (detailSeen.length || regionVisits.length) seenColumn.append(
       sectionFor('行った詳細地域', [...detailSeen,...regionVisits.map(w => ({...w,...regionFlag(w)}))], '')
     );
-    wantColumn.append(sectionFor('行きたい国・地域', want, '国ページの「この国に行きたい」で登録できます。', true));
+    wantColumn.append(sectionFor('行きたい旅先', want, '国ページの「ここに行きたい」で登録できます。', true));
     if (detailWant.length || regionWishes.length) wantColumn.append(
       sectionFor('行きたい詳細地域', [...detailWant,...regionWishes.map(w => ({...w,...regionFlag(w)}))], '')
     );
