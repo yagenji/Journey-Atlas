@@ -73,6 +73,9 @@
 
 .map-country-nav{margin-top:13px}
 .map-country-nav__wrap{display:flex;flex-direction:column;min-height:0}
+.map-country-nav__world-back{display:inline-flex;align-items:center;align-self:flex-start;min-height:44px;margin:0 0 9px;padding:9px 12px;border:1px solid rgba(35,72,102,.2);border-radius:9px;background:#fffdf8;color:#234866;font:600 11px/1.4 var(--jp);cursor:pointer;transition:background .14s ease,border-color .14s ease}
+.map-country-nav__world-back:hover{background:rgba(35,72,102,.07);border-color:rgba(35,72,102,.36)}
+.map-country-nav__world-back:focus-visible{outline:2px solid #234866;outline-offset:2px}
 .map-country-nav__selected{display:grid;grid-template-columns:34px minmax(0,1fr) auto;gap:8px;align-items:center;margin-bottom:10px;padding:9px 10px;border:1px solid color-mix(in srgb,var(--map-accent) 18%,#dde4e0);border-radius:10px;background:color-mix(in srgb,var(--map-accent) 6%,white)}
 .map-country-nav__selected-flag{font-size:21px;line-height:1}
 .map-country-nav__selected-names{min-width:0}
