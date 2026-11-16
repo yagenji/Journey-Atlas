@@ -790,9 +790,9 @@ wishButton?.addEventListener('click',()=>{
   setAllPanel(true,false);
   if(searchInput)searchInput.value='';
   document.querySelector('#countries')?.classList.remove('is-searching');
-  if(allTitle)allTitle.textContent='行ってみたい国・地域 '+countryWishes.length+'件';
+  if(allTitle)allTitle.textContent='行きたい旅先 '+countryWishes.length+'件';
   renderGrid(countryWishes);
-  showToast(countryWishes.length+'件の行ってみたい国・地域を表示しています。詳細地域はマイアトラスで確認できます。');
+  showToast(countryWishes.length+'件の行きたい旅先を表示しています。詳細地域はマイアトラスで確認できます。');
 });
 document.querySelectorAll('[data-country-focus]').forEach((button)=>button.addEventListener('click',()=>focusCountry(button.dataset.countryFocus)));
 document.querySelectorAll('[data-theme]').forEach((button)=>button.addEventListener('click',()=>showTheme(button.dataset.theme)));
