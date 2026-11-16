@@ -1,4 +1,5 @@
-"""旅の目安日程は、段と段の間に空白の日数を作らない（例：8〜12日の次は13日〜）。"""
+"""旅の目安日程は、段と段の間に空白の日数を作らず（例：8〜12日の次は13日〜）、
+一つの段の幅は最大3日差（例：7〜10日）までにする。"""
 import json
 import re
 import unittest
@@ -33,6 +34,8 @@ class TravelScaleContinuity(unittest.TestCase):
                     self.assertIsNotNone(end)
                     self.assertEqual(next_start, end + 1, [i['duration'] for i in items])
                 self.assertIsNone(tiers[-1][1], '最後の段は「N日以上」')
+                for start, end in tiers[:-1]:
+                    self.assertLessEqual(end - start, 3, [i['duration'] for i in items])
 
 
 if __name__ == '__main__':
