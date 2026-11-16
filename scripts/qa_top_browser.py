@@ -167,10 +167,8 @@ def check(driver, viewport):
     # A region's Country list must offer a visible return to the World list
     # without requiring mobile users to scroll back up past the map.
     for region_id in ("asia", "north-america"):
-        driver.execute_script(
-            "document.querySelector('[data-map-tab=\\\"" + arguments[0] + "\\\"]').click()",
-            region_id,
-        )
+        driver.execute_script("arguments[0].click()", driver.find_element(
+            By.CSS_SELECTOR, f'#map [data-map-tab="{region_id}"]'))
         wait.until(lambda d: bool(d.find_elements(
             By.CSS_SELECTOR, "#map .map-country-nav__world-back")))
         if region_id == "asia":
