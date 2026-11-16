@@ -71,6 +71,7 @@ def collect_dom_audit(driver, viewport: dict) -> dict:
         return {
             signature: document.querySelector('#signature-facts-title')?.textContent.trim(),
             scenery: document.querySelector('.scenes-heading h2')?.textContent.trim(),
+            encounters: document.querySelector('.encounter-strip h3')?.textContent.trim(),
             wish: document.querySelector('#wish-button strong')?.textContent.trim(),
             visited: document.querySelector('#visited-button strong')?.textContent.trim(),
             pager: [...document.querySelectorAll('.atlas-pager__kicker')].map(el => el.textContent.trim())
@@ -190,6 +191,8 @@ def assert_audit(audit: dict, bg_checks: list[dict], browser_errors: list[dict])
         copy = audit.get("destinationCopy") or {}
         if copy.get("signature") != "この土地を知る数字":
             errors.append(f"Country signature heading mismatch: {slug} {copy.get('signature')!r}")
+        if copy.get("encounters") != "ここで出会えるもの":
+            errors.append(f"Country encounter heading mismatch: {slug} {copy.get('encounters')!r}")
         if not (copy.get("scenery") or "").startswith("ここで見たい景色 "):
             errors.append(f"Country scenery heading mismatch: {slug} {copy.get('scenery')!r}")
         if copy.get("wish") not in {"ここに行きたい", "行きたい旅先に保存しました"}:
