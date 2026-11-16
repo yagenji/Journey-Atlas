@@ -161,7 +161,8 @@
     const rows = groups
       ? groups.map(g => `<div class="map-country-nav__chapter"><span>${g.chapter.label}</span><small>${g.chapter.first === g.chapter.last ? g.chapter.first : `${g.chapter.first}–${g.chapter.last}`}</small></div>${g.items.map(item).join('')}`).join('')
       : a.map(item).join('');
-    list.innerHTML = `<div class="map-country-nav__wrap">${selectedCard}<div class="map-country-nav__guide"><strong>国・地域</strong><span>地図と連動します</span></div><div class="map-country-nav__list">${rows}</div></div>`;
+    list.innerHTML = `<div class="map-country-nav__wrap"><button type="button" class="map-country-nav__world-back" data-map-world-back>← 世界に戻る</button>${selectedCard}<div class="map-country-nav__guide"><strong>国・地域</strong><span>地図と連動します</span></div><div class="map-country-nav__list">${rows}</div></div>`;
+    list.querySelector('[data-map-world-back]')?.addEventListener('click', () => setRegion('world'));
     list.querySelector('[data-clear-selection]')?.addEventListener('click', deselect);
     list.querySelectorAll('[data-n]').forEach(b => {
       nav.set(b.dataset.n, b);
