@@ -164,6 +164,42 @@ def check(driver, viewport):
     if "unitedstates/puerto-rico/" not in north_america_links:
         errors.append("TOP map child Region link missing: unitedstates/puerto-rico")
 
+    # A region's Country list must offer a visible return to the World list
+    # without requiring mobile users to scroll back up past the map.
+    for region_id in ("asia", "north-america"):
+        driver.execute_script("arguments[0].click()", driver.find_element(
+            By.CSS_SELECTOR, f'#map [data-map-tab="{region_id}"]'))
+        wait.until(lambda d: bool(d.find_elements(
+            By.CSS_SELECTOR, "#map .map-country-nav__world-back")))
+        if region_id == "asia":
+            driver.execute_script(
+                "document.querySelector('#map .map-subregion-tabs [data-s]')?.click()"
+            )
+            wait.until(lambda d: bool(d.execute_script(
+                "return document.querySelector('#map').dataset.activeSubregion")))
+        back = driver.find_element(By.CSS_SELECTOR, "#map .map-country-nav__world-back")
+        if back.text.strip() != "← 世界に戻る":
+            errors.append("TOP map world return label incorrect")
+        if not driver.execute_script(
+                "return arguments[0].parentElement.firstElementChild === arguments[0]", back):
+            errors.append("TOP map world return is not first in Country list")
+        if driver.execute_script(
+                "return arguments[0].getBoundingClientRect().height", back) < 44:
+            errors.append("TOP map world return touch target is too small")
+        driver.execute_script("arguments[0].click()", back)
+        wait.until(lambda d: d.find_element(By.ID, "map-region-title").text == "世界")
+        if not driver.find_elements(By.CSS_SELECTOR, "#map .map-world-regions__item"):
+            errors.append("TOP map world Region list missing after return")
+        if driver.execute_script("""
+            const map = document.querySelector('#map');
+            const params = new URL(location.href).searchParams;
+            return map.dataset.activeRegion !== 'world' ||
+                !!map.dataset.activeSubregion ||
+                params.has('map') || params.has('sub') ||
+                document.querySelector('[data-map-tab="world"]').getAttribute('aria-pressed') !== 'true';
+        """):
+            errors.append("TOP map world return did not reset map/URL selection")
+
     # Theme browsing must include Region destinations without inflating the
     # canonical 200 parent count.
     driver.execute_script('arguments[0].click()', driver.find_element(By.CSS_SELECTOR, '[data-theme="city"]'))
