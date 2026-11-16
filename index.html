@@ -85,13 +85,13 @@
     @media(max-width:420px){.ja-summary-item .ja-summary-detail__label{font-size:10px}.ja-summary-item .ja-summary-detail__count{font-size:13px}}
   </style>
   <script src="assets/js/atlas-order.js?v=20261029-1" defer></script>
-  <script src="assets/js/top.js?v=20261114-country-label-2" defer></script>
+  <script src="assets/js/top.js?v=20261116-neutral-copy-1" defer></script>
   <script src="assets/js/scene-view.js?v=20261109-1" defer></script>
   <script src="assets/js/map-regions.js?v=20261116-world-back-1" defer></script>
   <script src="assets/js/header-scroll.js?v=20260826-2241" defer></script>
-  <script src="assets/js/atlas-personal.js?v=20261114-detail-summary-2" defer></script>
-  <script src="assets/js/atlas-map-share.js?v=20261107-map-modes-1" defer></script>
-  <script src="assets/js/atlas-my-map.js?v=20261107-map-counts-2" defer></script>
+  <script src="assets/js/atlas-personal.js?v=20261116-neutral-copy-1" defer></script>
+  <script src="assets/js/atlas-map-share.js?v=20261116-neutral-copy-1" defer></script>
+  <script src="assets/js/atlas-my-map.js?v=20261116-neutral-copy-1" defer></script>
   <script src="about/site-counts.js?v=20261115-50-regions-1" defer></script>
 </head>
 <body>
@@ -149,7 +149,7 @@
       <a class="explore-card explore-card--country" href="#countries"><div class="explore-card__art explore-card__art--symbol" aria-hidden="true"><svg viewBox="0 0 64 64" focusable="false"><circle cx="32" cy="32" r="22"/><ellipse cx="32" cy="32" rx="10" ry="22"/><path d="M10 32h44M14 20h36M14 44h36"/></svg></div><div class="explore-card__copy"><div><span class="explore-card__kicker">EXPLORE BY COUNTRY</span><h2>国から探す</h2><p>200の国・地域から、次の旅先を見つける</p></div><b>›</b></div></a>
       <a class="explore-card explore-card--map" href="#map"><div class="explore-card__art explore-card__art--symbol" aria-hidden="true"><svg viewBox="0 0 64 64" focusable="false"><path d="m9 15 15-5 16 6 15-5v38l-15 5-16-6-15 5zM24 10v38M40 16v38"/></svg></div><div class="explore-card__copy"><div><span class="explore-card__kicker">EXPLORE BY MAP</span><h2>地図から探す</h2><p>世界地図から、気になる国を見つけよう</p></div><b>›</b></div></a>
       <a class="explore-card explore-card--theme" href="#themes"><div class="explore-card__art explore-card__art--symbol" aria-hidden="true"><svg viewBox="0 0 64 64" focusable="false"><circle cx="32" cy="32" r="22"/><path d="m42 22-6 14-14 6 6-14z"/></svg></div><div class="explore-card__copy"><div><span class="explore-card__kicker">EXPLORE BY THEME</span><h2>テーマから探す</h2><p>行きたい理由から、世界を選ぶ</p></div><b>›</b></div></a>
-      <a class="explore-card explore-card--season" href="#seasons"><div class="explore-card__art explore-card__art--symbol" aria-hidden="true"><svg viewBox="0 0 64 64" focusable="false"><rect x="11" y="14" width="42" height="40" rx="5"/><path d="M21 9v10M43 9v10M11 26h42M22 36h1M32 36h1M42 36h1M22 45h1M32 45h1"/></svg></div><div class="explore-card__copy"><div><span class="explore-card__kicker">EXPLORE BY SEASON</span><h2>季節から探す</h2><p>旅に出る月から、いま行きたい国を選ぶ</p></div><b>›</b></div></a>
+      <a class="explore-card explore-card--season" href="#seasons"><div class="explore-card__art explore-card__art--symbol" aria-hidden="true"><svg viewBox="0 0 64 64" focusable="false"><rect x="11" y="14" width="42" height="40" rx="5"/><path d="M21 9v10M43 9v10M11 26h42M22 36h1M32 36h1M42 36h1M22 45h1M32 45h1"/></svg></div><div class="explore-card__copy"><div><span class="explore-card__kicker">EXPLORE BY SEASON</span><h2>季節から探す</h2><p>旅に出る月から、いま行きたい旅先を選ぶ</p></div><b>›</b></div></a>
       <a class="explore-card explore-card--scenery" href="#scenery"><div class="explore-card__art explore-card__art--symbol" aria-hidden="true"><svg viewBox="0 0 64 64" focusable="false"><path d="m7 52 20-33 12 19 7-11 12 25zM21 29l6 5 6-5"/><circle cx="45" cy="14" r="5"/></svg></div><div class="explore-card__copy"><div><span class="explore-card__kicker">EXPLORE BY SCENERY</span><h2>景色から探す</h2><p>心に残る景色から、行き先に出会う</p></div><b>›</b></div></a>
     </section>
 
@@ -159,14 +159,14 @@
         <div class="country-head-actions">
           <label class="country-search country-search--head"><span aria-hidden="true">⌕</span><input id="country-search" type="search" placeholder="200の国・地域を検索（例：フィヨルド）" autocomplete="off" aria-label="国名や景色の名前で検索" enterkeyhint="search"></label>
           <button class="all-countries-toggle random-country-toggle" id="random-country" type="button">ランダムに国・地域を選ぶ <span>›</span></button>
-          <button class="all-countries-toggle wish-list-toggle" id="wish-link" type="button">♡ 行ってみたい国 <span>›</span></button>
+          <button class="all-countries-toggle wish-list-toggle" id="wish-link" type="button">♡ 行きたい旅先 <span>›</span></button>
           <button class="all-countries-toggle" id="all-countries-toggle" type="button" aria-expanded="false" aria-controls="all-countries-panel">索引（A–Z）を見る <span>›</span></button>
         </div>
       </div>
       <div class="rail-wrap">
-        <button class="rail-arrow rail-arrow--prev" type="button" data-country-scroll="prev" aria-label="前の国を見る">‹</button>
+        <button class="rail-arrow rail-arrow--prev" type="button" data-country-scroll="prev" aria-label="前の旅先を見る">‹</button>
         <div class="country-rail" id="country-rail" aria-label="200の国・地域"></div>
-        <button class="rail-arrow rail-arrow--next" type="button" data-country-scroll="next" aria-label="次の国を見る">›</button>
+        <button class="rail-arrow rail-arrow--next" type="button" data-country-scroll="next" aria-label="次の旅先を見る">›</button>
       </div>
       <div class="rail-meta"><div class="rail-dots" aria-hidden="true"><i class="is-active"></i><i></i><i></i><i></i><i></i><i></i><i></i></div><span id="country-count">200 COUNTRY PAGES</span></div>
       <div class="all-countries-panel" id="all-countries-panel" hidden>
@@ -308,7 +308,7 @@
       <summary class="ja-atlas-toggle">
         <span class="section-kicker">MY ATLAS</span>
         <span class="ja-atlas-title">マイアトラス</span>
-        <span class="ja-atlas-intro">世界地図を塗って、行った国・地域と行きたい国・地域を振り返る</span>
+        <span class="ja-atlas-intro">世界地図を塗って、行った旅先と行きたい旅先を振り返る</span>
       </summary>
       <div id="atlas-personal-home"></div>
     </details>
