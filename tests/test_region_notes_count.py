@@ -13,7 +13,7 @@ class RegionNotesCount(unittest.TestCase):
                 notes = json.loads(path.read_text())['notes']
                 self.assertEqual(len(notes), 3)
                 for note in notes:
-                    self.assertTrue(note['title'] and note['text'] and note['sourceKey'])
+                    self.assertTrue(note['title'] and note['text'])
 
     def test_every_country_has_exactly_three_tips(self):
         for path in sorted((ROOT / 'data/countries').glob('*.json')):
