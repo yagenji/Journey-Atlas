@@ -29,7 +29,6 @@ const themeRegionPromise=fetch('data/region-taxonomy.json')
   })
   .catch((error)=>console.warn('[JOURNEY ATLAS] Theme region filter unavailable.',error));
 const empty = document.querySelector('#country-empty');
-const wishButton = document.querySelector('#wish-link');
 const toast = document.querySelector('#top-toast');
 const dots = [...document.querySelectorAll('.rail-dots i')];
 const heroCollage = document.querySelector('#hero-collage');
@@ -699,9 +698,6 @@ function makeWishlistFilterButton(section,selected){
   button.textContent=(selected?'♥':'♡')+' Wishリスト';
   return button;
 }
-function getWishedSlugs(){
-  return [...destinations,...detailDestinations].filter(isWishedDestination).map(country=>country.slug);
-}
 let toastTimer;
 function showToast(message){if(!toast)return;toast.textContent=message;toast.hidden=false;window.clearTimeout(toastTimer);toastTimer=window.setTimeout(()=>{toast.hidden=true;},2600);}
 
@@ -778,22 +774,6 @@ searchInput?.addEventListener('keydown',(event)=>{
 });
 themeResultsSearch?.addEventListener('input',()=>{themeLimit=THEME_PAGE;renderThemeResults();});
 themeResultsClear?.addEventListener('click',clearThemeResults);
-wishButton?.addEventListener('click',()=>{
-  const wished=getWishedSlugs();
-  const countryWishes=destinations.filter(country=>wished.includes(country.slug));
-  if(!countryWishes.length){
-    showToast(wished.length
-      ? '詳細地域のWishリストはマイアトラスで確認できます。'
-      : '国のWishリストはまだありません。国ページから追加できます。');
-    return;
-  }
-  setAllPanel(true,false);
-  if(searchInput)searchInput.value='';
-  document.querySelector('#countries')?.classList.remove('is-searching');
-  if(allTitle)allTitle.textContent='行きたい旅先 '+countryWishes.length+'件';
-  renderGrid(countryWishes);
-  showToast(countryWishes.length+'件の行きたい旅先を表示しています。詳細地域はマイアトラスで確認できます。');
-});
 document.querySelectorAll('[data-country-focus]').forEach((button)=>button.addEventListener('click',()=>focusCountry(button.dataset.countryFocus)));
 document.querySelectorAll('[data-theme]').forEach((button)=>button.addEventListener('click',()=>showTheme(button.dataset.theme)));
 document.querySelector('[data-open-all]')?.addEventListener('click',()=>setAllPanel(true));
@@ -801,7 +781,7 @@ document.addEventListener('click',(event)=>{
   const button=event.target.closest('[data-letter]');if(!button)return;
   alphabetButtons().forEach((item)=>item.classList.toggle('is-active',item===button));
   const letter=button.dataset.letter;
-  const filtered=letter==='all'?destinations:letter==='#'?destinations.filter((country)=>!/[A-Z]/.test(country.nameEn[0])):destinations.filter((country)=>country.nameEn.startsWith(letter));
+  const filtered=letter==='all'?destinations:destinations.filter((country)=>country.nameEn.startsWith(letter));
   setAllPanel(true,false);
   if(searchInput)searchInput.value='';document.querySelector('#countries')?.classList.remove('is-searching');if(allTitle)allTitle.textContent=INDEX_TITLE;
   renderGrid(filtered);
