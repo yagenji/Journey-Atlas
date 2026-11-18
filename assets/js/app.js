@@ -136,8 +136,12 @@ function renderCountry(data, registry) {
   window.dispatchEvent(new CustomEvent('journeyatlas:countryready', { detail: data }));
 
   const scenes = data.scenes || [];
-  const requestedScene = getSceneFromHash(scenes) || scenes[0]?.id;
-  setActiveScene(requestedScene, false);
+  const linkedScene = getSceneFromHash(scenes);
+  setActiveScene(linkedScene || scenes[0]?.id, false);
+  // A shared scene link opens at that scene; the page is rendered after load, so the
+  // browser's own anchor jump cannot reach it.
+  if (linkedScene) requestAnimationFrame(() => document.querySelector(`.scene-card[data-scene="${linkedScene}"]`)?.scrollIntoView({ block: 'center' }));
+  else if (window.location.hash === '#hero-caption') requestAnimationFrame(() => document.querySelector('#hero-caption')?.scrollIntoView({ block: 'center' }));
 
   window.addEventListener('hashchange', () => {
     const sceneId = getSceneFromHash(scenes);
@@ -562,8 +566,10 @@ function setActiveScene(id, shouldScroll = false) {
 }
 
 function getSceneFromHash(scenes = []) {
+  // #{id} (scene taps) and #scene-{id} (shared links, same form as Region pages).
   const hash = decodeURIComponent(window.location.hash.replace(/^#/, ''));
-  return scenes.some((scene) => scene.id === hash) ? hash : null;
+  const id = scenes.some((scene) => scene.id === hash) ? hash : hash.replace(/^scene-/, '');
+  return scenes.some((scene) => scene.id === id) ? id : null;
 }
 
 function renderEncounters(fragment, items = []) {

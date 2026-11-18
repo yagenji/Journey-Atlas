@@ -75,6 +75,36 @@
     button.setAttribute('aria-label', label);
     button.title = label;
   };
+  // 景色のリンク共有: the phone's share sheet where available, otherwise copy the link.
+  // Country pages accept #scene-{id} (same form as Region pages) and #hero-caption.
+  const SHARE_ICON = '<svg viewBox="0 0 24 24" aria-hidden="true" focusable="false"><path d="M10 14a4.5 4.5 0 0 0 6.4 0l3.2-3.2a4.5 4.5 0 0 0-6.4-6.4L11.6 6"/><path d="M14 10a4.5 4.5 0 0 0-6.4 0l-3.2 3.2a4.5 4.5 0 0 0 6.4 6.4l1.6-1.6"/></svg>';
+  function makeShareButton(className, sceneName, country, fragmentId, status) {
+    const button = make('button', 'ja-scene-share ' + className);
+    button.type = 'button';
+    const label = sceneName + 'へのリンクを共有';
+    button.setAttribute('aria-label', label);
+    button.title = 'リンクを共有';
+    button.innerHTML = SHARE_ICON;
+    let resetTimer = 0;
+    button.addEventListener('click', async event => {
+      event.stopPropagation();
+      const url = location.origin + location.pathname + '#' + fragmentId;
+      const title = sceneName + '｜' + country.nameJa + '｜JOURNEY ATLAS';
+      if (navigator.share) {
+        try { await navigator.share({ title, url }); } catch { /* closed by the visitor */ }
+        return;
+      }
+      let ok = false;
+      try { await navigator.clipboard.writeText(url); ok = true; } catch { ok = false; }
+      status.textContent = ok ? 'リンクをコピーしました。' : 'リンクをコピーできませんでした。';
+      button.classList.toggle('is-copied', ok);
+      button.title = ok ? 'リンクをコピーしました' : 'リンクを共有';
+      window.clearTimeout(resetTimer);
+      resetTimer = window.setTimeout(() => { button.classList.remove('is-copied'); button.title = 'リンクを共有'; }, 2200);
+    });
+    button.addEventListener('keydown', event => event.stopPropagation());
+    return button;
+  }
   function mountCountry(country) {
     if (!country || !validId(country.slug) || document.querySelector('[data-ja-scene-save]')) return;
     const status = make('p', 'ja-scene-status');
@@ -107,7 +137,7 @@
         status.textContent = ok ? (existing ? '景色の保存を解除しました。' : 'お気に入りの景色に保存しました。') : 'このブラウザには保存できませんでした。';
       });
       button.addEventListener('keydown', event => event.stopPropagation());
-      card.append(button);
+      card.append(button, makeShareButton('ja-scene-share--card', scene.name, country, 'scene-' + scene.id, status));
     });
 
     // The Hero belongs to the same saved-scenery collection, but its heart lives
@@ -123,7 +153,7 @@
       updateSceneSaveButton(button, saved(), heroName);
       const row = make('div', 'ja-hero-favorite-row');
       heroTitle.replaceWith(row);
-      row.append(heroTitle, button);
+      row.append(heroTitle, button, makeShareButton('ja-scene-share--hero', heroName, country, 'hero-caption', status));
       button.addEventListener('click', () => {
         const existing = saved();
         const value = JSON.stringify({

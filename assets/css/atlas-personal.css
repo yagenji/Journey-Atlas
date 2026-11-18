@@ -182,3 +182,13 @@
 }
 /* Sized so the waved SVG's drawn flag matches Apple's emoji flags (about .89em wide, centred .38em above the baseline). */
 .ja-flag-img { display:inline-block; width:.9em; height:.9em; vertical-align:-.07em; }
+
+/* 景色のリンク共有 — a quiet companion to the heart, same circle, link glyph. */
+.ja-scene-share { display:grid; place-items:center; padding:0; border:1px solid rgba(180,189,191,.95); border-radius:50%; background:rgba(255,255,255,.94); color:#36566b; cursor:pointer; }
+.ja-scene-share svg { width:17px; height:17px; fill:none; stroke:currentColor; stroke-width:1.8; stroke-linecap:round; stroke-linejoin:round; }
+.ja-scene-share:hover { background:#fff; }
+.ja-scene-share:focus-visible { outline:2px solid #315c79; outline-offset:3px; }
+.ja-scene-share.is-copied { color:#2f6b52; border-color:#9fbfae; }
+.scene-card > .ja-scene-share--card { grid-area:image!important; justify-self:end!important; align-self:start!important; z-index:3; margin:59px 9px 0 0!important; width:34px; height:34px; min-width:34px; min-height:34px; box-shadow:0 1px 5px rgba(0,0,0,.12); }
+.ja-scene-share--hero { flex:0 0 auto; width:32px; height:32px; border-color:#b3c0c2; background:#fffdf8; }
+.ja-scene-share--hero:hover { background:#edf3f2; }
