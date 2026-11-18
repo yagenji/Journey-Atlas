@@ -354,6 +354,17 @@ def check(driver, viewport):
     driver.execute_script(
         "localStorage.removeItem('journey-atlas:wish:' + arguments[0])", theme_slug)
 
+    # 季節から探す opens on the visitor's current month without a ?month= in the URL.
+    driver.execute_script("document.querySelector('#seasons').scrollIntoView()")
+    this_month = driver.execute_script("return new Date().getMonth() + 1")
+    try:
+        wait.until(lambda d: d.find_elements(
+            By.CSS_SELECTOR, f'#season-months [data-season-month="{this_month}"][aria-pressed="true"]')
+            and d.find_elements(By.CSS_SELECTOR, "#season-results-grid .country-card"))
+    except Exception:
+        errors.append("Season search did not open on the current month")
+    if "month=" in driver.current_url:
+        errors.append("Default season month leaked into the URL: " + driver.current_url)
     driver.execute_script("arguments[0].click()", driver.find_element(
         By.CSS_SELECTOR, '#season-months [data-season-month="1"]'))
     wait.until(lambda d: len(d.find_elements(
