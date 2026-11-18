@@ -484,28 +484,79 @@ def clean_generated_country_pages() -> None:
         shutil.rmtree(output)
 
 
-def build_top_search_index() -> None:
-    """Scene names / descriptions and season notes per Country, for the top-page keyword search.
+def _search_row(data: dict, type_labels: dict[str, str], aliases: list[str]) -> dict:
+    """One searchable row for the top-page keyword search (Country or published Region).
 
-    Generated from data/countries/*.json on every build so it can never drift from the Country data.
+    s: scenes [name, local, description]   h: hero [name, location, description]
+    m: seasons [months, text]              c: capital names
+    f: dishes [name, local]                y: scene-type labels (hero + scenes)
+    x: trivia / extras titles              a: alternative names
     """
+    def text(value) -> str:
+        return str(value or "").strip()
+
+    scenes = [
+        [text(scene.get("name")), text(scene.get("nameLocal")), text(scene.get("description"))]
+        for scene in data.get("scenes", []) if scene.get("name")
+    ]
+    seasons = [
+        [text(season.get("months")), text(season.get("text"))]
+        for season in data.get("seasons", []) if season.get("text")
+    ]
+    row: dict = {"s": scenes, "m": seasons}
+    hero = data.get("hero") or {}
+    if hero.get("name"):
+        row["h"] = [text(hero.get("name")), text(hero.get("location")), text(hero.get("description"))]
+    capital = data.get("capital") or {}
+    capital_names = [text(capital.get("nameJa")), text(capital.get("nameEn"))]
+    if capital_names[0]:
+        row["c"] = capital_names
+    dishes = [
+        [text(item.get("name")), text(item.get("nameLocal"))]
+        for item in (data.get("taste") or {}).get("items", []) if item.get("name")
+    ]
+    if dishes:
+        row["f"] = dishes
+    types: list[str] = []
+    for scene in [hero, *data.get("scenes", [])]:
+        for type_id in scene.get("sceneTypes") or []:
+            label = type_labels.get(type_id)
+            if label and label not in types:
+                types.append(label)
+    if types:
+        row["y"] = types
+    titles = [
+        text(item.get("title"))
+        for key in ("travelTrivia", "atlasExtras")
+        for item in data.get(key) or [] if item.get("title")
+    ]
+    if titles:
+        row["x"] = titles
+    if aliases:
+        row["a"] = aliases
+    return row
+
+
+def build_top_search_index() -> None:
+    """Keyword index per Country / published Region for the top-page search.
+
+    Generated from data/countries/*.json and data/regions on every build so it can never
+    drift from the Country data. Alternative names come from data/search-aliases.json.
+    """
+    taxonomy = json.loads((ROOT / "data/scene-taxonomy.json").read_text(encoding="utf-8"))
+    type_labels = {t["id"]: t["label"] for group in taxonomy.get("groups", []) for t in group.get("types", [])}
+    alias_data = json.loads((ROOT / "data/search-aliases.json").read_text(encoding="utf-8"))
+    alias_map: dict[str, list[str]] = alias_data.get("aliases", {})
     countries: dict[str, dict] = {}
     for path in sorted((ROOT / "data/countries").glob("*.json")):
         data = json.loads(path.read_text(encoding="utf-8"))
         slug = data.get("slug")
         if not slug:
             continue
-        scenes = [
-            [str(scene.get("name", "")).strip(), str(scene.get("nameLocal", "")).strip(), str(scene.get("description", "")).strip()]
-            for scene in data.get("scenes", [])
-            if scene.get("name")
-        ]
-        seasons = [
-            [str(season.get("months", "")).strip(), str(season.get("text", "")).strip()]
-            for season in data.get("seasons", [])
-            if season.get("text")
-        ]
-        countries[slug] = {"s": scenes, "m": seasons}
+        countries[slug] = _search_row(data, type_labels, alias_map.get(slug, []))
+    unknown = sorted(set(alias_map) - set(countries))
+    if unknown:
+        raise ValueError(f"search-aliases.json has unknown slugs: {unknown}")
     # Published Region names, Scenes and seasonal notes are searchable from TOP
     # without adding them to the 200-Country list.
     for path in sorted((ROOT / "data/regions").glob("*/*.json")):
@@ -515,18 +566,8 @@ def build_top_search_index() -> None:
         slug = region["slug"]
         if slug in countries:
             raise ValueError(f"Region search slug collides with Country: {slug}")
-        countries[slug] = {
-            "s": [
-                [str(scene.get("name", "")).strip(), str(scene.get("nameLocal", "")).strip(),
-                 str(scene.get("description", "")).strip()]
-                for scene in region.get("scenes", []) if scene.get("name")
-            ],
-            "m": [
-                [str(season.get("months", "")).strip(), str(season.get("text", "")).strip()]
-                for season in region.get("seasons", []) if season.get("text")
-            ],
-        }
-    payload = {"version": 1, "countries": countries}
+        countries[slug] = _search_row(region, type_labels, [])
+    payload = {"version": 2, "countries": countries}
     (ROOT / "data/top-search-index.json").write_text(
         json.dumps(payload, ensure_ascii=False, separators=(",", ":")) + "\n", encoding="utf-8"
     )
