@@ -138,6 +138,23 @@ def check(driver, viewport):
     query.send_keys("フランス")
     wait.until(lambda d: d.execute_script(
         'return !!document.querySelector(\'#country-grid .country-card[data-slug="france"]\')'))
+    # Wider keywords (2026-11-18): detail regions lead to their parent, plus capitals,
+    # dishes and alternative names, each with a caption saying why the country appears.
+    for label, slug, caption in (
+        ("グリーンランド", "denmark", "詳細地域：グリーンランド"),
+        ("バンコク", "thailand", "首都：バンコク"),
+        ("カオソーイ", "thailand", "料理：カオソーイ"),
+        ("ビルマ", "myanmarburma", "別名：ビルマ"),
+        ("reykjavik", "iceland", "首都："),
+    ):
+        query.clear()
+        query.send_keys(label)
+        try:
+            wait.until(lambda d: caption in d.execute_script(
+                "const el = document.querySelector('#country-grid .country-card[data-slug=\"' + arguments[0] + '\"]');"
+                "return el ? el.innerText : '';", slug))
+        except Exception:
+            errors.append("Keyword search missed " + label + " -> " + slug + " (" + caption + ")")
     query.clear()
     query.send_keys(Keys.ESCAPE)
 

@@ -704,24 +704,38 @@ function showToast(message){if(!toast)return;toast.textContent=message;toast.hid
 prev?.addEventListener('click',()=>scrollRail(-1));next?.addEventListener('click',()=>scrollRail(1));rail?.addEventListener('scroll',()=>window.requestAnimationFrame(updateDots),{passive:true});
 toggleAll?.addEventListener('click',()=>setAllPanel(Boolean(allPanel?.hidden)));
 // Search box in the 国から探す header: English or Japanese (hiragana/katakana/full-width all match).
+// Spelling variants also meet: accents (Reykjavík = reykjavik), ヴァ/バ-style kana (ヴィ = ビ)
+// and long-vowel marks (レイキャヴィーク = レイキャビク).
+const VU_KANA={'ヴァ':'バ','ヴィ':'ビ','ヴェ':'ベ','ヴォ':'ボ','ヴ':'ブ'};
 function normalizeSearch(value){
-  return String(value||'').normalize('NFKC').toLowerCase()
+  return String(value||'').normalize('NFKC').normalize('NFKD').replace(/[\u0300-\u036f]/g,'').normalize('NFC').toLowerCase()
     .replace(/[\u3041-\u3096]/g,(ch)=>String.fromCharCode(ch.charCodeAt(0)+0x60))
-    .replace(/[\s・&'’.\-]/g,'');
+    .replace(/ヴ[ァィェォ]|ヴ/g,(kana)=>VU_KANA[kana])
+    .replace(/[\s・&'’.\-ー]/g,'');
 }
-// Keyword search: country names first, then the names of the eight scenes, then scene
-// descriptions and season notes (e.g. 「オーロラ」「フィヨルド」「紅葉」). The scene index is
-// generated from the Country data at build time and loaded on first use.
+// Keyword search, strongest match first: country names and alternative names, scene and hero
+// names, detail regions, capitals, dishes, scene types, trivia titles, then scene descriptions
+// and season notes. Every non-name match carries a short caption saying why the country appears.
+// The index is generated from the Country / Region data at build time and loaded on first use.
 let sceneIndex=null,sceneIndexPromise=null;
 function loadSceneIndex(){
   if(!sceneIndexPromise){
-    sceneIndexPromise=fetch('data/top-search-index.json?v=20261107-all-regions-1')
+    sceneIndexPromise=fetch('data/top-search-index.json?v=20261118-keywords-1')
       .then((response)=>{if(!response.ok)throw new Error('Search index not found');return response.json();})
       .then(({countries={}})=>{
-        sceneIndex=new Map(Object.entries(countries).map(([slug,row])=>[slug,{
-          scenes:(row.s||[]).map(([name,local,text])=>({name,key:normalizeSearch(`${name} ${local}`),text:normalizeSearch(text)})),
-          seasons:(row.m||[]).map(([months,text])=>({months,text,key:normalizeSearch(text)}))
-        }]));
+        sceneIndex=new Map(Object.entries(countries).map(([slug,row])=>{
+          const scenes=(row.s||[]).map(([name,local,text])=>({name,key:normalizeSearch(`${name} ${local}`),text:normalizeSearch(text)}));
+          if(row.h){const [name,location,text]=row.h;scenes.unshift({name,key:normalizeSearch(`${name} ${location}`),text:normalizeSearch(text)});}
+          return [slug,{
+            scenes,
+            seasons:(row.m||[]).map(([months,text])=>({months,text,key:normalizeSearch(text)})),
+            capital:row.c?{name:row.c[0],keys:row.c.filter(Boolean).map(normalizeSearch)}:null,
+            dishes:(row.f||[]).map(([name,local])=>({name,keys:[name,local].filter(Boolean).map(normalizeSearch)})),
+            types:(row.y||[]).map((label)=>({label,parts:[label,...label.split('・')].map(normalizeSearch)})),
+            titles:(row.x||[]).map((title)=>({title,key:normalizeSearch(title)})),
+            aliases:(row.a||[]).map((alias)=>({alias,key:normalizeSearch(alias)}))
+          }];
+        }));
         if(searchInput?.value.trim())searchInput.dispatchEvent(new Event('input'));
       })
       .catch((error)=>{console.warn('[JOURNEY ATLAS] Scene search unavailable.',error);});
@@ -730,26 +744,54 @@ function loadSceneIndex(){
 }
 searchInput?.addEventListener('focus',loadSceneIndex,{once:true});
 let searchCaptions=new Map();
+const clipCaption=(text,max=18)=>text.length>max?`${text.slice(0,max)}…`:text;
+// Best (lowest) tier at which one index row matches the query, with its caption.
+function matchSearchRow(row,query,label){
+  if(!row)return null;
+  const long=query.length>=2;
+  const hit=(key)=>key.startsWith(query)||(long&&key.includes(query));
+  const scene=long&&row.scenes.find((item)=>item.key.includes(query));
+  if(scene)return [2,`景色：${scene.name}`];
+  if(row.capital&&row.capital.keys.some(hit))return [4,`首都：${row.capital.name}`];
+  const dish=row.dishes.find((item)=>item.keys.some(hit));
+  if(dish)return [5,`料理：${dish.name}`];
+  const type=row.types.find((item)=>item.parts.some((part)=>part===query||(long&&part.startsWith(query))));
+  if(type)return [7,`景色の種類：${type.label}`];
+  const title=long&&row.titles.find((item)=>item.key.includes(query));
+  if(title)return [8,`話題：${clipCaption(title.title)}`];
+  const text=long&&row.scenes.find((item)=>item.text.includes(query));
+  if(text)return [9,`景色：${text.name}`];
+  const season=long&&row.seasons.find((item)=>item.key.includes(query));
+  if(season)return [10,`季節：${season.months}`];
+  return null;
+}
 function searchCountries(){
   const query=normalizeSearch(searchInput?.value);
   searchCaptions=new Map();
   if(!query)return destinations;
+  const long=query.length>=2;
   const scored=[];
   destinations.forEach((country)=>{
     const names=[country.nameJa,country.nameEn].map(normalizeSearch);
     if(names.some((name)=>name.startsWith(query))){scored.push([0,country]);return;}
     if(normalizeSearch(`${country.nameEn} ${country.nameJa} ${country.slug}`).includes(query)){scored.push([1,country]);return;}
-    const row=query.length>=2&&sceneIndex?.get(country.slug);
-    if(!row)return;
-    const byName=row.scenes.find((scene)=>scene.key.includes(query));
-    if(byName){scored.push([2,country]);searchCaptions.set(country.slug,`景色：${byName.name}`);return;}
-    const byText=row.scenes.find((scene)=>scene.text.includes(query));
-    if(byText){scored.push([3,country]);searchCaptions.set(country.slug,`景色：${byText.name}`);return;}
-    const bySeason=row.seasons.find((season)=>season.key.includes(query));
-    if(bySeason){scored.push([4,country]);searchCaptions.set(country.slug,`季節：${bySeason.months}`);}
+    const row=sceneIndex?.get(country.slug);
+    const alias=row?.aliases.find((item)=>item.key.startsWith(query)||(long&&item.key.includes(query)));
+    if(alias){scored.push([1,country]);searchCaptions.set(country.slug,`別名：${alias.alias}`);return;}
+    let best=matchSearchRow(row,query);
+    // Detail regions stay out of the 200-country list; a hit shows their parent country.
+    detailDestinations.filter((detail)=>detail.parentSlug===country.slug).forEach((detail)=>{
+      const detailNames=[detail.nameJa,detail.nameEn].map(normalizeSearch);
+      const named=detailNames.some((name)=>name.startsWith(query)||(long&&name.includes(query)));
+      const detailHit=named?[3]:matchSearchRow(sceneIndex?.get(detail.slug),query);
+      if(!detailHit)return;
+      const tier=named?3:Math.max(detailHit[0],6);
+      if(!best||tier<best[0])best=[tier,`詳細地域：${detail.nameJa}`];
+    });
+    if(!best)return;
+    scored.push([best[0],country]);searchCaptions.set(country.slug,best[1]);
   });
   // Country search is limited to the 200 base Country Pages.
-  // Detail Regions remain accessible via parent pages, map, themes, seasons and scenery.
   return scored.sort((a,b)=>a[0]-b[0]).map(([,country])=>country);
 }
 searchInput?.addEventListener('input',()=>{
