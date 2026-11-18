@@ -204,7 +204,7 @@ function setHero(index,animate=true){
 function startHeroRotation(){
   window.clearInterval(heroTimer);
   if(window.matchMedia('(prefers-reduced-motion: reduce)').matches) return;
-  heroTimer=window.setInterval(()=>setHero(heroIndex+1),9000);
+  heroTimer=window.setInterval(()=>setHero(heroIndex+1),5000);
 }
 heroButtons.forEach((button)=>button.addEventListener('click',()=>{setHero(Number(button.dataset.hero));startHeroRotation();}));
 heroStepButtons.forEach((button)=>button.addEventListener('click',()=>{setHero(heroIndex+Number(button.dataset.heroStep));startHeroRotation();}));
