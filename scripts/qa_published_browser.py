@@ -104,6 +104,15 @@ def load_countries() -> list[tuple[str, str]]:
         countries.append((slug, data.get("nameJa") or slug))
     if requested:
         found = {slug for slug, _ in countries}
+        # country-renewal-status.json only lists the original renewal waves. A Country that
+        # was published later is published when the canonical registry says so.
+        registry = load_registry_rows()
+        for slug in sorted(requested - found):
+            path = COUNTRY_DIR / f"{slug}.json"
+            if registry.get(slug, {}).get("atlasPublished") is True and path.exists():
+                data = json.loads(path.read_text(encoding="utf-8"))
+                countries.append((slug, data.get("nameJa") or slug))
+                found.add(slug)
         missing = sorted(requested - found)
         if missing:
             raise SystemExit(f"QA_SLUGS contains non-published or unknown countries: {', '.join(missing)}")
