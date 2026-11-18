@@ -257,8 +257,12 @@ def check(driver, viewport):
             or wished_summary.get("label") != "行きたい詳細地域"
             or wished_summary.get("detail") != "1 / " + str(expected_regions)):
         errors.append("Wish card has wrong detail subtotal: " + repr(summary_snapshot))
-    if "行きたい旅先" not in driver.find_element(By.ID, "wish-link").text:
-        errors.append("TOP Wish shortcut retained country-only label")
+    # The country-search Wish shortcut and the empty その他 index tab were removed (2026-11-18);
+    # Wish lists live in My Atlas.
+    if driver.find_elements(By.ID, "wish-link"):
+        errors.append("Removed TOP Wish shortcut is back in country search")
+    if driver.find_elements(By.CSS_SELECTOR, '[data-letter="#"]'):
+        errors.append("Removed その他 index tab is back")
     if driver.find_elements(By.CSS_SELECTOR, ".ja-detail-summary"):
         errors.append("Obsolete combined detail subtotal remains below cards")
     driver.execute_script(
@@ -277,12 +281,6 @@ def check(driver, viewport):
       const wish = document.querySelector('[data-summary-kind="wished"] .ja-summary-detail__count');
       return wish && wish.textContent.trim() === '1 / ' + arguments[0];
     """, str(expected_regions)))
-    # A Region-only Wish belongs in My Atlas, not the 200-country shortcut.
-    driver.execute_script("arguments[0].click()", driver.find_element(By.ID, "wish-link"))
-    region_wish_cards = driver.execute_script(
-        "return Array.from(document.querySelectorAll('#country-grid .country-card')).map(el => el.dataset.slug)")
-    if "england" in region_wish_cards:
-        errors.append("Region-only Wish leaked into Country shortcut")
 
     driver.execute_script(
         "localStorage.removeItem('journey-atlas:region-wish:unitedkingdom:england')"
