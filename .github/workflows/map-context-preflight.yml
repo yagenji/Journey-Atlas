@@ -146,6 +146,9 @@ jobs:
           QA_BASE_URL: http://127.0.0.1:4173
           QA_OUT_DIR: qa-map-context-browser-output
           QA_SCOPE: published
+          # Two parallel workers share one single-threaded http.server; re-check a failed
+          # page once in a fresh session so a dropped image request is not a false failure.
+          QA_RETRY_AUDIT: "1"
         run: |
           set -euo pipefail
           python -m http.server 4173 --directory dist >/tmp/journey-atlas-map-context-http.log 2>&1 &

@@ -148,11 +148,18 @@ def main():
     source_sha = hashlib.sha256(source).hexdigest()
     original = ET.fromstring(source)
     shapes = original.find('.//*[@id="land-shape"]')
-    if shapes is None:
-        raise RuntimeError('Approved Hong Kong land-shape group missing')
-    approved = [p.get('d') for p in shapes.iter(SVG+'path')]
-    if len(approved) != 18 or any(not path for path in approved):
-        raise RuntimeError('Approved Hong Kong target paths changed: re-review required')
+    if shapes is not None:
+        # Legacy approved map: 18 district land-only paths in #land-shape.
+        approved = [p.get('d') for p in shapes.iter(SVG+'path')]
+        if len(approved) != 18 or any(not path for path in approved):
+            raise RuntimeError('Approved Hong Kong target paths changed: re-review required')
+    else:
+        # 2026-10-28 map: one OSM Hong Kong land polygon (relation 913110) drawn as a
+        # top-level fill="url(#land)" path, recorded in the SVG metadata.
+        approved = [p.get('d') for p in original.findall(SVG+'path') if p.get('fill') == 'url(#land)']
+        meta = ''.join(original.find(SVG+'metadata').itertext()) if original.find(SVG+'metadata') is not None else ''
+        if len(approved) != 1 or not approved[0] or 'relation 913110' not in meta:
+            raise RuntimeError('Approved Hong Kong land geometry missing or changed: re-review required')
 
     # Promotion-safe verification: after Stage 3, the approved source SVG itself
     # contains the reviewed Shenzhen mainland, exact Hong Kong exclusion clip and
@@ -201,7 +208,7 @@ def main():
             'sourceSha256':OSM_SNAPSHOT_SHA,
             'approvedSvgSha256':source_sha,
             'mainlandPathSha256':PINNED_MAINLAND_SHA,
-            'targetPathsPreserved':18,
+            'targetPathsPreserved':len(approved),
             'decodedSize':[1200,760],
         }
         (out/'report.json').write_text(json.dumps(report,indent=2))
