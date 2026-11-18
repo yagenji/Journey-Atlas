@@ -14,9 +14,8 @@
   const status = q('#map-country-status');
   const head = q('.map-heading p');
 
-  // Touch screens: no hover/wheel, and one-finger drag scrolls the page, so describe the controls that actually work.
+  // Touch screens: no hover/wheel, and one-finger drag scrolls the page, so the in-map hint describes the controls that actually work.
   const TOUCH = window.matchMedia?.('(hover: none) and (pointer: coarse)').matches;
-  const HOW = TOUCH ? '地図は2本指で移動・拡大できます（＋ / − でも拡大縮小）。' : '地図は − / ＋・ホイール・ドラッグで自由に操作できます。';
   const NS = 'http://www.w3.org/2000/svg';
   const WORLD = [0, 0, 1000, 507.209];
   const RATIO = WORLD[3] / WORLD[2];
@@ -176,7 +175,7 @@
   function worldPanel() {
     kicker.textContent = 'WORLD';
     title.textContent = '世界';
-    copy.textContent = `地域を選ぶと、その地域の国・地域が一覧で表示されます。${HOW}`;
+    copy.textContent = '地域を選ぶと、その地域の国・地域が一覧で表示されます。';
     count.textContent = `${parentDestinations().length || 200}の国・地域`;
     status.textContent = '';
     // World view: the panel lists the regions themselves so it is never an empty dead end.
@@ -196,7 +195,7 @@
     const codes = s ? s.iso2 : r.iso2;
     kicker.textContent = s ? `${r.labelEn} / ${s.labelEn}` : r.labelEn;
     title.textContent = s ? s.label : r.label;
-    copy.textContent = `${HOW}小さな国や島は、さらに拡大すると国土そのものが見えます。`;
+    copy.textContent = '小さな国や島は、さらに拡大すると国土そのものが見えます。';
     count.textContent = `${countries(codes).length}の国・地域`;
     status.textContent = p ? `${p.nameJa}を選択中` : '';
     right(codes, p);
