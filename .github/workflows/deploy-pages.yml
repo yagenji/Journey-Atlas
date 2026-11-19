@@ -70,6 +70,7 @@ jobs:
           test -f dist/assets/css/top.css
           test -f dist/countries/iceland/index.html
           test -f dist/data/countries/iceland.json
+          grep -q 'property="og:image" id="og-image" content="https://atlas.yagenji.com/assets/og/.*\.jpg' dist/countries/iceland/index.html
           test -f dist/countries/unitedkingdom/index.html
           test -f dist/data/countries/unitedkingdom.json
           grep -q '掲載情報の正確性・完全性・最新性を保証するものではありません' dist/faq/index.html

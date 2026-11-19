@@ -169,7 +169,7 @@ jobs:
 
       - name: Install Browser QA dependency
         if: steps.target.outputs.run == 'true'
-        run: python3 -m pip install --disable-pip-version-check --quiet selenium
+        run: python3 -m pip install --disable-pip-version-check --quiet selenium pillow
 
       - name: Build targeted Country preview
         if: steps.target.outputs.run == 'true' && steps.target.outputs.slugs != '' && steps.target.outputs.top != 'true'
