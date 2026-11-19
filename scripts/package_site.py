@@ -283,6 +283,74 @@ def package_country_pages(slugs: list[str]) -> None:
         shutil.copytree(source, DIST / "countries" / slug)
 
 
+OG_SIZE = (1200, 630)
+OG_DIR = "assets/og"
+OG_IMAGE_META = re.compile(r'<meta\s+property="og:image"[^>]*\scontent="([^"]+)"[^>]*>')
+OG_DETAIL_META = re.compile(r'\s*<meta\s+property="og:image:(?:type|width|height|secure_url)"[^>]*>')
+TWITTER_IMAGE_META = re.compile(r'\s*<meta\s+name="twitter:image"[^>]*>')
+
+
+def write_og_images() -> int:
+    """Link previews (LINE, Slack, LinkedIn, Messenger...) often ignore WebP og:image.
+
+    For every packaged page whose og:image is a WebP in the package, render a 1200x630
+    JPEG (centre-cropped to 1.91:1) under assets/og/ and point og:image / twitter:image
+    at it, with explicit type and size. Source images and on-page images are unchanged.
+    """
+    from urllib.parse import urlsplit
+
+    from PIL import Image
+
+    rendered: dict[str, str] = {}
+    pages = 0
+    for page in sorted(DIST.rglob("*.html")):
+        html = page.read_text(encoding="utf-8")
+        match = OG_IMAGE_META.search(html)
+        if not match:
+            continue
+        source_url = match.group(1)
+        parts = urlsplit(source_url)
+        source = DIST / parts.path.lstrip("/")
+        if not parts.path.endswith(".webp") or not source.is_file():
+            continue
+        relative = source.relative_to(DIST / "assets").with_suffix(".jpg").as_posix()
+        if relative not in rendered:
+            target = DIST / OG_DIR / relative
+            target.parent.mkdir(parents=True, exist_ok=True)
+            with Image.open(source) as image:
+                image = image.convert("RGB")
+                width, height = image.size
+                ratio = OG_SIZE[0] / OG_SIZE[1]
+                if width / height > ratio:
+                    crop_width = round(height * ratio)
+                    left = (width - crop_width) // 2
+                    image = image.crop((left, 0, left + crop_width, height))
+                else:
+                    crop_height = round(width / ratio)
+                    top = (height - crop_height) // 2
+                    image = image.crop((0, top, width, top + crop_height))
+                image.resize(OG_SIZE, Image.Resampling.LANCZOS).save(
+                    target, "JPEG", quality=84, optimize=True, progressive=True
+                )
+            rendered[relative] = f"{parts.scheme}://{parts.netloc}/{OG_DIR}/{relative}?v={BUILD_VERSION}"
+        og_url = rendered[relative]
+        html = OG_DETAIL_META.sub("", html)
+        html = TWITTER_IMAGE_META.sub("", html)
+        tag = match.group(0).replace(source_url, og_url)
+        html = html.replace(
+            match.group(0),
+            tag
+            + '\n  <meta property="og:image:type" content="image/jpeg">'
+            + f'\n  <meta property="og:image:width" content="{OG_SIZE[0]}">'
+            + f'\n  <meta property="og:image:height" content="{OG_SIZE[1]}">'
+            + f'\n  <meta name="twitter:image" content="{og_url}">',
+            1,
+        )
+        page.write_text(html, encoding="utf-8")
+        pages += 1
+    return pages
+
+
 def write_cloudflare_headers() -> None:
     headers = """/*
   X-Content-Type-Options: nosniff
@@ -307,6 +375,9 @@ def write_cloudflare_headers() -> None:
 /assets/icons/*
   Cache-Control: public, max-age=86400
 
+/assets/og/*
+  Cache-Control: public, max-age=86400
+
 /assets/images/:country/approved/*
   Cache-Control: public, max-age=31536000, immutable
 
@@ -329,6 +400,22 @@ def assert_versioned_runtime_images(value: object, owner: str) -> None:
     if isinstance(value, list):
         for item in value:
             assert_versioned_runtime_images(item, owner)
+
+
+def validate_og_images() -> None:
+    """Every packaged og:image must be a JPEG that exists in the package (no WebP previews)."""
+    from urllib.parse import urlsplit
+
+    problems = []
+    for page in sorted(DIST.rglob("*.html")):
+        match = OG_IMAGE_META.search(page.read_text(encoding="utf-8"))
+        if not match:
+            continue
+        path = urlsplit(match.group(1)).path
+        if path.endswith(".webp") or not (DIST / path.lstrip("/")).is_file():
+            problems.append(f"{page.relative_to(DIST)}: {match.group(1)}")
+    if problems:
+        raise ValueError(f"og:image must be a packaged JPEG: {problems[:5]} ({len(problems)} page(s))")
 
 
 def validate_package(slugs: list[str], allowed_images: set[str]) -> None:
@@ -432,11 +519,14 @@ def main() -> int:
     allowed_images = prune_unreferenced_images(slugs)
     package_data(slugs)
     package_country_pages(slugs)
+    og_pages = write_og_images()
     write_cloudflare_headers()
     validate_package(slugs, allowed_images)
+    validate_og_images()
 
     file_count = sum(1 for path in DIST.rglob("*") if path.is_file())
     size_bytes = sum(path.stat().st_size for path in DIST.rglob("*") if path.is_file())
+    print(f"Link-preview JPEG og:image on {og_pages} page(s).")
     print(
         f"Packaged {len(slugs)} reviewable country page(s) "
         f"({len(published)} published) into dist/: "
