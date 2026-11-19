@@ -290,6 +290,26 @@ OG_DETAIL_META = re.compile(r'\s*<meta\s+property="og:image:(?:type|width|height
 TWITTER_IMAGE_META = re.compile(r'\s*<meta\s+name="twitter:image"[^>]*>')
 
 
+def load_pillow():
+    """Pillow renders the link-preview JPEGs. Cloudflare Pages installs requirements.txt;
+    if a build image skipped it, install Pillow for this build and continue."""
+    try:
+        from PIL import Image
+    except ImportError:
+        import subprocess
+        import sys
+
+        subprocess.run(
+            [sys.executable, "-m", "pip", "install", "--disable-pip-version-check", "--quiet", "pillow>=10,<13"],
+            check=True,
+        )
+        import importlib
+
+        importlib.invalidate_caches()
+        from PIL import Image
+    return Image
+
+
 def write_og_images() -> int:
     """Link previews (LINE, Slack, LinkedIn, Messenger...) often ignore WebP og:image.
 
@@ -299,7 +319,7 @@ def write_og_images() -> int:
     """
     from urllib.parse import urlsplit
 
-    from PIL import Image
+    Image = load_pillow()
 
     rendered: dict[str, str] = {}
     pages = 0
