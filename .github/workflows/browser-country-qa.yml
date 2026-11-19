@@ -138,6 +138,9 @@ jobs:
               or path in {
                   *([] if top_only_builder else ["scripts/build_site.py"]),
                   "scripts/build_cloudflare.py",
+                  "scripts/qa_published_browser.py",
+                  "scripts/qa_country_browser.py",
+                  "scripts/run_country_browser_qa_parallel.py",
               }
               for path in files
           )
@@ -149,6 +152,15 @@ jobs:
                   "antarctica", "namibia", "iceland", "japan", "oman",
                   "colombia", "france", "unitedkingdom",
               }
+          # A QA-runner change must audit every published Country, even when
+          # a synthetic PR merge adds unrelated Country assets to the diff.
+          qa_runner_changed = bool(set(files) & {
+              "scripts/qa_published_browser.py",
+              "scripts/qa_country_browser.py",
+              "scripts/run_country_browser_qa_parallel.py",
+          })
+          if qa_runner_changed:
+              slugs.clear()
           run = bool(slugs or shared or top_changed)
           with open(output, "a", encoding="utf-8") as handle:
               handle.write("slugs=" + ",".join(sorted(slugs)) + "\n")
@@ -217,7 +229,8 @@ jobs:
           QA_BASE_URL: http://127.0.0.1:4173
           QA_OUT_DIR: qa-browser-output
           QA_SCOPE: published
-        run: python3 scripts/qa_country_browser.py
+          QA_RETRY_AUDIT: "1"
+        run: python3 scripts/run_country_browser_qa_parallel.py --scope published --workers 2
 
       - name: Run TOP Desktop / Tablet / Mobile QA
         if: steps.target.outputs.top == 'true'
