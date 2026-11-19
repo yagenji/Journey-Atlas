@@ -914,7 +914,7 @@ Promise.all([coreRegistryPromise.catch(()=>{}),themeTaxonomyPromise,themeRegionP
 
 
 // ---------------------------------------------------------------------------
-// 季節から探す: opens on the current month; pick a month to list the Countries whose おすすめの時期 (bestSeason) includes it.
+// 季節から探す: pick a month, list the Countries whose おすすめの時期 (bestSeason) includes it.
 // data/top-season-index.json is generated from the Country data at build time and loaded
 // when the panel comes near the viewport (or at once when the URL carries ?month=).
 // ---------------------------------------------------------------------------
@@ -928,9 +928,7 @@ const seasonMore=document.querySelector('#season-results-more');
 const seasonEmpty=document.querySelector('#season-results-empty');
 const SEASON_PAGE=24;
 let seasonIndex=null,seasonIndexPromise=null;
-// Opens on this month's list; ?month= in the URL wins. seasonChosen stays false until the
-// visitor picks a month, so the default never writes ?month= into the URL or scrolls the page.
-let seasonMonth=new Date().getMonth()+1;
+let seasonMonth=null;     // nothing selected until the visitor picks a month (or ?month=)
 let seasonChosen=false;   // true once the visitor picks a month (or arrives with ?month=)
 let seasonRegion='all';
 let seasonWishesOnly=false;
@@ -1072,7 +1070,7 @@ seasonMonthsHost?.addEventListener('click',(event)=>{
   seasonChosen=true;
   seasonLimit=SEASON_PAGE;
   if(seasonIndex&&destinations.length){
-    try{renderSeasonResults();}
+    try{seasonChosen?renderSeasonResults():renderSeasonMonths();}
     catch(error){
       console.error('[JOURNEY ATLAS] Season results failed.',error);
       showSeasonStatus(`一覧を表示できませんでした。（${error?.name||'Error'}: ${error?.message||''}）`);
