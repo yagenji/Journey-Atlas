@@ -92,27 +92,22 @@ def load_countries() -> list[tuple[str, str]]:
             )
         return countries
 
-    status = json.loads(STATUS_PATH.read_text(encoding="utf-8"))
+    # The canonical registry, not the historical renewal-wave status file,
+    # defines every published Country eligible for browser QA.
+    registry = load_registry_rows()
     countries: list[tuple[str, str]] = []
-    for row in status.get("countries", []):
-        slug = row.get("slug")
-        if not slug or not row.get("published"):
+    for slug, row in sorted(registry.items()):
+        if row.get("atlasPublished") is not True:
             continue
         if requested and slug not in requested:
             continue
-        data = json.loads((COUNTRY_DIR / f"{slug}.json").read_text(encoding="utf-8"))
+        path = COUNTRY_DIR / f"{slug}.json"
+        if not path.exists():
+            raise SystemExit(f"Published Country missing JSON: {slug}")
+        data = json.loads(path.read_text(encoding="utf-8"))
         countries.append((slug, data.get("nameJa") or slug))
     if requested:
         found = {slug for slug, _ in countries}
-        # country-renewal-status.json only lists the original renewal waves. A Country that
-        # was published later is published when the canonical registry says so.
-        registry = load_registry_rows()
-        for slug in sorted(requested - found):
-            path = COUNTRY_DIR / f"{slug}.json"
-            if registry.get(slug, {}).get("atlasPublished") is True and path.exists():
-                data = json.loads(path.read_text(encoding="utf-8"))
-                countries.append((slug, data.get("nameJa") or slug))
-                found.add(slug)
         missing = sorted(requested - found)
         if missing:
             raise SystemExit(f"QA_SLUGS contains non-published or unknown countries: {', '.join(missing)}")
