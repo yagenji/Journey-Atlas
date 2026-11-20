@@ -1,9 +1,11 @@
-// 初めて行った年: once a page is marked 「ここに行った」, an optional year can be recorded under
-// the buttons. Stored only in this browser (journey-atlas:visited-year:{slug} for Countries,
-// {parent}:{slug} for Regions) and shown as 旅の年表 in マイアトラス.
+// 初めて行った年: once a Country page is marked 「ここに行った」, an optional year can be recorded
+// under the buttons. Stored only in this browser (journey-atlas:visited-year:{slug}) and shown
+// as 旅の年表 in マイアトラス.
 (() => {
   'use strict';
+  // 旅の年表 covers the 200 Country pages only: no year on detail regions.
   const regionPath = location.pathname.match(/\/countries\/([a-z0-9-]+)\/([a-z0-9-]+)\/?$/);
+  if (regionPath || ['hong-kong', 'macau'].includes(document.documentElement.dataset.country)) return;
   const selector = regionPath ? '#region-visited-button' : '#visited-button';
   // Country pages render their body after the data loads; Region pages are static.
   if (document.querySelector(selector)) init();
