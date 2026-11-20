@@ -508,7 +508,10 @@ html{scroll-padding-top:108px;}
   border-top:1px solid rgba(18,54,92,.08)!important;
 }
 .country-facts-strip .geo-facts>div{min-height:0!important;}
-.country-facts-strip .geo-facts>div:first-child{border-left:0!important;}
+/* The row's left rule sits on the first item (below the dividing line), not on the list,
+   so it does not run up into the line above. */
+.country-facts-strip .geo-facts{border-left:0!important;}
+.country-facts-strip .geo-facts>div:first-child{border-left:1px solid rgba(18,54,92,.13)!important;}
 .country-facts-strip .geo-facts dd{font-size:12.5px!important;}
 .geo-facts__time{font-variant-numeric:tabular-nums;}
 .geo-facts__link{color:inherit!important;text-decoration:underline;text-decoration-color:rgba(11,44,87,.35);text-underline-offset:3px;}

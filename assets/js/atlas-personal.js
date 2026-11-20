@@ -236,6 +236,7 @@
   const chaptersBox = make('section', 'ja-chapters');
   chaptersBox.setAttribute('aria-labelledby', 'ja-chapters-title');
   let atlasChapters = [];
+  let chaptersDetailOpen = false;
   window.JourneyAtlasOrder?.load().then(({chapters}) => { atlasChapters = chapters; renderMine(); }).catch(() => {});
   function renderChapters() {
     chaptersBox.replaceChildren();
@@ -271,7 +272,12 @@
       );
       board.append(tile);
     });
-    chaptersBox.append(board, make('h4', 'ja-chapters__detail-title', '章ごとの内訳'));
+    // The chapter detail is long: folded by default, opened only when wanted.
+    const detail = make('details', 'ja-chapters__detail');
+    detail.open = chaptersDetailOpen;
+    detail.addEventListener('toggle', () => { chaptersDetailOpen = detail.open; });
+    detail.append(make('summary', 'ja-chapters__detail-title', '章ごとの内訳'));
+    chaptersBox.append(board, detail);
     regions.forEach(region => {
       const group = make('div', 'ja-chapters__region');
       // Region totals are on the board above; the detail heading only names the region.
@@ -295,7 +301,7 @@
       }
       group.append(head);
       if (list.children.length) group.append(list);
-      chaptersBox.append(group);
+      detail.append(group);
     });
   }
   mine.append(summary, chaptersBox, groups, tools, feedback);
