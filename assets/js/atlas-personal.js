@@ -7,6 +7,9 @@
   const REGION_VISITED_PREFIX = 'journey-atlas:region-visited:';
   const VISITED_PREFIX = 'journey-atlas:visited:';
   const WISH_PREFIX = 'journey-atlas:wish:';
+  // Optional year of the first visit: key = Country slug, or parent:slug for a detail Region.
+  const VISIT_YEAR_PREFIX = 'journey-atlas:visited-year:';
+  const validYear = value => /^\d{4}$/.test(String(value)) && +value >= 1900 && +value <= new Date().getFullYear();
   const REGISTRY_PATH = 'data/atlas-destinations.json';
   const ORIGINS_PATH = 'data/scene-origins.json';
   const validId = value => typeof value === 'string' && /^[a-z0-9-]+$/.test(value);
@@ -304,7 +307,79 @@
       detail.append(group);
     });
   }
-  mine.append(summary, chaptersBox, groups, tools, feedback);
+  // わたしの旅の果て: the farthest north / south and the farthest from Tokyo among visited
+  // places (capital / seat positions from data/geo-facts.json; 南極 counts as the far south).
+  // 旅の年表: visited places with an optional first-visit year, newest year first.
+  const extremesBox = make('section', 'ja-extremes');
+  extremesBox.setAttribute('aria-labelledby', 'ja-extremes-title');
+  const timelineBox = make('details', 'ja-timeline');
+  let geoEntries = null;
+  let timelineOpen = false;
+  timelineBox.addEventListener('toggle', () => { timelineOpen = timelineBox.open; });
+  fetchJSON('data/geo-facts.json').then(data => { geoEntries = data.entries || {}; renderMine(); }).catch(() => {});
+  const TOKYO = [35.6812, 139.7671];
+  const distanceKm = (a, b) => {
+    const r = Math.PI / 180, dLat = (b[0] - a[0]) * r, dLon = (b[1] - a[1]) * r;
+    const h = Math.sin(dLat / 2) ** 2 + Math.cos(a[0] * r) * Math.cos(b[0] * r) * Math.sin(dLon / 2) ** 2;
+    return 6371 * 2 * Math.asin(Math.sqrt(h));
+  };
+  const latText = lat => (lat < 0 ? '南緯' : '北緯') + Math.abs(lat).toFixed(1) + '°';
+  function renderExtremes(places) {
+    extremesBox.replaceChildren();
+    const located = places.filter(item => item.place);
+    const antarctica = places.find(item => item.slug === 'antarctica');
+    if (!located.length && !antarctica) { extremesBox.hidden = true; return; }
+    extremesBox.hidden = false;
+    const title = make('h3', 'ja-extremes__title', 'わたしの旅の果て');
+    title.id = 'ja-extremes-title';
+    const list = make('ul', 'ja-extremes__list');
+    const tile = (label, item, value) => {
+      const li = make('li', 'ja-extreme');
+      li.append(make('span', 'ja-extreme__label', label), linkTo(item.href, item.nameJa, 'ja-extreme__name'), make('span', 'ja-extreme__value', value));
+      list.append(li);
+    };
+    if (located.length) {
+      const north = located.reduce((a, b) => (b.place.lat > a.place.lat ? b : a));
+      tile('いちばん北', north, latText(north.place.lat));
+    }
+    if (antarctica) tile('いちばん南', antarctica, '南極大陸');
+    else if (located.length) {
+      const south = located.reduce((a, b) => (b.place.lat < a.place.lat ? b : a));
+      tile('いちばん南', south, latText(south.place.lat));
+    }
+    const away = located.filter(item => item.slug !== 'japan');
+    if (away.length) {
+      const far = away.map(item => ({item, km: distanceKm(TOKYO, [item.place.lat, item.place.lon])}))
+        .reduce((a, b) => (b.km > a.km ? b : a));
+      tile('東京からいちばん遠い', far.item, '約' + (Math.round(far.km / 100) * 100).toLocaleString('ja-JP') + 'km');
+    }
+    extremesBox.append(title, list, make('p', 'ja-extremes__note', '首都・首府の位置で比べています。'));
+  }
+  function renderTimeline(places) {
+    timelineBox.replaceChildren();
+    const dated = places.map(item => ({...item, year: getStored(VISIT_YEAR_PREFIX + item.yearKey)})).filter(item => validYear(item.year));
+    const summaryLine = make('summary', 'ja-timeline__title', '旅の年表');
+    summaryLine.append(make('span', 'ja-timeline__count', dated.length ? '（' + dated.length + '件）' : ''));
+    timelineBox.append(summaryLine);
+    timelineBox.open = timelineOpen;
+    if (!dated.length) {
+      timelineBox.append(make('p', 'ja-empty', '各ページの「ここに行った」を押すと、初めて行った年を記録できます。'));
+      return;
+    }
+    const years = [...new Set(dated.map(item => item.year))].sort((a, b) => b - a);
+    const list = make('ol', 'ja-timeline__list');
+    years.forEach(year => {
+      const li = make('li', 'ja-timeline__year');
+      li.append(make('span', 'ja-timeline__label', year + '年'));
+      const links = make('div', 'ja-mine-links');
+      dated.filter(item => item.year === year).sort((a, b) => a.nameJa.localeCompare(b.nameJa, 'ja'))
+        .forEach(item => links.append(linkTo(item.href, item.nameJa)));
+      li.append(links);
+      list.append(li);
+    });
+    timelineBox.append(list, make('p', 'ja-extremes__note', '記録のない「行った旅先」は年表に出ません。'));
+  }
+  mine.append(summary, extremesBox, chaptersBox, timelineBox, groups, tools, feedback);
   // Flags for UK Regions follow each Region page; Northern Ireland has no official
   // regional flag, so the United Kingdom flag is used (see its sourceNotes.flag).
   const REGION_FLAGS = {
@@ -402,6 +477,13 @@
     );
     groups.replaceChildren(seenColumn, wantColumn);
     renderChapters();
+    const visitedPlaces = [
+      ...parents.filter(visited), ...detailSeen
+    ].map(c => ({slug: c.slug, nameJa: c.nameJa, href: c.href || countryHref(c.slug), yearKey: c.slug}))
+      .concat(regionVisits.map(w => ({slug: w.slug, nameJa: w.nameJa, href: w.href, yearKey: w.parentSlug + ':' + w.slug})))
+      .map(item => ({...item, place: geoEntries?.[item.slug]?.place && Number.isFinite(geoEntries[item.slug].place.lon) ? geoEntries[item.slug].place : null}));
+    if (geoEntries) renderExtremes(visitedPlaces); else extremesBox.hidden = true;
+    renderTimeline(visitedPlaces);
 
   }
   const exportButton = make('button', 'ja-tool-button', '保存データを書き出す');
@@ -414,7 +496,9 @@
       wished: countries.filter(wished).map(c => c.slug),
       favorites: getFavorites(),
       regionWishes: getRegionWishes(),
-      regionVisits: getRegionVisits()
+      regionVisits: getRegionVisits(),
+      visitYears: Object.fromEntries(allStoredKeys().filter(key => key.startsWith(VISIT_YEAR_PREFIX))
+        .map(key => [key.slice(VISIT_YEAR_PREFIX.length), getStored(key)]).filter(([, year]) => validYear(year)))
     };
     const url = URL.createObjectURL(new Blob([JSON.stringify(payload, null, 2)], {type: 'application/json'}));
     const link = document.createElement('a');
@@ -458,6 +542,11 @@
         && w.href === regionCountryHref(w.parentSlug,w.slug)).slice(0,100).forEach(w => {
         if (!putStored(REGION_VISITED_PREFIX + w.parentSlug + ':' + w.slug,
           JSON.stringify({parentSlug:w.parentSlug,slug:w.slug,nameJa:w.nameJa.slice(0,100),href:w.href}))) throw Error('Storage unavailable');
+      });
+      if (payload.visitYears && typeof payload.visitYears === 'object') Object.entries(payload.visitYears).slice(0, 400).forEach(([id, year]) => {
+        const [first, second] = id.split(':');
+        const known = second === undefined ? allowed.has(first) : allowed.has(first) && validId(second);
+        if (known && validYear(year) && !putStored(VISIT_YEAR_PREFIX + id, String(year))) throw Error('Storage unavailable');
       });
       feedback.textContent = '保存データを読み込みました。既存の記録には追加されます。';
       renderMine();

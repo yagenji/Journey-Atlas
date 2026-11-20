@@ -234,3 +234,38 @@
   .ja-region-tile__rate { grid-column:3; font-size:16px; text-align:right; min-width:3.2em; }
   .ja-region-tile__count { grid-column:4; min-width:4.6em; text-align:right; }
 }
+
+/* 初めて行った年 — under the 行った/行きたい buttons, only after 「ここに行った」. */
+.visit-year { display:flex; align-items:center; justify-content:flex-end; gap:8px; margin:8px 2px 0; font-size:12px; color:#4f5b57; }
+.visit-year[hidden] { display:none; }
+.visit-year__select { font:inherit; font-size:12.5px; color:#12365c; padding:4px 8px; border:1px solid #cfd6d4; border-radius:8px; background:#fff; }
+.visit-year__select:focus-visible { outline:2px solid #315c79; outline-offset:2px; }
+
+/* わたしの旅の果て — three quiet tiles. */
+.ja-extremes { margin:16px 0 0; padding:16px 0 0; border-top:1px solid #e1e4e1; }
+.ja-extremes__title { margin:0 0 10px; font-size:15px; font-weight:600; color:#12365c; }
+.ja-extremes__list { display:grid; grid-template-columns:repeat(3,minmax(0,1fr)); gap:8px; margin:0; padding:0; list-style:none; }
+.ja-extreme { display:grid; gap:3px; min-width:0; padding:12px; border:1px solid #e1e4e1; border-radius:10px; background:#fff; }
+.ja-extreme__label { font-size:11.5px; font-weight:600; color:#61717e; }
+.ja-extreme__name { font-size:16px; font-weight:600; color:#12365c; text-decoration:none; overflow-wrap:anywhere; }
+.ja-extreme__name:hover { text-decoration:underline; }
+.ja-extreme__value { font-size:12px; color:#4f5b57; font-variant-numeric:tabular-nums; }
+.ja-extremes__note { margin:6px 0 0; font-size:11.5px; color:#7a8480; }
+@media (max-width:760px) {
+  .ja-extremes__list { grid-template-columns:1fr; gap:0; border-top:1px solid #e9ebe8; }
+  .ja-extreme { grid-template-columns:7.5em minmax(0,1fr) auto; align-items:baseline; gap:10px; padding:9px 2px; border:0; border-bottom:1px solid #e9ebe8; border-radius:0; background:transparent; }
+  .ja-extreme__name { font-size:14px; }
+}
+
+/* 旅の年表 — folded by default. */
+.ja-timeline { margin:16px 0 0; padding:12px 0 0; border-top:1px solid #e1e4e1; }
+.ja-timeline__title { display:inline-flex; align-items:baseline; gap:0; padding:6px 0; font-size:15px; font-weight:600; color:#12365c; cursor:pointer; list-style:none; }
+.ja-timeline__title::-webkit-details-marker { display:none; }
+.ja-timeline__title::after { content:"を見る ›"; margin-left:6px; font-size:13px; font-weight:500; color:#36566b; }
+.ja-timeline[open] > .ja-timeline__title::after { content:"を閉じる ‹"; }
+.ja-timeline__count { font-size:13px; font-weight:500; color:#4f5b57; }
+.ja-timeline__title:focus-visible { outline:2px solid #315c79; outline-offset:3px; border-radius:4px; }
+.ja-timeline__list { margin:8px 0 0; padding:0; list-style:none; }
+.ja-timeline__year { display:grid; grid-template-columns:5.5em minmax(0,1fr); gap:10px; padding:8px 0; border-bottom:1px solid #e9ebe8; }
+.ja-timeline__label { font-size:13px; font-weight:600; color:#12365c; font-variant-numeric:tabular-nums; }
+.journey-footer > .visit-year { grid-column:-2 / -1; margin-top:-4px; }
