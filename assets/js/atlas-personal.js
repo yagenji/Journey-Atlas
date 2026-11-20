@@ -354,7 +354,7 @@
         .reduce((a, b) => (b.km > a.km ? b : a));
       tile('東京からいちばん遠い', far.item, '約' + (Math.round(far.km / 100) * 100).toLocaleString('ja-JP') + 'km');
     }
-    extremesBox.append(title, list, make('p', 'ja-extremes__note', '首都・首府の位置で比べています。'));
+    extremesBox.append(title, list, make('p', 'ja-extremes__note', '200の国・地域の首都の位置で比べています。'));
   }
   function renderTimeline(places) {
     timelineBox.replaceChildren();
@@ -551,10 +551,10 @@
     );
     groups.replaceChildren(seenColumn, wantColumn);
     renderChapters();
-    const visitedPlaces = [
-      ...parents.filter(visited), ...detailSeen
-    ].map(c => ({slug: c.slug, nameJa: c.nameJa, href: c.href || countryHref(c.slug), yearKey: c.slug}))
-      .concat(regionVisits.map(w => ({slug: w.slug, nameJa: w.nameJa, href: w.href, yearKey: w.parentSlug + ':' + w.slug})))
+    // 旅の果て and 旅の年表 use the 200 Country pages only (no detail regions such as
+    // England, Hong Kong or Macau), the same base as the VISITED count.
+    const visitedPlaces = parents.filter(visited)
+      .map(c => ({slug: c.slug, nameJa: c.nameJa, href: c.href || countryHref(c.slug), yearKey: c.slug}))
       .map(item => ({...item, place: geoEntries?.[item.slug]?.place && Number.isFinite(geoEntries[item.slug].place.lon) ? geoEntries[item.slug].place : null}));
     if (geoEntries) renderExtremes(visitedPlaces); else extremesBox.hidden = true;
     renderTimeline(visitedPlaces);
