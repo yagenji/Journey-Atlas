@@ -15,6 +15,11 @@
   const wishKey = slug => 'journey-atlas:wish:' + slug;
   const flag = key => { try { return localStorage.getItem(key) === 'true'; } catch { return false; } };
   const isVisited = country => flag(visitedKey(country.slug));
+  // 年で見る: the year slider shows Countries first visited up to that year (records from
+  // 旅の年表). null = every visited place, including those without a year.
+  const visitYear = country => { try { const y = localStorage.getItem('journey-atlas:visited-year:' + country.slug); return /^\d{4}$/.test(y || '') ? +y : null; } catch { return null; } };
+  let yearLimit = null;
+  const shownVisited = country => isVisited(country) && (yearLimit === null || (visitYear(country) !== null && visitYear(country) <= yearLimit));
   const isWished = country => flag(wishKey(country.slug));
   const searchText = value => String(value || '').normalize('NFKC').toLowerCase().replace(/macao/g, 'macau');
   const make = (tag, className, text) => {
@@ -39,9 +44,20 @@
   status.setAttribute('role', 'status');
   const share = make('button', 'ja-tool-button ja-mymap__share', '地図を画像にして共有');
   share.type = 'button';
-  share.addEventListener('click', () => window.JourneyAtlasMapShare?.open(mode));
+  share.addEventListener('click', () => window.JourneyAtlasMapShare?.open(mode, {yearLimit}));
   const mapColumn = make('div', 'ja-mymap__column');
-  mapColumn.append(modes, stage, hint, status, share);
+  const years = make('div', 'ja-mymap__years');
+  years.hidden = true;
+  const yearsLabel = make('label', 'ja-mymap__years-label', '年で見る');
+  const yearsRange = make('input', 'ja-mymap__years-range');
+  yearsRange.type = 'range';
+  yearsRange.step = '1';
+  yearsLabel.append(yearsRange);
+  const yearsPlay = make('button', 'ja-mymap__years-play', '▶ 再生');
+  yearsPlay.type = 'button';
+  const yearsValue = make('output', 'ja-mymap__years-value');
+  years.append(yearsLabel, yearsValue, yearsPlay);
+  mapColumn.append(modes, years, stage, hint, status, share);
   const picker = make('div', 'map-mine ja-mymap__picker');
   section.append(title, mapColumn, picker);
   home.prepend(section);
@@ -54,7 +70,7 @@
     radio.name = 'ja-mymap-mode';
     radio.value = id;
     radio.checked = id === mode;
-    radio.addEventListener('change', () => { mode = id; if (svg) paint(); });
+    radio.addEventListener('change', () => { mode = id; if (svg) { setupYears(); paint(); } });
     choice.append(radio, make('span', '', label));
     modes.append(choice);
   });
@@ -77,10 +93,51 @@
     const scale = width / view[2];
     applyView([cx - (cx - view[0]) * scale, cy - (cy - view[1]) * scale, width, width * RATIO]);
   };
+  // The slider runs from the first recorded year to this year, then 「すべて」 (its last step).
+  let playing = 0;
+  function setupYears() {
+    if (!map) return;
+    const recorded = map.countries.filter(c => !map.isDetail(c) && isVisited(c)).map(visitYear).filter(y => y !== null);
+    if (!recorded.length || mode === 'wished') { years.hidden = true; if (yearLimit !== null) { yearLimit = null; paint(); } return; }
+    const first = Math.min(...recorded), all = new Date().getFullYear() + 1;
+    years.hidden = false;
+    yearsRange.min = String(first);
+    yearsRange.max = String(all);
+    if (yearLimit !== null && (yearLimit < first || yearLimit >= all)) yearLimit = null;
+    yearsRange.value = String(yearLimit === null ? all : yearLimit);
+    showYearValue();
+  }
+  function showYearValue() {
+    const count = map.countries.filter(c => !map.isDetail(c) && shownVisited(c)).length;
+    yearsValue.textContent = (yearLimit === null ? 'すべての年' : yearLimit + '年まで') + '：行った ' + count;
+    yearsRange.setAttribute('aria-valuetext', yearsValue.textContent);
+  }
+  function setYear(value) {
+    const all = +yearsRange.max;
+    yearLimit = value >= all ? null : value;
+    yearsRange.value = String(value);
+    showYearValue();
+    paint();
+  }
+  yearsRange.addEventListener('input', () => { stopPlaying(); setYear(+yearsRange.value); });
+  function stopPlaying() { if (playing) { clearInterval(playing); playing = 0; yearsPlay.textContent = '▶ 再生'; } }
+  yearsPlay.addEventListener('click', () => {
+    if (playing) { stopPlaying(); return; }
+    const reduce = window.matchMedia?.('(prefers-reduced-motion: reduce)').matches;
+    let value = +yearsRange.min;
+    setYear(value);
+    yearsPlay.textContent = '■ 停止';
+    playing = setInterval(() => {
+      value += 1;
+      setYear(value);
+      if (value >= +yearsRange.max) stopPlaying();
+    }, reduce ? 1200 : 700);
+  });
+
   function paint() {
     svg.querySelectorAll('.ja-country.is-destination').forEach(group => {
       const country = map.byIso.get(group.dataset.iso);
-      const visited = !!country && mode !== 'wished' && isVisited(country);
+      const visited = !!country && mode !== 'wished' && shownVisited(country);
       const wished = !!country && mode !== 'visited' && !visited && isWished(country);
       group.classList.toggle('is-visited', visited);
       group.classList.toggle('is-wished', wished);
@@ -157,6 +214,7 @@
       status.textContent = '記録を保存できませんでした。ブラウザの保存設定をご確認ください。';
       return;
     }
+    setupYears();
     paint();
     renderCountries();
     status.textContent = on ? country.nameJa + 'を行った旅先に記録しました' : country.nameJa + 'の印を外しました';
@@ -281,6 +339,7 @@
       map = await window.JourneyAtlasWorldMap.load();
       buildMap();
       buildPicker();
+      setupYears();
       paint();
       renderCountries();
       status.textContent = '';
@@ -307,7 +366,9 @@
     [600, 1500].forEach(delay => setTimeout(settle, delay));
   }
   window.addEventListener('storage', event => {
-    if (svg && (event.key === null || event.key.startsWith('journey-atlas:visited:') || event.key.startsWith('journey-atlas:wish:'))) {
+    if (svg && (event.key === null || event.key.startsWith('journey-atlas:visited:') || event.key.startsWith('journey-atlas:wish:')
+      || event.key.startsWith('journey-atlas:visited-year:'))) {
+      setupYears();
       paint();
       renderCountries();
     }

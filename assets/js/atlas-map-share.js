@@ -105,7 +105,7 @@
 
     const footerY = MAP_Y + MAP_HEIGHT;
     let x = 48;
-    if (mode !== 'wished') x = legendItem(ctx, x, footerY + 42, INK.visited, '行った');
+    if (mode !== 'wished') x = legendItem(ctx, x, footerY + 42, INK.visited, yearLimit === null ? '行った' : '行った（' + yearLimit + '年まで）');
     if (mode !== 'visited') legendItem(ctx, x, footerY + 42, INK.wished, '行きたい');
 
     // The world total and each region share one evenly spaced row.
@@ -188,7 +188,7 @@
   async function share() {
     const count = data.countries.filter(country => !data.isDetail(country) && (mode === 'wished' ? data.isWished : data.isVisited)(country)).length;
     const total = data.countries.filter(country => !data.isDetail(country)).length;
-    const label = mode === 'wished' ? '行きたい旅先' : '行った旅先';
+    const label = mode === 'wished' ? '行きたい旅先' : (yearLimit === null ? '行った旅先' : yearLimit + '年までに行った旅先');
     try {
       await navigator.share({
         files: [file],
@@ -225,8 +225,11 @@
     dialog.addEventListener('click', event => { if (event.target === dialog) dialog.close(); });
     document.body.append(dialog);
   }
-  async function open(nextMode = 'both') {
+  let yearLimit = null;
+  const visitYear = slug => { try { const y = localStorage.getItem('journey-atlas:visited-year:' + slug); return /^\d{4}$/.test(y || '') ? +y : null; } catch { return null; } };
+  async function open(nextMode = 'both', options = {}) {
     mode = nextMode;
+    yearLimit = Number.isInteger(options.yearLimit) ? options.yearLimit : null;
     ensureDialog();
     if (!dialog.open) dialog.showModal();
     preview.hidden = true;
@@ -236,7 +239,9 @@
       const [map] = await Promise.all([window.JourneyAtlasWorldMap.load(), loadFonts()]);
       data = {
         ...map,
-        isVisited: country => flag('journey-atlas:visited:' + country.slug),
+        // With the 年で見る slider set, only Countries first visited by that year are painted.
+        isVisited: country => flag('journey-atlas:visited:' + country.slug)
+          && (yearLimit === null || (visitYear(country.slug) !== null && visitYear(country.slug) <= yearLimit)),
         isWished: country => flag('journey-atlas:wish:' + country.slug)
       };
       await refresh();
