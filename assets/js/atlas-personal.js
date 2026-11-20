@@ -356,6 +356,119 @@
     }
     extremesBox.append(title, list, make('p', 'ja-extremes__note', '200の国・地域の首都の位置で比べています。'));
   }
+  // 旅の年表を画像に: one PNG drawn in this browser (nothing is uploaded), shared or saved
+  // through the same dialog style as わたしの地図.
+  function drawTimeline(dated) {
+    const W = 1600, H = 900, PAD = 80, TOP = 250, BASE = 720;
+    const canvas = document.createElement('canvas');
+    canvas.width = W; canvas.height = H;
+    const ctx = canvas.getContext('2d');
+    const INK = {paper: '#faf9f4', navy: '#173b5d', bar: '#36566b', track: '#e8ebe8', muted: '#5f6f7b', faint: '#9aa3a0', line: '#d9dcd6'};
+    const font = (weight, size) => weight + ' ' + size + 'px "Zen Kaku Gothic New",sans-serif';
+    ctx.fillStyle = INK.paper; ctx.fillRect(0, 0, W, H);
+    const counts = new Map();
+    dated.forEach(item => counts.set(item.year, (counts.get(item.year) || 0) + 1));
+    const first = Math.min(...counts.keys()), last = Math.max(...counts.keys());
+    const peak = Math.max(...counts.values());
+    ctx.fillStyle = INK.navy; ctx.font = font(700, 46); ctx.textBaseline = 'alphabetic';
+    ctx.fillText('わたしの旅の年表', PAD, 120);
+    ctx.fillStyle = INK.muted; ctx.font = font(500, 22);
+    ctx.fillText(first + '年〜' + last + '年に初めて行った国・地域', PAD, 168);
+    const totalText = dated.length + ' / ' + parentsCount;
+    ctx.textAlign = 'right';
+    ctx.fillStyle = INK.navy; ctx.font = font(700, 54); ctx.fillText(totalText, W - PAD, 124);
+    ctx.fillStyle = INK.muted; ctx.font = font(500, 20); ctx.fillText('記録した国・地域', W - PAD, 160);
+    ctx.textAlign = 'left';
+    const span = last - first + 1;
+    const slot = (W - PAD * 2) / span;
+    const barW = Math.max(6, Math.min(44, slot * 0.56));
+    const every = span <= 16 ? 1 : span <= 32 ? 2 : 5;
+    ctx.strokeStyle = INK.line; ctx.lineWidth = 2;
+    ctx.beginPath(); ctx.moveTo(PAD, BASE + 1); ctx.lineTo(W - PAD, BASE + 1); ctx.stroke();
+    for (let year = first; year <= last; year += 1) {
+      const count = counts.get(year) || 0;
+      const cx = PAD + (year - first + 0.5) * slot;
+      const height = count ? Math.max(10, (BASE - TOP - 40) * count / peak) : 0;
+      ctx.fillStyle = INK.track;
+      ctx.beginPath(); ctx.roundRect(cx - barW / 2, TOP + 40, barW, BASE - TOP - 40, 5); ctx.fill();
+      if (count) {
+        ctx.fillStyle = INK.bar;
+        ctx.beginPath(); ctx.roundRect(cx - barW / 2, BASE - height, barW, height, 5); ctx.fill();
+        ctx.fillStyle = INK.navy; ctx.font = font(700, slot < 30 ? 16 : 22); ctx.textAlign = 'center';
+        ctx.fillText(String(count), cx, BASE - height - 12);
+      }
+      if ((year - first) % every === 0 || year === last) {
+        ctx.fillStyle = count ? INK.navy : INK.faint; ctx.font = font(500, slot < 30 ? 15 : 19); ctx.textAlign = 'center';
+        ctx.fillText(String(year), cx, BASE + 36);
+      }
+    }
+    ctx.textAlign = 'left';
+    ctx.fillStyle = INK.muted; ctx.font = font(600, 20);
+    ctx.fillText('JOURNEY ATLAS', PAD, H - 48);
+    ctx.textAlign = 'right'; ctx.font = font(500, 18);
+    ctx.fillText('atlas.yagenji.com', W - PAD, H - 48);
+    return canvas;
+  }
+  let parentsCount = 200;
+  let timelineDialog = null;
+  async function openTimelineShare(dated) {
+    if (!timelineDialog) {
+      const dialog = make('dialog', 'ja-share');
+      dialog.setAttribute('aria-labelledby', 'ja-timeline-share-title');
+      const head = make('div', 'ja-share__head');
+      const title = make('h2', '', '旅の年表を画像にする');
+      title.id = 'ja-timeline-share-title';
+      const close = make('button', 'ja-share__close', '閉じる');
+      close.type = 'button';
+      close.addEventListener('click', () => dialog.close());
+      head.append(title, close);
+      const preview = make('img', 'ja-share__preview');
+      const actions = make('div', 'ja-share__actions');
+      const save = make('button', 'ja-tool-button', '画像を保存');
+      save.type = 'button';
+      const shareButton = make('button', 'ja-tool-button', '共有する');
+      shareButton.type = 'button';
+      actions.append(save, shareButton);
+      const note = make('p', 'ja-share__note');
+      note.setAttribute('role', 'status');
+      dialog.append(head, preview, actions, note);
+      dialog.addEventListener('click', event => { if (event.target === dialog) dialog.close(); });
+      document.body.append(dialog);
+      timelineDialog = {dialog, preview, save, shareButton, note, file: null, url: ''};
+      save.addEventListener('click', () => {
+        const link = make('a');
+        link.href = timelineDialog.url; link.download = timelineDialog.file.name;
+        document.body.append(link); link.click(); link.remove();
+        note.textContent = '画像を保存しました。';
+      });
+      shareButton.addEventListener('click', async () => {
+        try {
+          await navigator.share({files: [timelineDialog.file], text: 'わたしの旅の年表（' + timelineDialog.count + '件）。JOURNEY ATLASより https://atlas.yagenji.com/'});
+        } catch (error) { if (error?.name !== 'AbortError') note.textContent = '共有できませんでした。画像を保存してお使いください。'; }
+      });
+    }
+    const box = timelineDialog;
+    if (!box.dialog.open) box.dialog.showModal();
+    box.note.textContent = '画像を作成しています…';
+    box.preview.hidden = true; box.save.hidden = true; box.shareButton.hidden = true;
+    try {
+      if (document.fonts?.load) await Promise.race([document.fonts.load('700 46px "Zen Kaku Gothic New"', 'わたしの旅の年表'), new Promise(done => setTimeout(done, 2000))]);
+      const canvas = drawTimeline(dated);
+      const blob = await new Promise((resolve, reject) => canvas.toBlob(b => (b ? resolve(b) : reject(Error('PNG'))), 'image/png'));
+      box.file = new File([blob], 'journey-atlas-timeline.png', {type: 'image/png'});
+      box.count = dated.length;
+      if (box.url) URL.revokeObjectURL(box.url);
+      box.url = URL.createObjectURL(box.file);
+      box.preview.src = box.url;
+      box.preview.alt = '旅の年表の画像。記録した国・地域は' + dated.length + '件。';
+      box.preview.hidden = false; box.save.hidden = false;
+      let canShare = false;
+      try { canShare = !!navigator.canShare?.({files: [box.file]}) && !!navigator.share; } catch { canShare = false; }
+      box.shareButton.hidden = !canShare;
+      box.note.textContent = '画像はこのブラウザの中で作られ、送信されません。';
+    } catch { box.note.textContent = '画像を作成できませんでした。'; }
+  }
+
   function renderTimeline(places) {
     timelineBox.replaceChildren();
     const yearOf = item => { const year = getStored(VISIT_YEAR_PREFIX + item.yearKey); return validYear(year) ? +year : null; };
@@ -425,6 +538,8 @@
       if (item.year && !on) button.append(make('small', '', String(item.year)));
       button.addEventListener('click', () => {
         const ok = on ? removeStored(VISIT_YEAR_PREFIX + item.yearKey) : putStored(VISIT_YEAR_PREFIX + item.yearKey, String(year));
+        // Same-tab writes fire no storage event; keep わたしの地図's year slider in step.
+        window.dispatchEvent(new StorageEvent('storage', {key: VISIT_YEAR_PREFIX + item.yearKey}));
         feedback.textContent = !ok ? 'このブラウザには保存できませんでした。'
           : on ? item.nameJa + 'の年の記録を外しました。' : item.nameJa + 'を' + year + '年として記録しました。';
         renderMine();
@@ -446,7 +561,11 @@
       group('ほかの年に記録済み', items.filter(item => item.year && item.year !== year), false)
     ].filter(Boolean).forEach(node => detail.append(node));
 
-    timelineBox.append(scroller, earlier, detail);
+    const shareTimeline = make('button', 'ja-tool-button ja-timeline__share', '年表を画像にして共有');
+    shareTimeline.type = 'button';
+    shareTimeline.hidden = !dated.length;
+    shareTimeline.addEventListener('click', () => openTimelineShare(dated));
+    timelineBox.append(scroller, earlier, shareTimeline, detail);
     // Keep the chosen year in view.
     const toSelected = () => chart.querySelector('.is-selected')?.scrollIntoView({block: 'nearest', inline: 'center'});
     if (timelineBox.open) requestAnimationFrame(toSelected);
@@ -515,6 +634,7 @@
     const detailSlugs = new Set(['hong-kong','macau']);
     const parents = all.filter(c => !detailSlugs.has(c.slug));
     const seen = parents.filter(visited), want = parents.filter(wished);
+    parentsCount = parents.length;
     const detailSeen = all.filter(c => detailSlugs.has(c.slug) && visited(c));
     const detailWant = all.filter(c => detailSlugs.has(c.slug) && wished(c));
     const regionWishes = getRegionWishes().filter(w => all.some(c => c.slug === w.parentSlug));
