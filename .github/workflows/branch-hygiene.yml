@@ -3,53 +3,168 @@ name: Branch hygiene
 on:
   workflow_dispatch:
     inputs:
-      branches:
-        description: "Comma-separated branch names to delete. main is always protected."
+      mode:
+        description: "manual: named branches; auto_merged: merged PR head SHA matches current branch"
+        type: choice
+        options:
+          - manual
+          - auto_merged
+        default: manual
         required: true
+      branches:
+        description: "Comma-separated branches (manual mode only)"
         type: string
+        required: false
+      dry_run:
+        description: "Preview only (turn off to actually delete)"
+        type: boolean
+        default: true
+        required: true
+      limit:
+        description: "Maximum branches in one run (1–300)"
+        type: number
+        default: 300
+        required: true
 
 permissions:
   contents: write
+  pull-requests: read
+
+concurrency:
+  group: branch-hygiene
+  cancel-in-progress: false
 
 jobs:
   cleanup:
     runs-on: ubuntu-latest
     steps:
-      - name: Delete selected non-main branches
+      - name: Verify and clean eligible branches
         env:
           GH_TOKEN: ${{ github.token }}
           REPO: ${{ github.repository }}
+          MODE: ${{ inputs.mode }}
           MANUAL_BRANCHES: ${{ inputs.branches }}
+          DRY_RUN: ${{ inputs.dry_run }}
+          DELETE_LIMIT: ${{ inputs.limit }}
         shell: bash
         run: |
           set -euo pipefail
+          python3 - <<'PY'
+          import json
+          import os
+          import sys
+          import urllib.error
+          import urllib.parse
+          import urllib.request
 
-          targets="$MANUAL_BRANCHES"
+          repo = os.environ["REPO"]
+          mode = os.environ["MODE"]
+          dry_run = os.environ["DRY_RUN"].lower() == "true"
+          limit = int(os.environ["DELETE_LIMIT"])
+          if mode not in ("manual", "auto_merged") or not 1 <= limit <= 300:
+              sys.exit("Invalid mode or limit (must be 1–300)")
+          headers = {
+              "Authorization": "Bearer " + os.environ["GH_TOKEN"],
+              "Accept": "application/vnd.github+json",
+              "X-GitHub-Api-Version": "2022-11-28",
+          }
+          root = "https://api.github.com/repos/" + repo
 
-          IFS=',' read -ra branches <<< "$targets"
-          for raw in "${branches[@]}"; do
-            branch="$(printf '%s' "$raw" | xargs)"
-            [ -n "$branch" ] || continue
-            if [ "$branch" = "main" ]; then
-              echo "Refusing to delete protected main branch."
-              exit 1
-            fi
+          def api(path, method="GET", allow_missing=False):
+              req = urllib.request.Request(root + path, headers=headers, method=method)
+              try:
+                  with urllib.request.urlopen(req, timeout=30) as response:
+                      data = response.read()
+                      return json.loads(data) if data else None
+              except urllib.error.HTTPError as exc:
+                  if allow_missing and exc.code == 404:
+                      return None
+                  sys.exit("GitHub API failed: %s %s HTTP %s: %s" %
+                           (method, path, exc.code, exc.read().decode()[:500]))
 
-            encoded="$(python3 -c 'import sys, urllib.parse; print(urllib.parse.quote(sys.argv[1], safe=""))' "$branch")"
-            status="$(curl -sS -o /tmp/delete.json -w '%{http_code}' \
-              -X DELETE \
-              -H "Authorization: Bearer $GH_TOKEN" \
-              -H "Accept: application/vnd.github+json" \
-              -H "X-GitHub-Api-Version: 2022-11-28" \
-              "https://api.github.com/repos/$REPO/git/refs/heads/$encoded")"
+          def pages(path):
+              page = 1
+              while True:
+                  separator = "&" if "?" in path else "?"
+                  batch = api(path + separator + "per_page=100&page=" + str(page))
+                  if not isinstance(batch, list):
+                      sys.exit("Unexpected paginated response: " + path)
+                  yield from batch
+                  if len(batch) < 100:
+                      break
+                  page += 1
 
-            if [ "$status" = "204" ]; then
-              echo "Deleted $branch"
-            elif [ "$status" = "404" ]; then
-              echo "Already absent: $branch"
-            else
-              echo "Failed deleting $branch (HTTP $status)"
-              cat /tmp/delete.json || true
-              exit 1
-            fi
-          done
+          branches = {
+              item["name"]: item
+              for item in pages("/branches")
+          }
+          open_heads = {
+              p["head"]["ref"]
+              for p in pages("/pulls?state=open")
+              if ((p.get("head") or {}).get("repo") or {}).get("full_name") == repo
+          }
+
+          if mode == "auto_merged":
+              eligible = set()
+              for pr in pages("/pulls?state=closed"):
+                  head = pr.get("head") or {}
+                  base = pr.get("base") or {}
+                  name = head.get("ref")
+                  current = branches.get(name)
+                  if (pr.get("merged_at")
+                      and base.get("ref") == "main"
+                      and (head.get("repo") or {}).get("full_name") == repo
+                      and current
+                      and current["commit"]["sha"] == head.get("sha")):
+                      eligible.add(name)
+              targets = sorted(eligible)
+          else:
+              targets = list(dict.fromkeys(
+                  n.strip() for n in os.environ.get("MANUAL_BRANCHES", "").split(",")
+                  if n.strip()
+              ))
+              if not targets:
+                  sys.exit("Manual mode requires at least one branch name")
+
+          allowed = []
+          skipped = []
+          for name in targets:
+              item = branches.get(name)
+              if name == "main" or name in open_heads or not item or item.get("protected"):
+                  skipped.append(name)
+              else:
+                  allowed.append(name)
+          print("Mode=%s dry_run=%s; eligible=%d; excluded=%d; limit=%d" %
+                (mode, dry_run, len(allowed), len(skipped), limit))
+          for name in skipped:
+              print("SKIP " + name)
+          selected = allowed[:limit]
+          if not selected:
+              print("No eligible branches to process")
+              sys.exit(0)
+
+          deleted = absent = changed = 0
+          for name in selected:
+              if dry_run:
+                  print("WOULD_DELETE " + name)
+                  continue
+              path = "/branches/" + urllib.parse.quote(name, safe="")
+              live = api(path, allow_missing=True)
+              if live is None:
+                  print("ALREADY_ABSENT " + name)
+                  absent += 1
+                  continue
+              if (live.get("protected")
+                  or live["commit"]["sha"] != branches[name]["commit"]["sha"]):
+                  print("SKIP_CHANGED_OR_PROTECTED " + name)
+                  changed += 1
+                  continue
+              result = api("/git/refs/heads/" + urllib.parse.quote(name, safe=""),
+                           method="DELETE", allow_missing=True)
+              if result is None:
+                  print("DELETED_OR_ALREADY_ABSENT " + name)
+              deleted += 1
+          print("RESULT deleted=%d absent=%d changed=%d preview=%d remaining_candidates=%d" %
+                (deleted, absent, changed, len(selected) if dry_run else 0,
+                 len(allowed) - len(selected)))
+          PY
