@@ -265,7 +265,19 @@
 .ja-timeline[open] > .ja-timeline__title::after { content:"を閉じる ‹"; }
 .ja-timeline__count { font-size:13px; font-weight:500; color:#4f5b57; }
 .ja-timeline__title:focus-visible { outline:2px solid #315c79; outline-offset:3px; border-radius:4px; }
-.ja-timeline__list { margin:8px 0 0; padding:0; list-style:none; }
-.ja-timeline__year { display:grid; grid-template-columns:5.5em minmax(0,1fr); gap:10px; padding:8px 0; border-bottom:1px solid #e9ebe8; }
-.ja-timeline__label { font-size:13px; font-weight:600; color:#12365c; font-variant-numeric:tabular-nums; }
+.ja-timeline__scroller { margin:10px 0 0; overflow-x:auto; overscroll-behavior-x:contain; scrollbar-width:thin; }
+.ja-timeline__chart { display:flex; align-items:stretch; gap:4px; min-width:100%; width:max-content; padding:4px 2px 2px; }
+.ja-timeline__col { display:grid; grid-template-rows:auto 96px auto auto; justify-items:center; gap:3px; width:44px; padding:4px 0 6px; border:0; border-radius:8px; background:transparent; color:inherit; font:inherit; cursor:pointer; }
+.ja-timeline__col:disabled { cursor:default; }
+.ja-timeline__col:not(:disabled):hover { background:#f1f3f1; }
+.ja-timeline__col.is-selected { background:#eaf0f2; box-shadow:inset 0 0 0 1px #9fb4c0; }
+.ja-timeline__col:focus-visible { outline:2px solid #315c79; outline-offset:2px; }
+.ja-timeline__n { min-height:16px; font-size:12.5px; font-weight:600; color:#12365c; font-variant-numeric:tabular-nums; }
+.ja-timeline__track { position:relative; display:block; width:14px; height:100%; border-radius:3px; background:#eef0ee; overflow:hidden; }
+.ja-timeline__bar { position:absolute; left:0; right:0; bottom:0; background:#36566b; border-radius:3px; }
+.ja-timeline__yr { font-size:11px; color:#4f5b57; font-variant-numeric:tabular-nums; }
+.ja-timeline__sum { font-size:10px; color:#8a938f; font-variant-numeric:tabular-nums; white-space:nowrap; }
+.ja-timeline__col.is-empty .ja-timeline__yr { color:#a3aba7; }
+.ja-timeline__detail { margin:12px 0 0; padding:10px 0 0; border-top:1px solid #e9ebe8; }
+.ja-timeline__detail-title { margin:0 0 8px; font-size:13px; font-weight:600; color:#12365c; }
 .journey-footer > .visit-year { grid-column:-2 / -1; margin-top:-4px; }
