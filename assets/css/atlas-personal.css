@@ -192,3 +192,22 @@
 .scene-card > .ja-scene-share--card { grid-area:image!important; justify-self:end!important; align-self:start!important; z-index:3; margin:59px 9px 0 0!important; width:34px; height:34px; min-width:34px; min-height:34px; box-shadow:0 1px 5px rgba(0,0,0,.12); }
 .ja-scene-share--hero { flex:0 0 auto; width:32px; height:32px; border-color:#b3c0c2; background:#fffdf8; }
 .ja-scene-share--hero:hover { background:#edf3f2; }
+
+/* 章ごとの記録 — visited Countries per atlas chapter; one quiet ink colour, counts carry the meaning. */
+.ja-chapters { margin:16px 0 4px; padding:16px 0 4px; border-top:1px solid #e1e4e1; }
+.ja-chapters__title { margin:0; font-size:15px; font-weight:600; color:#12365c; }
+.ja-chapters__note { margin:4px 0 12px; font-size:12px; color:#646d68; }
+.ja-chapters__region { margin:0 0 14px; }
+.ja-chapters__region-title { display:flex; justify-content:space-between; gap:12px; margin:0 0 6px; padding-bottom:4px; border-bottom:1px solid #e9ebe8; font-size:13px; font-weight:600; color:#12365c; }
+.ja-chapters__count { font-variant-numeric:tabular-nums; color:#4f5b57; font-weight:500; }
+.ja-chapters__list { display:grid; grid-template-columns:repeat(3,minmax(0,1fr)); gap:6px 18px; margin:0; padding:0; list-style:none; }
+.ja-chapter { display:grid; grid-template-columns:minmax(0,1fr) auto; align-items:baseline; gap:2px 8px; padding:4px 0; }
+.ja-chapter__label { font-size:12.5px; color:#26343a; overflow-wrap:anywhere; }
+.ja-chapter__count { font-size:12px; font-variant-numeric:tabular-nums; color:#4f5b57; white-space:nowrap; }
+.ja-chapter__bar { grid-column:1 / -1; height:3px; border-radius:2px; background:#e6e9e6; overflow:hidden; }
+.ja-chapter__bar > span { display:block; height:100%; background:#36566b; }
+.ja-chapter.is-empty .ja-chapter__label, .ja-chapter.is-empty .ja-chapter__count { color:#8a938f; }
+.ja-chapter.is-complete .ja-chapter__count { color:#12365c; font-weight:600; }
+@media (max-width:760px) {
+  .ja-chapters__list { grid-template-columns:repeat(2,minmax(0,1fr)); gap:4px 14px; }
+}

@@ -3,7 +3,7 @@
 .region-page{min-width:0}
 .region-country-page .hero-art>img{display:block;width:100%;height:100%;object-fit:cover;object-position:55% 47%}
 .region-country-page .hero-art::after{pointer-events:none}
-.region-country-page .country-facts-strip .fact-list{grid-template-columns:repeat(6,minmax(0,1fr))!important}
+.region-country-page .country-facts-strip .fact-list:not(.geo-facts){grid-template-columns:repeat(6,minmax(0,1fr))!important}
 .region-country-page .scene-card{cursor:pointer}
 .region-country-page .scene-card:focus-visible{outline:3px solid var(--navy);outline-offset:3px}
 .region-country-page .scene-card.is-preview,
@@ -12,8 +12,8 @@
 .region-country-page .map-base{width:100%;height:100%;object-fit:contain}
 .region-country-page .travel-planning__block--season{max-width:none}
 .region-page a:focus-visible{outline:2px solid var(--navy);outline-offset:3px}
-@media(max-width:1200px){.region-country-page .country-facts-strip .fact-list{grid-template-columns:repeat(4,minmax(0,1fr))!important}}
-@media(max-width:900px){.region-country-page .country-facts-strip .fact-list{grid-template-columns:repeat(2,minmax(0,1fr))!important}}
+@media(max-width:1200px){.region-country-page .country-facts-strip .fact-list:not(.geo-facts){grid-template-columns:repeat(4,minmax(0,1fr))!important}}
+@media(max-width:900px){.region-country-page .country-facts-strip .fact-list:not(.geo-facts){grid-template-columns:repeat(2,minmax(0,1fr))!important}}
 @media(max-width:760px){.region-country-page .hero-art>img{object-position:center 48%}}
 /* Region facts and encounter sections inherit the same Country visual language. */
 .region-country-page .encounter-list article>.ui-icon{display:block;flex:0 0 16px;width:16px;height:16px;margin:0;color:#8a6b55}

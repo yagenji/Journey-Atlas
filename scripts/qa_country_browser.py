@@ -80,7 +80,7 @@ def collect_dom_audit(driver, viewport: dict) -> dict:
                 profile: document.querySelector('.country-facts-strip__head .section-kicker-en')?.textContent.trim(),
                 history: document.querySelector('#region-history-title')?.textContent.trim(),
                 historyAfterFacts: document.querySelector('.country-facts-strip')?.nextElementSibling?.classList.contains('region-history'),
-                profileCount: document.querySelectorAll('.country-facts-strip .fact-list > div').length,
+                profileCount: document.querySelectorAll('.country-facts-strip .fact-list:not(.geo-facts) > div').length,
                 signature: document.querySelector('#signature-facts-title')?.textContent.trim(),
                 scenery: document.querySelector('.scenes-heading h2')?.textContent.trim(),
                 routes: document.querySelector('#next-routes-title')?.textContent.trim(),

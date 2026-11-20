@@ -33,6 +33,7 @@ RUNTIME_DATA_FILES = [
     "top-scene-index.json",
     "map-data-sources.json",
     "scene-origins.json",
+    "geo-facts.json",
 ]
 
 
