@@ -281,3 +281,17 @@
 .ja-timeline__detail { margin:12px 0 0; padding:10px 0 0; border-top:1px solid #e9ebe8; }
 .ja-timeline__detail-title { margin:0 0 8px; font-size:13px; font-weight:600; color:#12365c; }
 .journey-footer > .visit-year { grid-column:-2 / -1; margin-top:-4px; }
+
+/* 旅の年表 — choose a year, tap places to record it. */
+.ja-timeline__col.is-empty { cursor:pointer; }
+.ja-timeline__earlier { display:flex; align-items:center; justify-content:flex-end; gap:8px; margin:8px 0 0; font-size:12px; color:#4f5b57; }
+.ja-timeline__hint { margin:0 0 10px; font-size:12px; color:#61717e; }
+.ja-year-group { margin:0 0 10px; }
+.ja-year-group__label { margin:0 0 6px; font-size:12px; font-weight:600; color:#4f5b57; cursor:default; }
+details.ja-year-group > .ja-year-group__label { cursor:pointer; color:#36566b; }
+.ja-year-chips { display:flex; flex-wrap:wrap; gap:6px; }
+.ja-year-chip { display:inline-flex; align-items:baseline; gap:6px; padding:6px 12px; border:1px solid #cfd6d4; border-radius:999px; background:#fff; color:#26343a; font:inherit; font-size:13px; cursor:pointer; }
+.ja-year-chip small { font-size:11px; color:#8a938f; font-variant-numeric:tabular-nums; }
+.ja-year-chip:hover { border-color:#9fb4c0; }
+.ja-year-chip.is-on { background:#36566b; border-color:#36566b; color:#fff; }
+.ja-year-chip:focus-visible { outline:2px solid #315c79; outline-offset:2px; }

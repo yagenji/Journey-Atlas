@@ -358,70 +358,101 @@
   }
   function renderTimeline(places) {
     timelineBox.replaceChildren();
-    const dated = places.map(item => ({...item, year: getStored(VISIT_YEAR_PREFIX + item.yearKey)})).filter(item => validYear(item.year));
+    const yearOf = item => { const year = getStored(VISIT_YEAR_PREFIX + item.yearKey); return validYear(year) ? +year : null; };
+    const items = places.map(item => ({...item, year: yearOf(item)}));
+    const dated = items.filter(item => item.year);
     const summaryLine = make('summary', 'ja-timeline__title', '旅の年表');
     summaryLine.append(make('span', 'ja-timeline__count', dated.length ? '（' + dated.length + '件）' : ''));
     timelineBox.append(summaryLine);
     timelineBox.open = timelineOpen;
-    if (!dated.length) {
-      timelineBox.append(make('p', 'ja-empty', '各ページの「ここに行った」を押すと、初めて行った年を記録できます。'));
+    if (!items.length) {
+      timelineBox.append(make('p', 'ja-empty', '「行った旅先」を登録すると、年表をつくれます。'));
       return;
     }
-    // Years run left to right (oldest → newest, empty years kept so the gaps show), each
-    // with the number of first visits as a bar and the running total under it. Choosing a
-    // year lists its places below; the newest year with a record is chosen first.
+    // Years run left to right (oldest → newest, empty years kept so the gaps show): the
+    // number of first visits as a bar, the running total under it. Every year can be chosen;
+    // the chosen year's places are recorded by tapping them below (tap again to clear).
+    const thisYear = new Date().getFullYear();
     const counts = new Map();
-    dated.forEach(item => counts.set(+item.year, (counts.get(+item.year) || 0) + 1));
-    const first = Math.min(...counts.keys()), last = Math.max(...counts.keys());
-    const peak = Math.max(...counts.values());
-    if (!counts.has(timelineYear)) timelineYear = last;
+    dated.forEach(item => counts.set(item.year, (counts.get(item.year) || 0) + 1));
+    const recorded = [...counts.keys()];
+    const first = Math.min(thisYear - 10, ...recorded);
+    const peak = Math.max(1, ...counts.values());
+    if (!validYear(timelineYear)) timelineYear = recorded.length ? Math.max(...recorded) : thisYear;
     const chart = make('div', 'ja-timeline__chart');
     chart.setAttribute('role', 'group');
-    chart.setAttribute('aria-label', '年ごとの初めて行った旅先の数');
-    const placesFor = year => dated.filter(item => +item.year === year).sort((a, b) => a.nameJa.localeCompare(b.nameJa, 'ja'));
-    const detail = make('div', 'ja-timeline__detail');
-    const showYear = year => {
-      timelineYear = year;
-      chart.querySelectorAll('.ja-timeline__col').forEach(col => {
-        const on = +col.dataset.year === year;
-        col.classList.toggle('is-selected', on);
-        col.setAttribute('aria-pressed', String(on));
-      });
-      detail.replaceChildren(make('h4', 'ja-timeline__detail-title', year + '年に初めて行った旅先'));
-      const links = make('div', 'ja-mine-links');
-      placesFor(year).forEach(item => links.append(linkTo(item.href, item.nameJa)));
-      detail.append(links);
-    };
+    chart.setAttribute('aria-label', '年を選ぶ（年ごとの初めて行った旅先の数）');
     let total = 0;
-    for (let year = first; year <= last; year += 1) {
+    const startYear = Math.min(first, timelineYear);
+    for (let year = startYear; year <= thisYear; year += 1) {
       const count = counts.get(year) || 0;
       total += count;
-      const col = make('button', 'ja-timeline__col' + (count ? '' : ' is-empty'));
+      const col = make('button', 'ja-timeline__col' + (count ? '' : ' is-empty') + (year === timelineYear ? ' is-selected' : ''));
       col.type = 'button';
       col.dataset.year = String(year);
-      col.disabled = !count;
+      col.setAttribute('aria-pressed', String(year === timelineYear));
       col.setAttribute('aria-label', year + '年 ' + count + '件（累計' + total + '件）');
+      const track = make('span', 'ja-timeline__track');
       const bar = make('span', 'ja-timeline__bar');
       bar.style.height = (count ? Math.max(8, Math.round(count / peak * 100)) : 0) + '%';
-      col.append(
-        make('span', 'ja-timeline__n', count ? String(count) : ''),
-        make('span', 'ja-timeline__track'),
-        make('span', 'ja-timeline__yr', String(year)),
-        make('span', 'ja-timeline__sum', '累計' + total)
-      );
-      col.querySelector('.ja-timeline__track').append(bar);
-      if (count) col.addEventListener('click', () => showYear(year));
+      track.append(bar);
+      col.append(make('span', 'ja-timeline__n', count ? String(count) : ''), track,
+        make('span', 'ja-timeline__yr', String(year)), make('span', 'ja-timeline__sum', '累計' + total));
+      col.addEventListener('click', () => { timelineYear = year; renderMine(); });
       chart.append(col);
     }
     const scroller = make('div', 'ja-timeline__scroller');
     scroller.append(chart);
-    timelineBox.append(scroller, detail, make('p', 'ja-extremes__note', '記録のない「行った旅先」は年表に出ません。'));
-    showYear(timelineYear);
-    // Start at the newest end once the panel is open.
-    const toEnd = () => { scroller.scrollLeft = scroller.scrollWidth; };
-    if (timelineBox.open) requestAnimationFrame(toEnd);
-    timelineBox.addEventListener('toggle', () => { if (timelineBox.open) requestAnimationFrame(toEnd); }, {once: true});
+    // Earlier years than the chart shows.
+    const earlier = make('label', 'ja-timeline__earlier', 'もっと前の年');
+    const select = make('select', 'visit-year__select');
+    select.append(new Option('選ぶ', ''));
+    for (let year = startYear - 1; year >= 1950; year -= 1) select.append(new Option(year + '年', String(year)));
+    select.addEventListener('change', () => { if (select.value) { timelineYear = +select.value; renderMine(); } });
+    earlier.append(select);
+
+    const detail = make('div', 'ja-timeline__detail');
+    const year = timelineYear;
+    detail.append(make('h4', 'ja-timeline__detail-title', year + '年に初めて行った旅先'));
+    detail.append(make('p', 'ja-timeline__hint', '行った旅先を押すと、' + year + '年として記録します。もう一度押すと外れます。'));
+    const byName = (a, b) => a.nameJa.localeCompare(b.nameJa, 'ja');
+    const chip = item => {
+      const on = item.year === year;
+      const button = make('button', 'ja-year-chip' + (on ? ' is-on' : ''));
+      button.type = 'button';
+      button.setAttribute('aria-pressed', String(on));
+      button.append(make('span', '', (on ? '✓ ' : '') + item.nameJa));
+      if (item.year && !on) button.append(make('small', '', String(item.year)));
+      button.addEventListener('click', () => {
+        const ok = on ? removeStored(VISIT_YEAR_PREFIX + item.yearKey) : putStored(VISIT_YEAR_PREFIX + item.yearKey, String(year));
+        feedback.textContent = !ok ? 'このブラウザには保存できませんでした。'
+          : on ? item.nameJa + 'の年の記録を外しました。' : item.nameJa + 'を' + year + '年として記録しました。';
+        renderMine();
+      });
+      return button;
+    };
+    const group = (label, list, open = true) => {
+      if (!list.length) return null;
+      const box = open ? make('div', 'ja-year-group') : make('details', 'ja-year-group');
+      const head = make(open ? 'p' : 'summary', 'ja-year-group__label', label + '（' + list.length + '）');
+      const chips = make('div', 'ja-year-chips');
+      list.sort(byName).forEach(item => chips.append(chip(item)));
+      box.append(head, chips);
+      return box;
+    };
+    [
+      group('この年', items.filter(item => item.year === year)),
+      group('年が未記入', items.filter(item => !item.year)),
+      group('ほかの年に記録済み', items.filter(item => item.year && item.year !== year), false)
+    ].filter(Boolean).forEach(node => detail.append(node));
+
+    timelineBox.append(scroller, earlier, detail);
+    // Keep the chosen year in view.
+    const toSelected = () => chart.querySelector('.is-selected')?.scrollIntoView({block: 'nearest', inline: 'center'});
+    if (timelineBox.open) requestAnimationFrame(toSelected);
+    timelineBox.addEventListener('toggle', () => { if (timelineBox.open) requestAnimationFrame(toSelected); }, {once: true});
   }
+
   mine.append(summary, extremesBox, chaptersBox, timelineBox, groups, tools, feedback);
   // Flags for UK Regions follow each Region page; Northern Ireland has no official
   // regional flag, so the United Kingdom flag is used (see its sourceNotes.flag).
