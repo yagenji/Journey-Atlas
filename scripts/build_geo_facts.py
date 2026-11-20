@@ -182,7 +182,7 @@ def main() -> None:
         place = page["place"]
         if place:
             entry["tz"] = finder.timezone_at(lat=place[1], lng=place[2])
-            entry["place"] = {"label": page["label"], "nameJa": place[0], "lat": round(place[1], 2)}
+            entry["place"] = {"label": page["label"], "nameJa": place[0], "lat": round(place[1], 4), "lon": round(place[2], 4)}
         elif slug in FALLBACK_ZONES:
             entry["tz"] = FALLBACK_ZONES[slug]
         if not entry.get("tz") or entry["tz"].startswith("Etc/"):
