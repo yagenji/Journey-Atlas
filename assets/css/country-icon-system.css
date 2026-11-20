@@ -498,3 +498,29 @@ html{scroll-padding-top:108px;}
   right:auto;
   transform:translateX(-50%);
 }
+
+/* 地球の上で — 現地時刻 / 同じ緯度 / 地球の反対側, a quiet second row under 基本情報. */
+.country-facts-strip .geo-facts{
+  grid-column:2!important;
+  grid-template-columns:repeat(3,minmax(0,1fr))!important;
+  margin-top:12px!important;
+  padding-top:12px!important;
+  border-top:1px solid rgba(18,54,92,.08)!important;
+}
+.country-facts-strip .geo-facts>div{min-height:0!important;}
+.country-facts-strip .geo-facts>div:first-child{border-left:0!important;}
+.country-facts-strip .geo-facts dd{font-size:12.5px!important;}
+.geo-facts__time{font-variant-numeric:tabular-nums;}
+.geo-facts__link{color:inherit!important;text-decoration:underline;text-decoration-color:rgba(11,44,87,.35);text-underline-offset:3px;}
+.geo-facts__link:hover{text-decoration-color:currentColor;}
+@media(min-width:761px) and (max-width:1180px){
+  .country-facts-strip .geo-facts>div:nth-child(n+4){margin-top:0;padding-top:4px!important;border-top:0!important;}
+}
+@media(max-width:760px){
+  .country-facts-strip .geo-facts{grid-template-columns:1fr!important;margin-top:4px!important;padding-top:0!important;border-top:0!important;}
+  .country-facts-strip .geo-facts>div{min-height:0!important;padding:10px 10px!important;border-left:0!important;border-top:1px solid rgba(18,54,92,.08)!important;grid-column:auto!important;}
+  .country-facts-strip .geo-facts>div:nth-child(-n+2){border-top:1px solid rgba(18,54,92,.08)!important;}
+}
+.country-facts-strip .geo-facts[data-count="2"]{grid-template-columns:repeat(2,minmax(0,1fr))!important;}
+.country-facts-strip .geo-facts[data-count="1"]{grid-template-columns:minmax(0,1fr)!important;}
+@media(max-width:760px){.country-facts-strip .geo-facts[data-count]{grid-template-columns:1fr!important;}}

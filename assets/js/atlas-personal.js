@@ -231,7 +231,53 @@
   let regionNames = [];
   const feedback = make('p', 'ja-subtitle');
   feedback.setAttribute('role', 'status');
-  mine.append(summary, groups, tools, feedback);
+  // 章ごとの記録: visited Countries counted per atlas chapter (region → subregion), the same
+  // chapters the Country pages turn through. Only the 200 Country pages count.
+  const chaptersBox = make('section', 'ja-chapters');
+  chaptersBox.setAttribute('aria-labelledby', 'ja-chapters-title');
+  let atlasChapters = [];
+  window.JourneyAtlasOrder?.load().then(({chapters}) => { atlasChapters = chapters; renderMine(); }).catch(() => {});
+  function renderChapters() {
+    chaptersBox.replaceChildren();
+    if (!atlasChapters.length) { chaptersBox.hidden = true; return; }
+    chaptersBox.hidden = false;
+    const title = make('h3', 'ja-chapters__title', '章ごとの記録');
+    title.id = 'ja-chapters-title';
+    chaptersBox.append(title, make('p', 'ja-chapters__note', '図鑑の章ごとに、行った国・地域の数です。'));
+    const regions = [];
+    atlasChapters.forEach(chapter => {
+      let block = regions.find(item => item.label === chapter.region);
+      if (!block) { block = {label: chapter.region, chapters: []}; regions.push(block); }
+      block.chapters.push(chapter);
+    });
+    regions.forEach(region => {
+      const group = make('div', 'ja-chapters__region');
+      const total = region.chapters.reduce((sum, chapter) => sum + chapter.pages.length, 0);
+      const done = region.chapters.reduce((sum, chapter) => sum + chapter.pages.filter(visited).length, 0);
+      const head = make('h4', 'ja-chapters__region-title');
+      head.append(make('span', '', region.label), make('span', 'ja-chapters__count', done + ' / ' + total));
+      const list = make('ol', 'ja-chapters__list');
+      if (region.chapters.length > 1 || region.chapters[0].label !== region.label) {
+        region.chapters.forEach(chapter => {
+          const seen = chapter.pages.filter(visited).length;
+          const item = make('li', 'ja-chapter' + (seen === chapter.pages.length ? ' is-complete' : '') + (seen ? '' : ' is-empty'));
+          const label = make('span', 'ja-chapter__label', chapter.label);
+          const count = make('span', 'ja-chapter__count', seen + ' / ' + chapter.pages.length + (seen === chapter.pages.length ? ' ✓' : ''));
+          const bar = make('span', 'ja-chapter__bar');
+          bar.setAttribute('aria-hidden', 'true');
+          const fill = make('span', '');
+          fill.style.width = (chapter.pages.length ? Math.round(seen / chapter.pages.length * 100) : 0) + '%';
+          bar.append(fill);
+          item.append(label, count, bar);
+          list.append(item);
+        });
+      }
+      group.append(head);
+      if (list.children.length) group.append(list);
+      chaptersBox.append(group);
+    });
+  }
+  mine.append(summary, chaptersBox, groups, tools, feedback);
   // Flags for UK Regions follow each Region page; Northern Ireland has no official
   // regional flag, so the United Kingdom flag is used (see its sourceNotes.flag).
   const REGION_FLAGS = {
@@ -328,6 +374,7 @@
       sectionFor('行きたい詳細地域', [...detailWant,...regionWishes.map(w => ({...w,...regionFlag(w)}))], '')
     );
     groups.replaceChildren(seenColumn, wantColumn);
+    renderChapters();
 
   }
   const exportButton = make('button', 'ja-tool-button', '保存データを書き出す');

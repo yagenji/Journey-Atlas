@@ -64,7 +64,7 @@ def main() -> int:
                             historyText: document.querySelector('.region-history > p')?.textContent.trim(),
                             historyAfterFacts: document.querySelector('.country-facts-strip')?.nextElementSibling?.classList.contains('region-history'),
                             sectionCounts: {
-                                profile: document.querySelectorAll('.country-facts-strip .fact-list > div').length,
+                                profile: document.querySelectorAll('.country-facts-strip .fact-list:not(.geo-facts) > div').length,
                                 signature: document.querySelectorAll('.signature-facts__grid article').length,
                                 encounters: document.querySelectorAll('.encounter-list article').length,
                                 culture: document.querySelectorAll('.atlas-extras__grid article').length,
