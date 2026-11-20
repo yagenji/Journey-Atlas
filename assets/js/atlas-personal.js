@@ -250,12 +250,33 @@
       if (!block) { block = {label: chapter.region, chapters: []}; regions.push(block); }
       block.chapters.push(chapter);
     });
+    // The seven regions at a glance, then the chapters in detail below.
+    const board = make('ul', 'ja-regions-board');
+    board.setAttribute('aria-label', '地域ごとの割合');
     regions.forEach(region => {
-      const group = make('div', 'ja-chapters__region');
       const total = region.chapters.reduce((sum, chapter) => sum + chapter.pages.length, 0);
       const done = region.chapters.reduce((sum, chapter) => sum + chapter.pages.filter(visited).length, 0);
+      const rate = total ? Math.round(done / total * 100) : 0;
+      const tile = make('li', 'ja-region-tile' + (done ? '' : ' is-empty') + (total && done === total ? ' is-complete' : ''));
+      const bar = make('span', 'ja-region-tile__bar');
+      bar.setAttribute('aria-hidden', 'true');
+      const fill = make('span', '');
+      fill.style.width = rate + '%';
+      bar.append(fill);
+      tile.append(
+        make('span', 'ja-region-tile__label', region.label),
+        make('strong', 'ja-region-tile__rate', rate + '%'),
+        make('span', 'ja-region-tile__count', done + ' / ' + total + (total && done === total ? ' ✓' : '')),
+        bar
+      );
+      board.append(tile);
+    });
+    chaptersBox.append(board, make('h4', 'ja-chapters__detail-title', '章ごとの内訳'));
+    regions.forEach(region => {
+      const group = make('div', 'ja-chapters__region');
+      // Region totals are on the board above; the detail heading only names the region.
       const head = make('h4', 'ja-chapters__region-title');
-      head.append(make('span', '', region.label), make('span', 'ja-chapters__count', done + ' / ' + total));
+      head.append(make('span', '', region.label));
       const list = make('ol', 'ja-chapters__list');
       if (region.chapters.length > 1 || region.chapters[0].label !== region.label) {
         region.chapters.forEach(chapter => {
