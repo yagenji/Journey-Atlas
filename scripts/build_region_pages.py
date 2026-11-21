@@ -699,6 +699,24 @@ def render_region(data: dict, *, site_url: str, version: str) -> tuple[str, str,
             f'<p>{esc(item["text"])}</p></div></article>')
     result.append('</div></section>')
 
+    # 旅のひとこと: the same section as Country pages (assets/js/app.js renderPhrases).
+    phrases = data.get('phrases') or {}
+    if phrases.get('language') and phrases.get('items'):
+        lang = esc(phrases.get('lang', ''))
+        result.append('<section class="phrases-section" aria-labelledby="region-phrases-title">'
+            '<div class="phrases-section__head"><div><span class="section-kicker-en">WORDS</span>'
+            '<h2 id="region-phrases-title">旅のひとこと</h2></div>'
+            f'<p class="phrases-section__intro">{esc(phrases["language"])}で。{esc(phrases.get("note", ""))}</p></div>'
+            f'<div class="phrases-grid" data-count="{len(phrases["items"])}">')
+        for item in phrases['items']:
+            rtl = ' dir="rtl"' if any('\u0590' <= ch <= '\u08ff' for ch in item.get('local', '')) else ''
+            result.append('<article class="phrase-card">'
+                f'<h3>{esc(item["ja"])}</h3><p class="phrase-card__local" lang="{lang}"{rtl}>{esc(item["local"])}</p>'
+                f'<p class="phrase-card__reading">{esc(item["reading"])}</p>'
+                + (f'<p class="phrase-card__note">{esc(item["note"])}</p>' if item.get('note') else '')
+                + '</article>')
+        result.append('</div></section>')
+
     trivia = data.get('travelTrivia', [])
     if trivia:
         result.append('<section class="travel-trivia" aria-labelledby="region-trivia-title">'

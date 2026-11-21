@@ -759,3 +759,5 @@
   .phrases-section{padding:20px 18px 22px;}
   .phrase-card__local{font-size:20px;}
 }
+.phrases-grid[data-count="2"]{grid-template-columns:repeat(2,minmax(0,1fr));}
+@media(max-width:760px){.phrases-grid[data-count]{grid-template-columns:1fr;}}

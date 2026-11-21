@@ -627,6 +627,7 @@ function renderPhrases(fragment, data = {}) {
     return;
   }
   fragment.querySelector('#phrases-intro').textContent = `${data.language}で。${data.note || ''}`;
+  grid.dataset.count = String(items.length);
   items.forEach((item) => {
     const card = document.createElement('article');
     card.className = 'phrase-card';
