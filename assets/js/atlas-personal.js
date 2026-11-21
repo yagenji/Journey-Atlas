@@ -324,6 +324,26 @@
     const h = Math.sin(dLat / 2) ** 2 + Math.cos(a[0] * r) * Math.cos(b[0] * r) * Math.sin(dLon / 2) ** 2;
     return 6371 * 2 * Math.asin(Math.sqrt(h));
   };
+  // Standard-time offset in minutes (daylight saving ignored, so the ranking does not change
+  // with the season): the smaller of mid-January and mid-July. Morocco keeps UTC+1 as its
+  // standard time and only steps back during Ramadan, so it is fixed here.
+  const STD_OFFSET = {'Africa/Casablanca': 60};
+  const offsetAt = (tz, date) => {
+    const parts = new Intl.DateTimeFormat('en-US', {timeZone: tz, hourCycle: 'h23', year: 'numeric', month: 'numeric', day: 'numeric', hour: 'numeric', minute: 'numeric'})
+      .formatToParts(date).reduce((acc, part) => ({...acc, [part.type]: Number(part.value)}), {});
+    return Math.round((Date.UTC(parts.year, parts.month - 1, parts.day, parts.hour, parts.minute) - date.getTime()) / 60000);
+  };
+  const standardOffset = tz => {
+    if (tz in STD_OFFSET) return STD_OFFSET[tz];
+    try {
+      const year = new Date().getUTCFullYear();
+      return Math.min(offsetAt(tz, new Date(Date.UTC(year, 0, 15, 12))), offsetAt(tz, new Date(Date.UTC(year, 6, 15, 12))));
+    } catch { return null; }
+  };
+  const diffText = minutes => {
+    const sign = minutes < 0 ? '−' : '+', abs = Math.abs(minutes), h = Math.floor(abs / 60), m = abs % 60;
+    return sign + h + '時間' + (m ? m + '分' : '');
+  };
   const latText = lat => (lat < 0 ? '南緯' : '北緯') + Math.abs(lat).toFixed(1) + '°';
   function renderExtremes(places) {
     extremesBox.replaceChildren();
@@ -353,8 +373,15 @@
       const far = away.map(item => ({item, km: distanceKm(TOKYO, [item.place.lat, item.place.lon])}))
         .reduce((a, b) => (b.km > a.km ? b : a));
       tile('東京からいちばん遠い', far.item, '約' + (Math.round(far.km / 100) * 100).toLocaleString('ja-JP') + 'km');
+      const diffs = away.map(item => ({item, offset: item.tz ? standardOffset(item.tz) : null}))
+        .filter(entry => entry.offset !== null)
+        .map(entry => ({...entry, diff: entry.offset - 540}));
+      if (diffs.length) {
+        const widest = diffs.reduce((a, b) => (Math.abs(b.diff) > Math.abs(a.diff) ? b : a));
+        if (widest.diff) tile('時差がいちばん大きい', widest.item, '日本と' + diffText(widest.diff));
+      }
     }
-    extremesBox.append(title, list, make('p', 'ja-extremes__note', '200の国・地域の首都の位置で比べています。'));
+    extremesBox.append(title, list, make('p', 'ja-extremes__note', '200の国・地域の首都の位置と、首都の標準時（夏時間を除く）で比べています。'));
   }
   // 旅の年表を画像に: one PNG drawn in this browser (nothing is uploaded), shared or saved
   // through the same dialog style as わたしの地図.
@@ -675,7 +702,7 @@
     // England, Hong Kong or Macau), the same base as the VISITED count.
     const visitedPlaces = parents.filter(visited)
       .map(c => ({slug: c.slug, nameJa: c.nameJa, href: c.href || countryHref(c.slug), yearKey: c.slug}))
-      .map(item => ({...item, place: geoEntries?.[item.slug]?.place && Number.isFinite(geoEntries[item.slug].place.lon) ? geoEntries[item.slug].place : null}));
+      .map(item => ({...item, place: geoEntries?.[item.slug]?.place && Number.isFinite(geoEntries[item.slug].place.lon) ? geoEntries[item.slug].place : null, tz: geoEntries?.[item.slug]?.tz || null}));
     if (geoEntries) renderExtremes(visitedPlaces); else extremesBox.hidden = true;
     renderTimeline(visitedPlaces);
 
