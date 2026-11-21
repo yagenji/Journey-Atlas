@@ -113,6 +113,7 @@ function renderCountry(data, registry) {
   renderSignatureFacts(fragment, data.signatureFacts);
   renderAtlasExtras(fragment, data.atlasExtras);
   renderTaste(fragment, data.taste);
+  renderPhrases(fragment, data.phrases);
   renderTravelTrivia(fragment, data.travelTrivia);
   renderSeasons(fragment, data.seasons, data.bestSeason);
   renderTransport(fragment, data.transport);
@@ -614,6 +615,27 @@ function renderAtlasExtras(fragment, items = []) {
   section.hidden = false;
 }
 
+
+// 旅のひとこと: こんにちは・ありがとう・おいしい in the language a traveller is most likely to
+// be understood in, with the local script and a katakana reading.
+function renderPhrases(fragment, data = {}) {
+  const section = fragment.querySelector('#phrases-section');
+  const grid = fragment.querySelector('#phrases-grid');
+  const items = Array.isArray(data.items) ? data.items : [];
+  if (!section || !grid || !items.length || !data.language) {
+    if (section) section.hidden = true;
+    return;
+  }
+  fragment.querySelector('#phrases-intro').textContent = `${data.language}で。${data.note || ''}`;
+  items.forEach((item) => {
+    const card = document.createElement('article');
+    card.className = 'phrase-card';
+    const rtl = /[\u0590-\u08ff]/.test(item.local || '');
+    card.innerHTML = `<h3>${escapeHtml(item.ja || '')}</h3><p class="phrase-card__local" lang="${escapeHtml(data.lang || '')}"${rtl ? ' dir="rtl"' : ''}>${escapeHtml(item.local || '')}</p><p class="phrase-card__reading">${escapeHtml(item.reading || '')}</p>${item.note ? `<p class="phrase-card__note">${escapeHtml(item.note)}</p>` : ''}`;
+    grid.append(card);
+  });
+  section.hidden = false;
+}
 
 function renderTaste(fragment, data = {}) {
   const section = fragment.querySelector('#taste-section');
