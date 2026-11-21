@@ -142,10 +142,12 @@
     facts.after(list);
   }
 
+  // A missing file only hides the row (logged once as a warning, never an uncaught error).
   const ready = fetch('data/geo-facts.json')
-    .then((response) => { if (!response.ok) throw new Error('geo-facts'); return response.json(); })
-    .then((data) => data.entries?.[slug]);
-  const start = () => ready.then(mount).catch((error) => console.warn('[JOURNEY ATLAS] Geo facts unavailable.', error));
+    .then((response) => { if (!response.ok) throw new Error('geo-facts.json ' + response.status); return response.json(); })
+    .then((data) => data.entries?.[slug])
+    .catch((error) => { console.warn('[JOURNEY ATLAS] Geo facts unavailable.', error); return null; });
+  const start = () => ready.then(mount);
   // Country pages render 基本情報 after their data loads; Region pages are static.
   if (document.querySelector('#facts')?.children.length || (!document.querySelector('#facts') && document.querySelector('.country-facts-strip .fact-list'))) start();
   else window.addEventListener('journeyatlas:countryready', () => requestAnimationFrame(start), { once: true });
