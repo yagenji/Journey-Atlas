@@ -100,11 +100,14 @@
   }
 
   function mount(entry) {
-    if (!entry || document.querySelector('.geo-facts')) return;
+    if (!entry || document.querySelector('.geo-facts-block')) return;
     const facts = document.querySelector('#facts') || document.querySelector('.country-facts-strip .fact-list');
     if (!facts) return;
+    const block = make('section', 'geo-facts-block');
+    const title = make('h3', 'geo-facts__title', '地球の上で');
+    title.id = 'geo-facts-title';
+    block.setAttribute('aria-labelledby', title.id);
     const list = make('dl', 'fact-list geo-facts');
-    list.setAttribute('aria-label', '地球の上で');
 
     if (entry.tz) {
       const value = make('span', 'geo-facts__time');
@@ -139,7 +142,8 @@
     }
     if (!list.children.length) return;
     list.dataset.count = String(list.children.length);
-    facts.after(list);
+    block.append(title, list);
+    facts.after(block);
   }
 
   // A missing file only hides the row (logged once as a warning, never an uncaught error).
