@@ -499,13 +499,22 @@ html{scroll-padding-top:108px;}
   transform:translateX(-50%);
 }
 
-/* 地球の上で — 現地時刻 / 同じ緯度 / 地球の反対側, a quiet second row under 基本情報. */
+/* 地球の上で — 現地時刻 / 同じ緯度 / 地球の反対側, a quiet second row under 基本情報,
+   introduced by a small visible title so it does not read as more 基本情報 cells. */
+.country-facts-strip .geo-facts-block{
+  grid-column:2;
+  min-width:0;
+  margin-top:12px;
+  padding-top:12px;
+  border-top:1px solid rgba(18,54,92,.08);
+}
+.geo-facts__title{margin:0 0 6px;padding:0;font-size:13px;font-weight:600;letter-spacing:.04em;color:#61717e;}
 .country-facts-strip .geo-facts{
-  grid-column:2!important;
+  grid-column:auto!important;
   grid-template-columns:repeat(3,minmax(0,1fr))!important;
-  margin-top:12px!important;
-  padding-top:12px!important;
-  border-top:1px solid rgba(18,54,92,.08)!important;
+  margin-top:0!important;
+  padding-top:0!important;
+  border-top:0!important;
 }
 .country-facts-strip .geo-facts>div{min-height:0!important;}
 /* The row's left rule sits on the first item (below the dividing line), not on the list,
@@ -520,7 +529,10 @@ html{scroll-padding-top:108px;}
   .country-facts-strip .geo-facts>div:nth-child(n+4){margin-top:0;padding-top:4px!important;border-top:0!important;}
 }
 @media(max-width:760px){
-  .country-facts-strip .geo-facts{grid-template-columns:1fr!important;margin-top:4px!important;padding-top:0!important;border-top:0!important;}
+  .country-facts-strip .geo-facts-block{grid-column:auto;margin-top:4px;padding-top:12px;}
+  .geo-facts__title{margin-bottom:2px;}
+  .country-facts-strip .geo-facts{grid-template-columns:1fr!important;margin-top:0!important;padding-top:0!important;border-top:0!important;}
+  .country-facts-strip .geo-facts>div:last-child{padding-bottom:2px!important;}
   .country-facts-strip .geo-facts>div{min-height:0!important;padding:10px 10px!important;border-left:0!important;border-top:1px solid rgba(18,54,92,.08)!important;grid-column:auto!important;}
   .country-facts-strip .geo-facts>div:nth-child(-n+2){border-top:1px solid rgba(18,54,92,.08)!important;}
 }
