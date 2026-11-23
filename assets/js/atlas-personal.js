@@ -233,7 +233,7 @@
   const groups = make('div', 'ja-mine-groups');
   // 行った旅先・行きたい旅先 repeat the map's list, so they stay folded until asked for.
   const groupsBox = make('details', 'ja-timeline ja-mine-list');
-  const groupsSummary = make('summary', 'ja-timeline__title', '行った旅先・行きたい旅先');
+  const groupsSummary = make('summary', 'ja-timeline__title', '旅先の一覧');
   const groupsCount = make('span', 'ja-timeline__count');
   groupsSummary.append(groupsCount);
   groupsBox.append(groupsSummary, groups);

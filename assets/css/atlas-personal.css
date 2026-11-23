@@ -255,6 +255,8 @@
   .ja-extremes__list { grid-template-columns:1fr; gap:0; border-top:1px solid #e9ebe8; }
   .ja-extreme { grid-template-columns:7.5em minmax(0,1fr) auto; align-items:baseline; gap:10px; padding:9px 2px; border:0; border-bottom:1px solid #e9ebe8; border-radius:0; background:transparent; }
   .ja-extreme__name { font-size:14px; }
+  .ja-extreme--center { grid-template-columns:7.5em minmax(0,1fr); }
+  .ja-extreme--center .ja-extreme__value { grid-column:2; line-height:1.6; }
 }
 
 /* 旅の年表 — folded by default. */
@@ -297,3 +299,6 @@ details.ja-year-group > .ja-year-group__label { cursor:pointer; color:#36566b; }
 .ja-year-chip:focus-visible { outline:2px solid #315c79; outline-offset:2px; }
 .ja-timeline__share { margin:10px 0 0; }
 .ja-timeline__share[hidden] { display:none; }
+
+/* 旅先の一覧: the count may wrap on narrow screens, so the summary flows as text. */
+.ja-mine-list > .ja-timeline__title { display:block; }
