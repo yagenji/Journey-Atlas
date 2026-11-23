@@ -60,7 +60,9 @@
   mapColumn.append(modes, years, stage, hint, status, share);
   const picker = make('div', 'map-mine ja-mymap__picker');
   section.append(title, mapColumn, picker);
-  home.prepend(section);
+  // 行った数・行きたい数 comes first, then this map.
+  const summaryBlock = home.querySelector('.ja-mine-summary');
+  if (summaryBlock) summaryBlock.after(section); else home.prepend(section);
 
   let map, svg, view = [...WORLD], query = '', visitedOnly = false, loading = false, mode = 'both';
   [['both', 'すべて'], ['visited', '行った'], ['wished', '行きたい']].forEach(([id, label]) => {
