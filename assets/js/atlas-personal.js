@@ -365,6 +365,17 @@
     const scale = 1000 / (2 * .8487 * Math.PI);
     return [500 + .8487 * X * dLon * Math.PI / 180 * scale, 507.209 / 2 - 1.3523 * Y * Math.sign(lat) * scale];
   };
+  // Large lakes are cut out of the map's countries (scalerank ≤ 1 in scripts/build_world_map.py).
+  // A point outside every country inside one of these boxes is in that lake; the boxes hold no
+  // open sea, so anything else outside the countries is sea.
+  const LAKES = [
+    ['カスピ海', 36.5, 47.5, 46.5, 55.5], ['五大湖', 41.3, 49.1, -92.3, -76], ['ビクトリア湖', -3.1, .6, 31.5, 34.9],
+    ['バイカル湖', 51.4, 55.9, 103.6, 110], ['タンガニーカ湖', -8.9, -3.3, 29, 31.3], ['マラウイ湖', -14.5, -9.4, 33.8, 35.4],
+    ['グレートベア湖', 64.7, 67.2, -125.3, -117.5], ['グレートスレーブ湖', 60.8, 62.95, -117.4, -108.8], ['ウィニペグ湖', 50.3, 54, -99.3, -96.2],
+    ['ラドガ湖', 59.9, 61.8, 30.5, 33], ['オネガ湖', 60.8, 62.95, 34.2, 36.5], ['バルハシ湖', 45, 47.2, 73.4, 79.3],
+    ['チチカカ湖', -16.7, -15.2, -70.1, -68.6], ['ニカラグア湖', 10.9, 12.2, -85.8, -84.6]
+  ];
+  const lakeAt = (lat, lon) => (LAKES.find(([, s, n, w, e]) => lat >= s && lat <= n && lon >= w && lon <= e) || [])[0];
   let centerMap = null, centerMapLoading = false;
   const loadCenterMap = () => {
     if (centerMap || centerMapLoading || !window.JourneyAtlasWorldMap) return;
@@ -411,13 +422,13 @@
       .reduce((a, b) => (b.km < a.km ? b : a));
     // Until the map geometry has loaded (country === undefined) the coordinates stand in.
     const placeText = country === undefined ? `${latText(lat)}・${lonText(lon)}`
-      : country ? (country.nameJa ? `${country.nameJa}の上` : '陸の上') : '海や湖の上';
+      : country ? (country.nameJa ? `${country.nameJa}の上` : '陸の上') : `${lakeAt(lat, lon) || '海'}の上`;
     const body = make('div', 'ja-center__body');
     const text = make('div', 'ja-center__text');
     text.append(make('p', 'ja-center__place', placeText));
     if (country !== undefined) text.append(make('p', 'ja-center__coord', `${latText(lat)}・${lonText(lon)}`));
     const near = make('p', 'ja-center__line');
-    near.append('行った旅先でいちばん近いのは ', linkTo(nearest.item.href, nearest.item.nameJa, 'ja-center__link'), `（約${(Math.round(nearest.km / 10) * 10).toLocaleString('ja-JP')}km）`);
+    near.append('行った旅先でいちばん近いのは ', linkTo(nearest.item.href, nearest.item.nameJa, 'ja-center__link'), `（首都まで約${(Math.round(nearest.km / 10) * 10).toLocaleString('ja-JP')}km）`);
     text.append(near, make('p', 'ja-center__line', `地球の内側では、地表から約${depth.toLocaleString('ja-JP')}km下`));
     body.append(text);
     if (centerMap?.land) {
