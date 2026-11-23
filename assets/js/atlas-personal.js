@@ -208,7 +208,7 @@
   const host = document.querySelector('#atlas-personal-home');
   if (!host) return;
   const disclosure = document.querySelector('#my-atlas');
-  disclosure?.addEventListener('toggle', () => { if (disclosure.open && !centerBox.hidden) loadCenterMap(); });
+  disclosure?.addEventListener('toggle', () => { if (disclosure.open) loadCenterMap(); });
   const openAtlas = () => { if (disclosure) disclosure.open = true; };
   if (window.location.hash === '#my-atlas') openAtlas();
   document.querySelectorAll('a[href="#my-atlas"]').forEach(link => link.addEventListener('click', openAtlas));
@@ -231,6 +231,12 @@
   }).catch(() => {});
   const summary = make('div', 'ja-mine-summary');
   const groups = make('div', 'ja-mine-groups');
+  // 行った旅先・行きたい旅先 repeat the map's list, so they stay folded until asked for.
+  const groupsBox = make('details', 'ja-timeline ja-mine-list');
+  const groupsSummary = make('summary', 'ja-timeline__title', '行った旅先・行きたい旅先');
+  const groupsCount = make('span', 'ja-timeline__count');
+  groupsSummary.append(groupsCount);
+  groupsBox.append(groupsSummary, groups);
   const tools = make('div', 'ja-backup-tools');
   let regionNames = [];
   const feedback = make('p', 'ja-subtitle');
@@ -353,9 +359,6 @@
   // below the surface is shown too. The world map's Robinson projection (lon_0 = 10°E,
   // 1000 × 507.209 units, scripts/build_world_map.py) places the point on the map and finds
   // the country it falls in; outside every country it is water (sea or a large lake).
-  const centerBox = make('section', 'ja-center');
-  centerBox.setAttribute('aria-labelledby', 'ja-center-title');
-  centerBox.hidden = true;
   const ROBIN_X = [1, .9986, .9954, .99, .9822, .973, .96, .9427, .9216, .8962, .8679, .835, .7986, .7597, .7186, .6732, .6213, .5722, .5322];
   const ROBIN_Y = [0, .062, .124, .186, .248, .31, .372, .434, .4958, .5571, .6176, .6769, .7346, .7903, .8435, .8936, .9394, .9761, 1];
   const robinson = (lat, lon) => {
@@ -393,10 +396,10 @@
     }
     return null;
   };
-  function renderCenter(places) {
-    centerBox.replaceChildren();
+  // Returns {place, coord, depth} for the 旅の中心 tile, or null with fewer than two places.
+  function travelCenter(places) {
     const located = places.filter(item => item.place);
-    if (located.length < 2) { centerBox.hidden = true; return; }
+    if (located.length < 2) return null;
     const r = Math.PI / 180;
     let x = 0, y = 0, z = 0;
     located.forEach(({place}) => {
@@ -406,63 +409,14 @@
     });
     x /= located.length; y /= located.length; z /= located.length;
     const length = Math.hypot(x, y, z);
-    centerBox.hidden = false;
-    const title = make('h3', 'ja-center__title', 'わたしの旅の中心');
-    title.id = 'ja-center-title';
-    if (length < 1e-6) {
-      centerBox.append(title, make('p', 'ja-center__place', '地球の中心'),
-        make('p', 'ja-center__note', '行った国・地域が地球の全体にちょうど釣り合って散らばっていて、中心が地球の中心に重なっています。'));
-      return;
-    }
+    if (length < 1e-6) return {place: '地球の中心', coord: '', depth: '地表から約6,370km下'};
     const lat = Math.asin(z / length) / r, lon = Math.atan2(y, x) / r;
     const depth = Math.round(6371 * (1 - length) / 10) * 10;
-    const point = robinson(lat, lon);
-    const country = countryAt(point);
-    const nearest = located.map(item => ({item, km: distanceKm([lat, lon], [item.place.lat, item.place.lon])}))
-      .reduce((a, b) => (b.km < a.km ? b : a));
-    // Until the map geometry has loaded (country === undefined) the coordinates stand in.
-    const placeText = country === undefined ? `${latText(lat)}・${lonText(lon)}`
+    const country = countryAt(robinson(lat, lon));
+    // Until the map geometry has loaded (country === undefined) only the coordinates show.
+    const place = country === undefined ? null
       : country ? (country.nameJa ? `${country.nameJa}の上` : '陸の上') : `${lakeAt(lat, lon) || '海'}の上`;
-    const body = make('div', 'ja-center__body');
-    const text = make('div', 'ja-center__text');
-    text.append(make('p', 'ja-center__place', placeText));
-    if (country !== undefined) text.append(make('p', 'ja-center__coord', `${latText(lat)}・${lonText(lon)}`));
-    const near = make('p', 'ja-center__line');
-    near.append('行った旅先でいちばん近いのは ', linkTo(nearest.item.href, nearest.item.nameJa, 'ja-center__link'), `（首都まで約${(Math.round(nearest.km / 10) * 10).toLocaleString('ja-JP')}km）`);
-    text.append(near, make('p', 'ja-center__line', `地球の内側では、地表から約${depth.toLocaleString('ja-JP')}km下`));
-    body.append(text);
-    if (centerMap?.land) {
-      const NS = 'http://www.w3.org/2000/svg';
-      const svg = document.createElementNS(NS, 'svg');
-      svg.setAttribute('class', 'ja-center__map');
-      svg.setAttribute('viewBox', '0 0 1000 507.209');
-      svg.setAttribute('aria-hidden', 'true');
-      const ocean = document.createElementNS(NS, 'rect');
-      ocean.setAttribute('width', '1000'); ocean.setAttribute('height', '507.209'); ocean.setAttribute('class', 'ja-center__ocean');
-      const land = centerMap.land.cloneNode(true);
-      land.removeAttribute('id');
-      land.querySelectorAll('[id]').forEach(el => el.removeAttribute('id'));
-      land.querySelectorAll('[tabindex],[role],[aria-label],title').forEach(el => {
-        if (el.tagName === 'title') el.remove(); else ['tabindex', 'role', 'aria-label'].forEach(name => el.removeAttribute(name));
-      });
-      land.setAttribute('class', 'ja-center__land');
-      const visited = new Set(located.map(item => item.slug));
-      land.querySelectorAll('[data-iso]').forEach(group => {
-        const c = centerMap.byIso.get(group.dataset.iso);
-        group.setAttribute('class', c && visited.has(c.slug) ? 'is-visited' : '');
-      });
-      const dot = document.createElementNS(NS, 'g');
-      dot.setAttribute('class', 'ja-center__dot');
-      [[14, 'ja-center__halo'], [5.5, 'ja-center__pin']].forEach(([radius, cls]) => {
-        const circle = document.createElementNS(NS, 'circle');
-        circle.setAttribute('cx', point[0].toFixed(1)); circle.setAttribute('cy', point[1].toFixed(1));
-        circle.setAttribute('r', radius); circle.setAttribute('class', cls);
-        dot.append(circle);
-      });
-      svg.append(ocean, land, dot);
-      body.prepend(svg);
-    }
-    centerBox.append(title, body, make('p', 'ja-center__note', '行った国・地域の首都の位置を、地球儀の上で平均した地点です。行き先が増えるたびに動きます。'));
+    return {place, coord: `${latText(lat)}・${lonText(lon)}`, depth: `地表から約${depth.toLocaleString('ja-JP')}km下`};
   }
   function renderExtremes(places) {
     extremesBox.replaceChildren();
@@ -470,7 +424,7 @@
     const antarctica = places.find(item => item.slug === 'antarctica');
     if (!located.length && !antarctica) { extremesBox.hidden = true; return; }
     extremesBox.hidden = false;
-    const title = make('h3', 'ja-extremes__title', 'わたしの旅の果て');
+    const title = make('h3', 'ja-extremes__title', 'わたしの旅の中心と果て');
     title.id = 'ja-extremes-title';
     const list = make('ul', 'ja-extremes__list');
     const tile = (label, item, value) => {
@@ -478,6 +432,14 @@
       li.append(make('span', 'ja-extreme__label', label), linkTo(item.href, item.nameJa, 'ja-extreme__name'), make('span', 'ja-extreme__value', value));
       list.append(li);
     };
+    const center = travelCenter(places);
+    if (center) {
+      const li = make('li', 'ja-extreme ja-extreme--center');
+      const value = make('span', 'ja-extreme__value');
+      value.append(...(center.place && center.coord ? [center.coord, document.createElement('br')] : []), center.depth);
+      li.append(make('span', 'ja-extreme__label', '旅の中心'), make('span', 'ja-extreme__name', center.place || center.coord), value);
+      list.append(li);
+    }
     if (located.length) {
       const north = located.reduce((a, b) => (b.place.lat > a.place.lat ? b : a));
       tile('いちばん北', north, latText(north.place.lat));
@@ -500,7 +462,7 @@
         if (widest.diff) tile('時差がいちばん大きい', widest.item, '日本と' + diffText(widest.diff));
       }
     }
-    extremesBox.append(title, list, make('p', 'ja-extremes__note', '200の国・地域の首都の位置と、首都の標準時（夏時間を除く）で比べています。'));
+    extremesBox.append(title, list, make('p', 'ja-extremes__note', '200の国・地域の首都の位置と、首都の標準時（夏時間を除く）で比べています。旅の中心は、行った国・地域の首都を地球儀の上で平均した地点で、平均した点は地球の内側にあるため、その深さも示しています。'));
   }
   // 旅の年表を画像に: one PNG drawn in this browser (nothing is uploaded), shared or saved
   // through the same dialog style as わたしの地図.
@@ -718,7 +680,9 @@
     timelineBox.addEventListener('toggle', () => { if (timelineBox.open) requestAnimationFrame(toSelected); }, {once: true});
   }
 
-  mine.append(summary, centerBox, extremesBox, chaptersBox, timelineBox, groups, tools, feedback);
+  mine.append(summary, chaptersBox, extremesBox, timelineBox, groupsBox, tools, feedback);
+  // わたしの地図 (atlas-my-map.js) may already be in place: keep 行った数・行きたい数 first.
+  mine.prepend(summary);
   // Flags for UK Regions follow each Region page; Northern Ireland has no official
   // regional flag, so the United Kingdom flag is used (see its sourceNotes.flag).
   const REGION_FLAGS = {
@@ -816,14 +780,15 @@
       sectionFor('行きたい詳細地域', [...detailWant,...regionWishes.map(w => ({...w,...regionFlag(w)}))], '')
     );
     groups.replaceChildren(seenColumn, wantColumn);
+    groupsCount.textContent = '（行った' + seen.length + '・行きたい' + want.length + '）';
     renderChapters();
     // 旅の果て and 旅の年表 use the 200 Country pages only (no detail regions such as
     // England, Hong Kong or Macau), the same base as the VISITED count.
     const visitedPlaces = parents.filter(visited)
       .map(c => ({slug: c.slug, nameJa: c.nameJa, href: c.href || countryHref(c.slug), yearKey: c.slug}))
       .map(item => ({...item, place: geoEntries?.[item.slug]?.place && Number.isFinite(geoEntries[item.slug].place.lon) ? geoEntries[item.slug].place : null, tz: geoEntries?.[item.slug]?.tz || null}));
-    if (geoEntries) { renderCenter(visitedPlaces); renderExtremes(visitedPlaces); if (!centerMap && !centerBox.hidden && disclosure?.open) loadCenterMap(); }
-    else { centerBox.hidden = true; extremesBox.hidden = true; }
+    if (geoEntries) { renderExtremes(visitedPlaces); if (!centerMap && disclosure?.open) loadCenterMap(); }
+    else extremesBox.hidden = true;
     renderTimeline(visitedPlaces);
 
   }
