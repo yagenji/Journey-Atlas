@@ -208,6 +208,7 @@
   const host = document.querySelector('#atlas-personal-home');
   if (!host) return;
   const disclosure = document.querySelector('#my-atlas');
+  disclosure?.addEventListener('toggle', () => { if (disclosure.open && !centerBox.hidden) loadCenterMap(); });
   const openAtlas = () => { if (disclosure) disclosure.open = true; };
   if (window.location.hash === '#my-atlas') openAtlas();
   document.querySelectorAll('a[href="#my-atlas"]').forEach(link => link.addEventListener('click', openAtlas));
@@ -345,6 +346,113 @@
     return sign + h + '時間' + (m ? m + '分' : '');
   };
   const latText = lat => (lat < 0 ? '南緯' : '北緯') + Math.abs(lat).toFixed(1) + '°';
+  const lonText = lon => (lon < 0 ? '西経' : '東経') + Math.abs(lon).toFixed(1) + '°';
+
+  // わたしの旅の中心: the average of the visited capitals as points on the globe (3D unit
+  // vectors), projected back to the surface. The average lies inside the Earth, so its depth
+  // below the surface is shown too. The world map's Robinson projection (lon_0 = 10°E,
+  // 1000 × 507.209 units, scripts/build_world_map.py) places the point on the map and finds
+  // the country it falls in; outside every country it is water (sea or a large lake).
+  const centerBox = make('section', 'ja-center');
+  centerBox.setAttribute('aria-labelledby', 'ja-center-title');
+  centerBox.hidden = true;
+  const ROBIN_X = [1, .9986, .9954, .99, .9822, .973, .96, .9427, .9216, .8962, .8679, .835, .7986, .7597, .7186, .6732, .6213, .5722, .5322];
+  const ROBIN_Y = [0, .062, .124, .186, .248, .31, .372, .434, .4958, .5571, .6176, .6769, .7346, .7903, .8435, .8936, .9394, .9761, 1];
+  const robinson = (lat, lon) => {
+    const a = Math.min(Math.abs(lat), 90) / 5, i = Math.min(Math.floor(a), 17), t = a - i;
+    const X = ROBIN_X[i] + (ROBIN_X[i + 1] - ROBIN_X[i]) * t, Y = ROBIN_Y[i] + (ROBIN_Y[i + 1] - ROBIN_Y[i]) * t;
+    const dLon = ((lon - 10 + 540) % 360) - 180;
+    const scale = 1000 / (2 * .8487 * Math.PI);
+    return [500 + .8487 * X * dLon * Math.PI / 180 * scale, 507.209 / 2 - 1.3523 * Y * Math.sign(lat) * scale];
+  };
+  let centerMap = null, centerMapLoading = false;
+  const loadCenterMap = () => {
+    if (centerMap || centerMapLoading || !window.JourneyAtlasWorldMap) return;
+    centerMapLoading = true;
+    window.JourneyAtlasWorldMap.load().then(map => { centerMap = map; renderMine(); }).catch(() => {}).finally(() => { centerMapLoading = false; });
+  };
+  const countryAt = point => {
+    if (!centerMap?.land) return undefined;
+    const dom = new DOMPoint(point[0], point[1]);
+    for (const group of centerMap.land.querySelectorAll('[data-iso]')) {
+      const shapes = group.querySelectorAll('path, polygon, circle');
+      for (const shape of shapes) {
+        try { if (shape.isPointInFill(dom)) return centerMap.byIso.get(group.dataset.iso) || {nameJa: ''}; } catch { /* not rendered */ }
+      }
+    }
+    return null;
+  };
+  function renderCenter(places) {
+    centerBox.replaceChildren();
+    const located = places.filter(item => item.place);
+    if (located.length < 2) { centerBox.hidden = true; return; }
+    const r = Math.PI / 180;
+    let x = 0, y = 0, z = 0;
+    located.forEach(({place}) => {
+      x += Math.cos(place.lat * r) * Math.cos(place.lon * r);
+      y += Math.cos(place.lat * r) * Math.sin(place.lon * r);
+      z += Math.sin(place.lat * r);
+    });
+    x /= located.length; y /= located.length; z /= located.length;
+    const length = Math.hypot(x, y, z);
+    centerBox.hidden = false;
+    const title = make('h3', 'ja-center__title', 'わたしの旅の中心');
+    title.id = 'ja-center-title';
+    if (length < 1e-6) {
+      centerBox.append(title, make('p', 'ja-center__place', '地球の中心'),
+        make('p', 'ja-center__note', '行った国・地域が地球の全体にちょうど釣り合って散らばっていて、中心が地球の中心に重なっています。'));
+      return;
+    }
+    const lat = Math.asin(z / length) / r, lon = Math.atan2(y, x) / r;
+    const depth = Math.round(6371 * (1 - length) / 10) * 10;
+    const point = robinson(lat, lon);
+    const country = countryAt(point);
+    const nearest = located.map(item => ({item, km: distanceKm([lat, lon], [item.place.lat, item.place.lon])}))
+      .reduce((a, b) => (b.km < a.km ? b : a));
+    // Until the map geometry has loaded (country === undefined) the coordinates stand in.
+    const placeText = country === undefined ? `${latText(lat)}・${lonText(lon)}`
+      : country ? (country.nameJa ? `${country.nameJa}の上` : '陸の上') : '海や湖の上';
+    const body = make('div', 'ja-center__body');
+    const text = make('div', 'ja-center__text');
+    text.append(make('p', 'ja-center__place', placeText));
+    if (country !== undefined) text.append(make('p', 'ja-center__coord', `${latText(lat)}・${lonText(lon)}`));
+    const near = make('p', 'ja-center__line');
+    near.append('行った旅先でいちばん近いのは ', linkTo(nearest.item.href, nearest.item.nameJa, 'ja-center__link'), `（約${(Math.round(nearest.km / 10) * 10).toLocaleString('ja-JP')}km）`);
+    text.append(near, make('p', 'ja-center__line', `地球の内側では、地表から約${depth.toLocaleString('ja-JP')}km下`));
+    body.append(text);
+    if (centerMap?.land) {
+      const NS = 'http://www.w3.org/2000/svg';
+      const svg = document.createElementNS(NS, 'svg');
+      svg.setAttribute('class', 'ja-center__map');
+      svg.setAttribute('viewBox', '0 0 1000 507.209');
+      svg.setAttribute('aria-hidden', 'true');
+      const ocean = document.createElementNS(NS, 'rect');
+      ocean.setAttribute('width', '1000'); ocean.setAttribute('height', '507.209'); ocean.setAttribute('class', 'ja-center__ocean');
+      const land = centerMap.land.cloneNode(true);
+      land.removeAttribute('id');
+      land.querySelectorAll('[id]').forEach(el => el.removeAttribute('id'));
+      land.querySelectorAll('[tabindex],[role],[aria-label],title').forEach(el => {
+        if (el.tagName === 'title') el.remove(); else ['tabindex', 'role', 'aria-label'].forEach(name => el.removeAttribute(name));
+      });
+      land.setAttribute('class', 'ja-center__land');
+      const visited = new Set(located.map(item => item.slug));
+      land.querySelectorAll('[data-iso]').forEach(group => {
+        const c = centerMap.byIso.get(group.dataset.iso);
+        group.setAttribute('class', c && visited.has(c.slug) ? 'is-visited' : '');
+      });
+      const dot = document.createElementNS(NS, 'g');
+      dot.setAttribute('class', 'ja-center__dot');
+      [[14, 'ja-center__halo'], [5.5, 'ja-center__pin']].forEach(([radius, cls]) => {
+        const circle = document.createElementNS(NS, 'circle');
+        circle.setAttribute('cx', point[0].toFixed(1)); circle.setAttribute('cy', point[1].toFixed(1));
+        circle.setAttribute('r', radius); circle.setAttribute('class', cls);
+        dot.append(circle);
+      });
+      svg.append(ocean, land, dot);
+      body.prepend(svg);
+    }
+    centerBox.append(title, body, make('p', 'ja-center__note', '行った国・地域の首都の位置を、地球儀の上で平均した地点です。行き先が増えるたびに動きます。'));
+  }
   function renderExtremes(places) {
     extremesBox.replaceChildren();
     const located = places.filter(item => item.place);
@@ -599,7 +707,7 @@
     timelineBox.addEventListener('toggle', () => { if (timelineBox.open) requestAnimationFrame(toSelected); }, {once: true});
   }
 
-  mine.append(summary, extremesBox, chaptersBox, timelineBox, groups, tools, feedback);
+  mine.append(summary, centerBox, extremesBox, chaptersBox, timelineBox, groups, tools, feedback);
   // Flags for UK Regions follow each Region page; Northern Ireland has no official
   // regional flag, so the United Kingdom flag is used (see its sourceNotes.flag).
   const REGION_FLAGS = {
@@ -703,7 +811,8 @@
     const visitedPlaces = parents.filter(visited)
       .map(c => ({slug: c.slug, nameJa: c.nameJa, href: c.href || countryHref(c.slug), yearKey: c.slug}))
       .map(item => ({...item, place: geoEntries?.[item.slug]?.place && Number.isFinite(geoEntries[item.slug].place.lon) ? geoEntries[item.slug].place : null, tz: geoEntries?.[item.slug]?.tz || null}));
-    if (geoEntries) renderExtremes(visitedPlaces); else extremesBox.hidden = true;
+    if (geoEntries) { renderCenter(visitedPlaces); renderExtremes(visitedPlaces); if (!centerMap && !centerBox.hidden && disclosure?.open) loadCenterMap(); }
+    else { centerBox.hidden = true; extremesBox.hidden = true; }
     renderTimeline(visitedPlaces);
 
   }

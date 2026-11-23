@@ -242,6 +242,25 @@
 .visit-year__select:focus-visible { outline:2px solid #315c79; outline-offset:2px; }
 
 /* わたしの旅の果て — three quiet tiles. */
+.ja-center { margin:16px 0 0; padding:16px 0 0; border-top:1px solid #e1e4e1; }
+.ja-center__title { margin:0 0 10px; font-size:15px; font-weight:600; color:#12365c; }
+.ja-center__body { display:grid; grid-template-columns:minmax(0,1.15fr) minmax(0,1fr); gap:16px; align-items:center; }
+.ja-center__map { display:block; width:100%; height:auto; border-radius:10px; background:#edf6f3; }
+.ja-center__ocean { fill:#edf6f3; }
+.ja-center__land path,.ja-center__land circle,.ja-center__land polygon { fill:#dde3e3; stroke:#fffaf1; stroke-width:.5; vector-effect:non-scaling-stroke; }
+.ja-center__land .is-visited path,.ja-center__land .is-visited circle,.ja-center__land .is-visited polygon { fill:#9fb3c4; }
+.ja-center__halo { fill:rgba(201,130,79,.22); stroke:none; }
+.ja-center__pin { fill:#c9824f; stroke:#fffaf1; stroke-width:2; vector-effect:non-scaling-stroke; }
+.ja-center__text { display:grid; gap:4px; min-width:0; }
+.ja-center__place { margin:0; font-size:20px; font-weight:600; line-height:1.4; color:#12365c; overflow-wrap:anywhere; }
+.ja-center__coord { margin:0 0 4px; font-size:12px; color:#61717e; font-variant-numeric:tabular-nums; }
+.ja-center__line { margin:0; font-size:13px; line-height:1.7; color:#4f5b57; }
+.ja-center__link { color:#12365c; font-weight:600; }
+.ja-center__note { margin:8px 0 0; font-size:11.5px; color:#7a8480; }
+@media (max-width:760px) {
+  .ja-center__body { grid-template-columns:1fr; gap:10px; }
+  .ja-center__place { font-size:18px; }
+}
 .ja-extremes { margin:16px 0 0; padding:16px 0 0; border-top:1px solid #e1e4e1; }
 .ja-extremes__title { margin:0 0 10px; font-size:15px; font-weight:600; color:#12365c; }
 .ja-extremes__list { display:grid; grid-template-columns:repeat(auto-fit,minmax(150px,1fr)); gap:8px; margin:0; padding:0; list-style:none; }
