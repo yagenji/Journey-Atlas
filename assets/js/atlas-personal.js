@@ -439,7 +439,7 @@
     const antarctica = places.find(item => item.slug === 'antarctica');
     if (!located.length && !antarctica) { extremesBox.hidden = true; return; }
     extremesBox.hidden = false;
-    const title = make('h3', 'ja-extremes__title', 'わたしの旅の中心と果て');
+    const title = make('h3', 'ja-extremes__title', '旅の中心と果て');
     title.id = 'ja-extremes-title';
     const list = make('ul', 'ja-extremes__list');
     const tile = (label, item, value) => {
@@ -635,7 +635,7 @@
   }
   function renderRankings(places) {
     rankingsBox.replaceChildren();
-    const title = make('h3', 'ja-rankings__title', 'わたしのランキング');
+    const title = make('h3', 'ja-rankings__title', 'ランキング');
     title.id = 'ja-rankings-title';
     rankingsBox.append(title, make('p', 'ja-rankings__note', '行った国・地域から、テーマごとに3つまで選べます。押した順に1位・2位・3位になります。'));
     if (!places.length) { rankingsBox.append(make('p', 'ja-empty', '「行った旅先」を登録すると、ランキングをつくれます。')); return; }
@@ -720,7 +720,7 @@
       const share = make('button', 'ja-tool-button ja-rankings__share', 'ランキングを画像にして共有');
       share.type = 'button';
       share.addEventListener('click', () => openImageShare({
-        title: 'わたしのランキングを画像にする', fileName: 'journey-atlas-ranking.png', fontSample: 'わたしのランキング',
+        title: 'ランキングを画像にする', fileName: 'journey-atlas-ranking.png', fontSample: 'わたしのランキング',
         alt: 'わたしのランキングの画像。' + filled.map(row => row.label + '：' + row.items.map(item => item.nameJa).join('、')).join('／'),
         text: 'わたしのランキング。JOURNEY ATLASより https://atlas.yagenji.com/',
         draw: () => drawRankings(filled)
@@ -832,7 +832,7 @@
     timelineBox.addEventListener('toggle', () => { if (timelineBox.open) requestAnimationFrame(toSelected); }, {once: true});
   }
 
-  mine.append(summary, chaptersBox, rankingsBox, extremesBox, timelineBox, groupsBox, tools, feedback);
+  mine.append(summary, chaptersBox, extremesBox, timelineBox, rankingsBox, groupsBox, tools, feedback);
   // わたしの地図 (atlas-my-map.js) may already be in place: keep 行った数・行きたい数 first.
   mine.prepend(summary);
   // Flags for UK Regions follow each Region page; Northern Ireland has no official
