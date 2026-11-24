@@ -448,8 +448,10 @@
     const mid = robinson(center.lat, center.lon);
     const xs = [...points, mid].map(p => p[0]), ys = [...points, mid].map(p => p[1]);
     // Wide screens get a flatter frame so the map does not tower over the tiles.
-    const boxWidth = extremesBox.clientWidth || mine.clientWidth || 600;
-    const aspect = boxWidth > 640 ? 3 : 2;
+    // On wide screens the map takes the left column beside the list (see .ja-extremes--map).
+    const full = extremesBox.clientWidth || mine.clientWidth || 600;
+    const boxWidth = full > 760 ? (full - 24) * 5 / 11 : full;
+    const aspect = full > 760 ? 2.4 : 2;
     let w = Math.max(...xs) - Math.min(...xs), h = Math.max(...ys) - Math.min(...ys);
     // Keep the frame flat, but never cut off a marked place (Iceland to Antarctica needs the full height).
     h = Math.min(H, h * 1.2 + 24);
@@ -557,6 +559,7 @@
       }
     }
     const figure = center ? centerFigure(located, center, [...marks.values()]) : null;
+    extremesBox.classList.toggle('ja-extremes--map', !!figure);
     extremesBox.append(title, ...(figure ? [figure] : []), list, make('p', 'ja-extremes__note', '200の国・地域の首都の位置と、首都の標準時（夏時間を除く）で比べています。旅の中心は、行った国・地域の首都を地球儀の上で平均した地点です。'));
   }
   // 旅の年表を画像に: one PNG drawn in this browser (nothing is uploaded), shared or saved
