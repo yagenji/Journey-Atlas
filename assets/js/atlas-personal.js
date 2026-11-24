@@ -441,7 +441,7 @@
     Object.entries(attrs).forEach(([k, v]) => el.setAttribute(k, v));
     return el;
   };
-  function centerFigure(located, center) {
+  function centerFigure(located, center, marks) {
     if (!centerMap?.land || center.lat === null) return null;
     const W = 1000, H = 507.209;
     const points = located.map(item => robinson(item.place.lat, item.place.lon));
@@ -470,6 +470,34 @@
     points.forEach(([px, py]) => svg.append(svgEl('circle', {class: 'ja-centermap__capital', cx: px, cy: py, r: 3 * unit})));
     svg.append(svgEl('circle', {class: 'ja-centermap__halo', cx: mid[0], cy: mid[1], r: 11 * unit}),
       svgEl('circle', {class: 'ja-centermap__center', cx: mid[0], cy: mid[1], r: 5 * unit}));
+    // Labels for the center and the 果て tiles, nudged apart when they would overlap.
+    const placed = [];
+    const label = (px, py, text, gap) => {
+      const size = 11.5 * unit, tw = text.length * size * 1.02, th = size * 1.25;
+      const hits = (lx, top) => lx < x || lx + tw > x + w || top < y || top + th > y + h
+        || placed.some(r => lx < r[0] + r[2] && lx + tw > r[0] && top < r[1] + r[3] && top + th > r[1]);
+      // Right of the point, then left, then a line above or below on either side.
+      const tries = [0, 1, -1, 2, -2].flatMap(k => [[px + gap, k], [px - gap - tw, k]]);
+      const fit = tries.find(([lx, k]) => !hits(lx, py - th / 2 + k * th)) || tries[0];
+      const lx = Math.min(Math.max(fit[0], x + 2 * unit), x + w - tw - 2 * unit);
+      const ly = Math.min(Math.max(py - th / 2 + fit[1] * th, y + 2 * unit), y + h - th - 2 * unit);
+      placed.push([lx, ly, tw, th]);
+      const t = svgEl('text', {class: 'ja-centermap__label', x: lx, y: ly + size, 'font-size': size});
+      t.textContent = text;
+      return t;
+    };
+    const labels = [label(mid[0], mid[1], '旅の中心', 14 * unit)];
+    placed.push([mid[0] - 11 * unit, mid[1] - 11 * unit, 22 * unit, 22 * unit]);
+    marks.forEach(mark => {
+      const [px, py] = robinson(mark.lat, mark.lon);
+      svg.append(svgEl('circle', {class: 'ja-centermap__mark', cx: px, cy: py, r: 4.5 * unit}));
+      placed.push([px - 4.5 * unit, py - 4.5 * unit, 9 * unit, 9 * unit]);
+    });
+    marks.forEach(mark => {
+      const [px, py] = robinson(mark.lat, mark.lon);
+      labels.push(label(px, py, mark.labels.join('・'), 8 * unit));
+    });
+    svg.append(...labels);
     const figure = make('figure', 'ja-centermap');
     const caption = make('figcaption', 'ja-centermap__legend');
     caption.append(make('span', 'ja-centermap__key ja-centermap__key--capital', '行った国・地域の首都'),
@@ -487,7 +515,13 @@
     const title = make('h3', 'ja-extremes__title', '旅の中心と果て');
     title.id = 'ja-extremes-title';
     const list = make('ul', 'ja-extremes__list');
-    const tile = (label, item, value) => {
+    const marks = new Map(); // slug → {lat, lon, labels} for the map
+    const tile = (label, item, value, short) => {
+      if (short && item.place) {
+        const mark = marks.get(item.slug) || {lat: item.place.lat, lon: item.place.lon, labels: []};
+        mark.labels.push(short);
+        marks.set(item.slug, mark);
+      }
       const li = make('li', 'ja-extreme');
       li.append(make('span', 'ja-extreme__label', label), linkTo(item.href, item.nameJa, 'ja-extreme__name'), make('span', 'ja-extreme__value', value));
       list.append(li);
@@ -502,27 +536,27 @@
     }
     if (located.length) {
       const north = located.reduce((a, b) => (b.place.lat > a.place.lat ? b : a));
-      tile('いちばん北', north, latText(north.place.lat));
+      tile('いちばん北', north, latText(north.place.lat), '北');
     }
     if (antarctica) tile('いちばん南', antarctica, '南極大陸');
     else if (located.length) {
       const south = located.reduce((a, b) => (b.place.lat < a.place.lat ? b : a));
-      tile('いちばん南', south, latText(south.place.lat));
+      tile('いちばん南', south, latText(south.place.lat), '南');
     }
     const away = located.filter(item => item.slug !== 'japan');
     if (away.length) {
       const far = away.map(item => ({item, km: distanceKm(TOKYO, [item.place.lat, item.place.lon])}))
         .reduce((a, b) => (b.km > a.km ? b : a));
-      tile('東京からいちばん遠い', far.item, '約' + (Math.round(far.km / 100) * 100).toLocaleString('ja-JP') + 'km');
+      tile('東京からいちばん遠い', far.item, '約' + (Math.round(far.km / 100) * 100).toLocaleString('ja-JP') + 'km', '遠い');
       const diffs = away.map(item => ({item, offset: item.tz ? standardOffset(item.tz) : null}))
         .filter(entry => entry.offset !== null)
         .map(entry => ({...entry, diff: entry.offset - 540}));
       if (diffs.length) {
         const widest = diffs.reduce((a, b) => (Math.abs(b.diff) > Math.abs(a.diff) ? b : a));
-        if (widest.diff) tile('時差がいちばん大きい', widest.item, '日本と' + diffText(widest.diff));
+        if (widest.diff) tile('時差がいちばん大きい', widest.item, '日本と' + diffText(widest.diff), '時差');
       }
     }
-    const figure = center ? centerFigure(located, center) : null;
+    const figure = center ? centerFigure(located, center, [...marks.values()]) : null;
     extremesBox.append(title, ...(figure ? [figure] : []), list, make('p', 'ja-extremes__note', '200の国・地域の首都の位置と、首都の標準時（夏時間を除く）で比べています。旅の中心は、行った国・地域の首都を地球儀の上で平均した地点です。'));
   }
   // 旅の年表を画像に: one PNG drawn in this browser (nothing is uploaded), shared or saved
