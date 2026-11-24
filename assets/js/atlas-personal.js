@@ -602,8 +602,8 @@
   }
 
   // わたしのランキング: five themes, each up to three visited Countries in the order tapped.
-  const rankingsBox = make('section', 'ja-rankings');
-  rankingsBox.setAttribute('aria-labelledby', 'ja-rankings-title');
+  // Folded like 旅の年表; the element persists across renders, so it stays open once opened.
+  const rankingsBox = make('details', 'ja-timeline ja-rankings');
   let rankingTheme = null;
   function drawRankings(rows) {
     const W = 1600, H = 900, PAD = 80;
@@ -635,8 +635,9 @@
   }
   function renderRankings(places) {
     rankingsBox.replaceChildren();
-    const title = make('h3', 'ja-rankings__title', 'ランキング');
-    title.id = 'ja-rankings-title';
+    const title = make('summary', 'ja-timeline__title', 'ランキング');
+    const chosenThemes = RANKING_THEMES.filter(theme => getRanking(theme.id).some(slug => places.some(item => item.slug === slug))).length;
+    title.append(make('span', 'ja-timeline__count', chosenThemes ? '（' + chosenThemes + 'テーマ）' : ''));
     rankingsBox.append(title, make('p', 'ja-rankings__note', '行った国・地域から、テーマごとに3つまで選べます。押した順に1位・2位・3位になります。'));
     if (!places.length) { rankingsBox.append(make('p', 'ja-empty', '「行った旅先」を登録すると、ランキングをつくれます。')); return; }
     const bySlug = new Map(places.map(item => [item.slug, item]));
