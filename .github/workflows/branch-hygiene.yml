@@ -15,10 +15,13 @@ on:
         description: "Comma-separated branches (manual mode only)"
         type: string
         required: false
-      dry_run:
-        description: "Preview only (turn off to actually delete)"
-        type: boolean
-        default: true
+      execution:
+        description: "Choose PREVIEW or DELETE (permanently deletes eligible branch refs)"
+        type: choice
+        options:
+          - PREVIEW
+          - DELETE
+        default: PREVIEW
         required: true
       limit:
         description: "Maximum branches in one run (1–300)"
@@ -44,7 +47,7 @@ jobs:
           REPO: ${{ github.repository }}
           MODE: ${{ inputs.mode }}
           MANUAL_BRANCHES: ${{ inputs.branches }}
-          DRY_RUN: ${{ inputs.dry_run }}
+          EXECUTION: ${{ inputs.execution }}
           DELETE_LIMIT: ${{ inputs.limit }}
         shell: bash
         run: |
@@ -59,7 +62,10 @@ jobs:
 
           repo = os.environ["REPO"]
           mode = os.environ["MODE"]
-          dry_run = os.environ["DRY_RUN"].lower() == "true"
+          execution = os.environ["EXECUTION"]
+          if execution not in ("PREVIEW", "DELETE"):
+              sys.exit("Invalid execution mode")
+          dry_run = execution == "PREVIEW"
           limit = int(os.environ["DELETE_LIMIT"])
           if mode not in ("manual", "auto_merged") or not 1 <= limit <= 300:
               sys.exit("Invalid mode or limit (must be 1–300)")
