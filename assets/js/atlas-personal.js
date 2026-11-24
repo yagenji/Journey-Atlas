@@ -675,13 +675,16 @@
       const chosen = editing.items.map(item => item.slug);
       const regionOf = new Map();
       atlasChapters.forEach(chapter => chapter.pages.forEach(page => regionOf.set(page.slug, chapter.region)));
+      // Regions in the atlas order (アジア, ヨーロッパ, …), not the order places happen to come in.
       const groups = new Map();
+      atlasChapters.forEach(chapter => { if (!groups.has(chapter.region)) groups.set(chapter.region, []); });
       places.forEach(item => {
         const label = regionOf.get(item.slug) || 'そのほか';
         if (!groups.has(label)) groups.set(label, []);
         groups.get(label).push(item);
       });
       groups.forEach((list, label) => {
+        if (!list.length) return;
         const box = make('div', 'ja-year-group');
         box.append(make('p', 'ja-year-group__label', label));
         const chips = make('div', 'ja-year-chips');
