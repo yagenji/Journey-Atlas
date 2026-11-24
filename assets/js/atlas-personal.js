@@ -241,7 +241,7 @@
   let regionNames = [];
   const feedback = make('p', 'ja-subtitle');
   feedback.setAttribute('role', 'status');
-  // 章ごとの記録: visited Countries counted per atlas chapter (region → subregion), the same
+  // 地域ごとの記録 (was 章ごとの記録): visited Countries counted per atlas chapter (region → subregion), the same
   // chapters the Country pages turn through. Only the 200 Country pages count.
   const chaptersBox = make('section', 'ja-chapters');
   chaptersBox.setAttribute('aria-labelledby', 'ja-chapters-title');
@@ -252,9 +252,9 @@
     chaptersBox.replaceChildren();
     if (!atlasChapters.length) { chaptersBox.hidden = true; return; }
     chaptersBox.hidden = false;
-    const title = make('h3', 'ja-chapters__title', '章ごとの記録');
+    const title = make('h3', 'ja-chapters__title', '地域ごとの記録');
     title.id = 'ja-chapters-title';
-    chaptersBox.append(title, make('p', 'ja-chapters__note', '図鑑の章ごとに、行った国・地域の数です。'));
+    chaptersBox.append(title, make('p', 'ja-chapters__note', 'アジアやヨーロッパなど、地域ごとに行った国・地域の数です。'));
     const regions = [];
     atlasChapters.forEach(chapter => {
       let block = regions.find(item => item.label === chapter.region);
@@ -286,7 +286,7 @@
     const detail = make('details', 'ja-chapters__detail');
     detail.open = chaptersDetailOpen;
     detail.addEventListener('toggle', () => { chaptersDetailOpen = detail.open; });
-    detail.append(make('summary', 'ja-chapters__detail-title', '章ごとの内訳'));
+    detail.append(make('summary', 'ja-chapters__detail-title', '東南アジア・北ヨーロッパなど、細かい地域の内訳'));
     chaptersBox.append(board, detail);
     regions.forEach(region => {
       const group = make('div', 'ja-chapters__region');
