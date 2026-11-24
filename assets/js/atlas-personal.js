@@ -444,18 +444,21 @@
   function centerFigure(located, center, marks) {
     if (!centerMap?.land || center.lat === null) return null;
     const W = 1000, H = 507.209;
-    const points = located.map(item => robinson(item.place.lat, item.place.lon));
+    const points = [...located.map(item => item.place), ...marks].map(p => robinson(p.lat, p.lon));
     const mid = robinson(center.lat, center.lon);
     const xs = [...points, mid].map(p => p[0]), ys = [...points, mid].map(p => p[1]);
     // Wide screens get a flatter frame so the map does not tower over the tiles.
     const boxWidth = extremesBox.clientWidth || mine.clientWidth || 600;
     const aspect = boxWidth > 640 ? 3 : 2;
     let w = Math.max(...xs) - Math.min(...xs), h = Math.max(...ys) - Math.min(...ys);
-    w = Math.min(W, Math.max(w * 1.3, h * 1.3 * aspect, 220)); h = Math.min(H, w / aspect);
+    // Keep the frame flat, but never cut off a marked place (Iceland to Antarctica needs the full height).
+    h = Math.min(H, h * 1.2 + 24);
+    w = Math.min(W, Math.max(w * 1.3, h * aspect, 220));
+    h = Math.min(H, Math.max(h, w / aspect));
     const cx = (Math.max(...xs) + Math.min(...xs)) / 2, cy = (Math.max(...ys) + Math.min(...ys)) / 2;
     const x = Math.min(Math.max(cx - w / 2, 0), W - w), y = Math.min(Math.max(cy - h / 2, 0), H - h);
     const svg = svgEl('svg', {class: 'ja-centermap__map', viewBox: `${x} ${y} ${w} ${h}`, style: `aspect-ratio:${w}/${h}`, role: 'img',
-      'aria-label': `行った国・地域の首都と旅の中心（${center.place || center.coord}）を示す地図`});
+      'aria-label': `行った国・地域と、旅の中心（${center.place || center.coord}）・いちばん北や南などの旅先を示す地図`});
     svg.append(svgEl('rect', {class: 'ja-centermap__ocean', x: 0, y: 0, width: W, height: H}));
     const land = centerMap.land.cloneNode(true);
     const visitedSlugs = new Set(located.map(item => item.slug));
@@ -467,7 +470,6 @@
     land.setAttribute('class', 'ja-centermap__land');
     svg.append(land);
     const unit = w / boxWidth; // one screen pixel in map units
-    points.forEach(([px, py]) => svg.append(svgEl('circle', {class: 'ja-centermap__capital', cx: px, cy: py, r: 3 * unit})));
     svg.append(svgEl('circle', {class: 'ja-centermap__halo', cx: mid[0], cy: mid[1], r: 11 * unit}),
       svgEl('circle', {class: 'ja-centermap__center', cx: mid[0], cy: mid[1], r: 5 * unit}));
     // Labels for the center and the 果て tiles, nudged apart when they would overlap.
@@ -499,10 +501,7 @@
     });
     svg.append(...labels);
     const figure = make('figure', 'ja-centermap');
-    const caption = make('figcaption', 'ja-centermap__legend');
-    caption.append(make('span', 'ja-centermap__key ja-centermap__key--capital', '行った国・地域の首都'),
-      make('span', 'ja-centermap__key ja-centermap__key--center', '旅の中心'));
-    figure.append(svg, caption);
+    figure.append(svg);
     return figure;
   }
 
@@ -516,9 +515,9 @@
     title.id = 'ja-extremes-title';
     const list = make('ul', 'ja-extremes__list');
     const marks = new Map(); // slug → {lat, lon, labels} for the map
-    const tile = (label, item, value, short) => {
-      if (short && item.place) {
-        const mark = marks.get(item.slug) || {lat: item.place.lat, lon: item.place.lon, labels: []};
+    const tile = (label, item, value, short, at = item.place) => {
+      if (short && at) {
+        const mark = marks.get(item.slug) || {lat: at.lat, lon: at.lon, labels: []};
         mark.labels.push(short);
         marks.set(item.slug, mark);
       }
@@ -538,7 +537,8 @@
       const north = located.reduce((a, b) => (b.place.lat > a.place.lat ? b : a));
       tile('いちばん北', north, latText(north.place.lat), '北');
     }
-    if (antarctica) tile('いちばん南', antarctica, '南極大陸');
+    // Antarctica has no capital: its mark sits on the Antarctic Peninsula, where most visits land.
+    if (antarctica) tile('いちばん南', antarctica, '南極大陸', '南', {lat: -64.8, lon: -62.9});
     else if (located.length) {
       const south = located.reduce((a, b) => (b.place.lat < a.place.lat ? b : a));
       tile('いちばん南', south, latText(south.place.lat), '南');
