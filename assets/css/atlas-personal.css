@@ -304,3 +304,35 @@ details.ja-year-group > .ja-year-group__label { cursor:pointer; color:#36566b; }
 .ja-mine-list > .ja-timeline__title { display:block; }
 /* わたしの地図 follows 行った数・行きたい数: the same quiet divider as the sections below. */
 .ja-mine-summary + .ja-mymap { margin-top:16px; padding-top:16px; border-top:1px solid #e1e4e1; }
+/* わたしのランキング — five themes, each up to three visited places. */
+.ja-rankings { margin:16px 0 0; padding:16px 0 0; border-top:1px solid #e1e4e1; }
+.ja-rankings__title { margin:0; font-size:15px; font-weight:600; color:#12365c; }
+.ja-rankings__note { margin:4px 0 10px; font-size:12px; color:#61717e; }
+.ja-rankings__board { display:grid; grid-template-columns:repeat(5,minmax(0,1fr)); gap:8px; margin:0; padding:0; list-style:none; }
+.ja-ranking { display:flex; flex-direction:column; gap:8px; min-width:0; padding:12px 14px; border:1px solid #dfe3df; border-radius:10px; background:#fff; }
+.ja-ranking.is-editing { border-color:#36566b; box-shadow:inset 0 0 0 1px #36566b; }
+.ja-ranking__label { font-size:12px; font-weight:600; color:#4f5b57; }
+.ja-ranking__list { display:grid; gap:4px; margin:0; padding:0; list-style:none; }
+.ja-ranking__item { display:grid; grid-template-columns:1.2em minmax(0,1fr); align-items:baseline; gap:6px; }
+.ja-ranking__rank { font-size:13px; font-weight:700; color:#8a938f; font-variant-numeric:tabular-nums; }
+.ja-ranking__item:first-child .ja-ranking__rank { color:#b26f3f; }
+.ja-ranking__name { font-size:14px; font-weight:600; line-height:1.45; color:#12365c; text-decoration:none; overflow-wrap:anywhere; }
+.ja-ranking__name:hover { text-decoration:underline; }
+.ja-ranking__edit { align-self:flex-start; margin-top:auto; padding:0; border:0; background:none; font:inherit; font-size:12.5px; font-weight:600; color:#36566b; cursor:pointer; }
+.ja-ranking__edit::after { content:" ›"; }
+.ja-ranking__edit:focus-visible { outline:2px solid #315c79; outline-offset:3px; border-radius:4px; }
+.ja-ranking-picker { display:grid; gap:10px; margin:10px 0 0; padding:14px; border:1px solid #dfe3df; border-radius:10px; background:#fbfbf8; }
+.ja-ranking-picker__title { margin:0; font-size:13px; font-weight:600; color:#12365c; }
+.ja-ranking-picker .ja-year-chip:disabled { opacity:.45; cursor:default; }
+.ja-ranking-picker > .ja-tool-button { justify-self:start; }
+.ja-rankings__share { margin-top:10px; }
+@media (max-width:1000px) { .ja-rankings__board { grid-template-columns:repeat(auto-fit,minmax(170px,1fr)); } }
+@media (max-width:760px) {
+  .ja-rankings__board { grid-template-columns:1fr; gap:0; border-top:1px solid #e1e4e1; }
+  .ja-ranking { display:grid; grid-template-columns:7.5em minmax(0,1fr) auto; align-items:start; gap:4px 10px; padding:10px 0; border:0; border-bottom:1px solid #e1e4e1; border-radius:0; background:none; }
+  .ja-ranking.is-editing { box-shadow:none; }
+  .ja-ranking.is-editing .ja-ranking__label { color:#12365c; }
+  .ja-ranking__label { padding-top:2px; }
+  .ja-ranking.is-empty .ja-ranking__edit { grid-column:2 / -1; }
+  .ja-ranking__edit { margin-top:0; }
+}

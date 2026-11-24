@@ -9,6 +9,23 @@
   const WISH_PREFIX = 'journey-atlas:wish:';
   // Optional year of the first visit: key = Country slug, or parent:slug for a detail Region.
   const VISIT_YEAR_PREFIX = 'journey-atlas:visited-year:';
+  // わたしのランキング: up to three visited Country slugs per theme, in rank order.
+  const RANKING_PREFIX = 'journey-atlas:ranking:';
+  const RANKING_THEMES = [
+    {id: 'revisit', label: 'また行きたい'},
+    {id: 'recommend', label: '人にすすめたい'},
+    {id: 'memorable', label: '心に残った'},
+    {id: 'beyond', label: '予想を超えた'},
+    {id: 'live', label: '住んでみたい'}
+  ];
+  const RANKING_SIZE = 3;
+  const getRanking = id => {
+    try {
+      const list = JSON.parse(getStored(RANKING_PREFIX + id) || '[]');
+      return Array.isArray(list) ? list.filter(validId).slice(0, RANKING_SIZE) : [];
+    } catch { return []; }
+  };
+  const putRanking = (id, list) => (list.length ? putStored(RANKING_PREFIX + id, JSON.stringify(list.slice(0, RANKING_SIZE))) : removeStored(RANKING_PREFIX + id));
   const validYear = value => /^\d{4}$/.test(String(value)) && +value >= 1900 && +value <= new Date().getFullYear();
   const REGISTRY_PATH = 'data/atlas-destinations.json';
   const ORIGINS_PATH = 'data/scene-origins.json';
@@ -355,8 +372,7 @@
   const lonText = lon => (lon < 0 ? '西経' : '東経') + Math.abs(lon).toFixed(1) + '°';
 
   // わたしの旅の中心: the average of the visited capitals as points on the globe (3D unit
-  // vectors), projected back to the surface. The average lies inside the Earth, so its depth
-  // below the surface is shown too. The world map's Robinson projection (lon_0 = 10°E,
+  // vectors), projected back to the surface. The world map's Robinson projection (lon_0 = 10°E,
   // 1000 × 507.209 units, scripts/build_world_map.py) places the point on the map and finds
   // the country it falls in; outside every country it is water (sea or a large lake).
   const ROBIN_X = [1, .9986, .9954, .99, .9822, .973, .96, .9427, .9216, .8962, .8679, .835, .7986, .7597, .7186, .6732, .6213, .5722, .5322];
@@ -396,7 +412,7 @@
     }
     return null;
   };
-  // Returns {place, coord, depth} for the 旅の中心 tile, or null with fewer than two places.
+  // Returns {place, coord} for the 旅の中心 tile, or null with fewer than two places.
   function travelCenter(places) {
     const located = places.filter(item => item.place);
     if (located.length < 2) return null;
@@ -409,14 +425,13 @@
     });
     x /= located.length; y /= located.length; z /= located.length;
     const length = Math.hypot(x, y, z);
-    if (length < 1e-6) return {place: '地球の中心', coord: '', depth: '地表から約6,370km下'};
+    if (length < 1e-6) return {place: '地球の中心', coord: ''};
     const lat = Math.asin(z / length) / r, lon = Math.atan2(y, x) / r;
-    const depth = Math.round(6371 * (1 - length) / 10) * 10;
     const country = countryAt(robinson(lat, lon));
     // Until the map geometry has loaded (country === undefined) only the coordinates show.
     const place = country === undefined ? null
       : country ? (country.nameJa ? `${country.nameJa}の上` : '陸の上') : `${lakeAt(lat, lon) || '海'}の上`;
-    return {place, coord: `${latText(lat)}・${lonText(lon)}`, depth: `地表から約${depth.toLocaleString('ja-JP')}km下`};
+    return {place, coord: `${latText(lat)}・${lonText(lon)}`};
   }
   function renderExtremes(places) {
     extremesBox.replaceChildren();
@@ -436,7 +451,7 @@
     if (center) {
       const li = make('li', 'ja-extreme ja-extreme--center');
       const value = make('span', 'ja-extreme__value');
-      value.append(...(center.place && center.coord ? [center.coord, document.createElement('br')] : []), center.depth);
+      if (center.place && center.coord) value.textContent = center.coord;
       li.append(make('span', 'ja-extreme__label', '旅の中心'), make('span', 'ja-extreme__name', center.place || center.coord), value);
       list.append(li);
     }
@@ -462,7 +477,7 @@
         if (widest.diff) tile('時差がいちばん大きい', widest.item, '日本と' + diffText(widest.diff));
       }
     }
-    extremesBox.append(title, list, make('p', 'ja-extremes__note', '200の国・地域の首都の位置と、首都の標準時（夏時間を除く）で比べています。旅の中心は、行った国・地域の首都を地球儀の上で平均した地点で、平均した点は地球の内側にあるため、その深さも示しています。'));
+    extremesBox.append(title, list, make('p', 'ja-extremes__note', '200の国・地域の首都の位置と、首都の標準時（夏時間を除く）で比べています。旅の中心は、行った国・地域の首都を地球儀の上で平均した地点です。'));
   }
   // 旅の年表を画像に: one PNG drawn in this browser (nothing is uploaded), shared or saved
   // through the same dialog style as わたしの地図.
@@ -519,12 +534,20 @@
   }
   let parentsCount = 200;
   let timelineDialog = null;
-  async function openTimelineShare(dated) {
+  // One share dialog serves 旅の年表 and わたしのランキング: options name the title, file,
+  // alt text and share text, and draw() returns the canvas.
+  const openTimelineShare = dated => openImageShare({
+    title: '旅の年表を画像にする', fileName: 'journey-atlas-timeline.png', fontSample: 'わたしの旅の年表',
+    alt: '旅の年表の画像。記録した国・地域は' + dated.length + '件。',
+    text: 'わたしの旅の年表（' + dated.length + '件）。JOURNEY ATLASより https://atlas.yagenji.com/',
+    draw: () => drawTimeline(dated)
+  });
+  async function openImageShare(options) {
     if (!timelineDialog) {
       const dialog = make('dialog', 'ja-share');
       dialog.setAttribute('aria-labelledby', 'ja-timeline-share-title');
       const head = make('div', 'ja-share__head');
-      const title = make('h2', '', '旅の年表を画像にする');
+      const title = make('h2', '', options.title);
       title.id = 'ja-timeline-share-title';
       const close = make('button', 'ja-share__close', '閉じる');
       close.type = 'button';
@@ -542,7 +565,7 @@
       dialog.append(head, preview, actions, note);
       dialog.addEventListener('click', event => { if (event.target === dialog) dialog.close(); });
       document.body.append(dialog);
-      timelineDialog = {dialog, preview, save, shareButton, note, file: null, url: ''};
+      timelineDialog = {dialog, title, preview, save, shareButton, note, file: null, url: '', text: ''};
       save.addEventListener('click', () => {
         const link = make('a');
         link.href = timelineDialog.url; link.download = timelineDialog.file.name;
@@ -551,30 +574,159 @@
       });
       shareButton.addEventListener('click', async () => {
         try {
-          await navigator.share({files: [timelineDialog.file], text: 'わたしの旅の年表（' + timelineDialog.count + '件）。JOURNEY ATLASより https://atlas.yagenji.com/'});
+          await navigator.share({files: [timelineDialog.file], text: timelineDialog.text});
         } catch (error) { if (error?.name !== 'AbortError') note.textContent = '共有できませんでした。画像を保存してお使いください。'; }
       });
     }
     const box = timelineDialog;
+    box.title.textContent = options.title;
+    box.text = options.text;
     if (!box.dialog.open) box.dialog.showModal();
     box.note.textContent = '画像を作成しています…';
     box.preview.hidden = true; box.save.hidden = true; box.shareButton.hidden = true;
     try {
-      if (document.fonts?.load) await Promise.race([document.fonts.load('700 46px "Zen Kaku Gothic New"', 'わたしの旅の年表'), new Promise(done => setTimeout(done, 2000))]);
-      const canvas = drawTimeline(dated);
+      if (document.fonts?.load) await Promise.race([document.fonts.load('700 46px "Zen Kaku Gothic New"', options.fontSample), new Promise(done => setTimeout(done, 2000))]);
+      const canvas = options.draw();
       const blob = await new Promise((resolve, reject) => canvas.toBlob(b => (b ? resolve(b) : reject(Error('PNG'))), 'image/png'));
-      box.file = new File([blob], 'journey-atlas-timeline.png', {type: 'image/png'});
-      box.count = dated.length;
+      box.file = new File([blob], options.fileName, {type: 'image/png'});
       if (box.url) URL.revokeObjectURL(box.url);
       box.url = URL.createObjectURL(box.file);
       box.preview.src = box.url;
-      box.preview.alt = '旅の年表の画像。記録した国・地域は' + dated.length + '件。';
+      box.preview.alt = options.alt;
       box.preview.hidden = false; box.save.hidden = false;
       let canShare = false;
       try { canShare = !!navigator.canShare?.({files: [box.file]}) && !!navigator.share; } catch { canShare = false; }
       box.shareButton.hidden = !canShare;
       box.note.textContent = '画像はこのブラウザの中で作られ、送信されません。';
     } catch { box.note.textContent = '画像を作成できませんでした。'; }
+  }
+
+  // わたしのランキング: five themes, each up to three visited Countries in the order tapped.
+  const rankingsBox = make('section', 'ja-rankings');
+  rankingsBox.setAttribute('aria-labelledby', 'ja-rankings-title');
+  let rankingTheme = null;
+  function drawRankings(rows) {
+    const W = 1600, H = 900, PAD = 80;
+    const canvas = document.createElement('canvas');
+    canvas.width = W; canvas.height = H;
+    const ctx = canvas.getContext('2d');
+    const INK = {paper: '#faf9f4', navy: '#173b5d', muted: '#5f6f7b', faint: '#9aa3a0', line: '#d9dcd6', accent: '#c9824f'};
+    const font = (weight, size) => weight + ' ' + size + 'px "Zen Kaku Gothic New",sans-serif';
+    ctx.fillStyle = INK.paper; ctx.fillRect(0, 0, W, H);
+    ctx.fillStyle = INK.navy; ctx.font = font(700, 46); ctx.fillText('わたしのランキング', PAD, 120);
+    ctx.fillStyle = INK.muted; ctx.font = font(500, 22); ctx.fillText('行った国・地域から選んだ、わたしの3つ', PAD, 168);
+    const top = 250, colW = (W - PAD * 2) / rows.length;
+    rows.forEach((row, col) => {
+      const x = PAD + col * colW;
+      if (col) { ctx.strokeStyle = INK.line; ctx.lineWidth = 2; ctx.beginPath(); ctx.moveTo(x - 12, top - 20); ctx.lineTo(x - 12, 720); ctx.stroke(); }
+      ctx.fillStyle = INK.navy; ctx.font = font(700, rows.length > 3 ? 26 : 32); ctx.fillText(row.label, x + 8, top + 20);
+      row.items.forEach((item, rank) => {
+        const y = top + 120 + rank * 130;
+        ctx.fillStyle = rank ? INK.muted : INK.accent; ctx.font = font(700, 40); ctx.fillText(String(rank + 1), x + 8, y);
+        ctx.fillStyle = INK.navy; let size = rows.length > 3 ? 28 : 34;
+        ctx.font = font(700, size);
+        while (ctx.measureText(item.nameJa).width > colW - 90 && size > 16) { size -= 2; ctx.font = font(700, size); }
+        ctx.fillText(item.nameJa, x + 58, y - 4);
+      });
+    });
+    ctx.fillStyle = INK.muted; ctx.font = font(600, 20); ctx.fillText('JOURNEY ATLAS', PAD, H - 48);
+    ctx.textAlign = 'right'; ctx.font = font(500, 18); ctx.fillText('atlas.yagenji.com', W - PAD, H - 48);
+    return canvas;
+  }
+  function renderRankings(places) {
+    rankingsBox.replaceChildren();
+    const title = make('h3', 'ja-rankings__title', 'わたしのランキング');
+    title.id = 'ja-rankings-title';
+    rankingsBox.append(title, make('p', 'ja-rankings__note', '行った国・地域から、テーマごとに3つまで選べます。押した順に1位・2位・3位になります。'));
+    if (!places.length) { rankingsBox.append(make('p', 'ja-empty', '「行った旅先」を登録すると、ランキングをつくれます。')); return; }
+    const bySlug = new Map(places.map(item => [item.slug, item]));
+    const rows = RANKING_THEMES.map(theme => ({...theme, items: getRanking(theme.id).map(slug => bySlug.get(slug)).filter(Boolean)}));
+    const board = make('ul', 'ja-rankings__board');
+    rows.forEach(row => {
+      const card = make('li', 'ja-ranking' + (row.id === rankingTheme ? ' is-editing' : '') + (row.items.length ? '' : ' is-empty'));
+      card.append(make('span', 'ja-ranking__label', row.label));
+      if (row.items.length) {
+        const list = make('ol', 'ja-ranking__list');
+        row.items.forEach((item, rank) => {
+          const li = make('li', 'ja-ranking__item');
+          li.append(make('span', 'ja-ranking__rank', String(rank + 1)), linkTo(item.href, item.nameJa, 'ja-ranking__name'));
+          list.append(li);
+        });
+        card.append(list);
+      }
+      const edit = make('button', 'ja-ranking__edit', row.id === rankingTheme ? '選び終える' : row.items.length ? '選び直す' : '選ぶ');
+      edit.type = 'button';
+      edit.setAttribute('aria-expanded', String(row.id === rankingTheme));
+      edit.setAttribute('aria-controls', 'ja-ranking-picker');
+      edit.addEventListener('click', () => {
+        rankingTheme = rankingTheme === row.id ? null : row.id;
+        renderMine();
+        if (rankingTheme) requestAnimationFrame(() => document.querySelector('#ja-ranking-picker')?.scrollIntoView({block: 'nearest'}));
+      });
+      card.append(edit);
+      board.append(card);
+    });
+    rankingsBox.append(board);
+    const editing = rows.find(row => row.id === rankingTheme);
+    if (editing) {
+      const picker = make('div', 'ja-ranking-picker');
+      picker.id = 'ja-ranking-picker';
+      picker.append(make('p', 'ja-ranking-picker__title', '「' + editing.label + '」を選ぶ（押した順に1位〜3位。もう一度押すと外れます）'));
+      const chosen = editing.items.map(item => item.slug);
+      const regionOf = new Map();
+      atlasChapters.forEach(chapter => chapter.pages.forEach(page => regionOf.set(page.slug, chapter.region)));
+      // Regions in the atlas order (アジア, ヨーロッパ, …), not the order places happen to come in.
+      const groups = new Map();
+      atlasChapters.forEach(chapter => { if (!groups.has(chapter.region)) groups.set(chapter.region, []); });
+      places.forEach(item => {
+        const label = regionOf.get(item.slug) || 'そのほか';
+        if (!groups.has(label)) groups.set(label, []);
+        groups.get(label).push(item);
+      });
+      groups.forEach((list, label) => {
+        if (!list.length) return;
+        const box = make('div', 'ja-year-group');
+        box.append(make('p', 'ja-year-group__label', label));
+        const chips = make('div', 'ja-year-chips');
+        list.sort((a, b) => a.nameJa.localeCompare(b.nameJa, 'ja')).forEach(item => {
+          const rank = chosen.indexOf(item.slug);
+          const on = rank >= 0;
+          const button = make('button', 'ja-year-chip' + (on ? ' is-on' : ''));
+          button.type = 'button';
+          button.setAttribute('aria-pressed', String(on));
+          button.append(make('span', '', (on ? (rank + 1) + '位 ' : '') + item.nameJa));
+          const full = !on && chosen.length >= RANKING_SIZE;
+          button.disabled = full;
+          button.addEventListener('click', () => {
+            const next = on ? chosen.filter(slug => slug !== item.slug) : [...chosen, item.slug];
+            const ok = putRanking(editing.id, next);
+            feedback.textContent = !ok ? 'このブラウザには保存できませんでした。'
+              : on ? item.nameJa + 'を「' + editing.label + '」から外しました。' : item.nameJa + 'を「' + editing.label + '」の' + next.length + '位にしました。';
+            renderMine();
+          });
+          chips.append(button);
+        });
+        box.append(chips);
+        picker.append(box);
+      });
+      const done = make('button', 'ja-tool-button', '選び終える');
+      done.type = 'button';
+      done.addEventListener('click', () => { rankingTheme = null; renderMine(); });
+      picker.append(done);
+      rankingsBox.append(picker);
+    }
+    const filled = rows.filter(row => row.items.length);
+    if (filled.length) {
+      const share = make('button', 'ja-tool-button ja-rankings__share', 'ランキングを画像にして共有');
+      share.type = 'button';
+      share.addEventListener('click', () => openImageShare({
+        title: 'わたしのランキングを画像にする', fileName: 'journey-atlas-ranking.png', fontSample: 'わたしのランキング',
+        alt: 'わたしのランキングの画像。' + filled.map(row => row.label + '：' + row.items.map(item => item.nameJa).join('、')).join('／'),
+        text: 'わたしのランキング。JOURNEY ATLASより https://atlas.yagenji.com/',
+        draw: () => drawRankings(filled)
+      }));
+      rankingsBox.append(share);
+    }
   }
 
   function renderTimeline(places) {
@@ -680,7 +832,7 @@
     timelineBox.addEventListener('toggle', () => { if (timelineBox.open) requestAnimationFrame(toSelected); }, {once: true});
   }
 
-  mine.append(summary, chaptersBox, extremesBox, timelineBox, groupsBox, tools, feedback);
+  mine.append(summary, chaptersBox, rankingsBox, extremesBox, timelineBox, groupsBox, tools, feedback);
   // わたしの地図 (atlas-my-map.js) may already be in place: keep 行った数・行きたい数 first.
   mine.prepend(summary);
   // Flags for UK Regions follow each Region page; Northern Ireland has no official
@@ -789,6 +941,7 @@
       .map(item => ({...item, place: geoEntries?.[item.slug]?.place && Number.isFinite(geoEntries[item.slug].place.lon) ? geoEntries[item.slug].place : null, tz: geoEntries?.[item.slug]?.tz || null}));
     if (geoEntries) { renderExtremes(visitedPlaces); if (!centerMap && disclosure?.open) loadCenterMap(); }
     else extremesBox.hidden = true;
+    renderRankings(visitedPlaces);
     renderTimeline(visitedPlaces);
 
   }
@@ -804,7 +957,8 @@
       regionWishes: getRegionWishes(),
       regionVisits: getRegionVisits(),
       visitYears: Object.fromEntries(allStoredKeys().filter(key => key.startsWith(VISIT_YEAR_PREFIX))
-        .map(key => [key.slice(VISIT_YEAR_PREFIX.length), getStored(key)]).filter(([, year]) => validYear(year)))
+        .map(key => [key.slice(VISIT_YEAR_PREFIX.length), getStored(key)]).filter(([, year]) => validYear(year))),
+      rankings: Object.fromEntries(RANKING_THEMES.map(theme => [theme.id, getRanking(theme.id)]).filter(([, list]) => list.length))
     };
     const url = URL.createObjectURL(new Blob([JSON.stringify(payload, null, 2)], {type: 'application/json'}));
     const link = document.createElement('a');
@@ -853,6 +1007,13 @@
         const [first, second] = id.split(':');
         const known = second === undefined ? allowed.has(first) : allowed.has(first) && validId(second);
         if (known && validYear(year) && !putStored(VISIT_YEAR_PREFIX + id, String(year))) throw Error('Storage unavailable');
+      });
+      // A ranking is one ordered choice, so an imported theme replaces the one stored here.
+      if (payload.rankings && typeof payload.rankings === 'object') RANKING_THEMES.forEach(theme => {
+        const list = payload.rankings[theme.id];
+        if (!Array.isArray(list)) return;
+        const clean = [...new Set(list.filter(slug => validId(slug) && allowed.has(slug)))].slice(0, RANKING_SIZE);
+        if (clean.length && !putRanking(theme.id, clean)) throw Error('Storage unavailable');
       });
       feedback.textContent = '保存データを読み込みました。既存の記録には追加されます。';
       renderMine();
