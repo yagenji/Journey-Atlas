@@ -425,14 +425,59 @@
     });
     x /= located.length; y /= located.length; z /= located.length;
     const length = Math.hypot(x, y, z);
-    if (length < 1e-6) return {place: '地球の中心', coord: ''};
+    if (length < 1e-6) return {place: '地球の中心', coord: '', lat: null, lon: null};
     const lat = Math.asin(z / length) / r, lon = Math.atan2(y, x) / r;
     const country = countryAt(robinson(lat, lon));
     // Until the map geometry has loaded (country === undefined) only the coordinates show.
     const place = country === undefined ? null
       : country ? (country.nameJa ? `${country.nameJa}の上` : '陸の上') : `${lakeAt(lat, lon) || '海'}の上`;
-    return {place, coord: `${latText(lat)}・${lonText(lon)}`};
+    return {place, coord: `${latText(lat)}・${lonText(lon)}`, lat, lon};
   }
+  // 旅の中心を地図で: visited capitals as dots and the center as a ring, on a copy of the
+  // world map cropped to where the travels are. Shown once the geometry has loaded.
+  const SVG_NS = 'http://www.w3.org/2000/svg';
+  const svgEl = (tag, attrs) => {
+    const el = document.createElementNS(SVG_NS, tag);
+    Object.entries(attrs).forEach(([k, v]) => el.setAttribute(k, v));
+    return el;
+  };
+  function centerFigure(located, center) {
+    if (!centerMap?.land || center.lat === null) return null;
+    const W = 1000, H = 507.209;
+    const points = located.map(item => robinson(item.place.lat, item.place.lon));
+    const mid = robinson(center.lat, center.lon);
+    const xs = [...points, mid].map(p => p[0]), ys = [...points, mid].map(p => p[1]);
+    // Wide screens get a flatter frame so the map does not tower over the tiles.
+    const boxWidth = extremesBox.clientWidth || mine.clientWidth || 600;
+    const aspect = boxWidth > 640 ? 3 : 2;
+    let w = Math.max(...xs) - Math.min(...xs), h = Math.max(...ys) - Math.min(...ys);
+    w = Math.min(W, Math.max(w * 1.3, h * 1.3 * aspect, 220)); h = Math.min(H, w / aspect);
+    const cx = (Math.max(...xs) + Math.min(...xs)) / 2, cy = (Math.max(...ys) + Math.min(...ys)) / 2;
+    const x = Math.min(Math.max(cx - w / 2, 0), W - w), y = Math.min(Math.max(cy - h / 2, 0), H - h);
+    const svg = svgEl('svg', {class: 'ja-centermap__map', viewBox: `${x} ${y} ${w} ${h}`, style: `aspect-ratio:${w}/${h}`, role: 'img',
+      'aria-label': `行った国・地域の首都と旅の中心（${center.place || center.coord}）を示す地図`});
+    svg.append(svgEl('rect', {class: 'ja-centermap__ocean', x: 0, y: 0, width: W, height: H}));
+    const land = centerMap.land.cloneNode(true);
+    const visitedSlugs = new Set(located.map(item => item.slug));
+    land.querySelectorAll('[data-iso]').forEach(group => {
+      ['class', 'tabindex', 'role', 'aria-label', 'style'].forEach(name => group.removeAttribute(name));
+      const country = centerMap.byIso.get(group.dataset.iso);
+      if (country && visitedSlugs.has(country.slug)) group.setAttribute('class', 'is-visited');
+    });
+    land.setAttribute('class', 'ja-centermap__land');
+    svg.append(land);
+    const unit = w / boxWidth; // one screen pixel in map units
+    points.forEach(([px, py]) => svg.append(svgEl('circle', {class: 'ja-centermap__capital', cx: px, cy: py, r: 3 * unit})));
+    svg.append(svgEl('circle', {class: 'ja-centermap__halo', cx: mid[0], cy: mid[1], r: 11 * unit}),
+      svgEl('circle', {class: 'ja-centermap__center', cx: mid[0], cy: mid[1], r: 5 * unit}));
+    const figure = make('figure', 'ja-centermap');
+    const caption = make('figcaption', 'ja-centermap__legend');
+    caption.append(make('span', 'ja-centermap__key ja-centermap__key--capital', '行った国・地域の首都'),
+      make('span', 'ja-centermap__key ja-centermap__key--center', '旅の中心'));
+    figure.append(svg, caption);
+    return figure;
+  }
+
   function renderExtremes(places) {
     extremesBox.replaceChildren();
     const located = places.filter(item => item.place);
@@ -477,7 +522,8 @@
         if (widest.diff) tile('時差がいちばん大きい', widest.item, '日本と' + diffText(widest.diff));
       }
     }
-    extremesBox.append(title, list, make('p', 'ja-extremes__note', '200の国・地域の首都の位置と、首都の標準時（夏時間を除く）で比べています。旅の中心は、行った国・地域の首都を地球儀の上で平均した地点です。'));
+    const figure = center ? centerFigure(located, center) : null;
+    extremesBox.append(title, ...(figure ? [figure] : []), list, make('p', 'ja-extremes__note', '200の国・地域の首都の位置と、首都の標準時（夏時間を除く）で比べています。旅の中心は、行った国・地域の首都を地球儀の上で平均した地点です。'));
   }
   // 旅の年表を画像に: one PNG drawn in this browser (nothing is uploaded), shared or saved
   // through the same dialog style as わたしの地図.

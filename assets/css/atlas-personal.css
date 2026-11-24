@@ -250,6 +250,17 @@
 .ja-extreme__name { font-size:16px; font-weight:600; color:#12365c; text-decoration:none; overflow-wrap:anywhere; }
 .ja-extreme__name:hover { text-decoration:underline; }
 .ja-extreme__value { font-size:12px; color:#4f5b57; font-variant-numeric:tabular-nums; }
+.ja-centermap { margin:0 0 10px; }
+.ja-centermap__map { display:block; width:100%; height:auto; border:1px solid #e1e4e1; border-radius:10px; background:#edf6f3; }
+.ja-centermap__ocean { fill:#edf6f3; }
+.ja-centermap__land path,.ja-centermap__land polygon,.ja-centermap__land circle { fill:#dde3e3; stroke:#fffaf1; stroke-width:.5; vector-effect:non-scaling-stroke; }
+.ja-centermap__land .is-visited path,.ja-centermap__land .is-visited polygon,.ja-centermap__land .is-visited circle { fill:#c7d3de; }
+.ja-centermap__capital { fill:#6f8aa3; stroke:#fff; stroke-width:.8; vector-effect:non-scaling-stroke; }
+.ja-centermap__halo { fill:rgba(18,54,92,.12); stroke:#12365c; stroke-width:1.2; vector-effect:non-scaling-stroke; }
+.ja-centermap__center { fill:#12365c; stroke:#fff; stroke-width:1.5; vector-effect:non-scaling-stroke; }
+.ja-centermap__legend { display:flex; flex-wrap:wrap; gap:4px 14px; margin:6px 0 0; font-size:11.5px; color:#61717e; }
+.ja-centermap__key::before { content:''; display:inline-block; width:7px; height:7px; margin-right:5px; border-radius:50%; background:#6f8aa3; vertical-align:1px; }
+.ja-centermap__key--center::before { width:9px; height:9px; background:#12365c; box-shadow:0 0 0 3px rgba(18,54,92,.15); }
 .ja-extremes__note { margin:6px 0 0; font-size:11.5px; color:#7a8480; }
 @media (max-width:760px) {
   .ja-extremes__list { grid-template-columns:1fr; gap:0; border-top:1px solid #e9ebe8; }
