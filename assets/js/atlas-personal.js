@@ -758,10 +758,10 @@
       picker.append(make('p', 'ja-ranking-picker__title', '「' + editing.label + '」を選ぶ（押した順に1位〜3位。もう一度押すと外れます）'));
       const chosen = editing.items.map(item => item.slug);
       const regionOf = new Map();
-      atlasChapters.forEach(chapter => chapter.pages.forEach(page => regionOf.set(page.slug, chapter.region)));
-      // Regions in the atlas order (アジア, ヨーロッパ, …), not the order places happen to come in.
+      atlasChapters.forEach(chapter => chapter.pages.forEach(page => regionOf.set(page.slug, chapter.label)));
+      // Chapters in the atlas order (東アジア, 東南アジア, …), as in 細かい地域の内訳.
       const groups = new Map();
-      atlasChapters.forEach(chapter => { if (!groups.has(chapter.region)) groups.set(chapter.region, []); });
+      atlasChapters.forEach(chapter => { if (!groups.has(chapter.label)) groups.set(chapter.label, []); });
       places.forEach(item => {
         const label = regionOf.get(item.slug) || 'そのほか';
         if (!groups.has(label)) groups.set(label, []);
