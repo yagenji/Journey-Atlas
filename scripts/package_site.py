@@ -27,6 +27,7 @@ STATIC_PAGE_DIRS = ["about", "faq", "privacy"]
 RUNTIME_DATA_FILES = [
     "atlas-destinations.json",
     "region-taxonomy.json",
+    "country-stats.json",
     "theme-taxonomy.json",
     "top-search-index.json",
     "top-season-index.json",
