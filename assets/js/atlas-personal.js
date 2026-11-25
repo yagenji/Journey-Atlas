@@ -276,6 +276,35 @@
     return out;
   }
   const byNameJa = (a, b) => a.nameJa.localeCompare(b.nameJa, 'ja');
+  // Population and area of the 200 Country pages (from their facts), for
+  // 「世界の人口の◯％・地球の陸地の◯％」. Loaded once, the first time someone has visits.
+  let countryStats = null, countryStatsLoading = false;
+  function loadCountryStats() {
+    if (countryStats || countryStatsLoading) return;
+    countryStatsLoading = true;
+    fetchJSON('data/country-stats.json').then(data => { countryStats = data; renderMine(); }).catch(() => {});
+  }
+  const sharePercent = (part, whole) => {
+    const value = part / whole * 100;
+    if (value >= 99.5 && part < whole) return '99%';
+    if (value >= 10) return Math.round(value) + '%';
+    if (value >= 1) return (Math.round(value * 10) / 10) + '%';
+    return value > 0 ? (value < 0.1 ? '0.1%未満' : (Math.round(value * 10) / 10) + '%') : '0%';
+  };
+  function reachLine(seen) {
+    if (!seen.length) return null;
+    if (!countryStats) { loadCountryStats(); return null; }
+    let people = 0, area = 0;
+    seen.forEach(country => {
+      const stat = countryStats.countries[country.slug];
+      if (stat) { people += stat.population; area += stat.areaKm2; }
+    });
+    const line = make('p', 'ja-mine-reach');
+    line.append('世界の人口の', make('strong', '', sharePercent(people, countryStats.totals.population)),
+      'が暮らす国・地域、地球の陸地の', make('strong', '', sharePercent(area, countryStats.totals.areaKm2)), 'を旅しました。',
+      make('small', '', '各国ページの人口・面積をもとにした概算です。'));
+    return line;
+  }
   function renderChapters() {
     chaptersBox.replaceChildren();
     if (!atlasChapters.length) { chaptersBox.hidden = true; return; }
@@ -1008,6 +1037,8 @@
       item.append(make('span', '', tag), make('strong', '', count + ' / ' + parents.length), make('small', '', name), detail);
       summary.append(item);
     });
+    const reach = reachLine(seen);
+    if (reach) summary.append(reach);
     const seenColumn = make('div', 'ja-mine-column');
     const wantColumn = make('div', 'ja-mine-column');
     seenColumn.append(sectionFor('行った旅先', seen, 'ページの「ここに行った」または地図から登録できます。', true));

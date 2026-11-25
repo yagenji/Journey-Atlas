@@ -800,6 +800,8 @@ def main() -> int:
     build_top_search_index()
     build_top_season_index()
     build_top_scene_index()
+    from build_country_stats import main as build_country_stats
+    build_country_stats()
     bundle_css("assets/css/country.css", COUNTRY_CSS_SOURCES)
     bundle_css("assets/css/top.css", TOP_CSS_SOURCES)
     prepare_top_assets_and_js()
