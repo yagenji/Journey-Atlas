@@ -155,41 +155,55 @@
       .filter(c => (!visitedOnly || isVisited(c)) && searchText(`${c.nameJa} ${c.nameEn} ${c.slug} ${c.iso2}`).includes(needle))
       .sort((a, b) => a.nameEn.localeCompare(b.nameEn, 'en', {sensitivity: 'base'}));
     const assigned = new Set();
+    // Regions (アジア…), then their subregions (東アジア, 東南アジア…) as in 細かい地域の内訳.
     const blocks = map.regions.map(region => {
       const items = countries.filter(c => region.iso2.includes(c.iso2));
       items.forEach(c => assigned.add(c.slug));
-      return {label: region.label, items};
+      const subs = (region.subregions || []).map(sub => ({label: sub.label, iso2: sub.iso2, items: items.filter(c => (sub.iso2 || []).includes(c.iso2))}));
+      const inSub = new Set(subs.flatMap(sub => sub.items.map(c => c.slug)));
+      return {label: region.label, iso2: region.iso2, items, loose: items.filter(c => !inSub.has(c.slug)), subs};
     });
-    blocks.push({label: 'その他', items: countries.filter(c => !assigned.has(c.slug))});
+    blocks.push({label: 'その他', iso2: [], items: countries.filter(c => !assigned.has(c.slug)), subs: []});
+    // Counts always use the whole region, so 「行った旅先だけ表示」 and search do not turn 5 / 48 into 5 / 5.
+    const tally = codes => {
+      const all = parents(map.countries.filter(c => (codes || []).includes(c.iso2)));
+      return all.length ? all.filter(isVisited).length + ' / ' + all.length : '';
+    };
+    const row = country => {
+      const item = make('div', 'map-mine__item');
+      const choice = make('label', 'map-mine__choice');
+      const box = make('input');
+      box.type = 'checkbox';
+      box.dataset.visitedSlug = country.slug;
+      box.checked = isVisited(country);
+      box.setAttribute('aria-label', country.nameJa + 'を行った旅先にする');
+      const flagMark = make('span', 'map-country-nav__flag', country.flag);
+      flagMark.setAttribute('aria-hidden', 'true');
+      const names = make('span', 'map-country-nav__names');
+      names.append(make('strong', '', country.nameJa), make('small', '', country.nameEn));
+      choice.append(box, flagMark, names);
+      item.append(choice);
+      if (country.href) {
+        const link = make('a', 'map-mine__country-link', '↗');
+        link.href = country.href;
+        link.setAttribute('aria-label', country.nameJa + 'のページを開く');
+        item.append(link);
+      }
+      return item;
+    };
     rows.replaceChildren(...blocks.filter(block => block.items.length).map(block => {
       const group = make('section', 'map-mine__region');
       group.setAttribute('aria-label', block.label);
       const heading = make('h4', 'map-mine__region-heading');
-      heading.append(make('span', '', block.label),
-        make('span', 'map-mine__region-count', parents(block.items).length
-          ? parents(block.items).filter(isVisited).length + ' / ' + parents(block.items).length : ''));
+      heading.append(make('span', '', block.label), make('span', 'map-mine__region-count', tally(block.iso2)));
       group.append(heading);
-      block.items.forEach(country => {
-        const item = make('div', 'map-mine__item');
-        const choice = make('label', 'map-mine__choice');
-        const box = make('input');
-        box.type = 'checkbox';
-        box.dataset.visitedSlug = country.slug;
-        box.checked = isVisited(country);
-        box.setAttribute('aria-label', country.nameJa + 'を行った旅先にする');
-        const flagMark = make('span', 'map-country-nav__flag', country.flag);
-        flagMark.setAttribute('aria-hidden', 'true');
-        const names = make('span', 'map-country-nav__names');
-        names.append(make('strong', '', country.nameJa), make('small', '', country.nameEn));
-        choice.append(box, flagMark, names);
-        item.append(choice);
-        if (country.href) {
-          const link = make('a', 'map-mine__country-link', '↗');
-          link.href = country.href;
-          link.setAttribute('aria-label', country.nameJa + 'のページを開く');
-          item.append(link);
-        }
-        group.append(item);
+      if (!block.subs.length) { block.items.forEach(country => group.append(row(country))); return group; }
+      block.loose.forEach(country => group.append(row(country)));
+      block.subs.filter(sub => sub.items.length).forEach(sub => {
+        const subHeading = make('h5', 'map-mine__subregion-heading');
+        subHeading.append(make('span', '', sub.label), make('span', 'map-mine__region-count', tally(sub.iso2)));
+        group.append(subHeading);
+        sub.items.forEach(country => group.append(row(country)));
       });
       return group;
     }));
