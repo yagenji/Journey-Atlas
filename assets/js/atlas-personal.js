@@ -255,7 +255,6 @@
   groupsSummary.append(groupsCount);
   groupsBox.append(groupsSummary, groups);
   const tools = make('div', 'ja-backup-tools');
-  let regionNames = [];
   const feedback = make('p', 'ja-subtitle');
   feedback.setAttribute('role', 'status');
   // 地域ごとの記録 (was 章ごとの記録): visited Countries counted per atlas chapter (region → subregion), the same
@@ -265,6 +264,18 @@
   let atlasChapters = [];
   let chaptersDetailOpen = false;
   window.JourneyAtlasOrder?.load().then(({chapters}) => { atlasChapters = chapters; renderMine(); }).catch(() => {});
+  // Items grouped the way 細かい地域の内訳 is: subregions (東アジア, 東南アジア…) in atlas order,
+  // each with its region (アジア…) and its total of Country pages (the 200 base).
+  function chapterGroups(items) {
+    const bySlug = new Map(items.map(item => [item.slug, item]));
+    const out = atlasChapters.map(chapter => ({region: chapter.region, label: chapter.label, total: chapter.pages.length,
+      items: chapter.pages.map(page => bySlug.get(page.slug)).filter(Boolean)}));
+    const used = new Set(out.flatMap(group => group.items.map(item => item.slug)));
+    const rest = items.filter(item => !used.has(item.slug));
+    if (rest.length) out.push({region: 'そのほか', label: 'そのほか', total: 0, items: rest});
+    return out;
+  }
+  const byNameJa = (a, b) => a.nameJa.localeCompare(b.nameJa, 'ja');
   function renderChapters() {
     chaptersBox.replaceChildren();
     if (!atlasChapters.length) { chaptersBox.hidden = true; return; }
@@ -757,22 +768,14 @@
       picker.id = 'ja-ranking-picker';
       picker.append(make('p', 'ja-ranking-picker__title', '「' + editing.label + '」を選ぶ（押した順に1位〜3位。もう一度押すと外れます）'));
       const chosen = editing.items.map(item => item.slug);
-      const regionOf = new Map();
-      atlasChapters.forEach(chapter => chapter.pages.forEach(page => regionOf.set(page.slug, chapter.label)));
-      // Chapters in the atlas order (東アジア, 東南アジア, …), as in 細かい地域の内訳.
-      const groups = new Map();
-      atlasChapters.forEach(chapter => { if (!groups.has(chapter.label)) groups.set(chapter.label, []); });
-      places.forEach(item => {
-        const label = regionOf.get(item.slug) || 'そのほか';
-        if (!groups.has(label)) groups.set(label, []);
-        groups.get(label).push(item);
-      });
+      // Subregions in the atlas order (東アジア, 東南アジア, …), as in 細かい地域の内訳.
+      const groups = new Map(chapterGroups(places).map(group => [group.label, group.items]));
       groups.forEach((list, label) => {
         if (!list.length) return;
         const box = make('div', 'ja-year-group');
         box.append(make('p', 'ja-year-group__label', label));
         const chips = make('div', 'ja-year-chips');
-        list.sort((a, b) => a.nameJa.localeCompare(b.nameJa, 'ja')).forEach(item => {
+        list.sort(byNameJa).forEach(item => {
           const rank = chosen.indexOf(item.slug);
           const on = rank >= 0;
           const button = make('button', 'ja-year-chip' + (on ? ' is-on' : ''));
@@ -893,10 +896,12 @@
     const group = (label, list, open = true) => {
       if (!list.length) return null;
       const box = open ? make('div', 'ja-year-group') : make('details', 'ja-year-group');
-      const head = make(open ? 'p' : 'summary', 'ja-year-group__label', label + '（' + list.length + '）');
-      const chips = make('div', 'ja-year-chips');
-      list.sort(byName).forEach(item => chips.append(chip(item)));
-      box.append(head, chips);
+      box.append(make(open ? 'p' : 'summary', 'ja-year-group__label', label + '（' + list.length + '）'));
+      chapterGroups(list).filter(sub => sub.items.length).forEach(sub => {
+        const chips = make('div', 'ja-year-chips');
+        sub.items.sort(byName).forEach(item => chips.append(chip(item)));
+        box.append(make('p', 'ja-year-subgroup__label', sub.label), chips);
+      });
       return box;
     };
     [
@@ -952,24 +957,22 @@
         });
         container.append(list);
       };
-      if (groupByRegion && regionNames.length) {
-        const assigned = new Set();
-        regionNames.forEach(region => {
-          const matches = items.filter(country => region.iso2.includes(country.iso2));
-          if (!matches.length) return;
-          matches.forEach(country => assigned.add(country.slug));
+      if (groupByRegion && atlasChapters.length) {
+        const groups = chapterGroups(items);
+        const regions = [...new Set(groups.map(group => group.region))];
+        regions.forEach(region => {
+          const inRegion = groups.filter(group => group.region === region);
+          const count = inRegion.reduce((n, group) => n + group.items.length, 0);
+          if (!count) return;
+          const total = inRegion.reduce((n, group) => n + group.total, 0);
           const block = make('div', 'ja-mine-region');
-          block.append(make('h4', 'ja-mine-region-title', region.label + ' ' + matches.length + ' / ' + region.iso2.length));
-          appendLinks(block, matches);
+          block.append(make('h4', 'ja-mine-region-title', region + ' ' + count + (total ? ' / ' + total : '')));
+          inRegion.filter(group => group.items.length).forEach(group => {
+            if (group.label !== region) block.append(make('p', 'ja-mine-subregion-title', group.label + ' ' + group.items.length + ' / ' + group.total));
+            appendLinks(block, group.items.sort(byNameJa));
+          });
           section.append(block);
         });
-        const unmatched = items.filter(country => !assigned.has(country.slug));
-        if (unmatched.length) {
-          const block = make('div', 'ja-mine-region');
-          block.append(make('h4', 'ja-mine-region-title', 'その他 ' + unmatched.length));
-          appendLinks(block, unmatched);
-          section.append(block);
-        }
       } else appendLinks(section, items);
     } else section.append(make('p', 'ja-empty', empty));
     return section;
@@ -1107,10 +1110,6 @@
   fetchJSON(REGISTRY_PATH).then(data => {
     registry = Array.isArray(data.destinations) ? data.destinations : [];
     renderMine();
-    fetchJSON('data/region-taxonomy.json').then(data => {
-      regionNames = (data.regions || []).filter(region => Array.isArray(region.iso2));
-      renderMine();
-    }).catch(() => {});
   }).catch(() => {
     feedback.textContent = 'アトラスの一覧を読み込めませんでした。';
   });
