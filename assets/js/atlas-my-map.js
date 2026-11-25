@@ -152,7 +152,8 @@
     const scrollTop = rows.scrollTop;
     const needle = searchText(query).trim();
     const countries = map.countries
-      .filter(c => (!visitedOnly || isVisited(c)) && searchText(`${c.nameJa} ${c.nameEn} ${c.slug} ${c.iso2}`).includes(needle))
+      // Only the 200 Country pages: Hong Kong and Macau are recorded on their own pages.
+      .filter(c => !map.isDetail(c) && (!visitedOnly || isVisited(c)) && searchText(`${c.nameJa} ${c.nameEn} ${c.slug} ${c.iso2}`).includes(needle))
       .sort((a, b) => a.nameEn.localeCompare(b.nameEn, 'en', {sensitivity: 'base'}));
     const assigned = new Set();
     // Regions (アジア…), then their subregions (東アジア, 東南アジア…) as in 細かい地域の内訳.
@@ -207,16 +208,15 @@
       });
       return group;
     }));
-    // 200 is the site's destination count; detail regions are listed but not counted in it.
-    const counted = parents(countries).length;
-    picker.querySelector('.map-mine__result-count').textContent = counted || !countries.length
-      ? counted + '件'
-      : '詳細地域 ' + countries.length + '件';
+    picker.querySelector('.map-mine__result-count').textContent = countries.length + '件';
     const empty = picker.querySelector('.map-mine__no-results');
     empty.hidden = countries.length > 0;
+    const detailHits = needle ? map.countries.filter(c => map.isDetail(c) && searchText(`${c.nameJa} ${c.nameEn} ${c.slug}`).includes(needle)) : [];
     empty.textContent = visitedOnly && !needle
       ? '行った旅先はまだありません。「行った旅先だけ表示」を外して追加できます。'
-      : '該当する国・地域がありません。';
+      : detailHits.length
+        ? detailHits.map(c => c.nameJa).join('・') + 'は詳細地域です。それぞれのページの「ここに行った」で記録できます。'
+        : '該当する国・地域がありません。';
     rows.scrollTop = scrollTop;
     if (activeSlug) (rows.querySelector(`[data-visited-slug="${activeSlug}"]`) || picker.querySelector('[data-mine-filter]')).focus({preventScroll: true});
   }
@@ -241,7 +241,7 @@
     const search = make('label', 'map-mine__search');
     const input = make('input');
     input.type = 'search';
-    input.placeholder = '国・地域名で検索（例：マカオ）';
+    input.placeholder = '国・地域名で検索（例：ポルトガル）';
     input.autocomplete = 'off';
     input.setAttribute('aria-label', '行った旅先を検索');
     search.append(make('span', '', '行った旅先を選ぶ'), input);
