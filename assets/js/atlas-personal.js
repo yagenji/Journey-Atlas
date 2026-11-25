@@ -1052,6 +1052,20 @@
     );
     groups.replaceChildren(seenColumn, wantColumn);
     groupsCount.textContent = '（行った' + seen.length + '・行きたい' + want.length + '）';
+    // The closed マイアトラス shows the visitor's own numbers, so a returning traveller sees where they left off.
+    const teaser = document.querySelector('.ja-atlas-mine');
+    if (teaser) {
+      const parts = [];
+      if (seen.length) {
+        parts.push(['行った ', seen.length + ' / ' + parents.length]);
+        const shares = reachShares(seen);
+        if (shares) parts.push(['世界の人口の', shares.people]);
+      }
+      if (want.length) parts.push(['行きたい ', String(want.length)]);
+      teaser.replaceChildren();
+      parts.forEach(([label, value], i) => teaser.append(...(i ? ['・'] : []), label, make('strong', '', value)));
+      teaser.hidden = !parts.length;
+    }
     renderChapters();
     // 旅の果て and 旅の年表 use the 200 Country pages only (no detail regions such as
     // England, Hong Kong or Macau), the same base as the VISITED count.
