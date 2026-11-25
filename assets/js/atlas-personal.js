@@ -277,7 +277,7 @@
   }
   const byNameJa = (a, b) => a.nameJa.localeCompare(b.nameJa, 'ja');
   // Population and area of the 200 Country pages (from their facts), for
-  // 「世界の人口の◯％・地球の陸地の◯％」. Loaded once, the first time someone has visits.
+  // 旅の広がり's 世界の人口・地球の陸地. Loaded once, the first time someone has visits.
   let countryStats = null, countryStatsLoading = false;
   function loadCountryStats() {
     if (countryStats || countryStatsLoading) return;
@@ -291,20 +291,16 @@
     if (value >= 1) return (Math.round(value * 10) / 10) + '%';
     return value > 0 ? (value < 0.1 ? '0.1%未満' : (Math.round(value * 10) / 10) + '%') : '0%';
   };
-  function reachLine(seen) {
-    if (!seen.length) return null;
+  function reachShares(places) {
     if (!countryStats) { loadCountryStats(); return null; }
     let people = 0, area = 0;
-    seen.forEach(country => {
-      const stat = countryStats.countries[country.slug];
+    places.forEach(item => {
+      const stat = countryStats.countries[item.slug];
       if (stat) { people += stat.population; area += stat.areaKm2; }
     });
-    const line = make('p', 'ja-mine-reach');
-    line.append('世界の人口の', make('strong', '', sharePercent(people, countryStats.totals.population)),
-      'が暮らす国・地域、地球の陸地の', make('strong', '', sharePercent(area, countryStats.totals.areaKm2)), 'を旅しました。',
-      make('small', '', '各国ページの人口・面積をもとにした概算です。'));
-    return line;
+    return {people: sharePercent(people, countryStats.totals.population), area: sharePercent(area, countryStats.totals.areaKm2)};
   }
+
   function renderChapters() {
     chaptersBox.replaceChildren();
     if (!atlasChapters.length) { chaptersBox.hidden = true; return; }
@@ -553,7 +549,7 @@
     const antarctica = places.find(item => item.slug === 'antarctica');
     if (!located.length && !antarctica) { extremesBox.hidden = true; return; }
     extremesBox.hidden = false;
-    const title = make('h3', 'ja-extremes__title', '旅の中心と果て');
+    const title = make('h3', 'ja-extremes__title', '旅の広がり');
     title.id = 'ja-extremes-title';
     const list = make('ul', 'ja-extremes__list');
     const marks = new Map(); // slug → {lat, lon, labels} for the map
@@ -598,9 +594,16 @@
         if (widest.diff) tile('時差がいちばん大きい', widest.item, '日本と' + diffText(widest.diff), '時差');
       }
     }
+    const shares = reachShares(places);
+    if (shares) [['世界の人口', shares.people, '行った国・地域に暮らす人'], ['地球の陸地', shares.area, '行った国・地域の面積']]
+      .forEach(([label, share, value]) => {
+        const li = make('li', 'ja-extreme ja-extreme--share');
+        li.append(make('span', 'ja-extreme__label', label), make('span', 'ja-extreme__name', share), make('span', 'ja-extreme__value', value));
+        list.append(li);
+      });
     const figure = center ? centerFigure(located, center, [...marks.values()]) : null;
     extremesBox.classList.toggle('ja-extremes--map', !!figure);
-    extremesBox.append(title, ...(figure ? [figure] : []), list, make('p', 'ja-extremes__note', '200の国・地域の首都の位置と、首都の標準時（夏時間を除く）で比べています。旅の中心は、行った国・地域の首都を地球儀の上で平均した地点です。'));
+    extremesBox.append(title, ...(figure ? [figure] : []), list, make('p', 'ja-extremes__note', '200の国・地域の首都の位置と、首都の標準時（夏時間を除く）で比べています。旅の中心は、行った国・地域の首都を地球儀の上で平均した地点です。人口と陸地は、各国ページの人口・面積をもとにした概算です。'));
   }
   // 旅の年表を画像に: one PNG drawn in this browser (nothing is uploaded), shared or saved
   // through the same dialog style as わたしの地図.
@@ -1037,8 +1040,6 @@
       item.append(make('span', '', tag), make('strong', '', count + ' / ' + parents.length), make('small', '', name), detail);
       summary.append(item);
     });
-    const reach = reachLine(seen);
-    if (reach) summary.append(reach);
     const seenColumn = make('div', 'ja-mine-column');
     const wantColumn = make('div', 'ja-mine-column');
     seenColumn.append(sectionFor('行った旅先', seen, 'ページの「ここに行った」または地図から登録できます。', true));
