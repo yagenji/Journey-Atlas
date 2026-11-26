@@ -603,7 +603,7 @@
       });
     const figure = center ? centerFigure(located, center, [...marks.values()]) : null;
     extremesBox.classList.toggle('ja-extremes--map', !!figure);
-    extremesBox.append(title, ...(figure ? [figure] : []), list, make('p', 'ja-extremes__note', '200の国・地域の首都の位置と、首都の標準時（夏時間を除く）で比べています。旅の中心は、行った国・地域の首都を地球儀の上で平均した地点です。人口と陸地は、各国ページの人口・面積をもとにした概算です。'));
+    extremesBox.append(title, ...(figure ? [figure] : []), list, make('p', 'ja-extremes__note', '200の国・地域の首都の位置と、首都の標準時（夏時間を除く）で比べています。旅の中心は、行った国・地域の首都を地球儀の上で平均した地点です。世界の人口と地球の陸地は、この図鑑の200の国・地域の人口・面積の合計に対する割合で、各国ページの数値による概算です。200に含まれない地域（グリーンランドなど）や、各国ページの数値に含まれない海外領土などは数えていません。'));
   }
   // 旅の年表を画像に: one PNG drawn in this browser (nothing is uploaded), shared or saved
   // through the same dialog style as わたしの地図.
