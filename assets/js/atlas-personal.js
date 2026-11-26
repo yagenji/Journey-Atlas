@@ -477,7 +477,7 @@
     Object.entries(attrs).forEach(([k, v]) => el.setAttribute(k, v));
     return el;
   };
-  function centerFigure(located, center, marks) {
+  function centerFigure(located, center, marks, visited) {
     if (!centerMap?.land || center.lat === null) return null;
     const W = 1000, H = 507.209;
     const points = [...located.map(item => item.place), ...marks].map(p => robinson(p.lat, p.lon));
@@ -499,7 +499,8 @@
       'aria-label': `行った国・地域と、旅の中心（${center.place || center.coord}）・いちばん北や南などの旅先を示す地図`});
     svg.append(svgEl('rect', {class: 'ja-centermap__ocean', x: 0, y: 0, width: W, height: H}));
     const land = centerMap.land.cloneNode(true);
-    const visitedSlugs = new Set(located.map(item => item.slug));
+    // Every visited place, including Antarctica, which has no capital to locate.
+    const visitedSlugs = new Set(visited.map(item => item.slug));
     land.querySelectorAll('[data-iso]').forEach(group => {
       ['class', 'tabindex', 'role', 'aria-label', 'style'].forEach(name => group.removeAttribute(name));
       const country = centerMap.byIso.get(group.dataset.iso);
@@ -601,7 +602,7 @@
         li.append(make('span', 'ja-extreme__label', label), make('span', 'ja-extreme__name', share), make('span', 'ja-extreme__value', value));
         list.append(li);
       });
-    const figure = center ? centerFigure(located, center, [...marks.values()]) : null;
+    const figure = center ? centerFigure(located, center, [...marks.values()], places) : null;
     extremesBox.classList.toggle('ja-extremes--map', !!figure);
     // Notes in the order of the rows above.
     const note = make('ul', 'ja-extremes__note');
