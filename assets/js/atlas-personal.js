@@ -604,13 +604,9 @@
       });
     const figure = center ? centerFigure(located, center, [...marks.values()], places) : null;
     extremesBox.classList.toggle('ja-extremes--map', !!figure);
-    // Notes in the order of the rows above.
-    const note = make('ul', 'ja-extremes__note');
-    [['旅の中心', '行った国・地域の首都を地球儀の上で平均した地点です。'],
-      ['北・南・遠い', '200の国・地域の首都の位置で比べています。'],
-      ['時差', '首都の標準時（夏時間を除く）で比べています。'],
-      ['世界の人口・地球の陸地', 'この図鑑の200の国・地域の人口・面積の合計に対する割合で、各国ページの数値による概算です。200に含まれない地域（グリーンランドなど）や、各国ページの数値に含まれない海外領土などは数えていません。']]
-      .forEach(([label, text]) => { const li = make('li'); li.append(make('strong', '', label), '：' + text); note.append(li); });
+    // The definitions live in the FAQ; here only a quiet link to them.
+    const note = make('p', 'ja-extremes__note');
+    note.append(linkTo('faq/#travel-reach', 'それぞれの数え方', 'ja-extremes__more'), ' ›');
     extremesBox.append(title, ...(figure ? [figure] : []), list, note);
   }
   // 旅の年表を画像に: one PNG drawn in this browser (nothing is uploaded), shared or saved

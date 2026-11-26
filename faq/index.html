@@ -373,7 +373,7 @@
         </div>
       </details>
 
-      <details class="faq-item">
+      <details class="faq-item" id="travel-reach">
         <summary>「地域ごとの記録」と「旅の広がり」とは何ですか？</summary>
         <div class="faq-answer">
           <p>「地域ごとの記録」は、アジアやヨーロッパなど7つの地域ごとに、行った国・地域の割合と数を一覧にしたものです。「東南アジア・北ヨーロッパなど、細かい地域の内訳」を開くと、地域をさらに分けたまとまりごとの数が表示されます。Country Pageを順にめくるときと同じ区切りです。</p>
@@ -516,8 +516,10 @@
         catch (_) { return; }
         if (!target) return;
         const topic = target.closest('details.info-topic');
-        if (!topic || topic.open) return;
-        topic.open = true;
+        const item = target.matches('details.faq-item') ? target : null;
+        if ((!topic || topic.open) && (!item || item.open)) return;
+        if (topic) topic.open = true;
+        if (item) item.open = true;
         requestAnimationFrame(() => target.scrollIntoView({block:'start'}));
       };
       window.addEventListener('hashchange', revealTopic);
